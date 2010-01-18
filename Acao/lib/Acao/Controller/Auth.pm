@@ -23,9 +23,13 @@ Catalyst Controller.
 
 sub base :Chained('/') :PathPart('auth') :CaptureArgs(0) {
     my ( $self, $c ) = @_;
-    $c->response->body('Matched Acao::Controller::Auth in Auth.');
+    
 }
 
+sub principal :Chained('base') :PathPart('') :Args(0) {
+    my ($self,$c) = @_;
+    $c->res->redirect($c->uri_for('/auth/registros'));
+}
 
 =head1 AUTHOR
 
