@@ -29,7 +29,7 @@ sub base :Chained('/auth/registros/digitador/base') :PathPart('') :CaptureArgs(1
 sub form :Chained('base') :PathPart('') :Args(0) {
 }
 
-sub store :Chained('base') :PathPart('store') :Args(0) {
+sub store :Chained('base') :PathPart('store') :Args(0) {    
 }
 
 sub xsd :Chained('base') :PathPart('xsd') :Args(0) {

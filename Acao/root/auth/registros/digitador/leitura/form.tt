@@ -1,0 +1,25 @@
+[% INCLUDE 'auth/header.tt' %]
+<SCRIPT SRC="[% c.uri_for('/static/js/xsdForm.js') %]" LANGUAGE="Javascript" ></SCRIPT>
+<fieldset>
+ <div>
+   <b>Projeto:</b>
+   [% leitura.instrumento.projeto.nome %]<br/><br/>
+   <b>Instrumento:</b>
+   [% leitura.instrumento.nome %]<br/><br/>
+   <b>Coleta inicial:</b>
+   [% leitura.coleta_ini %]<br/><br/>
+   <b>Coleta final:</b>
+   [% leitura.coleta_fim %]<br/><br/>
+   <b>Digitação inicial:</b>
+   [% leitura.digitacao_ini %]<br/><br/>
+   <b>Digitação final:</b>
+   [% leitura.digitacao_fim %]<br/><br/>
+   
+   <div id="form_container"></div>
+   <SCRIPT>
+     generateForm("[% c.uri_for('/auth/registros/digitador/') _ leitura.id_leitura _ '/xsd' %]",
+                  "form_container");
+   </SCRIPT>
+ </div>
+</fieldset>
+[% INCLUDE 'footer.tt' %]
