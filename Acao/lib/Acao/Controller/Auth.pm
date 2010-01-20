@@ -23,12 +23,21 @@ Catalyst Controller.
 
 sub base :Chained('/') :PathPart('auth') :CaptureArgs(0) {
     my ( $self, $c ) = @_;
-    
+    unless ($c->user) {
+       $c->res->redirect($c->uri_for('/login'));
+       $c->detach;
+    }
 }
 
 sub principal :Chained('base') :PathPart('') :Args(0) {
     my ($self,$c) = @_;
     $c->res->redirect($c->uri_for('/auth/registros'));
+}
+
+sub logout :Chained('base') :PathPart('logout') :Args(0) {
+    my ($self,$c) = @_;
+    $c->logout;
+    $c->res->redirect($c->uri_for('/'));
 }
 
 =head1 AUTHOR

@@ -1,12 +1,22 @@
-[% META title = 'Lista de Instumentos para o Digitador'%]
-[% INCLUDE 'header.tt' %]
+[% META title = 'Lista de Leituras para o Digitador'%]
+[% INCLUDE 'auth/header.tt' %]
 <table border="1">
  <tr>
+  <th>Projeto</th>
   <th>Instrumento</th>
+  <th>Inicio da Coleta</th>
+  <th>Fim da Coleta</th>
+  <th>Inicio da Digitacao</th>
+  <th>Fim da Digitacao</th>
  </tr>
- [% FOREACH instrumento IN c.model('DB::Instrumento').all %]
+ [% FOREACH leitura IN c.model('Digitador').listar_leituras %]
  <tr>
-  <td><a href="[% c.uri_for('/auth/registros/digitador') _ "/" _ instrumento.id_projeto _ "/" _ instrumento.nome %]">[% instrumento.nome %]</a></td>
+  <td>[% leitura.instrumento.projeto.nome %]</a></td>
+  <td><a href="[% c.uri_for('/auth/registros/digitador') _ "/" _ leitura.id_leitura %]">[% leitura.nome %]</a></td>
+  <td>[% leitura.coleta_ini %]</a></td>
+  <td>[% leitura.coleta_fim %]</a></td>
+  <td>[% leitura.digitacao_ini %]</a></td>
+  <td>[% leitura.digitacao_fim %]</a></td>
  </tr>
  [% END %]
 </table>
