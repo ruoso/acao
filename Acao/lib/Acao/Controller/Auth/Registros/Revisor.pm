@@ -23,14 +23,9 @@ Catalyst Controller.
 
 sub base :Chained('/auth/registros/base') :PathPart('revisor') :CaptureArgs(0) {
     my ( $self, $c ) = @_;
-    $c->res->body('Matched Acao::Controller::Auth::Registros::Revisor in Auth::Registros::Revisor.');
 }
 
-sub lista :Chained('base') :PathPart('') :Args(0) {
-    my ($self,$c) = @_;
-    
-    $c->res->body('Matched Acao::Controller::Auth::Registros::Revisor::Instrumento in Auth::Registros::Revisor::Instrumento.')
-}
+sub lista :Chained('base') :PathPart('') :Args(0) {}
 
 
 =head1 AUTHOR
