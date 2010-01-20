@@ -1,0 +1,13 @@
+[% META title = 'Lista de Instumentos para o Digitador'%]
+[% INCLUDE 'header.tt' %]
+<table border="1">
+ <tr>
+  <th>Instrumento</th>
+ </tr>
+ [% FOREACH instrumento IN c.model('DB::Instrumento').all %]
+ <tr>
+  <td><a href="[% c.uri_for('/auth/registros/digitador') _ "/" _ instrumento.id_projeto _ "/" _ instrumento.nome %]">[% instrumento.nome %]</a></td>
+ </tr>
+ [% END %]
+</table>
+[% INCLUDE 'footer.tt' %]

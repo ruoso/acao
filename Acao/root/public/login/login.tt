@@ -1,0 +1,11 @@
+[% INCLUDE 'header.tt' %]
+<form id="form" method="post" action="[%c.uri_for('login')%]">
+  <div id="loginConteudo">
+   Usuário:
+   <input type="text" name="user" />
+   Senha:
+   <input type="text" name="password" />
+   <input type="submit" name="submit" value="Entrar" />
+  </div>
+</form>
+[% INCLUDE 'footer.tt' %]
