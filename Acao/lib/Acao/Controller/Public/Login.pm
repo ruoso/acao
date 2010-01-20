@@ -21,11 +21,23 @@ Catalyst Controller.
 
 =cut
 
-sub login :Chained('/public/base') :PathPart :Args(0) {
+sub base :Chained('/') :PathPart('login') :CaptureArgs(0) {
+    my ( $self,$c ) = @_;
+}
+
+sub login :Chained('base') :PathPart('') :Args(0) {
     my ( $self, $c ) = @_;
     my $user = $c->request->params->{user};
     my $password = $c->request->params->{password};
-    $c->response->body('Matched Acao::Controller::Public::Login in Public::Login.');
+    
+    if (defined $user  && defined $password ) {
+        if ($c->authenticate({username => $user,password => $password})) {
+            $c->res->redirect($c->uri_for($c->controller('auth')->action_for('principal')));
+            return;            
+        } else {
+            $c->stash->{error_msg} = 'Dados incorretos!';
+        }
+    }
 }
 
 

@@ -21,8 +21,8 @@ Catalyst Controller.
 
 =cut
 
-sub base :Chained('/auth/registros/revisor/base') :PathPart('') :CaptureArgs(1) {
-    my ( $self, $c ) = @_;
+sub base :Chained('/auth/registros/revisor/base') :PathPart('') :CaptureArgs(2) {
+    my ( $self, $c, $id_projeto, $instrumento ) = @_;
     $c->response->body('Matched Acao::Controller::Auth::Registros::Revisor::Preenchimento in Auth::Registros::Revisor::Preenchimento.');
 }
 

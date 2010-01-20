@@ -21,15 +21,11 @@ Catalyst Controller.
 
 =cut
 
-sub base :Chained('/auth/registros/base') :PathPart('digitador') :CatpureArgs(0) {
+sub base :Chained('/auth/registros/base') :PathPart('digitador') :CaptureArgs(0) {
     my ( $self, $c ) = @_;
-    $c->response->body('Matched Acao::Controller::Auth::Registros::Digitador in Auth::Registros::Digitador.');
 }
 
-sub lista :Chained('base') :PathPart('') :Args(0) {
-    my ( $self, $c ) = @_;
-    $c->response->body('Matched Acao::Controller::Auth::Registros::Digitador::Instrumento in Auth::Registros::Digitador::Instrumento.');
-}
+sub lista :Chained('base') :PathPart('') :Args(0) {}
 
 
 1;

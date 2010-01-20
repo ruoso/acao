@@ -38,8 +38,8 @@ our $VERSION = '0.01';
 
 __PACKAGE__->config->{'Plugin::Authentication'} = {
     default => {
-        user => 'Teste',
-        password_type => 'clear',
+        user => 'Acao',
+        password => '12345',
     },
 };
 

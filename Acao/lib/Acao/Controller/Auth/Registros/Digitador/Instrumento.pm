@@ -21,8 +21,8 @@ Catalyst Controller.
 
 =cut
 
-sub instrumento :Chained('/auth/registros/digitador/base') :PathPart('') :CaptureArgs(1) {
-    my ($self, $c, $instrumento) = @_;
+sub instrumento :Chained('/auth/registros/digitador/base') :PathPart('') :CaptureArgs(2) {
+    my ($self, $c, $id_projeto, $instrumento) = @_;
 }
 
 sub form :Chained('instrumento') :PathPart('') :Args(0) {

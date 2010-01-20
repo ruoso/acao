@@ -1,7 +1,7 @@
 [% INCLUDE 'header.tt' %]
-<h1>Registros</H1>
+<h1>Registros</h1>
 <ul>
- <li><a href="[%c.uri_for('digitador/lista')%]">Digitador</a></li>
+ <li><a href="[%c.uri_for('digitador')%]">Digitador</a></li>
  <li><a href="[%c.uri_for('revisor/lista')%]">Revisor</a></li>
 </ul>
 [% INCLUDE 'footer.tt' %]

@@ -25,7 +25,6 @@ sub base :Chained('/') :PathPart('') :CaptureArgs(0) {}
 
 sub entrada :Chained('base') :PathPart('') :Args(0) {
     my ($self,$c) = @_;
-    $c->res->redirect($c->uri_for('/auth'));
 }
 
 sub default :Chained('base') :PathPart('')  {

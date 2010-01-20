@@ -34,30 +34,32 @@
             <ul>
                 <li><a href="#">Cadastros</a>
                   <ul><!--início do menu pendente-->
-                    <li><a href="../../view/candidatos/pesquisar.php">Candidatos</a></li>
-                    <li><a href="../../view/cargos/pesquisar.php">Cargos</a></li>
-                    <li><a href="../../view/classificacoes/pesquisar.php">Classificação</a></li>
-                    <li><a href="../../view/empresas/pesquisar.php">Empresas</a></li>
-                    <li><a href="../../view/lotacao/pesquisar.php">Lotação</a></li>
-                    <li><a href="../../view/modalidadeslicitacao/pesquisar.php">Modalidades de Licitação</a></li>
-                    <li><a href="../../view/orgao/pesquisar.php">Orgão</a></li>
-                    <li><a href="../../view/tiposadministracao/pesquisar.php">Tipos de Administração</a></li>
-                    <li><a href="../../view/tiposcontrato/pesquisar.php">Tipos de Contrato</a></li>
+                    <li><a href="#">Candidatos</a></li>
+                    <li><a href="#">Cargos</a></li>
+                    <li><a href="#">Classificação</a></li>
+                    <li><a href="#">Empresas</a></li>
+                    <li><a href="#">Lotação</a></li>
+                    <li><a href="#">Modalidades de Licitação</a></li>
+                    <li><a href="#">Orgão</a></li>
+                    <li><a href="#">Tipos de Administração</a></li>
+                    <li><a href="#">Tipos de Contrato</a></li>
                   </ul><!--fim do menu pendente-->
                 </li>
                 <li><a href="#">Manutenção</a>
                   <ul><!--início do menu pendente-->
-                    <li><a href="../../view/operadores/pesquisar.php">Operadores</a></li>
-		    <li><a href="../../view/perfis/pesquisar.php">Perfis</a></li>
+                    <li><a href="#">Operadores</a></li>
+		    <li><a href="#">Perfis</a></li>
                   </ul><!--fim do menu pendente-->
                 </li>
                 <li><a href="#">Ajuda</a></li>
-                <li style="float: right"><a href="../../view/autenticacao/autenticacao.php?method=logout" title="Sair">Sair</a></li>
+                <li style="float: right"><a href="#" title="Sair">Sair</a></li>
             </ul>
         </div>
         <div id='barraTopoCaminho'>
-        	<a href='#' title='Início'>Início</a> »  <h2>Página Inicial</h2>
+        	<a href="[%c.uri_for('/')%]" title='Início'>Início</a> »  <h2>Página Inicial</h2>
         </div>
         <div id="conteudo">
             <h3>Ação - Sistema de Acompanhamento de Projetos Sociais</h3>
             <p>Última atualização: 15/01/2010</p>
+            <span>[%status_msg%]</span>
+            <span>[%error_msg%]</span>
