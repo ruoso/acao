@@ -1,4 +1,4 @@
-package Acao::Controller::Auth::Registros::Digitador::Instrumento;
+package Acao::Controller::Auth::Registros::Digitador::Leitura;
 
 use strict;
 use warnings;
@@ -31,6 +31,11 @@ sub form :Chained('instrumento') :PathPart('') :Args(0) {
 sub store :Chained('instrumento') :PathPart('store') :Args(0) {
 }
 
+sub xsd :Chained('instrumento') :PathPart('xsd') :Args(0) {
+  my ($self, $c) = @_;
+  $c->stash->{document} = 'test.xsd.xml';
+  $c->forward($c->view('Sedna'));
+}
 
 =head1 AUTHOR
 
