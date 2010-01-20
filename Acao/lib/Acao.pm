@@ -17,11 +17,8 @@ use parent qw/Catalyst/;
 use Catalyst qw/-Debug
                 ConfigLoader
                 Static::Simple
-                
                 StackTrace
-                
-                Authentication
-                
+                Authentication               
                 Session
                 Session::Store::FastMmap
                 Session::State::Cookie/;
@@ -36,12 +33,6 @@ our $VERSION = '0.01';
 # with an external configuration file acting as an override for
 # local deployment.
 
-__PACKAGE__->config->{'Plugin::Authentication'} = {
-    default => {
-        user => 'Acao',
-        password => '12345',
-    },
-};
 
 # Start the application
 __PACKAGE__->setup();

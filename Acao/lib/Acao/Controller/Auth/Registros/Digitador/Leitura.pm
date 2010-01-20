@@ -23,7 +23,6 @@ Catalyst Controller.
 
 sub instrumento :Chained('/auth/registros/digitador/base') :PathPart('') :CaptureArgs(1) {
     my ($self, $c, $id_leitura) = @_;
-    
 }
 
 sub form :Chained('instrumento') :PathPart('') :Args(0) {

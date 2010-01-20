@@ -3,6 +3,7 @@ use strict;
 use warnings;
 use base 'Exporter';
 
+use Data::Dumper;
 our @EXPORT = qw(txn_method authorized);
 
 sub txn_method {
@@ -17,7 +18,7 @@ sub txn_method {
 sub authorized {
   my ($role, $code) = @_;
   return sub {
-    if ($_[0]->user->in_role($role)) {
+    if (grep { $_ eq $role } $_[0]->user->roles) {
       $code->(@_);
     } else {
       die 'Access Denied!';
