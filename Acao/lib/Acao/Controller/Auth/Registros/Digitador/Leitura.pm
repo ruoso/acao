@@ -1,4 +1,4 @@
-package Acao::Controller::Auth::Registros::Digitador::Instrumento;
+package Acao::Controller::Auth::Registros::Digitador::Leitura;
 
 use strict;
 use warnings;
@@ -6,7 +6,7 @@ use parent 'Catalyst::Controller';
 
 =head1 NAME
 
-Acao::Controller::Auth::Registros::Digitador::Instrumento - Catalyst Controller
+Acao::Controller::Auth::Registros::Digitador::Leitura - Catalyst Controller
 
 =head1 DESCRIPTION
 
@@ -21,14 +21,16 @@ Catalyst Controller.
 
 =cut
 
-sub instrumento :Chained('/auth/registros/digitador/base') :PathPart('') :CaptureArgs(1) {
+sub base :Chained('/auth/registros/digitador/base') :PathPart('') :CaptureArgs(1) {
     my ($self, $c, $id_leitura) = @_;
+    
+    $c->stash->{leitura} = $c->model('Digitador')->obter_leitura($id_leitura);
 }
 
-sub form :Chained('instrumento') :PathPart('') :Args(0) {
+sub form :Chained('base') :PathPart('') :Args(0) {
 }
 
-sub store :Chained('instrumento') :PathPart('store') :Args(0) {
+sub store :Chained('base') :PathPart('store') :Args(0) {
 }
 
 

@@ -13,4 +13,18 @@ txn_method 'listar_leituras' => authorized 'digitador' => sub {
         prefetch => { 'instrumento' => 'projeto' },
         join => 'digitadores',
     });
+};
+
+txn_method 'obter_leitura' => authorized 'digitador' => sub {
+    my ($self, $id_leitura) = @_;
+    
+    return $self->dbic->resultset('Leitura')->find(
+    {
+        'digitadores.dn' => $self->user->id,
+        'me.id_leitura' => $id_leitura,
+    },
+    {
+        prefetch => {'instrumento' => 'projeto'},
+        join => 'digitadores',
+    });
 }
