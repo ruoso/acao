@@ -1,25 +1,35 @@
 [% INCLUDE 'auth/header.tt' %]
 <SCRIPT SRC="[% c.uri_for('/static/js/xsdForm.js') %]" LANGUAGE="Javascript" ></SCRIPT>
-<fieldset>
- <div>
-   <b>Projeto:</b>
-   [% leitura.instrumento.projeto.nome %]<br/><br/>
-   <b>Instrumento:</b>
-   [% leitura.instrumento.nome %]<br/><br/>
-   <b>Coleta inicial:</b>
-   [% leitura.coleta_ini %]<br/><br/>
-   <b>Coleta final:</b>
-   [% leitura.coleta_fim %]<br/><br/>
-   <b>Digitação inicial:</b>
-   [% leitura.digitacao_ini %]<br/><br/>
-   <b>Digitação final:</b>
-   [% leitura.digitacao_fim %]<br/><br/>
-   
-   <div id="form_container"></div>
-   <SCRIPT>
-     generateForm("[% c.uri_for('/auth/registros/digitador/') _ leitura.id_leitura _ '/xsd' %]",
-                  "form_container");
-   </SCRIPT>
- </div>
-</fieldset>
+
+ <FORM ACTION="[% c.uri_for('/auth/registros/digitador/') _ leitura.id_leitura _ '/store' %]" METHOD="POST">
+
+ <fieldset>
+  <legend>Dados da Leitura</legend>
+  <DL>
+    <DT>Projeto:</DT>
+    <DD>[% leitura.instrumento.projeto.nome %]&nbsp;</DD>
+    <DT>Instrumento:</DT>
+    <DD>[% leitura.instrumento.nome %]&nbsp;</DD>
+    <DT>Coleta inicial:</DT>
+    <DD>[% leitura.coleta_ini %]&nbsp;</DD>
+    <DT>Coleta final:</DT>
+    <DD>[% leitura.coleta_fim %]&nbsp;</DD>
+    <DT>Digitação inicial:</DT>
+    <DD>[% leitura.digitacao_ini %]&nbsp;</DD>
+    <DT>Digitação final:</DT>
+    <DD>[% leitura.digitacao_fim %]&nbsp;</DD>
+  </DL>
+ </fieldset>
+
+ <div id="form_container"></div>
+
+ <INPUT TYPE="SUBMIT" NAME="Submeter">
+
+ </FORM>
+
+ <SCRIPT>
+   generateForm("[% c.uri_for('/auth/registros/digitador/') _ leitura.id_leitura _ '/xsd' %]",
+                "form_container");
+ </SCRIPT>
+
 [% INCLUDE 'footer.tt' %]
