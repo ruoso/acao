@@ -224,31 +224,43 @@ a.voltar {
     color:#CC0000;
 }
 
+form {
+    width: 50em;
+}
+
 fieldset
 {
     padding: 0.8em;
-    margin: 0.4em;
+    margin: 0 0 0.4em;
+    border: 1px solid lightgray;
 }
 
-fieldset dd
+fieldset dl dd
 {
+  width: 30em;
   margin : 0;
   padding:2px;
   position: relative;
   top: -1.7em;
   margin-bottom: -1em;
-  left: 20em;
+  left: 15em;
 }
 
-fieldset dt
+fieldset dl dt
 {
-  width: 20em;
+  width: 15em;
   position: relative;
 }
 
-fieldset dt .dtsemdd
+fieldset dl dd input,
+fieldset dl dd select
 {
-  width: 40em !important;
+  width: 100%;
+  position: relative;
+}
+
+.dtsemdd {
+  width: 30em; !important;
 }
 
 .textoPequeno
