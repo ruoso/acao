@@ -233,18 +233,23 @@ fieldset
 fieldset dd
 {
   margin : 0;
-  padding:5px;
-  border: 1px solid #CCCCCC;
+  padding:2px;
+  position: relative;
+  top: -1.7em;
+  margin-bottom: -1em;
+  left: 20em;
 }
 
 fieldset dt
 {
-  float: left;
-  width: 150px;
-  padding:5px;
-  border: 1px solid #CCCCCC;
+  width: 20em;
+  position: relative;
 }
 
+fieldset dt .dtsemdd
+{
+  width: 40em !important;
+}
 
 .textoPequeno
 {

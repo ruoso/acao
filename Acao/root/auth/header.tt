@@ -16,42 +16,12 @@
                     <tr>
                         <th>Operador:</th>
                         <td>[% c.user.nome %]</td>
-
-                        <th>Servidor:</th>
-                        <td>172.30.116.2</td>
-                    </tr>
-                    <tr>
-                        <th>Data/Hora:</th>
-                        <td><span id="clock">&nbsp;</span></td>
-                        <th>Versão:</th>
-
-                        <td>ação</td>
                     </tr>
                 </table>
             </div>
         </div>
         <div id='barraTopo'>
             <ul>
-                <li><a href="#">Cadastros</a>
-                  <ul><!--início do menu pendente-->
-                    <li><a href="#">Candidatos</a></li>
-                    <li><a href="#">Cargos</a></li>
-                    <li><a href="#">Classificação</a></li>
-                    <li><a href="#">Empresas</a></li>
-                    <li><a href="#">Lotação</a></li>
-                    <li><a href="#">Modalidades de Licitação</a></li>
-                    <li><a href="#">Orgão</a></li>
-                    <li><a href="#">Tipos de Administração</a></li>
-                    <li><a href="#">Tipos de Contrato</a></li>
-                  </ul><!--fim do menu pendente-->
-                </li>
-                <li><a href="#">Manutenção</a>
-                  <ul><!--início do menu pendente-->
-                    <li><a href="#">Operadores</a></li>
-		    <li><a href="#">Perfis</a></li>
-                  </ul><!--fim do menu pendente-->
-                </li>
-                <li><a href="#">Ajuda</a></li>
                 <li style="float: right"><a href="[% c.uri_for('/auth/logout') %]" title="Sair">Sair</a></li>
             </ul>
         </div>

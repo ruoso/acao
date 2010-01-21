@@ -23,7 +23,6 @@ Catalyst Controller.
 
 sub base :Chained('/auth/registros/digitador/base') :PathPart('') :CaptureArgs(1) {
     my ($self, $c, $id_leitura) = @_;
-    
     $c->stash->{leitura} = $c->model('Digitador')->obter_leitura($id_leitura);
 }
 
@@ -33,6 +32,11 @@ sub form :Chained('base') :PathPart('') :Args(0) {
 sub store :Chained('base') :PathPart('store') :Args(0) {    
 }
 
+sub xsd :Chained('base') :PathPart('xsd') :Args(0) {
+  my ($self, $c) = @_;
+  $c->stash->{document} = $c->stash->{leitura}->instrumento->xml_schema;
+  $c->forward($c->view('Sedna'));
+}
 
 =head1 AUTHOR
 
