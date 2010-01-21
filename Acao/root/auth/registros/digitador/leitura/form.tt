@@ -1,7 +1,9 @@
 [% INCLUDE 'auth/header.tt' %]
 <SCRIPT SRC="[% c.uri_for('/static/js/xsdForm.js') %]" LANGUAGE="Javascript" ></SCRIPT>
 
- <FORM ACTION="[% c.uri_for('/auth/registros/digitador/') _ leitura.id_leitura _ '/store' %]" METHOD="POST">
+ <form action="[% c.uri_for('/auth/registros/digitador/') _ leitura.id_leitura _ '/store' %]" METHOD="POST"
+    onsubmit="generateXml('[% c.uri_for('/auth/registros/digitador/') _ leitura.id_leitura _ '/xsd' %]', this.processed_xml);">
+ <input type="hidden" name="processed_xml">
 
  <fieldset>
   <legend>Dados da Leitura</legend>
