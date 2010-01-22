@@ -1,5 +1,8 @@
 [% META title = 'Lista de Leituras para o Digitador'%]
 [% INCLUDE 'auth/header.tt' %]
+
+[% SET mensagem = c.flash.mensagem %]
+[% IF mensagem %]<h3>[% mensagem %]</H3>[% END %]
 <table border="1">
  <tr>
   <th>Projeto</th>

@@ -29,7 +29,14 @@ sub base :Chained('/auth/registros/digitador/base') :PathPart('') :CaptureArgs(1
 sub form :Chained('base') :PathPart('') :Args(0) {
 }
 
-sub store :Chained('base') :PathPart('store') :Args(0) {    
+sub store :Chained('base') :PathPart('store') :Args(0) {
+    my ($self, $c) = @_;
+    my $xml = $c->request->param('processed_xml');
+    my $leitura = $c->stash->{leitura};
+    $c->model('Digitador')->salvar_digitacao($leitura,$xml);
+    
+    $c->flash->{mensagem} = 'Digitação armazenada com sucesso';
+    $c->res->redirect($c->uri_for('/auth/registros/digitador'));
 }
 
 sub xsd :Chained('base') :PathPart('xsd') :Args(0) {

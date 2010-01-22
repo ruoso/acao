@@ -14,4 +14,12 @@ sub get_document {
     return $data;
 }
 
+sub store_document {
+  my ($self, $xml, $doc_id, $collection) = @_;
+  $self->begin;
+  $self->conn->loadData($xml, $doc_id, $collection);
+  $self->conn->endLoadData();
+  $self->commit;
+}
+
 42;
