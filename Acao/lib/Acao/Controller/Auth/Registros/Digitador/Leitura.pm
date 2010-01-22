@@ -34,8 +34,8 @@ sub store :Chained('base') :PathPart('store') :Args(0) {
 
 sub xsd :Chained('base') :PathPart('xsd') :Args(0) {
   my ($self, $c) = @_;
-  $c->stash->{document} = $c->stash->{leitura}->instrumento->xml_schema;
-  $c->forward($c->view('Sedna'));
+  $c->stash->{document} = $c->model('Digitador')->obter_xsd_leitura($c->stash->{leitura});
+  $c->forward($c->view('XML'));
 }
 
 =head1 AUTHOR

@@ -27,4 +27,11 @@ txn_method 'obter_leitura' => authorized 'digitador' => sub {
         prefetch => {'instrumento' => 'projeto'},
         join => 'digitadores',
     });
-}
+};
+
+txn_method 'obter_xsd_leitura' => authorized 'digitador' => sub {
+    my ($self, $leitura) = @_;
+    return $self->sedna->get_document($leitura->instrumento->xml_schema);
+};
+
+42;
