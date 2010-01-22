@@ -39,7 +39,7 @@ txn_method 'salvar_digitacao' => authorized 'digitador' => sub {
     my $docname = join '_', 'digitacao', $leitura->instrumento->projeto->id_projeto, $leitura->instrumento->nome,
                                          $leitura->id_leitura, $self->user->id, time;
     $docname =~ s/[^a-zA-Z0-9]/_/gs;
-    $self->sedna->store_document($xml, $docname, undef);
+    $self->sedna->store_document($xml, $docname, 'leitura-'.$leitura->id_leitura);
 };
 
 42;
