@@ -25,7 +25,7 @@ __PACKAGE__->add_columns(
 );
 __PACKAGE__->set_primary_key("id_projeto");
 __PACKAGE__->has_many(
-  "instrumentoes",
+  "instrumentos",
   "Acao::Schema::Result::Instrumento",
   { "foreign.id_projeto" => "self.id_projeto" },
 );

@@ -1,4 +1,27 @@
 [% META title = 'Lista de leituras para o Revisor' %]
 [% INCLUDE 'auth/header.tt' %]
-
+<table border="1">
+  <tr>
+    <th>Projeto</th>
+    <th>Intrumento</th>
+    <th>Início da coleta</th>
+    <th>Fim da coleta</th>
+    <th>Início da digitação</th>
+    <th>Fim da digitação</th>
+  </tr>
+  [% FOREACH leitura IN c.model('Revisor').listar_leituras %]
+  <tr>
+    <td>[% leitura.instrumento.projeto.nome %]</td>
+    <td>
+      <a href="[% c.uri_for('/auth/registros/revisor') _ "/" _ leitura.id_leitura %]">
+        [% leitura.instrumento.nome %]
+      </a>
+    </td>
+    <td>[% leitura.coleta_ini %]</td>
+    <td>[% leitura.coleta_fim %]</td>
+    <td>[% leitura.digitacao_ini %]</td>
+    <td>[% leitura.digitacao_fim %]</td>
+  </tr>
+  [% END %]
+</table>
 [% INCLUDE 'footer.tt' %]
