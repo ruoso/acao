@@ -1,4 +1,3 @@
-
 	function getById(strId) {
 		return document.getElementById(strId);
 	}
@@ -73,7 +72,7 @@
 		}
 		return node;
 	}
-	
+
 	function getTextByIndex(xmlNode,index) {
 		return getText( getNodeByIndex(xmlNode,index) );
 	}
@@ -111,7 +110,7 @@
 		}
 		return qtd;
 	}
-	
+
 	function getQtdNodeByName(xmlNode,numType,tagName) {
 		var qtd = 0;
 		for (var i = 0; i < xmlNode.childNodes.length; i++) {
@@ -413,12 +412,12 @@
 			var xml = xmlLoader(xsdFile);
 			var tagRaiz  = xml.getElementsByTagName('xs:schema')[0];
 			var elemRoot = getNodeByTagName(tagRaiz, 'xs:element'); // elemento raiz
-			var odoc = document.implementation.createDocument("", "", null); 
+			var odoc = document.implementation.createDocument("", "", null);
                         var generated = generateXmlFromNode(odoc,elemRoot, "xsdform___");
 			odoc.appendChild(generated);
 			input_to_set.value = ((new XMLSerializer()).serializeToString(odoc));
 		} catch (myError) {
 			alert( myError.name + ': ' + myError.message + "\n" + myError);
-		}	
+		}
 	}
 

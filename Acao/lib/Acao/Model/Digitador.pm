@@ -50,9 +50,6 @@ txn_method 'salvar_digitacao' => authorized 'digitador' => sub {
     my $doc = XML::LibXML::Document->new('1.0', 'UTF-8');
     my $xml_data = $read->($xml);
 
-    use Data::Dumper;
-    warn Data::Dumper->Dump([$xml_data]);
-
     my $res_xml = $writ->($doc, $xml_data);
 
     $docname =~ s/[^a-zA-Z0-9]/_/gs;

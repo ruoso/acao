@@ -1,37 +1,39 @@
 [% INCLUDE 'auth/header.tt' %]
-<SCRIPT SRC="[% c.uri_for('/static/js/xsdForm.js') %]" LANGUAGE="Javascript" ></SCRIPT>
+<script SRC="[% c.uri_for('/static/js/xsdForm.js') %]" language="Javascript" ></script>
 
- <form action="[% c.uri_for('/auth/registros/digitador/') _ leitura.id_leitura _ '/store' %]" METHOD="POST"
+ <form action="[% c.uri_for('/auth/registros/digitador/') _ leitura.id_leitura _ '/store' %]" method="post"
     onsubmit="generateXml('[% c.uri_for('/auth/registros/digitador/') _ leitura.id_leitura _ '/xsd' %]', this.processed_xml);">
  <input type="hidden" name="processed_xml">
 
  <fieldset>
   <legend>Dados da Leitura</legend>
-  <DL>
-    <DT>Projeto:</DT>
-    <DD>[% leitura.instrumento.projeto.nome %]&nbsp;</DD>
-    <DT>Instrumento:</DT>
-    <DD>[% leitura.instrumento.nome %]&nbsp;</DD>
-    <DT>Coleta inicial:</DT>
-    <DD>[% leitura.coleta_ini %]&nbsp;</DD>
-    <DT>Coleta final:</DT>
-    <DD>[% leitura.coleta_fim %]&nbsp;</DD>
-    <DT>Digitação inicial:</DT>
-    <DD>[% leitura.digitacao_ini %]&nbsp;</DD>
-    <DT>Digitação final:</DT>
-    <DD>[% leitura.digitacao_fim %]&nbsp;</DD>
-  </DL>
+  <dl>
+    <dt>Projeto:</dt>
+    <dd>[% leitura.instrumento.projeto.nome %]&nbsp;</dd>
+    <dt>Instrumento:</dt>
+    <dd>[% leitura.instrumento.nome %]&nbsp;</dd>
+    <dt>Coleta inicial:</dt>
+    <dd>[% leitura.coleta_ini %]&nbsp;</dd>
+    <dt>Coleta final:</dt>
+    <dd>[% leitura.coleta_fim %]&nbsp;</dd>
+    <dt>Digitação inicial:</dt>
+    <dd>[% leitura.digitacao_ini %]&nbsp;</dd>
+    <dt>Digitação final:</dt>
+    <dd>[% leitura.digitacao_fim %]&nbsp;</dd>
+  </dl>
  </fieldset>
-
+ <input type="hidden" name="digitador" value="[%c.user.id%]" />
+ <input type="hidden" name="dtDigitacao" value="" />
+ <input type="hidden" name="nmProjeto" value="[%leitura.instrumento.projeto.nome%]" />
  <div id="form_container"></div>
 
- <INPUT TYPE="SUBMIT" NAME="Submeter">
+ <input type="submit" name="Submeter">
 
- </FORM>
+ </form>
 
- <SCRIPT>
+ <script>
    generateForm("[% c.uri_for('/auth/registros/digitador/') _ leitura.id_leitura _ '/xsd' %]",
                 "form_container");
- </SCRIPT>
+ </script>
 
 [% INCLUDE 'footer.tt' %]

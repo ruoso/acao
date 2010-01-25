@@ -1,1 +1,33 @@
-Teste
+[% META title = 'Listagem das leituras' %]
+
+[% INCLUDE 'auth/header.tt' %]
+
+[% xqueryret = BLOCK %]
+  <TR>
+   <TD>
+    {$x/formCadernoA/identificacao/codigoPMF}
+   </TD>
+   <TD>
+    {$x/formCadernoA/identificacao/data}
+   </TD>
+  </TR>
+[% END %]
+
+[% c.model('Sedna').begin %]
+[% c.model('Sedna').execute('for $x in collection("leitura-' _ leitura.id_leitura _ '") return ' _ xqueryret ) %]
+
+<table border="1">
+  <tr>
+    <th>C&oacute;digo</th>
+    <th>Data</th>
+  </tr>
+
+[% WHILE (item = c.model('Sedna').get_item) %]  
+[% item %]
+[% END %]
+  
+[% c.model('Sedna').commit %]
+
+</table>
+
+[% INCLUDE 'footer.tt' %]

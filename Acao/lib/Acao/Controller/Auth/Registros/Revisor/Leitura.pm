@@ -23,7 +23,7 @@ Catalyst Controller.
 
 sub base :Chained('/auth/registros/revisor/base') :PathPart('') :CaptureArgs(1) {
     my ( $self, $c, $id_leitura ) = @_;
-    $c->stash->{projeto} = $c->model('Revisor')->obter_leitura($id_leitura);
+    $c->stash->{leitura} = $c->model('Revisor')->obter_leitura($id_leitura);
 }
 
 sub lista :Chained('base') :PathPart('') :Args(0) {
@@ -34,10 +34,10 @@ sub leitura :Chained('base') :PathPart('') :Args(0) {
     
 }
 
-sub recusar :Chained('preenchimento') :PathPart :Args(0) {}
-sub diff :Chained('preenchimento') :PathPart :Args(0) {}
-sub unir :Chained('preenchimento') :PathPart :Args(0) {}
-sub aprovar :Chained('preenchimento') :PathPart :Args(0) {}
+sub recusar :Chained('base') :PathPart :Args(0) {}
+sub diff :Chained('base') :PathPart :Args(0) {}
+sub unir :Chained('base') :PathPart :Args(0) {}
+sub aprovar :Chained('base') :PathPart :Args(0) {}
 
 =head1 AUTHOR
 
