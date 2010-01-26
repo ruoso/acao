@@ -2,25 +2,40 @@
 
 [% INCLUDE 'auth/header.tt' %]
 
-[% xqueryret = BLOCK %]
-  <TR>
-   <TD>
-    {$x/formCadernoA/identificacao/codigoPMF}
-   </TD>
-   <TD>
-    {$x/formCadernoA/identificacao/data}
-   </TD>
-  </TR>
-[% END %]
-
-[% c.model('Sedna').begin %]
-[% c.model('Sedna').execute('for $x in collection("leitura-' _ leitura.id_leitura _ '") return ' _ xqueryret ) %]
-
+[% # xqueryret = BLOCK %]
+  
+[% # END %]
+<!--return ' _ xqueryret -->
 <table border="1">
   <tr>
-    <th>C&oacute;digo</th>
-    <th>Data</th>
+    <th>Controle</th>
+    <th>A&ccedil;&otilde;es</th>
+    <th>Data da Digita&ccedil;&atilde;o</th>
+    <th>Digitador</th>
+    <th>Estado</th>
+    <th>IP</th>
+    <th>A&ccedil;&otilde;es</th>
   </tr>
+[% c.model('Sedna').begin %]
+[% c.model('Sedna').execute('for $control in subsequence(distinct-values(collection("leitura-1")//registroDigitacao/documento/controle), 0, 10)
+                             let $form := collection("leitura-1")//registroDigitacao[documento/controle = $control] 
+                             order by $control
+                                  return
+                                     ( for $reg at $pos in $form
+                                       order by $reg/digitacao/dataDigitacao
+                                      return
+                                        <tr>
+                                        { if ($pos = 1) then (
+                                           <td rowspan="{count($form)}">{$control}</td>,
+                                           <td rowspan="{count($form)}"><a href="#">Diferenças</a></td>
+                                          ) else () }
+                                        <td>{$reg/digitacao/dataDigitacao}</td>
+                                        <td>{$reg/digitacao/digitador}</td>
+                                        <td>{$reg/documento/estado}</td>
+                                        <td>{$reg/digitacao/localDigitacao}</td>
+                                        <td><a href="#">Aprovar</a> <a href="#">Rejeitar</a></td>
+                                        </tr>
+                                     )')%]
 
 [% WHILE (item = c.model('Sedna').get_item) %]  
 [% item %]

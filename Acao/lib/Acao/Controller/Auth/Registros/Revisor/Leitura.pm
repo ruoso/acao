@@ -36,7 +36,6 @@ sub leitura :Chained('base') :PathPart('') :Args(0) {
 
 sub recusar :Chained('base') :PathPart :Args(0) {}
 sub diff :Chained('base') :PathPart :Args(0) {}
-sub unir :Chained('base') :PathPart :Args(0) {}
 sub aprovar :Chained('base') :PathPart :Args(0) {}
 
 =head1 AUTHOR
