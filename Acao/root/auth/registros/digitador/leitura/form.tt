@@ -20,18 +20,19 @@
     <dd>[% leitura.digitacao_ini %]&nbsp;</dd>
     <dt>Digitação final:</dt>
     <dd>[% leitura.digitacao_fim %]&nbsp;</dd>
+    <dt>Controle:</dt>
+    <dd><INPUT TYPE="text" name="controle"></dd>
   </dl>
  </fieldset>
- <input type="hidden" name="digitador" value="[%c.user.id%]" />
- <input type="hidden" name="dtDigitacao" value="" />
- <input type="hidden" name="nmProjeto" value="[%leitura.instrumento.projeto.nome%]" />
+ 
+ 
  <div id="form_container"></div>
 
  <input type="submit" name="Submeter">
 
  </form>
 
- <script>
+ <script language="javascript">
    generateForm("[% c.uri_for('/auth/registros/digitador/') _ leitura.id_leitura _ '/xsd' %]",
                 "form_container");
  </script>

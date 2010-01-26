@@ -57,6 +57,20 @@ __PACKAGE__->add_columns(
     is_nullable => 1,
     size => undef,
   },
+  "revisao_ini",
+  {
+    data_type => "timestamp with time zone",
+    default_value => undef,
+    is_nullable => 1,
+    size => undef,
+  },
+  "revisao_fim",
+  {
+    data_type => "timestamp with time zone",
+    default_value => undef,
+    is_nullable => 1,
+    size => undef,
+  },
 );
 __PACKAGE__->set_primary_key("id_leitura");
 __PACKAGE__->has_many(

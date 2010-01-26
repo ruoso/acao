@@ -33,7 +33,7 @@ sub store :Chained('base') :PathPart('store') :Args(0) {
     my ($self, $c) = @_;
     my $xml = $c->request->param('processed_xml');
     my $leitura = $c->stash->{leitura};
-    $c->model('Digitador')->salvar_digitacao($leitura,$xml);
+    $c->model('Digitador')->salvar_digitacao($leitura,$xml,scalar($c->req->param('controle')),$c->req->address);
     
     $c->flash->{mensagem} = 'Digitação armazenada com sucesso';
     $c->res->redirect($c->uri_for('/auth/registros/digitador'));
