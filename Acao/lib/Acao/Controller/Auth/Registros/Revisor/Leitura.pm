@@ -30,13 +30,42 @@ sub lista :Chained('base') :PathPart('') :Args(0) {
     
 }
 
-sub leitura :Chained('base') :PathPart('') :Args(0) {
+sub rejeitar :Chained('base') :PathPart :Args(1) {
+    my ($self,$c,$id_doc) = @_;
+    $c->model('Revisor')->rejeitar($c->stash->{leitura},$id_doc);
+    $c->res->redirect($c->uri_for('/auth/registros/revisor/'.$c->stash->{leitura}->id_leitura));
+}
+
+sub visualizar_base :Chained('base') :PathPart('visualizar') :CaptureArgs(1) {
+    my ($self,$c,$id_doc) = @_;
+    $c->stash->{id_doc} = $id_doc;$c->model('Revisor')->visualizar($c->stash->{leitura},$id_doc);
+}
+
+sub visualizar :Chained('visualizar_base') :PathPart('') :Args(0) {
+    my ($self,$c) = @_;
+    $c->stash->{campo_controle} = $c->model('Revisor')->obter_campo_controle($c->stash->{leitura}, $c->stash->{id_doc});
+}
+
+sub xml :Chained('visualizar_base') :PathPart :Args(0) {
+    my ($self,$c) = @_;
+    $c->stash->{document} = $c->model('Revisor')->visualizar($c->stash->{leitura},$c->stash->{id_doc});
+    $c->forward($c->view('XML'));
+}
+
+sub diff :Chained('base') :PathPart :Args(0) {}
+
+sub aprovar :Chained('base') :PathPart :Args(1) {
+    my ($self,$c,$id_doc) = @_;
+    $c->model('Revisor')->aprovar($c->stash->{leitura},$id_doc);
+    $c->res->redirect($c->uri_for('/auth/registros/revisor/'.$c->stash->{leitura}->id_leitura));
     
 }
 
-sub recusar :Chained('base') :PathPart :Args(0) {}
-sub diff :Chained('base') :PathPart :Args(0) {}
-sub aprovar :Chained('base') :PathPart :Args(0) {}
+sub xsd :Chained('base') :PathPart('xsd') :Args(0) {
+  my ($self, $c) = @_;
+  $c->stash->{document} = $c->model('Revisor')->obter_xsd_leitura($c->stash->{leitura});
+  $c->forward($c->view('XML'));
+}
 
 =head1 AUTHOR
 

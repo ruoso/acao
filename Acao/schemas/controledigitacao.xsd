@@ -142,6 +142,22 @@
 									</xs:appinfo>
 								</xs:annotation>
 							</xs:element>
+							<xs:element name="estadoControle">
+								<xs:annotation>
+									<xs:appinfo>
+										<label>Estado da digitacao para esse controle de formulario. 
+										Indica se ainda pode acontecer uma nova digitacao ou nao. 
+										Da mesma forma serve de indicacao se esse dado ja esta pronto
+										para o uso.</label>
+									</xs:appinfo>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="Aberto"/>
+										<xs:enumeration value="Fechado"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
 							<xs:element name="estado">
 								<xs:annotation>
 									<xs:appinfo>
@@ -159,7 +175,7 @@
 							<xs:element name="conteudo">
 								<xs:complexType>
 									<xs:sequence>
-										<xs:any />
+										<xs:any minOccurs="1" maxOccurs="unbounded" />
 									</xs:sequence>
 								</xs:complexType>
 							</xs:element>

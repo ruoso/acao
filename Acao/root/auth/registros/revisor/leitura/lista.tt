@@ -2,10 +2,24 @@
 
 [% INCLUDE 'auth/header.tt' %]
 
-[% # xqueryret = BLOCK %]
-  
-[% # END %]
-<!--return ' _ xqueryret -->
+[% xqueryret = BLOCK %]
+      <tr>
+      { if ($pos = 1) then (
+         <td rowspan="{count($form)}">{$control}</td>,
+         <td rowspan="{count($form)}"><a href="#">Diferenças</a></td>
+        ) else () }
+      <td>{$reg/digitacao/dataDigitacao}</td>
+      <td>{$reg/digitacao/digitador}</td>
+      <td>{$reg/documento/estado}</td>
+      <td>{$reg/digitacao/localDigitacao}</td>
+      <td>
+        <a href="[% c.uri_for('/auth/registros/revisor/') _ leitura.id_leitura _ '/aprovar/'%]{$reg/documento/id}">Aprovar</a> 
+        <a href="[% c.uri_for('/auth/registros/revisor/') _ leitura.id_leitura _ '/rejeitar/'%]{$reg/documento/id}">Rejeitar</a>
+        <a href="[% c.uri_for('/auth/registros/revisor/') _ leitura.id_leitura _ '/visualizar/'%]{$reg/documento/id}">Visualizar</a>
+      </td>
+      </tr>  
+[% END %]
+
 <table border="1">
   <tr>
     <th>Controle</th>
@@ -23,19 +37,7 @@
                                   return
                                      ( for $reg at $pos in $form
                                        order by $reg/digitacao/dataDigitacao
-                                      return
-                                        <tr>
-                                        { if ($pos = 1) then (
-                                           <td rowspan="{count($form)}">{$control}</td>,
-                                           <td rowspan="{count($form)}"><a href="#">Diferenças</a></td>
-                                          ) else () }
-                                        <td>{$reg/digitacao/dataDigitacao}</td>
-                                        <td>{$reg/digitacao/digitador}</td>
-                                        <td>{$reg/documento/estado}</td>
-                                        <td>{$reg/digitacao/localDigitacao}</td>
-                                        <td><a href="#">Aprovar</a> <a href="#">Rejeitar</a></td>
-                                        </tr>
-                                     )')%]
+                                      return ' _ xqueryret _ ')')%]
 
 [% WHILE (item = c.model('Sedna').get_item) %]  
 [% item %]

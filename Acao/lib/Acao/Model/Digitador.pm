@@ -45,11 +45,30 @@ txn_method 'salvar_digitacao' => authorized 'digitador' => sub {
     my ($self, $leitura, $xml, $controle, $ip) = @_;
     my $docname = join '_', 'digitacao', $leitura->instrumento->projeto->id_projeto, $leitura->instrumento->nome,
                                          $leitura->id_leitura, $self->user->id, time;
+    $docname =~ s/[^a-zA-Z0-9]/_/gs;
 
-    my $xsd = $self->sedna->get_document($leitura->instrumento->xml_schema);
+    $self->sedna->begin();
+
+    my $xq = 'for $x in
+              collection("leitura-'.$leitura->id_leitura.'")/registroDigitacao/documento[controle="'.$controle.'"]
+              return data($x/estadoControle)';
+    $self->sedna->execute($xq);
+
+    while (my $estadoGrupo = $self->sedna->get_item) {
+            if ($estadoGrupo eq "Fechado") {
+                    $self->sedna->rollback;
+                    die "Digitacao para esse codigo de controle fechada.";
+            }
+    }
+
+    $self->sedna->execute('for $x in doc("'.$leitura->instrumento->xml_schema.'") return $x');
+    my $xsd = $self->sedna->get_item;
+
     my $x_c_s = XML::Compile::Schema->new($xsd);
-    my $read = $x_c_s->compile(READER => 'formCadernoA');
-    my $writ = $x_c_s->compile(WRITER => 'formCadernoA');
+    my @elements = $x_c_s->elements;
+    
+    my $read = $x_c_s->compile(READER => $elements[0]);
+    my $writ = $x_c_s->compile(WRITER => $elements[0]);
     
     my $xml_data = $read->($xml);
 
@@ -81,13 +100,15 @@ txn_method 'salvar_digitacao' => authorized 'digitador' => sub {
          documento => {
              id => $docname,
              controle => $controle,
+             estadoControle => 'Aberto',
              estado => 'Digitado',
-             conteudo => $conteudo_registro,
+             conteudo => { "{}conteudo" => $conteudo_registro },
          }
       });
 
-    $docname =~ s/[^a-zA-Z0-9]/_/gs;
-    $self->sedna->store_document($res_xml->toString, $docname, 'leitura-'.$leitura->id_leitura);
+    $self->sedna->conn->loadData($res_xml->toString, $docname, 'leitura-'.$leitura->id_leitura);
+    $self->sedna->conn->endLoadData();
+    $self->sedna->commit();
 };
 
 42;

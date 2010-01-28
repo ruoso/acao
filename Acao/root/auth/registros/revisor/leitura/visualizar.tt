@@ -1,0 +1,42 @@
+[% INCLUDE 'auth/header.tt' %]
+<script SRC="[% c.uri_for('/static/js/xsdForm.js') %]" language="Javascript" ></script>
+
+ <form action="[% c.uri_for('/auth/registros/digitador/') _ leitura.id_leitura _ '/store' %]" method="post" onsubmit="">
+ <input type="hidden" name="processed_xml">
+  <fieldset>
+    [%xml%]
+  </fieldset>
+ <fieldset>
+  <legend>Dados da Leitura</legend>
+  <dl>
+    <dt>Projeto:</dt>
+    <dd>[% leitura.instrumento.projeto.nome %]&nbsp;</dd>
+    <dt>Instrumento:</dt>
+    <dd>[% leitura.instrumento.nome %]&nbsp;</dd>
+    <dt>Coleta inicial:</dt>
+    <dd>[% leitura.coleta_ini %]&nbsp;</dd>
+    <dt>Coleta final:</dt>
+    <dd>[% leitura.coleta_fim %]&nbsp;</dd>
+    <dt>Digitação inicial:</dt>
+    <dd>[% leitura.digitacao_ini %]&nbsp;</dd>
+    <dt>Digitação final:</dt>
+    <dd>[% leitura.digitacao_fim %]&nbsp;</dd>
+    <dt>Controle:</dt>
+    <dd>[% campo_controle %]</dd>
+  </dl>
+ </fieldset>
+ 
+ 
+ <div id="form_container"></div>
+
+ <input type="submit" name="Submeter">
+
+ </form>
+
+ <script language="javascript">
+   generateForm("[% c.uri_for('/auth/registros/revisor/') _ leitura.id_leitura _ '/xsd' %]",
+                "form_container");
+   fillValues("[% c.uri_for('/auth/registros/revisor/') _ leitura.id_leitura _ '/visualizar/' _ id_doc _'/xml' %]");
+ </script>
+
+[% INCLUDE 'footer.tt' %]

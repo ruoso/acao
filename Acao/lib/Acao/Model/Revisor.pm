@@ -32,3 +32,50 @@ txn_method 'obter_leitura' => authorized 'revisor' => sub {
     });
 };
 
+txn_method 'aprovar' => authorized 'revisor' => sub {
+    my ($self, $leitura, $id_doc) = @_;
+    $id_doc =~ s/\"\\//gs;
+    $self->sedna->begin;
+    $self->sedna->execute('UPDATE replace $a in
+              collection("leitura-'.$leitura->id_leitura.'")/registroDigitacao/documento/estado[../id="'.$id_doc.'"]
+              with <estado>Aprovado</estado>');
+    $self->sedna->commit;
+};
+
+txn_method 'rejeitar' => authorized 'revisor' => sub {
+    my ($self, $leitura, $id_doc) = @_;
+    $id_doc =~ s/\"\\//gs;
+    $self->sedna->begin;
+    $self->sedna->execute('UPDATE replace $a in
+              collection("leitura-'.$leitura->id_leitura.'")/registroDigitacao/documento/estado[../id="'.$id_doc.'"]
+              with <estado>Rejeitado</estado>');
+    $self->sedna->commit;
+};
+
+txn_method 'obter_campo_controle' => authorized 'revisor' => sub {
+    my ($self, $leitura, $id_doc) = @_;
+    $id_doc =~ s/\"\\//gs;
+    my $xml;
+    $self->sedna->begin;
+    $self->sedna->execute('for $x in collection("leitura-'.$leitura->id_leitura.'")/registroDigitacao/documento[id = "'.$id_doc.'"] return data($x/controle)');
+    $xml = $self->sedna->get_item;
+    $self->sedna->commit;
+    return $xml;
+};
+
+txn_method 'visualizar' => authorized 'revisor' => sub {
+    my ($self, $leitura, $id_doc) = @_;
+    $id_doc =~ s/\"\\//gs;
+    my $xml;
+    $self->sedna->begin;
+    $self->sedna->execute('for $x in collection("leitura-'.$leitura->id_leitura.'")/registroDigitacao/documento[id = "'.$id_doc.'"] return $x/conteudo/*');
+    $xml = $self->sedna->get_item;
+    $self->sedna->commit;
+    return $xml;
+};
+
+txn_method 'obter_xsd_leitura' => authorized 'revisor' => sub {
+    my ($self, $leitura) = @_;
+    return $self->sedna->get_document($leitura->instrumento->xml_schema);
+};
+
