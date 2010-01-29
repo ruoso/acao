@@ -2,27 +2,62 @@
 
 [% INCLUDE 'auth/header.tt' %]
 
+[% SET mensagem = c.flash.mensagem %]
+[% IF mensagem %][% mensagem %][% END %]
+
 [% xqueryret = BLOCK %]
       <tr>
       { if ($pos = 1) then (
          <td rowspan="{count($form)}">{$control}</td>,
-         <td rowspan="{count($form)}"><a href="#">Diferenças</a></td>
+         <td rowspan="{count($form)}">{$reg/documento/estadoControle}</td>,
+         <td rowspan="{count($form)}">
+            <a href="#">Diferenças</a>
+            { if ($reg/documento/estadoControle = "Aberto") then (
+            <a href="[% c.uri_for('/auth/registros/revisor/')_ leitura.id_leitura _ '/fecharDocumento/' %]{$reg/documento/controle}">Fechar formulário</a>
+             ) else ()}
+         </td>
         ) else () }
       <td>{$reg/digitacao/dataDigitacao}</td>
       <td>{$reg/digitacao/digitador}</td>
       <td>{$reg/documento/estado}</td>
       <td>{$reg/digitacao/localDigitacao}</td>
       <td>
-        <a href="[% c.uri_for('/auth/registros/revisor/') _ leitura.id_leitura _ '/aprovar/'%]{$reg/documento/id}">Aprovar</a> 
-        <a href="[% c.uri_for('/auth/registros/revisor/') _ leitura.id_leitura _ '/rejeitar/'%]{$reg/documento/id}">Rejeitar</a>
+        <a href="[% c.uri_for('/auth/registros/revisor/') _ leitura.id_leitura _ '/selecionar/'%]{$reg/documento/id}/{$reg/documento/controle}">Selecionar</a>
         <a href="[% c.uri_for('/auth/registros/revisor/') _ leitura.id_leitura _ '/visualizar/'%]{$reg/documento/id}">Visualizar</a>
       </td>
       </tr>  
 [% END %]
 
+<fieldset>
+<form name="form" action="[% c.uri_for('/auth/registros/revisor/') _ leitura.id_leitura  %]">
+  <h3>Buscar documento</h3>
+  <dl>
+    <dt>
+      <label for="controle">Controle:</label>
+    </dt>
+    <dd>
+      de <input type="text" name="controle_ini" id="controle_ini" value="[% c.req.param('controle_ini') | html %]" /> 
+      a <input type="text" name="controle_fim" id="controle_fim" value="[% c.req.param('controle_fim') | html %]" />
+    </dd>
+    <dt>
+      <label for="controle">Estado Controle:</label>
+    </dt>
+    <dd>
+      <select name="estadoControle" id="estadoControle" >
+          <option value="0">Todos</option>
+          <option value="Aberto">Aberto</option>
+          <option value="Fechado">Fechado</option>
+      </select>
+    </dd>
+  </dl>
+  <input type="submit" name="buscar" value="Buscar" />
+</form>
+</fieldset>
+
 <table border="1">
   <tr>
     <th>Controle</th>
+    <th>Estado Controle</th>
     <th>A&ccedil;&otilde;es</th>
     <th>Data da Digita&ccedil;&atilde;o</th>
     <th>Digitador</th>
@@ -30,14 +65,30 @@
     <th>IP</th>
     <th>A&ccedil;&otilde;es</th>
   </tr>
+
+[% SET estadoControle = c.req.param('estadoControle') %] 
+[% IF estadoControle == "0" %]
+  [% SET estadoControle = "" %]
+[% END %]
+[% xquery = BLOCK %]
+for $control in subsequence(distinct-values(collection("leitura-[% leitura.id_leitura %]")//registroDigitacao/documento/controle), 0, 10)
+   let $form := collection("leitura-[% leitura.id_leitura %]")//registroDigitacao[documento/controle = $control] 
+   order by $control
+        return
+           ( for $reg at $pos in $form
+             where 
+[% IF c.req.param('controle_ini') %]
+             $reg/documento/controle >= "[% c.req.param('controle_ini') %]" and
+[% END %] 
+[% IF c.req.param('controle_fim') %]
+             $reg/documento/controle <= "[% c.req.param('controle_fim') %] " and
+[% END %]
+             contains($reg/documento/estadoControle, "[% estadoControle %]") 
+             order by $reg/digitacao/dataDigitacao
+            return [% xqueryret %])
+[% END %] 
 [% c.model('Sedna').begin %]
-[% c.model('Sedna').execute('for $control in subsequence(distinct-values(collection("leitura-1")//registroDigitacao/documento/controle), 0, 10)
-                             let $form := collection("leitura-1")//registroDigitacao[documento/controle = $control] 
-                             order by $control
-                                  return
-                                     ( for $reg at $pos in $form
-                                       order by $reg/digitacao/dataDigitacao
-                                      return ' _ xqueryret _ ')')%]
+[% c.model('Sedna').execute( xquery )%]
 
 [% WHILE (item = c.model('Sedna').get_item) %]  
 [% item %]

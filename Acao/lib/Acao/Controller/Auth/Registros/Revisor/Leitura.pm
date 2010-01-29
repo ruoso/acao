@@ -30,9 +30,15 @@ sub lista :Chained('base') :PathPart('') :Args(0) {
     
 }
 
-sub rejeitar :Chained('base') :PathPart :Args(1) {
-    my ($self,$c,$id_doc) = @_;
-    $c->model('Revisor')->rejeitar($c->stash->{leitura},$id_doc);
+sub selecionar :Chained('base') :PathPart :Args(2) {
+    my ($self,$c,$id_doc,$controle) = @_;
+    $c->flash->{mensagem} = $c->model('Revisor')->selecionar($c->stash->{leitura},$id_doc,$controle);
+    $c->res->redirect($c->uri_for('/auth/registros/revisor/'.$c->stash->{leitura}->id_leitura));
+}
+
+sub fecharDocumento :Chained('base') :PathPart :Args(1) {
+    my ($self,$c,$controle) = @_;
+    $c->model('Revisor')->fecharDocumento($c->stash->{leitura},$controle);
     $c->res->redirect($c->uri_for('/auth/registros/revisor/'.$c->stash->{leitura}->id_leitura));
 }
 
@@ -53,13 +59,6 @@ sub xml :Chained('visualizar_base') :PathPart :Args(0) {
 }
 
 sub diff :Chained('base') :PathPart :Args(0) {}
-
-sub aprovar :Chained('base') :PathPart :Args(1) {
-    my ($self,$c,$id_doc) = @_;
-    $c->model('Revisor')->aprovar($c->stash->{leitura},$id_doc);
-    $c->res->redirect($c->uri_for('/auth/registros/revisor/'.$c->stash->{leitura}->id_leitura));
-    
-}
 
 sub xsd :Chained('base') :PathPart('xsd') :Args(0) {
   my ($self, $c) = @_;

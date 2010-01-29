@@ -32,23 +32,56 @@ txn_method 'obter_leitura' => authorized 'revisor' => sub {
     });
 };
 
-txn_method 'aprovar' => authorized 'revisor' => sub {
-    my ($self, $leitura, $id_doc) = @_;
+txn_method 'selecionar' => authorized 'revisor' => sub {
+    my ($self, $leitura, $id_doc, $controle) = @_;
     $id_doc =~ s/\"\\//gs;
+    
+    #Recupera o estadoControle do documento
     $self->sedna->begin;
-    $self->sedna->execute('UPDATE replace $a in
-              collection("leitura-'.$leitura->id_leitura.'")/registroDigitacao/documento/estado[../id="'.$id_doc.'"]
-              with <estado>Aprovado</estado>');
+    
+    my $estadoControle = $self->sedna->execute('for $x in subsequence(collection("leitura-'.$leitura->id_leitura.'")/registroDigitacao/documento[controle="'.$controle.'"],0,2) 
+                                                    return data($x/estadoControle)');
+    
     $self->sedna->commit;
+    
+    if ($estadoControle != "Fechado") {
+    
+        #Aprova a digitacao selecionada
+        $self->sedna->begin;
+        
+        $self->sedna->execute('UPDATE replace $a in
+                  collection("leitura-'.$leitura->id_leitura.'")/registroDigitacao/documento/estado[../controle="'.$controle.'"]
+                  with (
+                      if ($a[../id="'.$id_doc.'"]) then (
+                        <estado>Aprovado</estado>
+                      ) else (
+                        <estado>Rejeitado</estado>
+                      )
+                  )');
+                  
+        $self->sedna->commit;
+        
+        return "<span class='sucesso'>Documento selecionado com sucesso!</span>";
+    
+    } else {
+        
+        return "<span class='erro'>Este documento j&aacute; est&aacute; fechado. N&atilde;o &eacute; poss&iacute;vel aprov&aacute;-lo ou rejeit&aacute;-lo.</span>";
+        
+    }
+    
 };
 
-txn_method 'rejeitar' => authorized 'revisor' => sub {
-    my ($self, $leitura, $id_doc) = @_;
-    $id_doc =~ s/\"\\//gs;
+txn_method 'fecharDocumento' => authorized 'revisor' => sub {
+    my ($self, $leitura, $controle) = @_;
+    
     $self->sedna->begin;
+    
     $self->sedna->execute('UPDATE replace $a in
-              collection("leitura-'.$leitura->id_leitura.'")/registroDigitacao/documento/estado[../id="'.$id_doc.'"]
-              with <estado>Rejeitado</estado>');
+                            collection("leitura-'.$leitura->id_leitura.'")/registroDigitacao/documento/estadoControle[../controle="'.$controle.'"]
+                            with (
+                                <estadoControle>Fechado</estadoControle>
+                            )');
+    
     $self->sedna->commit;
 };
 
@@ -57,7 +90,8 @@ txn_method 'obter_campo_controle' => authorized 'revisor' => sub {
     $id_doc =~ s/\"\\//gs;
     my $xml;
     $self->sedna->begin;
-    $self->sedna->execute('for $x in collection("leitura-'.$leitura->id_leitura.'")/registroDigitacao/documento[id = "'.$id_doc.'"] return data($x/controle)');
+    $self->sedna->execute('for $x in collection("leitura-'.$leitura->id_leitura.'")/registroDigitacao/documento[id = "'.$id_doc.'"] 
+                            return data($x/controle)');
     $xml = $self->sedna->get_item;
     $self->sedna->commit;
     return $xml;
