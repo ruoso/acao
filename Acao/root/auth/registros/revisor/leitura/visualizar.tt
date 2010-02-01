@@ -1,11 +1,9 @@
-[% INCLUDE 'auth/header.tt' %]
+[% INCLUDE 'auth/registros/revisor/leitura/visualizar/header.tt' %]
 <script SRC="[% c.uri_for('/static/js/xsdForm.js') %]" language="Javascript" ></script>
 
- <form action="[% c.uri_for('/auth/registros/digitador/') _ leitura.id_leitura _ '/store' %]" method="post" onsubmit="">
+ <form method="post">
  <input type="hidden" name="processed_xml">
-  <fieldset>
-    [%xml%]
-  </fieldset>
+ 
  <fieldset>
   <legend>Dados da Leitura</legend>
   <dl>
@@ -28,8 +26,6 @@
  
  
  <div id="form_container"></div>
-
- <input type="submit" name="Submeter">
 
  </form>
 

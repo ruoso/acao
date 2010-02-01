@@ -1,7 +1,8 @@
 [% META title = 'Listagem das leituras' %]
 
-[% INCLUDE 'auth/header.tt' %]
+[% INCLUDE 'auth/registros/revisor/leitura/header.tt' %]
 
+[% SET num_por_pagina = 50 %]
 [% SET mensagem = c.flash.mensagem %]
 [% IF mensagem %][% mensagem %][% END %]
 
@@ -11,7 +12,9 @@
          <td rowspan="{count($form)}">{$control}</td>,
          <td rowspan="{count($form)}">{$reg/documento/estadoControle}</td>,
          <td rowspan="{count($form)}">
+	    { if (count($form) > 1) then (
             <a href="#">Diferenças</a>
+	    ) else () }
             { if ($reg/documento/estadoControle = "Aberto") then (
             <a href="[% c.uri_for('/auth/registros/revisor/')_ leitura.id_leitura _ '/fecharDocumento/' %]{$reg/documento/controle}">Fechar formulário</a>
              ) else ()}
@@ -22,14 +25,19 @@
       <td>{$reg/documento/estado}</td>
       <td>{$reg/digitacao/localDigitacao}</td>
       <td>
-        <a href="[% c.uri_for('/auth/registros/revisor/') _ leitura.id_leitura _ '/selecionar/'%]{$reg/documento/id}/{$reg/documento/controle}">Selecionar</a>
+        <a href="[% c.uri_for_action('/auth/registros/revisor/leitura/selecionar',
+                                     [ leitura.id_leitura ],
+                                      '____xq_doc_id____', '____xq_ctrl____' ,  c.req.params() )
+                    .replace('____xq_doc_id____','{$reg/documento/id}')
+                    .replace('____xq_ctrl____','{$reg/documento/controle}')
+                    .replace('&','&amp;') %]">Selecionar</a>
         <a href="[% c.uri_for('/auth/registros/revisor/') _ leitura.id_leitura _ '/visualizar/'%]{$reg/documento/id}">Visualizar</a>
       </td>
       </tr>  
 [% END %]
-
-<fieldset>
 <form name="form" action="[% c.uri_for('/auth/registros/revisor/') _ leitura.id_leitura  %]">
+<fieldset>
+
   <h3>Buscar documento</h3>
   <dl>
     <dt>
@@ -38,6 +46,13 @@
     <dd>
       de <input type="text" name="controle_ini" id="controle_ini" value="[% c.req.param('controle_ini') | html %]" /> 
       a <input type="text" name="controle_fim" id="controle_fim" value="[% c.req.param('controle_fim') | html %]" />
+    </dd>
+    <dt>
+      <label for="num_digitacoes">N&uacute;mero de Digita&ccedil;&otilde;es:</label>
+    </dt>
+    <dd>
+      de <input type="text" name="num_digitacoes_ini" id="num_digitacoes_ini" value="[% c.req.param('num_digitacoes_ini') | html %]" /> 
+      a <input type="text" name="num_digitacoes_fim" id="num_digitacoes_fim" value="[% c.req.param('num_digitacoes_fim') | html %]" />
     </dd>
     <dt>
       <label for="controle">Estado Controle:</label>
@@ -51,7 +66,7 @@
     </dd>
   </dl>
   <input type="submit" name="buscar" value="Buscar" />
-</form>
+
 </fieldset>
 
 <table border="1">
@@ -70,8 +85,14 @@
 [% IF estadoControle == "0" %]
   [% SET estadoControle = "" %]
 [% END %]
+
+[% SET interval_ini = c.req.param('interval_ini') %]
+[% IF !interval_ini %]
+  [% SET interval_ini = 0 %]
+[% END %]
+
 [% xquery = BLOCK %]
-for $control in subsequence(distinct-values(collection("leitura-[% leitura.id_leitura %]")//registroDigitacao/documento/controle), 0, 10)
+for $control in subsequence(distinct-values(collection("leitura-[% leitura.id_leitura %]")//registroDigitacao/documento/controle), [% interval_ini * num_por_pagina %], [% num_por_pagina %])
    let $form := collection("leitura-[% leitura.id_leitura %]")//registroDigitacao[documento/controle = $control] 
    order by $control
         return
@@ -81,7 +102,13 @@ for $control in subsequence(distinct-values(collection("leitura-[% leitura.id_le
              $reg/documento/controle >= "[% c.req.param('controle_ini') %]" and
 [% END %] 
 [% IF c.req.param('controle_fim') %]
-             $reg/documento/controle <= "[% c.req.param('controle_fim') %] " and
+             $reg/documento/controle <= "[% c.req.param('controle_fim') %]" and
+[% END %]
+[% IF c.req.param('num_digitacoes_ini') %]
+             count($form) >= [% c.req.param('num_digitacoes_ini') %] and
+[% END %] 
+[% IF c.req.param('num_digitacoes_fim') %]
+             count($form) <= [% c.req.param('num_digitacoes_fim') %] and
 [% END %]
              contains($reg/documento/estadoControle, "[% estadoControle %]") 
              order by $reg/digitacao/dataDigitacao
@@ -97,5 +124,20 @@ for $control in subsequence(distinct-values(collection("leitura-[% leitura.id_le
 [% c.model('Sedna').commit %]
 
 </table>
+[% IF interval_ini > 0 %]
+  [% SET args = { } %]
+  [% args.import(c.req.params()) %]
+  [% args.import({ interval_ini => interval_ini - 1 }) %]
+  <a href="[% c.uri_for_action('/auth/registros/revisor/leitura/lista',
+                                     [ leitura.id_leitura ], args ) %]">Anterior</a>
+[% END %]
+  [% SET args = { } %]
+  [% args.import(c.req.params()) %]
+  [% args.import({ interval_ini => interval_ini + 1 }) %]
+  <a href="[% c.uri_for_action('/auth/registros/revisor/leitura/lista',
+                                     [ leitura.id_leitura ], args ) %]">Pr&oacute;ximo</a>
+
+
+</form>
 
 [% INCLUDE 'footer.tt' %]

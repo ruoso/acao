@@ -7,7 +7,7 @@
         <link href='[% c.uri_for('/static/css/estilo.css') %]' rel='stylesheet' type='text/css' />
     </head>
 
-    <body onLoad="Horas()">
+    <body>
         <div id='topo'>
             <img src="[% c.uri_for('/static/img/logoBrasaoPMF.png') %]">
             <div id='topoTitulo'>
@@ -27,5 +27,8 @@
         </div>
         <div id='barraTopoCaminho'>
         	<a href="[%c.uri_for('/')%]" title='Início'>Início</a> »
+[% FOREACH item IN breadcrumb %]
+        	<a href="[% item.url %]" title='[% item.title %]'>[% item.text %]</a> »
+[% END %]
         </div>
         <div id="conteudo">

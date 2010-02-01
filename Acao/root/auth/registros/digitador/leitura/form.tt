@@ -1,4 +1,4 @@
-[% INCLUDE 'auth/header.tt' %]
+[% INCLUDE 'auth/registros/digitador/leitura/header.tt' %]
 <script SRC="[% c.uri_for('/static/js/xsdForm.js') %]" language="Javascript" ></script>
 
  <form action="[% c.uri_for('/auth/registros/digitador/') _ leitura.id_leitura _ '/store' %]" method="post"

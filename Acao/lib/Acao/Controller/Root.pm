@@ -23,6 +23,11 @@ Catalyst Controller.
 
 __PACKAGE__->config->{namespace} = '';
 
+sub begin :Private {
+   my ($self, $c) = @_;
+   $c->stash->{breadcrumb} = [];
+}
+
 sub end :ActionClass(RenderView) {}
 
 
