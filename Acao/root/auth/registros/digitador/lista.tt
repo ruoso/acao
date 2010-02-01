@@ -12,7 +12,7 @@
   <th>Inicio da Digitacao</th>
   <th>Fim da Digitacao</th>
  </tr>
- [% FOREACH leitura IN c.model('Digitador').listar_leituras %]
+ [% FOREACH leitura IN c.model('Digitador').listar_leituras.all %]
  <tr>
   <td>[% leitura.instrumento.projeto.nome %]</a></td>
   <td><a href="[% c.uri_for('/auth/registros/digitador') _ "/" _ leitura.id_leitura %]">[% leitura.nome %]</a></td>

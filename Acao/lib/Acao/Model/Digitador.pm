@@ -47,8 +47,6 @@ txn_method 'salvar_digitacao' => authorized 'digitador' => sub {
                                          $leitura->id_leitura, $self->user->id, time;
     $docname =~ s/[^a-zA-Z0-9]/_/gs;
 
-    $self->sedna->begin();
-
     my $xq = 'for $x in
               collection("leitura-'.$leitura->id_leitura.'")/registroDigitacao/documento[controle="'.$controle.'"]
               return data($x/estadoControle)';
@@ -66,10 +64,10 @@ txn_method 'salvar_digitacao' => authorized 'digitador' => sub {
 
     my $x_c_s = XML::Compile::Schema->new($xsd);
     my @elements = $x_c_s->elements;
-    
+
     my $read = $x_c_s->compile(READER => $elements[0]);
     my $writ = $x_c_s->compile(WRITER => $elements[0]);
-    
+
     my $xml_data = $read->($xml);
 
     my $doc = XML::LibXML::Document->new('1.0', 'UTF-8');
@@ -108,7 +106,6 @@ txn_method 'salvar_digitacao' => authorized 'digitador' => sub {
 
     $self->sedna->conn->loadData($res_xml->toString, $docname, 'leitura-'.$leitura->id_leitura);
     $self->sedna->conn->endLoadData();
-    $self->sedna->commit();
 };
 
 42;
