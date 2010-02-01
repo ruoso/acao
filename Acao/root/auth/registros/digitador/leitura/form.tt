@@ -2,7 +2,7 @@
 <script SRC="[% c.uri_for('/static/js/xsdForm.js') %]" language="Javascript" ></script>
 
  <form action="[% c.uri_for('/auth/registros/digitador/') _ leitura.id_leitura _ '/store' %]" method="post"
-    onsubmit="generateXml('[% c.uri_for('/auth/registros/digitador/') _ leitura.id_leitura _ '/xsd' %]', this.processed_xml);">
+    onsubmit="return generateXml('[% c.uri_for('/auth/registros/digitador/') _ leitura.id_leitura _ '/xsd' %]', this.processed_xml);">
  <input type="hidden" name="processed_xml">
 
  <fieldset>
