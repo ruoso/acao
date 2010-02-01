@@ -39,12 +39,11 @@ txn_method 'selecionar' => authorized 'revisor' => sub {
     #Recupera o estadoControle do documento
     $self->sedna->begin;
     
-    my $estadoControle = $self->sedna->execute('for $x in subsequence(collection("leitura-'.$leitura->id_leitura.'")/registroDigitacao/documento[controle="'.$controle.'"],0,2) 
-                                                    return data($x/estadoControle)');
+    my $estadoControle = $self->sedna->execute('for $x in subsequence(collection("leitura-'.$leitura->id_leitura.'")/registroDigitacao/documento[controle="'.$controle.'"],1,2) return data($x/estadoControle)');
     
     $self->sedna->commit;
     
-    if ($estadoControle != "Fechado") {
+    if ($estadoControle ne "Fechado") {
     
         #Aprova a digitacao selecionada
         $self->sedna->begin;
@@ -83,6 +82,7 @@ txn_method 'fecharDocumento' => authorized 'revisor' => sub {
                             )');
     
     $self->sedna->commit;
+    return "<span class='sucesso'>Formul&aacute; fechado com sucesso!</span>";
 };
 
 txn_method 'obter_campo_controle' => authorized 'revisor' => sub {
@@ -107,6 +107,13 @@ txn_method 'visualizar' => authorized 'revisor' => sub {
     $self->sedna->commit;
     return $xml;
 };
+
+txn_method 'diferencas' => authorized 'revisor' => sub {
+    my ($self, $leitura, $controle) = @_;
+    
+};
+
+
 
 txn_method 'obter_xsd_leitura' => authorized 'revisor' => sub {
     my ($self, $leitura) = @_;

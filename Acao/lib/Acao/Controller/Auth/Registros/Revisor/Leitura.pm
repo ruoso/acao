@@ -38,7 +38,7 @@ sub selecionar :Chained('base') :PathPart :Args(2) {
 
 sub fecharDocumento :Chained('base') :PathPart :Args(1) {
     my ($self,$c,$controle) = @_;
-    $c->model('Revisor')->fecharDocumento($c->stash->{leitura},$controle);
+    $c->flash->{mensagem} = $c->model('Revisor')->fecharDocumento($c->stash->{leitura},$controle);
     $c->res->redirect($c->uri_for('/auth/registros/revisor/'.$c->stash->{leitura}->id_leitura));
 }
 
@@ -58,7 +58,10 @@ sub xml :Chained('visualizar_base') :PathPart :Args(0) {
     $c->forward($c->view('XML'));
 }
 
-sub diff :Chained('base') :PathPart :Args(0) {}
+sub diff :Chained('base') :PathPart :Args(1) {
+    my ($self,$c,$controle) = @_;
+    
+}
 
 sub xsd :Chained('base') :PathPart('xsd') :Args(0) {
   my ($self, $c) = @_;
