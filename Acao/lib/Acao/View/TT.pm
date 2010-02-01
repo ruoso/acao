@@ -4,10 +4,9 @@ use strict;
 use base 'Catalyst::View::TT';
 
 __PACKAGE__->config(
-	TEMPLATE_EXTENSION => '.tt',
-	INCLUDE_PATH => [
-              Acao->path_to( 'root' ),
-        ]);
+    TEMPLATE_EXTENSION => '.tt',
+    INCLUDE_PATH       => [ Acao->path_to('root'), ]
+);
 
 =head1 NAME
 

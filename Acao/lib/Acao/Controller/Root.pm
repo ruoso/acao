@@ -16,20 +16,19 @@ Catalyst Controller.
 
 =cut
 
-
 =head2 index
 
 =cut
 
 __PACKAGE__->config->{namespace} = '';
 
-sub begin :Private {
-   my ($self, $c) = @_;
-   $c->stash->{breadcrumb} = [];
+sub begin : Private {
+    my ( $self, $c ) = @_;
+    $c->stash->{breadcrumb} = [];
 }
 
-sub end :ActionClass(RenderView) {}
-
+sub end : ActionClass(RenderView) {
+}
 
 =head1 AUTHOR
 

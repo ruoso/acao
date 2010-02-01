@@ -9,7 +9,7 @@
     <th>Início da digitação</th>
     <th>Fim da digitação</th>
   </tr>
-  [% FOREACH leitura IN c.model('Revisor').listar_leituras %]
+  [% FOREACH leitura IN c.model('Revisor').listar_leituras.all %]
   <tr>
     <td>[% leitura.instrumento.projeto.nome %]</td>
     <td>

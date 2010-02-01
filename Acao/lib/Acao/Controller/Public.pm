@@ -16,20 +16,20 @@ Catalyst Controller.
 
 =cut
 
-
 =head2 index
 
 =cut
 
-sub base :Chained('/') :PathPart('') :CaptureArgs(0) {}
-
-sub entrada :Chained('base') :PathPart('') :Args(0) {
-    my ($self,$c) = @_;
-    $c->res->redirect($c->uri_for('/auth'));
+sub base : Chained('/') : PathPart('') : CaptureArgs(0) {
 }
 
-sub default :Chained('base') :PathPart('')  {
-    my ($self, $c) = @_;
+sub entrada : Chained('base') : PathPart('') : Args(0) {
+    my ( $self, $c ) = @_;
+    $c->res->redirect( $c->uri_for('/auth') );
+}
+
+sub default : Chained('base') : PathPart('') {
+    my ( $self, $c ) = @_;
     $c->res->body('Page not found...');
     $c->res->code(404);
 }

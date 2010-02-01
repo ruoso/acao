@@ -5,10 +5,10 @@ use base 'Catalyst::Model::DBIC::Schema';
 
 __PACKAGE__->config(
     schema_class => 'Acao::Schema',
-    
+
     connect_info => {
-        dsn => 'dbi:SQLite:acao.db',
-        user => '',
+        dsn      => 'dbi:SQLite:acao.db',
+        user     => '',
         password => '',
     }
 );
