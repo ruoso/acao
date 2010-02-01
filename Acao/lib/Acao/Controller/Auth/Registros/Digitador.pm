@@ -16,16 +16,16 @@ Catalyst Controller.
 
 =cut
 
-
 =head2 index
 
 =cut
 
-sub base :Chained('/auth/registros/base') :PathPart('digitador') :CaptureArgs(0) {
+sub base : Chained('/auth/registros/base') : PathPart('digitador') :
+  CaptureArgs(0) {
     my ( $self, $c ) = @_;
 }
 
-sub lista :Chained('base') :PathPart('') :Args(0) {}
-
+sub lista : Chained('base') : PathPart('') : Args(0) {
+}
 
 1;

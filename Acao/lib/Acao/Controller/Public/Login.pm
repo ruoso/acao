@@ -16,30 +16,32 @@ Catalyst Controller.
 
 =cut
 
-
 =head2 index
 
 =cut
 
-sub base :Chained('/') :PathPart('login') :CaptureArgs(0) {
-    my ( $self,$c ) = @_;
+sub base : Chained('/') : PathPart('login') : CaptureArgs(0) {
+    my ( $self, $c ) = @_;
 }
 
-sub login :Chained('base') :PathPart('') :Args(0) {
+sub login : Chained('base') : PathPart('') : Args(0) {
     my ( $self, $c ) = @_;
-    my $user = $c->request->params->{user};
+    my $user     = $c->request->params->{user};
     my $password = $c->request->params->{password};
-    
-    if (defined $user  && defined $password ) {
-        if ($c->authenticate({username => $user,password => $password})) {
-            $c->res->redirect($c->uri_for($c->controller('auth')->action_for('principal')));
-            return;            
-        } else {
+
+    if ( defined $user && defined $password ) {
+        if ( $c->authenticate( { username => $user, password => $password } ) )
+        {
+            $c->res->redirect(
+                $c->uri_for( $c->controller('auth')->action_for('principal') )
+            );
+            return;
+        }
+        else {
             $c->stash->{error_msg} = 'Dados incorretos!';
         }
     }
 }
-
 
 =head1 AUTHOR
 

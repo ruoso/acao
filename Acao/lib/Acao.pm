@@ -15,13 +15,13 @@ use Catalyst::Runtime 5.70;
 
 use parent qw/Catalyst/;
 use Catalyst qw/-Debug
-                ConfigLoader
-                Static::Simple
-                StackTrace
-                Authentication               
-                Session
-                Session::Store::FastMmap
-                Session::State::Cookie/;
+  ConfigLoader
+  Static::Simple
+  StackTrace
+  Authentication
+  Session
+  Session::Store::FastMmap
+  Session::State::Cookie/;
 our $VERSION = '0.01';
 
 # Configure the application.
@@ -33,10 +33,8 @@ our $VERSION = '0.01';
 # with an external configuration file acting as an override for
 # local deployment.
 
-
 # Start the application
 __PACKAGE__->setup();
-
 
 =head1 NAME
 

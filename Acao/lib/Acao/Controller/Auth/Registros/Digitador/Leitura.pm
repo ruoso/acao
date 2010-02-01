@@ -16,33 +16,36 @@ Catalyst Controller.
 
 =cut
 
-
 =head2 index
 
 =cut
 
-sub base :Chained('/auth/registros/digitador/base') :PathPart('') :CaptureArgs(1) {
-    my ($self, $c, $id_leitura) = @_;
+sub base : Chained('/auth/registros/digitador/base') : PathPart('') :
+  CaptureArgs(1) {
+    my ( $self, $c, $id_leitura ) = @_;
     $c->stash->{leitura} = $c->model('Digitador')->obter_leitura($id_leitura);
 }
 
-sub form :Chained('base') :PathPart('') :Args(0) {
+sub form : Chained('base') : PathPart('') : Args(0) {
 }
 
-sub store :Chained('base') :PathPart('store') :Args(0) {
-    my ($self, $c) = @_;
-    my $xml = $c->request->param('processed_xml');
+sub store : Chained('base') : PathPart('store') : Args(0) {
+    my ( $self, $c ) = @_;
+    my $xml     = $c->request->param('processed_xml');
     my $leitura = $c->stash->{leitura};
-    $c->model('Digitador')->salvar_digitacao($leitura,$xml,scalar($c->req->param('controle')),$c->req->address);
-    
+    $c->model('Digitador')
+      ->salvar_digitacao( $leitura, $xml, scalar( $c->req->param('controle') ),
+        $c->req->address );
+
     $c->flash->{mensagem} = 'Digitação armazenada com sucesso';
-    $c->res->redirect($c->uri_for('/auth/registros/digitador'));
+    $c->res->redirect( $c->uri_for('/auth/registros/digitador') );
 }
 
-sub xsd :Chained('base') :PathPart('xsd') :Args(0) {
-  my ($self, $c) = @_;
-  $c->stash->{document} = $c->model('Digitador')->obter_xsd_leitura($c->stash->{leitura});
-  $c->forward($c->view('XML'));
+sub xsd : Chained('base') : PathPart('xsd') : Args(0) {
+    my ( $self, $c ) = @_;
+    $c->stash->{document} =
+      $c->model('Digitador')->obter_xsd_leitura( $c->stash->{leitura} );
+    $c->forward( $c->view('XML') );
 }
 
 =head1 AUTHOR
