@@ -11,7 +11,17 @@ sub txn_method {
   my $method_name = caller().'::'.$name;
   no strict 'refs';
   *{$method_name} = sub {
-    $_[0]->dbic->txn_do($code, @_)
+    my $ret;
+    eval {
+      $_[0]->sedna->begin;
+      $ret = $_[0]->dbic->txn_do($code, @_);
+      $_[0]->sedna->commit;
+    };
+    if ($@) {
+      $_[0]->sedna->rollback;
+      die $@;
+    }
+    $ret;
   };
 }
 

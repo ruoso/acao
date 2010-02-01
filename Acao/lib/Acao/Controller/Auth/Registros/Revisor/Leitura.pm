@@ -32,13 +32,13 @@ sub lista :Chained('base') :PathPart('') :Args(0) {
 
 sub selecionar :Chained('base') :PathPart :Args(2) {
     my ($self,$c,$id_doc,$controle) = @_;
-    $c->flash->{mensagem} = $c->model('Revisor')->selecionar($c->stash->{leitura},$id_doc,$controle);
+    $c->model('Revisor')->selecionar($c->stash->{leitura},$id_doc,$controle);
     $c->res->redirect($c->uri_for('/auth/registros/revisor/'.$c->stash->{leitura}->id_leitura));
 }
 
 sub fecharDocumento :Chained('base') :PathPart :Args(1) {
     my ($self,$c,$controle) = @_;
-    $c->flash->{mensagem} = $c->model('Revisor')->fecharDocumento($c->stash->{leitura},$controle);
+    $c->model('Revisor')->fecharDocumento($c->stash->{leitura},$controle);
     $c->res->redirect($c->uri_for('/auth/registros/revisor/'.$c->stash->{leitura}->id_leitura));
 }
 

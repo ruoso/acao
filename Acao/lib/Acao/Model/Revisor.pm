@@ -35,18 +35,16 @@ txn_method 'obter_leitura' => authorized 'revisor' => sub {
 txn_method 'selecionar' => authorized 'revisor' => sub {
     my ($self, $leitura, $id_doc, $controle) = @_;
     $id_doc =~ s/\"\\//gs;
-    
+
     #Recupera o estadoControle do documento
-    $self->sedna->begin;
+
     
     my $estadoControle = $self->sedna->execute('for $x in subsequence(collection("leitura-'.$leitura->id_leitura.'")/registroDigitacao/documento[controle="'.$controle.'"],1,2) return data($x/estadoControle)');
     
-    $self->sedna->commit;
     
     if ($estadoControle ne "Fechado") {
     
         #Aprova a digitacao selecionada
-        $self->sedna->begin;
         
         $self->sedna->execute('UPDATE replace $a in
                   collection("leitura-'.$leitura->id_leitura.'")/registroDigitacao/documento/estado[../controle="'.$controle.'"]
@@ -58,7 +56,6 @@ txn_method 'selecionar' => authorized 'revisor' => sub {
                       )
                   )');
                   
-        $self->sedna->commit;
         
         return "<span class='sucesso'>Documento selecionado com sucesso!</span>";
     
@@ -73,27 +70,23 @@ txn_method 'selecionar' => authorized 'revisor' => sub {
 txn_method 'fecharDocumento' => authorized 'revisor' => sub {
     my ($self, $leitura, $controle) = @_;
     
-    $self->sedna->begin;
     
     $self->sedna->execute('UPDATE replace $a in
                             collection("leitura-'.$leitura->id_leitura.'")/registroDigitacao/documento/estadoControle[../controle="'.$controle.'"]
                             with (
                                 <estadoControle>Fechado</estadoControle>
                             )');
-    
-    $self->sedna->commit;
-    return "<span class='sucesso'>Formul&aacute; fechado com sucesso!</span>";
+
+
 };
 
 txn_method 'obter_campo_controle' => authorized 'revisor' => sub {
     my ($self, $leitura, $id_doc) = @_;
     $id_doc =~ s/\"\\//gs;
     my $xml;
-    $self->sedna->begin;
     $self->sedna->execute('for $x in collection("leitura-'.$leitura->id_leitura.'")/registroDigitacao/documento[id = "'.$id_doc.'"] 
                             return data($x/controle)');
     $xml = $self->sedna->get_item;
-    $self->sedna->commit;
     return $xml;
 };
 
@@ -101,10 +94,8 @@ txn_method 'visualizar' => authorized 'revisor' => sub {
     my ($self, $leitura, $id_doc) = @_;
     $id_doc =~ s/\"\\//gs;
     my $xml;
-    $self->sedna->begin;
     $self->sedna->execute('for $x in collection("leitura-'.$leitura->id_leitura.'")/registroDigitacao/documento[id = "'.$id_doc.'"] return $x/conteudo/*');
     $xml = $self->sedna->get_item;
-    $self->sedna->commit;
     return $xml;
 };
 
