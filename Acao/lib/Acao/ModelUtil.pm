@@ -32,7 +32,7 @@ sub authorized {
             $code->(@_);
         }
         else {
-            die 'Access Denied!';
+            die 'access-denied!';
         }
       }
 }

@@ -38,7 +38,7 @@ sub login : Chained('base') : PathPart('') : Args(0) {
             return;
         }
         else {
-            $c->stash->{error_msg} = 'Dados incorretos!';
+            $c->flash->{erro} = 'usuario-invalido';
         }
     }
 }

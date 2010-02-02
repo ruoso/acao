@@ -3,8 +3,22 @@
 [% INCLUDE 'auth/registros/revisor/leitura/header.tt' %]
 
 [% SET num_por_pagina = 50 %]
-[% SET mensagem = c.flash.mensagem %]
-[% IF mensagem %][% mensagem %][% END %]
+[% SET erro = c.flash.erro _ '' %]
+[% SET sucesso = c.flash.sucesso %]
+[% IF erro %]
+   <span class="erro">
+     [% IF erro.match("estadocontrole-fechado") %]O estado de controle deve ser "Aberto" para alterar o documento.[% END %]
+     [% IF erro.match("digitacoes-naoRevisadas") %]
+       N&atilde; &eacute; poss&iacute;vel fechar um formul&aacute;rio que contenha digita&ccedil;&otilde;es n&atilde;o revisadas!
+     [% END %]
+   </span>
+[% END %]
+[% IF sucesso%]
+   <span class="sucesso">
+      [% IF sucesso.match("estadocontrole-aberto") %]Estado da digita&ccedil;&atilde;o alterado com sucesso![% END %]
+      [% IF sucesso.match("digitacoes-revisadas") %]Formul&aacute;rio fechado com sucesso![% END %]
+   </span>
+[% END %]
 
 [% xqueryret = BLOCK %]
       <tr>
@@ -13,7 +27,7 @@
          <td rowspan="{count($form)}">{$reg/documento/estadoControle}</td>,
          <td rowspan="{count($form)}">
 	    { if (count($form) > 1) then (
-            <a href="#">Diferenças</a>
+[%#            <a href="#">Diferenças</a>  %]
 	    ) else () }
             { if ($reg/documento/estadoControle = "Aberto") then (
             <a href="[% c.uri_for('/auth/registros/revisor/')_ leitura.id_leitura _ '/fecharDocumento/' %]{$reg/documento/controle}">Fechar formulário</a>
@@ -25,12 +39,22 @@
       <td>{$reg/documento/estado}</td>
       <td>{$reg/digitacao/localDigitacao}</td>
       <td>
-        <a href="[% c.uri_for_action('/auth/registros/revisor/leitura/selecionar',
+        { if ($reg/documento/estado ne 'Aprovado') then (
+        <a href="[% c.uri_for_action('/auth/registros/revisor/leitura/aprovar',
                                      [ leitura.id_leitura ],
                                       '____xq_doc_id____', '____xq_ctrl____' ,  c.req.params() )
                     .replace('____xq_doc_id____','{$reg/documento/id}')
                     .replace('____xq_ctrl____','{$reg/documento/controle}')
-                    .replace('&','&amp;') %]">Selecionar</a>
+                    .replace('&','&amp;') %]">Aprovar</a>
+        ) else () }
+        { if ($reg/documento/estado ne 'Rejeitado') then (
+        <a href="[% c.uri_for_action('/auth/registros/revisor/leitura/rejeitar',
+                                     [ leitura.id_leitura ],
+                                      '____xq_doc_id____', '____xq_ctrl____' ,  c.req.params() )
+                    .replace('____xq_doc_id____','{$reg/documento/id}')
+                    .replace('____xq_ctrl____','{$reg/documento/controle}')
+                    .replace('&','&amp;') %]">Rejeitar</a>
+        ) else () }
         <a href="[% c.uri_for('/auth/registros/revisor/') _ leitura.id_leitura _ '/visualizar/'%]{$reg/documento/id}">Visualizar</a>
       </td>
       </tr>  
