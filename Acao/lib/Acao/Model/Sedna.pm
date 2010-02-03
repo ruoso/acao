@@ -8,7 +8,7 @@ use base 'Catalyst::Model::Sedna';
 sub new {
     my $self = shift;
     $self = $self->SUPER::new(@_);
-    $self->conn->setConnectionAttr(AUTOCOMMIT => 0);
+    $self->conn->setConnectionAttr(AUTOCOMMIT => Sedna::SEDNA_AUTOCOMMIT_OFF);
     return $self;
 }
 
