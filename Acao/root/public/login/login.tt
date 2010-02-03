@@ -1,5 +1,11 @@
 [% INCLUDE 'header.tt' %]
 
+[% SET erro = c.flash.erro _ '' %]
+[% IF erro %]
+<span class="erro">
+  [% IF erro.match("usuario-invalido") %]Dados incorretos![% END %]
+</span>
+[% END %]
 <form id="form" method="post" action="[%c.uri_for('/login')%]">
  <fieldset><legend>Dados de Autenticação</legend>
   <DL>

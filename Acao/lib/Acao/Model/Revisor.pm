@@ -33,18 +33,18 @@ txn_method 'obter_leitura' => authorized 'revisor' => sub {
     );
 };
 
-txn_method 'selecionar' => authorized 'revisor' => sub {
+txn_method 'aprovar' => authorized 'revisor' => sub {
     my ( $self, $leitura, $id_doc, $controle ) = @_;
     $id_doc =~ s/\"\\//gs;
 
     #Recupera o estadoControle do documento
 
-    my $estadoControle =
-      $self->sedna->execute( 'for $x in subsequence(collection("leitura-'
-          . $leitura->id_leitura
-          . '")/registroDigitacao/documento[controle="'
-          . $controle
-          . '"],1,2) return data($x/estadoControle)' );
+    $self->sedna->execute( 'for $x in subsequence(collection("leitura-'
+        . $leitura->id_leitura
+        . '")/registroDigitacao/documento[controle="'
+        . $controle
+        . '"],1,2) return data($x/estadoControle)' );
+    my $estadoControle = $self->sedna->get_item;
 
     if ( $estadoControle ne "Fechado" ) {
 
@@ -64,33 +64,68 @@ txn_method 'selecionar' => authorized 'revisor' => sub {
                       )
                   )'
         );
-
-        return
-          "<span class='sucesso'>Documento selecionado com sucesso!</span>";
-
-    }
-    else {
-
-        return
-"<span class='erro'>Este documento j&aacute; est&aacute; fechado. N&atilde;o &eacute; poss&iacute;vel aprov&aacute;-lo ou rejeit&aacute;-lo.</span>";
-
+    } else {
+	die 'estadocontrole-fechado';
     }
 
+};
+
+txn_method 'rejeitar' => authorized 'revisor' => sub {
+    my ( $self, $leitura, $id_doc, $controle ) = @_;
+    $id_doc =~ s/\"\\//gs;
+
+    #Recupera o estadoControle do documento
+
+    $self->sedna->execute( 'for $x in subsequence(collection("leitura-'
+        . $leitura->id_leitura
+        . '")/registroDigitacao/documento[controle="'
+        . $controle
+        . '"],1,2) return data($x/estadoControle)' );
+    my $estadoControle = $self->sedna->get_item;
+
+    if ( $estadoControle ne "Fechado" ) {
+
+        #Rejeita a digitacao selecionada
+
+        $self->sedna->execute(
+            'UPDATE replace $a in
+                  collection("leitura-'
+              . $leitura->id_leitura
+              . '")/registroDigitacao/documento/estado[../id="'
+              . $id_doc . '"]
+                  with (
+                        <estado>Rejeitado</estado>
+                  )'
+        );
+     } else {
+	die 'estadocontrole-fechado';
+     }
 };
 
 txn_method 'fecharDocumento' => authorized 'revisor' => sub {
     my ( $self, $leitura, $controle ) = @_;
 
     $self->sedna->execute(
-        'UPDATE replace $a in
-                            collection("leitura-'
-          . $leitura->id_leitura
-          . '")/registroDigitacao/documento/estadoControle[../controle="'
-          . $controle . '"]
-                            with (
-                                <estadoControle>Fechado</estadoControle>
-                            )'
+        'for $x in collection("leitura-'.$leitura->id_leitura.'")//registroDigitacao/documento[controle="'.$controle.'"] 
+            where $x/estado = "Digitado" 
+            return count($x)'
     );
+    my $qtdDigitados = $self->sedna->get_item;
+    
+    if ($qtdDigitados >= 1) {
+            die 'digitacoes-naoRevisadas';
+    } else {
+	    $self->sedna->execute(
+		'UPDATE replace $a in
+		                    collection("leitura-'
+		  . $leitura->id_leitura
+		  . '")/registroDigitacao/documento/estadoControle[../controle="'
+		  . $controle . '"]
+		                    with (
+		                        <estadoControle>Fechado</estadoControle>
+		                    )'
+	    );
+    }
 
 };
 

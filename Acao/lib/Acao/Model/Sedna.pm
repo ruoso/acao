@@ -5,6 +5,13 @@ use utf8;
 
 use base 'Catalyst::Model::Sedna';
 
+sub new {
+    my $self = shift;
+    $self = $self->SUPER::new(@_);
+    $self->conn->setConnectionAttr(AUTOCOMMIT => Sedna::SEDNA_AUTOCOMMIT_OFF());
+    return $self;
+}
+
 sub get_document {
     my ( $self, $doc ) = @_;
     $self->execute( 'for $x in doc("' . $doc . '") return $x' );

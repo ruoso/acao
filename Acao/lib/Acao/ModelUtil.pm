@@ -12,13 +12,15 @@ sub txn_method {
     no strict 'refs';
     *{$method_name} = sub {
         my $ret;
+        my $committed = 0;
         eval {
             $_[0]->sedna->begin;
             $ret = $_[0]->dbic->txn_do( $code, @_ );
             $_[0]->sedna->commit;
+	    $committed = 1;
         };
         if ($@) {
-            $_[0]->sedna->rollback;
+            $_[0]->sedna->rollback unless $committed;
             die $@;
         }
         $ret;
@@ -32,7 +34,7 @@ sub authorized {
             $code->(@_);
         }
         else {
-            die 'Access Denied!';
+            die 'access-denied!';
         }
       }
 }

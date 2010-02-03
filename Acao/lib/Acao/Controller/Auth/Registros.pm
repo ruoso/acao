@@ -25,6 +25,16 @@ sub base : Chained('/auth/base') : PathPart('registros') : CaptureArgs(0) {
 }
 
 sub principal : Chained('base') : PathPart('') : Args(0) {
+    my ($self, $c) = @_;
+    my @roles = $c->user->roles;
+    warn @roles;
+    if ((grep { /^revisor$/ } @roles) &&
+        !(grep { /^digitador$/ } @roles)) {
+        $c->res->redirect($c->uri_for('/auth/registros/revisor'));
+    } elsif ((grep { /^digitador$/ } @roles) &&
+             !(grep { /^revisor$/ } @roles)) {
+        $c->res->redirect($c->uri_for('/auth/registros/digitador'));
+    }
 }
 
 =head1 AUTHOR

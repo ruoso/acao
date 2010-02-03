@@ -22,10 +22,11 @@ Catalyst Controller.
 
 sub base : Chained('/auth/registros/base') : PathPart('revisor') :
   CaptureArgs(0) {
-    my ( $self, $c ) = @_;
+  my ( $self, $c ) = @_;
 }
 
 sub lista : Chained('base') : PathPart('') : Args(0) {
+  my ( $self,$c ) = @_;
 }
 
 =head1 AUTHOR

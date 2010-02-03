@@ -30,10 +30,17 @@ sub lista : Chained('base') : PathPart('') : Args(0) {
 
 }
 
-sub selecionar : Chained('base') : PathPart : Args(2) {
+sub aprovar : Chained('base') : PathPart : Args(2) {
     my ( $self, $c, $id_doc, $controle ) = @_;
-    $c->model('Revisor')
-      ->selecionar( $c->stash->{leitura}, $id_doc, $controle );
+    eval {
+        $c->model('Revisor')
+          ->aprovar( $c->stash->{leitura}, $id_doc, $controle );
+    };
+    if ($@) {
+        $c->flash->{erro} = $@;
+    } else {
+	$c->flash->{sucesso} = 'estadocontrole-aberto';
+    }
     $c->res->redirect(
         $c->uri_for(
             '/auth/registros/revisor/' . $c->stash->{leitura}->id_leitura
@@ -41,9 +48,35 @@ sub selecionar : Chained('base') : PathPart : Args(2) {
     );
 }
 
+sub rejeitar : Chained('base') : PathPart : Args(2) {
+    my ( $self, $c, $id_doc, $controle ) = @_;
+
+    eval {
+	$c->model('Revisor')
+      	  ->rejeitar( $c->stash->{leitura}, $id_doc, $controle );
+    };
+    if ($@) {
+        $c->flash->{erro} = $@;
+    } else {
+	$c->flash->{sucesso} = 'estadocontrole-aberto';
+    }
+    $c->res->redirect(
+        $c->uri_for(
+           '/auth/registros/revisor/' . $c->stash->{leitura}->id_leitura
+        )
+    );
+}
+
 sub fecharDocumento : Chained('base') : PathPart : Args(1) {
     my ( $self, $c, $controle ) = @_;
-    $c->model('Revisor')->fecharDocumento( $c->stash->{leitura}, $controle );
+    eval {
+    	$c->model('Revisor')->fecharDocumento( $c->stash->{leitura}, $controle );
+    };
+    if ($@) {
+	$c->flash->{erro} = $@;
+    } else {
+	$c->flash->{sucesso} = 'digitacoes-revisadas';
+    }
     $c->res->redirect(
         $c->uri_for(
             '/auth/registros/revisor/' . $c->stash->{leitura}->id_leitura
