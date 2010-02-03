@@ -130,6 +130,7 @@ for $control in subsequence(distinct-values(collection("leitura-[% leitura.id_le
 [% END %]
 
 </table>
+
 [% IF interval_ini > 0 %]
   [% SET args = { } %]
   [% args.import(c.req.params()) %]
