@@ -45,7 +45,7 @@
                                       '____xq_doc_id____', '____xq_ctrl____' ,  c.req.params() )
                     .replace('____xq_doc_id____','{$reg/documento/id}')
                     .replace('____xq_ctrl____','{$reg/documento/controle}')
-                    .replace('&','&amp;') %]">Aprovar</a>
+                    .replace('&','&amp;') %]" class="link-aprovar">Aprovar</a>
         ) else () }
         { if ($reg/documento/estado ne 'Rejeitado') then (
         <a href="[% c.uri_for_action('/auth/registros/revisor/leitura/rejeitar',
