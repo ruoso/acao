@@ -1,5 +1,6 @@
 [% INCLUDE 'auth/registros/header.tt' %]
 <h1>Registros</h1>
+[%usuario%]
 <ul>
  <li><a href="[%c.uri_for('digitador')%]">Digitador</a></li>
  <li><a href="[%c.uri_for('revisor')%]">Revisor</a></li>
