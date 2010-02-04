@@ -58,11 +58,9 @@ txn_method 'salvar_digitacao' => authorized 'digitador' => sub {
       . $controle . '"]
               return data($x/estadoControle)';
     $self->sedna->execute($xq);
-
     while ( my $estadoGrupo = $self->sedna->get_item ) {
         if ( $estadoGrupo eq "Fechado" ) {
-            $self->sedna->rollback;
-            die "Digitacao para esse codigo de controle fechada.";
+            die "formulario-fechado";
         }
     }
 

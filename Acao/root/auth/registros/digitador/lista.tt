@@ -2,7 +2,18 @@
 [% INCLUDE 'auth/registros/digitador/header.tt' %]
 
 [% SET mensagem = c.flash.mensagem %]
-[% IF mensagem %]<h3>[% mensagem %]</H3>[% END %]
+[% SET erro = c.flash.erro _ '' %]
+[% SET sucesso = c.flash.sucesso %]
+[% IF erro %]
+   <span class="erro">
+     O estado de controle deve ser "Aberto" para alterar o documento.
+   </span>
+[% END %]
+[% IF sucesso %]
+   <span class="sucesso">
+     Digita&ccedil;&atilde;o inclu&iacute;da com sucesso.
+   </span>
+[% END %]
 <table border="1">
  <tr>
   <th>Projeto</th>
