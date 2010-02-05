@@ -35,7 +35,7 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
     my $leitura = $c->stash->{leitura};
     eval {
 	$c->model('Digitador')
-      ->salvar_digitacao( $leitura, $xml, scalar( $c->req->param('controle') ),
+      		->salvar_digitacao( $leitura, $xml, scalar( $c->req->param('controle') ),
         $c->req->address );
     };
     

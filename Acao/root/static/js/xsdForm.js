@@ -485,6 +485,10 @@ function generateXml(xsdFile, input_to_set) {
         } else if ( type == 'xs:dateTime' && !validateDateTimeField(field) ) {
             this.setFirstFieldError(field);
             submitForm = false;
+        } else if ( type == 'xs:float' && !validateFloatField(field) ) {
+            this.setFirstFieldError(field);
+            submitForm = false;
+            alert(submitForm);
         }
 
     }
@@ -683,6 +687,7 @@ function validateFloatField(obj) {
         if ( getById('fieldFloat__' + obj.id) == null ) {
             var div = createDivError('Valor inválido.');
             div.id = 'fieldFloat__' + obj.id;
+            
 
             var containerField = obj.parentNode;
             containerField.appendChild( div );
