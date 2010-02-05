@@ -9,12 +9,6 @@ body {
 	margin: 0px;
 }
 
-form
-{
-    font-family: sans-serif;
-    background-color: transparent;
-}
-
 h2 {
 	margin-top: 5px;
 	font-size: 2em;
@@ -225,6 +219,8 @@ a.voltar {
 }
 
 form {
+    font-family: sans-serif;
+    background-color: transparent;
     width: 50em;
 }
 
@@ -255,8 +251,31 @@ fieldset dl dt
 fieldset dl dd input,
 fieldset dl dd select
 {
+  display: inline;
   width: 100%;
   position: relative;
+}
+fieldset dl.buscaControle{
+	margin-bottom: 0.2em;
+}
+
+fieldset dl.buscaControle dd input
+{
+  display: inline;
+  width: 40%;
+  position: relative;
+}
+
+fieldset dl.buscaControle dd select
+{
+  display: inline;
+  width: 40%;
+  position: relative;
+  margin-left: 1.6em;
+}
+
+legend {
+    font-weight: bold;
 }
 
 .dtsemdd {
@@ -299,8 +318,8 @@ input[type=submit], input[type=button], input[type=reset], button
     background: #FFFF99;
     padding: 2px 4px;
     border-color: #E6B800;
-	margin: 3px 3px 3px 0px;
-	text-shadow: -1px 1px 0px #FFF;
+    margin: 3px 3px 3px 0px;
+    text-shadow: -1px 1px 0px #FFF;
 }
 
 /* Alteração Bruno */
@@ -323,21 +342,24 @@ input[type=submit], input[type=button], input[type=reset], button
 }*/
 /* Alteração Bruno - Fim */
 
-input[type=button], button
+input[type=text]
 {
-    border-style: solid;
-    border-width: 1px;
+    border:1px solid #E6B800;
     background-position: #FFFFFF;
-    font-family: Sans-Serif;
-    font-size: 11px;
-    font-weight: bold;
+    font: normal 1.0em Sans-Serif;
     color: #CC0000;
-    background: #FFFF99;
+    background: #FFFFAF;
     height: 18px;
-    border-top-color: #E6B800;
-    border-right-color: #E6B800;
-    border-bottom-color: #E6B800;
-    border-left-color: #E6B800;
+}
+
+select
+{
+    border:1px solid #E6B800;
+    background-position: #FFFFFF;
+    font: normal 1.0em Sans-Serif;
+    color: #CC0000;
+    background: #FFFFAF;
+    height: 2em;
 }
 
 /* Solução Temporária! */

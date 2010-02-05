@@ -99,7 +99,7 @@ for $control in subsequence(distinct-values(collection("leitura-[% leitura.id_le
 <fieldset>
 
   <h3>Buscar documento</h3>
-  <dl>
+  <dl class="buscaControle">
     <dt>
       <label for="controle">Controle:</label>
     </dt>
@@ -115,7 +115,7 @@ for $control in subsequence(distinct-values(collection("leitura-[% leitura.id_le
       a <input type="text" name="num_digitacoes_fim" id="num_digitacoes_fim" value="[% c.req.param('num_digitacoes_fim') | html %]" />
     </dd>
     <dt>
-      <label for="controle">Estado Controle:</label>
+      <label for="controle">Situa&ccedil;&atilde;o do Controle:</label>
     </dt>
     <dd>
       <select name="estadoControle" id="estadoControle" >
@@ -132,7 +132,7 @@ for $control in subsequence(distinct-values(collection("leitura-[% leitura.id_le
 <table border="1">
   <tr>
     <th>Controle</th>
-    <th>Estado Controle</th>
+    <th>Situa&ccedil;&atilde;o do Controle</th>
     <th>A&ccedil;&otilde;es</th>
     <th>Data da Digita&ccedil;&atilde;o</th>
     <th>Digitador</th>
