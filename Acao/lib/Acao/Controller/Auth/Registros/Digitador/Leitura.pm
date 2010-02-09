@@ -33,10 +33,11 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
     my ( $self, $c ) = @_;
     my $xml     = $c->request->param('processed_xml');
     my $leitura = $c->stash->{leitura};
+
     eval {
 	$c->model('Digitador')
-      		->salvar_digitacao( $leitura, $xml, scalar( $c->req->param('controle') ),
-        $c->req->address );
+			->salvar_digitacao( $leitura, $xml, scalar( $c->req->param('controle') ),
+	$c->req->address );
     };
     
     if ($@) {
