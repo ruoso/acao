@@ -6,7 +6,12 @@
 [% SET sucesso = c.flash.sucesso %]
 [% IF erro %]
    <span class="erro">
-     O estado de controle deve ser "Aberto" para alterar o documento.
+     [% IF erro == 'formulario-fechado' %]
+	O estado de controle deve ser "Aberto" para alterar o documento.
+     [% END %]
+     [% IF erro == 'collection-nao-existe' %]
+	Ocorreu um erro ao tentar incluir a digita&ccedil;&atilde;o. Nenhuma cole&ccedil;&atilde;o associada.
+     [% END %]
    </span>
 [% END %]
 [% IF sucesso %]
