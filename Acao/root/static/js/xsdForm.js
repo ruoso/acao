@@ -761,7 +761,7 @@ function createFieldFloat(name) {
     var field;
     field = createInput('text', name);
     //field.setAttribute('onkeypress','floatField(this);bloquearTexto(event)');
-    field.setAttribute('onkeypress','return validaCampoNumerico(event);');
+    field.setAttribute('onkeypress','return validaCampoNumerico(event,"float");');
     //field.setAttribute('onkeyup','floatField(this);');
     field.setAttribute('onblur', 'validateFloatField(this,event);');
     return field;
@@ -772,7 +772,7 @@ function createFieldInteger(name) {
     field = createInput('text', name);
     //field.setAttribute('onchange', 'integerField(this);');
     //field.setAttribute('onkeypress', 'integerField(this);');
-    field.setAttribute('onkeypress','return validaCampoNumerico(event);');
+    field.setAttribute('onkeypress','return validaCampoNumerico(event,"integer");');
     //field.setAttribute('onkeyup', 'integerField(this);');
     return field;
 }
@@ -930,7 +930,7 @@ function validaCampoNumerico(objEvento, type) {
         iKeyCode = void(0);
     }
 
-    if (type == "xs:float") {
+    if (type == "float") {
         return validaFloat(iKeyCode);
     } else {
         return validaInteger(iKeyCode);
