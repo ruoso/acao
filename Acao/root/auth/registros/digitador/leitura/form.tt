@@ -21,7 +21,12 @@
     <dt>Digitação final:</dt>
     <dd>[% leitura.digitacao_fim %]&nbsp;</dd>
     <dt>Controle:</dt>
-    <dd><INPUT TYPE="text" name="controle"></dd>
+    <dd>
+	<div name="xsdFormValidation">
+		<input type="text" name="controle" />
+		<div name="requiredField" style="display: none;">true</div>
+	</div>
+    </dd>
   </dl>
  </fieldset>
  
