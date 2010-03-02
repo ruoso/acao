@@ -29,6 +29,11 @@ __PACKAGE__->has_many(
     "Acao::Schema::Result::Instrumento",
     { "foreign.id_projeto" => "self.id_projeto" },
 );
+__PACKAGE__->has_many(
+    "definicao_consolidacao",
+    "Acao::Schema::Result::DefinicaoConsolidacao",
+    { "foreign.id_projeto" => "self.id_projeto" },
+);
 
 # Created by DBIx::Class::Schema::Loader v0.04006 @ 2010-01-19 17:15:55
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:1FsIJYOczJWUu8QfQqGghQ

@@ -83,6 +83,11 @@ __PACKAGE__->has_many(
     "Acao::Schema::Result::Revisor",
     { "foreign.id_leitura" => "self.id_leitura" },
 );
+__PACKAGE__->has_many(
+    "entrada_consolidacao",
+    "Acao::Schema::Result::EntradaConsolidacao",
+    { "foreign.id_leitura" => "self.id_leitura" },
+);
 __PACKAGE__->belongs_to(
     "instrumento",
     "Acao::Schema::Result::Instrumento",
