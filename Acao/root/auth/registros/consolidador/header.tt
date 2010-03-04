@@ -1,0 +1,4 @@
+[% breadcrumb.unshift({ url => c.uri_for('/auth/registros/consolidador'),
+			title => 'Consolidador',
+			text => 'Consolidador' }) %]
+[% INCLUDE 'auth/registros/header.tt' %]
