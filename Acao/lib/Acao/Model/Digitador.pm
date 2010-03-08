@@ -5,12 +5,15 @@ use Acao::ModelUtil;
 
 use XML::LibXML;
 use XML::Compile::Schema;
+use XML::Compile::Util;
 use DateTime;
+
+use constant DIGITACAO_NS => 'http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd';
 
 my $controle =
   XML::Compile::Schema->new( Acao->path_to('schemas/controledigitacao.xsd') );
-my $controle_w = $controle->compile( WRITER => 'registroDigitacao' );
-
+my $controle_w = $controle->compile( WRITER => pack_type(DIGITACAO_NS, 'registroDigitacao'), use_default_namespace => 1 );
+	
 txn_method 'listar_leituras' => authorized 'digitador' => sub {
     my $self = shift;
 
@@ -51,12 +54,13 @@ txn_method 'salvar_digitacao' => authorized 'digitador' => sub {
       $leitura->id_leitura, $self->user->id, time;
     $docname =~ s/[^a-zA-Z0-9]/_/gs;
 
-    my $xq = 'for $x in
+    my $xq = 'declare namespace cd = "http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd"; 
+	      for $x in
               collection("leitura-'
       . $leitura->id_leitura
-      . '")/registroDigitacao/documento[controle="'
+      . '")/cd:registroDigitacao/cd:documento[cd:controle="'
       . $controle . '"]
-              return data($x/estadoControle)';
+              return data($x/cd:estadoControle)';
     $self->sedna->execute($xq);
     while ( my $estadoGrupo = $self->sedna->get_item ) {
         if ( $estadoGrupo eq "Fechado" ) {
@@ -64,7 +68,8 @@ txn_method 'salvar_digitacao' => authorized 'digitador' => sub {
         }
     }
 
-    $self->sedna->execute( 'for $x in doc("'
+    $self->sedna->execute( 'declare namespace cd = "http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd";
+			    for $x in doc("'
           . $leitura->instrumento->xml_schema
           . '") return $x' );
     my $xsd = $self->sedna->get_item;
@@ -72,10 +77,12 @@ txn_method 'salvar_digitacao' => authorized 'digitador' => sub {
     my $x_c_s    = XML::Compile::Schema->new($xsd);
     my @elements = $x_c_s->elements;
 
-    my $read = $x_c_s->compile( READER => $elements[0] );
-    my $writ = $x_c_s->compile( WRITER => $elements[0] );
+    my $read = $x_c_s->compile( READER => $elements[0]);
+    my $writ = $x_c_s->compile( WRITER => $elements[0], use_default_namespace => 1 );
 
-    my $xml_data = $read->($xml);
+    my $input_doc = XML::LibXML->load_xml(string => $xml);
+    my $element = $input_doc->getDocumentElement;
+    my $xml_data = $read->($element);
 
     my $doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
     my $conteudo_registro = $writ->( $doc, $xml_data );

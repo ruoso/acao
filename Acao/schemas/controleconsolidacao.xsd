@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/controleconsolidacao.xsd"  elementFormDefault="qualified" xmlns="http://schemas.fortaleza.ce.gov.br/acao/controleconsolidacao.xsd">
+	<xs:element name="entradas" type="tipoEntradas">
+		<xs:annotation>
+			<xs:appinfo>
+				<label>Documentos que compoem essa consolidação</label>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>	
+	<xs:complexType name="tipoEntradas">
+		<xs:sequence>
+			<xs:element name="entrada" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="leitura" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Id da Leitura</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="iddoc" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Id do documento</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="registroConsolidacao">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="consolidacao">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="consolidador" type="xs:string">
+								<xs:annotation>
+									<xs:appinfo>
+										<label>Digitador</label>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="dataConsolidacao" type="xs:dateTime">
+								<xs:annotation>
+									<xs:appinfo>
+										<label>Data da Consolidação</label>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="localConsolidacao" type="xs:string">
+								<xs:annotation>
+									<xs:appinfo>
+										<label>Local da Consolidação</label>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="entradas" type="tipoEntradas">
+								<xs:annotation>
+									<xs:appinfo>
+										<label>Documentos que compoem essa consolidação</label>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="definicaoConsolidacao">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="id" type="xs:integer">
+								<xs:annotation>
+									<xs:appinfo>
+										<label>id da definicao</label>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="projeto">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="id" type="xs:integer">
+											<xs:annotation>
+												<xs:appinfo>
+													<label>id projeto</label>
+												</xs:appinfo>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="nome" type="xs:string">
+											<xs:annotation>
+												<xs:appinfo>
+													<label>Nome Projeto</label>
+												</xs:appinfo>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="documento">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="id" type="xs:string">
+								<xs:annotation>
+									<xs:appinfo>
+										<label>id documento</label>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="conteudo">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:any minOccurs="1" maxOccurs="unbounded" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>	
+	</xs:element>
+</xs:schema>

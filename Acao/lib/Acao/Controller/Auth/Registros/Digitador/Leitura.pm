@@ -41,7 +41,7 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
     };
     
     if ($@) {
-       $c->flash->{erro} = $@;
+       $c->flash->{erro} = $@ . "";
     } else {
        $c->flash->{sucesso} = 'Digitação armazenada com sucesso';
     }
