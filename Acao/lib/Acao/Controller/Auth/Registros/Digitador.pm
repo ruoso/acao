@@ -20,8 +20,7 @@ Catalyst Controller.
 
 =cut
 
-sub base : Chained('/auth/registros/base') : PathPart('digitador') :
-  CaptureArgs(0) {
+sub base : Chained('/auth/registros/base') : PathPart('digitador') : CaptureArgs(0) {
   my ( $self, $c ) = @_;
 }
 

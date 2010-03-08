@@ -1,0 +1,37 @@
+[% META title = 'Lista de Consolidacoes'%]
+[% INCLUDE 'auth/registros/consolidador/header.tt' %]
+
+[% SET mensagem = c.flash.mensagem %]
+[% SET erro = c.flash.erro _ '' %]
+[% SET sucesso = c.flash.sucesso %]
+[% IF erro %]
+   <span class="erro">
+     [% IF erro == 'consolidacao-concluida' %]
+	A referida consolida&ccedil;&atilde;o encontra-se concluida.
+     [% END %]
+     [% IF erro == 'collection-nao-existe' %]
+	Ocorreu um erro ao tentar consolidar. Nenhuma cole&ccedil;&atilde;o associada.
+     [% END %]
+   </span>
+[% END %]
+[% IF sucesso %]
+   <span class="sucesso">
+     Digita&ccedil;&atilde;o inclu&iacute;da com sucesso.
+   </span>
+[% END %]
+<table border="1">
+ <tr>
+  <th>Projeto</th>
+  <th>Defini&ccedil;&atilde;o Consolida&ccedil;&atilde;o</th>
+  <th>Status Consolida&ccedil;&atilde;o</th>
+ </tr>
+ [% FOREACH leitura IN c.model('Consolidador').listar_definicoes_consolidacao.all %]
+ <tr>
+  <td>[% leitura.instrumento.projeto.nome %]</a></td>
+  <td><a href="[% c.uri_for('/auth/registros/digitador') _ "/" _ leitura.id_leitura %]">[% leitura.nome %]</a></td>
+  <td>[% leitura.coleta_ini %]</a></td>
+  <td>[% leitura.coleta_fim %]</a></td>
+ </tr>
+ [% END %]
+</table>
+[% INCLUDE 'footer.tt' %]

@@ -29,6 +29,34 @@ __PACKAGE__->add_columns(
         is_nullable   => 1,
         size          => undef,
     },
+    "nome",
+    {
+        data_type     => "varchar",
+        default_value => undef,
+        is_nullable   => 1,
+        size          => undef,
+    },
+    "status",
+    {
+        data_type     => "varchar",
+        default_value => undef,
+        is_nullable   => 1,
+        size          => undef,
+    },
+    "data_ini",
+    {
+        data_type     => "timestamp with time zone",
+        default_value => undef,
+        is_nullable   => 1,
+        size          => undef,
+    },
+    "data_fim",
+    {
+        data_type     => "timestamp with time zone",
+        default_value => undef,
+        is_nullable   => 1,
+        size          => undef,
+    },
 );
 __PACKAGE__->set_primary_key("id_definicao_consolidacao");
 __PACKAGE__->has_many(
