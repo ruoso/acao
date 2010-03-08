@@ -8,9 +8,16 @@
    <span class="erro">
      [% IF erro == 'formulario-fechado' %]
 	O estado de controle deve ser "Aberto" para alterar o documento.
-     [% END %]
-     [% IF erro == 'collection-nao-existe' %]
+     [% ELSIF erro == 'collection-nao-existe' %]
 	Ocorreu um erro ao tentar incluir a digita&ccedil;&atilde;o. Nenhuma cole&ccedil;&atilde;o associada.
+     [% ELSE %]
+       <script language="javascript">
+         function show_error_dialog() {
+            var w = window.open(null,'erro',"status=0,toolbar=0,height=600,width=800,scrollbars=1,location=0,menubar=0");
+            w.document.write("<HMTL><BODY><PRE>[% erro.replace('"','\\"').replace("\\n",'\\n') | html %]</PRE></BODY></HTML>");
+         }
+       </script>
+       Ocorreu um erro interno no sistema. <a href="javascript:show_error_dialog()">Ver Detalhes Técnicos</a>
      [% END %]
    </span>
 [% END %]

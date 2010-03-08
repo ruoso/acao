@@ -77,10 +77,12 @@ txn_method 'salvar_digitacao' => authorized 'digitador' => sub {
     my $x_c_s    = XML::Compile::Schema->new($xsd);
     my @elements = $x_c_s->elements;
 
-    my $read = $x_c_s->compile( READER => $elements[0], use_default_namespace => 1 );
+    my $read = $x_c_s->compile( READER => $elements[0]);
     my $writ = $x_c_s->compile( WRITER => $elements[0], use_default_namespace => 1 );
 
-    my $xml_data = $read->($xml);
+    my $input_doc = XML::LibXML->load_xml(string => $xml);
+    my $element = $input_doc->getDocumentElement;
+    my $xml_data = $read->($element);
 
     my $doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
     my $conteudo_registro = $writ->( $doc, $xml_data );
