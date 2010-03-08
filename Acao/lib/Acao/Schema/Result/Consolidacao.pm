@@ -22,7 +22,7 @@ __PACKAGE__->add_columns(
         is_nullable   => 0,
         size          => undef,
     },
-    "data_inicio",
+    "data_ini",
     {
         data_type     => "timestamp with time zone",
         default_value => undef,

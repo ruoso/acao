@@ -1,5 +1,5 @@
 [% META title = 'Lista de Consolidacoes'%]
-[% INCLUDE 'auth/registros/consolidador/header.tt' %]
+[% INCLUDE 'auth/registros/consolidador/definicaoconsolidacao/header.tt' %]
 
 [% SET mensagem = c.flash.mensagem %]
 [% SET erro = c.flash.erro _ '' %]
@@ -21,19 +21,21 @@
 [% END %]
 <table border="1">
  <tr>
-  <th>Projeto</th>
-  <th>Defini&ccedil;&atilde;o consolida&ccedil;&atilde;o</th>
-  <th>Status consolida&ccedil;&atilde;o</th>
+  <th>Consolida&ccedil;&atilde;o</th>
   <th>Inicio da consolida&ccedil;&atilde;o</th>
   <th>Fim da consolida&ccedil;&atilde;o</th>
  </tr>
- [% FOREACH definicao_consolidacao IN c.model('Consolidador').listar_definicao_consolidacao.all %]
+
+ <!--O foreach abaixo NAO vai buscar diretamente no model por estar atrelado ao contexto 
+     (recebe argumento pela url. no caso recebe o id_definicao_consolidacao chamando o controles que 
+     realmente vai tratar a variavel e chamar o model passando a variavel)-->
+
+ [% FOREACH consolidacao IN definicao_consolidacao.consolidacoes %]
  <tr>
-  <td>[% definicao_consolidacao.projeto.nome %]</a></td>
-  <td><a href="[% c.uri_for('/auth/registros/consolidador/') _ definicao_consolidacao.id_definicao_consolidacao %]">[% definicao_consolidacao.nome %]</a></td>
-  <td>[% definicao_consolidacao.status %]</a></td>
-  <td>[% definicao_consolidacao.data_ini %]</a></td>
-  <td>[% definicao_consolidacao.data_fim %]</a></td>
+  <td>[% consolidacao.id_consolidacao %]</a></td>
+  <td>[% consolidacao.data_ini %]</a></td>
+  <td>[% consolidacao.data_fim %]</a></td>
+  <td>[% consolidacao.data_fim %]</a></td>
  </tr>
  [% END %]
 </table>

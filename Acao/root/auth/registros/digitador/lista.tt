@@ -28,7 +28,12 @@
   <th>Inicio da Digitacao</th>
   <th>Fim da Digitacao</th>
  </tr>
- [% FOREACH leitura IN c.model('Digitador').listar_leituras.all %]
+ 
+  <!--O foreach abaixo vai buscar diretamente no model por estar livre de contexto 
+     (nao recebe argumento pela url)-->
+
+ [% #FOREACH leitura IN c.model('Digitador').listar_leituras.all %]
+ [%  FOREACH leitura IN leitura.leitura  %]
  <tr>
   <td>[% leitura.instrumento.projeto.nome %]</a></td>
   <td><a href="[% c.uri_for('/auth/registros/digitador') _ "/" _ leitura.id_leitura %]">[% leitura.nome %]</a></td>

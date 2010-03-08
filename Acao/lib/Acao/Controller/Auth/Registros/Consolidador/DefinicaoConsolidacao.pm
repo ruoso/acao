@@ -20,48 +20,14 @@ Catalyst Controller.
 
 =cut
 
-sub base : Chained('/auth/registros/consolidador/base') : PathPart('') :
-  CaptureArgs(1) {
-    my ( $self, $c, $id_leitura ) = @_;
-    $c->stash->{leitura} = $c->model('Consolidador')->obter_leitura($id_leitura);
+sub base :Chained('/auth/registros/consolidador/base') :PathPart('') :CaptureArgs(1) {
+    my ( $self, $c, $id_definicao_consolidacao) = @_;
+    $c->stash->{definicao_consolidacao} =
+      $c->model("Consolidador")->obter_definicao_consolidacao($id_definicao_consolidacao)
+	or $c->detach('/default');
 }
 
-sub lista : Chained('base') : PathPart('') : Args(0) {
-}
-
-sub visualizar_base : Chained('base') : PathPart('visualizar') : CaptureArgs(1)
-{
-    my ( $self, $c, $id_doc ) = @_;
-    $c->stash->{id_doc} = $id_doc;
-    $c->model('Consolidador')->visualizar( $c->stash->{leitura}, $id_doc );
-}
-
-sub visualizar : Chained('visualizar_base') : PathPart('') : Args(0) {
-    my ( $self, $c ) = @_;
-    $c->stash->{campo_controle} =
-      $c->model('Consolidador')
-      ->obter_campo_controle( $c->stash->{leitura}, $c->stash->{id_doc} );
-}
-
-sub xml : Chained('visualizar_base') : PathPart : Args(0) {
-    my ( $self, $c ) = @_;
-    $c->stash->{document} =
-      $c->model('Consolidador')
-      ->visualizar( $c->stash->{leitura}, $c->stash->{id_doc} );
-    $c->forward( $c->view('XML') );
-}
-
-sub diff : Chained('base') : PathPart : Args(1) {
-    my ( $self, $c, $controle ) = @_;
-
-}
-
-sub xsd : Chained('base') : PathPart('xsd') : Args(0) {
-    my ( $self, $c ) = @_;
-    $c->stash->{document} =
-      $c->model('Revisor')->obter_xsd_leitura( $c->stash->{leitura} );
-    $c->forward( $c->view('XML') );
-}
+sub lista : Chained('base') : PathPart('') : Args(0) {}
 
 =head1 AUTHOR
 

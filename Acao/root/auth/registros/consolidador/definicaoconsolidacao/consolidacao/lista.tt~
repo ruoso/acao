@@ -27,10 +27,10 @@
   <th>Inicio da consolida&ccedil;&atilde;o</th>
   <th>Fim da consolida&ccedil;&atilde;o</th>
  </tr>
- [% FOREACH definicao_consolidacao IN c.model('Consolidador').listar_definicao_consolidacao.all %]
+ [% FOREACH consolidacao IN c.model('DefinicaoConsolidacao').listar_consolidacao.all %]
  <tr>
-  <td>[% definicao_consolidacao.projeto.nome %]</a></td>
-  <td><a href="[% c.uri_for('/auth/registros/consolidador/') _ definicao_consolidacao.id_definicao_consolidacao %]">[% definicao_consolidacao.nome %]</a></td>
+  <td>[% consolidacao.projeto.nome %]</a></td>
+  <td><a href="[% c.uri_for('/auth/registros/consolidador') _ "/" _ definicao_consolidacao.id_definicao_consolidacao _ "/" _ definicao_consolidacao.id_projeto%]">[% definicao_consolidacao.nome %]</a></td>
   <td>[% definicao_consolidacao.status %]</a></td>
   <td>[% definicao_consolidacao.data_ini %]</a></td>
   <td>[% definicao_consolidacao.data_fim %]</a></td>

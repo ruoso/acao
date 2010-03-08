@@ -1,5 +1,4 @@
 [% INCLUDE 'header.tt' %]
-
 [% SET erro = c.flash.erro _ '' %]
 [% IF erro %]
 <span class="erro">
@@ -10,9 +9,9 @@
  <fieldset><legend>Dados de Autenticação</legend>
   <DL>
    <DT>Usuário:</DT>
-   <DD><input type="text" name="user" /></DD>
+   <DD><input type="text" id="user" name="user" /></DD>
    <DT>Senha:</DT>
-   <DD><input type="password" name="password" /></DD>
+   <DD><input type="password" id="name" name="password" /></DD>
    <input type="submit" name="submit" value="Entrar" />
   </DL>
  </fieldset>
