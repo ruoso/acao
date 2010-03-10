@@ -8,7 +8,7 @@ use base 'DBIx::Class';
 __PACKAGE__->load_components( "InflateColumn::DateTime", "Core" );
 __PACKAGE__->table("alertas");
 __PACKAGE__->add_columns(
-    "id_alertas",
+    "id_alerta",
     {
         data_type     => "integer",
         default_value => undef,
@@ -58,7 +58,7 @@ __PACKAGE__->add_columns(
         size          => undef,
     },
 );
-__PACKAGE__->set_primary_key( "id_alertas" );
+__PACKAGE__->set_primary_key( "id_alerta" );
 __PACKAGE__->belongs_to(
     "consolidacao",
     "Acao::Schema::Result::Consolidacao",

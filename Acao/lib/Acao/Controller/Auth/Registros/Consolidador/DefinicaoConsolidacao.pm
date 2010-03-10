@@ -27,6 +27,8 @@ sub base :Chained('/auth/registros/consolidador/base') :PathPart('') :CaptureArg
 	or $c->detach('/default');
 }
 
+
+
 sub lista : Chained('base') : PathPart('') : Args(0) {}
 
 =head1 AUTHOR

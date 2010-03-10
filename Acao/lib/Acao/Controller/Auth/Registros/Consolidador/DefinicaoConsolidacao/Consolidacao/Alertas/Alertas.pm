@@ -1,4 +1,4 @@
-package Acao::Controller::Auth::Registros::Consolidador::DefinicaoConsolidacao::Consolidacao;
+package Acao::Controller::Auth::Registros::Consolidador::DefinicaoConsolidacao::Consolidacao::Alertas;
 
 use strict;
 use warnings;
@@ -20,12 +20,9 @@ Catalyst Controller.
 
 =cut
 
-sub base : Chained('/auth/registros/consolidador/base') : PathPart('') :
+sub base : Chained('/auth/registros/consolidador/definicaoconsolidacao/consolidacao/base') : PathPart('') :
   CaptureArgs(1) {
-    my ( $self, $c, $id_consolidacao ) = @_;
-    $c->stash->{consolidacao} = 
-      $c->model("Consolidador")->obter_consolidacao($id_consolidacao)
-        or $c->detach('/default');
+    my ( $self, $c) = @_;
 }
 
 sub lista : Chained('base') : PathPart('') : Args(0) {

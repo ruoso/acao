@@ -33,6 +33,16 @@ txn_method 'obter_definicao_consolidacao' => authorized 'consolidador' => sub {
     );
 };
 
+txn_method 'obter_consolidacao' => authorized 'consolidador' => sub {
+    my ($self, $id_consolidacao) = @_;
+
+    return $self->dbic->resultset('Consolidacao')->search(
+        { 'me.id_consolidacao' => $id_consolidacao },
+        { prefetch     => 'alertas',
+        }
+    );
+};
+
 #txn_method 'listar_consolidacao' => authorized 'consolidador' => sub {
 #    my $self = shift;
 #
