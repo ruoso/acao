@@ -23,7 +23,6 @@ txn_method 'listar_definicao_consolidacao' => authorized 'consolidador' => sub {
 txn_method 'obter_definicao_consolidacao' => authorized 'consolidador' => sub {
     my ($self, $id_definicao_consolidacao) = @_;
 
-    # sera dentro de uma transacao, e so pode ser usado por consolidadores
     return $self->dbic->resultset('DefinicaoConsolidacao')->find(
         { 'consolidador.dn' => $self->user->id,
           'me.id_definicao_consolidacao' => $id_definicao_consolidacao },
@@ -36,9 +35,10 @@ txn_method 'obter_definicao_consolidacao' => authorized 'consolidador' => sub {
 txn_method 'obter_consolidacao' => authorized 'consolidador' => sub {
     my ($self, $id_consolidacao) = @_;
 
-    return $self->dbic->resultset('Consolidacao')->search(
-        { 'me.id_consolidacao' => $id_consolidacao },
-        { prefetch     => 'alertas',
+    return $self->dbic->resultset('Consolidacao')->find(
+        { 'consolidador.dn' => $self->user->id,
+          'me.id_consolidacao' => $id_consolidacao },
+        { prefetch  => ['alertas', { 'definicao_consolidacao' => ['consolidador', 'projeto' ]}],
         }
     );
 };

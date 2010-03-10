@@ -20,22 +20,25 @@
    </span>
 [% END %]
 
+<DL>
+ <DT>Projeto:</DT>
+ <DD>[% consolidacao.definicao_consolidacao.projeto.nome %]</DD>
+ <DT>Definição de Consolidação:</DT>
+ <DD>[% consolidacao.definicao_consolidacao.nome %]</DD>
+</DL>
+
 <table border="1">
  <caption>Entradas para essa definição de consolidação</caption>
  <tr>
-  <th>Identificador</th>
-  <th>Projeto</th>
-  <th>Instrumento</th>
-  <th>Data Inicial</th>
-  <th>Data Final</th>
+  <th>Etapa</th>
+  <th>Data/Hora</th>
+  <th>Alerta</th>
  </tr>
- [% FOREACH alerta IN consolidacao.consolidacoes %]
+ [% FOREACH alerta IN consolidacao.alertas %]
   <tr>
-   <td>[% alerta.id_alerta %]</td>
-   <td>[%  %]</td>
-   <td>[%  %]</td>
-   <td>[%  %]</td>
-   <td>[%  %]</td>
+   <td>[% alerta.etapa %]</td>
+   <td>[% alerta.datahora %]</td>
+   <td>[% alerta.descricao_alerta %]</td>
   </tr>
  [% END %]
 </table>

@@ -20,7 +20,7 @@ Catalyst Controller.
 
 =cut
 
-sub base :Chained('/auth/registros/consolidador/base') :PathPart('') :CaptureArgs(1) {
+sub base : Chained('/auth/registros/consolidador/base') :PathPart('') :CaptureArgs(1) {
     my ( $self, $c, $id_definicao_consolidacao) = @_;
     $c->stash->{definicao_consolidacao} =
       $c->model("Consolidador")->obter_definicao_consolidacao($id_definicao_consolidacao)

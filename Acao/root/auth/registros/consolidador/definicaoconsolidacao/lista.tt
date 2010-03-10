@@ -56,7 +56,7 @@
 
  [% FOREACH consolidacao IN definicao_consolidacao.consolidacoes %]
  <tr>
-  <td><a href="[% c.uri_for('/auth/registros/consolidador/') _ definicao_consolidacao.id_definicao_consolidacao _ '/definicaoconsolidacao/' _ consolidacao.id_consolidacao%]">[% consolidacao.id_consolidacao %]</a></td>
+  <td><a href="[% c.uri_for('/auth/registros/consolidador/') _ definicao_consolidacao.id_definicao_consolidacao _ '/' _ consolidacao.id_consolidacao%]">[% consolidacao.id_consolidacao %]</a></td>
   <td>[% consolidacao.definicao_consolidacao.nome %]</td>
   <td>[% consolidacao.data_ini %]</td>
   <td>[% consolidacao.data_fim %]</td>
