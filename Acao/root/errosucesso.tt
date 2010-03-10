@@ -1,0 +1,44 @@
+
+[% SET mensagem = c.flash.mensagem %]
+[% SET erro = c.flash.erro _ '' %]
+
+[% SET codigo_erro = erro.replace('Couldn\'t render template ', '') %]
+[% SET codigo_erro = codigo_erro.replace('"undef error - ', '') %]
+[% SET codigo_erro = codigo_erro.replace('DBIx::Class::Schema::txn_do\(\): ','') %]
+[% SET codigo_erro = codigo_erro.replace('\s(.+\n?)*','') %]
+
+[% SET sucesso = c.flash.sucesso %]
+
+[% SET mensagens_erro = {
+   'formulario-fechado' => 'O estado de controle deve ser "Aberto" para realizar esta operação.',
+   'collection-nao-existe' => 'Nenhuma cole&ccedil;&atilde;o associada.',
+   'consolidacao-concluida' => 'A referida consolida&ccedil;&atilde;o encontra-se concluida.',
+   'digitacoes-naoRevisadas' => 'Não pode fechar o formulário enquanto houverem digitações não revisadas.',
+   'access-denied!' => 'Acesso Negado.',
+  } %]
+[% SET mensagens_sucesso = {
+  } %]
+[% IF erro %]
+   <span class="erro">
+     [% IF mensagens_erro.exists(codigo_erro) %]
+          [% mensagens_erro.item(codigo_erro) %]
+     [% ELSE %]
+       <script language="javascript">
+         function show_error_dialog() {
+            var w = window.open(null,'erro',"status=0,toolbar=0,height=600,width=800,scrollbars=1,location=0,menubar=0");
+            w.document.write("<HMTL><BODY><PRE>[% erro.replace('"','\\"').replace("\\n",'\\n') | html %]</PRE></BODY></HTML>");
+         }
+       </script>
+       Ocorreu um erro não documentado. <a href="javascript:show_error_dialog()">Ver Detalhes Técnicos</a>
+     [% END %]
+   </span>
+[% END %]
+[% IF sucesso %]
+   <span class="sucesso">
+     [% IF mensagens_sucesso.contains(sucesso) %]
+          [% mensagens_sucesso.item(sucesso) %]
+     [% ELSE %]
+       Opera&ccedil;&atilde;o realizada com sucesso.
+     [% END %]
+   </span>
+[% END %]

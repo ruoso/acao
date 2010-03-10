@@ -40,7 +40,7 @@ sub finalize_error {
     my ($c) = @_;
     if (scalar @{$c->error}) {
        $c->flash->{erro} = join '',@{$c->error};
-       $c->res->redirect($c->uri_for_action('/public/erro_generico'));
+       $c->res->redirect($c->uri_for_action('/public/erro'));
        $c->error(0);
        return 0;
     } else {

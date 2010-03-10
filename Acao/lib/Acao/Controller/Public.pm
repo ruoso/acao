@@ -34,7 +34,7 @@ sub default : Chained('base') : PathPart('') {
     $c->res->code(404);
 }
 
-sub erro_generico :Chained('base') : PathPart {}
+sub erro :Chained('base') : PathPart {}
 
 =head1 AUTHOR
 
