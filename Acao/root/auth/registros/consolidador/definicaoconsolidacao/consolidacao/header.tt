@@ -1,4 +1,4 @@
-[% breadcrumb.unshift({ url => c.uri_for('/auth/registros/consolidador/') _ definicao_consolidacao.id_definicao_consolidacao,
-			title => 'Definicao Consolidacao',
-			text => 'Definicao Consolidacao' }) %]
-[% INCLUDE 'auth/registros/consolidador/header.tt' %]
+[% breadcrumb.unshift({ url => c.uri_for('/auth/registros/consolidador/') _ definicao_consolidacao.id_definicao_consolidacao _ '/' _ consolidacao.id_consolidacao,
+			title => 'Consolidacao',
+			text => 'Consolidacao' }) %]
+[% INCLUDE 'auth/registros/consolidador/definicaoconsolidacao/header.tt' %]

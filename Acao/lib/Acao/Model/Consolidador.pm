@@ -38,6 +38,7 @@ txn_method 'obter_consolidacao' => authorized 'consolidador' => sub {
     return $self->dbic->resultset('Consolidacao')->find(
         { 'consolidador.dn' => $self->user->id,
           'me.id_consolidacao' => $id_consolidacao },
+	# prefetch tem funcao similar a do join diferenciando por trazer os elementos na clausula select
         { prefetch  => ['alertas', { 'definicao_consolidacao' => ['consolidador', 'projeto' ]}],
         }
     );

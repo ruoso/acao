@@ -22,12 +22,37 @@ Catalyst Controller.
 
 sub base : Chained('/auth/registros/consolidador/base') :PathPart('') :CaptureArgs(1) {
     my ( $self, $c, $id_definicao_consolidacao) = @_;
+ 	    $c->stash->{id_definicao_consolidacao} = $id_definicao_consolidacao;
     $c->stash->{definicao_consolidacao} =
       $c->model("Consolidador")->obter_definicao_consolidacao($id_definicao_consolidacao)
 	or $c->detach('/default');
 }
 
-
+sub iniciar : Chained('base') : PathPart : Args(0) {
+    my ($self, $c) = @_;
+    eval {
+      my $consolidacao =
+         $c->model('Consolidador')->iniciar_consolidacao($c->stash->{definicao_consolidacao});
+      $c->res->redirect(
+        $c->uri_for_action(
+           '/auth/registros/consolidador/definicaoconsolidacao/consolidacao/lista',
+           [ $c->stash->{id_definicao_consolidacao},
+             $consolidacao->id_consolidacao,
+           ], {}
+        )
+      );
+    };
+    if ($@) {
+      $c->flash->{erro} = $@.'';
+      $c->res->redirect(
+        $c->uri_for_action(
+           '/auth/registros/consolidador/definicaoconsolidacao/lista',
+           [ $c->stash->{id_definicao_consolidacao} ],
+           {}
+        )
+      );
+    }
+}
 
 sub lista : Chained('base') : PathPart('') : Args(0) {}
 

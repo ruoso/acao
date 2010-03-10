@@ -28,6 +28,7 @@ sub begin : Private {
 }
 
 sub end : ActionClass(RenderView) {
+
 }
 
 =head1 AUTHOR

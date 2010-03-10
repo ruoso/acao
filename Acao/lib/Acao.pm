@@ -36,6 +36,18 @@ our $VERSION = '0.01';
 # Start the application
 __PACKAGE__->setup();
 
+sub finalize_error {
+    my ($c) = @_;
+    if (scalar @{$c->error}) {
+       $c->flash->{erro} = join '',@{$c->error};
+       $c->res->redirect($c->uri_for_action('/public/erro_generico'));
+       $c->error(0);
+       return 0;
+    } else {
+       return 1;
+    }
+}
+
 =head1 NAME
 
 Acao - Catalyst based application

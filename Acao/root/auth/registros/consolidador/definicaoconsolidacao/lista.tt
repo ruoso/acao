@@ -1,24 +1,6 @@
 [% META title = 'Lista de Consolidacoes'%]
 [% INCLUDE 'auth/registros/consolidador/definicaoconsolidacao/header.tt' %]
-
-[% SET mensagem = c.flash.mensagem %]
-[% SET erro = c.flash.erro _ '' %]
-[% SET sucesso = c.flash.sucesso %]
-[% IF erro %]
-   <span class="erro">
-     [% IF erro == 'consolidacao-concluida' %]
-	A referida consolida&ccedil;&atilde;o encontra-se concluida.
-     [% END %]
-     [% IF erro == 'collection-nao-existe' %]
-	Ocorreu um erro ao tentar consolidar. Nenhuma cole&ccedil;&atilde;o associada.
-     [% END %]
-   </span>
-[% END %]
-[% IF sucesso %]
-   <span class="sucesso">
-     Digita&ccedil;&atilde;o inclu&iacute;da com sucesso.
-   </span>
-[% END %]
+[% INCLUDE 'errosucesso.tt' %]
 
 <table border="1">
  <caption>Entradas para essa definição de consolidação</caption>
@@ -56,7 +38,7 @@
 
  [% FOREACH consolidacao IN definicao_consolidacao.consolidacoes %]
  <tr>
-  <td><a href="[% c.uri_for('/auth/registros/consolidador/') _ definicao_consolidacao.id_definicao_consolidacao _ '/' _ consolidacao.id_consolidacao%]">[% consolidacao.id_consolidacao %]</a></td>
+  <td><a href="[% c.uri_for_action('/auth/registros/consolidador/definicaoconsolidacao/consolidacao/lista', [ id_definicao_consolidacao, consolidacao.id_consolidacao ], {}) %]">[% consolidacao.id_consolidacao %]</a></td>
   <td>[% consolidacao.definicao_consolidacao.nome %]</td>
   <td>[% consolidacao.data_ini %]</td>
   <td>[% consolidacao.data_fim %]</td>
@@ -64,5 +46,5 @@
  </tr>
  [% END %]
 </table>
- <caption><a href="#"> Consolidar </a></caption>
+ <caption><a href="[% c.uri_for_action('/auth/registros/consolidador/definicaoconsolidacao/iniciar', [ id_definicao_consolidacao ], {}) %]"> Consolidar </a></caption>
 [% INCLUDE 'footer.tt' %]

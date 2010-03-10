@@ -1,24 +1,9 @@
 [% META title = 'Listagem das leituras' %]
 
 [% INCLUDE 'auth/registros/revisor/leitura/header.tt' %]
+[% INCLUDE 'errosucesso.tt' %]
 
 [% SET num_por_pagina = 50 %]
-[% SET erro = c.flash.erro _ '' %]
-[% SET sucesso = c.flash.sucesso %]
-[% IF erro %]
-   <span class="erro">
-     [% IF erro.match("estadocontrole-fechado") %]O estado de controle deve ser "Aberto" para alterar o documento.[% END %]
-     [% IF erro.match("digitacoes-naoRevisadas") %]
-       N&atilde; &eacute; poss&iacute;vel fechar um formul&aacute;rio que contenha digita&ccedil;&otilde;es n&atilde;o revisadas!
-     [% END %]
-   </span>
-[% END %]
-[% IF sucesso%]
-   <span class="sucesso">
-      [% IF sucesso.match("estadocontrole-aberto") %]Estado da digita&ccedil;&atilde;o alterado com sucesso![% END %]
-      [% IF sucesso.match("digitacoes-revisadas") %]Formul&aacute;rio fechado com sucesso![% END %]
-   </span>
-[% END %]
 
 [% xqueryret = BLOCK %]
       <tr>
