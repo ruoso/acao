@@ -15,6 +15,7 @@ __PACKAGE__->add_columns(
         is_nullable   => 0,
         is_auto_increment => 1,
         size          => undef,
+	is_auto_increment => 1,
     },
     "id_projeto",
     {

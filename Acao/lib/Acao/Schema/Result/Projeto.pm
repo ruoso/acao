@@ -14,13 +14,12 @@ __PACKAGE__->add_columns(
         default_value => undef,
         is_nullable   => 0,
         is_auto_increment => 1,
-        size          => undef,
     },
     "nome",
     {
         data_type     => "TEXT",
         default_value => undef,
-        is_nullable   => 1,
+        is_nullable   => 0,
         size          => undef,
     },
 );
