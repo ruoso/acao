@@ -8,13 +8,6 @@ use base 'DBIx::Class';
 __PACKAGE__->load_components( "InflateColumn::DateTime", "Core" );
 __PACKAGE__->table("consolidador");
 __PACKAGE__->add_columns(
-    "dn",
-    {
-        data_type     => "varchar",
-        default_value => undef,
-        is_nullable   => 0,
-        size          => undef,
-    },
     "id_definicao_consolidacao",
     {
         data_type     => "integer",
@@ -22,8 +15,15 @@ __PACKAGE__->add_columns(
         is_nullable   => 0,
         size          => undef,
     },
+    "dn",
+    {
+        data_type     => "varchar",
+        default_value => undef,
+        is_nullable   => 0,
+        size          => undef,
+    },
 );
-#__PACKAGE__->set_primary_key( "id_leitura", "dn" );
+__PACKAGE__->set_primary_key( "id_leitura", "dn" );
 __PACKAGE__->belongs_to(
     "definicao_consolidacao",
     "Acao::Schema::Result::DefinicaoConsolidacao",

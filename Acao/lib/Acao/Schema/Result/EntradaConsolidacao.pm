@@ -30,7 +30,7 @@ __PACKAGE__->add_columns(
         size          => undef,
     },
 );
-#__PACKAGE__->set_primary_key("");
+__PACKAGE__->set_primary_key("id_definicao_consolidacao", "id_leitura");
 __PACKAGE__->belongs_to(
     "leitura",
     "Acao::Schema::Result::Leitura",

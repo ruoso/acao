@@ -13,6 +13,7 @@ __PACKAGE__->add_columns(
         data_type     => "serial",
         default_value => undef,
         is_nullable   => 0,
+        is_auto_increment => 1,
         size          => undef,
     },
     "id_projeto",
