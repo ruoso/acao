@@ -12,14 +12,15 @@ __PACKAGE__->add_columns(
     {
         data_type     => "serial",
         default_value => undef,
-        is_nullable   => 1,
+        is_nullable   => 0,
         size          => undef,
+	is_auto_increment => 1,
     },
     "nome",
     {
         data_type     => "TEXT",
         default_value => undef,
-        is_nullable   => 1,
+        is_nullable   => 0,
         size          => undef,
     },
 );

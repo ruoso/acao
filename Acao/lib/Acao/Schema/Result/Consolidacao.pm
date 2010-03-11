@@ -14,6 +14,7 @@ __PACKAGE__->add_columns(
         default_value => undef,
         is_nullable   => 0,
         size          => undef,
+        is_auto_increment => 1,
     },
     "id_definicao_consolidacao",
     {
@@ -26,17 +27,24 @@ __PACKAGE__->add_columns(
     {
         data_type     => "timestamp with time zone",
         default_value => undef,
-        is_nullable   => 0,
+        is_nullable   => 1,
         size          => undef,
     },
     "data_fim",
     {
         data_type     => "timestamp with time zone",
         default_value => undef,
-        is_nullable   => 0,
+        is_nullable   => 1,
         size          => undef,
     },
     "dn",
+    {
+        data_type     => "varchar",
+        default_value => undef,
+        is_nullable   => 0,
+        size          => undef,
+    },
+    "status",
     {
         data_type     => "varchar",
         default_value => undef,
