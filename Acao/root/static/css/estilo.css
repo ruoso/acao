@@ -204,7 +204,6 @@ a.voltar {
 #conteudo table
 {
     text-align: left;
-	width: 1000px;
 }
 
 #rodape
@@ -333,6 +332,7 @@ table thead tr th
 	font-size: 1.1em;
 	text-shadow: -1px 1px 0px #990000;	
 	border-bottom: #990000 solid 2px;	
+	white-space: nowrap;
 }
 
 table tbody tr td 
@@ -340,8 +340,60 @@ table tbody tr td
 	padding: 3px;
 	font-size: 1em;
 	border-bottom: #EAAB15 solid 1px;	
+	white-space: nowrap;
 }
 
+a.fechar
+{
+	display: block;
+	width: 28px;
+	height: 22px;
+	text-indent: -9999px;
+	text-decoration: none;
+	background: url(../img/application_form_delete.png) no-repeat center center;
+	overflow: hidden;
+	border: none;	
+	padding: 0px;
+}
+
+a.aprovar
+{
+	display: inline-block;
+	width: 28px;
+	height: 22px;
+	text-indent: -9999px;
+	text-decoration: none;
+	background: url(../img/accept.png) no-repeat center center;
+	overflow: hidden;
+	border: none;	
+	padding: 0px;
+}
+
+a.rejeitar
+{
+	display: inline-block;
+	width: 28px;
+	height: 22px;
+	text-indent: -9999px;
+	text-decoration: none;
+	background: url(../img/cancel.png) no-repeat center center;
+	overflow: hidden;
+	border: none;	
+	padding: 0px;
+}
+
+a.visualizar
+{
+	display: inline-block;
+	width: 28px;
+	height: 22px;
+	text-indent: -9999px;
+	text-decoration: none;
+	background: url(../img/magnifier.png) no-repeat center center;
+	overflow: hidden;
+	border: none;	
+	padding: 0px;
+}
 .striped 
 {
 	background: #FFFF99;
