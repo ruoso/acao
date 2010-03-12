@@ -15,7 +15,7 @@
 [%#            <a href="#">Diferenças</a>  %]
 	    ) else () }
             { if ($reg/cd:documento/cd:estadoControle = "Aberto") then (
-            <a href="[% c.uri_for('/auth/registros/revisor/')_ leitura.id_leitura _ '/fecharDocumento/' %]{$reg/cd:documento/cd:controle}">Fechar formulário</a>
+            <a href="[% c.uri_for('/auth/registros/revisor/')_ leitura.id_leitura _ '/fecharDocumento/' %]{$reg/cd:documento/cd:controle}" class="fechar">Fechar formulário</a>
              ) else ()}
          </td>
         ) else () }
@@ -30,7 +30,7 @@
                                       '____xq_doc_id____', '____xq_ctrl____' ,  c.req.params() )
                     .replace('____xq_doc_id____','{$reg/cd:documento/cd:id}')
                     .replace('____xq_ctrl____','{$reg/cd:documento/cd:controle}')
-                    .replace('&','&amp;') %]" class="link-aprovar">Aprovar</a>
+                    .replace('&','&amp;') %]" class="aprovar">Aprovar</a>
         ) else () }
         { if ($reg/cd:documento/cd:estado ne 'Rejeitado') then (
         <a href="[% c.uri_for_action('/auth/registros/revisor/leitura/rejeitar',
@@ -38,9 +38,9 @@
                                       '____xq_doc_id____', '____xq_ctrl____' ,  c.req.params() )
                     .replace('____xq_doc_id____','{$reg/cd:documento/cd:id}')
                     .replace('____xq_ctrl____','{$reg/cd:documento/cd:controle}')
-                    .replace('&','&amp;') %]">Rejeitar</a>
+                    .replace('&','&amp;') %]" class="rejeitar">Rejeitar</a>
         ) else () }
-        <a href="[% c.uri_for('/auth/registros/revisor/') _ leitura.id_leitura _ '/visualizar/'%]{$reg/cd:documento/cd:id}">Visualizar</a>
+        <a href="[% c.uri_for('/auth/registros/revisor/') _ leitura.id_leitura _ '/visualizar/'%]{$reg/cd:documento/cd:id}" class="visualizar">Visualizar</a>
       </td>
       </tr>  
 [% END %]
