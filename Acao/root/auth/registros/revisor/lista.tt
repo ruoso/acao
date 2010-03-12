@@ -1,6 +1,7 @@
 [% META title = 'Lista de leituras para o Revisor' %]
 [% INCLUDE 'auth/registros/revisor/header.tt' %]
-<table border="1">
+<table>
+<thead>
   <tr>
     <th>Projeto</th>
     <th>Intrumento</th>
@@ -9,6 +10,8 @@
     <th>Início da digitação</th>
     <th>Fim da digitação</th>
   </tr>
+</thead>
+<tbody>
   [% FOREACH leitura IN c.model('Revisor').listar_leituras.all %]
   <tr>
     <td>[% leitura.instrumento.projeto.nome %]</td>
@@ -23,5 +26,6 @@
     <td>[% leitura.digitacao_fim %]</td>
   </tr>
   [% END %]
+</tbody>
 </table>
 [% INCLUDE 'footer.tt' %]
