@@ -28,7 +28,7 @@ sub base : Chained('/auth/registros/consolidador/base') :PathPart('') :CaptureAr
 	or $c->detach('/default');
 }
 
-sub iniciar : Chained('base') : PathPart : Args(0) {
+sub iniciar : Chained('base') : PathPart('iniciar') : Args(0) {
     my ($self, $c) = @_;
     eval {
       my $consolidacao =

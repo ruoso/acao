@@ -2,7 +2,8 @@
 [% INCLUDE 'auth/registros/digitador/header.tt' %]
 [% INCLUDE 'errosucesso.tt' %]
 
-<table border="1">
+<table>
+<thead>
  <tr>
   <th>Projeto</th>
   <th>Instrumento</th>
@@ -11,6 +12,8 @@
   <th>Inicio da Digitacao</th>
   <th>Fim da Digitacao</th>
  </tr>
+</thead>
+<TBODY>
  
   <!--O foreach abaixo vai buscar diretamente no model por estar livre de contexto 
      (nao recebe argumento pela url)-->
@@ -25,6 +28,7 @@
   <td>[% leitura.digitacao_fim %]</a></td>
  </tr>
  [% END %]
+</TBODY>
 </table>
 
 [% INCLUDE 'footer.tt' %]
