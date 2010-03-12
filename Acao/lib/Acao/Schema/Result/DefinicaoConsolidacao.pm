@@ -82,7 +82,7 @@ __PACKAGE__->has_many(
     {"foreign.id_definicao_consolidacao" => "self.id_definicao_consolidacao" },
 );
 __PACKAGE__->has_many(
-    "consolidacoes",
+    "consolidacao",
     "Acao::Schema::Result::Consolidacao",
     {"foreign.id_definicao_consolidacao" => "self.id_definicao_consolidacao" },
 );
