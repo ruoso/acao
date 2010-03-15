@@ -88,14 +88,33 @@ sub visualizar_base : Chained('base') : PathPart('visualizar') : CaptureArgs(1)
 {
     my ( $self, $c, $id_doc ) = @_;
     $c->stash->{id_doc} = $id_doc;
-    $c->model('Revisor')->visualizar( $c->stash->{leitura}, $id_doc );
+    $c->stash->{campo_controle} =
+      $c->model('Revisor')->obter_campo_controle( $c->stash->{leitura}, $id_doc );
 }
 
 sub visualizar : Chained('visualizar_base') : PathPart('') : Args(0) {
     my ( $self, $c ) = @_;
-    $c->stash->{campo_controle} =
-      $c->model('Revisor')
-      ->obter_campo_controle( $c->stash->{leitura}, $c->stash->{id_doc} );
+}
+
+sub store :Chained('visualizar_base') :PathPart :Args(0) {
+    my ($self, $c) = @_;
+    my $xml     = $c->request->param('processed_xml');
+    my $leitura = $c->stash->{leitura};
+
+    eval {
+	$c->model('Digitador')
+          ->salvar_digitacao( $leitura, $xml, $c->stash->{campo_controle},
+                              $c->req->address );
+    };
+
+    if ($@) {
+        $c->flash->{erro} = $@ . "";
+    } else {
+        $c->flash->{sucesso} = 'Digitação armazenada com sucesso';
+    }
+
+    $c->res->redirect( $c->uri_for_action('/auth/registros/revisor/leitura/lista',
+                                          [$c->stash->{leitura}->id_leitura],{}) );
 }
 
 sub xml : Chained('visualizar_base') : PathPart : Args(0) {

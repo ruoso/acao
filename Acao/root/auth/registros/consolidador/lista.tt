@@ -2,7 +2,8 @@
 [% INCLUDE 'auth/registros/consolidador/header.tt' %]
 [% INCLUDE 'errosucesso.tt' %]
 
-<table border="1">
+<table>
+<thead>       
  <tr>
   <th>Projeto</th>
   <th>Defini&ccedil;&atilde;o consolida&ccedil;&atilde;o</th>
@@ -10,6 +11,8 @@
   <th>Inicio da consolida&ccedil;&atilde;o</th>
   <th>Fim da consolida&ccedil;&atilde;o</th>
  </tr>
+</thead>
+</tbody>
  [% FOREACH definicao_consolidacao IN c.model('Consolidador').listar_definicao_consolidacao.all %]
  <tr>
   <td>[% definicao_consolidacao.projeto.nome %]</a></td>
@@ -19,5 +22,6 @@
   <td>[% definicao_consolidacao.data_fim %]</a></td>
  </tr>
  [% END %]
+</tbody>
 </table>
 [% INCLUDE 'footer.tt' %]
