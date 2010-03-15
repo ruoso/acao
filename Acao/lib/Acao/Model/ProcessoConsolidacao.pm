@@ -20,6 +20,7 @@ sub iniciar_consolidacao {
 	$self->preparar_consolidacao($consolidacao);
 
 	# executa a etapa de coleta
+	my $etapa = 1;
 	my @plugins_entrada = 
 		$consolidacao->definicao_consolidacao->etapa_coleta_dados->all;
 	foreach my $plugin_entrada (@plugins_entrada) {
