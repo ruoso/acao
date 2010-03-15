@@ -46,42 +46,20 @@ txn_method iniciar_consolidacao => authorized 'consolidador' => sub {
     my $consolidacao = $definicao_consolidacao->consolidacao->create({ status => 'Criada',
 						     	data_ini => DateTime->now(),
 						     	dn => $self->user->id});
-    my $pid = fork();
-    if ($pid==0) {
-	for(my $i=0;$i<10;$i++) {        
-		$consolidacao->alertas->create({ etapa => '1',
-                                         	log_level => '1',
-                                         	datahora => DateTime->now(),
-                                         	descricao_alerta => 'Alerta Erro So and So'});
-	}	
-    } else {
+
+
+   my $script = Acao->path_to('script/acao_consolida.pl');
+
+   if (my $pid = fork()) {
 	return $consolidacao;
-    }
+   } else {
+	close STDOUT;
+	close STDIN;
+	my $pid = system($^X, $script, $consolidacao->id_consolidacao, $self->user->id);
+	use POSIX ":sys_wait_h";
+	waitpid($pid,WNOHANG);
+	exit;
+   }
 };
 
-#txn_method 'listar_consolidacao' => authorized 'consolidador' => sub {
-#    my $self = shift;
-#
-#    return $self->dbic->resultset('DefinicaoConsolidacao')->search(
-#        { 'consolidador.dn' => $self->user->id },
-#        {
-#            prefetch => [ 'entrada_consolidacao',  'consolidacao' ],
-#	    join     => 'consolidador',
-#        }
-#    );
-#};
-
-#txn_method 'obter_leitura' => authorized 'digitador' => sub {
-#    my ( $self, $id_leitura ) = @_;
-#
-#    return $self->dbic->resultset('Leitura')->find(
-#        {
-#            'digitadores.dn' => $self->user->id,
-#            'me.id_leitura'  => $id_leitura,
-#        },
-#        {
-#            prefetch => { 'instrumento' => 'projeto' },
-#            join     => 'digitadores',
-#        }
-#    );
-#};
+1;
