@@ -1,7 +1,13 @@
 [% INCLUDE 'auth/registros/revisor/leitura/visualizar/header.tt' %]
 <script SRC="[% c.uri_for('/static/js/xsdForm.js') %]" language="Javascript" ></script>
 
- <form method="post">
+ <form action="[% c.uri_for_action('/auth/registros/revisor/leitura/store',
+                                   [ leitura.id_leitura,
+                                     id_doc
+                                   ],{}) %]" method="post"
+    onsubmit="return generateXml('[% c.uri_for_action('/auth/registros/revisor/leitura/xsd',
+                                                      [ leitura.id_leitura
+                                                      ], {}) %]', this.processed_xml);">
  <input type="hidden" name="processed_xml">
  
  <fieldset>
@@ -27,12 +33,22 @@
  
  <div id="form_container"></div>
 
+[% IF c.user.roles.grep('digitador') %]
+ <input type="submit" value="Submeter correções como nova digitação">
+[% END %]
+
  </form>
 
  <script language="javascript">
-   generateForm("[% c.uri_for('/auth/registros/revisor/') _ leitura.id_leitura _ '/xsd' %]",
+   generateForm("[% c.uri_for_action('/auth/registros/revisor/leitura/xsd',
+                                     [ leitura.id_leitura
+                                     ],{}) %]",
                 "form_container");
-   fillValues("[% c.uri_for('/auth/registros/revisor/') _ leitura.id_leitura _ '/visualizar/' _ id_doc _'/xml' %]");
+   fillValues("[% c.uri_for_action('/auth/registros/revisor/leitura/xml',
+                                   [ leitura.id_leitura,
+                                     id_doc
+                                   ],{}) %]");
  </script>
+
 
 [% INCLUDE 'footer.tt' %]
