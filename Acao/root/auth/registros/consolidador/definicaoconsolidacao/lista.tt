@@ -2,7 +2,8 @@
 [% INCLUDE 'auth/registros/consolidador/definicaoconsolidacao/header.tt' %]
 [% INCLUDE 'errosucesso.tt' %]
 
-<table border="1">
+<table>
+<thead>
  <caption>Entradas para essa definição de consolidação</caption>
  <tr>
   <th>Identificador</th>
@@ -11,6 +12,8 @@
   <th>Data Inicial</th>
   <th>Data Final</th>
  </tr>
+</thead>
+<tbody>
  [% FOREACH leitura IN definicao_consolidacao.entrada_consolidacao({},{prefetch => { 'leitura' => { instrumento => 'projeto' } } }) %]
   <tr>
    <td>[% leitura.id_leitura %]</td>
@@ -20,9 +23,11 @@
    <td>[% leitura.leitura.coleta_fim %]</td>
   </tr>
  [% END %]
+</tbody>
 </table>
 
 <table border="1">
+<thead>
  <caption>Tentativas de consolidação realizadas</caption>
  <tr>
   <th>Consolida&ccedil;&atilde;o</th>
@@ -32,7 +37,8 @@
   <th>Usu&aacute;rio</th>
   <th>Status</th>
  </tr>
-
+</thead>
+<tbody>
  <!--O foreach abaixo NAO vai buscar o model pelo nome, por estar atrelado ao contexto 
      (recebe argumento pela url. No caso recebe o id_definicao_consolidacao chamando o controles que 
      realmente vai tratar a variavel e chamar o model passando a variavel)-->
@@ -47,6 +53,7 @@
   <td>[% consolidacao.status %]</td>
  </tr>
  [% END %]
+</tbody>
 </table>
  <caption><a href="[% c.uri_for_action('/auth/registros/consolidador/definicaoconsolidacao/iniciar', [ id_definicao_consolidacao ], {}) %]"> Consolidar </a></caption>
 [% INCLUDE 'footer.tt' %]

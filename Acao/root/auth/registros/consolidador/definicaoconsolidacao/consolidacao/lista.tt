@@ -9,13 +9,16 @@
  <DD>[% consolidacao.definicao_consolidacao.nome %]</DD>
 </DL>
 
-<table border="1">
+<table>
+<thead>
  <caption>Alertas dessa Consolidação</caption>
  <tr>
   <th>Etapa</th>
   <th>Data/Hora</th>
   <th>Alerta</th>
  </tr>
+</thead>
+<tbody>
  [% FOREACH alerta IN consolidacao.alertas %]
   <tr>
    <td>[% alerta.etapa %]</td>
@@ -23,6 +26,7 @@
    <td>[% alerta.descricao_alerta %]</td>
   </tr>
  [% END %]
+</tbody>
 </table>
 
 [% INCLUDE 'footer.tt' %]
