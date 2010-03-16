@@ -94,7 +94,7 @@ sub visualizar_base : Chained('base') : PathPart('visualizar') : CaptureArgs(1)
     $c->stash->{id_doc} = $id_doc;
     $c->stash->{campo_controle} =
       $c->model('Revisor')
-      ->obter_campo_controle( $c->stash->{leitura}, $id_doc );
+        ->obter_campo_controle( $c->stash->{leitura}, $id_doc );
 }
 
 sub visualizar : Chained('visualizar_base') : PathPart('') : Args(0) {

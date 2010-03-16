@@ -223,8 +223,9 @@ sub iniciar_consolidacao {
                 etapa            => $etapa,
                 log_level        => 'TRACE',
                 datahora         => DateTime->now(),
-                descricao_alerta => 'Vai validar o documento '
-                  . $registroConsolidacao->{documento}{id}
+                descricao_alerta => 'Vai validar o documento.',
+                id_documento_consolidado
+                                 => $registroConsolidacao->{documento}{id}
             }
         );
 
@@ -241,7 +242,9 @@ sub iniciar_consolidacao {
                         log_level        => 'ERROR',
                         datahora         => DateTime->now(),
                         descricao_alerta => 'Erro validando documento - '
-                          . $erro_original
+                          . $erro_original,
+                        id_documento_consolidado
+                                         => $registroConsolidacao->{documento}{id},
                     }
                 );
             }

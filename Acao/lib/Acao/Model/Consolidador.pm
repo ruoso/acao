@@ -6,6 +6,18 @@ use Acao::ModelUtil;
 use XML::LibXML;
 use XML::Compile::Schema;
 use DateTime;
+use XML::Compile::Util qw(pack_type);
+
+use constant CONSOLIDACAO_NS =>
+  'http://schemas.fortaleza.ce.gov.br/acao/controleconsolidacao.xsd';
+
+my $controle =
+  XML::Compile::Schema->new(
+    Acao->path_to('schemas/controleconsolidacao.xsd')
+  );
+
+my $entradas_r =
+  $controle->compile( READER => pack_type( CONSOLIDACAO_NS, 'entradas' ) );
 
 txn_method 'listar_definicao_consolidacao' => authorized 'consolidador' => sub {
     my $self = shift;
@@ -52,7 +64,7 @@ txn_method 'obter_consolidacao' => authorized 'consolidador' => sub {
     );
 };
 
-txn_method iniciar_consolidacao => authorized 'consolidador' => sub {
+txn_method 'iniciar_consolidacao' => authorized 'consolidador' => sub {
     my ( $self, $definicao_consolidacao ) = @_;
     my $consolidacao = $definicao_consolidacao->consolidacao->create(
         {
@@ -75,6 +87,27 @@ txn_method iniciar_consolidacao => authorized 'consolidador' => sub {
         use POSIX ":sys_wait_h";
         waitpid( $pid, WNOHANG );
         exit;
+    }
+};
+
+txn_method obter_documentos_entrada => authorized 'consolidador' => sub {
+    my ( $self, $consolidacao, $id_documento_consolidado ) = @_;
+    my $xq = 'declare namespace ab="http://schemas.fortaleza.ce.gov.br/acao/controleconsolidacao.xsd"; 
+              for $x in collection("consolidacao-entrada-'
+              . $consolidacao->id_consolidacao
+              .'")/ab:registroConsolidacao[ab:documento/ab:id="'
+              . $id_documento_consolidado 
+              . '"]/ab:consolidacao/ab:entradas return $x';
+    $self->sedna->execute($xq);
+    my $xml_entradas = $self->sedna->get_item();
+    warn $xq;
+    if ($xml_entradas) {
+        # chama o XML::Compile::Schema para traduzir o XML
+        # para um AoH
+        my $entradas = $entradas_r->($xml_entradas);
+        return $entradas->{entrada};
+    } else {
+        return [];
     }
 };
 

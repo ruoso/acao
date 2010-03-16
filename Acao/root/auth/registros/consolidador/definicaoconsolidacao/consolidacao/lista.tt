@@ -16,6 +16,7 @@
   <th>Etapa</th>
   <th>Data/Hora</th>
   <th>Alerta</th>
+  <th>A&ccedil;&otilde;es</th>
  </tr>
 </thead>
 <tbody>
@@ -23,10 +24,14 @@
   <tr>
    <td>[% alerta.etapa %]</td>
    <td>[% alerta.datahora %]</td>
-   <td>[% alerta.descricao_alerta %]</td>
+   <td>[% alerta.descricao_alerta %]</a></td> 
+   <td>[% IF alerta.id_documento_consolidado %]
+       <a href="[% c.uri_for_action(
+       '/auth/registros/consolidador/definicaoconsolidacao/consolidacao/entradas',
+       [ id_definicao_consolidacao, consolidacao.id_consolidacao ],
+       alerta.id_documento_consolidado, {}) %]">Visualizar</A>[% END %]</td>
   </tr>
  [% END %]
 </tbody>
 </table>
-
 [% INCLUDE 'footer.tt' %]
