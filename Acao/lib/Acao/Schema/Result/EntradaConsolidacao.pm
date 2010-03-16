@@ -30,7 +30,7 @@ __PACKAGE__->add_columns(
         size          => undef,
     },
 );
-__PACKAGE__->set_primary_key("id_definicao_consolidacao", "id_leitura");
+__PACKAGE__->set_primary_key( "id_definicao_consolidacao", "id_leitura" );
 __PACKAGE__->belongs_to(
     "leitura",
     "Acao::Schema::Result::Leitura",
@@ -42,6 +42,7 @@ __PACKAGE__->belongs_to(
     "Acao::Schema::Result::DefinicaoConsolidacao",
     { "foreign.id_definicao_consolidacao" => "self.id_definicao_consolidacao" },
 );
+
 # Created by DBIx::Class::Schema::Loader v0.04006 @ 2010-01-19 17:15:55
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:1FsIJYOczJWUu8QfQqGghQ
 

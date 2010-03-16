@@ -10,9 +10,9 @@ __PACKAGE__->table("projeto");
 __PACKAGE__->add_columns(
     "id_projeto",
     {
-        data_type     => "serial",
-        default_value => undef,
-        is_nullable   => 0,
+        data_type         => "serial",
+        default_value     => undef,
+        is_nullable       => 0,
         is_auto_increment => 1,
     },
     "nome",

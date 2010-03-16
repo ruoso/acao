@@ -20,15 +20,16 @@ Catalyst Controller.
 
 =cut
 
-sub base : Chained('/auth/registros/consolidador/definicaoconsolidacao/base') : PathPart('') : CaptureArgs(1) {
+sub base : Chained('/auth/registros/consolidador/definicaoconsolidacao/base') :
+  PathPart('') : CaptureArgs(1) {
     my ( $self, $c, $id_consolidacao ) = @_;
-    $c->stash->{consolidacao} = 
-      $c->model("Consolidador")->obter_consolidacao($id_consolidacao)
-        or $c->detach('/default');
+    $c->stash->{consolidacao} =
+         $c->model("Consolidador")->obter_consolidacao($id_consolidacao)
+      or $c->detach('/default');
 }
 
 sub lista : Chained('base') : PathPart('') : Args(0) {
-  my ( $self, $c ) = @_;
+    my ( $self, $c ) = @_;
 }
 
 =head1 AUTHOR

@@ -38,8 +38,9 @@ sub aprovar : Chained('base') : PathPart : Args(2) {
     };
     if ($@) {
         $c->flash->{erro} = $@;
-    } else {
-	$c->flash->{sucesso} = 'estadocontrole-aberto';
+    }
+    else {
+        $c->flash->{sucesso} = 'estadocontrole-aberto';
     }
     $c->res->redirect(
         $c->uri_for(
@@ -52,17 +53,18 @@ sub rejeitar : Chained('base') : PathPart : Args(2) {
     my ( $self, $c, $id_doc, $controle ) = @_;
 
     eval {
-	$c->model('Revisor')
-      	  ->rejeitar( $c->stash->{leitura}, $id_doc, $controle );
+        $c->model('Revisor')
+          ->rejeitar( $c->stash->{leitura}, $id_doc, $controle );
     };
     if ($@) {
         $c->flash->{erro} = $@;
-    } else {
-	$c->flash->{sucesso} = 'estadocontrole-aberto';
+    }
+    else {
+        $c->flash->{sucesso} = 'estadocontrole-aberto';
     }
     $c->res->redirect(
         $c->uri_for(
-           '/auth/registros/revisor/' . $c->stash->{leitura}->id_leitura
+            '/auth/registros/revisor/' . $c->stash->{leitura}->id_leitura
         )
     );
 }
@@ -70,12 +72,14 @@ sub rejeitar : Chained('base') : PathPart : Args(2) {
 sub fecharDocumento : Chained('base') : PathPart : Args(1) {
     my ( $self, $c, $controle ) = @_;
     eval {
-    	$c->model('Revisor')->fecharDocumento( $c->stash->{leitura}, $controle );
+        $c->model('Revisor')
+          ->fecharDocumento( $c->stash->{leitura}, $controle );
     };
     if ($@) {
-	$c->flash->{erro} = $@;
-    } else {
-	$c->flash->{sucesso} = 'digitacoes-revisadas';
+        $c->flash->{erro} = $@;
+    }
+    else {
+        $c->flash->{sucesso} = 'digitacoes-revisadas';
     }
     $c->res->redirect(
         $c->uri_for(
@@ -89,32 +93,39 @@ sub visualizar_base : Chained('base') : PathPart('visualizar') : CaptureArgs(1)
     my ( $self, $c, $id_doc ) = @_;
     $c->stash->{id_doc} = $id_doc;
     $c->stash->{campo_controle} =
-      $c->model('Revisor')->obter_campo_controle( $c->stash->{leitura}, $id_doc );
+      $c->model('Revisor')
+      ->obter_campo_controle( $c->stash->{leitura}, $id_doc );
 }
 
 sub visualizar : Chained('visualizar_base') : PathPart('') : Args(0) {
     my ( $self, $c ) = @_;
 }
 
-sub store :Chained('visualizar_base') :PathPart :Args(0) {
-    my ($self, $c) = @_;
+sub store : Chained('visualizar_base') : PathPart : Args(0) {
+    my ( $self, $c ) = @_;
     my $xml     = $c->request->param('processed_xml');
     my $leitura = $c->stash->{leitura};
 
     eval {
-	$c->model('Digitador')
+        $c->model('Digitador')
           ->salvar_digitacao( $leitura, $xml, $c->stash->{campo_controle},
-                              $c->req->address );
+            $c->req->address );
     };
 
     if ($@) {
         $c->flash->{erro} = $@ . "";
-    } else {
+    }
+    else {
         $c->flash->{sucesso} = 'Digitação armazenada com sucesso';
     }
 
-    $c->res->redirect( $c->uri_for_action('/auth/registros/revisor/leitura/lista',
-                                          [$c->stash->{leitura}->id_leitura],{}) );
+    $c->res->redirect(
+        $c->uri_for_action(
+            '/auth/registros/revisor/leitura/lista',
+            [ $c->stash->{leitura}->id_leitura ],
+            {}
+        )
+    );
 }
 
 sub xml : Chained('visualizar_base') : PathPart : Args(0) {

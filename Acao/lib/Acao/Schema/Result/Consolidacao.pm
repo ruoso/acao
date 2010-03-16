@@ -10,11 +10,11 @@ __PACKAGE__->table("consolidacao");
 __PACKAGE__->add_columns(
     "id_consolidacao",
     {
-        data_type     => "integer",
-        default_value => undef,
-        is_nullable   => 0,
+        data_type         => "integer",
+        default_value     => undef,
+        is_nullable       => 0,
         is_auto_increment => 1,
-        size          => undef,
+        size              => undef,
         is_auto_increment => 1,
     },
     "id_definicao_consolidacao",
@@ -53,7 +53,7 @@ __PACKAGE__->add_columns(
         size          => undef,
     },
 );
-__PACKAGE__->set_primary_key( "id_consolidacao" );
+__PACKAGE__->set_primary_key("id_consolidacao");
 __PACKAGE__->belongs_to(
     "definicao_consolidacao",
     "Acao::Schema::Result::DefinicaoConsolidacao",

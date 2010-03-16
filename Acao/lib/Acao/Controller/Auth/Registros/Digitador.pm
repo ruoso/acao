@@ -20,12 +20,13 @@ Catalyst Controller.
 
 =cut
 
-sub base : Chained('/auth/registros/base') : PathPart('digitador') : CaptureArgs(0) {
-  my ( $self, $c ) = @_;
+sub base : Chained('/auth/registros/base') : PathPart('digitador') :
+  CaptureArgs(0) {
+    my ( $self, $c ) = @_;
 }
 
 sub lista : Chained('base') : PathPart('') : Args(0) {
-  my ( $self, $c ) = @_;
+    my ( $self, $c ) = @_;
 }
 
 1;

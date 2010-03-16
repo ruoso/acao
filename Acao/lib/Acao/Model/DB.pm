@@ -6,11 +6,7 @@ use base 'Catalyst::Model::DBIC::Schema';
 __PACKAGE__->config(
     schema_class => 'Acao::Schema',
 
-    connect_info => [
-        'dbi:SQLite:acao.db',
-        '',
-        '',
-    ]
+    connect_info => [ 'dbi:SQLite:acao.db', '', '', ]
 );
 
 =head1 NAME

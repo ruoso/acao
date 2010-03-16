@@ -30,8 +30,7 @@ sub login : Chained('base') : PathPart('') : Args(0) {
     my $password = $c->request->params->{password};
 
     if ( defined $user && defined $password ) {
-        if ( $c->authenticate( { id => $user, password => $password } ) )
-        {
+        if ( $c->authenticate( { id => $user, password => $password } ) ) {
             $c->res->redirect(
                 $c->uri_for( $c->controller('auth')->action_for('principal') )
             );

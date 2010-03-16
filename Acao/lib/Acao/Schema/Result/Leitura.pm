@@ -10,12 +10,12 @@ __PACKAGE__->table("leitura");
 __PACKAGE__->add_columns(
     "id_leitura",
     {
-        data_type     => "serial",
-        default_value => undef,
-        is_nullable   => 0,
+        data_type         => "serial",
+        default_value     => undef,
+        is_nullable       => 0,
         is_auto_increment => 1,
-        size          => undef,
-	is_auto_increment => 1,
+        size              => undef,
+        is_auto_increment => 1,
     },
     "id_projeto",
     {

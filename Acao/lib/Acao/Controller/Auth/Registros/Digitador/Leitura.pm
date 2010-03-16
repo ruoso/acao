@@ -35,15 +35,17 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
     my $leitura = $c->stash->{leitura};
 
     eval {
-	$c->model('Digitador')
-			->salvar_digitacao( $leitura, $xml, scalar( $c->req->param('controle') ),
-	$c->req->address );
+        $c->model('Digitador')
+          ->salvar_digitacao( $leitura, $xml,
+            scalar( $c->req->param('controle') ),
+            $c->req->address );
     };
-    
+
     if ($@) {
-       $c->flash->{erro} = $@ . "";
-    } else {
-       $c->flash->{sucesso} = 'Digitação armazenada com sucesso';
+        $c->flash->{erro} = $@ . "";
+    }
+    else {
+        $c->flash->{sucesso} = 'Digitação armazenada com sucesso';
     }
 
     $c->res->redirect( $c->uri_for('/auth/registros/digitador') );

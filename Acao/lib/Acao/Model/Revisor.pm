@@ -39,12 +39,14 @@ txn_method 'aprovar' => authorized 'revisor' => sub {
 
     #Recupera o estadoControle do documento
 
-    $self->sedna->execute( 'declare namespace cd = "http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd";
+    $self->sedna->execute(
+'declare namespace cd = "http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd";
 			    for $x in subsequence(collection("leitura-'
-        . $leitura->id_leitura
-        . '")/cd:registroDigitacao/cd:documento[cd:controle="'
-        . $controle
-        . '"],1,2) return data($x/cd:estadoControle)' );
+          . $leitura->id_leitura
+          . '")/cd:registroDigitacao/cd:documento[cd:controle="'
+          . $controle
+          . '"],1,2) return data($x/cd:estadoControle)'
+    );
     my $estadoControle = $self->sedna->get_item;
 
     if ( $estadoControle ne "Fechado" ) {
@@ -52,7 +54,7 @@ txn_method 'aprovar' => authorized 'revisor' => sub {
         #Aprova a digitacao selecionada
 
         $self->sedna->execute(
-            'declare namespace cd = "http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd";
+'declare namespace cd = "http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd";
 	     UPDATE replace $a in
                   collection("leitura-'
               . $leitura->id_leitura
@@ -66,8 +68,9 @@ txn_method 'aprovar' => authorized 'revisor' => sub {
                       )
                   )'
         );
-    } else {
-	die 'estadocontrole-fechado';
+    }
+    else {
+        die 'estadocontrole-fechado';
 
     }
 
@@ -79,12 +82,14 @@ txn_method 'rejeitar' => authorized 'revisor' => sub {
 
     #Recupera o estadoControle do documento
 
-    $self->sedna->execute( 'declare namespace cd = "http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd";
+    $self->sedna->execute(
+'declare namespace cd = "http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd";
 			    for $x in subsequence(collection("leitura-'
-        . $leitura->id_leitura
-        . '")/cd:registroDigitacao/cd:documento[cd:controle="'
-        . $controle
-        . '"],1,2) return data($x/cd:estadoControle)' );
+          . $leitura->id_leitura
+          . '")/cd:registroDigitacao/cd:documento[cd:controle="'
+          . $controle
+          . '"],1,2) return data($x/cd:estadoControle)'
+    );
     my $estadoControle = $self->sedna->get_item;
 
     if ( $estadoControle ne "Fechado" ) {
@@ -92,7 +97,7 @@ txn_method 'rejeitar' => authorized 'revisor' => sub {
         #Rejeita a digitacao selecionada
 
         $self->sedna->execute(
-            'declare namespace cd = "http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd";
+'declare namespace cd = "http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd";
 	     UPDATE replace $a in
                   collection("leitura-'
               . $leitura->id_leitura
@@ -102,36 +107,41 @@ txn_method 'rejeitar' => authorized 'revisor' => sub {
                         <cd:estado>Rejeitado</cd:estado>
                   )'
         );
-     } else {
-	die 'estadocontrole-fechado';
-     }
+    }
+    else {
+        die 'estadocontrole-fechado';
+    }
 };
 
 txn_method 'fecharDocumento' => authorized 'revisor' => sub {
     my ( $self, $leitura, $controle ) = @_;
 
     $self->sedna->execute(
-        'declare namespace cd = "http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd";
-          for $x in collection("leitura-'.$leitura->id_leitura.'")/cd:registroDigitacao/cd:documento[cd:controle="'.$controle.'"] 
+'declare namespace cd = "http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd";
+          for $x in collection("leitura-'
+          . $leitura->id_leitura
+          . '")/cd:registroDigitacao/cd:documento[cd:controle="'
+          . $controle . '"] 
             where $x/cd:estado = "Digitado" 
             return count($x)'
     );
     my $qtdDigitados = $self->sedna->get_item;
-    
-    if ($qtdDigitados >= 1) {
-            die 'digitacoes-naoRevisadas';
-    } else {
-	    $self->sedna->execute(
-		'declare namespace cd = "http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd";
+
+    if ( $qtdDigitados >= 1 ) {
+        die 'digitacoes-naoRevisadas';
+    }
+    else {
+        $self->sedna->execute(
+'declare namespace cd = "http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd";
 		 UPDATE replace $a in
 		                    collection("leitura-'
-		  . $leitura->id_leitura
-		  . '")/cd:registroDigitacao/cd:documento/cd:estadoControle[../cd:controle="'
-		  . $controle . '"]
+              . $leitura->id_leitura
+              . '")/cd:registroDigitacao/cd:documento/cd:estadoControle[../cd:controle="'
+              . $controle . '"]
 		                    with (
 		                        <cd:estadoControle>Fechado</cd:estadoControle>
 		                    )'
-	    );
+        );
     }
 
 };
@@ -141,7 +151,7 @@ txn_method 'obter_campo_controle' => authorized 'revisor' => sub {
     $id_doc =~ s/\"\\//gs;
     my $xml;
     $self->sedna->execute(
-            'declare namespace cd = "http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd";
+'declare namespace cd = "http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd";
 	     for $x in collection("leitura-'
           . $leitura->id_leitura
           . '")/cd:registroDigitacao/cd:documento[cd:id = "'
@@ -156,12 +166,14 @@ txn_method 'visualizar' => authorized 'revisor' => sub {
     my ( $self, $leitura, $id_doc ) = @_;
     $id_doc =~ s/\"\\//gs;
     my $xml;
-    $self->sedna->execute( 'declare namespace cd = "http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd";
+    $self->sedna->execute(
+'declare namespace cd = "http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd";
 			    for $x in collection("leitura-'
           . $leitura->id_leitura
           . '")/cd:registroDigitacao/cd:documento[cd:id = "'
           . $id_doc
-          . '"] return $x/cd:conteudo/*' );
+          . '"] return $x/cd:conteudo/*'
+    );
     $xml = $self->sedna->get_item;
     return $xml;
 };

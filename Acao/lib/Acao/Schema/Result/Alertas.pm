@@ -10,12 +10,12 @@ __PACKAGE__->table("alertas");
 __PACKAGE__->add_columns(
     "id_alerta",
     {
-        data_type     => "integer",
-        default_value => undef,
-        is_nullable   => 0,
+        data_type         => "integer",
+        default_value     => undef,
+        is_nullable       => 0,
         is_auto_increment => 1,
-        size          => undef,
-	is_auto_increment => 1,
+        size              => undef,
+        is_auto_increment => 1,
     },
     "id_consolidacao",
     {
@@ -49,7 +49,7 @@ __PACKAGE__->add_columns(
     {
         data_type     => "timestamp with time zone",
         default_value => undef,
-        is_nullable   => 0,
+        is_nullable   => 1,
         size          => undef,
     },
     "descricao_alerta",
@@ -60,7 +60,7 @@ __PACKAGE__->add_columns(
         size          => undef,
     },
 );
-__PACKAGE__->set_primary_key( "id_alerta" );
+__PACKAGE__->set_primary_key("id_alerta");
 __PACKAGE__->belongs_to(
     "consolidacao",
     "Acao::Schema::Result::Consolidacao",
