@@ -17,11 +17,14 @@ sub txn_method {
             $_[0]->sedna->begin;
             $ret = $_[0]->dbic->txn_do( $code, @_ );
             $_[0]->sedna->commit;
-	    $committed = 1;
+	          $committed = 1;
         };
         if ($@) {
-            $_[0]->sedna->rollback unless $committed;
-            die $@;
+					  my $erro_original = $@;
+            eval {
+               $_[0]->sedna->rollback unless $committed;
+            };
+            die $erro_original;
         }
         $ret;
     };
