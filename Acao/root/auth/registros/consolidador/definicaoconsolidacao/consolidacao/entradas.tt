@@ -1,0 +1,45 @@
+[% META title = 'Lista de Alertas'%]
+[% breadcrumb.unshift({
+    url => c.uri_for_action(
+        '/auth/registros/consolidador/definicaoconsolidacao/consolidacao/entradas',
+        [ id_definicao_consolidacao, consolidacao.id_consolidacao ],
+        id_documento_consolidado, {}
+    ),
+	title => 'Entradas',
+	text => 'Entradas' }) %]
+[% INCLUDE 'auth/registros/consolidador/definicaoconsolidacao/consolidacao/header.tt' %]
+[% INCLUDE 'errosucesso.tt' %]
+
+<table>
+ <caption>Documentos de Entrada</caption>
+<thead>
+ <tr>
+  <th>Leitura</th>
+  <th>Controle</th>
+  <th>Ações</th>
+ </tr>
+</thead>
+<tbody>
+ [% FOREACH entrada IN
+      c.model('Consolidador').obter_documentos_entrada(
+           consolidacao,
+           id_documento_consolidado
+      ) %]
+  <TR>
+   <TD>[% consolidacao.definicao_consolidacao.entrada_consolidacao(
+                { 'me.id_leitura' => entrada.leitura },
+                { prefetch => 'leitura' }
+            ).leitura.nome %]</TD>
+   <td>[% entrada.controle %]</td>
+   <td>[% IF c.user.roles.grep('revisor') %]
+    <a href="[% c.uri_for_action(
+                    '/auth/registros/revisor/leitura/visualizar',
+                    [ entrada.leitura, entrada.iddoc ], {}
+                ) %]">Visualizar</A>
+    [% END %]</TD>
+  </TR>
+ [% END %]
+</tbody>
+</table>
+
+[% INCLUDE 'footer.tt' %]

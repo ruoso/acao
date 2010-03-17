@@ -47,7 +47,7 @@ __PACKAGE__->add_columns(
     },
     "id_documento_consolidado",
     {
-        data_type     => "timestamp with time zone",
+        data_type     => "varchar",
         default_value => undef,
         is_nullable   => 1,
         size          => undef,

@@ -32,6 +32,11 @@ sub lista : Chained('base') : PathPart('') : Args(0) {
     my ( $self, $c ) = @_;
 }
 
+sub entradas :Chained('base') :PathPart :Args(1) {
+    my ( $self, $c, $id_documento_consolidado ) = @_;
+    $c->stash->{id_documento_consolidado} = $id_documento_consolidado;
+}
+
 =head1 AUTHOR
 
 Jackson,,,
