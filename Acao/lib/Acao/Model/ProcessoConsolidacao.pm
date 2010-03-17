@@ -189,9 +189,7 @@ sub iniciar_consolidacao {
       . '") return $x';
     $self->sedna->execute($query_todos);
     while ( my $doc = $self->sedna->get_item ) {
-
         my ( $registroConsolidacao, $conteudo );
-        warn $doc;
         eval {
 
             # fazer o parse do registroConsolidacao
@@ -201,6 +199,8 @@ sub iniciar_consolidacao {
             my $element =
               $registroConsolidacao->{documento}{conteudo}{$schema_element}[0];
             $conteudo = $schema_r->($element);
+            
+            
         };
 
         if ($@) {
@@ -227,6 +227,9 @@ sub iniciar_consolidacao {
                   . $registroConsolidacao->{documento}{id}
             }
         );
+
+    use Data::Dumper;
+    warn Data::Dumper->Dump([ $registroConsolidacao, $conteudo ]);
 
         foreach my $obj (@objetos_plugins_validacao) {
             eval {
