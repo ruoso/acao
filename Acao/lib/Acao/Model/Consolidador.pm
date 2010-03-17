@@ -110,5 +110,4 @@ txn_method obter_documentos_entrada => authorized 'consolidador' => sub {
         return [];
     }
 };
-
 1;

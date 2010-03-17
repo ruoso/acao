@@ -15,10 +15,16 @@ my $controle_r = $controle->compile(
     READER      => pack_type( CONSOLIDACAO_NS, 'registroConsolidacao' ),
     any_element => 'TAKE_ALL'
 );
+my $controle_w = $controle->compile(
+    WRITER      => pack_type( CONSOLIDACAO_NS, 'registroConsolidacao' ),
+    use_default_namespace => 1
+);
 
 sub iniciar_consolidacao {
     my ( $self, $id_consolidacao ) = @_;
     sleep 1;    # garante que a transação de fora acabou.
+    
+    my $sedna_writer = Acao::Model::Sedna->new('Acao', Acao->config->{'Model::Sedna'});
 
     my $consolidacao = $self->dbic->resultset('Consolidacao')->find(
         { id_consolidacao => $id_consolidacao },
@@ -77,7 +83,8 @@ sub iniciar_consolidacao {
                 {
                     dbic  => $self->dbic,
                     user  => $self->user,
-                    sedna => $self->sedna
+                    sedna => $self->sedna,
+                    sedna_writer => $sedna_writer,
                 }
             );
             $obj->processar( $consolidacao, 'TODO' );
@@ -99,53 +106,6 @@ sub iniciar_consolidacao {
 
     # inicia a etapa de validação.
     $etapa = 2;
-
-    # vamos percorrer todos os documentos do collection de entrada
-    # dessa consolidacao e executar todos os plugins de validação para cada
-    # um deles.
-
-    my @plugins_validacao = map { $_->plugin_validacao }
-      $consolidacao->definicao_consolidacao->etapa_validacao->all;
-    my @objetos_plugins_validacao;
-    foreach my $classe (@plugins_validacao) {
-        eval "require $classe";
-        if ($@) {
-            my $erro_original = $@;
-            $consolidacao->alertas->create(
-                {
-                    etapa            => $etapa,
-                    log_level        => 'FATAL',
-                    datahora         => DateTime->now(),
-                    descricao_alerta => 'Erro carregando plugin - '
-                      . $erro_original
-                }
-            );
-            exit 1;
-        }
-        eval {
-            my $obj = $classe->new(
-                {
-                    dbic  => $self->dbic,
-                    user  => $self->user,
-                    sedna => $self->sedna
-                }
-            );
-            push @objetos_plugins_validacao, $obj;
-        };
-        if ($@) {
-            my $erro_original = $@;
-            $consolidacao->alertas->create(
-                {
-                    etapa            => $etapa,
-                    log_level        => 'FATAL',
-                    datahora         => DateTime->now(),
-                    descricao_alerta => 'Erro inicializando plugin - '
-                      . $erro_original
-                }
-            );
-            exit 1;
-        }
-    }
 
     $self->sedna->begin;
 
@@ -183,17 +143,115 @@ sub iniciar_consolidacao {
         }
     );
 
+    # inicializar os plugins de validação de dados
+    my @plugins_validacao = map { $_->plugin_validacao }
+      $consolidacao->definicao_consolidacao->etapa_validacao->all;
+    my @objetos_plugins_validacao;
+    foreach my $classe (@plugins_validacao) {
+        eval "require $classe";
+        if ($@) {
+            my $erro_original = $@;
+            $consolidacao->alertas->create(
+                {
+                    etapa            => $etapa,
+                    log_level        => 'FATAL',
+                    datahora         => DateTime->now(),
+                    descricao_alerta => 'Erro carregando plugin - '
+                      . $erro_original
+                }
+            );
+            exit 1;
+        }
+        eval {
+            my $obj = $classe->new(
+                {
+                    dbic  => $self->dbic,
+                    user  => $self->user,
+                    sedna => $self->sedna,
+                    sedna_writer => $sedna_writer,
+                }
+            );
+            push @objetos_plugins_validacao, $obj;
+        };
+        if ($@) {
+            my $erro_original = $@;
+            $consolidacao->alertas->create(
+                {
+                    etapa            => $etapa,
+                    log_level        => 'FATAL',
+                    datahora         => DateTime->now(),
+                    descricao_alerta => 'Erro inicializando plugin - '
+                      . $erro_original
+                }
+            );
+            exit 1;
+        }
+    }
+
+    # inicializar os plugins de validação de dados
+    my @plugins_transformacao = map { $_->plugin_transformacao }
+      $consolidacao->definicao_consolidacao->etapa_transformacao->all;
+    my @objetos_plugins_transformacao;
+    foreach my $classe (@plugins_transformacao) {
+        eval "require $classe";
+        if ($@) {
+            my $erro_original = $@;
+            $consolidacao->alertas->create(
+                {
+                    etapa            => $etapa,
+                    log_level        => 'FATAL',
+                    datahora         => DateTime->now(),
+                    descricao_alerta => 'Erro carregando plugin - '
+                      . $erro_original
+                }
+            );
+            exit 1;
+        }
+        eval {
+            my $obj = $classe->new(
+                {
+                    dbic  => $self->dbic,
+                    user  => $self->user,
+                    sedna => $self->sedna,
+                    sedna_writer => $sedna_writer,
+                }
+            );
+            push @objetos_plugins_transformacao, $obj;
+        };
+        if ($@) {
+            my $erro_original = $@;
+            $consolidacao->alertas->create(
+                {
+                    etapa            => $etapa,
+                    log_level        => 'FATAL',
+                    datahora         => DateTime->now(),
+                    descricao_alerta => 'Erro inicializando plugin - '
+                      . $erro_original
+                }
+            );
+            exit 1;
+        }
+    }
+
+    # vamos percorrer todos os documentos do collection de entrada
+    # dessa consolidacao e executar todos os plugins de validação para cada
+    # um deles.
     my $query_todos =
         'for $x in collection("consolidacao-entrada-'
       . $id_consolidacao
       . '") return $x';
     $self->sedna->execute($query_todos);
-    while ( my $doc = $self->sedna->get_item ) {
-
-        my ( $registroConsolidacao, $conteudo );
-        warn $doc;
+    while (1) {
+        my ( $registroConsolidacao, $conteudo, $doc );
+            
         eval {
+             $doc = $self->sedna->get_item ;
+             $doc =~ s/^\s+//s;
+        };
+        last if $@;
+        last unless $doc;
 
+        eval {
             # fazer o parse do registroConsolidacao
             $registroConsolidacao = $controle_r->($doc);
 
@@ -220,15 +278,16 @@ sub iniciar_consolidacao {
 
         $consolidacao->alertas->create(
             {
-                etapa            => $etapa,
+                etapa            => 2,
                 log_level        => 'TRACE',
                 datahora         => DateTime->now(),
                 descricao_alerta => 'Vai validar o documento.',
-                id_documento_consolidado
-                                 => $registroConsolidacao->{documento}{id}
+                id_documento_consolidado =>
+                  $registroConsolidacao->{documento}{id}
             }
         );
 
+       # executa o processo de validacao em todos os plugins para esse documento
         foreach my $obj (@objetos_plugins_validacao) {
             eval {
                 $obj->processar( $consolidacao, $registroConsolidacao,
@@ -238,20 +297,100 @@ sub iniciar_consolidacao {
                 my $erro_original = $@;
                 $consolidacao->alertas->create(
                     {
-                        etapa            => $etapa,
+                        etapa            => 2,
                         log_level        => 'ERROR',
                         datahora         => DateTime->now(),
                         descricao_alerta => 'Erro validando documento - '
                           . $erro_original,
-                        id_documento_consolidado
-                                         => $registroConsolidacao->{documento}{id},
+                        id_documento_consolidado =>
+                          $registroConsolidacao->{documento}{id},
                     }
                 );
             }
         }
 
+        $consolidacao->alertas->create(
+            {
+                etapa            => 3,
+                log_level        => 'TRACE',
+                datahora         => DateTime->now(),
+                descricao_alerta => 'Vai transformar o documento.',
+                id_documento_consolidado =>
+                  $registroConsolidacao->{documento}{id}
+            }
+        );
+
+   # executa o processo de transformacao em todos os plugins para esse documento
+        foreach my $obj (@objetos_plugins_transformacao) {
+            eval {
+                $obj->processar( $consolidacao, $registroConsolidacao,
+                    $conteudo );
+            };
+            if ($@) {
+                my $erro_original = $@;
+                $consolidacao->alertas->create(
+                    {
+                        etapa            => 3,
+                        log_level        => 'ERROR',
+                        datahora         => DateTime->now(),
+                        descricao_alerta => 'Erro transformando documento - '
+                          . $erro_original,
+                        id_documento_consolidado =>
+                          $registroConsolidacao->{documento}{id},
+                    }
+                );
+            }
+        }
+
+        # Vai gerar o novo documento para ser armazenado.
+        my $xml_doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
+
+        # Primeiro, vamos produzir o XML do conteúdo do documento
+        # consolidado.
+        my $conteudo_registro = $schema_w->( $xml_doc, $conteudo );
+
+        # Agora tenho que atualizar o $registroConsolidado
+        # para apontar para o novo element do conteúdo.
+        $registroConsolidacao->{documento}{conteudo}{$schema_element}
+            = [ $conteudo_registro ];
+
+        # Agora eu posso produzir o documento final, que vai conter
+        # tudo.
+        my $res_xml = $controle_w->($xml_doc, $registroConsolidacao );
+
+        # E então eu posso inserir na nova collection.
+        $sedna_writer->begin;
+        $sedna_writer->conn->loadData( 
+            $res_xml->toString,  
+            $registroConsolidacao->{documento}{id},
+            'consolidacao-saida-' . $consolidacao->id_consolidacao );
+        $sedna_writer->conn->endLoadData();
+        $sedna_writer->commit;
+
+        # documento já passou por todas as transformações, agora tem que ir
+        # para a collection final.
+        $consolidacao->alertas->create(
+            {
+                etapa            => 4,
+                log_level        => 'TRACE',
+                datahora         => DateTime->now(),
+                descricao_alerta => 'Terminou de processar o documento.',
+                id_documento_consolidado =>
+                  $registroConsolidacao->{documento}{id}
+            }
+        );
     }
 
+    $self->sedna->commit();
+
+    $consolidacao->alertas->create(
+        {
+            etapa            => 5,
+            log_level        => 'TRACE',
+            datahora         => DateTime->now(),
+            descricao_alerta => 'Terminou a Consolidacao.',
+        }
+    );
 }
 
 txn_method 'preparar_consolidacao' => sub {
@@ -271,10 +410,13 @@ txn_method 'preparar_consolidacao' => sub {
         my $id_consolidacao = $consolidacao->id_consolidacao;
         my $nome_collection_entrada =
           'consolidacao-entrada-' . $id_consolidacao;
-
+        my $nome_collection_final =
+          'consolidacao-saida-' . $id_consolidacao;
         eval {
             $self->sedna->execute(
                 "CREATE COLLECTION '$nome_collection_entrada'");
+            $self->sedna->execute(
+                "CREATE COLLECTION '$nome_collection_final'");
         };
         if ($@) {
             die 'Erro criando a Collection: ' . $@;
