@@ -9,7 +9,7 @@
       <tr>
       { if ($pos = 1) then (
          <td rowspan="{count($form)}">{$control}</td>,
-         <td rowspan="{count($form)}">{$reg/cd:documento/cd:estadoControle}</td>,
+         <td rowspan="{count($form)}">{$reg/cd:documento/cd:estadoControle/text()}</td>,
          <td rowspan="{count($form)}">
 	    { if (count($form) > 1) then (
 [%#            <a href="#">Diferenças</a>  %]
@@ -20,24 +20,24 @@
          </td>
         ) else () }
       { if ($reg/cd:documento/cd:estado eq 'Rejeitado') then (
-       <td class="estado_rejeitado">{$reg/cd:digitacao/cd:dataDigitacao}</td>
+       <td class="estado_rejeitado">{$reg/cd:digitacao/cd:dataDigitacao/text()}</td>
        ) else (
-       <td>{$reg/cd:digitacao/cd:dataDigitacao}</td>
+       <td>{$reg/cd:digitacao/cd:dataDigitacao/text()}</td>
        ) }
       { if ($reg/cd:documento/cd:estado eq 'Rejeitado') then (
-       <td class="estado_rejeitado">{$reg/cd:digitacao/cd:digitador}</td>
+       <td class="estado_rejeitado">{$reg/cd:digitacao/cd:digitador/text()}</td>
        ) else (
-       <td>{$reg/cd:digitacao/cd:digitador}</td>
+       <td>{$reg/cd:digitacao/cd:digitador/text()}</td>
        ) }
       { if ($reg/cd:documento/cd:estado eq 'Rejeitado') then (
-       <td class="estado_rejeitado">{$reg/cd:documento/cd:estado}</td>
+       <td class="estado_rejeitado">{$reg/cd:documento/cd:estado/text()}</td>
        ) else (
-       <td>{$reg/cd:documento/cd:estado}</td>
+       <td>{$reg/cd:documento/cd:estado/text()}</td>
        ) }
       { if ($reg/cd:documento/cd:estado eq 'Rejeitado') then (
-       <td class="estado_rejeitado">{$reg/cd:digitacao/cd:localDigitacao}</td>
+       <td class="estado_rejeitado">{$reg/cd:digitacao/cd:localDigitacao/text()}</td>
        ) else (
-       <td>{$reg/cd:digitacao/cd:localDigitacao}</td>
+       <td>{$reg/cd:digitacao/cd:localDigitacao/text()}</td>
        ) }
       <td>
         { if ($reg/cd:documento/cd:estado ne 'Aprovado') then (
@@ -47,7 +47,7 @@
                     .replace('____xq_doc_id____','{$reg/cd:documento/cd:id}')
                     .replace('____xq_ctrl____','{$reg/cd:documento/cd:controle}')
                     .replace('&','&amp;') %]" class="aprovar" title="Aprovar">Aprovar</a>
-        ) else () }
+        ) else (<a class="link_vazio">Aprovar</a>) }
         { if ($reg/cd:documento/cd:estado ne 'Rejeitado') then (
         <a href="[% c.uri_for_action('/auth/registros/revisor/leitura/rejeitar',
                                      [ leitura.id_leitura ],
@@ -55,7 +55,7 @@
                     .replace('____xq_doc_id____','{$reg/cd:documento/cd:id}')
                     .replace('____xq_ctrl____','{$reg/cd:documento/cd:controle}')
                     .replace('&','&amp;') %]" class="rejeitar" title="Rejeitar">Rejeitar</a>
-        ) else () }
+        ) else (<a class="link_vazio">Rejeitar</a>) }
         <a href="[% c.uri_for('/auth/registros/revisor/') _ leitura.id_leitura _ '/visualizar/'%]{$reg/cd:documento/cd:id}" class="visualizar" title="Visualizar">Visualizar</a>
       </td>
       </tr>  
