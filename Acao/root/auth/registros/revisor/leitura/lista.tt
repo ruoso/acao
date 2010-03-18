@@ -45,7 +45,6 @@
       </tr>  
 [% END %]
 
-
 [% SET estadoControle = c.req.param('estadoControle') %] 
 [% IF estadoControle == "0" %]
   [% SET estadoControle = "" %]
