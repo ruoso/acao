@@ -241,14 +241,10 @@ sub iniciar_consolidacao {
       . $id_consolidacao
       . '") return $x';
     $self->sedna->execute($query_todos);
-<<<<<<< HEAD:Acao/lib/Acao/Model/ProcessoConsolidacao.pm
+
     while (1) {
         my ( $registroConsolidacao, $conteudo, $doc );
             
-=======
-    while ( my $doc = $self->sedna->get_item ) {
-        my ( $registroConsolidacao, $conteudo );
->>>>>>> 7cd6a2428762385010ca27d004bb70846735345f:Acao/lib/Acao/Model/ProcessoConsolidacao.pm
         eval {
              $doc = $self->sedna->get_item ;
              $doc =~ s/^\s+//s;
@@ -294,13 +290,8 @@ sub iniciar_consolidacao {
             }
         );
 
-<<<<<<< HEAD:Acao/lib/Acao/Model/ProcessoConsolidacao.pm
        # executa o processo de validacao em todos os plugins para esse documento
-=======
-    use Data::Dumper;
-    warn Data::Dumper->Dump([ $registroConsolidacao, $conteudo ]);
 
->>>>>>> 7cd6a2428762385010ca27d004bb70846735345f:Acao/lib/Acao/Model/ProcessoConsolidacao.pm
         foreach my $obj (@objetos_plugins_validacao) {
             eval {
                 $obj->processar( $consolidacao, $registroConsolidacao,
