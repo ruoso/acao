@@ -46,9 +46,6 @@ sub iniciar_consolidacao {
 
     # executa a etapa de coleta
     my $etapa = 1;
-    my $status = 'Executando'
-    
-    #Inserir o codigo de atualizacao de STATUS da tabela de consolidacao
 
     # vamos incluir os "lib" dos plugins no nosso @INC
     my $plugins_path = Acao->path_to('plugins');
