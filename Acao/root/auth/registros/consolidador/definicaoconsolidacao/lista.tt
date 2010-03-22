@@ -2,6 +2,13 @@
 [% INCLUDE 'auth/registros/consolidador/definicaoconsolidacao/header.tt' %]
 [% INCLUDE 'errosucesso.tt' %]
 
+[% SET linhas_por_pagina = 12 %]
+[% SET pagina_atual = c.req.param('pagina_atual') %]
+[% IF !pagina_atual %]
+  [% SET pagina_atual = 1 %]
+[% END %]
+[% SET args = { } %]
+
 <table>
  <caption>Entradas para essa definição de consolidação</caption>
 <thead>
@@ -14,7 +21,8 @@
  </tr>
 </thead>
 <tbody>
- [% FOREACH leitura IN definicao_consolidacao.entrada_consolidacao({},{prefetch => { 'leitura' => { instrumento => 'projeto' } } }) %]
+ [% FOREACH leitura IN definicao_consolidacao.entrada_consolidacao({},
+    {prefetch => { 'leitura' => { instrumento => 'projeto' } } }) %]
   <tr>
    <td>[% leitura.id_leitura %]</td>
    <td>[% leitura.leitura.instrumento.projeto.nome %]</td>
@@ -43,17 +51,34 @@
      (recebe argumento pela url. No caso recebe o id_definicao_consolidacao chamando o controles que 
      realmente vai tratar a variavel e chamar o model passando a variavel)-->
 
- [% FOREACH consolidacao IN definicao_consolidacao.consolidacao %]
- <tr>
-  <td><a href="[% c.uri_for_action('/auth/registros/consolidador/definicaoconsolidacao/consolidacao/lista', [ id_definicao_consolidacao, consolidacao.id_consolidacao ], {}) %]">[% consolidacao.id_consolidacao %]</a></td>
-  <td>[% consolidacao.definicao_consolidacao.nome %]</td>
-  <td>[% consolidacao.data_ini %]</td>
-  <td>[% consolidacao.data_fim %]</td>
-  <td>[% consolidacao.dn %]</td>
-  <td>[% consolidacao.status %]</td>
- </tr>
+  [% SET numpag = definicao_consolidacao.consolidacao_rs.count / linhas_por_pagina %]
+
+  [% FOREACH consolidacao IN definicao_consolidacao.consolidacao({},
+        { page => pagina_atual, rows => linhas_por_pagina }) %]
+     <tr>
+      <td><a href="[% c.uri_for_action('/auth/registros/consolidador/definicaoconsolidacao/consolidacao/lista', [ id_definicao_consolidacao, consolidacao.id_consolidacao ], {}) %]">[% consolidacao.id_consolidacao %]</a></td>
+      <td>[% consolidacao.definicao_consolidacao.nome %]</td>
+      <td>[% consolidacao.data_ini %]</td>
+      <td>[% consolidacao.data_fim %]</td>
+      <td>[% consolidacao.dn %]</td>
+      <td>[% consolidacao.status %]</td>
+     </tr>
  [% END %]
 </tbody>
 </table>
+
+[% IF pagina_atual > 1 %]
+    [% args.import(c.req.params({ pagina_atual => pagina_atual - 1 })) %]
+    <a href="[% c.uri_for_action('/auth/registros/consolidador/definicaoconsolidacao/lista', [ id_definicao_consolidacao ], args) %]"> Anterior </a>
+[% END %]
+
+&nbsp
+
+[% IF pagina_atual <= numpag %]
+    [% args.import(c.req.params({ pagina_atual => pagina_atual + 1 })) %]
+    <a href="[% c.uri_for_action('/auth/registros/consolidador/definicaoconsolidacao/lista', [ id_definicao_consolidacao ], args) %]"> Pr&oacute;ximo </a>
+[% END %]
+
+<br><br>
  <caption><a href="[% c.uri_for_action('/auth/registros/consolidador/definicaoconsolidacao/iniciar', [ id_definicao_consolidacao ], {}) %]"> Consolidar </a></caption>
 [% INCLUDE 'footer.tt' %]

@@ -16,7 +16,7 @@ my $controle_r = $controle->compile(
     any_element => 'TAKE_ALL'
 );
 my $controle_w = $controle->compile(
-    WRITER      => pack_type( CONSOLIDACAO_NS, 'registroConsolidacao' ),
+    WRITER     => pack_type( CONSOLIDACAO_NS, 'registroConsolidacao' ),
     use_default_namespace => 1
 );
 

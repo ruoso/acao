@@ -383,6 +383,17 @@ a.rejeitar
 	padding: 0px;
 }
 
+a.link_vazio {
+	display: inline-block;
+        width: 28px;
+        height: 22px;
+	text-indent: -9999px;
+	text-decoration: none;
+	overflow: hidden;
+	border: none;	
+	padding: 0px;
+}
+
 a.visualizar
 {
 	display: inline-block;
@@ -576,17 +587,31 @@ tr.odd td {
 }
 
 .sucesso {
+        font-size: 1.3em;
+        font-weight: bold;
 	color: darkgreen;
+        background-color: #ffffaf;
 	background-image: url(../img/02.png);
 	background-position: 12px 50%;
 	background-repeat: no-repeat;
+        padding: 1em 2em 1em 3em;
+        margin: 1em;
+        display: block;
+        border: solid 1px darkgreen;
 }
 
 .erro {
+        font-size: 1.3em;
+        font-weight: bold;
 	color: darkred;
 	background-image: url(../img/exclamation.png);
 	background-position: 12px 50%;
 	background-repeat: no-repeat;
+        background-color: #fe9;
+        margin: 1em;
+        padding: 1em 2em 1em 3em;
+        display: block;
+        border: solid 1px darkred;
 }
 
 /* Plugin Autocomplete */
@@ -642,3 +667,7 @@ tr.odd td {
 /* Relatórios */
 body.relatorio { margin: 20px; background: white; }
 body.relatorio thead th { background-color: white; color: black; }
+
+.estado_rejeitado {
+    color: #666;
+}

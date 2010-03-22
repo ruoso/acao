@@ -2,6 +2,13 @@
 [% INCLUDE 'auth/registros/consolidador/definicaoconsolidacao/consolidacao/header.tt' %]
 [% INCLUDE 'errosucesso.tt' %]
 
+[% SET linhas_por_pagina = 12 %]
+[% SET pagina_atual = c.req.param('pagina_atual') %]
+[% IF !pagina_atual %]
+  [% SET pagina_atual = 1 %]
+[% END %]
+[% SET args = { } %]
+
 <DL>
  <DT>Projeto:</DT>
  <DD>[% consolidacao.definicao_consolidacao.projeto.nome %]</DD>
@@ -16,16 +23,22 @@
   <th>Etapa</th>
   <th>Data/Hora</th>
   <th>Alerta</th>
+  <th>Log</th>
   <th>A&ccedil;&otilde;es</th>
  </tr>
 </thead>
 <tbody>
- [% FOREACH alerta IN consolidacao.alertas %]
+
+ [% SET numpag = definicao_consolidacao.consolidacao_rs.count / linhas_por_pagina %]
+
+ [% FOREACH alerta IN consolidacao.alertas({},
+        {page => pagina_atual, rows => linhas_por_pagina }) %]
   <tr>
-   <td>[% alerta.etapa %]</td>
-   <td>[% alerta.datahora %]</td>
-   <td>[% alerta.descricao_alerta %]</a></td> 
-   <td>[% IF alerta.id_documento_consolidado %]
+    <td>[% alerta.etapa %]</td>
+    <td>[% alerta.datahora %]</td>
+    <td>[% alerta.descricao_alerta %]</a></td>
+    <td>[% alerta.log_level %]</td>
+    <td>[% IF alerta.id_documento_consolidado %]
        <a href="[% c.uri_for_action(
        '/auth/registros/consolidador/definicaoconsolidacao/consolidacao/entradas',
        [ id_definicao_consolidacao, consolidacao.id_consolidacao ],
@@ -34,4 +47,17 @@
  [% END %]
 </tbody>
 </table>
+
+[% IF pagina_atual > 1 %]
+    [% args.import(c.req.params({ pagina_atual => pagina_atual - 1 })) %]
+    <a href="[% c.uri_for_action('/auth/registros/consolidador/definicaoconsolidacao/consolidacao/lista', [ id_definicao_consolidacao, consolidacao.id_consolidacao ], args) %]"> Anterior </a>
+[% END %]
+
+&nbsp
+
+[% IF pagina_atual <= numpag %]
+    [% args.import(c.req.params({ pagina_atual => pagina_atual + 1 })) %]
+    <a href="[% c.uri_for_action('/auth/registros/consolidador/definicaoconsolidacao/consolidacao/lista', [ id_definicao_consolidacao, consolidacao.id_consolidacao ], args) %]"> Pr&oacute;ximo </a>
+[% END %]
+
 [% INCLUDE 'footer.tt' %]
