@@ -2,6 +2,7 @@
 [% INCLUDE 'auth/registros/consolidador/definicaoconsolidacao/consolidacao/header.tt' %]
 [% INCLUDE 'errosucesso.tt' %]
 
+<!--Bloco responsavel pelo request das variaveis da paginação-->
 [% SET linhas_por_pagina = 12 %]
 [% SET pagina_atual = c.req.param('pagina_atual') %]
 [% IF !pagina_atual %]
@@ -9,29 +10,69 @@
 [% END %]
 [% SET args = { } %]
 
+<!--Bloco responsavel pelo request das variaveis de filtro-->
+[% SET all_levels = 
+  { 'FATAL' => 'Erros definitivos',
+    'TRACE' => 'Detalhamento da execução',
+    'ERROR' => 'Erros de execução', 
+    'DEBUG' => 'Informação do processamento',
+    'WARNING' => 'Alertas '
+} %]
+[% SET levels = [] %]
+
+<!--Verifica quais levels estao marcados e os insere no array levels para ser usado no DBIx::Class-->
+[% FOREACH level IN all_levels.keys %]
+  [% IF c.req.param(level) %]
+    [% CALL levels.push(level) %]
+  [% END %]
+[% END %]
+
+<!--Marca os campos com so nomes dos levels com checked-->
+[% IF levels.size == 0 %]
+ [% SET levels = all_levels.keys %]
+ [% FOREACH level IN all_levels.keys %]
+   [% CALL c.req.param(level,'on') %]
+ [% END %]
+[% END %]
+
+<form id="form" method="post" action="[%c.uri_for_action('/auth/registros/consolidador/definicaoconsolidacao/consolidacao/lista')%]">
 <DL>
- <DT>Projeto:</DT>
- <DD>[% consolidacao.definicao_consolidacao.projeto.nome %]</DD>
- <DT>Definição de Consolidação:</DT>
- <DD>[% consolidacao.definicao_consolidacao.nome %]</DD>
+ <DT>Filtrar por:</DT>
+ [% FOREACH level IN all_levels.keys %]
+    <dd>
+      <input type="checkbox" id="chk_[% level %]" name="[% level %]"[% IF c.req.param(level) %] checked[% END %] />
+      <LABEL for="chk_[% level %]">[% all_levels.item(level) %]</LABEL>
+    </dd>
+ [% END %]
 </DL>
+ [% SET numpag = definicao_consolidacao.consolidacao_rs.count / linhas_por_pagina %]
+ <input type="submit" name="submit" value="Filtrar" />
+</tbody>
+</table>
+</form>
+
+<!--
+FOREACH level IN consolidacao.alertas({},{ select => { distinct => 'log_level' }, as => 'level'})
+level.get_column('level')
+END
+-->
 
 <table>
  <caption>Alertas dessa Consolidação</caption>
 <thead>
  <tr>
-  <th>Etapa</th>
-  <th>Data/Hora</th>
-  <th>Alerta</th>
-  <th>Log</th>
-  <th>A&ccedil;&otilde;es</th>
+  <th align="center">Etapa</th>
+  <th align="center">Data/Hora</th>
+  <th align="center">Alerta</th>
+  <th align="center">Log</th>
+  <th align="center">A&ccedil;&otilde;es</th>
  </tr>
 </thead>
 <tbody>
 
  [% SET numpag = definicao_consolidacao.consolidacao_rs.count / linhas_por_pagina %]
 
- [% FOREACH alerta IN consolidacao.alertas({},
+ [% FOREACH alerta IN consolidacao.alertas({ log_level => { 'IN' => levels }},
         {page => pagina_atual, rows => linhas_por_pagina }) %]
   <tr>
     <td>[% alerta.etapa %]</td>
