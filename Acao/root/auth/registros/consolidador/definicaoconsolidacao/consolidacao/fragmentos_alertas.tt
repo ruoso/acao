@@ -1,0 +1,3 @@
+ [% FOREACH alerta IN consolidacao.alertas({ 'id_alerta' => { '>' => id_alerta }},{ order_by => 'id_alerta'}) %]
+   [% INCLUDE 'auth/registros/consolidador/definicaoconsolidacao/consolidacao/fragmento.tt' %]
+ [% END %]
