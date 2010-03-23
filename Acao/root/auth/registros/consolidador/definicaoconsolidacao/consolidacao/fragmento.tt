@@ -1,0 +1,11 @@
+  <tr id="alerta_[% alerta.id_alerta %]">
+    <td>[% alerta.etapa %]</td>
+    <td>[% alerta.datahora %]</td>
+    <td>[% alerta.descricao_alerta %]</a></td>
+    <td>[% alerta.log_level %]</td>
+    <td>[% IF alerta.id_documento_consolidado %]
+      <a href="[% c.uri_for_action(
+      '/auth/registros/consolidador/definicaoconsolidacao/consolidacao/entradas',
+      [ id_definicao_consolidacao, consolidacao.id_consolidacao ],
+      alerta.id_documento_consolidado, {}) %]">Visualizar</A>[% END %]</td>
+  </tr>

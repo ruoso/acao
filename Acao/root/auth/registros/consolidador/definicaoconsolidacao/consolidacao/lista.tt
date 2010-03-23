@@ -51,11 +51,11 @@
 </table>
 </form>
 
-<!--
+[%# 
 FOREACH level IN consolidacao.alertas({},{ select => { distinct => 'log_level' }, as => 'level'})
 level.get_column('level')
 END
--->
+%]
 
 <table>
  <caption>Alertas dessa Consolidação</caption>
@@ -68,23 +68,12 @@ END
   <th align="center">A&ccedil;&otilde;es</th>
  </tr>
 </thead>
-<tbody>
-
+<tbody id="alertas_tbody">
  [% SET numpag = definicao_consolidacao.consolidacao_rs.count / linhas_por_pagina %]
 
  [% FOREACH alerta IN consolidacao.alertas({ log_level => { 'IN' => levels }},
-        {page => pagina_atual, rows => linhas_por_pagina }) %]
-  <tr>
-    <td>[% alerta.etapa %]</td>
-    <td>[% alerta.datahora %]</td>
-    <td>[% alerta.descricao_alerta %]</a></td>
-    <td>[% alerta.log_level %]</td>
-    <td>[% IF alerta.id_documento_consolidado %]
-       <a href="[% c.uri_for_action(
-       '/auth/registros/consolidador/definicaoconsolidacao/consolidacao/entradas',
-       [ id_definicao_consolidacao, consolidacao.id_consolidacao ],
-       alerta.id_documento_consolidado, {}) %]">Visualizar</A>[% END %]</td>
-  </tr>
+        {page => pagina_atual, rows => linhas_por_pagina, order_by => 'id_alerta' }) %]
+   [% INCLUDE 'auth/registros/consolidador/definicaoconsolidacao/consolidacao/fragmento.tt' %]
  [% END %]
 </tbody>
 </table>
@@ -99,6 +88,39 @@ END
 [% IF pagina_atual <= numpag %]
     [% args.import(c.req.params({ pagina_atual => pagina_atual + 1 })) %]
     <a href="[% c.uri_for_action('/auth/registros/consolidador/definicaoconsolidacao/consolidacao/lista', [ id_definicao_consolidacao, consolidacao.id_consolidacao ], args) %]"> Pr&oacute;ximo </a>
+[% END %]
+
+[% IF consolidacao.status != 'Finalizada' %]
+<SCRIPT>
+ function definir_timeout() {
+     var ultimo_alerta = $('#alertas_tbody tr:last-child');
+     var aid = 0;
+     //em busca do ID da ultima <tr>
+     if (ultimo_alerta) {
+        var alerta_id = ultimo_alerta.attr('id');
+        //caso exista guarda o valor numerio dele extraido do campo ID        
+        if (alerta_id) {
+           aid = alerta_id.substr(7);
+        }
+        //em busca do innerHtml da ultima <tr> para verificar se a etapa é a ultima (5)
+        var etapa = ultimo_alerta.find('td:first-child').html();
+        if (etapa == 5) {
+            window.alert("Consolidacao finalizada!");
+            return;
+        }
+     }
+     window.setTimeout(
+        function() {
+           $.get("[% c.uri_for_action('/auth/registros/consolidador/definicaoconsolidacao/consolidacao/fragmentos_alertas', [ id_definicao_consolidacao, consolidacao.id_consolidacao], '', {}) %]" + aid,
+           function(data) {
+              $('#alertas_tbody').append(data);
+              definir_timeout();
+           });
+        }, 
+        3000);
+ }
+ definir_timeout();
+</SCRIPT>
 [% END %]
 
 [% INCLUDE 'footer.tt' %]

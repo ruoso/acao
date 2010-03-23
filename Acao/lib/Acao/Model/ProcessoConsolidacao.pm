@@ -35,6 +35,11 @@ sub iniciar_consolidacao {
         }
     );
 
+    ## Atualiza o stuas da consolidacao para executando
+    $consolidacao->update({
+        status => 'Executando',
+    });
+
     # prapara os dados de consolidacao...
     $self->preparar_consolidacao($consolidacao);
 
@@ -391,6 +396,13 @@ sub iniciar_consolidacao {
             descricao_alerta => 'Terminou a Consolidacao.',
         }
     );
+    
+    ## Atualiza o stuas da consolidacao para finalizada
+    $consolidacao->update({
+        status => 'Finalizada',
+        data_fim => DateTime->now(),
+    });
+
 }
 
 txn_method 'preparar_consolidacao' => sub {
