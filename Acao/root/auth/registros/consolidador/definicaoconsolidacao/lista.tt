@@ -53,8 +53,8 @@
 
   [% SET numpag = definicao_consolidacao.consolidacao_rs.count / linhas_por_pagina %]
 
-  [% FOREACH consolidacao IN definicao_consolidacao.consolidacao({},
-        { page => pagina_atual, rows => linhas_por_pagina }) %]
+  [% FOREACH consolidacao IN definicao_consolidacao.consolidacao({}, 
+     {page => pagina_atual, rows => linhas_por_pagina, order_by => 'id_consolidacao DESC'}) %]
      <tr>
       <td><a href="[% c.uri_for_action('/auth/registros/consolidador/definicaoconsolidacao/consolidacao/lista', [ id_definicao_consolidacao, consolidacao.id_consolidacao ], {}) %]">[% consolidacao.id_consolidacao %]</a></td>
       <td>[% consolidacao.definicao_consolidacao.nome %]</td>
@@ -80,5 +80,6 @@
 [% END %]
 
 <br><br>
+
  <caption><a href="[% c.uri_for_action('/auth/registros/consolidador/definicaoconsolidacao/iniciar', [ id_definicao_consolidacao ], {}) %]"> Consolidar </a></caption>
 [% INCLUDE 'footer.tt' %]

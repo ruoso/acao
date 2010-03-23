@@ -402,6 +402,7 @@ sub iniciar_consolidacao {
     ## Atualiza o stuas da consolidacao para finalizada
     $consolidacao->update({
         status => 'Finalizada',
+        data_fim => DateTime->now(),
     });
 
 }

@@ -69,7 +69,6 @@ END
  </tr>
 </thead>
 <tbody id="alertas_tbody">
-
  [% SET numpag = definicao_consolidacao.consolidacao_rs.count / linhas_por_pagina %]
 
  [% FOREACH alerta IN consolidacao.alertas({ log_level => { 'IN' => levels }},
@@ -96,23 +95,29 @@ END
  function definir_timeout() {
      var ultimo_alerta = $('#alertas_tbody tr:last-child');
      var aid = 0;
+     //em busca do ID da ultima <tr>
      if (ultimo_alerta) {
         var alerta_id = ultimo_alerta.attr('id');
+        //caso exista guarda o valor numerio dele extraido do campo ID        
         if (alerta_id) {
            aid = alerta_id.substr(7);
         }
+        //em busca do innerHtml da ultima <tr> para verificar se a etapa é a ultima (5)
         var etapa = ultimo_alerta.find('td:first-child').html();
         if (etapa == 5) {
             window.alert("Consolidacao finalizada!");
             return;
         }
      }
-     window.setTimeout(function() {
-       $.get("[% c.uri_for_action('/auth/registros/consolidador/definicaoconsolidacao/consolidacao/fragmentos_alertas', [ id_definicao_consolidacao, consolidacao.id_consolidacao], '', {}) %]" + aid, function(data) {
-          $('#alertas_tbody').append(data);
-          definir_timeout();
-       });
-     }, 3000);
+     window.setTimeout(
+        function() {
+           $.get("[% c.uri_for_action('/auth/registros/consolidador/definicaoconsolidacao/consolidacao/fragmentos_alertas', [ id_definicao_consolidacao, consolidacao.id_consolidacao], '', {}) %]" + aid,
+           function(data) {
+              $('#alertas_tbody').append(data);
+              definir_timeout();
+           });
+        }, 
+        3000);
  }
  definir_timeout();
 </SCRIPT>
