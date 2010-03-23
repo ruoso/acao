@@ -107,6 +107,11 @@ sub iniciar_consolidacao {
     # inicia a etapa de validação.
     $etapa = 2;
 
+    ## Atualiza o stuas da consolidacao para executando
+    $consolidacao->update({
+        status => 'Executando',
+    });
+
     $self->sedna->begin;
 
     # temos que obter o xml-schema dessa consolidacao
@@ -393,6 +398,12 @@ sub iniciar_consolidacao {
             descricao_alerta => 'Terminou a Consolidacao.',
         }
     );
+    
+    ## Atualiza o stuas da consolidacao para finalizada
+    $consolidacao->update({
+        status => 'Finalizada',
+    });
+
 }
 
 txn_method 'preparar_consolidacao' => sub {
