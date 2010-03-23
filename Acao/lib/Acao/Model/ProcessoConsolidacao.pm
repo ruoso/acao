@@ -41,6 +41,11 @@ sub iniciar_consolidacao {
         }
     );
 
+    ## Atualiza o stuas da consolidacao para executando
+    $consolidacao->update({
+        status => 'Executando',
+    });
+
     # prapara os dados de consolidacao...
     $self->preparar_consolidacao($consolidacao);
 
@@ -106,11 +111,6 @@ sub iniciar_consolidacao {
 
     # inicia a etapa de validação.
     $etapa = 2;
-
-    ## Atualiza o stuas da consolidacao para executando
-    $consolidacao->update({
-        status => 'Executando',
-    });
 
     $self->sedna->begin;
 

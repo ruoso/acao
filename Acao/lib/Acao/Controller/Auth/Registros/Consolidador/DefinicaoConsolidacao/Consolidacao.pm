@@ -37,6 +37,11 @@ sub entradas :Chained('base') :PathPart :Args(1) {
     $c->stash->{id_documento_consolidado} = $id_documento_consolidado;
 }
 
+sub fragmentos_alertas : Chained('base') :PathPart :Args(1){
+    my ($self, $c, $id_alerta) = @_;
+    $c->stash->{id_alerta} = $id_alerta;
+}
+
 =head1 AUTHOR
 
 Jackson,,,
