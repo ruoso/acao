@@ -47,13 +47,7 @@ sub iniciar_consolidacao {
         { id_consolidacao => $id_consolidacao },
         {
             prefetch => {
-                definicao_consolidacao => [
-                    qw( entrada_consolidacao
-                      etapa_coleta_dados
-                      etapa_transformacao
-                      etapa_validacao
-                      projeto )
-                ]
+                definicao_consolidacao => 'projeto'
             }
         }
     );
@@ -238,6 +232,7 @@ sub iniciar_consolidacao {
                     sedna_writer => $sedna_writer,
                 }
             );
+            warn "Adicionando $obj na lista de plugins";
             push @objetos_plugins_transformacao, $obj;
         };
         if ($@) {
@@ -263,6 +258,7 @@ sub iniciar_consolidacao {
       . $id_consolidacao
       . '") return $x';
     $self->sedna->execute($query_todos);
+
     while (1) {
         my ( $registroConsolidacao, $conteudo, $doc );
             
@@ -312,6 +308,7 @@ sub iniciar_consolidacao {
         );
 
        # executa o processo de validacao em todos os plugins para esse documento
+
         foreach my $obj (@objetos_plugins_validacao) {
             eval {
                 $obj->processar( $consolidacao, $registroConsolidacao,
@@ -346,6 +343,7 @@ sub iniciar_consolidacao {
 
    # executa o processo de transformacao em todos os plugins para esse documento
         foreach my $obj (@objetos_plugins_transformacao) {
+            warn "Vai processar $obj";
             eval {
                 $obj->processar( $consolidacao, $registroConsolidacao,
                     $conteudo );
