@@ -2,14 +2,14 @@
 [% INCLUDE 'auth/registros/consolidador/definicaoconsolidacao/consolidacao/header.tt' %]
 [% INCLUDE 'errosucesso.tt' %]
 
-<!--Bloco responsavel pelo request das variaveis da paginação-->
+[% # Bloco responsavel pelo request das variaveis da paginação %]
 [% SET linhas_por_pagina = 12 %]
 [% SET pagina_atual = c.req.param('pagina_atual') %]
 [% IF !pagina_atual %]
   [% SET pagina_atual = 1 %]
 [% END %]
 
-<!--Bloco responsavel pelo request das variaveis de filtro-->
+[% # Bloco responsavel pelo request das variaveis de filtro %]
 [% SET all_levels = 
   { 'FATAL' => 'Erros definitivos',
     'TRACE' => 'Detalhamento da execução',
@@ -19,14 +19,14 @@
 } %]
 [% SET levels = [] %]
 
-<!--Verifica quais levels estao marcados e os insere no array levels para ser usado no DBIx::Class-->
+[% # Verifica quais levels estao marcados e os insere no array levels para ser usado no DBIx::Class %]
 [% FOREACH level IN all_levels.keys %]
   [% IF c.req.param(level) %]
     [% CALL levels.push(level) %]
   [% END %]
 [% END %]
 
-<!--Marca os campos com os nomes dos levels com checked-->
+[% # Marca os campos com os nomes dos levels com checked %]
 [% IF levels.size == 0 %]
  [% SET levels = all_levels.keys %]
  [% FOREACH level IN all_levels.keys %]

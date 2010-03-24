@@ -80,6 +80,10 @@ sub iniciar_consolidacao {
                       . $erro_original
                 }
             );
+            $consolidacao->update({
+                status => 'Finalizada com Erro!',
+                data_fim => DateTime->now(),
+            });
             exit 1;
         }
 
@@ -105,6 +109,10 @@ sub iniciar_consolidacao {
                       . $erro_original
                 }
             );
+            $consolidacao->update({
+                status => 'Finalizada com Erro!',
+                data_fim => DateTime->now(),
+            });
             exit 1;
         }
     }
@@ -165,6 +173,10 @@ sub iniciar_consolidacao {
                       . $erro_original
                 }
             );
+            $consolidacao->update({
+                status => 'Finalizada com Erro!',
+                data_fim => DateTime->now(),
+            });
             exit 1;
         }
         eval {
@@ -189,6 +201,10 @@ sub iniciar_consolidacao {
                       . $erro_original
                 }
             );
+            $consolidacao->update({
+                status => 'Finalizada com Erro!',
+                data_fim => DateTime->now(),
+            });
             exit 1;
         }
     }
@@ -210,6 +226,10 @@ sub iniciar_consolidacao {
                       . $erro_original
                 }
             );
+            $consolidacao->update({
+                status => 'Finalizada com Erro!',
+                data_fim => DateTime->now(),
+            });
             exit 1;
         }
         eval {
@@ -234,6 +254,10 @@ sub iniciar_consolidacao {
                       . $erro_original
                 }
             );
+            $consolidacao->update({
+                status => 'Finalizada com Erro!',
+                data_fim => DateTime->now(),
+            });
             exit 1;
         }
     }
@@ -294,7 +318,7 @@ sub iniciar_consolidacao {
             }
         );
 
-       # executa o processo de validacao em todos os plugins para esse documento
+        # executa o processo de validacao em todos os plugins para esse documento
         foreach my $obj (@objetos_plugins_validacao) {
             eval {
                 $obj->processar( $consolidacao, $registroConsolidacao,
@@ -327,7 +351,7 @@ sub iniciar_consolidacao {
             }
         );
 
-   # executa o processo de transformacao em todos os plugins para esse documento
+        # executa o processo de transformacao em todos os plugins para esse documento
         foreach my $obj (@objetos_plugins_transformacao) {
             eval {
                 $obj->processar( $consolidacao, $registroConsolidacao,

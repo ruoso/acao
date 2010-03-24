@@ -47,9 +47,9 @@
  </tr>
 </thead>
 <tbody>
- <!--O foreach abaixo NAO vai buscar o model pelo nome, por estar atrelado ao contexto 
-     (recebe argumento pela url. No caso recebe o id_definicao_consolidacao chamando o controles que 
-     realmente vai tratar a variavel e chamar o model passando a variavel)-->
+ [% # O foreach abaixo NAO vai buscar o model pelo nome, por estar atrelado ao contexto %]
+ [% # (recebe argumento pela url. No caso recebe o id_definicao_consolidacao chamando o controles que %] 
+ [% # realmente vai tratar a variavel e chamar o model passando a variavel) %]
 
   [% SET numpag = definicao_consolidacao.consolidacao_rs.count / linhas_por_pagina %]
 
