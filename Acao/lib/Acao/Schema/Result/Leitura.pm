@@ -22,6 +22,17 @@ use warnings;
 
 use base 'DBIx::Class';
 
+=head1 NAME
+
+Acao::Schema::Result::Leitura - Resultsource da tabela leitura
+
+=head1 DESCRIPTION
+
+Esta entidade descreve um processo de digitação de um determinado
+instrumento.
+
+=cut
+
 __PACKAGE__->load_components( "InflateColumn::DateTime", "Core" );
 __PACKAGE__->table("leitura");
 __PACKAGE__->add_columns(
@@ -112,5 +123,12 @@ __PACKAGE__->belongs_to(
     "Acao::Schema::Result::Instrumento",
     { id_projeto => "id_projeto", nome => "nome" },
 );
+
+=head1 COPYRIGHT AND LICENSING
+
+Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
+sob a GPL versão 2.
+
+=cut
 
 1;

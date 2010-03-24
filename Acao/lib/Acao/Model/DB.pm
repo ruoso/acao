@@ -20,10 +20,26 @@ package Acao::Model::DB;
 use strict;
 use base 'Catalyst::Model::DBIC::Schema';
 
+=head1 NAME
+
+Acao::Model::DB - Modelo de acesso ao DBIx::Class::Schema
+
+=head1 DESCRIPTION
+
+Essa classe registra a classe de schema para acesso ao DBIx::Class.
+
+=cut
+
 __PACKAGE__->config(
     schema_class => 'Acao::Schema',
     connect_info => [ 'dbi:SQLite:acao.db', '', '', ]
 );
 
+=head1 COPYRIGHT AND LICENSING
+
+Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
+sob a GPL versão 2.
+
+=cut
 
 1;

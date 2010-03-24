@@ -22,6 +22,20 @@ use warnings;
 
 use base 'DBIx::Class';
 
+=head1 NAME
+
+Acao::Schema::Result::DefinicaoConsolidacao - Resultsource da tabela
+definicao_consolidacao
+
+=head1 DESCRIPTION
+
+Esta entidade descreve como será realizada um determinado processo de
+consolidação. É a partir dessa definição que são estabelecidas todas
+as regras de como obter os dados, como validá-los e como transformálos
+para considerar o processo de digitação finalizado.
+
+=cut
+
 __PACKAGE__->load_components( "InflateColumn::DateTime", "Core" );
 __PACKAGE__->table("definicao_consolidacao");
 __PACKAGE__->add_columns(
@@ -114,5 +128,12 @@ __PACKAGE__->belongs_to(
     "Acao::Schema::Result::Projeto",
     { id_projeto => "id_projeto" },
 );
+
+=head1 COPYRIGHT AND LICENSING
+
+Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
+sob a GPL versão 2.
+
+=cut
 
 1;

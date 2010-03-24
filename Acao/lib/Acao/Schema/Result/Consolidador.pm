@@ -22,6 +22,17 @@ use warnings;
 
 use base 'DBIx::Class';
 
+=head1 NAME
+
+Acao::Schema::Result::Consolidador - Resultsource da tabela consolidador
+
+=head1 DESCRIPTION
+
+Esta entidade descreve os usuários autorizados a executar a
+consolidação de uma determinada definição.
+
+=cut
+
 __PACKAGE__->load_components( "InflateColumn::DateTime", "Core" );
 __PACKAGE__->table("consolidador");
 __PACKAGE__->add_columns(
@@ -46,5 +57,12 @@ __PACKAGE__->belongs_to(
     "Acao::Schema::Result::DefinicaoConsolidacao",
     { id_definicao_consolidacao => "id_definicao_consolidacao" },
 );
+
+=head1 COPYRIGHT AND LICENSING
+
+Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
+sob a GPL versão 2.
+
+=cut
 
 1;

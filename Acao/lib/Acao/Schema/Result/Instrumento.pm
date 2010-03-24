@@ -22,6 +22,18 @@ use warnings;
 
 use base 'DBIx::Class';
 
+=head1 NAME
+
+Acao::Schema::Result::Instrumento - Resultsource da tabela instrumento
+
+=head1 DESCRIPTION
+
+Esta entidade descreve um instrumento de coleta de dados ligado a um
+projeto. É essa entidade que define o XML Schema associado a uma
+estrutura de dados para digitação.
+
+=cut
+
 __PACKAGE__->load_components( "InflateColumn::DateTime", "Core" );
 __PACKAGE__->table("instrumento");
 __PACKAGE__->add_columns(
@@ -68,5 +80,12 @@ __PACKAGE__->has_many(
         "foreign.nome"       => "self.nome",
     },
 );
+
+=head1 COPYRIGHT AND LICENSING
+
+Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
+sob a GPL versão 2.
+
+=cut
 
 1;

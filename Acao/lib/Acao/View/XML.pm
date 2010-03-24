@@ -20,6 +20,17 @@ use strict;
 use warnings;
 use utf8;
 
+=head1 NAME
+
+Acao::View::XML - Renderiza documentos XML.
+
+=head1 DESCRIPTION
+
+Essa view é utilizada para enviar ao usuário um documento xml que está
+no stash sob a chave "document".
+
+=cut
+
 use base 'Catalyst::View';
 
 sub process {
@@ -29,5 +40,13 @@ sub process {
         $c->res->body( $c->stash->{document} );
     }
 }
+
+=head1 COPYRIGHT AND LICENSING
+
+Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
+sob a GPL versão 2.
+
+=cut
+
 
 42;

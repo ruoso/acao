@@ -32,9 +32,28 @@ my $controle =
   XML::Compile::Schema->new(
     Acao->path_to('schemas/controleconsolidacao.xsd')
   );
-
 my $entradas_r =
   $controle->compile( READER => pack_type( CONSOLIDACAO_NS, 'entradas' ) );
+
+=head1 NAME
+
+Acao::Model::Consolidador - Classe modelo para o papel consolidador
+
+=head1 DESCRIPTION
+
+Essa classe implementa as regras de negócio específicas para o papel
+de consolidador.
+
+=head1 METHODS
+
+=over
+
+=item listar_definicao_consolidacao()
+
+Este método retorna a lista de definições de consolidação que esse
+usuário tem acesso.
+
+=cut
 
 txn_method 'listar_definicao_consolidacao' => authorized 'consolidador' => sub {
     my $self = shift;
@@ -48,6 +67,13 @@ txn_method 'listar_definicao_consolidacao' => authorized 'consolidador' => sub {
         }
     );
 };
+
+=item obter_definicao_consolidacao($id_definicao_consolidacao)
+
+Este método obtem o objeto para uma definição de consolidação ao mesmo
+tempo em que verifica se o usuário tem esse acesso.
+
+=cut
 
 txn_method 'obter_definicao_consolidacao' => authorized 'consolidador' => sub {
     my ( $self, $id_definicao_consolidacao ) = @_;
@@ -63,6 +89,12 @@ txn_method 'obter_definicao_consolidacao' => authorized 'consolidador' => sub {
     );
 };
 
+=item obter_consolidacao($id_consolidacao)
+
+Este método retorna um objeto consolidação.
+
+=cut
+
 txn_method 'obter_consolidacao' => authorized 'consolidador' => sub {
     my ( $self, $id_consolidacao ) = @_;
     return $self->dbic->resultset('Consolidacao')->find(
@@ -73,13 +105,21 @@ txn_method 'obter_consolidacao' => authorized 'consolidador' => sub {
 
 # prefetch tem funcao similar a do join diferenciando por trazer os elementos na clausula select
         {
-            prefetch => [
-                'alertas',
-                { 'definicao_consolidacao' => [ 'consolidador', 'projeto' ] }
-            ],
+            prefetch =>
+                { 'definicao_consolidacao' => [ 'consolidador', 'projeto' ] },
         }
     );
 };
+
+=item iniciar_consolidacao($definicao_consolidacao)
+
+Este é o método que irá iniciar um processo em "background" para
+executar o processo de consolidação em si.
+
+Ele irá executar script/acao_consolida.pl passando o id da
+consolidacao e o nome do usuário.
+
+=cut
 
 txn_method 'iniciar_consolidacao' => authorized 'consolidador' => sub {
     my ( $self, $definicao_consolidacao ) = @_;
@@ -107,6 +147,13 @@ txn_method 'iniciar_consolidacao' => authorized 'consolidador' => sub {
     }
 };
 
+=item obter_documentos_entrada($consolidacao, $id_documento_consolidado)
+
+Este método retorna uma relação dos documentos que foram utilizados
+para compor esse documento consolidado, associado aos dados da leitura.
+
+=cut
+
 txn_method obter_documentos_entrada => authorized 'consolidador' => sub {
     my ( $self, $consolidacao, $id_documento_consolidado ) = @_;
     my $xq = 'declare namespace ab="http://schemas.fortaleza.ce.gov.br/acao/controleconsolidacao.xsd"; 
@@ -127,5 +174,12 @@ txn_method obter_documentos_entrada => authorized 'consolidador' => sub {
         return [];
     }
 };
+
+=head1 COPYRIGHT AND LICENSING
+
+Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
+sob a GPL versão 2.
+
+=cut
 
 1;

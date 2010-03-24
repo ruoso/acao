@@ -22,6 +22,17 @@ use warnings;
 
 use base 'DBIx::Class';
 
+=head1 NAME
+
+Acao::Schema::Result::Alertas - Resultsource da tabela alertas
+
+=head1 DESCRIPTION
+
+Esta entidade descreve o "log" de uma execução de consolidação.
+
+=cut
+
+
 __PACKAGE__->load_components( "InflateColumn::DateTime", "Core" );
 __PACKAGE__->table("alertas");
 __PACKAGE__->add_columns(
@@ -83,5 +94,12 @@ __PACKAGE__->belongs_to(
     "Acao::Schema::Result::Consolidacao",
     { id_consolidacao => "id_consolidacao" },
 );
+
+=head1 COPYRIGHT AND LICENSING
+
+Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
+sob a GPL versão 2.
+
+=cut
 
 1;

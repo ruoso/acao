@@ -20,9 +20,28 @@ package Acao::View::TT;
 use strict;
 use base 'Catalyst::View::TT';
 
+=head1 NAME
+
+Acao::View::TT - Define a view TT
+
+=head1 DESCRIPTION
+
+Essa é a view default da aplicação.
+
+=cut
+
 __PACKAGE__->config(
     TEMPLATE_EXTENSION => '.tt',
     INCLUDE_PATH       => [ Acao->path_to('root'), ]
 );
+
+
+=head1 COPYRIGHT AND LICENSING
+
+Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
+sob a GPL versão 2.
+
+=cut
+
 
 1;

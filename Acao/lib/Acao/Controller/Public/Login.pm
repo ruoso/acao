@@ -21,9 +21,30 @@ use strict;
 use warnings;
 use parent 'Catalyst::Controller';
 
+=head1 NAME
+
+Acao::Controller::Public::Login - Implementa a chamada para o início
+de uma sessão de usuário.
+
+=head1 ACTIONS
+
+=over
+
+=item base
+
+Ação base para outras ações desse controlador.
+
+=cut
+
 sub base : Chained('/') : PathPart('login') : CaptureArgs(0) {
     my ( $self, $c ) = @_;
 }
+
+=item login
+
+Faz a chamada para a autenticação, iniciando a sessão do usuário.
+
+=cut
 
 sub login : Chained('base') : PathPart('') : Args(0) {
     my ( $self, $c ) = @_;
@@ -42,5 +63,14 @@ sub login : Chained('base') : PathPart('') : Args(0) {
         }
     }
 }
+
+=back
+
+=head1 COPYRIGHT AND LICENSING
+
+Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
+sob a GPL versão 2.
+
+=cut
 
 1;

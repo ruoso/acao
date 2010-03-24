@@ -20,6 +20,17 @@ package Acao::Schema::Result::Revisor;
 use strict;
 use warnings;
 
+=head1 NAME
+
+Acao::Schema::Result::Revisor - Resultsource da tabela revisor
+
+=head1 DESCRIPTION
+
+Esta entidade descreve os usuários autorizados a manipular uma
+determinada leitura.
+
+=cut
+
 use base 'DBIx::Class';
 
 __PACKAGE__->load_components( "InflateColumn::DateTime", "Core" );
@@ -46,5 +57,12 @@ __PACKAGE__->belongs_to(
     "Acao::Schema::Result::Leitura",
     { id_leitura => "id_leitura" },
 );
+
+=head1 COPYRIGHT AND LICENSING
+
+Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
+sob a GPL versão 2.
+
+=cut
 
 1;

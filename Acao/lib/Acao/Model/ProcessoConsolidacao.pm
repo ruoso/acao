@@ -37,6 +37,28 @@ my $controle_w = $controle->compile(
     use_default_namespace => 1
 );
 
+=head1 NAME
+
+Acao::Model::ProcessoConsolidacao - Modelo que implementa o processo
+de consolidacao
+
+=head1 DESCRIPTION
+
+Este model implementa o processo de consolidacao em si, devendo ser
+utilizado a partir de um processo em "background".
+
+=head1 METHODS
+
+=over
+
+=item iniciar_consolidacao($id_consolidacao)
+
+Esse é o método que implementa o processo de consolidação em si, é a
+partir dele que são invocados os diversos plugins que governam essa
+consolidacação.
+
+=cut
+
 sub iniciar_consolidacao {
     my ( $self, $id_consolidacao ) = @_;
     sleep 1;    # garante que a transação de fora acabou.
@@ -422,6 +444,12 @@ sub iniciar_consolidacao {
 
 }
 
+=item preparar_consolidacao($consolidacao)
+
+Esse método faz as configurações inciais para o processo de consolidação.
+
+=cut
+
 txn_method 'preparar_consolidacao' => sub {
     my ( $self, $consolidacao ) = @_;
     my $etapa = 1;
@@ -481,5 +509,12 @@ txn_method 'preparar_consolidacao' => sub {
         }
     }
 };
+
+=head1 COPYRIGHT AND LICENSING
+
+Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
+sob a GPL versão 2.
+
+=cut
 
 1;

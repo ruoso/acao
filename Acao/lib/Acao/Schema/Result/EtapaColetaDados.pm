@@ -22,6 +22,18 @@ use warnings;
 
 use base 'DBIx::Class';
 
+=head1 NAME
+
+Acao::Schema::Result::EtapaColetaDados - Resultsource da tabela
+etapa_coleta_dados
+
+=head1 DESCRIPTION
+
+Esta entidade descreve os plugins que devem ser chamados na etapa de
+coleta de dados para uma determinada definicao de consolidação.
+
+=cut
+
 __PACKAGE__->load_components( "InflateColumn::DateTime", "Core" );
 __PACKAGE__->table("etapa_coleta_dados");
 __PACKAGE__->add_columns(
@@ -54,5 +66,12 @@ __PACKAGE__->belongs_to(
     "Acao::Schema::Result::DefinicaoConsolidacao",
     { id_definicao_consolidacao => "id_definicao_consolidacao" },
 );
+
+=head1 COPYRIGHT AND LICENSING
+
+Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
+sob a GPL versão 2.
+
+=cut
 
 1;

@@ -21,14 +21,42 @@ use strict;
 use warnings;
 use parent 'Catalyst::Controller';
 
+=head1 NAME
+
+Acao::Controller::Auth::Registros::Digitador::Leitura - Controlador
+que implementa as ações de digitação de uma leitura específica.
+
+=head1 ACTIONS
+
+=over
+
+=item base
+
+Carrega para o stash os dados da leitura.
+
+=cut
+
 sub base : Chained('/auth/registros/digitador/base') : PathPart('') :
   CaptureArgs(1) {
     my ( $self, $c, $id_leitura ) = @_;
     $c->stash->{leitura} = $c->model('Digitador')->obter_leitura($id_leitura);
 }
 
+=item form
+
+Delega à view a renderização do formulário dessa leitura para uma nova
+digitação.
+
+=cut
+
 sub form : Chained('base') : PathPart('') : Args(0) {
 }
+
+=item store
+
+Salva o xml como uma nova digitação.
+
+=cut
 
 sub store : Chained('base') : PathPart('store') : Args(0) {
     my ( $self, $c ) = @_;
@@ -52,11 +80,26 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
     $c->res->redirect( $c->uri_for('/auth/registros/digitador') );
 }
 
+=item xsd
+
+Retorna o XSD dessa leitura.
+
+=cut
+
 sub xsd : Chained('base') : PathPart('xsd') : Args(0) {
     my ( $self, $c ) = @_;
     $c->stash->{document} =
       $c->model('Digitador')->obter_xsd_leitura( $c->stash->{leitura} );
     $c->forward( $c->view('XML') );
 }
+
+=back
+
+=head1 COPYRIGHT AND LICENSING
+
+Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
+sob a GPL versão 2.
+
+=cut
 
 1;

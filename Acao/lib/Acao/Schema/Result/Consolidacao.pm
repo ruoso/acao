@@ -22,6 +22,19 @@ use warnings;
 
 use base 'DBIx::Class';
 
+=head1 NAME
+
+Acao::Schema::Result::Consolidacao - Resultsource da tabela
+consolidacao
+
+=head1 DESCRIPTION
+
+Esta entidade descreve a execução de uma consolidação. As
+consolidações acontecem em "background", sendo um processo
+potencialmente demorado.
+
+=cut
+
 __PACKAGE__->load_components( "InflateColumn::DateTime", "Core" );
 __PACKAGE__->table("consolidacao");
 __PACKAGE__->add_columns(
@@ -82,5 +95,12 @@ __PACKAGE__->has_many(
     "Acao::Schema::Result::Alertas",
     { "foreign.id_consolidacao" => "self.id_consolidacao" },
 );
+
+=head1 COPYRIGHT AND LICENSING
+
+Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
+sob a GPL versão 2.
+
+=cut
 
 1;

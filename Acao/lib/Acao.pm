@@ -17,6 +17,19 @@ package Acao;
 # título "LICENCA.txt", junto com este programa, se não, escreva para a
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
 
+=head1 NAME
+
+Acao - Módulo principal da aplicação
+
+=head1 DESCRIPTION
+
+Este é o módulo principal da aplicação Catalyst, declara os plugins a
+serem carregados e a versão da aplicação.
+
+=head1 METHODS
+
+=cut
+
 use strict;
 use warnings;
 
@@ -35,8 +48,19 @@ use Catalyst qw/-Debug
 our $VERSION = '0.01';
 __PACKAGE__->setup();
 
-# Implementa o tratamento de erros que possam acontecer até a chamada
-# do "end".
+=over
+
+=item finalize_error
+
+Implementa o tratamento de erros que possam acontecer mesmo na etapa
+final do processamento da requisição. O que inclui especificamente as
+exceções disparadas durante a renderização do template realizada na
+ação "end" do controlador "Root".
+
+=back
+
+=cut
+
 sub finalize_error {
     my ($c) = @_;
     if ( scalar @{ $c->error } ) {
@@ -50,4 +74,12 @@ sub finalize_error {
     }
 }
 
+=head1 COPYRIGHT AND LICENSING
+
+Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
+sob a GPL versão 2.
+
+=cut
+
 1;
+

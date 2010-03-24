@@ -21,13 +21,41 @@ use strict;
 use warnings;
 use parent 'Catalyst::Controller';
 
+=head1 NAME
+
+Acao::Controller::Public - Controlador raiz para as ações que não
+requerem autenticação.
+
+=head1 ACTIONS
+
+=over
+
+=item base
+
+Raiz da chain para ações públicas.
+
+=cut
+
 sub base : Chained('/') : PathPart('') : CaptureArgs(0) {
 }
+
+=item entrada
+
+Ação que implementa a página inicial. No entanto nesse momento só
+temos ações autenticadas, portanto ele faz redirect para aquela área.
+
+=cut
 
 sub entrada : Chained('base') : PathPart('') : Args(0) {
     my ( $self, $c ) = @_;
     $c->res->redirect( $c->uri_for('/auth') );
 }
+
+=item default
+
+Ação que implementa o tratamento de urls não acessadas.
+
+=cut
 
 sub default : Chained('base') : PathPart('') {
     my ( $self, $c ) = @_;
@@ -35,7 +63,22 @@ sub default : Chained('base') : PathPart('') {
     $c->res->code(404);
 }
 
+=item erro
+
+Ação para a renderização de erros genéricos.
+
+=cut
+
 sub erro : Chained('base') : PathPart {
 }
+
+=back
+
+=head1 COPYRIGHT AND LICENSING
+
+Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
+sob a GPL versão 2.
+
+=cut
 
 1;

@@ -22,6 +22,25 @@ use warnings;
 
 use base 'DBIx::Class::Schema';
 
+=head1 NAME
+
+Acao::Schema::Result::Schema - Resultsource da tabela schema
+
+=head1 DESCRIPTION
+
+Essa é a classe raiz do Schema do banco de dados relacional.
+
+=cut
+
 __PACKAGE__->load_namespaces;
+
+
+=head1 COPYRIGHT AND LICENSING
+
+Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
+sob a GPL versão 2.
+
+=cut
+
 
 1;

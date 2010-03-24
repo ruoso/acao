@@ -23,13 +23,48 @@ use parent 'Catalyst::Controller';
 
 __PACKAGE__->config->{namespace} = '';
 
+=head1 NAME
+
+Acao::Controller::Root - Controlador raiz da aplicação
+
+=head1 DESCRIPTION
+
+Realiza definições que se aplicam a todas as ações do sistema.
+
+=head1 ACTIONS
+
+=over
+
+=item begin
+
+Essa ação é definida para predefinir o breadcrumb como um array vazio
+no stash.
+
+=cut
+
 sub begin : Private {
     my ( $self, $c ) = @_;
     $c->stash->{breadcrumb} = [];
 }
 
+=item end
+
+Essa ação é definida com o ActionClass renderview, que irá chamar a
+default_view no caso de nenhuma ação ter produzido output.
+
+=cut
+
 sub end : ActionClass(RenderView) {
 
 }
+
+=back
+
+=head1 COPYRIGHT AND LICENSING
+
+Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
+sob a GPL versão 2.
+
+=cut
 
 1;

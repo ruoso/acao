@@ -20,6 +20,18 @@ package Acao::Schema::Result::EntradaConsolidacao;
 use strict;
 use warnings;
 
+=head1 NAME
+
+Acao::Schema::Result::EntradaConsolidacao - Resultsource da tabela
+entrada_consolidacao
+
+=head1 DESCRIPTION
+
+Esta entidade descreve as leituras que compõe uma determinada
+definição de consolidação.
+
+=cut
+
 use base 'DBIx::Class';
 
 __PACKAGE__->load_components( "InflateColumn::DateTime", "Core" );
@@ -59,5 +71,12 @@ __PACKAGE__->belongs_to(
     "Acao::Schema::Result::DefinicaoConsolidacao",
     { "foreign.id_definicao_consolidacao" => "self.id_definicao_consolidacao" },
 );
+
+=head1 COPYRIGHT AND LICENSING
+
+Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
+sob a GPL versão 2.
+
+=cut
 
 1;

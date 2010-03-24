@@ -22,6 +22,19 @@ use warnings;
 
 use base 'DBIx::Class';
 
+=head1 NAME
+
+Acao::Schema::Result::EtapaTransformacao - Resultsource da tabela
+etapa_transformacao
+
+=head1 DESCRIPTION
+
+Esta entidade descreve os plugins a serem executados para a
+transformação de dados em um processo de consolidacao.
+
+=cut
+
+
 __PACKAGE__->load_components( "InflateColumn::DateTime", "Core" );
 __PACKAGE__->table("etapa_transformacao");
 __PACKAGE__->add_columns(
@@ -54,5 +67,13 @@ __PACKAGE__->belongs_to(
     "Acao::Schema::Result::DefinicaoConsolidacao",
     { id_definicao_consolidacao => "id_definicao_consolidacao" },
 );
+
+=head1 COPYRIGHT AND LICENSING
+
+Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
+sob a GPL versão 2.
+
+=cut
+
 
 1;

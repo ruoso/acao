@@ -22,6 +22,19 @@ has 'user'  => ( is => 'rw' );
 has 'dbic'  => ( is => 'rw' );
 has 'sedna' => ( is => 'rw' );
 
+=head1 NAME
+
+Acao::Model - Superclasse para os modelos de regra de negócio.
+
+=head1 DESCRIPTION
+
+Essa classe define o comportamento de que ao acessar um modelo de
+negócios, será levado como informação para a classe modelo qual o
+usuário autenticado, além de levar uma referência para o dbic e para o
+sedna.
+
+=cut
+
 sub build_per_context_instance {
     my ( $self, $c ) = @_;
     $self->new(
@@ -30,5 +43,12 @@ sub build_per_context_instance {
         sedna => $c->model('Sedna')
     );
 }
+
+=head1 COPYRIGHT AND LICENSING
+
+Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
+sob a GPL versão 2.
+
+=cut
 
 1;

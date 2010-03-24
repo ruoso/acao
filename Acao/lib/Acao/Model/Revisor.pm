@@ -19,9 +19,29 @@ package Acao::Model::Revisor;
 use Moose;
 extends 'Acao::Model';
 use Acao::ModelUtil;
-
 use XML::LibXML;
 use XML::Compile::Schema;
+
+
+=head1 NAME
+
+Acao::Model::Revisor - Lógica de negócios para o papel de revisor
+
+=head1 DESCRIPTION
+
+Este é o controlador que implementa as regras de negócios específicas
+para o papel de revisor.
+
+=head1 METHODS
+
+=over
+
+=item listar_leituras()
+
+Este método retorna as leituras que o usuário atual tem acesso como
+revisor.
+
+=cut
 
 txn_method 'listar_leituras' => authorized 'revisor' => sub {
     my $self = shift;
@@ -34,6 +54,14 @@ txn_method 'listar_leituras' => authorized 'revisor' => sub {
         }
     );
 };
+
+=item obter_leitura($id_leitura)
+
+Este método retorna a objeto da entidade leitura, ao mesmo tempo que
+valida a permissão de acesso do usuário autenticado a essa leitura
+específica.
+
+=cut
 
 txn_method 'obter_leitura' => authorized 'revisor' => sub {
     my ( $self, $id_leitura ) = @_;
@@ -49,6 +77,15 @@ txn_method 'obter_leitura' => authorized 'revisor' => sub {
         }
     );
 };
+
+=item aprovar($leitura, $id_doc, $controle)
+
+Este método irá aprovar, dentro do grupo indicado por $controle, o
+documento de id $id_doc. Esta ação irá resultar na rejeição automática
+de todos os outros documentos desse grupo, de forma que nunca exista
+mais de um documento aprovado em um grupo.
+
+=cut
 
 txn_method 'aprovar' => authorized 'revisor' => sub {
     my ( $self, $leitura, $id_doc, $controle ) = @_;
@@ -93,6 +130,15 @@ txn_method 'aprovar' => authorized 'revisor' => sub {
 
 };
 
+=item rejeitar($leitura, $id_doc, $controle)
+
+Este método implementa o processo de rejeitar o documento $id_doc. Ao
+contrário do método aprovar, ele não irá alterar os outros documentos,
+uma vez que é possível que todos os documentos de um grupo sejam
+rejeitados.
+
+=cut
+
 txn_method 'rejeitar' => authorized 'revisor' => sub {
     my ( $self, $leitura, $id_doc, $controle ) = @_;
     $id_doc =~ s/\"\\//gs;
@@ -130,6 +176,14 @@ txn_method 'rejeitar' => authorized 'revisor' => sub {
     }
 };
 
+=item fecharDocumento($leitura, $controle)
+
+Este método irá fechar os documentos com o código $controle, de forma
+que não será mais possível inserir novas digitações ou alterar os
+estados de aprovação e rejeição.
+
+=cut
+
 txn_method 'fecharDocumento' => authorized 'revisor' => sub {
     my ( $self, $leitura, $controle ) = @_;
 
@@ -163,6 +217,12 @@ txn_method 'fecharDocumento' => authorized 'revisor' => sub {
 
 };
 
+=item obter_campo_controle($id_leitura, $id_doc)
+
+Retorna o valor do campo controle para um determinado documento.
+
+=cut
+
 txn_method 'obter_campo_controle' => authorized 'revisor' => sub {
     my ( $self, $leitura, $id_doc ) = @_;
     $id_doc =~ s/\"\\//gs;
@@ -178,6 +238,12 @@ txn_method 'obter_campo_controle' => authorized 'revisor' => sub {
     $xml = $self->sedna->get_item;
     return $xml;
 };
+
+=item visualizar($leitura, $id_doc)
+
+Retorna o conteúdo do documento com id $id_doc para visualização.
+
+=cut
 
 txn_method 'visualizar' => authorized 'revisor' => sub {
     my ( $self, $leitura, $id_doc ) = @_;
@@ -195,13 +261,22 @@ txn_method 'visualizar' => authorized 'revisor' => sub {
     return $xml;
 };
 
-txn_method 'diferencas' => authorized 'revisor' => sub {
-    my ( $self, $leitura, $controle ) = @_;
+=item obter_xsd_leitura($leitura)
 
-};
+Retorna o documento XSD para a leitura informada.
+
+=cut
 
 txn_method 'obter_xsd_leitura' => authorized 'revisor' => sub {
     my ( $self, $leitura ) = @_;
     return $self->sedna->get_document( $leitura->instrumento->xml_schema );
 };
 
+=head1 COPYRIGHT AND LICENSING
+
+Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
+sob a GPL versão 2.
+
+=cut
+
+1;

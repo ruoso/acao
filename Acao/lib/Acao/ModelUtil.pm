@@ -20,8 +20,37 @@ use strict;
 use warnings;
 use base 'Exporter';
 
+=head1 NAME
+
+Acao::ModelUtil - Implementa lógica auxiliar para as classes modelo
+
+=head1 DESCRIPTION
+
+Esta classe implementa rotinas auxiliares que são utilizadas pelas
+classes modelo, de forma a implementar lógicas de controle comuns a
+todas elas.
+
+=head1 ROUTINES
+
+As rotinas implementadas aqui são exportadas, de forma que podem ser
+utilizadas pelas classes de maneira conveniente.
+
+=cut
+
 use Data::Dumper;
 our @EXPORT = qw(txn_method authorized);
+
+=over
+
+=item txn_method $name, $code
+
+Esta rotina instala um símbolo $name no pacote apontando para a rotina
+$code, mas também encapsula esse método em uma chamada para o método
+txn_do do DBIx::Class::Schema, que irá colocar esse código dentro de
+um BEGIN e COMMIT, fazendo ROLLBACK no caso de exceção. Adicionalmente
+ele inicia e termina uma transação no Sedna.
+
+=cut
 
 sub txn_method {
     my ( $name, $code ) = @_;
@@ -45,6 +74,16 @@ sub txn_method {
     };
 }
 
+=item authorized $role, $code
+
+Esta função irá encapsular o $code em uma outra função que irá
+verificar se o usuário autenticado tem a $role informada, jogando uma
+exceção caso não tenha.
+
+=back
+
+=cut
+
 sub authorized {
     my ( $role, $code ) = @_;
     return sub {
@@ -57,4 +96,14 @@ sub authorized {
       }
 }
 
+=head1 COPYRIGHT AND LICENSING
+
+Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
+sob a GPL versão 2.
+
+=cut
+
+
 1;
+
+

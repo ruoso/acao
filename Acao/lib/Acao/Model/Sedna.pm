@@ -22,6 +22,25 @@ use utf8;
 
 use base 'Catalyst::Model::Sedna';
 
+=head1 NAME
+
+Acao::Model::Sedna - Subclasse de Catalyst::Model::Sedna
+
+=head1 DESCRIPTION
+
+Esta classe implementa algumas funcionalidades específicas no acesso
+ao Sedna.
+
+=head1 METHODS
+
+=over
+
+=item new($app, $attr)
+
+Especializado para definir o atributo AUTOCOMMIT para OFF.
+
+=cut
+
 sub new {
     my $self = shift;
     $self = $self->SUPER::new(@_);
@@ -30,6 +49,12 @@ sub new {
     return $self;
 }
 
+=item get_document($id)
+
+Retorna o conteúdo de um documento pelo seu $id.
+
+=cut
+
 sub get_document {
     my ( $self, $doc ) = @_;
     $self->execute( 'for $x in doc("' . $doc . '") return $x' );
@@ -37,10 +62,26 @@ sub get_document {
     return $data;
 }
 
+=item store_document($xml, $doc_id, $collection)
+
+Salva o documento $xml utilizando o id $doc_id na collection de nome
+$collection. Essa collection deve ser criada previamente.
+
+=cut
+
 sub store_document {
     my ( $self, $xml, $doc_id, $collection ) = @_;
     $self->conn->loadData( $xml, $doc_id, $collection );
     $self->conn->endLoadData();
 }
+
+=back
+
+=head1 COPYRIGHT AND LICENSING
+
+Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
+sob a GPL versão 2.
+
+=cut
 
 42;

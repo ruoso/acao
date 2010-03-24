@@ -22,6 +22,17 @@ use warnings;
 
 use base 'DBIx::Class';
 
+=head1 NAME
+
+Acao::Schema::Result::Digitador - Resultsource da tabela digitador
+
+=head1 DESCRIPTION
+
+Esta entidade descreve os usuários autorizados a entrar dados em uma
+determinada leitura.
+
+=cut
+
 __PACKAGE__->load_components( "InflateColumn::DateTime", "Core" );
 __PACKAGE__->table("digitador");
 __PACKAGE__->add_columns(
@@ -46,5 +57,12 @@ __PACKAGE__->belongs_to(
     "Acao::Schema::Result::Leitura",
     { id_leitura => "id_leitura" },
 );
+
+=head1 COPYRIGHT AND LICENSING
+
+Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
+sob a GPL versão 2.
+
+=cut
 
 1;

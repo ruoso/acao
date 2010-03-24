@@ -21,9 +21,31 @@ use strict;
 use warnings;
 use parent 'Catalyst::Controller';
 
+=head1 NAME
+
+Acao::Controller::Auth::Registros - Raiz da área de registros.
+
+=head1 ACTIONS
+
+=over
+
+=item base
+
+Ação raiz da área de registros.
+
+=cut
+
 sub base : Chained('/auth/base') : PathPart('registros') : CaptureArgs(0) {
     my ( $self, $c ) = @_;
 }
+
+=item principal
+
+Se o usuário tem acesso apenas à ação de digitador ou revisor,
+redireciona para a área específica. De outra forma delega à view uma
+lista das sub-áreas da área de registros.
+
+=cut
 
 sub principal : Chained('base') : PathPart('') : Args(0) {
     my ( $self, $c ) = @_;
@@ -40,5 +62,14 @@ sub principal : Chained('base') : PathPart('') : Args(0) {
         $c->res->redirect( $c->uri_for('/auth/registros/digitador') );
     }
 }
+
+=back
+
+=head1 COPYRIGHT AND LICENSING
+
+Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
+sob a GPL versão 2.
+
+=cut
 
 1;

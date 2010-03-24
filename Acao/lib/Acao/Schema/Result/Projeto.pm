@@ -22,6 +22,18 @@ use warnings;
 
 use base 'DBIx::Class';
 
+=head1 NAME
+
+Acao::Schema::Result::Projeto - Resultsource da tabela projeto
+
+=head1 DESCRIPTION
+
+Esta entidade descreve os projetos cadastrados. Neste momento é só uma
+tabela de referência uma vez que não temos a implementação da parte
+transacional do sistema.
+
+=cut
+
 __PACKAGE__->load_components( "InflateColumn::DateTime", "Core" );
 __PACKAGE__->table("projeto");
 __PACKAGE__->add_columns(
@@ -51,5 +63,12 @@ __PACKAGE__->has_many(
     "Acao::Schema::Result::DefinicaoConsolidacao",
     { "foreign.id_projeto" => "self.id_projeto" },
 );
+
+=head1 COPYRIGHT AND LICENSING
+
+Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
+sob a GPL versão 2.
+
+=cut
 
 1;

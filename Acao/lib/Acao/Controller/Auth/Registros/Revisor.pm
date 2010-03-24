@@ -21,14 +21,44 @@ use strict;
 use warnings;
 use parent 'Catalyst::Controller';
 
+=head1 NAME
+
+Acao::Controller::Auth::Registros::Revisor - Controlador raiz para as
+ações do revisor.
+
+=head1 ACTIONS
+
+=over
+
+=item base
+
+Ação raiz para a chain de revisor.
+
+=cut
 
 sub base : Chained('/auth/registros/base') : PathPart('revisor') :
   CaptureArgs(0) {
     my ( $self, $c ) = @_;
 }
 
+=item lista
+
+Apresenta a lista das leituras que esse revisor tem acesso - a ação do
+controlador apenas delega isso para a view.
+
+=cut
+
 sub lista : Chained('base') : PathPart('') : Args(0) {
     my ( $self, $c ) = @_;
 }
+
+=back
+
+=head1 COPYRIGHT AND LICENSING
+
+Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
+sob a GPL versão 2.
+
+=cut
 
 1;

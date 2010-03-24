@@ -21,6 +21,22 @@ use strict;
 use warnings;
 use parent 'Catalyst::Controller';
 
+=head1 NAME
+
+Acao::Controller::Auth::Registros::Consolidador::DefinicaoConsolidacao
+- implementa as ações relativas a uma definição de consolidação específica.
+
+=head1 ACTIONS
+
+=over
+
+=item base
+
+Ação raiz para as ações de uma definição de consolidação
+específica. Adiciona no stash as informações específicas desse contexto.
+
+=cut
+
 sub base : Chained('/auth/registros/consolidador/base') : PathPart('') :
   CaptureArgs(1) {
     my ( $self, $c, $id_definicao_consolidacao ) = @_;
@@ -30,6 +46,13 @@ sub base : Chained('/auth/registros/consolidador/base') : PathPart('') :
       ->obter_definicao_consolidacao($id_definicao_consolidacao)
       or $c->detach('/default');
 }
+
+=item inciar
+
+Ação que inicia uma nova consolidação, fazendo o redirect para os
+dados específicos da consolidação iniciada.
+
+=cut
 
 sub iniciar : Chained('base') : PathPart('iniciar') : Args(0) {
     my ( $self, $c ) = @_;
@@ -60,7 +83,25 @@ sub iniciar : Chained('base') : PathPart('iniciar') : Args(0) {
     }
 }
 
+=item lista
+
+Delega à view a renderização das definições de consolidação que esse
+usuário tem acesso.
+
+=cut
+
 sub lista : Chained('base') : PathPart('') : Args(0) {
 }
+
+
+=back
+
+=head1 COPYRIGHT AND LICENSING
+
+Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
+sob a GPL versão 2.
+
+=cut
+
 
 1;

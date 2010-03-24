@@ -21,15 +21,42 @@ use strict;
 use warnings;
 use parent 'Catalyst::Controller';
 
+=head1 NAME
+
+Acao::Controller::Auth::Registros::Revisor::Leitura - Implementa as
+ações de um revisor específicas a uma leitura.
+
+=head1 ACTIONS
+
+=over
+
+=item base
+
+Carrega para o stash os dados da leitura solicitada.
+
+=cut
+
 sub base : Chained('/auth/registros/revisor/base') : PathPart('') :
   CaptureArgs(1) {
     my ( $self, $c, $id_leitura ) = @_;
     $c->stash->{leitura} = $c->model('Revisor')->obter_leitura($id_leitura);
 }
 
+=item lista
+
+Delega para a view a exibição da lista dos documentos dessa leitura.
+
+=cut
+
 sub lista : Chained('base') : PathPart('') : Args(0) {
 
 }
+
+=item aprovar
+
+Faz a aprovação de um documento específico.
+
+=cut
 
 sub aprovar : Chained('base') : PathPart : Args(2) {
     my ( $self, $c, $id_doc, $controle ) = @_;
@@ -49,6 +76,12 @@ sub aprovar : Chained('base') : PathPart : Args(2) {
         )
     );
 }
+
+=item rejeitar
+
+Faz a rejeição de um documento específico.
+
+=cut
 
 sub rejeitar : Chained('base') : PathPart : Args(2) {
     my ( $self, $c, $id_doc, $controle ) = @_;
@@ -70,6 +103,12 @@ sub rejeitar : Chained('base') : PathPart : Args(2) {
     );
 }
 
+=item fecharDocumento
+
+Fecha um grupo de controle na digitação.
+
+=cut
+
 sub fecharDocumento : Chained('base') : PathPart : Args(1) {
     my ( $self, $c, $controle ) = @_;
     eval {
@@ -89,6 +128,12 @@ sub fecharDocumento : Chained('base') : PathPart : Args(1) {
     );
 }
 
+=item visualizar_base
+
+Define o contexto de um documento específico.
+
+=cut
+
 sub visualizar_base : Chained('base') : PathPart('visualizar') : CaptureArgs(1)
 {
     my ( $self, $c, $id_doc ) = @_;
@@ -98,9 +143,22 @@ sub visualizar_base : Chained('base') : PathPart('visualizar') : CaptureArgs(1)
         ->obter_campo_controle( $c->stash->{leitura}, $id_doc );
 }
 
+=item visualizar
+
+Delega à view a chamada do formulário para a visualização e possível redigitação.
+
+=cut
+
 sub visualizar : Chained('visualizar_base') : PathPart('') : Args(0) {
     my ( $self, $c ) = @_;
 }
+
+=item store
+
+Salva o xml como uma nova digitação, a partir da visualização de um
+documento previamente digitado.
+
+=cut
 
 sub store : Chained('visualizar_base') : PathPart : Args(0) {
     my ( $self, $c ) = @_;
@@ -129,6 +187,12 @@ sub store : Chained('visualizar_base') : PathPart : Args(0) {
     );
 }
 
+=item xml
+
+Delega à view XML a exibição do documento específico.
+
+=cut
+
 sub xml : Chained('visualizar_base') : PathPart : Args(0) {
     my ( $self, $c ) = @_;
     $c->stash->{document} =
@@ -137,10 +201,11 @@ sub xml : Chained('visualizar_base') : PathPart : Args(0) {
     $c->forward( $c->view('XML') );
 }
 
-sub diff : Chained('base') : PathPart : Args(1) {
-    my ( $self, $c, $controle ) = @_;
+=item xsd
 
-}
+Retorna o XSD da leitura.
+
+=cut
 
 sub xsd : Chained('base') : PathPart('xsd') : Args(0) {
     my ( $self, $c ) = @_;
@@ -148,5 +213,14 @@ sub xsd : Chained('base') : PathPart('xsd') : Args(0) {
       $c->model('Revisor')->obter_xsd_leitura( $c->stash->{leitura} );
     $c->forward( $c->view('XML') );
 }
+
+=back
+
+=head1 COPYRIGHT AND LICENSING
+
+Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
+sob a GPL versão 2.
+
+=cut
 
 1;

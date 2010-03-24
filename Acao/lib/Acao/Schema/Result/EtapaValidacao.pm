@@ -22,6 +22,18 @@ use warnings;
 
 use base 'DBIx::Class';
 
+=head1 NAME
+
+Acao::Schema::Result::EtapaValidacao - Resultsource da tabela
+etapa_validacao
+
+=head1 DESCRIPTION
+
+Esta entidade descreve os plugis a serem utilizados durante o processo
+de consolidação para a validação dos dados.
+
+=cut
+
 __PACKAGE__->load_components( "InflateColumn::DateTime", "Core" );
 __PACKAGE__->table("etapa_validacao");
 __PACKAGE__->add_columns(
@@ -53,5 +65,12 @@ __PACKAGE__->belongs_to(
     "Acao::Schema::Result::DefinicaoConsolidacao",
     { id_definicao_consolidacao => "id_definicao_consolidacao" },
 );
+
+=head1 COPYRIGHT AND LICENSING
+
+Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
+sob a GPL versão 2.
+
+=cut
 
 1;

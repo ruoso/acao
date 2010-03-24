@@ -19,7 +19,6 @@ package Acao::Model::Digitador;
 use Moose;
 extends 'Acao::Model';
 use Acao::ModelUtil;
-
 use XML::LibXML;
 use XML::Compile::Schema;
 use XML::Compile::Util;
@@ -35,6 +34,25 @@ my $controle_w = $controle->compile(
     use_default_namespace => 1
 );
 
+=head1 NAME
+
+Acao::Model::Digitador - Implementa as regras de negócio do papel digitador
+
+=head1 DESCRIPTION
+
+Essa classe implementa as regras de negócio específicas para o papel
+de digitador.
+
+=head1 METHODS
+
+=over
+
+=item listar_leituras()
+
+Retorna as leituras as quais o usuário autenticado tem acesso.
+
+=cut
+
 txn_method 'listar_leituras' => authorized 'digitador' => sub {
     my $self = shift;
 
@@ -47,6 +65,13 @@ txn_method 'listar_leituras' => authorized 'digitador' => sub {
         }
     );
 };
+
+=item obter_leitura($id_leitura)
+
+Obtem o objeto leitura já verificando se o usuário deve ter acesso a
+ele ou não.
+
+=cut
 
 txn_method 'obter_leitura' => authorized 'digitador' => sub {
     my ( $self, $id_leitura ) = @_;
@@ -63,10 +88,25 @@ txn_method 'obter_leitura' => authorized 'digitador' => sub {
     );
 };
 
+=item obter_xsd_leitura($leitura)
+
+Retorna o docuemnto XSD para essa leitura.
+
+=cut
+
 txn_method 'obter_xsd_leitura' => authorized 'digitador' => sub {
     my ( $self, $leitura ) = @_;
     return $self->sedna->get_document( $leitura->instrumento->xml_schema );
 };
+
+=item salvar_digitacao($leitura, $xml, $controle, $ip)
+
+Salva o documento $xml como uma digitação dessa $leitura. O código de
+$controle também é necessário e o $ip é guardado para fins de
+auditoria. Se o grupo de controle estiver fechado não será possível
+registrar a digitação.
+
+=cut
 
 txn_method 'salvar_digitacao' => authorized 'digitador' => sub {
     my ( $self, $leitura, $xml, $controle, $ip ) = @_;
@@ -149,5 +189,12 @@ txn_method 'salvar_digitacao' => authorized 'digitador' => sub {
         'leitura-' . $leitura->id_leitura );
     $self->sedna->conn->endLoadData();
 };
+
+=head1 COPYRIGHT AND LICENSING
+
+Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
+sob a GPL versão 2.
+
+=cut
 
 42;

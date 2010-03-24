@@ -21,13 +21,44 @@ use strict;
 use warnings;
 use parent 'Catalyst::Controller';
 
+=head1 NAME
+
+Acao::Controller::Auth::Registros::Digitador - Raiz das ações de
+digitador.
+
+=head1 ACTIONS
+
+=over
+
+=item base
+
+Ação raiz para as ações de digitador.
+
+=cut
+
 sub base : Chained('/auth/registros/base') : PathPart('digitador') :
   CaptureArgs(0) {
     my ( $self, $c ) = @_;
 }
 
+=item lista
+
+Delega à view a renderização da lista de leituras que esse digitador
+tem acesso.
+
+=cut
+
 sub lista : Chained('base') : PathPart('') : Args(0) {
     my ( $self, $c ) = @_;
 }
+
+=back
+
+=head1 COPYRIGHT AND LICENSING
+
+Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
+sob a GPL versão 2.
+
+=cut
 
 1;
