@@ -1,3 +1,28 @@
- [% FOREACH alerta IN consolidacao.alertas({ 'id_alerta' => { '>' => id_alerta }},{ order_by => 'id_alerta'}) %]
-   [% INCLUDE 'auth/registros/consolidador/definicaoconsolidacao/consolidacao/fragmento.tt' %]
- [% END %]
+[% TRY -%]
+[% SET all_levels = 
+  { 'FATAL' => 'Erros definitivos',
+    'TRACE' => 'Detalhamento da execução',
+    'ERROR' => 'Erros de execução', 
+    'DEBUG' => 'Informação do processamento',
+    'WARNING' => 'Alertas '
+} -%]
+[% SET levels = [] -%]
+[% FOREACH level IN all_levels.keys -%]
+[% IF c.req.param(level) -%]
+[% CALL levels.push(level) -%]
+[% END -%]
+[% END -%]
+[% IF levels.size == 0 -%]
+[% SET levels = all_levels.keys -%]
+[% FOREACH level IN all_levels.keys -%]
+[% CALL c.req.param(level,'on') -%]
+[% END -%]
+[% END -%]
+[% FOREACH alerta IN consolidacao.alertas({ 'id_alerta' => { '>' => id_alerta },
+                                             log_level => { 'IN' => levels }}, 
+                                           { order_by => 'id_alerta'}) -%]
+[% INCLUDE 'auth/registros/consolidador/definicaoconsolidacao/consolidacao/fragmento.tt' -%]
+[% END -%]
+[% CATCH -%]
+<TR><TD></TD><TD><B>ERRO OBTENDO ALERTAS</B></TD></TR>
+[% END -%]

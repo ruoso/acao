@@ -8,7 +8,6 @@
 [% IF !pagina_atual %]
   [% SET pagina_atual = 1 %]
 [% END %]
-[% SET args = { } %]
 
 <!--Bloco responsavel pelo request das variaveis de filtro-->
 [% SET all_levels = 
@@ -27,13 +26,16 @@
   [% END %]
 [% END %]
 
-<!--Marca os campos com so nomes dos levels com checked-->
+<!--Marca os campos com os nomes dos levels com checked-->
 [% IF levels.size == 0 %]
  [% SET levels = all_levels.keys %]
  [% FOREACH level IN all_levels.keys %]
    [% CALL c.req.param(level,'on') %]
  [% END %]
 [% END %]
+
+[% SET args = { } %]
+[% CALL args.import(c.req.params) %]
 
 <form id="form" method="post" action="[%c.uri_for_action('/auth/registros/consolidador/definicaoconsolidacao/consolidacao/lista')%]">
 <DL>
@@ -45,17 +47,11 @@
     </dd>
  [% END %]
 </DL>
- [% SET numpag = definicao_consolidacao.consolidacao_rs.count / linhas_por_pagina %]
  <input type="submit" name="submit" value="Filtrar" />
 </tbody>
 </table>
 </form>
 
-[%# 
-FOREACH level IN consolidacao.alertas({},{ select => { distinct => 'log_level' }, as => 'level'})
-level.get_column('level')
-END
-%]
 
 <table>
  <caption>Alertas dessa Consolidação</caption>
@@ -69,30 +65,31 @@ END
  </tr>
 </thead>
 <tbody id="alertas_tbody">
- [% SET numpag = definicao_consolidacao.consolidacao_rs.count / linhas_por_pagina %]
-
- [% FOREACH alerta IN consolidacao.alertas({ log_level => { 'IN' => levels }},
+ [% SET alertas_rs = consolidacao.alertas_rs({ log_level => { 'IN' => levels }},
         {page => pagina_atual, rows => linhas_por_pagina, order_by => 'id_alerta' }) %]
+ [% SET numpag = int( alertas_rs.count() / linhas_por_pagina ) %]
+ [% FOREACH alerta IN alertas_rs.all() %]
    [% INCLUDE 'auth/registros/consolidador/definicaoconsolidacao/consolidacao/fragmento.tt' %]
  [% END %]
 </tbody>
 </table>
 
 [% IF pagina_atual > 1 %]
-    [% args.import(c.req.params({ pagina_atual => pagina_atual - 1 })) %]
+    [% args.import({ pagina_atual => pagina_atual - 1 }) %]
     <a href="[% c.uri_for_action('/auth/registros/consolidador/definicaoconsolidacao/consolidacao/lista', [ id_definicao_consolidacao, consolidacao.id_consolidacao ], args) %]"> Anterior </a>
 [% END %]
 
 &nbsp
 
 [% IF pagina_atual <= numpag %]
-    [% args.import(c.req.params({ pagina_atual => pagina_atual + 1 })) %]
+    [% args.import({ pagina_atual => pagina_atual + 1 }) %]
     <a href="[% c.uri_for_action('/auth/registros/consolidador/definicaoconsolidacao/consolidacao/lista', [ id_definicao_consolidacao, consolidacao.id_consolidacao ], args) %]"> Pr&oacute;ximo </a>
 [% END %]
 
 [% IF consolidacao.status != 'Finalizada' %]
-<SCRIPT>
- function definir_timeout() {
+<SCRIPT language="javascript">
+var url_template = "[% c.uri_for_action('/auth/registros/consolidador/definicaoconsolidacao/consolidacao/fragmentos_alertas', [ id_definicao_consolidacao, consolidacao.id_consolidacao], '__aid__', c.req.params) %]";
+function definir_timeout() {
      var ultimo_alerta = $('#alertas_tbody tr:last-child');
      var aid = 0;
      //em busca do ID da ultima <tr>
@@ -109,15 +106,13 @@ END
             return;
         }
      }
-     window.setTimeout(
-        function() {
-           $.get("[% c.uri_for_action('/auth/registros/consolidador/definicaoconsolidacao/consolidacao/fragmentos_alertas', [ id_definicao_consolidacao, consolidacao.id_consolidacao], '', {}) %]" + aid,
-           function(data) {
+     window.setTimeout(function() {
+           var myurl = url_template.replace('__aid__',aid);
+           $.get(myurl, function(data) {
               $('#alertas_tbody').append(data);
               definir_timeout();
            });
-        }, 
-        3000);
+        }, 3000);
  }
  definir_timeout();
 </SCRIPT>
