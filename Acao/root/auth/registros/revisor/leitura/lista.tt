@@ -168,8 +168,6 @@ subsequence(
  [% item %]
  [% END %]
  [% c.model('Sedna').commit %]
-
-[% item.length %]
 [% CATCH %]
  [% c.model('Sedna').rollback %]
 [% END %]

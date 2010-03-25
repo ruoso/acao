@@ -34,8 +34,8 @@
 </thead>
 <TBODY>
  
-  <!--O foreach abaixo vai buscar diretamente no model por estar livre de contexto 
-     (nao recebe argumento pela url)-->
+  [% # O foreach abaixo vai buscar diretamente no model por estar livre de contexto %] 
+  [% # (nao recebe argumento pela url) %]
 
  [% FOREACH leitura IN c.model('Digitador').listar_leituras.all %]
  <tr>
