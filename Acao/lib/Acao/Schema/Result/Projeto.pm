@@ -1,9 +1,38 @@
 package Acao::Schema::Result::Projeto;
+# Copyright 2010 - Prefeitura Municipal de Fortaleza
+#
+# Este arquivo é parte do programa Ação - Sistema de Acompanhamento de
+# Projetos Sociais
+#
+# O Ação é um software livre; você pode redistribui-lo e/ou modifica-lo
+# dentro dos termos da Licença Pública Geral GNU como publicada pela
+# Fundação do Software Livre (FSF); na versão 2 da Licença.
+#
+# Este programa é distribuido na esperança que possa ser util, mas SEM
+# NENHUMA GARANTIA; sem uma garantia implicita de ADEQUAÇÂO a qualquer
+# MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a Licença Pública Geral GNU
+# para maiores detalhes.
+#
+# Você deve ter recebido uma cópia da Licença Pública Geral GNU, sob o
+# título "LICENCA.txt", junto com este programa, se não, escreva para a
+# Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
 
 use strict;
 use warnings;
 
 use base 'DBIx::Class';
+
+=head1 NAME
+
+Acao::Schema::Result::Projeto - Resultsource da tabela projeto
+
+=head1 DESCRIPTION
+
+Esta entidade descreve os projetos cadastrados. Neste momento é só uma
+tabela de referência uma vez que não temos a implementação da parte
+transacional do sistema.
+
+=cut
 
 __PACKAGE__->load_components( "InflateColumn::DateTime", "Core" );
 __PACKAGE__->table("projeto");
@@ -35,8 +64,11 @@ __PACKAGE__->has_many(
     { "foreign.id_projeto" => "self.id_projeto" },
 );
 
-# Created by DBIx::Class::Schema::Loader v0.04006 @ 2010-01-19 17:15:55
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:1FsIJYOczJWUu8QfQqGghQ
+=head1 COPYRIGHT AND LICENSING
 
-# You can replace this text with custom content, and it will be preserved on regeneration
+Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
+sob a GPL versão 2.
+
+=cut
+
 1;
