@@ -1,0 +1,56 @@
+[%#
+# Copyright 2010 - Prefeitura Municipal de Fortaleza
+#
+# Este arquivo é parte do programa Ação - Sistema de Acompanhamento de
+# Projetos Sociais
+#
+# O Ação é um software livre; você pode redistribui-lo e/ou modifica-lo
+# dentro dos termos da Licença Pública Geral GNU como publicada pela
+# Fundação do Software Livre (FSF); na versão 2 da Licença.
+#
+# Este programa é distribuido na esperança que possa ser util, mas SEM
+# NENHUMA GARANTIA; sem uma garantia implicita de ADEQUAÇÂO a qualquer
+# MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a Licença Pública Geral GNU
+# para maiores detalhes.
+#
+# Você deve ter recebido uma cópia da Licença Pública Geral GNU, sob o
+# título "LICENCA.txt", junto com este programa, se não, escreva para a
+# Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
+%]
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+    <head>
+        <meta http-equiv="Content-Type" content="text/xhtml; charset=UTF-8" />
+        <title>Ação - Sistema de Acompanhamentos de Projetos Sociais</title>
+        <link href='[% c.uri_for('/static/css/ui-lightness/jquery-ui-1.7.2.custom.css') %]' rel='stylesheet' type='text/css' />
+        <link href='[% c.uri_for('/static/css/estilo.css') %]' rel='stylesheet' type='text/css' />
+      	<script language='javascript' src='[% c.uri_for('/static/js/plugins/jquery.js') %]'></script>
+      	<script language='javascript' src='[% c.uri_for('/static/js/plugins/jquery-1.3.2.min.js') %]'></script>
+      	<script language='javascript' src='[% c.uri_for('/static/js/funcoes.js') %]'></script>
+    </head>
+
+    <body>
+        <div id='topo'>
+            <img src="[% c.uri_for('/static/img/logoBrasaoPMF.png') %]">
+            <div id='topoTitulo'>
+                Ação - Sistema de Acompanhamento de Projetos Sociais
+                <table>
+                    <tr>
+                        <th>Operador:</th>
+                        <td>[% c.user.name %]</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div id='barraTopo'>
+            <ul>
+                <li style="float: right"><a href="[% c.uri_for('/auth/logout') %]" title="Sair">Sair</a></li>
+            </ul>
+        </div>
+        <div id='barraTopoCaminho'>
+        	<a href="[%c.uri_for('/')%]" title='Início'>Início</a> »
+[% FOREACH item IN breadcrumb %]
+        	<a href="[% item.url %]" title='[% item.title %]'>[% item.text %]</a> »
+[% END %]
+        </div>
+        <div id="conteudo">

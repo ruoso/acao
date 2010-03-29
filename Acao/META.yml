@@ -1,0 +1,34 @@
+---
+abstract: 'Módulo principal da aplicação'
+author:
+  - '- Prefeitura de Fortaleza. Este software é licenciado'
+build_requires:
+  ExtUtils::MakeMaker: 6.42
+configure_requires:
+  ExtUtils::MakeMaker: 6.42
+distribution_type: module
+generated_by: 'Module::Install version 0.91'
+license: gpl
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: Acao
+no_index:
+  directory:
+    - inc
+    - t
+requires:
+  Catalyst::Action::RenderView: 0
+  Catalyst::Plugin::Authentication: 0
+  Catalyst::Plugin::ConfigLoader: 0
+  Catalyst::Plugin::Session: 0
+  Catalyst::Plugin::Session::State::Cookie: 0
+  Catalyst::Plugin::Session::Store::FastMmap: 0
+  Catalyst::Plugin::StackTrace: 0
+  Catalyst::Plugin::Static::Simple: 0
+  Catalyst::Runtime: 5.80007
+  Config::General: 0
+  parent: 0
+resources:
+  license: http://opensource.org/licenses/gpl-license.php
+version: 0.01
