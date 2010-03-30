@@ -160,7 +160,7 @@ subsequence(
 </thead>
 <tbody>
 
-[% TRY %]
+[%# TRY %]
  [% c.model('Sedna').begin %]
  [% c.model('Sedna').execute( xquery )%]
 
@@ -168,9 +168,9 @@ subsequence(
  [% item %]
  [% END %]
  [% c.model('Sedna').commit %]
-[% CATCH %]
- [% c.model('Sedna').rollback %]
-[% END %]
+[%# CATCH %]
+ [%# c.model('Sedna').rollback %]
+[%# END %]
 </tbody>
 </table>
 

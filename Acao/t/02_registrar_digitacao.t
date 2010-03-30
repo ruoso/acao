@@ -16,10 +16,12 @@ my $sess_cicl = $res->header('Set-Cookie');
 $res = request GET('/auth/registros/digitador/', Cookie => $sess_cicl);
 is( $res->code, 200, 'É listada a tela de cadastros.' );
 like( $res->content, qr(href="http://localhost/auth/registros/digitador/1"),
-                    'Confirma endereço do cadastro');
+                    'A tela mostra link para os documentos pertinentes ao Instrumento.');
 
 $res = request GET('/auth/registros/digitador/1', Cookie => $sess_cicl);
-is( $res->code, 200, 'É mostrada a tela de cadastros.' );
+is( $res->code, 200, 'Apresenta a tela de cadastros.' );
+
+done_testing();
 
 
 

@@ -36,10 +36,11 @@ Carrega para o stash os dados da leitura solicitada.
 
 =cut
 
-sub base : Chained('/auth/registros/revisor/base') : PathPart('') :
-  CaptureArgs(1) {
+sub base :Chained('/auth/registros/revisor/base') :PathPart('') :CaptureArgs(1) {
     my ( $self, $c, $id_leitura ) = @_;
-    $c->stash->{leitura} = $c->model('Revisor')->obter_leitura($id_leitura);
+    $c->stash->{leitura} =
+      $c->model('Revisor')->obter_leitura($id_leitura)
+      or $c->detach('/public/default');
 }
 
 =item lista

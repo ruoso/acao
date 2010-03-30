@@ -45,7 +45,7 @@ sub base : Chained('/auth/registros/consolidador/base') : PathPart('') :
     $c->stash->{definicao_consolidacao} =
       $c->model("Consolidador")
       ->obter_definicao_consolidacao($id_definicao_consolidacao)
-      or $c->detach('/default');
+      or $c->detach('/public/default');
 }
 
 =item inciar

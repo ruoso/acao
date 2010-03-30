@@ -41,7 +41,7 @@ sub base : Chained('/auth/registros/consolidador/definicaoconsolidacao/base') :
     my ( $self, $c, $id_consolidacao ) = @_;
     $c->stash->{consolidacao} =
       $c->stash->{definicao_consolidacao}->consolidacao->find({ id_consolidacao => $id_consolidacao })
-        or $c->detach('/default');
+        or $c->detach('/public/default');
 }
 
 =item lista
