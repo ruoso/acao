@@ -13,10 +13,10 @@ ok( $res->header('Set-Cookie'), 'A autenticação definiu o Cookie.');
 my $cookie_revisor = $res->header('Set-Cookie');
 
 $res = request GET('/auth/registros/revisor', Cookie => $cookie_revisor);
-is( $res->code, 200, 'Redirecionando para pagina inicial do perfil revisor com a listagem dos instrumentos.');
-like( $res->content, qr(href="http://localhost/auth/registros/revisor"), 'A tela mostra link para os documentos pertinentes ao Instrumento.' );
+is( $res->code, 200, 'Redirecionando para pagina inicial do perfil revisor com a listagem dos instrumentos permitidas para akele revisor.');
+like( $res->content, qr(href="http://localhost/auth/registros/revisor"), 'A tela mostrou link para a listagem dos documentos pertinentes ao Instrumento selecionado.' );
 
 $res = request GET('/auth/registros/revisor/1', Cookie => $cookie_revisor);
-is( $res->code, 200, 'Redireciona para a pagina de listagem dos documentos pertinentes ao Instrumento');
+is( $res->code, 200, 'Redirecionou para a pagina de listagem dos documentos pertinentes ao Instrumento');
 
 done_testing();
