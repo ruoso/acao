@@ -62,9 +62,21 @@
 
 10 - Instalando o LibXML no Linux
     10.1 Para baixar e instalar o LibXML digite no console: sudo apt-get install libxml2-dev
-    10.2 Abra co console do CPAN dogitando no console do Linux: cpan
+    10.2 Abra com o console do CPAN dogitando no console do Linux: cpan
     10.3 Para instalar o libXML digite no terminal do CPAN: install XML::LibXML
     10.3 Para instalar o XMLCompile digite no terminal do CPAN: install XML::Compile
+
+11- Instalando o SVN
+    11.1 Para baixar o svn digite no console: sudo apt-get install subversion
+
+12 - Fazer checkout do SVN
+    12.1 Envie a chave publica do ssh para o email: daniel@ruoso.com
+    12.2 Após a aprovação efetue o comando no console: svn checkout svn +ssh://svnadm@172.30.116.2/srv/svn/"NOME DO PROJETO"
+
+13 - Outros comando do SVN
+    13.1 svn add    (adicionar um arquivo no subversion)
+    13.1 svn commit (subir os arquivos locais para o subversion )
+    13.1 svn update (atualizar os arquivos locais a partir do subversion)
 
 ===============================================================================================================
 =============================================Iniciando a Aplicação=============================================
