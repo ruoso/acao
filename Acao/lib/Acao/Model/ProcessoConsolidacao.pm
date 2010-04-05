@@ -274,7 +274,7 @@ sub iniciar_consolidacao {
                     sedna_writer => $sedna_writer,
                 }
             );
-            warn "Adicionando $obj na lista de plugins";
+           # warn "Adicionando $obj na lista de plugins";
             push @objetos_plugins_transformacao, $obj;
         };
         if ($@) {
@@ -309,7 +309,7 @@ sub iniciar_consolidacao {
         my ( $registroConsolidacao, $conteudo, $doc );
             
         eval {
-             $doc = $self->sedna->get_item ;
+            my $doc = $self->sedna->get_item ;
              $doc =~ s/^\s+//s;
         };
         last if $@;
@@ -388,7 +388,7 @@ sub iniciar_consolidacao {
 
         # executa o processo de transformacao em todos os plugins para esse documento
         foreach my $obj (@objetos_plugins_transformacao) {
-            warn "Vai processar $obj";
+           # warn "Vai processar $obj";
             eval {
                 $obj->processar( $consolidacao, $registroConsolidacao,
                     $conteudo );

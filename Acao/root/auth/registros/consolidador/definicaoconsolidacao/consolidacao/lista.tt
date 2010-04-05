@@ -87,6 +87,7 @@
  [% SET alertas_rs = consolidacao.alertas_rs({ log_level => { 'IN' => levels }},
         {page => pagina_atual, rows => linhas_por_pagina, order_by => 'id_alerta' }) %]
  [% SET numpag = int( alertas_rs.count() / linhas_por_pagina ) %]
+ [% IF !numpag %][% SET numpag = 1 %][% END %]
  [% FOREACH alerta IN alertas_rs.all() %]
    [% INCLUDE 'auth/registros/consolidador/definicaoconsolidacao/consolidacao/fragmento.tt' %]
  [% END %]

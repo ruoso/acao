@@ -14,13 +14,35 @@ my $cookie_consolidador =  $res->header('Set-Cookie');
 
 $res = request GET('/auth/registros/consolidador', Cookie => $cookie_consolidador);
 is( $res->code, 200, 'Redirecionando para pagina inicial do perfil consolidador com a listagem das definicoes de consolidacção permitidas para aquele consolidador' );
-like( $res->content, qr(href="http://localhost/auth/registros/consolidador/1"), 'Mostrou o link para as consolidações pertinetes a definicao consolidacao' );
+like( $res->content, qr(href="http://localhost/auth/registros/consolidador/1"), 'Mostrou o link para as consolidações pertinentes a definicao consolidacao' );
 
 $res = request GET('/auth/registros/consolidador/1', Cookie => $cookie_consolidador);
-is( $res->code, 200, 'Redirecionando para pagina de listagem das consolidacoes pertinetes a definicao consolidacao selecionada' );
+is( $res->code, 200, 'Redirecionando para pagina de listagem das consolidacoes pertinentes a definicao consolidacao selecionada' );
 like( $res->content, qr(href="http://localhost/auth/registros/consolidador/1/iniciar"),'Mostrou o link para iniciar uma nova consolidação' );
 
-$res = request GET('/auth/registros/consolidador/1/1', Cookie => $cookie_consolidador);
-is( $res->code, 200, 'Redirecionando para pagina de listagem dos alertas pertinetes a consolidacao' );
+$res = request GET('/auth/registros/consolidador/1/iniciar', Cookie => $cookie_consolidador);
+is( $res->code, 302, 'Redirecionando para pagina de listagem dos alertas pertinentes a consolidacao selecionada' );
+
+(my $endereco = $res->header('Location')) =~ s{^http://localhost/}{};
+
+$res = request GET($endereco , Cookie => $cookie_consolidador);
+is( $res->code, 200, 'listando as consolidacoes pertinentes a consolidacao selecionada' );
+like( $res->content, qr(url_template), 'Encontrado código javascript que atualizará a listagem dos alertas' );
+
+my $encontrado = 1;
+my $ponto = '.';
+
+while ($encontrado){
+    $res = request GET($endereco . "/fragmentos_alertas/0" , Cookie => $cookie_consolidador);
+    is( $res->code, 200, 'Encontrando fragmentos_alertas' . $ponto );
+    if($res->content =~ qr(<tr id=.+>\n\s*<td>5</td>)){
+        $encontrado = 0;
+    }
+    sleep 3;
+    $ponto = $ponto . '.';
+}
+like( $res->content, qr(<tr id=.+>\n\s*<td>5</td>), 'Consolidação concluída' );
+
+
 
 done_testing();
