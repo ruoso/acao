@@ -46,9 +46,15 @@ like( $res->content, qr(<tr id="alerta_\d+">\s+<td>5</td>)s, 'Consolidação con
 $res = request GET($endereco , Cookie => $cookie_consolidador);
 is( $res->code, 200, 'Procurando documentos a serem visualizados' );
 my $content = $res->content;
-while ($content =~ m{href="http://localhost(/$endereco/entradas/consolidacao_([^"]+))}gis) {;
+while ($content =~ m{href="http://localhost(/$endereco/entradas/consolidacao_([^"]+))}gis) {
     $res = request GET($1, Cookie => $cookie_consolidador);
-    is( $res->code, 200, 'listando os documentos de entrada pertinentes ao documento '.$2 );
+    is( $res->code, 200, 'listando os documentos de entrada pertinentes ao alerta ' . $2);
+
+    my $conteudo = $res->content;
+    while ($conteudo =~ m{href="http://localhost(/auth/registros/revisor/([^"]+))}gis) {
+        $res = request GET($1, Cookie => $cookie_consolidador);
+        is( $res->code, 200, 'Visualizando documento ' . $2);
+    }
 }
 
 done_testing();
