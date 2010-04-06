@@ -41,18 +41,14 @@ while ($encontrado){
     sleep 3;
     $ponto = $ponto . '.';
 }
-like( $res->content, qr(<tr id=.+>\n\s*<td>5</td>), 'Consolidação concluída' );
+like( $res->content, qr(<tr id="alerta_\d+">\s+<td>5</td>)s, 'Consolidação concluída' );
 
 $res = request GET($endereco , Cookie => $cookie_consolidador);
 is( $res->code, 200, 'Procurando documentos a serem visualizados' );
-
-my @links = $res->content =~ /href\s*=\s*"?([^"\s>]+)/gis;
-
-foreach my $elemento(@links){
-my $end =  "http://localhost/".$endereco."/entradas/consolidacao_.*" ;
-   if( $elemento =~ $end ){
-        warn $elemento;
-    }
+my $content = $res->content;
+while ($content =~ m{href="http://localhost(/$endereco/entradas/consolidacao_([^"]+))}gis) {;
+    $res = request GET($1, Cookie => $cookie_consolidador);
+    is( $res->code, 200, 'listando os documentos de entrada pertinentes ao documento '.$2 );
 }
 
 done_testing();

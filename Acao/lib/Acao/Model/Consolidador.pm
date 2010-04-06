@@ -164,7 +164,7 @@ txn_method obter_documentos_entrada => authorized 'consolidador' => sub {
               . '"]/ab:consolidacao/ab:entradas return $x';
     $self->sedna->execute($xq);
     my $xml_entradas = $self->sedna->get_item();
-    warn $xq;
+  #  warn $xq;
     if ($xml_entradas) {
         # chama o XML::Compile::Schema para traduzir o XML
         # para um AoH
