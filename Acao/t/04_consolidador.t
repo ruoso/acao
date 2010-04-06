@@ -43,6 +43,16 @@ while ($encontrado){
 }
 like( $res->content, qr(<tr id=.+>\n\s*<td>5</td>), 'Consolidação concluída' );
 
+$res = request GET($endereco , Cookie => $cookie_consolidador);
+is( $res->code, 200, 'Procurando documentos a serem visualizados' );
 
+my @links = $res->content =~ /href\s*=\s*"?([^"\s>]+)/gis;
+
+foreach my $elemento(@links){
+my $end =  "http://localhost/".$endereco."/entradas/consolidacao_.*" ;
+   if( $elemento =~ $end ){
+        warn $elemento;
+    }
+}
 
 done_testing();
