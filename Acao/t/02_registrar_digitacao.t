@@ -67,9 +67,6 @@ while ($content =~ m{href="http://localhost(/auth/registros/digitador/([^"]+))}g
 
 }
 
-
-
-
 done_testing();
 
 sub _obter_dados_digitados {
@@ -120,15 +117,27 @@ sub _obter_dados_digitados {
                                     abastecimentoAgua => {
                                                     tipoAbastecimentoAgua =>  'Hidrômetro Individual',
                                                          },
+                                    redeColetaEsgoto => 'Sim',
                                     esgotamentoSanitario2 => {
                                                               tipoAbastecimentoAgua2Outro => 'asd',
-                                                            }
+                                                            },
                 },
             }
                 
     } elsif ($element =~ /formCadernoB/) {
+        return{
+                composicaoFamiliar => {},
+                educacao           => {},
+                saudeMulher        => {},
+                saude              => {},
+                trabalho           => {},
+                renda              => {
+                                       rendaMensal => '0 a 1⁄2 salário mínimo',
+                                       },
+                
+              }
     } else {
-        return { };
+        return { die 'Nenhum Cadadastro encontrado'};
     }
 }
 
