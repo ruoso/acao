@@ -33,38 +33,54 @@ $res = request GET('/auth/registros/digitador/', Cookie => $sess_cicl);
 is( $res->code, 200, 'Apresentando lista de cadastros' );
 
 my $content = $res->content;
-while ($content =~ m{href="http://localhost(/auth/registros/digitador/([^"]+))}gis) {
-    $res = request GET($1, Cookie => $sess_cicl);
-    is( $res->code, 200, 'Acessando cadastro ' . $2);
+my $incremento = 0;
+my $leitura = 0;
+for ($incremento = 0; $incremento <=1; $incremento++){
 
-    $res = request GET('/auth/registros/digitador/'.$2.'/xsd', Cookie => $sess_cicl);
-    is( $res->code, 200, 'Encontrando XSD do cadastro ' . $2);
+    while ($content =~ m{href="http://localhost(/auth/registros/digitador/([^"]+))}gis) {
+        $res = request GET($1, Cookie => $sess_cicl);
+        is( $res->code, 200, 'Acessando cadastro ' . $2);
 
-    my $xsd = $res->content;
-    my $x_c_s    = XML::Compile::Schema->new($xsd);
-    ok($x_c_s, 'XSD retornado é valido.');
+        $res = request GET('/auth/registros/digitador/'.$2.'/xsd', Cookie => $sess_cicl);
+        is( $res->code, 200, 'Encontrando XSD do cadastro ' . $2);
 
-    my ($element) = $x_c_s->elements;
-    my $writer = $x_c_s->compile( WRITER => $element );
-    ok($writer, 'Consegue produzir o writer do documento xml');
+        my $xsd = $res->content;
+        my $x_c_s    = XML::Compile::Schema->new($xsd);
+        ok($x_c_s, 'XSD retornado é valido.');
 
-    my $doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
-    my $xml = 
-       $writer->( $doc,
-                  _obter_dados_digitados($element)
-                );
+        my ($element) = $x_c_s->elements;
+        my $writer = $x_c_s->compile( WRITER => $element );
+        ok($writer, 'Consegue produzir o writer do documento xml');
 
-    $res = request POST('/auth/registros/digitador/'.$2.'/store',
-                        [ processed_xml => $xml->toString,
-                          controle => 123 ],
-                        Cookie => $sess_cicl);
-    is($res->code, 302, 'Redirecionou depois do post.');
-    is($res->header('Location'),'http://localhost/auth/registros/digitador',
-       'Devolve para a tela da lista de formulários');
-    $res = request GET('/auth/registros/digitador', Cookie => $sess_cicl);
-    is($res->code, 200, 'Foi para a tela do digitador');
-    like($res->content, qr(realizada com sucesso), 'Foi armazenado');
+        my $doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
+        my $xml = 
+           $writer->( $doc,
+                      _obter_dados_digitados($element)
+                    );
 
+        $res = request POST('/auth/registros/digitador/'.$2.'/store',
+                            [ processed_xml => $xml->toString,
+                              controle => $leitura ],
+                            Cookie => $sess_cicl);
+        is($res->code, 302, 'Redirecionou depois do post.');
+        is($res->header('Location'),'http://localhost/auth/registros/digitador',
+           'Devolve para a tela da lista de formulários');
+        $res = request GET('/auth/registros/digitador', Cookie => $sess_cicl);
+        is($res->code, 200, 'Foi para a tela do digitador');
+        
+        if($res->content =~ 'O estado de controle'){
+           like($res->content, qr(O estado de controle),'O estado de controle deve ser Aberto');
+        }
+        if($res->content =~ 'sucesso'){
+            if($leitura){
+                 like($res->content, qr(sucesso),'FALHA: Foi armazenado um controle duplicado');
+            }
+            else{
+                 like($res->content, qr(sucesso),'Foi armazenado');
+            }
+        }
+    }
+ $leitura = DateTime->now();
 }
 
 done_testing();
