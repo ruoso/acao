@@ -131,10 +131,7 @@ sub _obter_dados_digitados {
                 saudeMulher        => {},
                 saude              => {},
                 trabalho           => {},
-                renda              => {
-                                       rendaMensal => '0 a 1⁄2 salário mínimo',
-                                       },
-                
+                renda              => {},
               }
     } else {
         return { die 'Nenhum Cadadastro encontrado'};
