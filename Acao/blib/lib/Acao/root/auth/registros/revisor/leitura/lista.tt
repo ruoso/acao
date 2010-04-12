@@ -1,0 +1,193 @@
+[%#
+# Copyright 2010 - Prefeitura Municipal de Fortaleza
+#
+# Este arquivo é parte do programa Ação - Sistema de Acompanhamento de
+# Projetos Sociais
+#
+# O Ação é um software livre; você pode redistribui-lo e/ou modifica-lo
+# dentro dos termos da Licença Pública Geral GNU como publicada pela
+# Fundação do Software Livre (FSF); na versão 2 da Licença.
+#
+# Este programa é distribuido na esperança que possa ser util, mas SEM
+# NENHUMA GARANTIA; sem uma garantia implicita de ADEQUAÇÂO a qualquer
+# MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a Licença Pública Geral GNU
+# para maiores detalhes.
+#
+# Você deve ter recebido uma cópia da Licença Pública Geral GNU, sob o
+# título "LICENCA.txt", junto com este programa, se não, escreva para a
+# Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
+%]
+[% META title = 'Listagem das leituras' %]
+
+[% INCLUDE 'auth/registros/revisor/leitura/header.tt' %]
+[% INCLUDE 'errosucesso.tt' %]
+
+[% SET num_por_pagina = 50 %]
+
+[% xqueryret = BLOCK %]
+      <tr>
+      { if ($pos = 1) then (
+         <td rowspan="{count($form)}">{$control}</td>,
+         <td rowspan="{count($form)}">{$reg/cd:documento/cd:estadoControle/text()}</td>,
+         <td rowspan="{count($form)}">
+	    { if (count($form) > 1) then (
+[%#            <a href="#">Diferenças</a>  %]
+	    ) else () }
+            { if ($reg/cd:documento/cd:estadoControle = "Aberto") then (
+            <a href="[% c.uri_for('/auth/registros/revisor/')_ leitura.id_leitura _ '/fecharDocumento/' %]{$reg/cd:documento/cd:controle}" class="fechar" title="Fechar formulário">Fechar formulário</a>
+             ) else ()}
+         </td>
+        ) else () }
+      { if ($reg/cd:documento/cd:estado eq 'Rejeitado') then (
+       <td class="estado_rejeitado">{$reg/cd:digitacao/cd:dataDigitacao/text()}</td>
+       ) else (
+       <td>{$reg/cd:digitacao/cd:dataDigitacao/text()}</td>
+       ) }
+      { if ($reg/cd:documento/cd:estado eq 'Rejeitado') then (
+       <td class="estado_rejeitado">{$reg/cd:digitacao/cd:digitador/text()}</td>
+       ) else (
+       <td>{$reg/cd:digitacao/cd:digitador/text()}</td>
+       ) }
+      { if ($reg/cd:documento/cd:estado eq 'Rejeitado') then (
+       <td class="estado_rejeitado">{$reg/cd:documento/cd:estado/text()}</td>
+       ) else (
+       <td>{$reg/cd:documento/cd:estado/text()}</td>
+       ) }
+      { if ($reg/cd:documento/cd:estado eq 'Rejeitado') then (
+       <td class="estado_rejeitado">{$reg/cd:digitacao/cd:localDigitacao/text()}</td>
+       ) else (
+       <td>{$reg/cd:digitacao/cd:localDigitacao/text()}</td>
+       ) }
+      <td>
+        { if ($reg/cd:documento/cd:estado ne 'Aprovado') then (
+        <a href="[% c.uri_for_action('/auth/registros/revisor/leitura/aprovar',
+                                     [ leitura.id_leitura ],
+                                      '____xq_doc_id____', '____xq_ctrl____' ,  c.req.params() )
+                    .replace('____xq_doc_id____','{$reg/cd:documento/cd:id}')
+                    .replace('____xq_ctrl____','{$reg/cd:documento/cd:controle}')
+                    .replace('&','&amp;') %]" class="aprovar" title="Aprovar">Aprovar</a>
+        ) else (<a class="link_vazio">Aprovar</a>) }
+        { if ($reg/cd:documento/cd:estado ne 'Rejeitado') then (
+        <a href="[% c.uri_for_action('/auth/registros/revisor/leitura/rejeitar',
+                                     [ leitura.id_leitura ],
+                                      '____xq_doc_id____', '____xq_ctrl____' ,  c.req.params() )
+                    .replace('____xq_doc_id____','{$reg/cd:documento/cd:id}')
+                    .replace('____xq_ctrl____','{$reg/cd:documento/cd:controle}')
+                    .replace('&','&amp;') %]" class="rejeitar" title="Rejeitar">Rejeitar</a>
+        ) else (<a class="link_vazio">Rejeitar</a>) }
+        <a href="[% c.uri_for('/auth/registros/revisor/') _ leitura.id_leitura _ '/visualizar/'%]{$reg/cd:documento/cd:id}" class="visualizar" title="Visualizar">Visualizar</a>
+      </td>
+      </tr>  
+[% END %]
+
+[% SET estadoControle = c.req.param('estadoControle') %] 
+[% IF estadoControle == "0" %]
+  [% SET estadoControle = "" %]
+[% END %]
+
+[% SET interval_ini = c.req.param('interval_ini') %]
+[% IF !interval_ini %]
+  [% SET interval_ini = 0 %]
+[% END %]
+
+[% xquery = BLOCK %]
+declare namespace cd = "http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd";
+
+for $control in 
+subsequence(
+  distinct-values(
+    collection("leitura-[% leitura.id_leitura %]")/cd:registroDigitacao/cd:documento/cd:controle[[%
+   IF c.req.param('controle_ini')
+      %](. ge "[% c.req.param('controle_ini') %]") and [% END %][%
+   IF c.req.param('controle_fim')
+      %](. le "[% c.req.param('controle_fim') %]") and [% END %]1]),
+   [% interval_ini * num_por_pagina %], [% num_por_pagina %])
+   let $form := collection("leitura-[% leitura.id_leitura %]")/cd:registroDigitacao[cd:documento/cd:controle = $control] 
+   order by ($control) 
+        return
+           ( for $reg at $pos in $form
+             order by $reg/cd:digitacao/cd:dataDigitacao
+             return [% xqueryret %])
+[% END %] 
+
+<form name="form" action="[% c.uri_for('/auth/registros/revisor/') _ leitura.id_leitura  %]">
+
+<fieldset>
+
+  <h3>Buscar documento</h3>
+  <dl class="buscaControle">
+    <dt>
+      <label for="controle">Controle:</label>
+    </dt>
+    <dd>
+      de <input type="text" name="controle_ini" id="controle_ini" value="[% c.req.param('controle_ini') | html %]" /> 
+      a <input type="text" name="controle_fim" id="controle_fim" value="[% c.req.param('controle_fim') | html %]" />
+    </dd>
+    <dt>
+      <label for="num_digitacoes">N&uacute;mero de Digita&ccedil;&otilde;es:</label>
+    </dt>
+    <dd>
+      de <input type="text" name="num_digitacoes_ini" id="num_digitacoes_ini" value="[% c.req.param('num_digitacoes_ini') | html %]" /> 
+      a <input type="text" name="num_digitacoes_fim" id="num_digitacoes_fim" value="[% c.req.param('num_digitacoes_fim') | html %]" />
+    </dd>
+    <dt>
+      <label for="controle">Situa&ccedil;&atilde;o do Controle:</label>
+    </dt>
+    <dd>
+      <select name="estadoControle" id="estadoControle" >
+          <option value="0">Todos</option>
+          <option value="Aberto">Aberto</option>
+          <option value="Fechado">Fechado</option>
+      </select>
+    </dd>
+  </dl>
+  <input type="submit" name="buscar" value="Buscar" />
+
+</fieldset>
+
+<table>
+<thead>
+  <tr>
+    <th>Controle</th>
+    <th>Situa&ccedil;&atilde;o do Controle</th>
+    <th>A&ccedil;&otilde;es</th>
+    <th>Data da Digita&ccedil;&atilde;o</th>
+    <th>Digitador</th>
+    <th>Estado</th>
+    <th>IP</th>
+    <th>A&ccedil;&otilde;es</th>
+  </tr>
+</thead>
+<tbody>
+
+[%# TRY %]
+ [% c.model('Sedna').begin %]
+ [% c.model('Sedna').execute( xquery )%]
+
+ [% WHILE (item = c.model('Sedna').get_item) %]  
+ [% item %]
+ [% END %]
+ [% c.model('Sedna').commit %]
+[%# CATCH %]
+ [%# c.model('Sedna').rollback %]
+[%# END %]
+</tbody>
+</table>
+
+[% IF interval_ini > 0 %]
+  [% SET args = { } %]
+  [% args.import(c.req.params()) %]
+  [% args.import({ interval_ini => interval_ini - 1 }) %]
+  <a href="[% c.uri_for_action('/auth/registros/revisor/leitura/lista',
+                                     [ leitura.id_leitura ], args ) %]">Anterior</a>
+[% END %]
+  [% SET args = { } %]
+  [% args.import(c.req.params()) %]
+  [% args.import({ interval_ini => interval_ini + 1 }) %]
+  <a href="[% c.uri_for_action('/auth/registros/revisor/leitura/lista',
+                                     [ leitura.id_leitura ], args ) %]">Pr&oacute;ximo</a>
+
+
+</form>
+
+[% INCLUDE 'footer.tt' %]
