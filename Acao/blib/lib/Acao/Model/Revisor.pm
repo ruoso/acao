@@ -197,24 +197,24 @@ txn_method 'fecharDocumento' => authorized 'revisor' => sub {
             return count($x)'
     );
     my $qtdDigitados = $self->sedna->get_item;
-
-    if ( $qtdDigitados >= 1 ) {
-        die 'digitacoes-naoRevisadas';
+    if (!$@){
+        if ( $qtdDigitados >= 1 ) {
+            die 'digitacoes-naoRevisadas';
+        }
+        else {
+            $self->sedna->execute(
+    'declare namespace cd = "http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd";
+		     UPDATE replace $a in
+		                        collection("leitura-'
+                  . $leitura->id_leitura
+                  . '")/cd:registroDigitacao/cd:documento/cd:estadoControle[../cd:controle="'
+                  . $controle . '"]
+		                        with (
+		                            <cd:estadoControle>Fechado</cd:estadoControle>
+		                        )'
+            );
+        }
     }
-    else {
-        $self->sedna->execute(
-'declare namespace cd = "http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd";
-		 UPDATE replace $a in
-		                    collection("leitura-'
-              . $leitura->id_leitura
-              . '")/cd:registroDigitacao/cd:documento/cd:estadoControle[../cd:controle="'
-              . $controle . '"]
-		                    with (
-		                        <cd:estadoControle>Fechado</cd:estadoControle>
-		                    )'
-        );
-    }
-
 };
 
 =item obter_campo_controle($id_leitura, $id_doc)

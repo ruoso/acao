@@ -141,6 +141,31 @@ subsequence(
       </select>
     </dd>
   </dl>
+  <dl>
+	  <input type="checkbox" id="buscar_dados" name="buscar_dados" onchange="habilita_filtro();" /> 
+		Buscar em dados do documento <br/><br/>
+
+	  <select name="campo_formulario" id="campo_formulario" style="display:none;">
+		  <option value="0">Selecione Campo Formul&aacute;rio</option>
+            [% 
+                c.model('Sedna').begin;
+                SET schema = c.model('Sedna').get_document('viladomar-cadernoa.xsd');
+                c.model('Sedna').commit
+               
+            %]
+	  </select>
+
+	  <select name="campo_operador" id="campo_operador" style="display:none;">
+		  <option value="0">Selecione Operador</option>
+		  <option value="igual">igual a</option>
+		  <option value="diferente">diferente de</option>
+		  <option value="maior">maior que</option>
+		  <option value="menor">menor que</option>
+	  </select>
+
+	  <input type="text" id="valor_pesquisado" name="valor_pesquisado" style="display:none;">
+
+  </dl>
   <input type="submit" name="buscar" value="Buscar" />
 
 </fieldset>
@@ -187,7 +212,25 @@ subsequence(
   <a href="[% c.uri_for_action('/auth/registros/revisor/leitura/lista',
                                      [ leitura.id_leitura ], args ) %]">Pr&oacute;ximo</a>
 
-
 </form>
+
+<script type="text/javascript" language="javascript">
+function habilita_filtro(){
+	var status = document.getElementById('buscar_dados').checked;
+	if (status){
+		document.getElementById('campo_formulario').style.display = 'inline';
+		document.getElementById('campo_operador').style.display = 'inline';
+		document.getElementById('valor_pesquisado').style.display = 'inline';
+	}
+	else{
+		document.getElementById('campo_formulario').style.display = 'none';
+		document.getElementById('campo_formulario').value = 0;
+		document.getElementById('campo_operador').style.display = 'none';
+		document.getElementById('campo_operador').value = 0;
+		document.getElementById('valor_pesquisado').style.display = 'none';
+		document.getElementById('valor_pesquisado').value = '';
+	}
+}
+</script>
 
 [% INCLUDE 'footer.tt' %]

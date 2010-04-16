@@ -309,11 +309,11 @@ sub iniciar_consolidacao {
         my ( $registroConsolidacao, $conteudo, $doc );
             
         eval {
-            my $doc = $self->sedna->get_item ;
-             $doc =~ s/^\s+//s;
+            $doc = $self->sedna->get_item ;
         };
         last if $@;
         last unless $doc;
+        $doc =~ s/^\s+//s;
 
         eval {
             # fazer o parse do registroConsolidacao
