@@ -90,25 +90,43 @@
   [% SET interval_ini = 0 %]
 [% END %]
 
+[% IF c.req.param('buscarDados') %]
+[% SET targetNamespace = c.model('BuscaXSD').get_target_namespace(schema) %]
+[% SET expressao_consulta_interna = c.model('BuscaXSD').produce_expr('custom', c.req.param('campo_formulario'), c.req.param('campo_operador'), c.req.param('valor_pesquisado)) %]
+[% END %]
+
 [% xquery = BLOCK %]
 declare namespace cd = "http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd";
+[% IF c.req.param('buscarDados') %]
+declare namespace custom = "[% targetNamespace %]";
+[% END %]
 
 for $control in 
 subsequence(
   distinct-values(
     collection("leitura-[% leitura.id_leitura %]")/cd:registroDigitacao/cd:documento/cd:controle[[%
+   IF c.req.param('estadoControle')
+      %](../cd:estadoControle eq "[% c.req.param('estadoControle') %]") and [% END %][%
    IF c.req.param('controle_ini')
       %](. ge "[% c.req.param('controle_ini') %]") and [% END %][%
    IF c.req.param('controle_fim')
       %](. le "[% c.req.param('controle_fim') %]") and [% END %]1]),
    [% interval_ini * num_por_pagina %], [% num_por_pagina %])
-   let $form := collection("leitura-[% leitura.id_leitura %]")/cd:registroDigitacao[cd:documento/cd:controle = $control] 
+   let $form := collection("leitura-[% leitura.id_leitura %]")/cd:registroDigitacao[[%
+   IF c.req.param('buscarDados')
+      %](cd:documento/cd:conteudo[% expressao_consulta_interna %]) and [% END %][%
+   IF c.req.param('estadoAprovacao')
+      %](cd:documento/cd:estado eq "[% c.req.param('estadoAprovacao') %]") and [% END %][%
+   %]cd:documento/cd:controle = $control] 
    order by ($control) 
         return
            ( for $reg at $pos in $form
              order by $reg/cd:digitacao/cd:dataDigitacao
              return [% xqueryret %])
 [% END %] 
+<TEXTAREA ROWS=50 COLS=120>
+[% xquery %]
+</TEXTAREA>
 
 <form name="form" action="[% c.uri_for('/auth/registros/revisor/') _ leitura.id_leitura  %]">
 
@@ -124,13 +142,6 @@ subsequence(
       a <input type="text" name="controle_fim" id="controle_fim" value="[% c.req.param('controle_fim') | html %]" />
     </dd>
     <dt>
-      <label for="num_digitacoes">N&uacute;mero de Digita&ccedil;&otilde;es:</label>
-    </dt>
-    <dd>
-      de <input type="text" name="num_digitacoes_ini" id="num_digitacoes_ini" value="[% c.req.param('num_digitacoes_ini') | html %]" /> 
-      a <input type="text" name="num_digitacoes_fim" id="num_digitacoes_fim" value="[% c.req.param('num_digitacoes_fim') | html %]" />
-    </dd>
-    <dt>
       <label for="controle">Situa&ccedil;&atilde;o do Controle:</label>
     </dt>
     <dd>
@@ -140,6 +151,17 @@ subsequence(
           <option value="Fechado">Fechado</option>
       </select>
     </dd>
+    <dt>
+      <label for="controle">Situa&ccedil;&atilde;o de Aprovação:</label>
+    </dt>
+    <dd>
+      <select name="estadoAprovacao" id="estadoAprovacao" >
+          <option value="0">Todos</option>
+          <option value="Digitado">Digitado</option>
+          <option value="Aprovado">Aprovado</option>
+          <option value="Rejeitado">Rejeitado</option>
+      </select>
+    </dd>
   </dl>
   <dl>
 	  <input type="checkbox" id="buscar_dados" name="buscar_dados" onchange="habilita_filtro();" /> 
@@ -147,12 +169,12 @@ subsequence(
 
 	  <select name="campo_formulario" id="campo_formulario" style="display:none;">
 		  <option value="0">Selecione Campo Formul&aacute;rio</option>
-            [% 
-                c.model('Sedna').begin;
-                SET schema = c.model('Sedna').get_document('viladomar-cadernoa.xsd');
-                c.model('Sedna').commit
-               
-            %]
+            [% CALL c.model('Sedna').begin %]
+            [% SET schema = c.model('Sedna').get_document(leitura.instrumento.xml_schema) %]
+            [% CALL c.model('Sedna').commit %]
+            [% FOREACH field IN c.model('BuscaXSD').get_simpletype_annotations(schema) %]
+                <OPTION VALUE="[% field.path %]">[% field.completelabel %]</OPTION>
+            [% END %]
 	  </select>
 
 	  <select name="campo_operador" id="campo_operador" style="display:none;">
