@@ -90,14 +90,19 @@
   [% SET interval_ini = 0 %]
 [% END %]
 
-[% IF c.req.param('buscarDados') %]
+[%# definição da variavel schema para este template %]
+[% CALL c.model('Sedna').begin %]
+[% SET schema = c.model('Sedna').get_document(leitura.instrumento.xml_schema) %]
+[% CALL c.model('Sedna').commit %]
+
+[% IF c.req.param('buscar_dados') %]
 [% SET targetNamespace = c.model('BuscaXSD').get_target_namespace(schema) %]
-[% SET expressao_consulta_interna = c.model('BuscaXSD').produce_expr('custom', c.req.param('campo_formulario'), c.req.param('campo_operador'), c.req.param('valor_pesquisado)) %]
+[% SET expressao_consulta_interna = c.model('BuscaXSD').produce_expr('custom', c.req.param('campo_formulario'), c.req.param('campo_operador'), c.req.param('valor_pesquisado')) %]
 [% END %]
 
 [% xquery = BLOCK %]
 declare namespace cd = "http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd";
-[% IF c.req.param('buscarDados') %]
+[% IF c.req.param('buscar_dados') %]
 declare namespace custom = "[% targetNamespace %]";
 [% END %]
 
@@ -113,8 +118,8 @@ subsequence(
       %](. le "[% c.req.param('controle_fim') %]") and [% END %]1]),
    [% interval_ini * num_por_pagina %], [% num_por_pagina %])
    let $form := collection("leitura-[% leitura.id_leitura %]")/cd:registroDigitacao[[%
-   IF c.req.param('buscarDados')
-      %](cd:documento/cd:conteudo[% expressao_consulta_interna %]) and [% END %][%
+   IF c.req.param('buscar_dados')
+      %](cd:documento/cd:conteudo/[% expressao_consulta_interna %]) and [% END %][%
    IF c.req.param('estadoAprovacao')
       %](cd:documento/cd:estado eq "[% c.req.param('estadoAprovacao') %]") and [% END %][%
    %]cd:documento/cd:controle = $control] 
@@ -124,7 +129,7 @@ subsequence(
              order by $reg/cd:digitacao/cd:dataDigitacao
              return [% xqueryret %])
 [% END %] 
-<TEXTAREA ROWS=50 COLS=120>
+<TEXTAREA ROWS=50 COLS=150>
 [% xquery %]
 </TEXTAREA>
 
@@ -164,20 +169,17 @@ subsequence(
     </dd>
   </dl>
   <dl>
-	  <input type="checkbox" id="buscar_dados" name="buscar_dados" onchange="habilita_filtro();" /> 
+	  <input type="checkbox" id="buscar_dados" name="buscar_dados" /> 
 		Buscar em dados do documento <br/><br/>
-
-	  <select name="campo_formulario" id="campo_formulario" style="display:none;">
+	  <select name="campo_formulario" id="campo_formulario">
 		  <option value="0">Selecione Campo Formul&aacute;rio</option>
-            [% CALL c.model('Sedna').begin %]
-            [% SET schema = c.model('Sedna').get_document(leitura.instrumento.xml_schema) %]
-            [% CALL c.model('Sedna').commit %]
             [% FOREACH field IN c.model('BuscaXSD').get_simpletype_annotations(schema) %]
                 <OPTION VALUE="[% field.path %]">[% field.completelabel %]</OPTION>
             [% END %]
+
 	  </select>
 
-	  <select name="campo_operador" id="campo_operador" style="display:none;">
+	  <select name="campo_operador" id="campo_operador">
 		  <option value="0">Selecione Operador</option>
 		  <option value="igual">igual a</option>
 		  <option value="diferente">diferente de</option>
@@ -185,7 +187,7 @@ subsequence(
 		  <option value="menor">menor que</option>
 	  </select>
 
-	  <input type="text" id="valor_pesquisado" name="valor_pesquisado" style="display:none;">
+	  <input type="text" id="valor_pesquisado" name="valor_pesquisado">
 
   </dl>
   <input type="submit" name="buscar" value="Buscar" />
@@ -207,7 +209,7 @@ subsequence(
 </thead>
 <tbody>
 
-[%# TRY %]
+[% TRY %]
  [% c.model('Sedna').begin %]
  [% c.model('Sedna').execute( xquery )%]
 
@@ -217,7 +219,7 @@ subsequence(
  [% c.model('Sedna').commit %]
 [%# CATCH %]
  [%# c.model('Sedna').rollback %]
-[%# END %]
+[% END %]
 </tbody>
 </table>
 
@@ -236,23 +238,14 @@ subsequence(
 
 </form>
 
-<script type="text/javascript" language="javascript">
-function habilita_filtro(){
-	var status = document.getElementById('buscar_dados').checked;
-	if (status){
-		document.getElementById('campo_formulario').style.display = 'inline';
-		document.getElementById('campo_operador').style.display = 'inline';
-		document.getElementById('valor_pesquisado').style.display = 'inline';
-	}
-	else{
-		document.getElementById('campo_formulario').style.display = 'none';
-		document.getElementById('campo_formulario').value = 0;
-		document.getElementById('campo_operador').style.display = 'none';
-		document.getElementById('campo_operador').value = 0;
-		document.getElementById('valor_pesquisado').style.display = 'none';
-		document.getElementById('valor_pesquisado').value = '';
-	}
-}
-</script>
 
 [% INCLUDE 'footer.tt' %]
+
+<script language = 'javascript'>
+    document.getElementById('controle_ini').value = [% c.req.param('controle_ini') %];
+    document.getElementById('controle_fim').value = [% c.req.param('controle_fim') %];
+    document.getElementById('estadoControle').value = [% c.req.param('estadoControle') %];
+    document.getElementById('estadoAprovacao').value = [% c.req.param('estadoAprovacao') %];
+    document.getElementById('campo_operador').value = [% c.req.param('campo_operador') %];
+    document.getElementById('valor_pesquisado').value = [% c.req.param('valor_pesquisado') %];
+</script>
