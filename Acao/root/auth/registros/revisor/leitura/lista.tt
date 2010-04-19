@@ -24,60 +24,11 @@
 
 [% SET num_por_pagina = 50 %]
 
-[% xqueryret = BLOCK %]
-      <tr>
-      { if ($pos = 1) then (
-         <td rowspan="{count($form)}">{$control}</td>,
-         <td rowspan="{count($form)}">{$reg/cd:documento/cd:estadoControle/text()}</td>,
-         <td rowspan="{count($form)}">
-	    { if (count($form) > 1) then (
-[%#            <a href="#">Diferenças</a>  %]
-	    ) else () }
-            { if ($reg/cd:documento/cd:estadoControle = "Aberto") then (
-            <a href="[% c.uri_for('/auth/registros/revisor/')_ leitura.id_leitura _ '/fecharDocumento/' %]{$reg/cd:documento/cd:controle}" class="fechar" title="Fechar formulário">Fechar formulário</a>
-             ) else ()}
-         </td>
-        ) else () }
-      { if ($reg/cd:documento/cd:estado eq 'Rejeitado') then (
-       <td class="estado_rejeitado">{$reg/cd:digitacao/cd:dataDigitacao/text()}</td>
-       ) else (
-       <td>{$reg/cd:digitacao/cd:dataDigitacao/text()}</td>
-       ) }
-      { if ($reg/cd:documento/cd:estado eq 'Rejeitado') then (
-       <td class="estado_rejeitado">{$reg/cd:digitacao/cd:digitador/text()}</td>
-       ) else (
-       <td>{$reg/cd:digitacao/cd:digitador/text()}</td>
-       ) }
-      { if ($reg/cd:documento/cd:estado eq 'Rejeitado') then (
-       <td class="estado_rejeitado">{$reg/cd:documento/cd:estado/text()}</td>
-       ) else (
-       <td>{$reg/cd:documento/cd:estado/text()}</td>
-       ) }
-      { if ($reg/cd:documento/cd:estado eq 'Rejeitado') then (
-       <td class="estado_rejeitado">{$reg/cd:digitacao/cd:localDigitacao/text()}</td>
-       ) else (
-       <td>{$reg/cd:digitacao/cd:localDigitacao/text()}</td>
-       ) }
-      <td>
-        { if ($reg/cd:documento/cd:estado ne 'Aprovado') then (
-        <a href="[% c.uri_for_action('/auth/registros/revisor/leitura/aprovar',
-                                     [ leitura.id_leitura ],
-                                      '____xq_doc_id____', '____xq_ctrl____' ,  c.req.params() )
-                    .replace('____xq_doc_id____','{$reg/cd:documento/cd:id}')
-                    .replace('____xq_ctrl____','{$reg/cd:documento/cd:controle}')
-                    .replace('&','&amp;') %]" class="aprovar" title="Aprovar">Aprovar</a>
-        ) else (<a class="link_vazio">Aprovar</a>) }
-        { if ($reg/cd:documento/cd:estado ne 'Rejeitado') then (
-        <a href="[% c.uri_for_action('/auth/registros/revisor/leitura/rejeitar',
-                                     [ leitura.id_leitura ],
-                                      '____xq_doc_id____', '____xq_ctrl____' ,  c.req.params() )
-                    .replace('____xq_doc_id____','{$reg/cd:documento/cd:id}')
-                    .replace('____xq_ctrl____','{$reg/cd:documento/cd:controle}')
-                    .replace('&','&amp;') %]" class="rejeitar" title="Rejeitar">Rejeitar</a>
-        ) else (<a class="link_vazio">Rejeitar</a>) }
-        <a href="[% c.uri_for('/auth/registros/revisor/') _ leitura.id_leitura _ '/visualizar/'%]{$reg/cd:documento/cd:id}" class="visualizar" title="Visualizar">Visualizar</a>
-      </td>
-      </tr>  
+[% SET modificador_rowspan = '' %]
+[% SET modificador_classe_td = '' %]
+[% IF c.req.param('buscar_dados') %]
+[% SET modificador_rowspan = ' * 2' %]
+[% SET modificador_classe_td = ' linha_com_dados_extra' %]
 [% END %]
 
 [% SET estadoControle = c.req.param('estadoControle') %] 
@@ -98,6 +49,78 @@
 [% IF c.req.param('buscar_dados') %]
 [% SET targetNamespace = c.model('BuscaXSD').get_target_namespace(schema) %]
 [% SET expressao_consulta_interna = c.model('BuscaXSD').produce_expr('custom', c.req.param('campo_formulario'), c.req.param('campo_operador'), c.req.param('valor_pesquisado')) %]
+[% SET xpath_campo = c.model('BuscaXSD').produce_xpath('custom',c.req.param('campo_formulario')) %]
+[% END %]
+
+
+[% xqueryret = BLOCK %]
+    ( <tr>
+      { if ($pos = 1) then (
+         <td rowspan="{count($form)[% modificador_rowspan %]}">{$control}</td>,
+         <td rowspan="{count($form)[% modificador_rowspan %]}">{$reg/cd:documento/cd:estadoControle/text()}</td>,
+         <td rowspan="{count($form)[% modificador_rowspan %]}">
+	    { if (count($form) > 1) then (
+[%#            <a href="#">Diferenças</a>  %]
+	    ) else () }
+            { if ($reg/cd:documento/cd:estadoControle = "Aberto") then (
+            <a href="[% c.uri_for('/auth/registros/revisor/')_ leitura.id_leitura _ '/fecharDocumento/' %]{$reg/cd:documento/cd:controle}" class="fechar" title="Fechar formulário">Fechar formulário</a>
+             ) else ()}
+         </td>
+        ) else () }
+      { if ($reg/cd:documento/cd:estado eq 'Rejeitado') then (
+       <td class="estado_rejeitado[% modificador_classe_td %]">{$reg/cd:digitacao/cd:dataDigitacao/text()}</td>
+       ) else (
+       <td class="[% modificador_classe_td %]">{$reg/cd:digitacao/cd:dataDigitacao/text()}</td>
+       ) }
+      { if ($reg/cd:documento/cd:estado eq 'Rejeitado') then (
+       <td class="estado_rejeitado[% modificador_classe_td %]">{$reg/cd:digitacao/cd:digitador/text()}</td>
+       ) else (
+       <td class="[% modificador_classe_td %]">{$reg/cd:digitacao/cd:digitador/text()}</td>
+       ) }
+      { if ($reg/cd:documento/cd:estado eq 'Rejeitado') then (
+       <td class="estado_rejeitado[% modificador_classe_td %]">{$reg/cd:documento/cd:estado/text()}</td>
+       ) else (
+       <td class="[% modificador_classe_td %]">{$reg/cd:documento/cd:estado/text()}</td>
+       ) }
+      { if ($reg/cd:documento/cd:estado eq 'Rejeitado') then (
+       <td class="estado_rejeitado[% modificador_classe_td %]">{$reg/cd:digitacao/cd:localDigitacao/text()}</td>
+       ) else (
+       <td class="[% modificador_classe_td %]">{$reg/cd:digitacao/cd:localDigitacao/text()}</td>
+       ) }
+      <td class="[% modificador_classe_td %]">
+        { if ($reg/cd:documento/cd:estado ne 'Aprovado') then (
+        <a href="[% c.uri_for_action('/auth/registros/revisor/leitura/aprovar',
+                                     [ leitura.id_leitura ],
+                                      '____xq_doc_id____', '____xq_ctrl____' ,  c.req.params() )
+                    .replace('____xq_doc_id____','{$reg/cd:documento/cd:id}')
+                    .replace('____xq_ctrl____','{$reg/cd:documento/cd:controle}')
+                    .replace('&','&amp;') %]" class="aprovar" title="Aprovar">Aprovar</a>
+        ) else (<a class="link_vazio">Aprovar</a>) }
+        { if ($reg/cd:documento/cd:estado ne 'Rejeitado') then (
+        <a href="[% c.uri_for_action('/auth/registros/revisor/leitura/rejeitar',
+                                     [ leitura.id_leitura ],
+                                      '____xq_doc_id____', '____xq_ctrl____' ,  c.req.params() )
+                    .replace('____xq_doc_id____','{$reg/cd:documento/cd:id}')
+                    .replace('____xq_ctrl____','{$reg/cd:documento/cd:controle}')
+                    .replace('&','&amp;') %]" class="rejeitar" title="Rejeitar">Rejeitar</a>
+        ) else (<a class="link_vazio">Rejeitar</a>) }
+        <a href="[% c.uri_for('/auth/registros/revisor/') _ leitura.id_leitura _ '/visualizar/'%]{$reg/cd:documento/cd:id}" class="visualizar" title="Visualizar">Visualizar</a>
+      </td>
+      </tr>
+[% IF modificador_rowspan %]
+      ,<tr>
+       { if ($reg/cd:documento/cd:estado eq 'Rejeitado') then (
+         <td colspan="5" class="estado_rejeitado revisordadosform">
+            {$reg/cd:documento/cd:conteudo/[% xpath_campo %]}
+        </td>
+       ) else (
+         <td colspan="5" class="revisordadosform">
+            {$reg/cd:documento/cd:conteudo/[% xpath_campo %]}
+        </td>
+       ) }
+       </tr>
+[% END %]
+      )
 [% END %]
 
 [% xquery = BLOCK %]
@@ -129,9 +152,10 @@ subsequence(
              order by $reg/cd:digitacao/cd:dataDigitacao
              return [% xqueryret %])
 [% END %] 
-<!-- <TEXTAREA ROWS=50 COLS=150>
-[% # xquery %]
-</TEXTAREA> -->
+
+[%# <TEXTAREA ROWS=50 COLS=150> %]
+[%# xquery %]
+[%# </TEXTAREA> %]
 
 <form name="form" onSubmit="return valida_campos_busca()" action="[% c.uri_for('/auth/registros/revisor/') _ leitura.id_leitura  %]">
 
@@ -171,9 +195,9 @@ subsequence(
   <dl class="buscaControle">
 
 	  <input type="checkbox" id="buscar_dados" name="buscar_dados" [% IF (c.req.param('buscar_dados') == 'on') %] checked [% END %] /> 
-		Buscar em dados do documento <br/><br/>
+		<label for="buscar_dados"> Buscar em dados do documento </label> <br/><br/>
 
-	  <select name="campo_formulario" id="campo_formulario"  style="width:250px;">
+	  <select name="campo_formulario" id="campo_formulario"  style="width:200px;">
 		  <option value="0">Selecione Campo Formul&aacute;rio</option>
             [% FOREACH field IN c.model('BuscaXSD').get_simpletype_annotations(schema) %]
                 <OPTION VALUE="[% field.path %]" [% IF (c.req.param('campo_formulario') == field.path) %] selected [% END %]>[% field.completelabel %]</OPTION>
@@ -189,7 +213,7 @@ subsequence(
 		  <option value="menor" [% IF (c.req.param('campo_operador') == 'menor') %] selected [% END %]>menor que</option>
 	  </select>
 
-	  <input type="text" id="valor_pesquisado" name="valor_pesquisado" value="[% c.req.param('valor_pesquisado') %]" />
+	  <input type="text" id="valor_pesquisado" name="valor_pesquisado" value="[% c.req.param('valor_pesquisado') %]"  style="width:150px;" />
 
   </dl>
   <input type="submit" name="buscar" value="Buscar" />
@@ -197,6 +221,21 @@ subsequence(
 
 <table>
 <thead>
+[% IF modificador_rowspan %]
+  <tr>
+    <th rowspan="2">Controle</th>
+    <th rowspan="2">Situa&ccedil;&atilde;o do Controle</th>
+    <th rowspan="2">A&ccedil;&otilde;es</th>
+    <th>Data da Digita&ccedil;&atilde;o</th>
+    <th>Digitador</th>
+    <th>Estado</th>
+    <th>IP</th>
+    <th>A&ccedil;&otilde;es</th>
+  </tr>
+  <tr>
+    <th colspan="5">Valor do campo pesquisado</th>
+  </tr>
+[% ELSE %]
   <tr>
     <th>Controle</th>
     <th>Situa&ccedil;&atilde;o do Controle</th>
@@ -207,6 +246,7 @@ subsequence(
     <th>IP</th>
     <th>A&ccedil;&otilde;es</th>
   </tr>
+[% END %]
 </thead>
 <tbody>
 
