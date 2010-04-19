@@ -133,7 +133,7 @@ subsequence(
 [% # xquery %]
 </TEXTAREA> -->
 
-<form name="form" action="[% c.uri_for('/auth/registros/revisor/') _ leitura.id_leitura  %]">
+<form name="form" action="[% c.uri_for('/auth/registros/revisor/') _ leitura.id_leitura  %]"  onsubmit="return valida_campos_busca">
 
 <fieldset>
 
@@ -175,7 +175,7 @@ subsequence(
 	  <select name="campo_formulario" id="campo_formulario">
 		  <option value="0">Selecione Campo Formul&aacute;rio</option>
             [% FOREACH field IN c.model('BuscaXSD').get_simpletype_annotations(schema) %]
-                <OPTION VALUE="[% field.path %]">[% field.completelabel %]</OPTION>
+                <OPTION VALUE="[% field.path %]" [% IF (c.req.param('campo_formulario') == field.path) %] selected [% END %]>[% field.completelabel %]</OPTION>
             [% END %]
 
 	  </select>
@@ -245,5 +245,16 @@ subsequence(
 <script language = 'javascript'>
     document.getElementById('controle_ini').value = [% c.req.param('controle_ini') %];
     document.getElementById('controle_fim').value = [% c.req.param('controle_fim') %];
-    document.getElementById('valor_pesquisado').value = [% c.req.param('valor_pesquisado') %]; 
+    document.getElementById('valor_pesquisado').value = [% c.req.param('valor_pesquisado') %];
+
+    function valida_campos_busca(){
+ 
+            if (document.getElementById('campo_formulario').value == 0  ){
+                alert('Preencher valor do campo formulário');
+                document.getElementById('campo_formulario').focus();
+                return false;
+            }
+        
+    }
+    
 </script>
