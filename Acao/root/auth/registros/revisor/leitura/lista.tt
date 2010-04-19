@@ -169,8 +169,9 @@ subsequence(
     </dd>
   </dl>
   <dl>
-	  <input type="checkbox" id="buscar_dados" name="buscar_dados" /> 
+	  <input type="checkbox" id="buscar_dados" name="buscar_dados" [% IF (c.req.param('buscar_dados') == 'on') %] checked [% END %] /> 
 		Buscar em dados do documento <br/><br/>
+
 	  <select name="campo_formulario" id="campo_formulario">
 		  <option value="0">Selecione Campo Formul&aacute;rio</option>
             [% FOREACH field IN c.model('BuscaXSD').get_simpletype_annotations(schema) %]
@@ -187,7 +188,7 @@ subsequence(
 		  <option value="menor" [% IF (c.req.param('campo_operador') == 'menor') %] selected [% END %]>menor que</option>
 	  </select>
 
-	  <input type="text" id="valor_pesquisado" name="valor_pesquisado"/>
+	  <input type="text" id="valor_pesquisado" name="valor_pesquisado" value="[% c.req.param('valor_pesquisado') | html %]" />
 
   </dl>
   <input type="submit" name="buscar" value="Buscar" />
