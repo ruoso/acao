@@ -61,7 +61,8 @@ sub produce_expr {
             $operador = 'eq';
         }
         when ('contém') {
-            $operador = 'contains('.$path_form.','.$valor.')';
+            $operador = 'contains';
+            return join ' ', $operador , '(' , $self->produce_xpath($nsprefix, $path_form) , ',' , $self->quote_valor($valor), ')';
         }
         when ('diferente') {
             $operador = 'ne';
