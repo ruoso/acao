@@ -75,7 +75,7 @@ sub produce_expr {
             $tipo_operador = 'infix';           
         }
         when ('contem') {
-            $operador = 'contains-case-insensitive'; 
+            $operador = 'contains'; 
             $tipo_operador = 'function';
         }
         when ('inicia') {
