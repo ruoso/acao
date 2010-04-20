@@ -92,13 +92,13 @@ sub produce_expr {
     }
     given ($tipo_operador) {
         when ('infix') {
-            return join ' ', $self->produce_xpath($nsprefix, $path_form),
-                $operador, $self->quote_valor($valor);
+            return join ' ', 'upper-case('.$self->produce_xpath($nsprefix, $path_form).')',
+                $operador, 'upper-case('.$self->quote_valor($valor).')';
         }
         when ('function') {
             return join ' ', $operador , '(' ,
-                $self->produce_xpath($nsprefix, $path_form), ',' , 
-                $self->quote_valor($valor), ')';
+                'upper-case('.$self->produce_xpath($nsprefix, $path_form).')', ',' , 
+                'upper-case('.$self->quote_valor($valor).')', ')';
         }
     }
 }
