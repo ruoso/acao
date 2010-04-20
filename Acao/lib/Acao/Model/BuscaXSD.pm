@@ -60,6 +60,9 @@ sub produce_expr {
         when ('igual') {
             $operador = 'eq';
         }
+        when ('contém') {
+            $operador = 'contains('.$path_form.','.$valor.')';
+        }
         when ('diferente') {
             $operador = 'ne';
         }
