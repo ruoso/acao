@@ -158,9 +158,9 @@ subsequence(
         return [% xqueryret %]
 [% END %] 
 
-[%# <TEXTAREA ROWS=50 COLS=150> %]
+<!--<TEXTAREA ROWS=50 COLS=150>
 [%# xquery %]
-[%# </TEXTAREA> %]
+</TEXTAREA>-->
 
 <form name="form" onSubmit="return valida_campos_busca()" action="[% c.uri_for('/auth/registros/revisor/') _ leitura.id_leitura  %]">
 
@@ -200,7 +200,7 @@ subsequence(
   <dl class="buscaControle">
 
 	  <input type="checkbox" id="buscar_dados" name="buscar_dados" [% IF (c.req.param('buscar_dados') == 'on') %] checked [% END %] /> 
-		<label for="buscar_dados"> Buscar em dados do documento </label> <br/><br/>
+		<label for="buscar_dados"> Habilitar busca em dados do documento </label> <br/><br/>
 
 	  <select name="campo_formulario" id="campo_formulario"  style="width:200px;">
 		  <option value="0">Selecione Campo Formul&aacute;rio</option>
@@ -216,6 +216,10 @@ subsequence(
 		  <option value="diferente" [% IF (c.req.param('campo_operador') == 'diferente') %] selected [% END %]>diferente de</option>
 		  <option value="maior" [% IF (c.req.param('campo_operador') == 'maior') %] selected [% END %]>maior que</option>
 		  <option value="menor" [% IF (c.req.param('campo_operador') == 'menor') %] selected [% END %]>menor que</option>
+          <option value="contem" [% IF (c.req.param('campo_operador') == 'contem') %] selected [% END %]>contém</option>
+
+          <option value="inicia" [% IF (c.req.param('campo_operador') == 'inicia') %] selected [% END %]>inicia com</option>
+          <option value="termina" [% IF (c.req.param('campo_operador') == 'termina') %] selected [% END %]>termina com</option>
 	  </select>
 
 	  <input type="text" id="valor_pesquisado" name="valor_pesquisado" value="[% c.req.param('valor_pesquisado') %]"  style="width:150px;" />

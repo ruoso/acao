@@ -55,25 +55,52 @@ sub produce_xpath {
 
 sub produce_expr {
     my ($self, $nsprefix, $path_form, $oper, $valor)= @_;
+    my $tipo_operador;
     my $operador;
     given ($oper) {
         when ('igual') {
             $operador = 'eq';
+            $tipo_operador = 'infix';           
         }
         when ('diferente') {
             $operador = 'ne';
+            $tipo_operador = 'infix';           
         }
         when ('maior') {
             $operador = 'gt';
+            $tipo_operador = 'infix';           
         }
         when ('menor') {
             $operador = 'lt';
+            $tipo_operador = 'infix';           
+        }
+        when ('contem') {
+            $operador = 'contains'; 
+            $tipo_operador = 'function';
+        }
+        when ('inicia') {
+            $operador = 'starts-with'; 
+            $tipo_operador = 'function';
+        }
+        when ('termina') {
+            $operador = 'ends-with'; 
+            $tipo_operador = 'function';
         }
         default {
             die 'submissao-invalida';
         }
     }
-    return join ' ', $self->produce_xpath($nsprefix, $path_form), $operador, $self->quote_valor($valor);
+    given ($tipo_operador) {
+        when ('infix') {
+            return join ' ', 'upper-case('.$self->produce_xpath($nsprefix, $path_form).')',
+                $operador, 'upper-case('.$self->quote_valor($valor).')';
+        }
+        when ('function') {
+            return join ' ', $operador , '(' ,
+                'upper-case('.$self->produce_xpath($nsprefix, $path_form).')', ',' , 
+                'upper-case('.$self->quote_valor($valor).')', ')';
+        }
+    }
 }
 
 sub quote_valor {
