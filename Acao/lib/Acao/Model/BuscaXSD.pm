@@ -38,6 +38,7 @@ sub get_simpletype_annotations {
 sub get_target_namespace {
     my ($self, $xsd) = @_;
     utf8::upgrade($xsd);
+
     my $schemadoc = XML::LibXML->load_xml(string => $xsd);
     my $schemabaseel = $schemadoc->getDocumentElement;
     return $schemabaseel->getAttribute('targetNamespace');
@@ -45,6 +46,11 @@ sub get_target_namespace {
 
 sub produce_xpath {
     my ($self, $nsprefix, $path_form) = @_;
+
+# $path_form  =~ tr/àáâãäåçèéêëìíîïñòóôõöùúûüýÿ/aaaaaaceeeeiiiinooooouuuuyy/;
+my $var = "João: / - José";
+$var =~ s/[^0-9a-zA-Z\s\/:-]//gis;
+warn $var;
     return
         join '/',
         map { $nsprefix.':'.$_ }
@@ -92,13 +98,13 @@ sub produce_expr {
     }
     given ($tipo_operador) {
         when ('infix') {
-            return join ' ', 'upper-case('.$self->produce_xpath($nsprefix, $path_form).')',
-                $operador, 'upper-case('.$self->quote_valor($valor).')';
+            return join ' ', "upper-case(replace(".$self->produce_xpath($nsprefix, $path_form).",'[^0-9a-zA-Z]',''))",
+                $operador, "upper-case(replace(".$self->quote_valor($valor).",'[^0-9a-zA-Z]',''))";
         }
         when ('function') {
             return join ' ', $operador , '(' ,
-                'upper-case('.$self->produce_xpath($nsprefix, $path_form).')', ',' , 
-                'upper-case('.$self->quote_valor($valor).')', ')';
+                "upper-case(replace(".$self->produce_xpath($nsprefix, $path_form).",'[^0-9a-zA-Z]',''))", ',' , 
+                "upper-case(replace(".$self->quote_valor($valor).",'[^0-9a-zA-Z]',''))", ')';
         }
     }
 }
