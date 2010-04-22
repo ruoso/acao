@@ -47,10 +47,6 @@ sub get_target_namespace {
 sub produce_xpath {
     my ($self, $nsprefix, $path_form) = @_;
 
-# $path_form  =~ tr/àáâãäåçèéêëìíîïñòóôõöùúûüýÿ/aaaaaaceeeeiiiinooooouuuuyy/;
-my $var = "João: / - José";
-$var =~ s/[^0-9a-zA-Z\s\/:-]//gis;
-warn $var;
     return
         join '/',
         map { $nsprefix.':'.$_ }
