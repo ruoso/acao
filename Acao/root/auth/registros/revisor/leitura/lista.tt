@@ -158,10 +158,10 @@ subsequence(
         return [% xqueryret %]
 [% END %] 
 
-<TEXTAREA ROWS=10 COLS=150>
-[% xquery %]
-</TEXTAREA>
-
+[%# <TEXTAREA ROWS=10 COLS=150>
+# [#% xquery %#]
+# </TEXTAREA>
+%]
 <form name="form" onSubmit="return valida_campos_busca()" action="[% c.uri_for('/auth/registros/revisor/') _ leitura.id_leitura  %]">
 
 <fieldset>

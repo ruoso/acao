@@ -26,7 +26,6 @@ use 5.10.0;
 
 sub get_simpletype_annotations {
     my ($self, $xsd) = @_;
-    utf8::upgrade($xsd);
     my $schemadoc = XML::LibXML->load_xml(string => $xsd);
     my $schemabaseel = $schemadoc->getDocumentElement;
     my $targetns = $schemabaseel->getAttribute('targetNamespace');
@@ -37,7 +36,6 @@ sub get_simpletype_annotations {
 
 sub get_target_namespace {
     my ($self, $xsd) = @_;
-    utf8::upgrade($xsd);
 
     my $schemadoc = XML::LibXML->load_xml(string => $xsd);
     my $schemabaseel = $schemadoc->getDocumentElement;
