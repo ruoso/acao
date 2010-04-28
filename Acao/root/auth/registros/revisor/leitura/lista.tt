@@ -132,31 +132,36 @@ declare namespace custom = "[% targetNamespace %]";
 for $control in 
 subsequence(
   distinct-values(
-    collection("leitura-[% leitura.id_leitura %]")/cd:registroDigitacao/cd:documento/cd:controle[[%
+   for $ungrouped in
+   collection("leitura-[% leitura.id_leitura %]")[([%
    IF c.req.param('estadoControle')
-      %](../cd:estadoControle eq "[% c.req.param('estadoControle') %]") and [% END %][%
+      %](cd:registroDigitacao/cd:documento/cd:estadoControle eq "[% c.req.param('estadoControle') %]") and [% END %][%
    IF c.req.param('controle_ini')
-      %](. ge "[% c.req.param('controle_ini') %]") and [% END %][%
+      %](cd:registroDigitacao/cd:documento/cd:controle ge "[% c.req.param('controle_ini') %]") and [% END %][%
    IF c.req.param('controle_fim')
-      %](. le "[% c.req.param('controle_fim') %]") and [% END %]1]),
-   [% interval_ini * num_por_pagina %], [% num_por_pagina %])
+      %](cd:registroDigitacao/cd:documento/cd:controle le "[% c.req.param('controle_fim') %]") and [% END %]1 and 1)]
+[% IF modificador_rowspan %]
+      order by $ungrouped/cd:registroDigitacao/cd:documento/cd:conteudo/[% xpath_campo %]
+[% ELSE %]
+      order by $ungrouped/cd:registroDigitacao/cd:documento/cd:controle
+[% END %]
+      return $ungrouped/cd:registroDigitacao/cd:documento/cd:controle
+   ),
+   [% (interval_ini * num_por_pagina) + 1 %], [% num_por_pagina %])
    let $form := collection("leitura-[% leitura.id_leitura %]")/cd:registroDigitacao[[%
    IF c.req.param('buscar_dados')
       %](cd:documento/cd:conteudo/[% expressao_consulta_interna %]) and [% END %][%
    IF c.req.param('estadoAprovacao')
       %](cd:documento/cd:estado eq "[% c.req.param('estadoAprovacao') %]") and [% END %][%
    %]cd:documento/cd:controle = $control] 
-   order by ($control) 
-        return
-           ( for $reg at $pos in $form
-             order by $reg/cd:digitacao/cd:dataDigitacao
-             return [% xqueryret %])
+        for $reg at $pos in $form
+        return [% xqueryret %]
 [% END %] 
 
-<TEXTAREA ROWS=10 COLS=150>
-[% xquery %]
-</TEXTAREA>
-
+[%# <TEXTAREA ROWS=10 COLS=150>
+# [#% xquery %#]
+# </TEXTAREA>
+%]
 <form name="form" onSubmit="return valida_campos_busca()" action="[% c.uri_for('/auth/registros/revisor/') _ leitura.id_leitura  %]">
 
 <fieldset>
@@ -262,8 +267,8 @@ subsequence(
  [% item %]
  [% END %]
  [% c.model('Sedna').commit %]
-[%# CATCH %]
- [%# c.model('Sedna').rollback %]
+[% CATCH %]
+ <div class="erro">ERRO AO PROCESSAR CONSULTA.</div>
 [% END %]
 </tbody>
 </table>

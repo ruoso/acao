@@ -32,7 +32,8 @@ Essa é a view default da aplicação.
 
 __PACKAGE__->config(
     TEMPLATE_EXTENSION => '.tt',
-    INCLUDE_PATH       => [ Acao->path_to('root'), ]
+    INCLUDE_PATH       => [ Acao->path_to('root'), ],
+    ENCODING           => 'UTF-8',
 );
 
 
