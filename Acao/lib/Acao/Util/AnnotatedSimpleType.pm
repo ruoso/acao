@@ -2,7 +2,7 @@ package Acao::Util::AnnotatedSimpleType;
 use 5.10.0;
 use Moose;
 use XML::LibXML;
-
+use utf8;
 use constant XSD_NS => 'http://www.w3.org/2001/XMLSchema';
 
 sub traverse_schema {
