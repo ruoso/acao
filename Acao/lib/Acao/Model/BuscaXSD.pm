@@ -92,15 +92,14 @@ sub produce_expr {
     }
     given ($tipo_operador) {
         when ('infix') {
-            return join ' ', "upper-case(replace(".$self->produce_xpath($nsprefix, $path_form).",'[^0-9a-zA-Z]',''))",
-                $operador, "upper-case(replace(".$self->quote_valor($valor).",'[^0-9a-zA-Z]',''))";
+            return join ' ', 'upper-case('.$self->produce_xpath($nsprefix, $path_form).')',
+                $operador, 'upper-case('.$self->quote_valor($valor).')';
         }
         when ('function') {
-            return join ' ', $operador , '(' ,
-                "upper-case(replace(".$self->produce_xpath($nsprefix, $path_form).",'[^0-9a-zA-Z]',''))", ',' , 
-                "upper-case(replace(".$self->quote_valor($valor).",'[^0-9a-zA-Z]',''))", ')';
-        }
-    }
+            return join ' ', $operador , '(' , 
+                'upper-case('.$self->produce_xpath($nsprefix, $path_form).'),',  
+                'upper-case('.$self->quote_valor($valor).'))';
+        }    }
 }
 
 sub quote_valor {

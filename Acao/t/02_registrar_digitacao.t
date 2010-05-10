@@ -9,6 +9,19 @@ use XML::Compile::Util;
 use Acao::Model::Sedna;
 use utf8;
 
+=head1 NAME
+
+Acao - Módulo principal da aplicação
+
+=head1 DESCRIPTION
+
+Este é o módulo principal da aplicação Catalyst, declara os plugins a
+serem carregados e a versão da aplicação.
+
+=head1 METHODS
+
+=cut
+
 use constant DIGITACAO_NS =>
   'http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd';
 
@@ -154,3 +167,9 @@ sub _obter_dados_digitados {
     }
 }
 
+=head1 COPYRIGHT AND LICENSING
+
+Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
+sob a GPL versão 2.
+
+=cut
