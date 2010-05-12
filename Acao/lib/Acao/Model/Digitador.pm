@@ -23,6 +23,7 @@ use XML::LibXML;
 use XML::Compile::Schema;
 use XML::Compile::Util;
 use DateTime;
+use Encode;
 
 use constant DIGITACAO_NS =>
   'http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd';
@@ -136,8 +137,9 @@ txn_method 'salvar_digitacao' => authorized 'digitador' => sub {
           . $leitura->instrumento->xml_schema . '") return $x'
     );
     my $xsd = $self->sedna->get_item;
+    my $octets = encode('utf8', $xsd);
 
-    my $x_c_s    = XML::Compile::Schema->new($xsd);
+    my $x_c_s    = XML::Compile::Schema->new($octets);
     my @elements = $x_c_s->elements;
 
     my $read = $x_c_s->compile( READER => $elements[0] );

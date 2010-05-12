@@ -104,15 +104,30 @@ sub iniciar_consolidacao {
         eval "require $classe";
         if ($@) {
             my $erro_original = $@;
-            $consolidacao->alertas->create(
-                {
+            eval {
+                $consolidacao->alertas->create
+                  (
+                   {
                     etapa            => $etapa,
                     log_level        => 'FATAL',
                     datahora         => DateTime->now(),
                     descricao_alerta => 'Erro carregando plugin - '
-                      . $erro_original
-                }
-            );
+                    . $erro_original
+                   }
+                  );
+            };
+            if ($@) {
+                my $outro_erro = $@;
+                $consolidacao->alertas->create
+                  (
+                   {
+                    etapa            => $etapa,
+                    log_level        => 'FATAL',
+                    datahora         => DateTime->now(),
+                    descricao_alerta => 'Ocorreu um erro inesperado ao registrar um alerta.'
+                   }
+                  );
+            }
             $consolidacao->update({
                 status => 'Finalizada com Erro!',
                 data_fim => DateTime->now(),
@@ -133,15 +148,30 @@ sub iniciar_consolidacao {
         };
         if ($@) {
             my $erro_original = $@;
-            $consolidacao->alertas->create(
-                {
+            eval {
+                $consolidacao->alertas->create
+                  (
+                   {
                     etapa            => $etapa,
                     log_level        => 'FATAL',
                     datahora         => DateTime->now(),
                     descricao_alerta => 'Erro executando coleta de dados - '
-                      . $erro_original
-                }
-            );
+                    . $erro_original
+                   }
+                  );
+            };
+            if ($@) {
+                my $outro_erro = $@;
+                $consolidacao->alertas->create
+                  (
+                   {
+                    etapa            => $etapa,
+                    log_level        => 'FATAL',
+                    datahora         => DateTime->now(),
+                    descricao_alerta => 'Ocorreu um erro inesperado ao registrar um alerta.'
+                   }
+                  );
+            }
             $consolidacao->update({
                 status => 'Finalizada com Erro!',
                 data_fim => DateTime->now(),
@@ -197,15 +227,30 @@ sub iniciar_consolidacao {
         eval "require $classe";
         if ($@) {
             my $erro_original = $@;
-            $consolidacao->alertas->create(
-                {
+            eval {
+                $consolidacao->alertas->create
+                  (
+                   {
                     etapa            => $etapa,
                     log_level        => 'FATAL',
                     datahora         => DateTime->now(),
                     descricao_alerta => 'Erro carregando plugin - '
-                      . $erro_original
-                }
-            );
+                    . $erro_original
+                   }
+                  );
+            };
+            if ($@) {
+                my $outro_erro = $@;
+                $consolidacao->alertas->create
+                  (
+                   {
+                    etapa            => $etapa,
+                    log_level        => 'FATAL',
+                    datahora         => DateTime->now(),
+                    descricao_alerta => 'Ocorreu um erro inesperado ao registrar um alerta.'
+                   }
+                  );
+            }
             $consolidacao->update({
                 status => 'Finalizada com Erro!',
                 data_fim => DateTime->now(),
@@ -225,15 +270,30 @@ sub iniciar_consolidacao {
         };
         if ($@) {
             my $erro_original = $@;
-            $consolidacao->alertas->create(
-                {
+            eval {
+                $consolidacao->alertas->create
+                  (
+                   {
                     etapa            => $etapa,
                     log_level        => 'FATAL',
                     datahora         => DateTime->now(),
                     descricao_alerta => 'Erro inicializando plugin - '
-                      . $erro_original
-                }
-            );
+                    . $erro_original
+                   }
+                  );
+            };
+            if ($@) {
+                my $outro_erro = $@;
+                $consolidacao->alertas->create
+                  (
+                   {
+                    etapa            => $etapa,
+                    log_level        => 'FATAL',
+                    datahora         => DateTime->now(),
+                    descricao_alerta => 'Ocorreu um erro inesperado ao registrar um alerta.'
+                   }
+                  );
+            }
             $consolidacao->update({
                 status => 'Finalizada com Erro!',
                 data_fim => DateTime->now(),
@@ -250,15 +310,30 @@ sub iniciar_consolidacao {
         eval "require $classe";
         if ($@) {
             my $erro_original = $@;
-            $consolidacao->alertas->create(
-                {
+            eval {
+                $consolidacao->alertas->create
+                  (
+                   {
                     etapa            => $etapa,
                     log_level        => 'FATAL',
                     datahora         => DateTime->now(),
                     descricao_alerta => 'Erro carregando plugin - '
                       . $erro_original
-                }
-            );
+                   }
+                  );
+            };
+            if ($@) {
+                my $outro_erro = $@;
+                $consolidacao->alertas->create
+                  (
+                   {
+                    etapa            => $etapa,
+                    log_level        => 'FATAL',
+                    datahora         => DateTime->now(),
+                    descricao_alerta => 'Ocorreu um erro inesperado ao registrar um alerta.'
+                   }
+                  );
+            }
             $consolidacao->update({
                 status => 'Finalizada com Erro!',
                 data_fim => DateTime->now(),
@@ -279,15 +354,30 @@ sub iniciar_consolidacao {
         };
         if ($@) {
             my $erro_original = $@;
-            $consolidacao->alertas->create(
-                {
+            eval {
+                $consolidacao->alertas->create
+                  (
+                   {
                     etapa            => $etapa,
                     log_level        => 'FATAL',
                     datahora         => DateTime->now(),
                     descricao_alerta => 'Erro inicializando plugin - '
-                      . $erro_original
-                }
-            );
+                    . $erro_original
+                   }
+                  );
+            };
+            if ($@) {
+                my $outro_erro = $@;
+                $consolidacao->alertas->create
+                  (
+                   {
+                    etapa            => $etapa,
+                    log_level        => 'FATAL',
+                    datahora         => DateTime->now(),
+                    descricao_alerta => 'Ocorreu um erro inesperado ao registrar um alerta.'
+                   }
+                  );
+            }
             $consolidacao->update({
                 status => 'Finalizada com Erro!',
                 data_fim => DateTime->now(),
@@ -323,22 +413,35 @@ sub iniciar_consolidacao {
             my $element =
               $registroConsolidacao->{documento}{conteudo}{$schema_element}[0];
             $conteudo = $schema_r->($element);
-            
-            
         };
 
         if ($@) {
             my $erro_original = $@;
-            $consolidacao->alertas->create(
-                {
+            eval {
+                $consolidacao->alertas->create
+                  (
+                   {
                     etapa     => $etapa,
                     log_level => 'FATAL',
                     datahora  => DateTime->now(),
                     descricao_alerta =>
-                      'Inconsistencia no registro XML, validacao falhou - '
-                      . $erro_original
-                }
-            );
+                    'Inconsistencia no registro XML, validacao falhou - '
+                    . $erro_original
+                   }
+                  );
+            };
+            if ($@) {
+                my $outro_erro = $@;
+                $consolidacao->alertas->create
+                  (
+                   {
+                    etapa            => $etapa,
+                    log_level        => 'FATAL',
+                    datahora         => DateTime->now(),
+                    descricao_alerta => 'Ocorreu um erro inesperado ao registrar um alerta.'
+                   }
+                  );
+            }
             next;
         }
 
@@ -361,8 +464,10 @@ sub iniciar_consolidacao {
             };
             if ($@) {
                 my $erro_original = $@;
-                $consolidacao->alertas->create(
-                    {
+                eval {
+                    $consolidacao->alertas->create
+                      (
+                       {
                         etapa            => 2,
                         log_level        => 'ERROR',
                         datahora         => DateTime->now(),
@@ -370,8 +475,21 @@ sub iniciar_consolidacao {
                           . $erro_original,
                         id_documento_consolidado =>
                           $registroConsolidacao->{documento}{id},
-                    }
-                );
+                       }
+                      );
+                };
+                if ($@) {
+                    my $outro_erro = $@;
+                    $consolidacao->alertas->create
+                      (
+                       {
+                        etapa            => $etapa,
+                        log_level        => 'FATAL',
+                        datahora         => DateTime->now(),
+                        descricao_alerta => 'Ocorreu um erro inesperado ao registrar um alerta.'
+                       }
+                      );
+                }
             }
         }
 
@@ -395,8 +513,10 @@ sub iniciar_consolidacao {
             };
             if ($@) {
                 my $erro_original = $@;
-                $consolidacao->alertas->create(
-                    {
+                eval {
+                    $consolidacao->alertas->create
+                      (
+                       {
                         etapa            => 3,
                         log_level        => 'ERROR',
                         datahora         => DateTime->now(),
@@ -404,8 +524,21 @@ sub iniciar_consolidacao {
                           . $erro_original,
                         id_documento_consolidado =>
                           $registroConsolidacao->{documento}{id},
-                    }
-                );
+                       }
+                      );
+                };
+                if ($@) {
+                    my $outro_erro = $@;
+                    $consolidacao->alertas->create
+                      (
+                       {
+                        etapa            => $etapa,
+                        log_level        => 'FATAL',
+                        datahora         => DateTime->now(),
+                        descricao_alerta => 'Ocorreu um erro inesperado ao registrar um alerta.'
+                       }
+                      );
+                }
             }
         }
 
