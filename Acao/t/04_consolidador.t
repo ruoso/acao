@@ -3,6 +3,20 @@ use warnings;
 use Test::More;
 use HTTP::Request::Common;
 
+=head1 NAME
+
+Classe de teste de Login/Logout.
+
+=head1 DESCRIPTION
+
+Essa classe executa o teste automatizado de todos os passos que se encontram abaixo 
+do galho consolidador utilizando o padrão de teste da linguagem/framework. O teste é 
+realizado percorrendo todos os passos executados pelo usuário do sistema na 
+execução da mesma tarefa retornando as mensagens correspondentes à resposta do 
+serviço.
+
+=cut
+
 BEGIN { use_ok 'Catalyst::Test', 'Acao' }
 my $res;
 
@@ -58,3 +72,10 @@ while ($content =~ m{href="http://localhost(/$endereco/entradas/consolidacao_([^
 }
 
 done_testing();
+
+=head1 COPYRIGHT AND LICENSING
+
+Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
+sob a GPL versão 2.
+
+=cut

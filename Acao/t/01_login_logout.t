@@ -3,6 +3,19 @@ use warnings;
 use Test::More;
 use HTTP::Request::Common;
 
+=head1 NAME
+
+Classe de teste de Login/Logout.
+
+=head1 DESCRIPTION
+
+Essa classe executa o teste automatizado da funcionalidade login/logout
+utilizando o padrão de teste da linguagem/framework. O teste é realizado
+percorrendo todos os passos executados pelo usuário do sistema na execução da 
+mesma tarefa retornando as mensagens correspondentes à resposta do serviço.
+
+=cut
+
 BEGIN { use_ok 'Catalyst::Test', 'Acao' }
 
 my $res = request('/');
@@ -69,3 +82,10 @@ is( $res->header('Location'), 'http://localhost/',
     'Quando faz logout, é redirecionado para o /' );
 
 done_testing();
+
+=head1 COPYRIGHT AND LICENSING
+
+Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
+sob a GPL versão 2.
+
+=cut
