@@ -9,6 +9,20 @@ use XML::Compile::Util;
 use Acao::Model::Sedna;
 use utf8;
 
+=head1 NAME
+
+Classe de teste de Login/Logout.
+
+=head1 DESCRIPTION
+
+Essa classe executa o teste automatizado de todos os passos que se encontram abaixo 
+do galho revisor utilizando o padrão de teste da linguagem/framework. O teste é 
+realizado percorrendo todos os passos executados pelo usuário do sistema na 
+execução da mesma tarefa retornando as mensagens correspondentes à resposta do 
+serviço.
+
+=cut
+
 use constant DIGITACAO_NS =>
   'http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd';
 
@@ -194,3 +208,10 @@ sub _obter_dados_digitados {
 		die 'era para eu ter retornado uma estrutura aqui!'
     }
 }
+
+=head1 COPYRIGHT AND LICENSING
+
+Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
+sob a GPL versão 2.
+
+=cut

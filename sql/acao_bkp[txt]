@@ -1,0 +1,1040 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Started on 2010-05-13 09:19:57 BRT
+
+SET statement_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = off;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET escape_string_warning = off;
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 1546 (class 1259 OID 16480)
+-- Dependencies: 3
+-- Name: alertas; Type: TABLE; Schema: public; Owner: acao; Tablespace: 
+--
+
+CREATE TABLE alertas (
+    id_alerta integer NOT NULL,
+    id_consolidacao integer NOT NULL,
+    etapa integer NOT NULL,
+    log_level character varying NOT NULL,
+    datahora timestamp with time zone NOT NULL,
+    id_documento_consolidado character varying,
+    descricao_alerta character varying NOT NULL
+);
+
+
+ALTER TABLE public.alertas OWNER TO acao;
+
+--
+-- TOC entry 1545 (class 1259 OID 16478)
+-- Dependencies: 1546 3
+-- Name: alertas_id_alerta_seq; Type: SEQUENCE; Schema: public; Owner: acao
+--
+
+CREATE SEQUENCE alertas_id_alerta_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.alertas_id_alerta_seq OWNER TO acao;
+
+--
+-- TOC entry 1902 (class 0 OID 0)
+-- Dependencies: 1545
+-- Name: alertas_id_alerta_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: acao
+--
+
+ALTER SEQUENCE alertas_id_alerta_seq OWNED BY alertas.id_alerta;
+
+
+--
+-- TOC entry 1903 (class 0 OID 0)
+-- Dependencies: 1545
+-- Name: alertas_id_alerta_seq; Type: SEQUENCE SET; Schema: public; Owner: acao
+--
+
+SELECT pg_catalog.setval('alertas_id_alerta_seq', 419, true);
+
+
+--
+-- TOC entry 1538 (class 1259 OID 16420)
+-- Dependencies: 3
+-- Name: consolidacao; Type: TABLE; Schema: public; Owner: acao; Tablespace: 
+--
+
+CREATE TABLE consolidacao (
+    id_consolidacao integer NOT NULL,
+    id_definicao_consolidacao integer NOT NULL,
+    data_ini timestamp with time zone,
+    data_fim timestamp with time zone,
+    dn character varying NOT NULL,
+    status character varying NOT NULL
+);
+
+
+ALTER TABLE public.consolidacao OWNER TO acao;
+
+--
+-- TOC entry 1537 (class 1259 OID 16418)
+-- Dependencies: 1538 3
+-- Name: consolidacao_id_consolidacao_seq; Type: SEQUENCE; Schema: public; Owner: acao
+--
+
+CREATE SEQUENCE consolidacao_id_consolidacao_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.consolidacao_id_consolidacao_seq OWNER TO acao;
+
+--
+-- TOC entry 1904 (class 0 OID 0)
+-- Dependencies: 1537
+-- Name: consolidacao_id_consolidacao_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: acao
+--
+
+ALTER SEQUENCE consolidacao_id_consolidacao_seq OWNED BY consolidacao.id_consolidacao;
+
+
+--
+-- TOC entry 1905 (class 0 OID 0)
+-- Dependencies: 1537
+-- Name: consolidacao_id_consolidacao_seq; Type: SEQUENCE SET; Schema: public; Owner: acao
+--
+
+SELECT pg_catalog.setval('consolidacao_id_consolidacao_seq', 35, true);
+
+
+--
+-- TOC entry 1539 (class 1259 OID 16430)
+-- Dependencies: 3
+-- Name: consolidador; Type: TABLE; Schema: public; Owner: acao; Tablespace: 
+--
+
+CREATE TABLE consolidador (
+    id_definicao_consolidacao integer NOT NULL,
+    dn character varying NOT NULL
+);
+
+
+ALTER TABLE public.consolidador OWNER TO acao;
+
+--
+-- TOC entry 1535 (class 1259 OID 16399)
+-- Dependencies: 3
+-- Name: definicao_consolidacao; Type: TABLE; Schema: public; Owner: acao; Tablespace: 
+--
+
+CREATE TABLE definicao_consolidacao (
+    id_definicao_consolidacao integer NOT NULL,
+    id_projeto integer,
+    xml_schema character varying,
+    nome character varying,
+    status character varying,
+    data_ini timestamp with time zone,
+    data_fim timestamp with time zone
+);
+
+
+ALTER TABLE public.definicao_consolidacao OWNER TO acao;
+
+--
+-- TOC entry 1534 (class 1259 OID 16397)
+-- Dependencies: 1535 3
+-- Name: definicao_consolidacao_id_definicao_consolidacao_seq; Type: SEQUENCE; Schema: public; Owner: acao
+--
+
+CREATE SEQUENCE definicao_consolidacao_id_definicao_consolidacao_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.definicao_consolidacao_id_definicao_consolidacao_seq OWNER TO acao;
+
+--
+-- TOC entry 1906 (class 0 OID 0)
+-- Dependencies: 1534
+-- Name: definicao_consolidacao_id_definicao_consolidacao_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: acao
+--
+
+ALTER SEQUENCE definicao_consolidacao_id_definicao_consolidacao_seq OWNED BY definicao_consolidacao.id_definicao_consolidacao;
+
+
+--
+-- TOC entry 1907 (class 0 OID 0)
+-- Dependencies: 1534
+-- Name: definicao_consolidacao_id_definicao_consolidacao_seq; Type: SEQUENCE SET; Schema: public; Owner: acao
+--
+
+SELECT pg_catalog.setval('definicao_consolidacao_id_definicao_consolidacao_seq', 1, false);
+
+
+--
+-- TOC entry 1547 (class 1259 OID 16490)
+-- Dependencies: 3
+-- Name: digitador; Type: TABLE; Schema: public; Owner: acao; Tablespace: 
+--
+
+CREATE TABLE digitador (
+    id_leitura integer NOT NULL,
+    dn character varying NOT NULL
+);
+
+
+ALTER TABLE public.digitador OWNER TO acao;
+
+--
+-- TOC entry 1549 (class 1259 OID 16508)
+-- Dependencies: 3
+-- Name: entrada_consolidacao; Type: TABLE; Schema: public; Owner: acao; Tablespace: 
+--
+
+CREATE TABLE entrada_consolidacao (
+    id_definicao_consolidacao integer NOT NULL,
+    id_leitura integer NOT NULL,
+    papel_leitura character varying
+);
+
+
+ALTER TABLE public.entrada_consolidacao OWNER TO acao;
+
+--
+-- TOC entry 1540 (class 1259 OID 16439)
+-- Dependencies: 3
+-- Name: etapa_coleta_dados; Type: TABLE; Schema: public; Owner: acao; Tablespace: 
+--
+
+CREATE TABLE etapa_coleta_dados (
+    id_definicao_consolidacao integer NOT NULL,
+    plugin_coleta_dados character varying NOT NULL,
+    ordem_coleta_dados integer
+);
+
+
+ALTER TABLE public.etapa_coleta_dados OWNER TO acao;
+
+--
+-- TOC entry 1541 (class 1259 OID 16448)
+-- Dependencies: 3
+-- Name: etapa_transformacao; Type: TABLE; Schema: public; Owner: acao; Tablespace: 
+--
+
+CREATE TABLE etapa_transformacao (
+    id_definicao_consolidacao integer NOT NULL,
+    plugin_transformacao character varying NOT NULL,
+    ordem_transformacao integer
+);
+
+
+ALTER TABLE public.etapa_transformacao OWNER TO acao;
+
+--
+-- TOC entry 1542 (class 1259 OID 16457)
+-- Dependencies: 3
+-- Name: etapa_validacao; Type: TABLE; Schema: public; Owner: acao; Tablespace: 
+--
+
+CREATE TABLE etapa_validacao (
+    id_definicao_consolidacao integer NOT NULL,
+    plugin_validacao character varying NOT NULL,
+    ordem_validacao integer
+);
+
+
+ALTER TABLE public.etapa_validacao OWNER TO acao;
+
+--
+-- TOC entry 1536 (class 1259 OID 16409)
+-- Dependencies: 3
+-- Name: instrumento; Type: TABLE; Schema: public; Owner: acao; Tablespace: 
+--
+
+CREATE TABLE instrumento (
+    id_projeto integer NOT NULL,
+    nome character varying NOT NULL,
+    xml_schema character varying NOT NULL,
+    campo_controle character varying NOT NULL
+);
+
+
+ALTER TABLE public.instrumento OWNER TO acao;
+
+--
+-- TOC entry 1544 (class 1259 OID 16468)
+-- Dependencies: 3
+-- Name: leitura; Type: TABLE; Schema: public; Owner: acao; Tablespace: 
+--
+
+CREATE TABLE leitura (
+    id_leitura integer NOT NULL,
+    id_projeto integer NOT NULL,
+    nome character varying NOT NULL,
+    coleta_ini timestamp with time zone,
+    coleta_fim timestamp with time zone,
+    digitacao_ini timestamp with time zone,
+    digitacao_fim timestamp with time zone,
+    revisao_ini timestamp with time zone,
+    revisao_fim timestamp with time zone
+);
+
+
+ALTER TABLE public.leitura OWNER TO acao;
+
+--
+-- TOC entry 1543 (class 1259 OID 16466)
+-- Dependencies: 3 1544
+-- Name: leitura_id_leitura_seq; Type: SEQUENCE; Schema: public; Owner: acao
+--
+
+CREATE SEQUENCE leitura_id_leitura_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.leitura_id_leitura_seq OWNER TO acao;
+
+--
+-- TOC entry 1908 (class 0 OID 0)
+-- Dependencies: 1543
+-- Name: leitura_id_leitura_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: acao
+--
+
+ALTER SEQUENCE leitura_id_leitura_seq OWNED BY leitura.id_leitura;
+
+
+--
+-- TOC entry 1909 (class 0 OID 0)
+-- Dependencies: 1543
+-- Name: leitura_id_leitura_seq; Type: SEQUENCE SET; Schema: public; Owner: acao
+--
+
+SELECT pg_catalog.setval('leitura_id_leitura_seq', 1, false);
+
+
+--
+-- TOC entry 1533 (class 1259 OID 16388)
+-- Dependencies: 3
+-- Name: projeto; Type: TABLE; Schema: public; Owner: acao; Tablespace: 
+--
+
+CREATE TABLE projeto (
+    id_projeto integer NOT NULL,
+    nome text NOT NULL
+);
+
+
+ALTER TABLE public.projeto OWNER TO acao;
+
+--
+-- TOC entry 1532 (class 1259 OID 16386)
+-- Dependencies: 1533 3
+-- Name: projeto_id_projeto_seq; Type: SEQUENCE; Schema: public; Owner: acao
+--
+
+CREATE SEQUENCE projeto_id_projeto_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.projeto_id_projeto_seq OWNER TO acao;
+
+--
+-- TOC entry 1910 (class 0 OID 0)
+-- Dependencies: 1532
+-- Name: projeto_id_projeto_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: acao
+--
+
+ALTER SEQUENCE projeto_id_projeto_seq OWNED BY projeto.id_projeto;
+
+
+--
+-- TOC entry 1911 (class 0 OID 0)
+-- Dependencies: 1532
+-- Name: projeto_id_projeto_seq; Type: SEQUENCE SET; Schema: public; Owner: acao
+--
+
+SELECT pg_catalog.setval('projeto_id_projeto_seq', 1, false);
+
+
+--
+-- TOC entry 1548 (class 1259 OID 16499)
+-- Dependencies: 3
+-- Name: revisor; Type: TABLE; Schema: public; Owner: acao; Tablespace: 
+--
+
+CREATE TABLE revisor (
+    id_leitura integer NOT NULL,
+    dn character varying NOT NULL
+);
+
+
+ALTER TABLE public.revisor OWNER TO acao;
+
+--
+-- TOC entry 1831 (class 2604 OID 16483)
+-- Dependencies: 1545 1546 1546
+-- Name: id_alerta; Type: DEFAULT; Schema: public; Owner: acao
+--
+
+ALTER TABLE alertas ALTER COLUMN id_alerta SET DEFAULT nextval('alertas_id_alerta_seq'::regclass);
+
+
+--
+-- TOC entry 1829 (class 2604 OID 16423)
+-- Dependencies: 1538 1537 1538
+-- Name: id_consolidacao; Type: DEFAULT; Schema: public; Owner: acao
+--
+
+ALTER TABLE consolidacao ALTER COLUMN id_consolidacao SET DEFAULT nextval('consolidacao_id_consolidacao_seq'::regclass);
+
+
+--
+-- TOC entry 1828 (class 2604 OID 16402)
+-- Dependencies: 1535 1534 1535
+-- Name: id_definicao_consolidacao; Type: DEFAULT; Schema: public; Owner: acao
+--
+
+ALTER TABLE definicao_consolidacao ALTER COLUMN id_definicao_consolidacao SET DEFAULT nextval('definicao_consolidacao_id_definicao_consolidacao_seq'::regclass);
+
+
+--
+-- TOC entry 1830 (class 2604 OID 16471)
+-- Dependencies: 1543 1544 1544
+-- Name: id_leitura; Type: DEFAULT; Schema: public; Owner: acao
+--
+
+ALTER TABLE leitura ALTER COLUMN id_leitura SET DEFAULT nextval('leitura_id_leitura_seq'::regclass);
+
+
+--
+-- TOC entry 1827 (class 2604 OID 16391)
+-- Dependencies: 1533 1532 1533
+-- Name: id_projeto; Type: DEFAULT; Schema: public; Owner: acao
+--
+
+ALTER TABLE projeto ALTER COLUMN id_projeto SET DEFAULT nextval('projeto_id_projeto_seq'::regclass);
+
+
+--
+-- TOC entry 1893 (class 0 OID 16480)
+-- Dependencies: 1546
+-- Data for Name: alertas; Type: TABLE DATA; Schema: public; Owner: acao
+--
+
+COPY alertas (id_alerta, id_consolidacao, etapa, log_level, datahora, id_documento_consolidado, descricao_alerta) FROM stdin;
+376	31	1	TRACE	2010-05-04 10:54:09-03	\N	Iniciando o processo de consolidação
+377	31	1	TRACE	2010-05-04 10:54:09-03	\N	Criada Collection de entrada, prosseguindo para entrada de dados.
+378	31	2	TRACE	2010-05-04 10:54:10-03	\N	Vai iniciar o processo de validacao
+379	31	5	TRACE	2010-05-04 10:54:10-03	\N	Terminou a Consolidacao.
+380	32	1	TRACE	2010-05-04 11:02:11-03	\N	Iniciando o processo de consolidação
+381	32	1	TRACE	2010-05-04 11:02:11-03	\N	Criada Collection de entrada, prosseguindo para entrada de dados.
+382	32	2	TRACE	2010-05-04 11:02:11-03	\N	Vai iniciar o processo de validacao
+383	32	5	TRACE	2010-05-04 11:02:11-03	\N	Terminou a Consolidacao.
+384	33	1	TRACE	2010-05-12 15:38:23-03	\N	Iniciando o processo de consolidação
+385	33	1	TRACE	2010-05-12 15:38:23-03	\N	Criada Collection de entrada, prosseguindo para entrada de dados.
+386	33	2	TRACE	2010-05-12 15:38:24-03	\N	Vai iniciar o processo de validacao
+387	33	5	TRACE	2010-05-12 15:38:24-03	\N	Terminou a Consolidacao.
+388	34	1	TRACE	2010-05-12 15:41:48-03	\N	Iniciando o processo de consolidação
+389	34	1	TRACE	2010-05-12 15:41:48-03	\N	Criada Collection de entrada, prosseguindo para entrada de dados.
+390	34	1	TRACE	2010-05-12 15:41:49-03	consolidacao_34_acao_1273689708_0	Documento inserido na collection.
+391	34	1	TRACE	2010-05-12 15:42:02-03	consolidacao_34_acao_1273689708_1	Documento inserido na collection.
+392	34	2	TRACE	2010-05-12 15:42:03-03	\N	Vai iniciar o processo de validacao
+393	34	2	TRACE	2010-05-12 15:42:03-03	consolidacao_34_acao_1273689708_0	Vai validar o documento.
+394	34	2	ERROR	2010-05-12 15:42:03-03	consolidacao_34_acao_1273689708_0	 o cpf  do membro  desta família é inválido.
+395	34	2	ERROR	2010-05-12 15:42:03-03	consolidacao_34_acao_1273689708_0	 o cpf  do membro  desta família é inválido.
+396	34	3	TRACE	2010-05-12 15:42:03-03	consolidacao_34_acao_1273689708_0	Vai transformar o documento.
+397	34	4	TRACE	2010-05-12 15:42:03-03	consolidacao_34_acao_1273689708_0	Terminou de processar o documento.
+398	34	2	TRACE	2010-05-12 15:42:03-03	consolidacao_34_acao_1273689708_1	Vai validar o documento.
+399	34	2	ERROR	2010-05-12 15:42:03-03	consolidacao_34_acao_1273689708_1	 o cpf  do membro  desta família é inválido.
+400	34	2	ERROR	2010-05-12 15:42:03-03	consolidacao_34_acao_1273689708_1	 o cpf  do membro  desta família é inválido.
+401	34	3	TRACE	2010-05-12 15:42:03-03	consolidacao_34_acao_1273689708_1	Vai transformar o documento.
+402	34	4	TRACE	2010-05-12 15:42:03-03	consolidacao_34_acao_1273689708_1	Terminou de processar o documento.
+403	34	5	TRACE	2010-05-12 15:42:03-03	\N	Terminou a Consolidacao.
+404	35	1	TRACE	2010-05-12 15:42:23-03	\N	Iniciando o processo de consolidação
+405	35	1	TRACE	2010-05-12 15:42:23-03	\N	Criada Collection de entrada, prosseguindo para entrada de dados.
+406	35	1	TRACE	2010-05-12 15:42:56-03	consolidacao_35_acao_1273689743_0	Documento inserido na collection.
+407	35	1	TRACE	2010-05-12 15:43:08-03	consolidacao_35_acao_1273689743_1	Documento inserido na collection.
+408	35	2	TRACE	2010-05-12 15:43:08-03	\N	Vai iniciar o processo de validacao
+409	35	2	TRACE	2010-05-12 15:43:08-03	consolidacao_35_acao_1273689743_0	Vai validar o documento.
+410	35	2	ERROR	2010-05-12 15:43:08-03	consolidacao_35_acao_1273689743_0	 o cpf  do membro  desta família é inválido.
+411	35	2	ERROR	2010-05-12 15:43:08-03	consolidacao_35_acao_1273689743_0	 o cpf  do membro  desta família é inválido.
+412	35	3	TRACE	2010-05-12 15:43:08-03	consolidacao_35_acao_1273689743_0	Vai transformar o documento.
+413	35	4	TRACE	2010-05-12 15:43:09-03	consolidacao_35_acao_1273689743_0	Terminou de processar o documento.
+414	35	2	TRACE	2010-05-12 15:43:09-03	consolidacao_35_acao_1273689743_1	Vai validar o documento.
+415	35	2	ERROR	2010-05-12 15:43:09-03	consolidacao_35_acao_1273689743_1	 o cpf  do membro  desta família é inválido.
+416	35	2	ERROR	2010-05-12 15:43:09-03	consolidacao_35_acao_1273689743_1	 o cpf  do membro  desta família é inválido.
+417	35	3	TRACE	2010-05-12 15:43:09-03	consolidacao_35_acao_1273689743_1	Vai transformar o documento.
+418	35	4	TRACE	2010-05-12 15:43:09-03	consolidacao_35_acao_1273689743_1	Terminou de processar o documento.
+419	35	5	TRACE	2010-05-12 15:43:09-03	\N	Terminou a Consolidacao.
+\.
+
+
+--
+-- TOC entry 1887 (class 0 OID 16420)
+-- Dependencies: 1538
+-- Data for Name: consolidacao; Type: TABLE DATA; Schema: public; Owner: acao
+--
+
+COPY consolidacao (id_consolidacao, id_definicao_consolidacao, data_ini, data_fim, dn, status) FROM stdin;
+31	1	2010-05-04 10:54:06-03	2010-05-04 10:54:10-03	acao	Finalizada
+32	1	2010-05-04 11:02:08-03	2010-05-04 11:02:11-03	acao	Finalizada
+33	1	2010-05-12 15:38:20-03	2010-05-12 15:38:24-03	acao	Finalizada
+34	1	2010-05-12 15:41:45-03	2010-05-12 15:42:03-03	acao	Finalizada
+35	1	2010-05-12 15:42:20-03	2010-05-12 15:43:09-03	acao	Finalizada
+\.
+
+
+--
+-- TOC entry 1888 (class 0 OID 16430)
+-- Dependencies: 1539
+-- Data for Name: consolidador; Type: TABLE DATA; Schema: public; Owner: acao
+--
+
+COPY consolidador (id_definicao_consolidacao, dn) FROM stdin;
+1	acao
+\.
+
+
+--
+-- TOC entry 1885 (class 0 OID 16399)
+-- Dependencies: 1535
+-- Data for Name: definicao_consolidacao; Type: TABLE DATA; Schema: public; Owner: acao
+--
+
+COPY definicao_consolidacao (id_definicao_consolidacao, id_projeto, xml_schema, nome, status, data_ini, data_fim) FROM stdin;
+1	1	viladomar-consolidado.xsd	Recadastramento Vila do Mar	Não Iniciada	\N	\N
+\.
+
+
+--
+-- TOC entry 1894 (class 0 OID 16490)
+-- Dependencies: 1547
+-- Data for Name: digitador; Type: TABLE DATA; Schema: public; Owner: acao
+--
+
+COPY digitador (id_leitura, dn) FROM stdin;
+1	acao
+2	acao
+1	ciclano
+2	ciclano
+\.
+
+
+--
+-- TOC entry 1896 (class 0 OID 16508)
+-- Dependencies: 1549
+-- Data for Name: entrada_consolidacao; Type: TABLE DATA; Schema: public; Owner: acao
+--
+
+COPY entrada_consolidacao (id_definicao_consolidacao, id_leitura, papel_leitura) FROM stdin;
+1	1	cadernoa
+1	2	cadernob
+\.
+
+
+--
+-- TOC entry 1889 (class 0 OID 16439)
+-- Dependencies: 1540
+-- Data for Name: etapa_coleta_dados; Type: TABLE DATA; Schema: public; Owner: acao
+--
+
+COPY etapa_coleta_dados (id_definicao_consolidacao, plugin_coleta_dados, ordem_coleta_dados) FROM stdin;
+1	Acao::Plugins::VilaDoMar::ColetaDeDados	1
+\.
+
+
+--
+-- TOC entry 1890 (class 0 OID 16448)
+-- Dependencies: 1541
+-- Data for Name: etapa_transformacao; Type: TABLE DATA; Schema: public; Owner: acao
+--
+
+COPY etapa_transformacao (id_definicao_consolidacao, plugin_transformacao, ordem_transformacao) FROM stdin;
+1	Acao::Plugins::VilaDoMar::NormalizaIdade	\N
+1	Acao::Plugins::VilaDoMar::ResumoMembros	\N
+1	Acao::Plugins::VilaDoMar::NormalizaProfissao	\N
+1	Acao::Plugins::VilaDoMar::NormalizaString	\N
+\.
+
+
+--
+-- TOC entry 1891 (class 0 OID 16457)
+-- Dependencies: 1542
+-- Data for Name: etapa_validacao; Type: TABLE DATA; Schema: public; Owner: acao
+--
+
+COPY etapa_validacao (id_definicao_consolidacao, plugin_validacao, ordem_validacao) FROM stdin;
+1	Acao::Plugins::VilaDoMar::ValidaDocumentos	\N
+\.
+
+
+--
+-- TOC entry 1886 (class 0 OID 16409)
+-- Dependencies: 1536
+-- Data for Name: instrumento; Type: TABLE DATA; Schema: public; Owner: acao
+--
+
+COPY instrumento (id_projeto, nome, xml_schema, campo_controle) FROM stdin;
+1	Recadastramento - Caderno A	viladomar-cadernoa.xsd	1
+1	Recadastramento - Caderno B	viladomar-cadernob.xsd	1
+\.
+
+
+--
+-- TOC entry 1892 (class 0 OID 16468)
+-- Dependencies: 1544
+-- Data for Name: leitura; Type: TABLE DATA; Schema: public; Owner: acao
+--
+
+COPY leitura (id_leitura, id_projeto, nome, coleta_ini, coleta_fim, digitacao_ini, digitacao_fim, revisao_ini, revisao_fim) FROM stdin;
+1	1	Recadastramento - Caderno A	\N	\N	\N	\N	\N	\N
+2	1	Recadastramento - Caderno B	\N	\N	\N	\N	\N	\N
+\.
+
+
+--
+-- TOC entry 1884 (class 0 OID 16388)
+-- Dependencies: 1533
+-- Data for Name: projeto; Type: TABLE DATA; Schema: public; Owner: acao
+--
+
+COPY projeto (id_projeto, nome) FROM stdin;
+1	Vila do Mar
+\.
+
+
+--
+-- TOC entry 1895 (class 0 OID 16499)
+-- Dependencies: 1548
+-- Data for Name: revisor; Type: TABLE DATA; Schema: public; Owner: acao
+--
+
+COPY revisor (id_leitura, dn) FROM stdin;
+1	acao
+2	acao
+1	beltrano
+2	beltrano
+\.
+
+
+--
+-- TOC entry 1860 (class 2606 OID 16488)
+-- Dependencies: 1546 1546
+-- Name: alertas_pkey; Type: CONSTRAINT; Schema: public; Owner: acao; Tablespace: 
+--
+
+ALTER TABLE ONLY alertas
+    ADD CONSTRAINT alertas_pkey PRIMARY KEY (id_alerta);
+
+
+--
+-- TOC entry 1842 (class 2606 OID 16428)
+-- Dependencies: 1538 1538
+-- Name: consolidacao_pkey; Type: CONSTRAINT; Schema: public; Owner: acao; Tablespace: 
+--
+
+ALTER TABLE ONLY consolidacao
+    ADD CONSTRAINT consolidacao_pkey PRIMARY KEY (id_consolidacao);
+
+
+--
+-- TOC entry 1845 (class 2606 OID 16437)
+-- Dependencies: 1539 1539 1539
+-- Name: consolidador_pkey; Type: CONSTRAINT; Schema: public; Owner: acao; Tablespace: 
+--
+
+ALTER TABLE ONLY consolidador
+    ADD CONSTRAINT consolidador_pkey PRIMARY KEY (id_definicao_consolidacao, dn);
+
+
+--
+-- TOC entry 1836 (class 2606 OID 16407)
+-- Dependencies: 1535 1535
+-- Name: definicao_consolidacao_pkey; Type: CONSTRAINT; Schema: public; Owner: acao; Tablespace: 
+--
+
+ALTER TABLE ONLY definicao_consolidacao
+    ADD CONSTRAINT definicao_consolidacao_pkey PRIMARY KEY (id_definicao_consolidacao);
+
+
+--
+-- TOC entry 1863 (class 2606 OID 16497)
+-- Dependencies: 1547 1547 1547
+-- Name: digitador_pkey; Type: CONSTRAINT; Schema: public; Owner: acao; Tablespace: 
+--
+
+ALTER TABLE ONLY digitador
+    ADD CONSTRAINT digitador_pkey PRIMARY KEY (id_leitura, dn);
+
+
+--
+-- TOC entry 1870 (class 2606 OID 16515)
+-- Dependencies: 1549 1549 1549
+-- Name: entrada_consolidacao_pkey; Type: CONSTRAINT; Schema: public; Owner: acao; Tablespace: 
+--
+
+ALTER TABLE ONLY entrada_consolidacao
+    ADD CONSTRAINT entrada_consolidacao_pkey PRIMARY KEY (id_definicao_consolidacao, id_leitura);
+
+
+--
+-- TOC entry 1848 (class 2606 OID 16446)
+-- Dependencies: 1540 1540 1540
+-- Name: etapa_coleta_dados_pkey; Type: CONSTRAINT; Schema: public; Owner: acao; Tablespace: 
+--
+
+ALTER TABLE ONLY etapa_coleta_dados
+    ADD CONSTRAINT etapa_coleta_dados_pkey PRIMARY KEY (id_definicao_consolidacao, plugin_coleta_dados);
+
+
+--
+-- TOC entry 1851 (class 2606 OID 16455)
+-- Dependencies: 1541 1541 1541
+-- Name: etapa_transformacao_pkey; Type: CONSTRAINT; Schema: public; Owner: acao; Tablespace: 
+--
+
+ALTER TABLE ONLY etapa_transformacao
+    ADD CONSTRAINT etapa_transformacao_pkey PRIMARY KEY (id_definicao_consolidacao, plugin_transformacao);
+
+
+--
+-- TOC entry 1854 (class 2606 OID 16464)
+-- Dependencies: 1542 1542 1542
+-- Name: etapa_validacao_pkey; Type: CONSTRAINT; Schema: public; Owner: acao; Tablespace: 
+--
+
+ALTER TABLE ONLY etapa_validacao
+    ADD CONSTRAINT etapa_validacao_pkey PRIMARY KEY (id_definicao_consolidacao, plugin_validacao);
+
+
+--
+-- TOC entry 1839 (class 2606 OID 16416)
+-- Dependencies: 1536 1536 1536
+-- Name: instrumento_pkey; Type: CONSTRAINT; Schema: public; Owner: acao; Tablespace: 
+--
+
+ALTER TABLE ONLY instrumento
+    ADD CONSTRAINT instrumento_pkey PRIMARY KEY (id_projeto, nome);
+
+
+--
+-- TOC entry 1857 (class 2606 OID 16476)
+-- Dependencies: 1544 1544
+-- Name: leitura_pkey; Type: CONSTRAINT; Schema: public; Owner: acao; Tablespace: 
+--
+
+ALTER TABLE ONLY leitura
+    ADD CONSTRAINT leitura_pkey PRIMARY KEY (id_leitura);
+
+
+--
+-- TOC entry 1833 (class 2606 OID 16396)
+-- Dependencies: 1533 1533
+-- Name: projeto_pkey; Type: CONSTRAINT; Schema: public; Owner: acao; Tablespace: 
+--
+
+ALTER TABLE ONLY projeto
+    ADD CONSTRAINT projeto_pkey PRIMARY KEY (id_projeto);
+
+
+--
+-- TOC entry 1866 (class 2606 OID 16506)
+-- Dependencies: 1548 1548 1548
+-- Name: revisor_pkey; Type: CONSTRAINT; Schema: public; Owner: acao; Tablespace: 
+--
+
+ALTER TABLE ONLY revisor
+    ADD CONSTRAINT revisor_pkey PRIMARY KEY (id_leitura, dn);
+
+
+--
+-- TOC entry 1858 (class 1259 OID 16489)
+-- Dependencies: 1546
+-- Name: alertas_idx_id_consolidacao; Type: INDEX; Schema: public; Owner: acao; Tablespace: 
+--
+
+CREATE INDEX alertas_idx_id_consolidacao ON alertas USING btree (id_consolidacao);
+
+
+--
+-- TOC entry 1840 (class 1259 OID 16429)
+-- Dependencies: 1538
+-- Name: consolidacao_idx_id_definicao_consolidacao; Type: INDEX; Schema: public; Owner: acao; Tablespace: 
+--
+
+CREATE INDEX consolidacao_idx_id_definicao_consolidacao ON consolidacao USING btree (id_definicao_consolidacao);
+
+
+--
+-- TOC entry 1843 (class 1259 OID 16438)
+-- Dependencies: 1539
+-- Name: consolidador_idx_id_definicao_consolidacao; Type: INDEX; Schema: public; Owner: acao; Tablespace: 
+--
+
+CREATE INDEX consolidador_idx_id_definicao_consolidacao ON consolidador USING btree (id_definicao_consolidacao);
+
+
+--
+-- TOC entry 1834 (class 1259 OID 16408)
+-- Dependencies: 1535
+-- Name: definicao_consolidacao_idx_id_projeto; Type: INDEX; Schema: public; Owner: acao; Tablespace: 
+--
+
+CREATE INDEX definicao_consolidacao_idx_id_projeto ON definicao_consolidacao USING btree (id_projeto);
+
+
+--
+-- TOC entry 1861 (class 1259 OID 16498)
+-- Dependencies: 1547
+-- Name: digitador_idx_id_leitura; Type: INDEX; Schema: public; Owner: acao; Tablespace: 
+--
+
+CREATE INDEX digitador_idx_id_leitura ON digitador USING btree (id_leitura);
+
+
+--
+-- TOC entry 1867 (class 1259 OID 16516)
+-- Dependencies: 1549
+-- Name: entrada_consolidacao_idx_id_definicao_consolidacao; Type: INDEX; Schema: public; Owner: acao; Tablespace: 
+--
+
+CREATE INDEX entrada_consolidacao_idx_id_definicao_consolidacao ON entrada_consolidacao USING btree (id_definicao_consolidacao);
+
+
+--
+-- TOC entry 1868 (class 1259 OID 16517)
+-- Dependencies: 1549
+-- Name: entrada_consolidacao_idx_id_leitura; Type: INDEX; Schema: public; Owner: acao; Tablespace: 
+--
+
+CREATE INDEX entrada_consolidacao_idx_id_leitura ON entrada_consolidacao USING btree (id_leitura);
+
+
+--
+-- TOC entry 1846 (class 1259 OID 16447)
+-- Dependencies: 1540
+-- Name: etapa_coleta_dados_idx_id_definicao_consolidacao; Type: INDEX; Schema: public; Owner: acao; Tablespace: 
+--
+
+CREATE INDEX etapa_coleta_dados_idx_id_definicao_consolidacao ON etapa_coleta_dados USING btree (id_definicao_consolidacao);
+
+
+--
+-- TOC entry 1849 (class 1259 OID 16456)
+-- Dependencies: 1541
+-- Name: etapa_transformacao_idx_id_definicao_consolidacao; Type: INDEX; Schema: public; Owner: acao; Tablespace: 
+--
+
+CREATE INDEX etapa_transformacao_idx_id_definicao_consolidacao ON etapa_transformacao USING btree (id_definicao_consolidacao);
+
+
+--
+-- TOC entry 1852 (class 1259 OID 16465)
+-- Dependencies: 1542
+-- Name: etapa_validacao_idx_id_definicao_consolidacao; Type: INDEX; Schema: public; Owner: acao; Tablespace: 
+--
+
+CREATE INDEX etapa_validacao_idx_id_definicao_consolidacao ON etapa_validacao USING btree (id_definicao_consolidacao);
+
+
+--
+-- TOC entry 1837 (class 1259 OID 16417)
+-- Dependencies: 1536
+-- Name: instrumento_idx_id_projeto; Type: INDEX; Schema: public; Owner: acao; Tablespace: 
+--
+
+CREATE INDEX instrumento_idx_id_projeto ON instrumento USING btree (id_projeto);
+
+
+--
+-- TOC entry 1855 (class 1259 OID 16477)
+-- Dependencies: 1544 1544
+-- Name: leitura_idx_id_projeto_nome; Type: INDEX; Schema: public; Owner: acao; Tablespace: 
+--
+
+CREATE INDEX leitura_idx_id_projeto_nome ON leitura USING btree (id_projeto, nome);
+
+
+--
+-- TOC entry 1864 (class 1259 OID 16507)
+-- Dependencies: 1548
+-- Name: revisor_idx_id_leitura; Type: INDEX; Schema: public; Owner: acao; Tablespace: 
+--
+
+CREATE INDEX revisor_idx_id_leitura ON revisor USING btree (id_leitura);
+
+
+--
+-- TOC entry 1879 (class 2606 OID 16558)
+-- Dependencies: 1841 1546 1538
+-- Name: alertas_id_consolidacao_fkey; Type: FK CONSTRAINT; Schema: public; Owner: acao
+--
+
+ALTER TABLE ONLY alertas
+    ADD CONSTRAINT alertas_id_consolidacao_fkey FOREIGN KEY (id_consolidacao) REFERENCES consolidacao(id_consolidacao) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE;
+
+
+--
+-- TOC entry 1873 (class 2606 OID 16528)
+-- Dependencies: 1835 1538 1535
+-- Name: consolidacao_id_definicao_consolidacao_fkey; Type: FK CONSTRAINT; Schema: public; Owner: acao
+--
+
+ALTER TABLE ONLY consolidacao
+    ADD CONSTRAINT consolidacao_id_definicao_consolidacao_fkey FOREIGN KEY (id_definicao_consolidacao) REFERENCES definicao_consolidacao(id_definicao_consolidacao) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE;
+
+
+--
+-- TOC entry 1874 (class 2606 OID 16533)
+-- Dependencies: 1835 1535 1539
+-- Name: consolidador_id_definicao_consolidacao_fkey; Type: FK CONSTRAINT; Schema: public; Owner: acao
+--
+
+ALTER TABLE ONLY consolidador
+    ADD CONSTRAINT consolidador_id_definicao_consolidacao_fkey FOREIGN KEY (id_definicao_consolidacao) REFERENCES definicao_consolidacao(id_definicao_consolidacao) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE;
+
+
+--
+-- TOC entry 1871 (class 2606 OID 16518)
+-- Dependencies: 1535 1533 1832
+-- Name: definicao_consolidacao_id_projeto_fkey; Type: FK CONSTRAINT; Schema: public; Owner: acao
+--
+
+ALTER TABLE ONLY definicao_consolidacao
+    ADD CONSTRAINT definicao_consolidacao_id_projeto_fkey FOREIGN KEY (id_projeto) REFERENCES projeto(id_projeto) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE;
+
+
+--
+-- TOC entry 1880 (class 2606 OID 16563)
+-- Dependencies: 1544 1856 1547
+-- Name: digitador_id_leitura_fkey; Type: FK CONSTRAINT; Schema: public; Owner: acao
+--
+
+ALTER TABLE ONLY digitador
+    ADD CONSTRAINT digitador_id_leitura_fkey FOREIGN KEY (id_leitura) REFERENCES leitura(id_leitura) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE;
+
+
+--
+-- TOC entry 1882 (class 2606 OID 16573)
+-- Dependencies: 1535 1835 1549
+-- Name: entrada_consolidacao_id_definicao_consolidacao_fkey; Type: FK CONSTRAINT; Schema: public; Owner: acao
+--
+
+ALTER TABLE ONLY entrada_consolidacao
+    ADD CONSTRAINT entrada_consolidacao_id_definicao_consolidacao_fkey FOREIGN KEY (id_definicao_consolidacao) REFERENCES definicao_consolidacao(id_definicao_consolidacao) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE;
+
+
+--
+-- TOC entry 1883 (class 2606 OID 16578)
+-- Dependencies: 1544 1856 1549
+-- Name: entrada_consolidacao_id_leitura_fkey; Type: FK CONSTRAINT; Schema: public; Owner: acao
+--
+
+ALTER TABLE ONLY entrada_consolidacao
+    ADD CONSTRAINT entrada_consolidacao_id_leitura_fkey FOREIGN KEY (id_leitura) REFERENCES leitura(id_leitura) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE;
+
+
+--
+-- TOC entry 1875 (class 2606 OID 16538)
+-- Dependencies: 1835 1535 1540
+-- Name: etapa_coleta_dados_id_definicao_consolidacao_fkey; Type: FK CONSTRAINT; Schema: public; Owner: acao
+--
+
+ALTER TABLE ONLY etapa_coleta_dados
+    ADD CONSTRAINT etapa_coleta_dados_id_definicao_consolidacao_fkey FOREIGN KEY (id_definicao_consolidacao) REFERENCES definicao_consolidacao(id_definicao_consolidacao) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE;
+
+
+--
+-- TOC entry 1876 (class 2606 OID 16543)
+-- Dependencies: 1835 1541 1535
+-- Name: etapa_transformacao_id_definicao_consolidacao_fkey; Type: FK CONSTRAINT; Schema: public; Owner: acao
+--
+
+ALTER TABLE ONLY etapa_transformacao
+    ADD CONSTRAINT etapa_transformacao_id_definicao_consolidacao_fkey FOREIGN KEY (id_definicao_consolidacao) REFERENCES definicao_consolidacao(id_definicao_consolidacao) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE;
+
+
+--
+-- TOC entry 1877 (class 2606 OID 16548)
+-- Dependencies: 1535 1835 1542
+-- Name: etapa_validacao_id_definicao_consolidacao_fkey; Type: FK CONSTRAINT; Schema: public; Owner: acao
+--
+
+ALTER TABLE ONLY etapa_validacao
+    ADD CONSTRAINT etapa_validacao_id_definicao_consolidacao_fkey FOREIGN KEY (id_definicao_consolidacao) REFERENCES definicao_consolidacao(id_definicao_consolidacao) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE;
+
+
+--
+-- TOC entry 1872 (class 2606 OID 16523)
+-- Dependencies: 1832 1533 1536
+-- Name: instrumento_id_projeto_fkey; Type: FK CONSTRAINT; Schema: public; Owner: acao
+--
+
+ALTER TABLE ONLY instrumento
+    ADD CONSTRAINT instrumento_id_projeto_fkey FOREIGN KEY (id_projeto) REFERENCES projeto(id_projeto) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE;
+
+
+--
+-- TOC entry 1878 (class 2606 OID 16553)
+-- Dependencies: 1544 1536 1536 1838 1544
+-- Name: leitura_id_projeto_fkey; Type: FK CONSTRAINT; Schema: public; Owner: acao
+--
+
+ALTER TABLE ONLY leitura
+    ADD CONSTRAINT leitura_id_projeto_fkey FOREIGN KEY (id_projeto, nome) REFERENCES instrumento(id_projeto, nome) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE;
+
+
+--
+-- TOC entry 1881 (class 2606 OID 16568)
+-- Dependencies: 1548 1856 1544
+-- Name: revisor_id_leitura_fkey; Type: FK CONSTRAINT; Schema: public; Owner: acao
+--
+
+ALTER TABLE ONLY revisor
+    ADD CONSTRAINT revisor_id_leitura_fkey FOREIGN KEY (id_leitura) REFERENCES leitura(id_leitura) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE;
+
+
+--
+-- TOC entry 1901 (class 0 OID 0)
+-- Dependencies: 3
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+-- Completed on 2010-05-13 09:19:57 BRT
+
+--
+-- PostgreSQL database dump complete
+--
+

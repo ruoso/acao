@@ -1,0 +1,809 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Started on 2010-05-13 09:27:35 BRT
+
+SET statement_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = off;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET escape_string_warning = off;
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 1534 (class 1259 OID 16878)
+-- Dependencies: 3
+-- Name: causasobitos; Type: TABLE; Schema: public; Owner: acao; Tablespace: 
+--
+
+CREATE TABLE causasobitos (
+    id integer NOT NULL,
+    causasobitos character(50)
+);
+
+
+ALTER TABLE public.causasobitos OWNER TO acao;
+
+--
+-- TOC entry 1520 (class 1259 OID 16589)
+-- Dependencies: 3
+-- Name: data; Type: TABLE; Schema: public; Owner: acao; Tablespace: 
+--
+
+CREATE TABLE data (
+);
+
+
+ALTER TABLE public.data OWNER TO acao;
+
+--
+-- TOC entry 1535 (class 1259 OID 16924)
+-- Dependencies: 3
+-- Name: entrevistaindividualviladomar; Type: TABLE; Schema: public; Owner: acao; Tablespace: 
+--
+
+CREATE TABLE entrevistaindividualviladomar (
+    unidademedicaprocurada_id integer,
+    causasobitos_id integer,
+    data_id integer,
+    motivodeparadeestudar_id integer,
+    statusatual_id integer,
+    fezprenatal_id integer,
+    grauescolaridade_id integer,
+    obitoinfantilultimoano_id integer,
+    qtdgravidou_id integer,
+    rendamensal_id integer,
+    sexo_id integer,
+    situacaoconjugal_id integer,
+    tempoprocurandotrabalho_id integer,
+    tipodeescola_id integer,
+    informante_id integer,
+    cursandoatualmente integer,
+    desejaestudar integer,
+    fezprevencao integer,
+    fazalgumtratamentocontraceptivo integer,
+    possuideficienciafisica integer,
+    possuideficienciamental integer,
+    possuideficienciavisual integer,
+    possuideficienciaauditiva integer,
+    estaemtratamento integer,
+    documentosrg integer,
+    documentoscpf integer,
+    documentostituloeleitor integer,
+    documentosnis integer,
+    documentosnaopossuidocumento integer,
+    opcoesdelazerfutebol integer,
+    opcoesdelazersaircomamigos integer,
+    opcoesdelazerassistirtv integer,
+    opcoesdelazerescutarmusica integer,
+    opcoesdelazerfestas integer,
+    opcoesdelazerparticiparorganizacao integer,
+    opcoesdelazerfrequentarbares integer,
+    opcoesdelazerpracas integer,
+    tratamentocontraceptivocamisinha integer,
+    tratamentocontraceptivodiu integer,
+    tratamentocontraceptivotabela integer,
+    tratamentocontraceptivopilula integer,
+    tratamentocontraceptivoremediocaseiro integer,
+    tratamentocontraceptivonao integer,
+    tratamentocontraceptivolaqueadura integer,
+    historicodoencasrespiratoria integer,
+    historicodoencasdengue integer,
+    historicodoencaspele integer,
+    historicodoencasvirose integer,
+    historicodoencasverminose integer,
+    historicodoencasuspdrogas integer,
+    historicodoencasalcoolismo integer,
+    historicodoencasnaosei integer,
+    situacaoriscopcl integer,
+    situacaoriscodoencadechagas integer,
+    situacaoriscohanseniase integer,
+    situacaoriscomalaria integer,
+    situacaoriscomaustratos integer,
+    situacaoriscoeplepsia integer,
+    situacaoriscodst integer,
+    situacaoriscotranstornopsicologico integer,
+    situacaoriscotuberculose integer,
+    situacaoriscodiabetes integer,
+    situacaoriscotabagismo integer,
+    situacaoriscohiv integer,
+    situacaoriscohipertencao integer,
+    situacaorisconaotem integer,
+    meiotransportetrabalhoonibus integer,
+    meiotransportetrabalhotrem integer,
+    meiotransportetrabalhoape integer,
+    meiotransportetrabalhobicicleta integer,
+    meiotransportetrabalhocarromoto integer,
+    meiotransportetrabalhonaoseaplica integer,
+    porquenaoecontratrabalhoporcontaidade integer,
+    porquenaoecontratrabalhoniveleducacionalexigido integer,
+    porquenaoecontratrabalhofaltacapacitacao integer,
+    porquenaoecontratrabalhofaltaexperiencia integer,
+    porquenaoecontratrabalholugarderesidencia integer,
+    porquenaoecontratrabalhonaohatrabalho integer,
+    porquenaoecontratrabalhooutrascausastrabalhistas integer,
+    porquenaoecontratrabalhooutrascausaspessoais integer,
+    porquenaoecontratrabalhonaohatrabalhoemsuaespecialidade integer,
+    porquenaoecontratrabalhoproblemasdesaude integer,
+    origemrendanaoseaplica integer,
+    origemrendafamiliares integer,
+    origemrendaigreja integer,
+    origemrendaong integer,
+    origemrendabolsafamilia integer,
+    origemrendabpcidoso integer,
+    origemrendabpcpne integer,
+    origemrendaprojovem integer,
+    origemrendafamiliacidada integer,
+    origemrendajovemambientalista integer,
+    origemrendasalario integer,
+    origemrendavisinhoscomunidade integer
+);
+
+
+ALTER TABLE public.entrevistaindividualviladomar OWNER TO acao;
+
+--
+-- TOC entry 1523 (class 1259 OID 16806)
+-- Dependencies: 3
+-- Name: fezprenatal; Type: TABLE; Schema: public; Owner: acao; Tablespace: 
+--
+
+CREATE TABLE fezprenatal (
+    id integer NOT NULL,
+    fezprenatal character(50)
+);
+
+
+ALTER TABLE public.fezprenatal OWNER TO acao;
+
+--
+-- TOC entry 1524 (class 1259 OID 16816)
+-- Dependencies: 3
+-- Name: grauescolaridade; Type: TABLE; Schema: public; Owner: acao; Tablespace: 
+--
+
+CREATE TABLE grauescolaridade (
+    id integer NOT NULL,
+    grauescolaridade character(50)
+);
+
+
+ALTER TABLE public.grauescolaridade OWNER TO acao;
+
+--
+-- TOC entry 1522 (class 1259 OID 16616)
+-- Dependencies: 3
+-- Name: informante; Type: TABLE; Schema: public; Owner: acao; Tablespace: 
+--
+
+CREATE TABLE informante (
+    id integer NOT NULL,
+    informante character(50)
+);
+
+
+ALTER TABLE public.informante OWNER TO acao;
+
+--
+-- TOC entry 1876 (class 0 OID 0)
+-- Dependencies: 1522
+-- Name: TABLE informante; Type: COMMENT; Schema: public; Owner: acao
+--
+
+COMMENT ON TABLE informante IS 'Vinculo com chefe familia';
+
+
+--
+-- TOC entry 1525 (class 1259 OID 16826)
+-- Dependencies: 3
+-- Name: motivodeparadeestudar; Type: TABLE; Schema: public; Owner: acao; Tablespace: 
+--
+
+CREATE TABLE motivodeparadeestudar (
+    id integer NOT NULL,
+    motivodeparadeestudar character(50)
+);
+
+
+ALTER TABLE public.motivodeparadeestudar OWNER TO acao;
+
+--
+-- TOC entry 1526 (class 1259 OID 16831)
+-- Dependencies: 3
+-- Name: obitoinfantilultimoano; Type: TABLE; Schema: public; Owner: acao; Tablespace: 
+--
+
+CREATE TABLE obitoinfantilultimoano (
+    id integer NOT NULL,
+    obitoinfantilultimoano character(50)
+);
+
+
+ALTER TABLE public.obitoinfantilultimoano OWNER TO acao;
+
+--
+-- TOC entry 1527 (class 1259 OID 16836)
+-- Dependencies: 3
+-- Name: qtdgravidou; Type: TABLE; Schema: public; Owner: acao; Tablespace: 
+--
+
+CREATE TABLE qtdgravidou (
+    id integer NOT NULL,
+    qtdgravidou character(50)
+);
+
+
+ALTER TABLE public.qtdgravidou OWNER TO acao;
+
+--
+-- TOC entry 1877 (class 0 OID 0)
+-- Dependencies: 1527
+-- Name: TABLE qtdgravidou; Type: COMMENT; Schema: public; Owner: acao
+--
+
+COMMENT ON TABLE qtdgravidou IS 'Quantidade vezes que engravidou';
+
+
+--
+-- TOC entry 1528 (class 1259 OID 16841)
+-- Dependencies: 3
+-- Name: rendamensal; Type: TABLE; Schema: public; Owner: acao; Tablespace: 
+--
+
+CREATE TABLE rendamensal (
+    id integer NOT NULL,
+    rendamensal character(50)
+);
+
+
+ALTER TABLE public.rendamensal OWNER TO acao;
+
+--
+-- TOC entry 1521 (class 1259 OID 16601)
+-- Dependencies: 3
+-- Name: sexo; Type: TABLE; Schema: public; Owner: acao; Tablespace: 
+--
+
+CREATE TABLE sexo (
+    id integer NOT NULL,
+    sexo character(50)
+);
+
+
+ALTER TABLE public.sexo OWNER TO acao;
+
+--
+-- TOC entry 1529 (class 1259 OID 16846)
+-- Dependencies: 3
+-- Name: situacaoconjugal; Type: TABLE; Schema: public; Owner: acao; Tablespace: 
+--
+
+CREATE TABLE situacaoconjugal (
+    id integer NOT NULL,
+    situacaoconjugal character(50)
+);
+
+
+ALTER TABLE public.situacaoconjugal OWNER TO acao;
+
+--
+-- TOC entry 1530 (class 1259 OID 16851)
+-- Dependencies: 3
+-- Name: statusatual; Type: TABLE; Schema: public; Owner: acao; Tablespace: 
+--
+
+CREATE TABLE statusatual (
+    id integer NOT NULL,
+    statusatual character(50)
+);
+
+
+ALTER TABLE public.statusatual OWNER TO acao;
+
+--
+-- TOC entry 1531 (class 1259 OID 16856)
+-- Dependencies: 3
+-- Name: tempoprocurandotrabalho; Type: TABLE; Schema: public; Owner: acao; Tablespace: 
+--
+
+CREATE TABLE tempoprocurandotrabalho (
+    id integer NOT NULL,
+    tempoprocurandotrabalho character(50)
+);
+
+
+ALTER TABLE public.tempoprocurandotrabalho OWNER TO acao;
+
+--
+-- TOC entry 1532 (class 1259 OID 16861)
+-- Dependencies: 3
+-- Name: tipodeescola; Type: TABLE; Schema: public; Owner: acao; Tablespace: 
+--
+
+CREATE TABLE tipodeescola (
+    id integer NOT NULL,
+    tipodeescola character(50)
+);
+
+
+ALTER TABLE public.tipodeescola OWNER TO acao;
+
+--
+-- TOC entry 1533 (class 1259 OID 16866)
+-- Dependencies: 3
+-- Name: unidademedicaprocurada; Type: TABLE; Schema: public; Owner: acao; Tablespace: 
+--
+
+CREATE TABLE unidademedicaprocurada (
+    id integer NOT NULL,
+    unidademedicaprocurada character(50)
+);
+
+
+ALTER TABLE public.unidademedicaprocurada OWNER TO acao;
+
+--
+-- TOC entry 1869 (class 0 OID 16878)
+-- Dependencies: 1534
+-- Data for Name: causasobitos; Type: TABLE DATA; Schema: public; Owner: acao
+--
+
+COPY causasobitos (id, causasobitos) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1855 (class 0 OID 16589)
+-- Dependencies: 1520
+-- Data for Name: data; Type: TABLE DATA; Schema: public; Owner: acao
+--
+
+COPY data  FROM stdin;
+\.
+
+
+--
+-- TOC entry 1870 (class 0 OID 16924)
+-- Dependencies: 1535
+-- Data for Name: entrevistaindividualviladomar; Type: TABLE DATA; Schema: public; Owner: acao
+--
+
+COPY entrevistaindividualviladomar (unidademedicaprocurada_id, causasobitos_id, data_id, motivodeparadeestudar_id, statusatual_id, fezprenatal_id, grauescolaridade_id, obitoinfantilultimoano_id, qtdgravidou_id, rendamensal_id, sexo_id, situacaoconjugal_id, tempoprocurandotrabalho_id, tipodeescola_id, informante_id, cursandoatualmente, desejaestudar, fezprevencao, fazalgumtratamentocontraceptivo, possuideficienciafisica, possuideficienciamental, possuideficienciavisual, possuideficienciaauditiva, estaemtratamento, documentosrg, documentoscpf, documentostituloeleitor, documentosnis, documentosnaopossuidocumento, opcoesdelazerfutebol, opcoesdelazersaircomamigos, opcoesdelazerassistirtv, opcoesdelazerescutarmusica, opcoesdelazerfestas, opcoesdelazerparticiparorganizacao, opcoesdelazerfrequentarbares, opcoesdelazerpracas, tratamentocontraceptivocamisinha, tratamentocontraceptivodiu, tratamentocontraceptivotabela, tratamentocontraceptivopilula, tratamentocontraceptivoremediocaseiro, tratamentocontraceptivonao, tratamentocontraceptivolaqueadura, historicodoencasrespiratoria, historicodoencasdengue, historicodoencaspele, historicodoencasvirose, historicodoencasverminose, historicodoencasuspdrogas, historicodoencasalcoolismo, historicodoencasnaosei, situacaoriscopcl, situacaoriscodoencadechagas, situacaoriscohanseniase, situacaoriscomalaria, situacaoriscomaustratos, situacaoriscoeplepsia, situacaoriscodst, situacaoriscotranstornopsicologico, situacaoriscotuberculose, situacaoriscodiabetes, situacaoriscotabagismo, situacaoriscohiv, situacaoriscohipertencao, situacaorisconaotem, meiotransportetrabalhoonibus, meiotransportetrabalhotrem, meiotransportetrabalhoape, meiotransportetrabalhobicicleta, meiotransportetrabalhocarromoto, meiotransportetrabalhonaoseaplica, porquenaoecontratrabalhoporcontaidade, porquenaoecontratrabalhoniveleducacionalexigido, porquenaoecontratrabalhofaltacapacitacao, porquenaoecontratrabalhofaltaexperiencia, porquenaoecontratrabalholugarderesidencia, porquenaoecontratrabalhonaohatrabalho, porquenaoecontratrabalhooutrascausastrabalhistas, porquenaoecontratrabalhooutrascausaspessoais, porquenaoecontratrabalhonaohatrabalhoemsuaespecialidade, porquenaoecontratrabalhoproblemasdesaude, origemrendanaoseaplica, origemrendafamiliares, origemrendaigreja, origemrendaong, origemrendabolsafamilia, origemrendabpcidoso, origemrendabpcpne, origemrendaprojovem, origemrendafamiliacidada, origemrendajovemambientalista, origemrendasalario, origemrendavisinhoscomunidade) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1858 (class 0 OID 16806)
+-- Dependencies: 1523
+-- Data for Name: fezprenatal; Type: TABLE DATA; Schema: public; Owner: acao
+--
+
+COPY fezprenatal (id, fezprenatal) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1859 (class 0 OID 16816)
+-- Dependencies: 1524
+-- Data for Name: grauescolaridade; Type: TABLE DATA; Schema: public; Owner: acao
+--
+
+COPY grauescolaridade (id, grauescolaridade) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1857 (class 0 OID 16616)
+-- Dependencies: 1522
+-- Data for Name: informante; Type: TABLE DATA; Schema: public; Owner: acao
+--
+
+COPY informante (id, informante) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1860 (class 0 OID 16826)
+-- Dependencies: 1525
+-- Data for Name: motivodeparadeestudar; Type: TABLE DATA; Schema: public; Owner: acao
+--
+
+COPY motivodeparadeestudar (id, motivodeparadeestudar) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1861 (class 0 OID 16831)
+-- Dependencies: 1526
+-- Data for Name: obitoinfantilultimoano; Type: TABLE DATA; Schema: public; Owner: acao
+--
+
+COPY obitoinfantilultimoano (id, obitoinfantilultimoano) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1862 (class 0 OID 16836)
+-- Dependencies: 1527
+-- Data for Name: qtdgravidou; Type: TABLE DATA; Schema: public; Owner: acao
+--
+
+COPY qtdgravidou (id, qtdgravidou) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1863 (class 0 OID 16841)
+-- Dependencies: 1528
+-- Data for Name: rendamensal; Type: TABLE DATA; Schema: public; Owner: acao
+--
+
+COPY rendamensal (id, rendamensal) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1856 (class 0 OID 16601)
+-- Dependencies: 1521
+-- Data for Name: sexo; Type: TABLE DATA; Schema: public; Owner: acao
+--
+
+COPY sexo (id, sexo) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1864 (class 0 OID 16846)
+-- Dependencies: 1529
+-- Data for Name: situacaoconjugal; Type: TABLE DATA; Schema: public; Owner: acao
+--
+
+COPY situacaoconjugal (id, situacaoconjugal) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1865 (class 0 OID 16851)
+-- Dependencies: 1530
+-- Data for Name: statusatual; Type: TABLE DATA; Schema: public; Owner: acao
+--
+
+COPY statusatual (id, statusatual) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1866 (class 0 OID 16856)
+-- Dependencies: 1531
+-- Data for Name: tempoprocurandotrabalho; Type: TABLE DATA; Schema: public; Owner: acao
+--
+
+COPY tempoprocurandotrabalho (id, tempoprocurandotrabalho) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1867 (class 0 OID 16861)
+-- Dependencies: 1532
+-- Data for Name: tipodeescola; Type: TABLE DATA; Schema: public; Owner: acao
+--
+
+COPY tipodeescola (id, tipodeescola) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1868 (class 0 OID 16866)
+-- Dependencies: 1533
+-- Data for Name: unidademedicaprocurada; Type: TABLE DATA; Schema: public; Owner: acao
+--
+
+COPY unidademedicaprocurada (id, unidademedicaprocurada) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1840 (class 2606 OID 16882)
+-- Dependencies: 1534 1534
+-- Name: causasobitos_pkey; Type: CONSTRAINT; Schema: public; Owner: acao; Tablespace: 
+--
+
+ALTER TABLE ONLY causasobitos
+    ADD CONSTRAINT causasobitos_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1818 (class 2606 OID 16810)
+-- Dependencies: 1523 1523
+-- Name: fezprenatal_pkey; Type: CONSTRAINT; Schema: public; Owner: acao; Tablespace: 
+--
+
+ALTER TABLE ONLY fezprenatal
+    ADD CONSTRAINT fezprenatal_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1820 (class 2606 OID 16820)
+-- Dependencies: 1524 1524
+-- Name: grauescolaridade_pkey; Type: CONSTRAINT; Schema: public; Owner: acao; Tablespace: 
+--
+
+ALTER TABLE ONLY grauescolaridade
+    ADD CONSTRAINT grauescolaridade_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1816 (class 2606 OID 16767)
+-- Dependencies: 1522 1522
+-- Name: informante_pkey; Type: CONSTRAINT; Schema: public; Owner: acao; Tablespace: 
+--
+
+ALTER TABLE ONLY informante
+    ADD CONSTRAINT informante_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1822 (class 2606 OID 16830)
+-- Dependencies: 1525 1525
+-- Name: motivodeparadeestudar_pkey; Type: CONSTRAINT; Schema: public; Owner: acao; Tablespace: 
+--
+
+ALTER TABLE ONLY motivodeparadeestudar
+    ADD CONSTRAINT motivodeparadeestudar_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1824 (class 2606 OID 16835)
+-- Dependencies: 1526 1526
+-- Name: obitoinfantilultimoano_pkey; Type: CONSTRAINT; Schema: public; Owner: acao; Tablespace: 
+--
+
+ALTER TABLE ONLY obitoinfantilultimoano
+    ADD CONSTRAINT obitoinfantilultimoano_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1826 (class 2606 OID 16840)
+-- Dependencies: 1527 1527
+-- Name: qtdgravidou_pkey; Type: CONSTRAINT; Schema: public; Owner: acao; Tablespace: 
+--
+
+ALTER TABLE ONLY qtdgravidou
+    ADD CONSTRAINT qtdgravidou_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1828 (class 2606 OID 16845)
+-- Dependencies: 1528 1528
+-- Name: rendamensal_pkey; Type: CONSTRAINT; Schema: public; Owner: acao; Tablespace: 
+--
+
+ALTER TABLE ONLY rendamensal
+    ADD CONSTRAINT rendamensal_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1814 (class 2606 OID 16661)
+-- Dependencies: 1521 1521
+-- Name: sexo_pkey; Type: CONSTRAINT; Schema: public; Owner: acao; Tablespace: 
+--
+
+ALTER TABLE ONLY sexo
+    ADD CONSTRAINT sexo_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1830 (class 2606 OID 16850)
+-- Dependencies: 1529 1529
+-- Name: situacaoconjugal_pkey; Type: CONSTRAINT; Schema: public; Owner: acao; Tablespace: 
+--
+
+ALTER TABLE ONLY situacaoconjugal
+    ADD CONSTRAINT situacaoconjugal_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1832 (class 2606 OID 16855)
+-- Dependencies: 1530 1530
+-- Name: statusatual_pkey; Type: CONSTRAINT; Schema: public; Owner: acao; Tablespace: 
+--
+
+ALTER TABLE ONLY statusatual
+    ADD CONSTRAINT statusatual_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1834 (class 2606 OID 16860)
+-- Dependencies: 1531 1531
+-- Name: tempoprocurandotrabalho_pkey; Type: CONSTRAINT; Schema: public; Owner: acao; Tablespace: 
+--
+
+ALTER TABLE ONLY tempoprocurandotrabalho
+    ADD CONSTRAINT tempoprocurandotrabalho_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1836 (class 2606 OID 16865)
+-- Dependencies: 1532 1532
+-- Name: tipodeescola_pkey; Type: CONSTRAINT; Schema: public; Owner: acao; Tablespace: 
+--
+
+ALTER TABLE ONLY tipodeescola
+    ADD CONSTRAINT tipodeescola_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1838 (class 2606 OID 16870)
+-- Dependencies: 1533 1533
+-- Name: unidademedicaprocurada_pkey; Type: CONSTRAINT; Schema: public; Owner: acao; Tablespace: 
+--
+
+ALTER TABLE ONLY unidademedicaprocurada
+    ADD CONSTRAINT unidademedicaprocurada_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1841 (class 2606 OID 16927)
+-- Dependencies: 1535 1839 1534
+-- Name: causasobitos_fkey; Type: FK CONSTRAINT; Schema: public; Owner: acao
+--
+
+ALTER TABLE ONLY entrevistaindividualviladomar
+    ADD CONSTRAINT causasobitos_fkey FOREIGN KEY (causasobitos_id) REFERENCES causasobitos(id);
+
+
+--
+-- TOC entry 1842 (class 2606 OID 16932)
+-- Dependencies: 1535 1523 1817
+-- Name: fezprenatal_fkey; Type: FK CONSTRAINT; Schema: public; Owner: acao
+--
+
+ALTER TABLE ONLY entrevistaindividualviladomar
+    ADD CONSTRAINT fezprenatal_fkey FOREIGN KEY (fezprenatal_id) REFERENCES fezprenatal(id);
+
+
+--
+-- TOC entry 1843 (class 2606 OID 16937)
+-- Dependencies: 1819 1524 1535
+-- Name: grauescolaridade_fkey; Type: FK CONSTRAINT; Schema: public; Owner: acao
+--
+
+ALTER TABLE ONLY entrevistaindividualviladomar
+    ADD CONSTRAINT grauescolaridade_fkey FOREIGN KEY (grauescolaridade_id) REFERENCES grauescolaridade(id);
+
+
+--
+-- TOC entry 1844 (class 2606 OID 16942)
+-- Dependencies: 1522 1815 1535
+-- Name: informante_fkey; Type: FK CONSTRAINT; Schema: public; Owner: acao
+--
+
+ALTER TABLE ONLY entrevistaindividualviladomar
+    ADD CONSTRAINT informante_fkey FOREIGN KEY (informante_id) REFERENCES informante(id);
+
+
+--
+-- TOC entry 1845 (class 2606 OID 16947)
+-- Dependencies: 1821 1535 1525
+-- Name: motivodeparadeestudar_fkey; Type: FK CONSTRAINT; Schema: public; Owner: acao
+--
+
+ALTER TABLE ONLY entrevistaindividualviladomar
+    ADD CONSTRAINT motivodeparadeestudar_fkey FOREIGN KEY (motivodeparadeestudar_id) REFERENCES motivodeparadeestudar(id);
+
+
+--
+-- TOC entry 1846 (class 2606 OID 16952)
+-- Dependencies: 1535 1823 1526
+-- Name: obitoinfantilultimoano_fkey; Type: FK CONSTRAINT; Schema: public; Owner: acao
+--
+
+ALTER TABLE ONLY entrevistaindividualviladomar
+    ADD CONSTRAINT obitoinfantilultimoano_fkey FOREIGN KEY (obitoinfantilultimoano_id) REFERENCES obitoinfantilultimoano(id);
+
+
+--
+-- TOC entry 1847 (class 2606 OID 16957)
+-- Dependencies: 1825 1527 1535
+-- Name: qtdgravidou_fkey; Type: FK CONSTRAINT; Schema: public; Owner: acao
+--
+
+ALTER TABLE ONLY entrevistaindividualviladomar
+    ADD CONSTRAINT qtdgravidou_fkey FOREIGN KEY (qtdgravidou_id) REFERENCES qtdgravidou(id);
+
+
+--
+-- TOC entry 1848 (class 2606 OID 16962)
+-- Dependencies: 1528 1827 1535
+-- Name: rendamensal_fkey; Type: FK CONSTRAINT; Schema: public; Owner: acao
+--
+
+ALTER TABLE ONLY entrevistaindividualviladomar
+    ADD CONSTRAINT rendamensal_fkey FOREIGN KEY (rendamensal_id) REFERENCES rendamensal(id);
+
+
+--
+-- TOC entry 1849 (class 2606 OID 16967)
+-- Dependencies: 1535 1813 1521
+-- Name: sexo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: acao
+--
+
+ALTER TABLE ONLY entrevistaindividualviladomar
+    ADD CONSTRAINT sexo_fkey FOREIGN KEY (sexo_id) REFERENCES sexo(id);
+
+
+--
+-- TOC entry 1850 (class 2606 OID 16972)
+-- Dependencies: 1535 1529 1829
+-- Name: situacaoconjugal_fkey; Type: FK CONSTRAINT; Schema: public; Owner: acao
+--
+
+ALTER TABLE ONLY entrevistaindividualviladomar
+    ADD CONSTRAINT situacaoconjugal_fkey FOREIGN KEY (situacaoconjugal_id) REFERENCES situacaoconjugal(id);
+
+
+--
+-- TOC entry 1851 (class 2606 OID 16977)
+-- Dependencies: 1535 1831 1530
+-- Name: statusatual_fkey; Type: FK CONSTRAINT; Schema: public; Owner: acao
+--
+
+ALTER TABLE ONLY entrevistaindividualviladomar
+    ADD CONSTRAINT statusatual_fkey FOREIGN KEY (statusatual_id) REFERENCES statusatual(id);
+
+
+--
+-- TOC entry 1852 (class 2606 OID 16982)
+-- Dependencies: 1833 1535 1531
+-- Name: tempoprocurandotrabalho_fkey; Type: FK CONSTRAINT; Schema: public; Owner: acao
+--
+
+ALTER TABLE ONLY entrevistaindividualviladomar
+    ADD CONSTRAINT tempoprocurandotrabalho_fkey FOREIGN KEY (tempoprocurandotrabalho_id) REFERENCES tempoprocurandotrabalho(id);
+
+
+--
+-- TOC entry 1853 (class 2606 OID 16987)
+-- Dependencies: 1532 1835 1535
+-- Name: tipodeescola_fkey; Type: FK CONSTRAINT; Schema: public; Owner: acao
+--
+
+ALTER TABLE ONLY entrevistaindividualviladomar
+    ADD CONSTRAINT tipodeescola_fkey FOREIGN KEY (tipodeescola_id) REFERENCES tipodeescola(id);
+
+
+--
+-- TOC entry 1854 (class 2606 OID 16992)
+-- Dependencies: 1837 1535 1533
+-- Name: unidademedicaprocurada_fkey; Type: FK CONSTRAINT; Schema: public; Owner: acao
+--
+
+ALTER TABLE ONLY entrevistaindividualviladomar
+    ADD CONSTRAINT unidademedicaprocurada_fkey FOREIGN KEY (unidademedicaprocurada_id) REFERENCES unidademedicaprocurada(id);
+
+
+--
+-- TOC entry 1875 (class 0 OID 0)
+-- Dependencies: 3
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+-- Completed on 2010-05-13 09:27:35 BRT
+
+--
+-- PostgreSQL database dump complete
+--
+

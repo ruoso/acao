@@ -15,10 +15,10 @@
 #     DIR => []
 #     DISTNAME => q[Acao]
 #     EXE_FILES => [q[script/acao_cgi.pl], q[script/acao_consolida.pl], q[script/acao_create.pl], q[script/acao_fastcgi.pl], q[script/acao_server.pl], q[script/acao_test.pl]]
+#     LICENSE => q[gpl]
 #     NAME => q[Acao]
 #     NO_META => q[1]
-#     PL_FILES => {  }
-#     PREREQ_PM => { parent=>q[0], Catalyst::Plugin::Static::Simple=>q[0], Catalyst::Plugin::ConfigLoader=>q[0], ExtUtils::MakeMaker=>q[6.42], Catalyst::Plugin::StackTrace=>q[0], Catalyst::Action::RenderView=>q[0], Catalyst::Plugin::Session=>q[0], Catalyst::Plugin::Session::Store::FastMmap=>q[0], Catalyst::Plugin::Authentication=>q[0], Catalyst::Plugin::Session::State::Cookie=>q[0], Config::General=>q[0], Catalyst::Runtime=>q[5.80007] }
+#     PREREQ_PM => { parent=>q[0], Catalyst::Plugin::Static::Simple=>q[0], ExtUtils::MakeMaker=>q[6.42], Catalyst::Plugin::ConfigLoader=>q[0], Catalyst::Plugin::StackTrace=>q[0], Catalyst::Plugin::Session=>q[0], Catalyst::Action::RenderView=>q[0], Catalyst::Plugin::Session::Store::FastMmap=>q[0], Catalyst::Plugin::Session::State::Cookie=>q[0], Catalyst::Plugin::Authentication=>q[0], Config::General=>q[0], Catalyst::Runtime=>q[5.80007] }
 #     VERSION => q[0.01]
 #     dist => { PREOP=>q[$(PERL) -I. "-MModule::Install::Admin" -e "dist_preop(q($(DISTVNAME)))"] }
 #     realclean => { FILES=>q[MYMETA.yml] }
@@ -241,6 +241,7 @@ TO_INST_PM = lib/Acao.pm \
 	lib/Acao/Controller/Public/Login.pm \
 	lib/Acao/Controller/Root.pm \
 	lib/Acao/Model.pm \
+	lib/Acao/Model/BuscaXSD.pm \
 	lib/Acao/Model/Consolidador.pm \
 	lib/Acao/Model/DB.pm \
 	lib/Acao/Model/Digitador.pm \
@@ -262,31 +263,36 @@ TO_INST_PM = lib/Acao.pm \
 	lib/Acao/Schema/Result/Leitura.pm \
 	lib/Acao/Schema/Result/Projeto.pm \
 	lib/Acao/Schema/Result/Revisor.pm \
+	lib/Acao/Util/AnnotatedSimpleType.pm \
 	lib/Acao/View/TT.pm \
 	lib/Acao/View/XML.pm
 
-PM_TO_BLIB = lib/Acao/Controller/Auth/Registros/Consolidador/DefinicaoConsolidacao/Consolidacao.pm \
+PM_TO_BLIB = lib/Acao/Util/AnnotatedSimpleType.pm \
+	blib/lib/Acao/Util/AnnotatedSimpleType.pm \
+	lib/Acao/Controller/Auth/Registros/Consolidador/DefinicaoConsolidacao/Consolidacao.pm \
 	blib/lib/Acao/Controller/Auth/Registros/Consolidador/DefinicaoConsolidacao/Consolidacao.pm \
-	lib/Acao/Controller/Auth.pm \
-	blib/lib/Acao/Controller/Auth.pm \
 	lib/Acao/Schema/Result/EtapaValidacao.pm \
 	blib/lib/Acao/Schema/Result/EtapaValidacao.pm \
+	lib/Acao/Controller/Auth.pm \
+	blib/lib/Acao/Controller/Auth.pm \
 	lib/Acao/Schema/Result/Projeto.pm \
 	blib/lib/Acao/Schema/Result/Projeto.pm \
 	lib/Acao/Schema/Result/EtapaTransformacao.pm \
 	blib/lib/Acao/Schema/Result/EtapaTransformacao.pm \
-	lib/Acao/Controller/Auth/Registros/Consolidador.pm \
-	blib/lib/Acao/Controller/Auth/Registros/Consolidador.pm \
 	lib/Acao/Schema/Result/EntradaConsolidacao.pm \
 	blib/lib/Acao/Schema/Result/EntradaConsolidacao.pm \
+	lib/Acao/Controller/Auth/Registros/Consolidador.pm \
+	blib/lib/Acao/Controller/Auth/Registros/Consolidador.pm \
+	lib/Acao/Model/BuscaXSD.pm \
+	blib/lib/Acao/Model/BuscaXSD.pm \
 	lib/Acao/Controller/Auth/Registros.pm \
 	blib/lib/Acao/Controller/Auth/Registros.pm \
 	lib/Acao/Controller/Auth/Registros/Revisor.pm \
 	blib/lib/Acao/Controller/Auth/Registros/Revisor.pm \
-	lib/Acao/Schema/Result/Leitura.pm \
-	blib/lib/Acao/Schema/Result/Leitura.pm \
 	lib/Acao/Model/DB.pm \
 	blib/lib/Acao/Model/DB.pm \
+	lib/Acao/Schema/Result/Leitura.pm \
+	blib/lib/Acao/Schema/Result/Leitura.pm \
 	lib/Acao/Model/Consolidador.pm \
 	blib/lib/Acao/Model/Consolidador.pm \
 	lib/Acao/ModelUtil.pm \
@@ -299,24 +305,24 @@ PM_TO_BLIB = lib/Acao/Controller/Auth/Registros/Consolidador/DefinicaoConsolidac
 	blib/lib/Acao/Controller/Auth/Registros/Digitador/Leitura.pm \
 	lib/Acao/Controller/Auth/Registros/Digitador.pm \
 	blib/lib/Acao/Controller/Auth/Registros/Digitador.pm \
-	lib/Acao/Controller/Auth/Registros/Consolidador/DefinicaoConsolidacao.pm \
-	blib/lib/Acao/Controller/Auth/Registros/Consolidador/DefinicaoConsolidacao.pm \
 	lib/Acao/Model/Digitador.pm \
 	blib/lib/Acao/Model/Digitador.pm \
+	lib/Acao/Controller/Auth/Registros/Consolidador/DefinicaoConsolidacao.pm \
+	blib/lib/Acao/Controller/Auth/Registros/Consolidador/DefinicaoConsolidacao.pm \
 	lib/Acao/Model.pm \
 	blib/lib/Acao/Model.pm \
 	lib/Acao/Schema/Result/Consolidador.pm \
 	blib/lib/Acao/Schema/Result/Consolidador.pm \
 	lib/Acao.pm \
 	blib/lib/Acao.pm \
+	lib/Acao/Controller/Root.pm \
+	blib/lib/Acao/Controller/Root.pm \
+	lib/Acao/Controller/Public.pm \
+	blib/lib/Acao/Controller/Public.pm \
 	lib/Acao/View/TT.pm \
 	blib/lib/Acao/View/TT.pm \
 	lib/Acao/Schema/Result/Instrumento.pm \
 	blib/lib/Acao/Schema/Result/Instrumento.pm \
-	lib/Acao/Controller/Public.pm \
-	blib/lib/Acao/Controller/Public.pm \
-	lib/Acao/Controller/Root.pm \
-	blib/lib/Acao/Controller/Root.pm \
 	lib/Acao/Schema/Result/Digitador.pm \
 	blib/lib/Acao/Schema/Result/Digitador.pm \
 	lib/Acao/Model/ProcessoConsolidacao.pm \
@@ -335,10 +341,10 @@ PM_TO_BLIB = lib/Acao/Controller/Auth/Registros/Consolidador/DefinicaoConsolidac
 	blib/lib/Acao/Controller/Public/Login.pm \
 	lib/Acao/Schema/Result/EtapaColetaDados.pm \
 	blib/lib/Acao/Schema/Result/EtapaColetaDados.pm \
-	lib/Acao/View/XML.pm \
-	blib/lib/Acao/View/XML.pm \
 	lib/Acao/Model/Sedna.pm \
-	blib/lib/Acao/Model/Sedna.pm
+	blib/lib/Acao/Model/Sedna.pm \
+	lib/Acao/View/XML.pm \
+	blib/lib/Acao/View/XML.pm
 
 
 # --- MakeMaker platform_constants section:
@@ -564,31 +570,31 @@ manifypods : pure_all  \
 	script/acao_server.pl \
 	script/acao_create.pl \
 	lib/Acao/Controller/Auth/Registros/Consolidador/DefinicaoConsolidacao/Consolidacao.pm \
-	lib/Acao/Controller/Auth.pm \
 	lib/Acao/Schema/Result/EtapaValidacao.pm \
+	lib/Acao/Controller/Auth.pm \
 	lib/Acao/Schema/Result/Projeto.pm \
 	lib/Acao/Schema/Result/EtapaTransformacao.pm \
-	lib/Acao/Controller/Auth/Registros/Consolidador.pm \
 	lib/Acao/Schema/Result/EntradaConsolidacao.pm \
+	lib/Acao/Controller/Auth/Registros/Consolidador.pm \
 	lib/Acao/Controller/Auth/Registros.pm \
 	lib/Acao/Controller/Auth/Registros/Revisor.pm \
-	lib/Acao/Schema/Result/Leitura.pm \
 	lib/Acao/Model/DB.pm \
+	lib/Acao/Schema/Result/Leitura.pm \
 	lib/Acao/Model/Consolidador.pm \
 	lib/Acao/ModelUtil.pm \
 	lib/Acao/Schema/Result/Consolidacao.pm \
 	lib/Acao/Schema/Result/Alertas.pm \
 	lib/Acao/Controller/Auth/Registros/Digitador/Leitura.pm \
 	lib/Acao/Controller/Auth/Registros/Digitador.pm \
-	lib/Acao/Controller/Auth/Registros/Consolidador/DefinicaoConsolidacao.pm \
 	lib/Acao/Model/Digitador.pm \
+	lib/Acao/Controller/Auth/Registros/Consolidador/DefinicaoConsolidacao.pm \
 	lib/Acao/Model.pm \
 	lib/Acao/Schema/Result/Consolidador.pm \
 	lib/Acao.pm \
+	lib/Acao/Controller/Root.pm \
+	lib/Acao/Controller/Public.pm \
 	lib/Acao/View/TT.pm \
 	lib/Acao/Schema/Result/Instrumento.pm \
-	lib/Acao/Controller/Public.pm \
-	lib/Acao/Controller/Root.pm \
 	lib/Acao/Schema/Result/Digitador.pm \
 	lib/Acao/Model/ProcessoConsolidacao.pm \
 	lib/Acao/Model/Revisor.pm \
@@ -598,8 +604,8 @@ manifypods : pure_all  \
 	lib/Acao/Schema/Result/Revisor.pm \
 	lib/Acao/Controller/Public/Login.pm \
 	lib/Acao/Schema/Result/EtapaColetaDados.pm \
-	lib/Acao/View/XML.pm \
-	lib/Acao/Model/Sedna.pm
+	lib/Acao/Model/Sedna.pm \
+	lib/Acao/View/XML.pm
 	$(NOECHO) $(POD2MAN) --section=$(MAN1EXT) --perm_rw=$(PERM_RW) \
 	  script/acao_fastcgi.pl $(INST_MAN1DIR)/acao_fastcgi.pl.$(MAN1EXT) \
 	  script/acao_cgi.pl $(INST_MAN1DIR)/acao_cgi.pl.$(MAN1EXT) \
@@ -608,31 +614,31 @@ manifypods : pure_all  \
 	  script/acao_create.pl $(INST_MAN1DIR)/acao_create.pl.$(MAN1EXT) 
 	$(NOECHO) $(POD2MAN) --section=$(MAN3EXT) --perm_rw=$(PERM_RW) \
 	  lib/Acao/Controller/Auth/Registros/Consolidador/DefinicaoConsolidacao/Consolidacao.pm $(INST_MAN3DIR)/Acao::Controller::Auth::Registros::Consolidador::DefinicaoConsolidacao::Consolidacao.$(MAN3EXT) \
-	  lib/Acao/Controller/Auth.pm $(INST_MAN3DIR)/Acao::Controller::Auth.$(MAN3EXT) \
 	  lib/Acao/Schema/Result/EtapaValidacao.pm $(INST_MAN3DIR)/Acao::Schema::Result::EtapaValidacao.$(MAN3EXT) \
+	  lib/Acao/Controller/Auth.pm $(INST_MAN3DIR)/Acao::Controller::Auth.$(MAN3EXT) \
 	  lib/Acao/Schema/Result/Projeto.pm $(INST_MAN3DIR)/Acao::Schema::Result::Projeto.$(MAN3EXT) \
 	  lib/Acao/Schema/Result/EtapaTransformacao.pm $(INST_MAN3DIR)/Acao::Schema::Result::EtapaTransformacao.$(MAN3EXT) \
-	  lib/Acao/Controller/Auth/Registros/Consolidador.pm $(INST_MAN3DIR)/Acao::Controller::Auth::Registros::Consolidador.$(MAN3EXT) \
 	  lib/Acao/Schema/Result/EntradaConsolidacao.pm $(INST_MAN3DIR)/Acao::Schema::Result::EntradaConsolidacao.$(MAN3EXT) \
+	  lib/Acao/Controller/Auth/Registros/Consolidador.pm $(INST_MAN3DIR)/Acao::Controller::Auth::Registros::Consolidador.$(MAN3EXT) \
 	  lib/Acao/Controller/Auth/Registros.pm $(INST_MAN3DIR)/Acao::Controller::Auth::Registros.$(MAN3EXT) \
 	  lib/Acao/Controller/Auth/Registros/Revisor.pm $(INST_MAN3DIR)/Acao::Controller::Auth::Registros::Revisor.$(MAN3EXT) \
-	  lib/Acao/Schema/Result/Leitura.pm $(INST_MAN3DIR)/Acao::Schema::Result::Leitura.$(MAN3EXT) \
 	  lib/Acao/Model/DB.pm $(INST_MAN3DIR)/Acao::Model::DB.$(MAN3EXT) \
+	  lib/Acao/Schema/Result/Leitura.pm $(INST_MAN3DIR)/Acao::Schema::Result::Leitura.$(MAN3EXT) \
 	  lib/Acao/Model/Consolidador.pm $(INST_MAN3DIR)/Acao::Model::Consolidador.$(MAN3EXT) \
 	  lib/Acao/ModelUtil.pm $(INST_MAN3DIR)/Acao::ModelUtil.$(MAN3EXT) \
 	  lib/Acao/Schema/Result/Consolidacao.pm $(INST_MAN3DIR)/Acao::Schema::Result::Consolidacao.$(MAN3EXT) \
 	  lib/Acao/Schema/Result/Alertas.pm $(INST_MAN3DIR)/Acao::Schema::Result::Alertas.$(MAN3EXT) \
 	  lib/Acao/Controller/Auth/Registros/Digitador/Leitura.pm $(INST_MAN3DIR)/Acao::Controller::Auth::Registros::Digitador::Leitura.$(MAN3EXT) \
 	  lib/Acao/Controller/Auth/Registros/Digitador.pm $(INST_MAN3DIR)/Acao::Controller::Auth::Registros::Digitador.$(MAN3EXT) \
-	  lib/Acao/Controller/Auth/Registros/Consolidador/DefinicaoConsolidacao.pm $(INST_MAN3DIR)/Acao::Controller::Auth::Registros::Consolidador::DefinicaoConsolidacao.$(MAN3EXT) \
 	  lib/Acao/Model/Digitador.pm $(INST_MAN3DIR)/Acao::Model::Digitador.$(MAN3EXT) \
+	  lib/Acao/Controller/Auth/Registros/Consolidador/DefinicaoConsolidacao.pm $(INST_MAN3DIR)/Acao::Controller::Auth::Registros::Consolidador::DefinicaoConsolidacao.$(MAN3EXT) \
 	  lib/Acao/Model.pm $(INST_MAN3DIR)/Acao::Model.$(MAN3EXT) \
 	  lib/Acao/Schema/Result/Consolidador.pm $(INST_MAN3DIR)/Acao::Schema::Result::Consolidador.$(MAN3EXT) \
 	  lib/Acao.pm $(INST_MAN3DIR)/Acao.$(MAN3EXT) \
+	  lib/Acao/Controller/Root.pm $(INST_MAN3DIR)/Acao::Controller::Root.$(MAN3EXT) \
+	  lib/Acao/Controller/Public.pm $(INST_MAN3DIR)/Acao::Controller::Public.$(MAN3EXT) \
 	  lib/Acao/View/TT.pm $(INST_MAN3DIR)/Acao::View::TT.$(MAN3EXT) \
 	  lib/Acao/Schema/Result/Instrumento.pm $(INST_MAN3DIR)/Acao::Schema::Result::Instrumento.$(MAN3EXT) \
-	  lib/Acao/Controller/Public.pm $(INST_MAN3DIR)/Acao::Controller::Public.$(MAN3EXT) \
-	  lib/Acao/Controller/Root.pm $(INST_MAN3DIR)/Acao::Controller::Root.$(MAN3EXT) \
 	  lib/Acao/Schema/Result/Digitador.pm $(INST_MAN3DIR)/Acao::Schema::Result::Digitador.$(MAN3EXT) \
 	  lib/Acao/Model/ProcessoConsolidacao.pm $(INST_MAN3DIR)/Acao::Model::ProcessoConsolidacao.$(MAN3EXT) \
 	  lib/Acao/Model/Revisor.pm $(INST_MAN3DIR)/Acao::Model::Revisor.$(MAN3EXT) \
@@ -643,8 +649,8 @@ manifypods : pure_all  \
 	  lib/Acao/Schema/Result/Revisor.pm $(INST_MAN3DIR)/Acao::Schema::Result::Revisor.$(MAN3EXT) \
 	  lib/Acao/Controller/Public/Login.pm $(INST_MAN3DIR)/Acao::Controller::Public::Login.$(MAN3EXT) \
 	  lib/Acao/Schema/Result/EtapaColetaDados.pm $(INST_MAN3DIR)/Acao::Schema::Result::EtapaColetaDados.$(MAN3EXT) \
-	  lib/Acao/View/XML.pm $(INST_MAN3DIR)/Acao::View::XML.$(MAN3EXT) \
-	  lib/Acao/Model/Sedna.pm $(INST_MAN3DIR)/Acao::Model::Sedna.$(MAN3EXT) 
+	  lib/Acao/Model/Sedna.pm $(INST_MAN3DIR)/Acao::Model::Sedna.$(MAN3EXT) \
+	  lib/Acao/View/XML.pm $(INST_MAN3DIR)/Acao::View::XML.$(MAN3EXT) 
 
 
 
@@ -1050,32 +1056,34 @@ ppd :
 
 pm_to_blib : $(TO_INST_PM)
 	$(NOECHO) $(ABSPERLRUN) -MExtUtils::Install -e 'pm_to_blib({@ARGV}, '\''$(INST_LIB)/auto'\'', '\''$(PM_FILTER)'\'')' -- \
+	  lib/Acao/Util/AnnotatedSimpleType.pm blib/lib/Acao/Util/AnnotatedSimpleType.pm \
 	  lib/Acao/Controller/Auth/Registros/Consolidador/DefinicaoConsolidacao/Consolidacao.pm blib/lib/Acao/Controller/Auth/Registros/Consolidador/DefinicaoConsolidacao/Consolidacao.pm \
-	  lib/Acao/Controller/Auth.pm blib/lib/Acao/Controller/Auth.pm \
 	  lib/Acao/Schema/Result/EtapaValidacao.pm blib/lib/Acao/Schema/Result/EtapaValidacao.pm \
+	  lib/Acao/Controller/Auth.pm blib/lib/Acao/Controller/Auth.pm \
 	  lib/Acao/Schema/Result/Projeto.pm blib/lib/Acao/Schema/Result/Projeto.pm \
 	  lib/Acao/Schema/Result/EtapaTransformacao.pm blib/lib/Acao/Schema/Result/EtapaTransformacao.pm \
-	  lib/Acao/Controller/Auth/Registros/Consolidador.pm blib/lib/Acao/Controller/Auth/Registros/Consolidador.pm \
 	  lib/Acao/Schema/Result/EntradaConsolidacao.pm blib/lib/Acao/Schema/Result/EntradaConsolidacao.pm \
+	  lib/Acao/Controller/Auth/Registros/Consolidador.pm blib/lib/Acao/Controller/Auth/Registros/Consolidador.pm \
+	  lib/Acao/Model/BuscaXSD.pm blib/lib/Acao/Model/BuscaXSD.pm \
 	  lib/Acao/Controller/Auth/Registros.pm blib/lib/Acao/Controller/Auth/Registros.pm \
 	  lib/Acao/Controller/Auth/Registros/Revisor.pm blib/lib/Acao/Controller/Auth/Registros/Revisor.pm \
-	  lib/Acao/Schema/Result/Leitura.pm blib/lib/Acao/Schema/Result/Leitura.pm \
 	  lib/Acao/Model/DB.pm blib/lib/Acao/Model/DB.pm \
+	  lib/Acao/Schema/Result/Leitura.pm blib/lib/Acao/Schema/Result/Leitura.pm \
 	  lib/Acao/Model/Consolidador.pm blib/lib/Acao/Model/Consolidador.pm \
 	  lib/Acao/ModelUtil.pm blib/lib/Acao/ModelUtil.pm \
 	  lib/Acao/Schema/Result/Consolidacao.pm blib/lib/Acao/Schema/Result/Consolidacao.pm \
 	  lib/Acao/Schema/Result/Alertas.pm blib/lib/Acao/Schema/Result/Alertas.pm \
 	  lib/Acao/Controller/Auth/Registros/Digitador/Leitura.pm blib/lib/Acao/Controller/Auth/Registros/Digitador/Leitura.pm \
 	  lib/Acao/Controller/Auth/Registros/Digitador.pm blib/lib/Acao/Controller/Auth/Registros/Digitador.pm \
-	  lib/Acao/Controller/Auth/Registros/Consolidador/DefinicaoConsolidacao.pm blib/lib/Acao/Controller/Auth/Registros/Consolidador/DefinicaoConsolidacao.pm \
 	  lib/Acao/Model/Digitador.pm blib/lib/Acao/Model/Digitador.pm \
+	  lib/Acao/Controller/Auth/Registros/Consolidador/DefinicaoConsolidacao.pm blib/lib/Acao/Controller/Auth/Registros/Consolidador/DefinicaoConsolidacao.pm \
 	  lib/Acao/Model.pm blib/lib/Acao/Model.pm \
 	  lib/Acao/Schema/Result/Consolidador.pm blib/lib/Acao/Schema/Result/Consolidador.pm \
 	  lib/Acao.pm blib/lib/Acao.pm \
+	  lib/Acao/Controller/Root.pm blib/lib/Acao/Controller/Root.pm \
+	  lib/Acao/Controller/Public.pm blib/lib/Acao/Controller/Public.pm \
 	  lib/Acao/View/TT.pm blib/lib/Acao/View/TT.pm \
 	  lib/Acao/Schema/Result/Instrumento.pm blib/lib/Acao/Schema/Result/Instrumento.pm \
-	  lib/Acao/Controller/Public.pm blib/lib/Acao/Controller/Public.pm \
-	  lib/Acao/Controller/Root.pm blib/lib/Acao/Controller/Root.pm \
 	  lib/Acao/Schema/Result/Digitador.pm blib/lib/Acao/Schema/Result/Digitador.pm \
 	  lib/Acao/Model/ProcessoConsolidacao.pm blib/lib/Acao/Model/ProcessoConsolidacao.pm \
 	  lib/Acao/Model/Revisor.pm blib/lib/Acao/Model/Revisor.pm \
@@ -1085,8 +1093,9 @@ pm_to_blib : $(TO_INST_PM)
 	  lib/Acao/Schema/Result/Revisor.pm blib/lib/Acao/Schema/Result/Revisor.pm \
 	  lib/Acao/Controller/Public/Login.pm blib/lib/Acao/Controller/Public/Login.pm \
 	  lib/Acao/Schema/Result/EtapaColetaDados.pm blib/lib/Acao/Schema/Result/EtapaColetaDados.pm \
-	  lib/Acao/View/XML.pm blib/lib/Acao/View/XML.pm \
 	  lib/Acao/Model/Sedna.pm blib/lib/Acao/Model/Sedna.pm 
+	$(NOECHO) $(ABSPERLRUN) -MExtUtils::Install -e 'pm_to_blib({@ARGV}, '\''$(INST_LIB)/auto'\'', '\''$(PM_FILTER)'\'')' -- \
+	  lib/Acao/View/XML.pm blib/lib/Acao/View/XML.pm 
 	$(NOECHO) $(TOUCH) pm_to_blib
 
 
@@ -1097,7 +1106,7 @@ pm_to_blib : $(TO_INST_PM)
 
 
 # End.
-# Postamble by Module::Install 0.91
+# Postamble by Module::Install 0.95
 # --- Module::Install::Admin::Makefile section:
 
 realclean purge ::
@@ -1118,7 +1127,7 @@ distsign ::
 	cpansign -s
 
 catalyst_par :: all
-	$(NOECHO) $(PERL) -Ilib -Minc::Module::Install -MModule::Install::Catalyst -e"Catalyst::Module::Install::_catalyst_par( '', 'Acao', { CLASSES => [], CORE => 0, ENGINE => 'CGI', MULTIARCH => 0, SCRIPT => '', USAGE => q## } )"
+	$(NOECHO) $(PERL) -Ilib -Minc::Module::Install -MModule::Install::Catalyst -e"Catalyst::Module::Install::_catalyst_par( '', 'Acao', { CLASSES => [], PAROPTS =>  {}, ENGINE => 'CGI', SCRIPT => '', USAGE => q## } )"
 # --- Module::Install::AutoInstall section:
 
 config :: installdeps
