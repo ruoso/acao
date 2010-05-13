@@ -1,0 +1,31 @@
+[%# temos um conjunto fixo de 5 opções para busca nos dados dos formulários,
+    poderíamos ter um JS mais inteligente, mas por hora basta isso. %]
+
+[% FOR counter IN [1,2,3,4,5] %]
+<div>
+  <input type="checkbox" id="buscar_dados_[% counter %]" name="buscar_dados_[% counter %]"[%
+         IF (c.req.param('buscar_dados_' _ counter) == 'on') %] checked[% SET tem_consulta_formulario = tem_consulta_formulario + 1 %][% END %] /> 
+  <label for="buscar_dados_[% counter %]"> Buscar em: </label>
+
+  <select name="campo_formulario_[% counter %]" id="campo_formulario_[% counter %]"  style="width:200px;">
+    <option value="0">Selecione Campo Formul&aacute;rio</option>
+    [% FOREACH field IN c.model('BuscaXSD').get_simpletype_annotations(schema) %]
+    <OPTION VALUE="[% field.path %]" [% IF (c.req.param('campo_formulario_' _ counter) == field.path) %] selected [% END %]>[% field.completelabel %]</OPTION>
+    [% END %]
+  </select>
+
+  <select name="campo_operador_[% counter %]" id="campo_operador_[% counter %]">
+    <option value="0">Selecione Operador</option>
+    <option value="igual" [% IF (c.req.param('campo_operador_' _ counter) == 'igual') %] selected [% END %]>igual a</option>
+    <option value="diferente" [% IF (c.req.param('campo_operador_' _ counter) == 'diferente') %] selected [% END %]>diferente de</option>
+    <option value="maior" [% IF (c.req.param('campo_operador_' _ counter) == 'maior') %] selected [% END %]>maior que</option>
+    <option value="menor" [% IF (c.req.param('campo_operador_' _ counter) == 'menor') %] selected [% END %]>menor que</option>
+    <option value="contem" [% IF (c.req.param('campo_operador_' _ counter) == 'contem') %] selected [% END %]>contém</option>
+    
+    <option value="inicia" [% IF (c.req.param('campo_operador_' _ counter) == 'inicia') %] selected [% END %]>inicia com</option>
+    <option value="termina" [% IF (c.req.param('campo_operador_' _ counter) == 'termina') %] selected [% END %]>termina com</option>
+  </select>
+  
+  <input type="text" id="valor_pesquisado_[% counter %]" name="valor_pesquisado_[% counter %]" value="[% c.req.param('valor_pesquisado_' _ counter) %]"  style="width:150px;" />
+</div>
+[% END %]
