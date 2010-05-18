@@ -24,12 +24,6 @@
 
 [% SET num_por_pagina = 50 %]
 
-[% SET modificador_rowspan = '' %]
-[% SET modificador_classe_td = '' %]
-[% IF c.req.param('buscar_dados') %]
-[% SET modificador_rowspan = ' * 2' %]
-[% SET modificador_classe_td = ' linha_com_dados_extra' %]
-[% END %]
 
 [% SET estadoControle = c.req.param('estadoControle') %] 
 [% IF estadoControle == "0" %]
@@ -46,121 +40,22 @@
 [% SET schema = c.model('Sedna').get_document(leitura.instrumento.xml_schema) %]
 [% CALL c.model('Sedna').commit %]
 
-[% IF c.req.param('buscar_dados') %]
+[% SET tem_consulta_formulario = 0 %]
+[% conteudo_buscasFormulario = PROCESS 'auth/registros/revisor/leitura/lista_buscaFormulario.tt' %]
+
+[% SET modificador_rowspan = '' %]
+[% SET modificador_classe_td = '' %]
+
+[% IF tem_consulta_formulario %]
+[% SET modificador_rowspan = ' * ' _ (tem_consulta_formulario + 2) %]
+[% SET modificador_classe_td = ' linha_com_dados_extra' %]
 [% SET targetNamespace = c.model('BuscaXSD').get_target_namespace(schema) %]
-[% SET expressao_consulta_interna = c.model('BuscaXSD').produce_expr('custom', c.req.param('campo_formulario'), c.req.param('campo_operador'), c.req.param('valor_pesquisado')) %]
-[% SET xpath_campo = c.model('BuscaXSD').produce_xpath('custom',c.req.param('campo_formulario')) %]
 [% END %]
 
+[% xqueryret = PROCESS 'auth/registros/revisor/leitura/lista_xqueryret.tt' %]
+[% xquery = PROCESS 'auth/registros/revisor/leitura/lista_xquery.tt' %]
 
-[% xqueryret = BLOCK %]
-    ( <tr>
-      { if ($pos = 1) then (
-         <td rowspan="{count($form)[% modificador_rowspan %]}">{$control}</td>,
-         <td rowspan="{count($form)[% modificador_rowspan %]}">{$reg/cd:documento/cd:estadoControle/text()}</td>,
-         <td rowspan="{count($form)[% modificador_rowspan %]}">
-	    { if (count($form) > 1) then (
-[%#            <a href="#">Diferenças</a>  %]
-	    ) else () }
-            { if ($reg/cd:documento/cd:estadoControle = "Aberto") then (
-            <a href="[% c.uri_for('/auth/registros/revisor/')_ leitura.id_leitura _ '/fecharDocumento/' %]{$reg/cd:documento/cd:controle}" class="fechar" title="Fechar formulário">Fechar formulário</a>
-             ) else ()}
-         </td>
-        ) else () }
-      { if ($reg/cd:documento/cd:estado eq 'Rejeitado') then (
-       <td class="estado_rejeitado[% modificador_classe_td %]">{$reg/cd:digitacao/cd:dataDigitacao/text()}</td>
-       ) else (
-       <td class="[% modificador_classe_td %]">{$reg/cd:digitacao/cd:dataDigitacao/text()}</td>
-       ) }
-      { if ($reg/cd:documento/cd:estado eq 'Rejeitado') then (
-       <td class="estado_rejeitado[% modificador_classe_td %]">{$reg/cd:digitacao/cd:digitador/text()}</td>
-       ) else (
-       <td class="[% modificador_classe_td %]">{$reg/cd:digitacao/cd:digitador/text()}</td>
-       ) }
-      { if ($reg/cd:documento/cd:estado eq 'Rejeitado') then (
-       <td class="estado_rejeitado[% modificador_classe_td %]">{$reg/cd:documento/cd:estado/text()}</td>
-       ) else (
-       <td class="[% modificador_classe_td %]">{$reg/cd:documento/cd:estado/text()}</td>
-       ) }
-      { if ($reg/cd:documento/cd:estado eq 'Rejeitado') then (
-       <td class="estado_rejeitado[% modificador_classe_td %]">{$reg/cd:digitacao/cd:localDigitacao/text()}</td>
-       ) else (
-       <td class="[% modificador_classe_td %]">{$reg/cd:digitacao/cd:localDigitacao/text()}</td>
-       ) }
-      <td class="[% modificador_classe_td %]">
-        { if ($reg/cd:documento/cd:estado ne 'Aprovado') then (
-        <a href="[% c.uri_for_action('/auth/registros/revisor/leitura/aprovar',
-                                     [ leitura.id_leitura ],
-                                      '____xq_doc_id____', '____xq_ctrl____' ,  c.req.params() )
-                    .replace('____xq_doc_id____','{$reg/cd:documento/cd:id}')
-                    .replace('____xq_ctrl____','{$reg/cd:documento/cd:controle}')
-                    .replace('&','&amp;') %]" class="aprovar" title="Aprovar">Aprovar</a>
-        ) else (<a class="link_vazio">Aprovar</a>) }
-        { if ($reg/cd:documento/cd:estado ne 'Rejeitado') then (
-        <a href="[% c.uri_for_action('/auth/registros/revisor/leitura/rejeitar',
-                                     [ leitura.id_leitura ],
-                                      '____xq_doc_id____', '____xq_ctrl____' ,  c.req.params() )
-                    .replace('____xq_doc_id____','{$reg/cd:documento/cd:id}')
-                    .replace('____xq_ctrl____','{$reg/cd:documento/cd:controle}')
-                    .replace('&','&amp;') %]" class="rejeitar" title="Rejeitar">Rejeitar</a>
-        ) else (<a class="link_vazio">Rejeitar</a>) }
-        <a href="[% c.uri_for('/auth/registros/revisor/') _ leitura.id_leitura _ '/visualizar/'%]{$reg/cd:documento/cd:id}" class="visualizar" title="Visualizar">Visualizar</a>
-      </td>
-      </tr>
-[% IF modificador_rowspan %]
-      ,<tr>
-       { if ($reg/cd:documento/cd:estado eq 'Rejeitado') then (
-         <td colspan="5" class="estado_rejeitado revisordadosform">
-            {$reg/cd:documento/cd:conteudo/[% xpath_campo %]}
-        </td>
-       ) else (
-         <td colspan="5" class="revisordadosform">
-            {$reg/cd:documento/cd:conteudo/[% xpath_campo %]}
-        </td>
-       ) }
-       </tr>
-[% END %]
-      )
-[% END %]
 
-[% xquery = BLOCK %]
-declare namespace cd = "http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd";
-[% IF c.req.param('buscar_dados') %]
-declare namespace custom = "[% targetNamespace %]";
-[% END %]
-
-for $control in 
-subsequence(
-  distinct-values(
-   for $ungrouped in
-   collection("leitura-[% leitura.id_leitura %]")[([%
-   IF c.req.param('estadoControle')
-      %](cd:registroDigitacao/cd:documento/cd:estadoControle eq "[% c.req.param('estadoControle') %]") and [% END %][%
-   IF c.req.param('controle_ini')
-      %](cd:registroDigitacao/cd:documento/cd:controle ge "[% c.req.param('controle_ini') %]") and [% END %][%
-   IF c.req.param('buscar_dados')
-      %](cd:registroDigitacao/cd:documento/cd:conteudo/[% expressao_consulta_interna %]) and [% END %][%
-   IF c.req.param('estadoAprovacao')
-      %](cd:registroDigitacao/cd:documento/cd:estado eq "[% c.req.param('estadoAprovacao') %]") and [% END %][%
-   IF c.req.param('controle_fim')
-      %](cd:registroDigitacao/cd:documento/cd:controle le "[% c.req.param('controle_fim') %]") and [% END %]1 and 1)]
-[% IF modificador_rowspan %]
-      order by $ungrouped/cd:registroDigitacao/cd:documento/cd:conteudo/[% xpath_campo %]
-[% ELSE %]
-      order by $ungrouped/cd:registroDigitacao/cd:documento/cd:controle
-[% END %]
-      return $ungrouped/cd:registroDigitacao/cd:documento/cd:controle
-   ),
-   [% (interval_ini * num_por_pagina) + 1 %], [% num_por_pagina %])
-   let $form := collection("leitura-[% leitura.id_leitura %]")/cd:registroDigitacao[cd:documento/cd:controle = $control] 
-        for $reg at $pos in $form
-        return [% xqueryret %]
-[% END %] 
-
-[%# <TEXTAREA ROWS=10 COLS=150>
-# [#% xquery %#]
-# </TEXTAREA>
-%]
 <form name="form" onSubmit="return valida_campos_busca()" action="[% c.uri_for('/auth/registros/revisor/') _ leitura.id_leitura  %]">
 
 <fieldset>
@@ -195,35 +90,18 @@ subsequence(
           <option value="Rejeitado" [% IF (c.req.param('estadoAprovacao') == 'Rejeitado') %] selected [% END %]>Rejeitado</option>
       </select>
     </dd>
+    <dt class="dtsemdd"><A href="#" onclick="if ($('#buscasFormulario').hasClass('escondido')) { $('#buscasFormulario').removeClass('escondido') } else { $('#buscasFormulario').addClass('escondido') }; return false">Mostrar/Esconder buscas no formulário</A>
+    </dt>
   </dl>
-  <dl class="buscaControle">
 
-	  <input type="checkbox" id="buscar_dados" name="buscar_dados" [% IF (c.req.param('buscar_dados') == 'on') %] checked [% END %] /> 
-		<label for="buscar_dados"> Habilitar busca em dados do documento </label> <br/><br/>
 
-	  <select name="campo_formulario" id="campo_formulario"  style="width:200px;">
-		  <option value="0">Selecione Campo Formul&aacute;rio</option>
-            [% FOREACH field IN c.model('BuscaXSD').get_simpletype_annotations(schema) %]
-                <OPTION VALUE="[% field.path %]" [% IF (c.req.param('campo_formulario') == field.path) %] selected [% END %]>[% field.completelabel %]</OPTION>
-            [% END %]
+[%# comeca com class escondido, pode ser removido depois %]
+  <fieldset id='buscasFormulario'[% IF (!tem_consulta_formulario) %] class='escondido'[% END %]>
 
-	  </select>
+   [% conteudo_buscasFormulario %]
 
-	  <select name="campo_operador" id="campo_operador">
-		  <option value="0">Selecione Operador</option>
-		  <option value="igual" [% IF (c.req.param('campo_operador') == 'igual') %] selected [% END %]>igual a</option>
-		  <option value="diferente" [% IF (c.req.param('campo_operador') == 'diferente') %] selected [% END %]>diferente de</option>
-		  <option value="maior" [% IF (c.req.param('campo_operador') == 'maior') %] selected [% END %]>maior que</option>
-		  <option value="menor" [% IF (c.req.param('campo_operador') == 'menor') %] selected [% END %]>menor que</option>
-          <option value="contem" [% IF (c.req.param('campo_operador') == 'contem') %] selected [% END %]>contém</option>
+  </fieldset>
 
-          <option value="inicia" [% IF (c.req.param('campo_operador') == 'inicia') %] selected [% END %]>inicia com</option>
-          <option value="termina" [% IF (c.req.param('campo_operador') == 'termina') %] selected [% END %]>termina com</option>
-	  </select>
-
-	  <input type="text" id="valor_pesquisado" name="valor_pesquisado" value="[% c.req.param('valor_pesquisado') %]"  style="width:150px;" />
-
-  </dl>
   <input type="submit" name="buscar" value="Buscar" />
 </fieldset>
 
@@ -267,7 +145,9 @@ subsequence(
  [% END %]
  [% c.model('Sedna').commit %]
 [% CATCH %]
- <div class="erro">ERRO AO PROCESSAR CONSULTA.</div>
+ <div class="erro">ERRO AO PROCESSAR CONSULTA:
+  <PRE>[% error.info %]</PRE>
+ </div>
 [% END %]
 </tbody>
 </table>

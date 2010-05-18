@@ -1,0 +1,36 @@
+declare namespace cd = "http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd";
+[% IF tem_consulta_formulario -%]
+declare namespace custom = "[% targetNamespace %]";
+[% END -%]
+for $control in 
+subsequence(
+  distinct-values(
+   for $ungrouped in collection("leitura-[% leitura.id_leitura %]")[([%
+   IF c.req.param('estadoControle')
+      %](cd:registroDigitacao/cd:documento/cd:estadoControle eq "[% c.req.param('estadoControle') %]") and [% END %][%
+   IF c.req.param('controle_ini')
+      %](cd:registroDigitacao/cd:documento/cd:controle ge "[% c.req.param('controle_ini') %]") and [% END -%]
+[% IF tem_consulta_formulario -%]
+[% FOR counter IN [1,2,3,4,5] -%]
+[% IF c.req.param('buscar_dados_' _ counter ) -%]
+[% SET expressao_consulta_interna = c.model('BuscaXSD').produce_expr('custom', c.req.param('campo_formulario_' _ counter), c.req.param('campo_operador_' _ counter), c.req.param('valor_pesquisado_' _ counter)) -%]
+(cd:registroDigitacao/cd:documento/cd:conteudo/[% expressao_consulta_interna %]) and
+[% END -%]
+[% END -%]
+[% END %][%
+   IF c.req.param('estadoAprovacao')
+      %](cd:registroDigitacao/cd:documento/cd:estado eq "[% c.req.param('estadoAprovacao') %]") and [% END %][%
+   IF c.req.param('controle_fim')
+      %](cd:registroDigitacao/cd:documento/cd:controle le "[% c.req.param('controle_fim') %]") and [% END %]1 and 1)]
+[% IF tem_consulta_formulario -%]
+[% SET xpath_campo = c.model('BuscaXSD').produce_xpath('custom',c.req.param('campo_formulario_' _ tem_consulta_formulario)) -%]
+      order by $ungrouped/cd:registroDigitacao/cd:documento/cd:conteudo/[% xpath_campo %]
+[% ELSE -%]
+      order by $ungrouped/cd:registroDigitacao/cd:documento/cd:controle
+[% END -%]
+      return $ungrouped/cd:registroDigitacao/cd:documento/cd:controle
+   ),
+   [% (interval_ini * num_por_pagina) + 1 %], [% num_por_pagina %])
+   let $form := collection("leitura-[% leitura.id_leitura %]")/cd:registroDigitacao[cd:documento/cd:controle = $control] 
+        for $reg at $pos in $form
+        return [% xqueryret %]
