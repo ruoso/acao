@@ -1,25 +1,27 @@
 # This Makefile is for the Acao extension to perl.
 #
 # It was generated automatically by MakeMaker version
-# 6.42 (Revision: 41145) from the contents of
+# 6.55_02 (Revision: 65502) from the contents of
 # Makefile.PL. Don't edit this file, edit Makefile.PL instead.
 #
 #       ANY CHANGES MADE HERE WILL BE LOST!
 #
 #   MakeMaker ARGV: ()
 #
+
 #   MakeMaker Parameters:
 
 #     ABSTRACT => q[Módulo principal da aplicação]
 #     AUTHOR => q[- Prefeitura de Fortaleza. Este software é licenciado]
-#     DIR => []
+#     BUILD_REQUIRES => {  }
 #     DISTNAME => q[Acao]
 #     EXE_FILES => [q[script/acao_cgi.pl], q[script/acao_consolida.pl], q[script/acao_create.pl], q[script/acao_fastcgi.pl], q[script/acao_server.pl], q[script/acao_test.pl]]
 #     LICENSE => q[gpl]
 #     NAME => q[Acao]
 #     NO_META => q[1]
-#     PREREQ_PM => { parent=>q[0], Catalyst::Plugin::Static::Simple=>q[0], ExtUtils::MakeMaker=>q[6.42], Catalyst::Plugin::ConfigLoader=>q[0], Catalyst::Plugin::StackTrace=>q[0], Catalyst::Plugin::Session=>q[0], Catalyst::Action::RenderView=>q[0], Catalyst::Plugin::Session::Store::FastMmap=>q[0], Catalyst::Plugin::Session::State::Cookie=>q[0], Catalyst::Plugin::Authentication=>q[0], Config::General=>q[0], Catalyst::Runtime=>q[5.80007] }
+#     PREREQ_PM => { parent=>q[0], Catalyst::Plugin::Static::Simple=>q[0], Catalyst::Plugin::ConfigLoader=>q[0], ExtUtils::MakeMaker=>q[6.42], Catalyst::Plugin::StackTrace=>q[0], Catalyst::Action::RenderView=>q[0], Catalyst::Plugin::Session=>q[0], Catalyst::Plugin::Session::Store::FastMmap=>q[0], Catalyst::Plugin::Authentication=>q[0], Catalyst::Plugin::Session::State::Cookie=>q[0], Config::General=>q[0], Catalyst::Runtime=>q[5.80007] }
 #     VERSION => q[0.01]
+#     VERSION_FROM => q[lib/Acao.pm]
 #     dist => { PREOP=>q[$(PERL) -I. "-MModule::Install::Admin" -e "dist_preop(q($(DISTVNAME)))"] }
 #     realclean => { FILES=>q[MYMETA.yml] }
 #     test => { TESTS=>q[t/01_login_logout.t t/02_registrar_digitacao.t t/03_revisor.t t/04_consolidador.t] }
@@ -29,9 +31,8 @@
 
 # --- MakeMaker const_config section:
 
-# These definitions are from config.sh (via /usr/lib/perl/5.10/Config.pm)
-
-# They may have been overridden via Makefile.PL or on the command line
+# These definitions are from config.sh (via /usr/lib/perl/5.10/Config.pm).
+# They may have been overridden via Makefile.PL or on the command line.
 AR = ar
 CC = cc
 CCCDLFLAGS = -fPIC
@@ -41,16 +42,16 @@ DLSRC = dl_dlopen.xs
 EXE_EXT = 
 FULL_AR = /usr/bin/ar
 LD = cc
-LDDLFLAGS = -shared -O2 -g -L/usr/local/lib
-LDFLAGS =  -L/usr/local/lib
-LIBC = /lib/libc-2.10.1.so
+LDDLFLAGS = -shared -O2 -g -L/usr/local/lib -fstack-protector
+LDFLAGS =  -fstack-protector -L/usr/local/lib
+LIBC = /lib/libc-2.11.1.so
 LIB_EXT = .a
 OBJ_EXT = .o
 OSNAME = linux
-OSVERS = 2.6.24-23-server
+OSVERS = 2.6.24-27-server
 RANLIB = :
-SITELIBEXP = /usr/local/share/perl/5.10.0
-SITEARCHEXP = /usr/local/lib/perl/5.10.0
+SITELIBEXP = /usr/local/share/perl/5.10.1
+SITEARCHEXP = /usr/local/lib/perl/5.10.1
 SO = so
 VENDORARCHEXP = /usr/lib/perl5
 VENDORLIBEXP = /usr/share/perl5
@@ -85,13 +86,13 @@ SITEPREFIX = $(PREFIX)/local
 VENDORPREFIX = $(PREFIX)
 INSTALLPRIVLIB = $(PERLPREFIX)/share/perl/5.10
 DESTINSTALLPRIVLIB = $(DESTDIR)$(INSTALLPRIVLIB)
-INSTALLSITELIB = $(SITEPREFIX)/share/perl/5.10.0
+INSTALLSITELIB = $(SITEPREFIX)/share/perl/5.10.1
 DESTINSTALLSITELIB = $(DESTDIR)$(INSTALLSITELIB)
 INSTALLVENDORLIB = $(VENDORPREFIX)/share/perl5
 DESTINSTALLVENDORLIB = $(DESTDIR)$(INSTALLVENDORLIB)
 INSTALLARCHLIB = $(PERLPREFIX)/lib/perl/5.10
 DESTINSTALLARCHLIB = $(DESTDIR)$(INSTALLARCHLIB)
-INSTALLSITEARCH = $(SITEPREFIX)/lib/perl/5.10.0
+INSTALLSITEARCH = $(SITEPREFIX)/lib/perl/5.10.1
 DESTINSTALLSITEARCH = $(DESTDIR)$(INSTALLSITEARCH)
 INSTALLVENDORARCH = $(VENDORPREFIX)/lib/perl5
 DESTINSTALLVENDORARCH = $(DESTDIR)$(INSTALLVENDORARCH)
@@ -137,12 +138,13 @@ PERLRUNINST = $(PERLRUN) "-I$(INST_ARCHLIB)" "-Iinc" "-I$(INST_LIB)"
 FULLPERLRUNINST = $(FULLPERLRUN) "-I$(INST_ARCHLIB)" "-Iinc" "-I$(INST_LIB)"
 ABSPERLRUNINST = $(ABSPERLRUN) "-I$(INST_ARCHLIB)" "-Iinc" "-I$(INST_LIB)"
 PERL_CORE = 0
+PERM_DIR = 755
 PERM_RW = 644
 PERM_RWX = 755
 
 MAKEMAKER   = /usr/share/perl/5.10/ExtUtils/MakeMaker.pm
-MM_VERSION  = 6.42
-MM_REVISION = 41145
+MM_VERSION  = 6.55_02
+MM_REVISION = 65502
 
 # FULLEXT = Pathname for extension directory (eg Foo/Bar/Oracle).
 # BASEEXT = Basename part of FULLEXT. May be just equal FULLEXT. (eg Oracle)
@@ -153,7 +155,7 @@ FULLEXT = Acao
 BASEEXT = Acao
 PARENT_NAME = 
 DLBASE = $(BASEEXT)
-VERSION_FROM = 
+VERSION_FROM = lib/Acao.pm
 OBJECT = 
 LDFROM = $(OBJECT)
 LINKTYPE = dynamic
@@ -283,16 +285,16 @@ PM_TO_BLIB = lib/Acao/Util/AnnotatedSimpleType.pm \
 	blib/lib/Acao/Schema/Result/EntradaConsolidacao.pm \
 	lib/Acao/Controller/Auth/Registros/Consolidador.pm \
 	blib/lib/Acao/Controller/Auth/Registros/Consolidador.pm \
-	lib/Acao/Model/BuscaXSD.pm \
-	blib/lib/Acao/Model/BuscaXSD.pm \
 	lib/Acao/Controller/Auth/Registros.pm \
 	blib/lib/Acao/Controller/Auth/Registros.pm \
+	lib/Acao/Model/BuscaXSD.pm \
+	blib/lib/Acao/Model/BuscaXSD.pm \
 	lib/Acao/Controller/Auth/Registros/Revisor.pm \
 	blib/lib/Acao/Controller/Auth/Registros/Revisor.pm \
-	lib/Acao/Model/DB.pm \
-	blib/lib/Acao/Model/DB.pm \
 	lib/Acao/Schema/Result/Leitura.pm \
 	blib/lib/Acao/Schema/Result/Leitura.pm \
+	lib/Acao/Model/DB.pm \
+	blib/lib/Acao/Model/DB.pm \
 	lib/Acao/Model/Consolidador.pm \
 	blib/lib/Acao/Model/Consolidador.pm \
 	lib/Acao/ModelUtil.pm \
@@ -315,10 +317,10 @@ PM_TO_BLIB = lib/Acao/Util/AnnotatedSimpleType.pm \
 	blib/lib/Acao/Schema/Result/Consolidador.pm \
 	lib/Acao.pm \
 	blib/lib/Acao.pm \
-	lib/Acao/Controller/Root.pm \
-	blib/lib/Acao/Controller/Root.pm \
 	lib/Acao/Controller/Public.pm \
 	blib/lib/Acao/Controller/Public.pm \
+	lib/Acao/Controller/Root.pm \
+	blib/lib/Acao/Controller/Root.pm \
 	lib/Acao/View/TT.pm \
 	blib/lib/Acao/View/TT.pm \
 	lib/Acao/Schema/Result/Instrumento.pm \
@@ -333,22 +335,22 @@ PM_TO_BLIB = lib/Acao/Util/AnnotatedSimpleType.pm \
 	blib/lib/Acao/Schema/Result/DefinicaoConsolidacao.pm \
 	lib/Acao/Controller/Auth/Registros/Revisor/Leitura.pm \
 	blib/lib/Acao/Controller/Auth/Registros/Revisor/Leitura.pm \
-	lib/Acao/Schema.pm \
-	blib/lib/Acao/Schema.pm \
 	lib/Acao/Schema/Result/Revisor.pm \
 	blib/lib/Acao/Schema/Result/Revisor.pm \
+	lib/Acao/Schema.pm \
+	blib/lib/Acao/Schema.pm \
 	lib/Acao/Controller/Public/Login.pm \
 	blib/lib/Acao/Controller/Public/Login.pm \
 	lib/Acao/Schema/Result/EtapaColetaDados.pm \
 	blib/lib/Acao/Schema/Result/EtapaColetaDados.pm \
-	lib/Acao/Model/Sedna.pm \
-	blib/lib/Acao/Model/Sedna.pm \
 	lib/Acao/View/XML.pm \
-	blib/lib/Acao/View/XML.pm
+	blib/lib/Acao/View/XML.pm \
+	lib/Acao/Model/Sedna.pm \
+	blib/lib/Acao/Model/Sedna.pm
 
 
 # --- MakeMaker platform_constants section:
-MM_Unix_VERSION = 6.42
+MM_Unix_VERSION = 6.55_02
 PERL_MALLOC_DEF = -DPERL_EXTMALLOC_DEF -Dmalloc=Perl_malloc -Dfree=Perl_mfree -Drealloc=Perl_realloc -Dcalloc=Perl_calloc
 
 
@@ -366,7 +368,7 @@ SHELL = /bin/sh
 CHMOD = chmod
 CP = cp
 MV = mv
-NOOP = $(SHELL) -c true
+NOOP = $(TRUE)
 NOECHO = @
 RM_F = rm -f
 RM_RF = rm -rf
@@ -374,20 +376,22 @@ TEST_F = test -f
 TOUCH = touch
 UMASK_NULL = umask 0
 DEV_NULL = > /dev/null 2>&1
-MKPATH = $(ABSPERLRUN) "-MExtUtils::Command" -e mkpath
-EQUALIZE_TIMESTAMP = $(ABSPERLRUN) "-MExtUtils::Command" -e eqtime
+MKPATH = $(ABSPERLRUN) -MExtUtils::Command -e 'mkpath' --
+EQUALIZE_TIMESTAMP = $(ABSPERLRUN) -MExtUtils::Command -e 'eqtime' --
+FALSE = false
+TRUE = true
 ECHO = echo
 ECHO_N = echo -n
 UNINST = 0
 VERBINST = 0
-MOD_INSTALL = $(ABSPERLRUN) -MExtUtils::Install -e 'install({@ARGV}, '\''$(VERBINST)'\'', 0, '\''$(UNINST)'\'');' --
-DOC_INSTALL = $(ABSPERLRUN) "-MExtUtils::Command::MM" -e perllocal_install
-UNINSTALL = $(ABSPERLRUN) "-MExtUtils::Command::MM" -e uninstall
-WARN_IF_OLD_PACKLIST = $(ABSPERLRUN) "-MExtUtils::Command::MM" -e warn_if_old_packlist
+MOD_INSTALL = $(ABSPERLRUN) -MExtUtils::Install -e 'install([ from_to => {@ARGV}, verbose => '\''$(VERBINST)'\'', uninstall_shadows => '\''$(UNINST)'\'', dir_mode => '\''$(PERM_DIR)'\'' ]);' --
+DOC_INSTALL = $(ABSPERLRUN) -MExtUtils::Command::MM -e 'perllocal_install' --
+UNINSTALL = $(ABSPERLRUN) -MExtUtils::Command::MM -e 'uninstall' --
+WARN_IF_OLD_PACKLIST = $(ABSPERLRUN) -MExtUtils::Command::MM -e 'warn_if_old_packlist' --
 MACROSTART = 
 MACROEND = 
 USEMAKEFILE = -f
-FIXIN = $(PERLRUN) "-MExtUtils::MY" -e "MY->fixin(shift)"
+FIXIN = $(ABSPERLRUN) -MExtUtils::MY -e 'MY->fixin(shift)' --
 
 
 # --- MakeMaker makemakerdflt section:
@@ -483,42 +487,42 @@ blibdirs.ts : blibdirs
 
 $(INST_LIBDIR)$(DFSEP).exists :: Makefile.PL
 	$(NOECHO) $(MKPATH) $(INST_LIBDIR)
-	$(NOECHO) $(CHMOD) 755 $(INST_LIBDIR)
+	$(NOECHO) $(CHMOD) $(PERM_DIR) $(INST_LIBDIR)
 	$(NOECHO) $(TOUCH) $(INST_LIBDIR)$(DFSEP).exists
 
 $(INST_ARCHLIB)$(DFSEP).exists :: Makefile.PL
 	$(NOECHO) $(MKPATH) $(INST_ARCHLIB)
-	$(NOECHO) $(CHMOD) 755 $(INST_ARCHLIB)
+	$(NOECHO) $(CHMOD) $(PERM_DIR) $(INST_ARCHLIB)
 	$(NOECHO) $(TOUCH) $(INST_ARCHLIB)$(DFSEP).exists
 
 $(INST_AUTODIR)$(DFSEP).exists :: Makefile.PL
 	$(NOECHO) $(MKPATH) $(INST_AUTODIR)
-	$(NOECHO) $(CHMOD) 755 $(INST_AUTODIR)
+	$(NOECHO) $(CHMOD) $(PERM_DIR) $(INST_AUTODIR)
 	$(NOECHO) $(TOUCH) $(INST_AUTODIR)$(DFSEP).exists
 
 $(INST_ARCHAUTODIR)$(DFSEP).exists :: Makefile.PL
 	$(NOECHO) $(MKPATH) $(INST_ARCHAUTODIR)
-	$(NOECHO) $(CHMOD) 755 $(INST_ARCHAUTODIR)
+	$(NOECHO) $(CHMOD) $(PERM_DIR) $(INST_ARCHAUTODIR)
 	$(NOECHO) $(TOUCH) $(INST_ARCHAUTODIR)$(DFSEP).exists
 
 $(INST_BIN)$(DFSEP).exists :: Makefile.PL
 	$(NOECHO) $(MKPATH) $(INST_BIN)
-	$(NOECHO) $(CHMOD) 755 $(INST_BIN)
+	$(NOECHO) $(CHMOD) $(PERM_DIR) $(INST_BIN)
 	$(NOECHO) $(TOUCH) $(INST_BIN)$(DFSEP).exists
 
 $(INST_SCRIPT)$(DFSEP).exists :: Makefile.PL
 	$(NOECHO) $(MKPATH) $(INST_SCRIPT)
-	$(NOECHO) $(CHMOD) 755 $(INST_SCRIPT)
+	$(NOECHO) $(CHMOD) $(PERM_DIR) $(INST_SCRIPT)
 	$(NOECHO) $(TOUCH) $(INST_SCRIPT)$(DFSEP).exists
 
 $(INST_MAN1DIR)$(DFSEP).exists :: Makefile.PL
 	$(NOECHO) $(MKPATH) $(INST_MAN1DIR)
-	$(NOECHO) $(CHMOD) 755 $(INST_MAN1DIR)
+	$(NOECHO) $(CHMOD) $(PERM_DIR) $(INST_MAN1DIR)
 	$(NOECHO) $(TOUCH) $(INST_MAN1DIR)$(DFSEP).exists
 
 $(INST_MAN3DIR)$(DFSEP).exists :: Makefile.PL
 	$(NOECHO) $(MKPATH) $(INST_MAN3DIR)
-	$(NOECHO) $(CHMOD) 755 $(INST_MAN3DIR)
+	$(NOECHO) $(CHMOD) $(PERM_DIR) $(INST_MAN3DIR)
 	$(NOECHO) $(TOUCH) $(INST_MAN3DIR)$(DFSEP).exists
 
 
@@ -578,8 +582,8 @@ manifypods : pure_all  \
 	lib/Acao/Controller/Auth/Registros/Consolidador.pm \
 	lib/Acao/Controller/Auth/Registros.pm \
 	lib/Acao/Controller/Auth/Registros/Revisor.pm \
-	lib/Acao/Model/DB.pm \
 	lib/Acao/Schema/Result/Leitura.pm \
+	lib/Acao/Model/DB.pm \
 	lib/Acao/Model/Consolidador.pm \
 	lib/Acao/ModelUtil.pm \
 	lib/Acao/Schema/Result/Consolidacao.pm \
@@ -591,8 +595,8 @@ manifypods : pure_all  \
 	lib/Acao/Model.pm \
 	lib/Acao/Schema/Result/Consolidador.pm \
 	lib/Acao.pm \
-	lib/Acao/Controller/Root.pm \
 	lib/Acao/Controller/Public.pm \
+	lib/Acao/Controller/Root.pm \
 	lib/Acao/View/TT.pm \
 	lib/Acao/Schema/Result/Instrumento.pm \
 	lib/Acao/Schema/Result/Digitador.pm \
@@ -600,12 +604,12 @@ manifypods : pure_all  \
 	lib/Acao/Model/Revisor.pm \
 	lib/Acao/Schema/Result/DefinicaoConsolidacao.pm \
 	lib/Acao/Controller/Auth/Registros/Revisor/Leitura.pm \
-	lib/Acao/Schema.pm \
 	lib/Acao/Schema/Result/Revisor.pm \
+	lib/Acao/Schema.pm \
 	lib/Acao/Controller/Public/Login.pm \
 	lib/Acao/Schema/Result/EtapaColetaDados.pm \
-	lib/Acao/Model/Sedna.pm \
-	lib/Acao/View/XML.pm
+	lib/Acao/View/XML.pm \
+	lib/Acao/Model/Sedna.pm
 	$(NOECHO) $(POD2MAN) --section=$(MAN1EXT) --perm_rw=$(PERM_RW) \
 	  script/acao_fastcgi.pl $(INST_MAN1DIR)/acao_fastcgi.pl.$(MAN1EXT) \
 	  script/acao_cgi.pl $(INST_MAN1DIR)/acao_cgi.pl.$(MAN1EXT) \
@@ -622,8 +626,8 @@ manifypods : pure_all  \
 	  lib/Acao/Controller/Auth/Registros/Consolidador.pm $(INST_MAN3DIR)/Acao::Controller::Auth::Registros::Consolidador.$(MAN3EXT) \
 	  lib/Acao/Controller/Auth/Registros.pm $(INST_MAN3DIR)/Acao::Controller::Auth::Registros.$(MAN3EXT) \
 	  lib/Acao/Controller/Auth/Registros/Revisor.pm $(INST_MAN3DIR)/Acao::Controller::Auth::Registros::Revisor.$(MAN3EXT) \
-	  lib/Acao/Model/DB.pm $(INST_MAN3DIR)/Acao::Model::DB.$(MAN3EXT) \
 	  lib/Acao/Schema/Result/Leitura.pm $(INST_MAN3DIR)/Acao::Schema::Result::Leitura.$(MAN3EXT) \
+	  lib/Acao/Model/DB.pm $(INST_MAN3DIR)/Acao::Model::DB.$(MAN3EXT) \
 	  lib/Acao/Model/Consolidador.pm $(INST_MAN3DIR)/Acao::Model::Consolidador.$(MAN3EXT) \
 	  lib/Acao/ModelUtil.pm $(INST_MAN3DIR)/Acao::ModelUtil.$(MAN3EXT) \
 	  lib/Acao/Schema/Result/Consolidacao.pm $(INST_MAN3DIR)/Acao::Schema::Result::Consolidacao.$(MAN3EXT) \
@@ -635,22 +639,22 @@ manifypods : pure_all  \
 	  lib/Acao/Model.pm $(INST_MAN3DIR)/Acao::Model.$(MAN3EXT) \
 	  lib/Acao/Schema/Result/Consolidador.pm $(INST_MAN3DIR)/Acao::Schema::Result::Consolidador.$(MAN3EXT) \
 	  lib/Acao.pm $(INST_MAN3DIR)/Acao.$(MAN3EXT) \
-	  lib/Acao/Controller/Root.pm $(INST_MAN3DIR)/Acao::Controller::Root.$(MAN3EXT) \
 	  lib/Acao/Controller/Public.pm $(INST_MAN3DIR)/Acao::Controller::Public.$(MAN3EXT) \
+	  lib/Acao/Controller/Root.pm $(INST_MAN3DIR)/Acao::Controller::Root.$(MAN3EXT) \
 	  lib/Acao/View/TT.pm $(INST_MAN3DIR)/Acao::View::TT.$(MAN3EXT) \
 	  lib/Acao/Schema/Result/Instrumento.pm $(INST_MAN3DIR)/Acao::Schema::Result::Instrumento.$(MAN3EXT) \
-	  lib/Acao/Schema/Result/Digitador.pm $(INST_MAN3DIR)/Acao::Schema::Result::Digitador.$(MAN3EXT) \
+	  lib/Acao/Schema/Result/Digitador.pm $(INST_MAN3DIR)/Acao::Schema::Result::Digitador.$(MAN3EXT) 
+	$(NOECHO) $(POD2MAN) --section=$(MAN3EXT) --perm_rw=$(PERM_RW) \
 	  lib/Acao/Model/ProcessoConsolidacao.pm $(INST_MAN3DIR)/Acao::Model::ProcessoConsolidacao.$(MAN3EXT) \
 	  lib/Acao/Model/Revisor.pm $(INST_MAN3DIR)/Acao::Model::Revisor.$(MAN3EXT) \
 	  lib/Acao/Schema/Result/DefinicaoConsolidacao.pm $(INST_MAN3DIR)/Acao::Schema::Result::DefinicaoConsolidacao.$(MAN3EXT) \
-	  lib/Acao/Controller/Auth/Registros/Revisor/Leitura.pm $(INST_MAN3DIR)/Acao::Controller::Auth::Registros::Revisor::Leitura.$(MAN3EXT) 
-	$(NOECHO) $(POD2MAN) --section=$(MAN3EXT) --perm_rw=$(PERM_RW) \
-	  lib/Acao/Schema.pm $(INST_MAN3DIR)/Acao::Schema.$(MAN3EXT) \
+	  lib/Acao/Controller/Auth/Registros/Revisor/Leitura.pm $(INST_MAN3DIR)/Acao::Controller::Auth::Registros::Revisor::Leitura.$(MAN3EXT) \
 	  lib/Acao/Schema/Result/Revisor.pm $(INST_MAN3DIR)/Acao::Schema::Result::Revisor.$(MAN3EXT) \
+	  lib/Acao/Schema.pm $(INST_MAN3DIR)/Acao::Schema.$(MAN3EXT) \
 	  lib/Acao/Controller/Public/Login.pm $(INST_MAN3DIR)/Acao::Controller::Public::Login.$(MAN3EXT) \
 	  lib/Acao/Schema/Result/EtapaColetaDados.pm $(INST_MAN3DIR)/Acao::Schema::Result::EtapaColetaDados.$(MAN3EXT) \
-	  lib/Acao/Model/Sedna.pm $(INST_MAN3DIR)/Acao::Model::Sedna.$(MAN3EXT) \
-	  lib/Acao/View/XML.pm $(INST_MAN3DIR)/Acao::View::XML.$(MAN3EXT) 
+	  lib/Acao/View/XML.pm $(INST_MAN3DIR)/Acao::View::XML.$(MAN3EXT) \
+	  lib/Acao/Model/Sedna.pm $(INST_MAN3DIR)/Acao::Model::Sedna.$(MAN3EXT) 
 
 
 
@@ -976,7 +980,7 @@ $(FIRST_MAKEFILE) : Makefile.PL $(CONFIGDEP)
 	$(PERLRUN) Makefile.PL 
 	$(NOECHO) $(ECHO) "==> Your Makefile has been rebuilt. <=="
 	$(NOECHO) $(ECHO) "==> Please rerun the $(MAKE) command.  <=="
-	false
+	$(FALSE)
 
 
 
@@ -1028,25 +1032,23 @@ testdb_static :: testdb_dynamic
 # --- MakeMaker ppd section:
 # Creates a PPD (Perl Package Description) for a binary distribution.
 ppd :
-	$(NOECHO) $(ECHO) '<SOFTPKG NAME="$(DISTNAME)" VERSION="0,01,0,0">' > $(DISTNAME).ppd
-	$(NOECHO) $(ECHO) '    <TITLE>$(DISTNAME)</TITLE>' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '<SOFTPKG NAME="$(DISTNAME)" VERSION="0.01">' > $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '    <ABSTRACT>Módulo principal da aplicação</ABSTRACT>' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '    <AUTHOR>- Prefeitura de Fortaleza. Este software é licenciado</AUTHOR>' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '    <IMPLEMENTATION>' >> $(DISTNAME).ppd
-	$(NOECHO) $(ECHO) '        <DEPENDENCY NAME="Catalyst-Action-RenderView" VERSION="0,0,0,0" />' >> $(DISTNAME).ppd
-	$(NOECHO) $(ECHO) '        <DEPENDENCY NAME="Catalyst-Plugin-Authentication" VERSION="0,0,0,0" />' >> $(DISTNAME).ppd
-	$(NOECHO) $(ECHO) '        <DEPENDENCY NAME="Catalyst-Plugin-ConfigLoader" VERSION="0,0,0,0" />' >> $(DISTNAME).ppd
-	$(NOECHO) $(ECHO) '        <DEPENDENCY NAME="Catalyst-Plugin-Session" VERSION="0,0,0,0" />' >> $(DISTNAME).ppd
-	$(NOECHO) $(ECHO) '        <DEPENDENCY NAME="Catalyst-Plugin-Session-State-Cookie" VERSION="0,0,0,0" />' >> $(DISTNAME).ppd
-	$(NOECHO) $(ECHO) '        <DEPENDENCY NAME="Catalyst-Plugin-Session-Store-FastMmap" VERSION="0,0,0,0" />' >> $(DISTNAME).ppd
-	$(NOECHO) $(ECHO) '        <DEPENDENCY NAME="Catalyst-Plugin-StackTrace" VERSION="0,0,0,0" />' >> $(DISTNAME).ppd
-	$(NOECHO) $(ECHO) '        <DEPENDENCY NAME="Catalyst-Plugin-Static-Simple" VERSION="0,0,0,0" />' >> $(DISTNAME).ppd
-	$(NOECHO) $(ECHO) '        <DEPENDENCY NAME="Catalyst-Runtime" VERSION="5,80007,0,0" />' >> $(DISTNAME).ppd
-	$(NOECHO) $(ECHO) '        <DEPENDENCY NAME="Config-General" VERSION="0,0,0,0" />' >> $(DISTNAME).ppd
-	$(NOECHO) $(ECHO) '        <DEPENDENCY NAME="ExtUtils-MakeMaker" VERSION="6,42,0,0" />' >> $(DISTNAME).ppd
-	$(NOECHO) $(ECHO) '        <DEPENDENCY NAME="parent" VERSION="0,0,0,0" />' >> $(DISTNAME).ppd
-	$(NOECHO) $(ECHO) '        <OS NAME="$(OSNAME)" />' >> $(DISTNAME).ppd
-	$(NOECHO) $(ECHO) '        <ARCHITECTURE NAME="i486-linux-gnu-thread-multi-5.1" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Catalyst::Action::RenderView" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Catalyst::Plugin::Authentication" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Catalyst::Plugin::ConfigLoader" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Catalyst::Plugin::Session" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Catalyst::Plugin::Session::State::Cookie" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Catalyst::Plugin::Session::Store::FastMmap" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Catalyst::Plugin::StackTrace" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Catalyst::Plugin::Static::Simple" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Catalyst::Runtime" VERSION="5.80007" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Config::General" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <REQUIRE NAME="ExtUtils::MakeMaker" VERSION="6.42" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <REQUIRE NAME="parent::" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <ARCHITECTURE NAME="i486-linux-gnu-thread-multi-5.10" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <CODEBASE HREF="" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '    </IMPLEMENTATION>' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '</SOFTPKG>' >> $(DISTNAME).ppd
@@ -1054,8 +1056,8 @@ ppd :
 
 # --- MakeMaker pm_to_blib section:
 
-pm_to_blib : $(TO_INST_PM)
-	$(NOECHO) $(ABSPERLRUN) -MExtUtils::Install -e 'pm_to_blib({@ARGV}, '\''$(INST_LIB)/auto'\'', '\''$(PM_FILTER)'\'')' -- \
+pm_to_blib : $(FIRST_MAKEFILE) $(TO_INST_PM)
+	$(NOECHO) $(ABSPERLRUN) -MExtUtils::Install -e 'pm_to_blib({@ARGV}, '\''$(INST_LIB)/auto'\'', q[$(PM_FILTER)], '\''$(PERM_DIR)'\'')' -- \
 	  lib/Acao/Util/AnnotatedSimpleType.pm blib/lib/Acao/Util/AnnotatedSimpleType.pm \
 	  lib/Acao/Controller/Auth/Registros/Consolidador/DefinicaoConsolidacao/Consolidacao.pm blib/lib/Acao/Controller/Auth/Registros/Consolidador/DefinicaoConsolidacao/Consolidacao.pm \
 	  lib/Acao/Schema/Result/EtapaValidacao.pm blib/lib/Acao/Schema/Result/EtapaValidacao.pm \
@@ -1064,11 +1066,11 @@ pm_to_blib : $(TO_INST_PM)
 	  lib/Acao/Schema/Result/EtapaTransformacao.pm blib/lib/Acao/Schema/Result/EtapaTransformacao.pm \
 	  lib/Acao/Schema/Result/EntradaConsolidacao.pm blib/lib/Acao/Schema/Result/EntradaConsolidacao.pm \
 	  lib/Acao/Controller/Auth/Registros/Consolidador.pm blib/lib/Acao/Controller/Auth/Registros/Consolidador.pm \
-	  lib/Acao/Model/BuscaXSD.pm blib/lib/Acao/Model/BuscaXSD.pm \
 	  lib/Acao/Controller/Auth/Registros.pm blib/lib/Acao/Controller/Auth/Registros.pm \
+	  lib/Acao/Model/BuscaXSD.pm blib/lib/Acao/Model/BuscaXSD.pm \
 	  lib/Acao/Controller/Auth/Registros/Revisor.pm blib/lib/Acao/Controller/Auth/Registros/Revisor.pm \
-	  lib/Acao/Model/DB.pm blib/lib/Acao/Model/DB.pm \
 	  lib/Acao/Schema/Result/Leitura.pm blib/lib/Acao/Schema/Result/Leitura.pm \
+	  lib/Acao/Model/DB.pm blib/lib/Acao/Model/DB.pm \
 	  lib/Acao/Model/Consolidador.pm blib/lib/Acao/Model/Consolidador.pm \
 	  lib/Acao/ModelUtil.pm blib/lib/Acao/ModelUtil.pm \
 	  lib/Acao/Schema/Result/Consolidacao.pm blib/lib/Acao/Schema/Result/Consolidacao.pm \
@@ -1080,22 +1082,22 @@ pm_to_blib : $(TO_INST_PM)
 	  lib/Acao/Model.pm blib/lib/Acao/Model.pm \
 	  lib/Acao/Schema/Result/Consolidador.pm blib/lib/Acao/Schema/Result/Consolidador.pm \
 	  lib/Acao.pm blib/lib/Acao.pm \
-	  lib/Acao/Controller/Root.pm blib/lib/Acao/Controller/Root.pm \
 	  lib/Acao/Controller/Public.pm blib/lib/Acao/Controller/Public.pm \
+	  lib/Acao/Controller/Root.pm blib/lib/Acao/Controller/Root.pm \
 	  lib/Acao/View/TT.pm blib/lib/Acao/View/TT.pm \
 	  lib/Acao/Schema/Result/Instrumento.pm blib/lib/Acao/Schema/Result/Instrumento.pm \
 	  lib/Acao/Schema/Result/Digitador.pm blib/lib/Acao/Schema/Result/Digitador.pm \
 	  lib/Acao/Model/ProcessoConsolidacao.pm blib/lib/Acao/Model/ProcessoConsolidacao.pm \
 	  lib/Acao/Model/Revisor.pm blib/lib/Acao/Model/Revisor.pm \
-	  lib/Acao/Schema/Result/DefinicaoConsolidacao.pm blib/lib/Acao/Schema/Result/DefinicaoConsolidacao.pm \
+	  lib/Acao/Schema/Result/DefinicaoConsolidacao.pm blib/lib/Acao/Schema/Result/DefinicaoConsolidacao.pm 
+	$(NOECHO) $(ABSPERLRUN) -MExtUtils::Install -e 'pm_to_blib({@ARGV}, '\''$(INST_LIB)/auto'\'', q[$(PM_FILTER)], '\''$(PERM_DIR)'\'')' -- \
 	  lib/Acao/Controller/Auth/Registros/Revisor/Leitura.pm blib/lib/Acao/Controller/Auth/Registros/Revisor/Leitura.pm \
-	  lib/Acao/Schema.pm blib/lib/Acao/Schema.pm \
 	  lib/Acao/Schema/Result/Revisor.pm blib/lib/Acao/Schema/Result/Revisor.pm \
+	  lib/Acao/Schema.pm blib/lib/Acao/Schema.pm \
 	  lib/Acao/Controller/Public/Login.pm blib/lib/Acao/Controller/Public/Login.pm \
 	  lib/Acao/Schema/Result/EtapaColetaDados.pm blib/lib/Acao/Schema/Result/EtapaColetaDados.pm \
+	  lib/Acao/View/XML.pm blib/lib/Acao/View/XML.pm \
 	  lib/Acao/Model/Sedna.pm blib/lib/Acao/Model/Sedna.pm 
-	$(NOECHO) $(ABSPERLRUN) -MExtUtils::Install -e 'pm_to_blib({@ARGV}, '\''$(INST_LIB)/auto'\'', '\''$(PM_FILTER)'\'')' -- \
-	  lib/Acao/View/XML.pm blib/lib/Acao/View/XML.pm 
 	$(NOECHO) $(TOUCH) pm_to_blib
 
 
@@ -1106,7 +1108,7 @@ pm_to_blib : $(TO_INST_PM)
 
 
 # End.
-# Postamble by Module::Install 0.95
+# Postamble by Module::Install 0.97
 # --- Module::Install::Admin::Makefile section:
 
 realclean purge ::

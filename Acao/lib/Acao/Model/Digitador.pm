@@ -145,8 +145,10 @@ txn_method 'salvar_digitacao' => authorized 'digitador' => sub {
     my $read = $x_c_s->compile( READER => $elements[0] );
     my $writ =
       $x_c_s->compile( WRITER => $elements[0], use_default_namespace => 1 );
+    
+     my $xml_en = encode('utf8', $xml);
 
-    my $input_doc = XML::LibXML->load_xml( string => $xml );
+    my $input_doc = XML::LibXML->load_xml( string => $xml_en );
     my $element   = $input_doc->getDocumentElement;
     my $xml_data  = $read->($element);
 

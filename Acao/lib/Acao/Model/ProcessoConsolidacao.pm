@@ -17,6 +17,7 @@ package Acao::Model::ProcessoConsolidacao;
 # título "LICENCA.txt", junto com este programa, se não, escreva para a
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
 use Moose;
+use Encode;
 extends 'Acao::Model';
 use Acao::ModelUtil;
 use XML::Compile::Schema;
@@ -190,8 +191,11 @@ sub iniciar_consolidacao {
       $self->sedna->get_document(
         $consolidacao->definicao_consolidacao->xml_schema );
 
+    #converte xml string em bytes
+    my $octets = encode('utf8', $schema_str);
+
     # agora vamos compilar esse schema..
-    my $schema = XML::Compile::Schema->new($schema_str);
+    my $schema = XML::Compile::Schema->new($octets);
 
     my $schema_element = ( $schema->elements )[0];
 
@@ -203,7 +207,8 @@ sub iniciar_consolidacao {
     {
         my $doc_name = $entrada->leitura->instrumento->xml_schema;
         my $doc_str  = $self->sedna->get_document($doc_name);
-        $schema->importDefinitions($doc_str);
+        my $doc_encode = encode('utf8', $doc_str);
+        $schema->importDefinitions($doc_encode);
     }
 
     my $schema_r = $schema->compile( READER => $schema_element );
@@ -404,7 +409,6 @@ sub iniciar_consolidacao {
         last if $@;
         last unless $doc;
         $doc =~ s/^\s+//s;
-
         eval {
             # fazer o parse do registroConsolidacao
             $registroConsolidacao = $controle_r->($doc);
@@ -557,7 +561,6 @@ sub iniciar_consolidacao {
         # Agora eu posso produzir o documento final, que vai conter
         # tudo.
         my $res_xml = $controle_w->($xml_doc, $registroConsolidacao );
-
         # E então eu posso inserir na nova collection.
         $sedna_writer->begin;
         $sedna_writer->conn->loadData( 

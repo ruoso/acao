@@ -1,28 +1,32 @@
-# para configurar
+# Iniciar sedna
+sudo /usr/lib/sedna/bin/se_gov 
 
-$ sudo /usr/lib/sedna/bin/se_gov 
-$ sudo /usr/lib/sedna/bin/se_sm acao
+# Parar sedna
+sudo /usr/lib/sedna/bin/se_stop 
+
+# Conectar banco acao
+sudo /usr/lib/sedna/bin/se_sm acao
 
 # Create database
-# sudo /usr/lib/sedna/bin/se_cdb acao
+sudo /usr/lib/sedna/bin/se_cdb acao
 
 # Drop database
-# sudo /usr/lib/sedna/bin/se_ddb acao
+sudo /usr/lib/sedna/bin/se_ddb acao
 
+# Criar usuario
 acao> CREATE USER "acao" WITH PASSWORD "12345" &
+
+# Carregar documentos no banco
 acao> LOAD "devel/acao-viladomar/trunk/schemas/viladomar-cadernoa.xsd" "viladomar-cadernoa.xsd" &
+
+# Criar collection
 acao> CREATE COLLECTION "leitura-1" &
 
-# quando reiniciar...
+# Acessar o banco acao no sedna
+LD_LIBRARY_PATH=/usr/lib/sedna/driver/c/ /usr/lib/sedna/bin/se_term acao
 
-$ sudo /usr/lib/sedna/bin/se_gov 
-$ sudo /usr/lib/sedna/bin/se_sm acao
-
-# acessar o banco acao no sedna
-$ LD_LIBRARY_PATH=/usr/lib/sedna/driver/c/ /usr/lib/sedna/bin/se_term acao
-
-#Lista todas as collections
+# Lista todas as collections
 doc("$collections")/collections/collection 
 
-#Lista todos os documentos
+# Lista todos os documentos
 doc("$documents")/documents/document    
