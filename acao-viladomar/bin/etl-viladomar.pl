@@ -145,6 +145,7 @@ sub transform_enderecoImovel {
                                                                       dia_semana => $dt->day_of_week,
                                                                     })->data;
     }
+
 }
 
 sub transform_resumoMembros {
@@ -383,7 +384,8 @@ sub load{
                 origem_renda_jovem_ambientalista => $cadb->{renda}{origemRenda}{jovemAmbientalista},
                 origem_renda_salario => $cadb->{renda}{origemRenda}{salario},
                 origem_renda_visinhoscomunidade => $cadb->{renda}{origemRenda}{vizinhoComunidade},
-                renda_mensal => $cadb->{renda}{rendaMensal}
+                renda_mensal => $cadb->{renda}{rendaMensal},
+                endereco_id => $data->{formCadernoA}{enderecoImovel}{logradouro}
         })
     }
 }
