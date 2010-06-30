@@ -687,6 +687,8 @@ __PACKAGE__->add_columns(
   { data_type => "integer", is_nullable => 1 },
   "renda_mensal",
   { data_type => "integer", is_nullable => 1 },
+  "endereco_id",
+  { data_type => "integer", is_nullable => 1 },
 );
 
 
