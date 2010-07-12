@@ -385,9 +385,7 @@ sub load{
                 origem_renda_salario => $cadb->{renda}{origemRenda}{salario},
                 origem_renda_visinhoscomunidade => $cadb->{renda}{origemRenda}{vizinhoComunidade},
                 renda_mensal => $cadb->{renda}{rendaMensal},
-                endereco_id => $data->{formCadernoA}{enderecoImovel}{logradouro}
+                endereco_imovel_id => $data->{formCadernoA}{enderecoImovel}{logradouro}
         })
     }
 }
-
-extract('19');
