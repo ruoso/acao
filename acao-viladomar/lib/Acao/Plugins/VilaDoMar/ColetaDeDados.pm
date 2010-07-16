@@ -49,6 +49,7 @@ sub processar {
 
     $self->sedna->begin;
     $self->sedna->execute($query);
+    $self->sedna_writer->begin;
 
     while (1) {
         my ( $entradas, $familia );
@@ -93,11 +94,9 @@ sub processar {
             }
         );
 
-        $self->sedna_writer->begin;
         $self->sedna_writer->conn->loadData( $res_xml->toString, $docname,
             'consolidacao-entrada-' . $consolidacao->id_consolidacao );
         $self->sedna_writer->conn->endLoadData();
-        $self->sedna_writer->commit;
 
         $consolidacao->alertas->create(
             {
@@ -112,6 +111,7 @@ sub processar {
 
     }
 
+    $self->sedna_writer->commit;
     $self->sedna->commit;
 
 }

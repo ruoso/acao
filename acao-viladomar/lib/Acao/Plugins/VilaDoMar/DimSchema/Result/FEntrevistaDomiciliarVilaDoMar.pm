@@ -470,6 +470,8 @@ __PACKAGE__->add_columns(
   { data_type => "integer", is_nullable => 1 },
   "cod_pmf",
   { data_type => "integer", is_nullable => 1 },
+  "qtd_familias",
+  { data_type => "integer", is_nullable => 0, default_value => 1 },
 );
 
 

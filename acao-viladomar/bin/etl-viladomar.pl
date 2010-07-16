@@ -6,7 +6,8 @@ use File::Spec::Functions;
 use FindBin qw($Bin);
 use lib catfile($Bin, '..', 'lib');
 use DateTime::Format::XSD;
-
+use strict;
+use warnings;
 
 use aliased 'Acao::Plugins::VilaDoMar::DimSchema';
 
@@ -40,8 +41,6 @@ sub extract {
     #executa a consulta
     $sedna->execute($xq);
 
-    #atribui os itens retornados da consulta acima na variavel $xsd sob a forma de XML String
-    my $xml_string = $sedna->getItem();
 
     #cria uma nova compilacao do o XML Schema especificado
     my $schema = XML::Compile::Schema->new(SCHEMA_CONSOLIDADO);
@@ -53,6 +52,8 @@ sub extract {
     my $read = $schema->compile(READER => pack_type(VILADOMAR_CONSOLIDADO_NS , 'familia'));
  
     while ($sedna->next){
+        #atribui os itens retornados da consulta acima na variavel $xsd sob a forma de XML String
+        my $xml_string = $sedna->getItem();
         my $data = $read->($xml_string);
         transform($data);
     }
@@ -134,6 +135,7 @@ sub transform_enderecoImovel {
                                                                                telefone => $data->{telefone},
                                                                              })->id;
     for my $campo (qw(visita1 visita2 visita3)) {
+        next unless $data->{$campo};
         my $dt = DateTime::Format::XSD->parse_datetime( $data->{$campo} );
         $data->{$campo} = $dbi->resultset('DData')->find_or_create({ data => $data->{$campo},
                                                                       dia => $dt->day,
@@ -145,7 +147,6 @@ sub transform_enderecoImovel {
                                                                       dia_semana => $dt->day_of_week,
                                                                     })->data;
     }
-
 }
 
 sub transform_resumoMembros {
@@ -167,7 +168,7 @@ sub transform_saude {
 
 sub transform_saudeMulher {
     my ($data) = @_;
-    $data->{fezPrevencao} = $data->{fezPrevencao} eq 'Sim' ? 1 : 0;
+    $data->{fezPrevencao} = ($data->{fezPrevencao} && $data->{fezPrevencao} eq 'Sim') ? 1 : 0;
     $data->{causasObito} = $dbi->resultset('DCausasObito')
                                     ->find_or_create({causas_obitos => $data->{causasObitos}})->id;
     $data->{fezPrenatal} = $dbi->resultset('DFezPrenatal')
@@ -180,9 +181,9 @@ sub transform_saudeMulher {
 
 sub transform_educacao {
     my ($data) = @_;
-    $data->{desejaEstudar} = $data->{desejaEstudar} eq 'Sim' ? 1 : 0;
+    $data->{desejaEstudar} = ($data->{desejaEstudar} && $data->{desejaEstudar} eq 'Sim') ? 1 : 0;
 
-    $data->{cursandoAtualmente} = $data->{cursandoAtualmente} eq 'Sim' ? 1 : 0;
+    $data->{cursandoAtualmente} = ($data->{cursandoAtualmente} && $data->{cursandoAtualmente} eq 'Sim') ? 1 : 0;
 
     $data->{grauEscolaridade} = $dbi->resultset('DGrauEscolaridade')
                                         ->find_or_create({grau_escolaridade => $data->{grauEscolaridade}})->id;
@@ -262,28 +263,28 @@ sub load{
               destino_lixo_logradouro => $data->{formCadernoA}{infraestrutura}{destinoLixo}{logradouro},
               destino_lixo_enterrado => $data->{formCadernoA}{infraestrutura}{destinoLixo}{enterrado},
               destino_lixo_queimado => $data->{formCadernoA}{infraestrutura}{destinoLixo}{queimado},
-              destino_lixo_outro => $data->{formCadernoA}{infraestrutura}{destinoLixo}{outro},
+              destino_lixo_outro => $data->{formCadernoA}{infraestrutura}{destinoLixo}{outro} ? 1 : 0,
               tipo_drenagem_galeria_subterranea => $data->{formCadernoA}{infraestrutura}{tipoDrenagem}{galeriaSubterranea},
               tipo_drenagem_sarjeta => $data->{formCadernoA}{infraestrutura}{tipoDrenagem}{sarjeta},
               tipo_drenagem_curso_dagua_canalizado => $data->{formCadernoA}{infraestrutura}{tipoDrenagem}{cursoDaguaCanalizado},
               tipo_drenagem_curso_dagua_nao_canalizado => $data->{formCadernoA}{infraestrutura}{tipoDrenagem}{cursoDaguaNaoCanalizado},
-              tipo_drenagem_outro => $data->{formCadernoA}{infraestrutura}{tipoDrenagem}{outro},
+              tipo_drenagem_outro => $data->{formCadernoA}{infraestrutura}{tipoDrenagem}{outro} ? 1 : 0,
               necessita_reparos_hidrosanitarias => $data->{formCadernoA}{necessitaReparos}{instalacoesHidrosanitarias},
               necessidade_reparos_pinturas => $data->{formCadernoA}{necessitaReparos}{pintura},
               necessidade_reparos_coberta_telhado => $data->{formCadernoA}{necessitaReparos}{cobertaTelhado},
-              necessidade_reparos_outro => $data->{formCadernoA}{necessitaReparos}{outro},
+              necessidade_reparos_outro => $data->{formCadernoA}{necessitaReparos}{outro} ? 1 : 0,
               tipo_risco_alagamento => $data->{formCadernoA}{caracteristicasImovel}{tipoRisco}{alagamento},
               tipo_risco_inundacao => $data->{formCadernoA}{caracteristicasImovel}{tipoRisco}{inundacao},
               tipo_risco_deslizamento => $data->{formCadernoA}{caracteristicasImovel}{tipoRisco}{deslizamento},
               tipo_risco_linha_alta_tensao => $data->{formCadernoA}{caracteristicasImovel}{tipoRisco}{linhaAltaTensao},
               tipo_risco_via_ferrea => $data->{formCadernoA}{caracteristicasImovel}{tipoRisco}{viaFerrea},
-              tipo_risco_outro => $data->{formCadernoA}{caracteristicasImovel}{tipoRisco}{outro},
+              tipo_risco_outro => $data->{formCadernoA}{caracteristicasImovel}{tipoRisco}{outro} ? 1 : 0,
               localizacao_quadra_loteada => $data->{formCadernoA}{caracteristicasImovel}{localizacao}{quadraloteada},
               localizacao_leito_rua => $data->{formCadernoA}{caracteristicasImovel}{localizacao}{leitoDeRua},
               localizacao_praca => $data->{formCadernoA}{caracteristicasImovel}{localizacao}{praca},
               localizacao_area_verde => $data->{formCadernoA}{caracteristicasImovel}{localizacao}{areaVerde},
               localizacao_terreno_eqp_comunitario => $data->{formCadernoA}{caracteristicasImovel}{localizacao}{terroParaEquipamentoComunitario},
-              localizacao_outro => $data->{formCadernoA}{caracteristicasImovel}{localizacao}{localizacaoOutro},
+              localizacao_outro => $data->{formCadernoA}{caracteristicasImovel}{localizacao}{localizacaoOutro} ? 1 : 0,
               cod_pmf => $data->{formCadernoA}{identificacao}{codigoPMFNaoTem}
              } );
 
@@ -389,3 +390,5 @@ sub load{
         })
     }
 }
+
+extract('2');

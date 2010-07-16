@@ -185,6 +185,7 @@ sub iniciar_consolidacao {
     $etapa = 2;
 
     $self->sedna->begin;
+    $sedna_writer->begin;
 
     # temos que obter o xml-schema dessa consolidacao
     my $schema_str =
@@ -211,7 +212,7 @@ sub iniciar_consolidacao {
         $schema->importDefinitions($doc_encode);
     }
 
-    my $schema_r = $schema->compile( READER => $schema_element );
+    my $schema_r = $schema->compile( READER => $schema_element, sloppy_floats => 1, sloppy_integers => 1 );
     my $schema_w =
       $schema->compile( WRITER => $schema_element, use_default_namespace => 1 );
 
@@ -546,6 +547,7 @@ sub iniciar_consolidacao {
             }
         }
 
+     eval {
         # Vai gerar o novo documento para ser armazenado.
         my $xml_doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
 
@@ -562,13 +564,11 @@ sub iniciar_consolidacao {
         # tudo.
         my $res_xml = $controle_w->($xml_doc, $registroConsolidacao );
         # E então eu posso inserir na nova collection.
-        $sedna_writer->begin;
         $sedna_writer->conn->loadData( 
             $res_xml->toString,  
             $registroConsolidacao->{documento}{id},
             'consolidacao-saida-' . $consolidacao->id_consolidacao );
         $sedna_writer->conn->endLoadData();
-        $sedna_writer->commit;
 
         # documento já passou por todas as transformações, agora tem que ir
         # para a collection final.
@@ -582,9 +582,40 @@ sub iniciar_consolidacao {
                   $registroConsolidacao->{documento}{id}
             }
         );
+      };
+            if ($@) {
+                my $erro_original = $@;
+                eval {
+                    $consolidacao->alertas->create
+                      (
+                       {
+                        etapa            => 3,
+                        log_level        => 'ERROR',
+                        datahora         => DateTime->now(),
+                        descricao_alerta => 'Erro armazenando documento - '
+                          . $erro_original,
+                        id_documento_consolidado =>
+                          $registroConsolidacao->{documento}{id},
+                       }
+                      );
+                };
+                if ($@) {
+                    my $outro_erro = $@;
+                    $consolidacao->alertas->create
+                      (
+                       {
+                        etapa            => $etapa,
+                        log_level        => 'FATAL',
+                        datahora         => DateTime->now(),
+                        descricao_alerta => 'Ocorreu um erro inesperado ao registrar um alerta.'
+                       }
+                      );
+                }
+            }
     }
 
     $self->sedna->commit();
+    $sedna_writer->commit;
 
     $consolidacao->alertas->create(
         {

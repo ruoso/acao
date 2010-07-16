@@ -12,8 +12,7 @@ my %desc2min =
         '1⁄2 a 1 salário mínimo'     => 0.5,
         '1 a 2 salários mínimos'     => 1,
         '2 a 3 salários mínimos'     => 2,
-        '3 a 4 salários mínimos'     => 3,
-        'Mais de 4 salários mínimos' => 4
+        'Mais de 3 salários mínimos' => 3
     );
 my %min2desc = reverse %desc2min;
 
@@ -25,7 +24,7 @@ sub processar{
         for @{$conteudo->{formCadernoB}};
 
     $renda_min = int($renda_min) if $renda_min > 0.5;
-    $renda_min = 4 if $renda_min > 4;   
+    $renda_min = 3 if $renda_min > 3;   
 
     $conteudo->{resumoMembros}{rendaFamiliar} = $min2desc{$renda_min};
     $conteudo->{resumoMembros}{qtdMembros} = scalar @{$conteudo->{formCadernoB}};

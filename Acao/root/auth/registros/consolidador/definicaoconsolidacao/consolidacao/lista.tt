@@ -101,10 +101,8 @@
 
 &nbsp
 
-[% IF pagina_atual <= numpag %]
     [% args.import({ pagina_atual => pagina_atual + 1 }) %]
     <a href="[% c.uri_for_action('/auth/registros/consolidador/definicaoconsolidacao/consolidacao/lista', [ id_definicao_consolidacao, consolidacao.id_consolidacao ], args) %]"> Pr&oacute;ximo </a>
-[% END %]
 
 [% IF consolidacao.status != 'Finalizada' %]
 <SCRIPT language="javascript">

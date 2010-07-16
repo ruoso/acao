@@ -40,10 +40,10 @@ __PACKAGE__->add_columns(
     data_type         => "integer",
     is_auto_increment => 1,
     is_nullable       => 0,
-    sequence          => "d_obito_infantil_ultimo_ano_id_seq",
+    #sequence          => "d_obito_infantil_ultimo_ano_id_seq",
   },
   "obito_infantil_ultimo_ano",
-  { data_type => "character", is_nullable => 1, size => 50 },
+  { data_type => "varchar", is_nullable => 1 },
 );
 __PACKAGE__->set_primary_key("id");
 

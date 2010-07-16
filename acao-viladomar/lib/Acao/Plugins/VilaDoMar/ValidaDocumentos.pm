@@ -20,9 +20,9 @@ use constant VILADOMARCONS_NS =>
 
 my $viladomarcons =
   XML::Compile::Schema->new(
-    Acao->path_to('plugins/viladomar/schemas/viladomar-consolidado.xsd') );
-$viladomarcons->importDefinitions( Acao->path_to('plugins/viladomar/schemas/viladomar-cadernoa.xsd') );
-$viladomarcons->importDefinitions( Acao->path_to('plugins/viladomar/schemas/viladomar-cadernob.xsd') );
+    Acao->path_to('plugins/acao-viladomar/schemas/viladomar-consolidado.xsd') );
+$viladomarcons->importDefinitions( Acao->path_to('plugins/acao-viladomar/schemas/viladomar-cadernoa.xsd') );
+$viladomarcons->importDefinitions( Acao->path_to('plugins/acao-viladomar/schemas/viladomar-cadernob.xsd') );
 my $familia_r =
   $viladomarcons->compile( READER => pack_type(  VILADOMARCONS_NS, 'familia' ) );
 
@@ -64,7 +64,9 @@ sub processar {
 
     my $membros = $conteudo->{formCadernoB};
     foreach my $membro (@$membros) {
-        if(!test_cpf($membro->{composicaoFamiliar}{cpf}) ) {
+        my $cpf = $membro->{composicaoFamiliar}{cpf}; 
+        if ($cpf && $cpf =~ /\S/) {
+           unless (test_cpf($cpf)) {
             # validando o cpf...
             # aqui a gente tem como dizer qual de quem o cpf é invalido...
             $consolidacao->alertas->create
@@ -72,9 +74,10 @@ sub processar {
 		       log_level => 'ERROR',
 		       datahora => DateTime->now(),
                id_documento_consolidado => $este_documento,
-		       descricao_alerta => ' o cpf '. $membro->{composicaoFamiliar}{cpf} . ' do membro '
+		       descricao_alerta => 'CPF '. $cpf . ' do membro '
                                     . $membro->{composicaoFamiliar}{nome} . ' desta família é inválido.' 
              });
+           }
         }
 
         foreach my $dup (_obter_membro_duplicado($membro,$verificacao,1)) {
@@ -131,7 +134,6 @@ sub processar {
     $query =~ s/\<\<\<id_documento_consolidado\>\>\>/$este_documento/gs;
     $query =~ s/\<\<\<condicoes\>\>\>/$condicoes/gs;
     # warn $query;
-    $self->sedna_writer->begin;
     $self->sedna_writer->execute($query);
 
     while (my $doc = $self->sedna_writer->get_item) {
@@ -162,7 +164,6 @@ sub processar {
 
     }
 
-    $self->sedna_writer->commit;
        
 
 }

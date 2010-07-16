@@ -3,6 +3,7 @@ use strict;
 use warnings;
 use FindBin;
 use lib "$FindBin::Bin/../lib";
+use Catalyst::Authentication::User::Hash;
 use Acao;
 
 close STDIN;
