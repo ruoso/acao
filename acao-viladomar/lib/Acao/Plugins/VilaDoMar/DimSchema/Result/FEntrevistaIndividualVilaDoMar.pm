@@ -691,6 +691,12 @@ __PACKAGE__->add_columns(
   { data_type => "integer", is_nullable => 1 },
   "qtd_individuos",
   { data_type => "integer", is_nullable => 0, default_value => 1 },
+  "nome",
+  { data_type => "varchar", is_nullable => 1 },
+  "cpf",
+  { data_type => "varchar", is_nullable => 1 },
+  "pescador",
+  { data_type => "boolean", is_nullable => 1 },
 );
 
 

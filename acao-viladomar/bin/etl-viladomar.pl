@@ -11,14 +11,22 @@ use warnings;
 
 use aliased 'Acao::Plugins::VilaDoMar::DimSchema';
 
+BEGIN {
+    die 'Informe a variavel de ambiente ACAO_HOME' unless -d $ENV{ACAO_HOME};
+}
+
 #define as constantes para os caminhos dos schemas, utilizando variável de ambiente
 use constant HOME_SCHEMAS => $ENV{HOME_SCHEMAS} || catfile($Bin, '..', 'schemas');
+use constant SCHEMA_REGISTRO_CONSOLIDACAO => catfile($ENV{ACAO_HOME}, 'schemas', 'controleconsolidacao.xsd');
 use constant SCHEMA_CONSOLIDADO => catfile(HOME_SCHEMAS, 'viladomar-consolidado.xsd');
 use constant SCHEMA_CADERNOA => catfile(HOME_SCHEMAS, 'viladomar-cadernoa.xsd');
 use constant SCHEMA_CADERNOB => catfile(HOME_SCHEMAS, 'viladomar-cadernob.xsd');
 
 #define uma constante com o namespace do xml schema viladomar-consolidado.xsd
 use constant VILADOMAR_CONSOLIDADO_NS => 'http://schemas.fortaleza.ce.gov.br/habitafor/viladomar-consolidado.xsd';
+use constant REGISTRO_CONSOLIDACAO_NS => 'http://schemas.fortaleza.ce.gov.br/acao/controleconsolidacao.xsd';
+
+use constant ID_LEITURA_CADERNO_A => 1;
 
 my $sedna = Sedna->connect('127.0.0.1', 'acao', 'acao', '12345');
 my $dbi = DimSchema->connect("dbi:Pg:dbname=acaodw;host=127.0.0.1;port=5432",'acao','blableblibloblu');
@@ -27,13 +35,11 @@ sub extract {
     #recebe o id das collections consolidacao-saida a ser compilada e convertida em hash 
     #para persistencia dos dados no data warehouse
     my ($id_cosolidacao_saida) = @_;
-    
+
     #consulta xquery para retornar as collections consolidacao-saida com os dados 
     #da familia e de seus integrantes
     my $xq = 'declare namespace rec = "http://schemas.fortaleza.ce.gov.br/acao/controleconsolidacao.xsd";
-              declare namespace fam = "http://schemas.fortaleza.ce.gov.br/habitafor/viladomar-consolidado.xsd";
-              for $x in collection("consolidacao-saida-'.$id_cosolidacao_saida.'")/
-                                    rec:registroConsolidacao/rec:documento/rec:conteudo/fam:familia return $x';
+              for $x in collection("consolidacao-saida-'.$id_cosolidacao_saida.'")/rec:registroConsolidacao return $x';
 
     #inicia a conexão com o sedna
     $sedna->begin;
@@ -44,25 +50,31 @@ sub extract {
 
     #cria uma nova compilacao do o XML Schema especificado
     my $schema = XML::Compile::Schema->new(SCHEMA_CONSOLIDADO);
-    
+
     #define a importação dos demais documentos XML Schema utilizados dentro do XML Schema compilado acima
     $schema->importDefinitions(SCHEMA_CADERNOA);
     $schema->importDefinitions(SCHEMA_CADERNOB);
     #transforma o XML em um Hash
     my $read = $schema->compile(READER => pack_type(VILADOMAR_CONSOLIDADO_NS , 'familia'));
- 
+
+    my $schema_cons = XML::Compile::Schema->new(SCHEMA_REGISTRO_CONSOLIDACAO);
+    my $read_cons = $schema->compile(READER => pack_type(REGISTRO_CONSOLIDACAO_NS, 'registroConsolidacao'));
+
     while ($sedna->next){
         #atribui os itens retornados da consulta acima na variavel $xsd sob a forma de XML String
         my $xml_string = $sedna->getItem();
-        my $data = $read->($xml_string);
-        transform($data);
+
+        my $cons = $read_cons->($xml_string);
+        my $data = $read->($cons->{documento}{conteudo});
+
+        transform($data, $cons);
     }
 
     $sedna->commit;
 }
 
 sub transform {    
-    my ($data) = @_;
+    my ($data, $cons) = @_;
     #=============================CadernoA
     transform_caracteristicasImovel($data->{formCadernoA}{caracteristicasImovel});
     transform_infraestrutura($data->{formCadernoA}{infraestrutura});
@@ -79,7 +91,7 @@ sub transform {
         transform_rendaMensal($cadb->{renda});
     }
 
-    load($data);
+    load($data, $cons);
 }
 
 #=============================CadernoA
@@ -218,8 +230,13 @@ sub transform_rendaMensal {
 }
 
 sub load{
-    my ($data) = @_;
-    
+    my ($data, $cons) = @_;
+
+    my ($controle) =
+      map { $_->{controle} }
+        grep { $_->{leitura} == ID_LEITURA_CADERNO_A }
+          @{$cons->{consolidacao}{entradas}{entrada}}
+
     $dbi->resultset('FEntrevistaDomiciliarVilaDoMar')
         ->create( { 
               data_id => $data->{formCadernoA}{identificacao}{data},
@@ -285,7 +302,9 @@ sub load{
               localizacao_area_verde => $data->{formCadernoA}{caracteristicasImovel}{localizacao}{areaVerde},
               localizacao_terreno_eqp_comunitario => $data->{formCadernoA}{caracteristicasImovel}{localizacao}{terroParaEquipamentoComunitario},
               localizacao_outro => $data->{formCadernoA}{caracteristicasImovel}{localizacao}{localizacaoOutro} ? 1 : 0,
-              cod_pmf => $data->{formCadernoA}{identificacao}{codigoPMFNaoTem}
+              cod_pmf => $data->{formCadernoA}{identificacao}{codigoPMFNaoTem},
+              controle => $controle,
+              nome => $data->{formCadernoA}{identificacao}{titularBeneficiario},
              } );
 
     foreach my $cadb (@{$data->{formCadernoB}}) {
@@ -386,7 +405,10 @@ sub load{
                 origem_renda_salario => $cadb->{renda}{origemRenda}{salario},
                 origem_renda_visinhoscomunidade => $cadb->{renda}{origemRenda}{vizinhoComunidade},
                 renda_mensal => $cadb->{renda}{rendaMensal},
-                endereco_imovel_id => $data->{formCadernoA}{enderecoImovel}{logradouro}
+                endereco_imovel_id => $data->{formCadernoA}{enderecoImovel}{logradouro},
+                nome => $cadb->{composicaoFamiliar}{nome},
+                cpf => $cadb->{composicaoFamiliar}{cpf},
+                pescador => $cadb->{renda}{trabalho}{profissaoAtividade} =~ /pescador/igs ? 1 : 0,
         })
     }
 }

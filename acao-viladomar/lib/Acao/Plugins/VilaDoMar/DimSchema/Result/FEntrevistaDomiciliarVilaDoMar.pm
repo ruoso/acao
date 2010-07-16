@@ -472,6 +472,10 @@ __PACKAGE__->add_columns(
   { data_type => "integer", is_nullable => 1 },
   "qtd_familias",
   { data_type => "integer", is_nullable => 0, default_value => 1 },
+  "controle",
+  { data_type => "integer", is_nullable => 1 },
+  "nome",
+  { data_type => "varchar", is_nullable => 1 },
 );
 
 
