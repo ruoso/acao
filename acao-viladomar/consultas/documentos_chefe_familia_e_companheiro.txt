@@ -29,63 +29,63 @@ for $any in (1)
     { for $x in collection("consolidacao-saida-8")
       return
       <TR>
-       <TH>
+       <TD>
          { for $entrada in $x/rec:registroConsolidacao/rec:consolidacao/rec:entradas/rec:entrada[rec:leitura=1]
            return $entrada/rec:controle/text() }
-       </TH>
-       <TH>
+       &#13;</TD>
+       <TD>
          { $x/rec:registroConsolidacao/rec:documento/
            rec:conteudo/fam:familia/fam:formCadernoA/
            fca:identificacao/fca:data/text() }
-       </TH>
-       <TH>
+       &#13;</TD>
+       <TD>
          { $x/rec:registroConsolidacao/rec:documento/
            rec:conteudo/fam:familia/fam:formCadernoA/
            fca:identificacao/fca:titularBeneficiario/text() }
-       </TH>
-       <TH>
+       &#13;</TD>
+       <TD>
          { $x/rec:registroConsolidacao/rec:documento/
            rec:conteudo/fam:familia/fam:formCadernoA/
            fca:enderecoImovel/fca:bairro/text() }
-       </TH>
-       <TH>
+       &#13;</TD>
+       <TD>
          { $x/rec:registroConsolidacao/rec:documento/
            rec:conteudo/fam:familia/fam:formCadernoA/
            fca:enderecoImovel/fca:logradouro/text() }
-       </TH>
-       <TH>
+       &#13;</TD>
+       <TD>
          { $x/rec:registroConsolidacao/rec:documento/
            rec:conteudo/fam:familia/fam:formCadernoA/
            fca:enderecoImovel/fca:numero/text() }
-       </TH>
+       &#13;</TD>
        { for $chefe in $x/rec:registroConsolidacao/rec:documento/
            rec:conteudo/fam:familia/fam:formCadernoB[fcb:composicaoFamiliar/fcb:informante="Chefe"]
          return
          (
-         <TH>
+         <TD>
           { $chefe/fcb:composicaoFamiliar/fcb:nome/text() }
-         </TH>,
-         <TH>
+         &#13;</TD>,
+         <TD>
           { $chefe/fcb:composicaoFamiliar/fcb:cpf/text() }
-         </TH>,
-         <TH>
+         &#13;</TD>,
+         <TD>
           { $chefe/fcb:composicaoFamiliar/fcb:rg/text() }
-         </TH>
+         &#13;</TD>
          )
        }
        { for $chefe in $x/rec:registroConsolidacao/rec:documento/
            rec:conteudo/fam:familia/fam:formCadernoB[fcb:composicaoFamiliar/fcb:informante="Companheiro(a)"]
          return
          (
-         <TH>
+         <TD>
           { $chefe/fcb:composicaoFamiliar/fcb:nome/text() }
-         </TH>,
-         <TH>
+         &#13;</TD>,
+         <TD>
           { $chefe/fcb:composicaoFamiliar/fcb:cpf/text() }
-         </TH>,
-         <TH>
+         &#13;</TD>,
+         <TD>
           { $chefe/fcb:composicaoFamiliar/fcb:rg/text() }
-         </TH>
+         &#13;</TD>
          )
        }
       </TR>

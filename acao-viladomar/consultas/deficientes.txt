@@ -48,62 +48,62 @@ for $any in (1)
        <TD>
          { for $entrada in $x/rec:registroConsolidacao/rec:consolidacao/rec:entradas/rec:entrada[rec:leitura=1]
            return $entrada/rec:controle/text() }
-       </TD>
+       &#13;</TD>
        <TD>
          { $x/rec:registroConsolidacao/rec:documento/
            rec:conteudo/fam:familia/fam:formCadernoA/
            fca:identificacao/fca:data/text() }
-       </TD>
+       &#13;</TD>
        <TD>
          { $x/rec:registroConsolidacao/rec:documento/
            rec:conteudo/fam:familia/fam:formCadernoA/
            fca:identificacao/fca:titularBeneficiario/text() }
-       </TD>
+       &#13;</TD>
        <TD>
          { $x/rec:registroConsolidacao/rec:documento/
            rec:conteudo/fam:familia/fam:formCadernoA/
            fca:enderecoImovel/fca:bairro/text() }
-       </TD>
+       &#13;</TD>
        <TD>
          { $x/rec:registroConsolidacao/rec:documento/
            rec:conteudo/fam:familia/fam:formCadernoA/
            fca:enderecoImovel/fca:logradouro/text() }
-       </TD>
+       &#13;</TD>
        <TD>
          { $x/rec:registroConsolidacao/rec:documento/
            rec:conteudo/fam:familia/fam:formCadernoA/
            fca:enderecoImovel/fca:numero/text() }
-       </TD>
+       &#13;</TD>
        <TD>
          { $deficiente/fcb:composicaoFamiliar/fcb:nome/text() }
-       </TD>
+       &#13;</TD>
        <TD>
          { $deficiente/fcb:composicaoFamiliar/fcb:idade/text() }
-       </TD>
+       &#13;</TD>
        <TD>
          { $deficiente/fcb:saude/fcb:deficienciaMental/text() }
-       </TD>
+       &#13;</TD>
        <TD>
          { $deficiente/fcb:saude/fcb:deficienciaMentalOutras/text() }
-       </TD>
+       &#13;</TD>
        <TD>
          { $deficiente/fcb:saude/fcb:deficienciaFisica/text() }
-       </TD>
+       &#13;</TD>
        <TD>
          { $deficiente/fcb:saude/fcb:deficienciaFisicaOutras/text() }
-       </TD>
+       &#13;</TD>
        <TD>
          { $deficiente/fcb:saude/fcb:deficienciaAuditiva/text() }
-       </TD>
+       &#13;</TD>
        <TD>
          { $deficiente/fcb:saude/fcb:deficienciaAuditivaOutras/text() }
-       </TD>
+       &#13;</TD>
        <TD>
          { $deficiente/fcb:saude/fcb:deficienciaVisual/text() }
-       </TD>
+       &#13;</TD>
        <TD>
          { $deficiente/fcb:saude/fcb:deficienciaVisualOutras/text() }
-       </TD>
+       &#13;</TD>
       </TR>
     }
     </TBODY>
