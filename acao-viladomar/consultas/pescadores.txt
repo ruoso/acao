@@ -26,7 +26,7 @@ for $any in (1)
     { for $x in collection("consolidacao-saida-8")[contains(upper-case(rec:registroConsolidacao/rec:documento/
          rec:conteudo/fam:familia/fam:formCadernoB/fcb:trabalho/fcb:profissaoAtividade), 'PESCAD')]
        for $pescador in $x/rec:registroConsolidacao/rec:documento/rec:conteudo/fam:familia/
-         fam:formCadernoB[contains(upper-case(fcb:trabalho/fcb:profissaoAtividade), 'PESCAD)]
+         fam:formCadernoB[contains(upper-case(fcb:trabalho/fcb:profissaoAtividade), 'PESCAD')]
         return
       <TR>
        <TD>
