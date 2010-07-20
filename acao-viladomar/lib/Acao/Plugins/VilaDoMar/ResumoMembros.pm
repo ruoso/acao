@@ -12,7 +12,7 @@ my %desc2min =
         '1⁄2 a 1 salário mínimo'     => 0.5,
         '1 a 2 salários mínimos'     => 1,
         '2 a 3 salários mínimos'     => 2,
-        'Mais de 3 salários mínimos' => 3
+        'Mais de 4 salários mínimos' => 3
     );
 my %min2desc = reverse %desc2min;
 
