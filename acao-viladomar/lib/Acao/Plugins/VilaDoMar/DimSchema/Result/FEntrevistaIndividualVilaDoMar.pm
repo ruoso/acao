@@ -695,6 +695,8 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", is_nullable => 1 },
   "cpf",
   { data_type => "varchar", is_nullable => 1 },
+  "atividade_id",
+  { data_type => "varchar", is_nullable => 1 },
   "pescador",
   { data_type => "boolean", is_nullable => 1 },
 );

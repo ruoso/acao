@@ -9,6 +9,8 @@ use DateTime::Format::XSD;
 use strict;
 use warnings;
 
+use aliased 'Acao::Plugins::VilaDoMar::NormalizaBairro';
+use aliased 'Acao::Plugins::VilaDoMar::NormalizaLogradouro';
 use aliased 'Acao::Plugins::VilaDoMar::DimSchema';
 
 BEGIN {
@@ -57,7 +59,11 @@ sub extract {
     #transforma o XML em um Hash
     my $read = $schema->compile(READER => pack_type(VILADOMAR_CONSOLIDADO_NS , 'familia'));
 
-    my $schema_cons = XML::Compile::Schema->new(SCHEMA_REGISTRO_CONSOLIDACAO);
+    my  $schema_cons = XML::Compile::Schema->new(SCHEMA_REGISTRO_CONSOLIDACAO);
+    my $read_cons = $schema_cons->compile
+      (READER => pack_type(REGISTRO_CONSOLIDACAO_NS, 'registroConsolidacao'),
+       any_element => 'TAKE_ALL');
+
     my $read_cons = $schema->compile(READER => pack_type(REGISTRO_CONSOLIDACAO_NS, 'registroConsolidacao'));
 
     while ($sedna->next){
@@ -65,7 +71,7 @@ sub extract {
         my $xml_string = $sedna->getItem();
 
         my $cons = $read_cons->($xml_string);
-        my $data = $read->($cons->{documento}{conteudo});
+        my $data = $read->($cons->{documento}{conteudo}{pack_type(VILADOMAR_CONSOLIDADO_NS , 'familia')}[0]);
 
         transform($data, $cons);
     }
@@ -73,13 +79,18 @@ sub extract {
     $sedna->commit;
 }
 
-sub transform {    
+sub transform {
     my ($data, $cons) = @_;
+
+    NormalizaBairro->processa(undef, undef, $data);
+    NormalizaLogradouro->processa(undef, undef, $data);
+
     #=============================CadernoA
     transform_caracteristicasImovel($data->{formCadernoA}{caracteristicasImovel});
     transform_infraestrutura($data->{formCadernoA}{infraestrutura});
     transform_enderecoImovel($data->{formCadernoA}{enderecoImovel});
     transform_resumoMembros($data->{resumoMembros});
+
 
     #=============================CadernoB
     foreach my $cadb (@{$data->{formCadernoB}}) {
@@ -222,6 +233,8 @@ sub transform_trabalho {
                                 ->find_or_create({status_atual => $data->{statusAtual}})->id;
     $data->{tempoprocurandotrabalho} = $dbi->resultset('DTempoProcurandoTrabalho')
                                 ->find_or_create({tempoprocurandotrabalho => $data->{tempoprocurandotrabalho}})->id;
+    $data->{profissaoAtividade} = $dbi->resultset('DProfissaoAtividade')
+                                ->find_or_create({atividade => $data->{profissaoAtividade}})->id;
 }
 
 sub transform_rendaMensal {
@@ -235,7 +248,7 @@ sub load{
     my ($controle) =
       map { $_->{controle} }
         grep { $_->{leitura} == ID_LEITURA_CADERNO_A }
-          @{$cons->{consolidacao}{entradas}{entrada}}
+          @{$cons->{consolidacao}{entradas}{entrada}};
 
     $dbi->resultset('FEntrevistaDomiciliarVilaDoMar')
         ->create( { 
@@ -408,7 +421,7 @@ sub load{
                 endereco_imovel_id => $data->{formCadernoA}{enderecoImovel}{logradouro},
                 nome => $cadb->{composicaoFamiliar}{nome},
                 cpf => $cadb->{composicaoFamiliar}{cpf},
-                pescador => $cadb->{renda}{trabalho}{profissaoAtividade} =~ /pescador/igs ? 1 : 0,
+                atividade_id => $cadb->{renda}{trabalho}{profissaoAtividade},
         })
     }
 }
