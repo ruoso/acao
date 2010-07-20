@@ -65,7 +65,7 @@ my %translate =
    'RUA SÃO FRANCISCO/TV MURIAE' => 'RUA SÃO FRANCISCO',
    'RUA SÃO JOSE/PRAIA GRANDE' => 'RUA SAO JOSÉ DO ARPOADOR',
    'RUA SÃO JOSE' => 'RUA SAO JOSÉ DO ARPOADOR',
-   'RUA SÃO RAIMUNDO(BECO' => 'RUA SAO RAIMUNDO',
+   'RUA SÃO RAIMUNDO.+BECO' => 'RUA SAO RAIMUNDO',
    'RUA SÃO BERNARDO' => 'RUA SAO RAIMUNDO',
    'RUA SÃO SEBASTIAO' => 'RUA SAO RAIMUNDO',
    'RUA SÃO SERAFIM/GENERAL COSTA MATOS' => 'RUA SÃO SERAFIM',
@@ -132,7 +132,7 @@ sub processar{
     my $logradouro = $conteudo->{formCadernoA}{enderecoImovel}{logradouro};
 
     for my $k (keys %translate) {
-        if ($logradouro =~ /$k/is) {
+        if (index uc($logradouro), uc($k) > 0) {
             $logradouro = $translate{$k};
             last;
         }

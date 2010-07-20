@@ -38,11 +38,11 @@ sub processar{
 
     my $bairro = $conteudo->{formCadernoA}{enderecoImovel}{bairro};
 
-    if (grep { $bairro =~ /\s*$_\s*/is } @versoes_pirambu) {
+    if (grep { index uc($bairro), uc($_) } @versoes_pirambu) {
         $bairro = 'PIRAMBU';
-    } elsif (grep { $bairro =~ /\s*$_\s*/is } @versoes_cristo_redentor) {
+    } elsif (grep { index uc($bairro), uc($_) } @versoes_cristo_redentor) {
         $bairro = 'CRISTO REDENTOR';
-    } elsif (grep { $bairro =~ /\s*$_\s*/is } @versoes_cristo_redentor) {
+    } elsif (grep { index uc($bairro), uc($_) } @versoes_cristo_redentor) {
         $bairro = 'BARRA DO CEARA';
     }
 
