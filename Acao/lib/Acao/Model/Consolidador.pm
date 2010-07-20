@@ -133,18 +133,18 @@ txn_method 'iniciar_consolidacao' => authorized 'consolidador' => sub {
 
     my $script = Acao->path_to('script/acao_consolida.pl');
 
-    if ( my $pid = fork() ) {
+    #if ( my $pid = fork() ) {
         return $consolidacao;
-    }
-    else {
-        close STDOUT;
-        close STDIN;
-        my $pid = system( $^X, $script, $consolidacao->id_consolidacao,
-            $self->user->id );
-        use POSIX ":sys_wait_h";
-        waitpid( $pid, WNOHANG );
-        exit;
-    }
+    #}
+    #else {
+    #    close STDOUT;
+    #    close STDIN;
+    #    my $pid = system( $^X, $script, $consolidacao->id_consolidacao,
+    #        $self->user->id );
+    #    use POSIX ":sys_wait_h";
+    #    waitpid( $pid, WNOHANG );
+    #    exit;
+    #}
 };
 
 =item obter_documentos_entrada($consolidacao, $id_documento_consolidado)
