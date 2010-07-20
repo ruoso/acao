@@ -426,4 +426,7 @@ sub load{
     }
 }
 
-extract('2');
+
+my $id_consolidacao = shift + 0;
+die 'Precisa do id de uma consolidacao' unless $id_consolidacao;
+extract($id_consolidacao);
