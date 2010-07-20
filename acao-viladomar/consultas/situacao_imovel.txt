@@ -1,0 +1,114 @@
+declare namespace fam = "http://schemas.fortaleza.ce.gov.br/habitafor/viladomar-consolidado.xsd";
+declare namespace fca = "http://schemas.fortaleza.ce.gov.br/habitafor/viladomar-cadernoa.xsd";
+declare namespace fcb = "http://schemas.fortaleza.ce.gov.br/habitafor/viladomar-cadernob.xsd";
+declare namespace rec = "http://schemas.fortaleza.ce.gov.br/acao/controleconsolidacao.xsd";
+for $any in (1)
+ return
+ <HTML>
+  <HEAD>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  </HEAD>
+  <BODY>
+   <H1>Idosos</H1>
+   <TABLE>
+    <THEAD>
+     <TH>Controle</TH>
+     <TH>Data Visita</TH>
+     <TH>Cod. PMF</TH>
+     <TH>Beneficiario</TH>
+     <TH>Bairro</TH>
+     <TH>Logradouro</TH>
+     <TH>Número</TH>
+     <TH>Situacao</TH>
+     <TH>Tipo de Uso</TH>
+     <TH>Tipo de Servico</TH>
+     <TH>Tipo de Moradia</TH>
+     <TH>Tempo de Moradia</TH>
+     <TH>Nome do Proprietário</TH>
+     <TH>Telefone do Proprietário</TH>
+    </THEAD>
+    <TBODY>
+    { for $x in collection("consolidacao-saida-8")
+        return
+      <TR>
+       <TD>
+         { for $entrada in $x/rec:registroConsolidacao/rec:consolidacao/rec:entradas/rec:entrada[rec:leitura=1]
+           return $entrada/rec:controle/text() }
+       </TD>
+       <TD>
+         { $x/rec:registroConsolidacao/rec:documento/
+           rec:conteudo/fam:familia/fam:formCadernoA/
+           fca:identificacao/fca:data/text() }
+       </TD>
+       <TD>
+         { $x/rec:registroConsolidacao/rec:documento/
+           rec:conteudo/fam:familia/fam:formCadernoA/
+           fca:identificacao/fca:codigoPMF/text() }
+       </TD>
+       <TD>
+         { $x/rec:registroConsolidacao/rec:documento/
+           rec:conteudo/fam:familia/fam:formCadernoA/
+           fca:identificacao/fca:titularBeneficiario/text() }
+       </TD>
+       <TD>
+         { $x/rec:registroConsolidacao/rec:documento/
+           rec:conteudo/fam:familia/fam:formCadernoA/
+           fca:enderecoImovel/fca:bairro/text() }
+       </TD>
+       <TD>
+         { $x/rec:registroConsolidacao/rec:documento/
+           rec:conteudo/fam:familia/fam:formCadernoA/
+           fca:enderecoImovel/fca:logradouro/text() }
+       </TD>
+       <TD>
+         { $x/rec:registroConsolidacao/rec:documento/
+           rec:conteudo/fam:familia/fam:formCadernoA/
+           fca:enderecoImovel/fca:numero/text() }
+       </TD>
+       <TD>
+         { $x/rec:registroConsolidacao/rec:documento/
+           rec:conteudo/fam:familia/fam:formCadernoA/
+           fca:enderecoImovel/fca:informante/text() }
+       </TD>
+       <TD>
+         { $x/rec:registroConsolidacao/rec:documento/
+           rec:conteudo/fam:familia/fam:formCadernoA/
+           fca:caracteristicasImovel/fca:tipologiaUso/text() }
+       </TD>
+       <TD>
+         { $x/rec:registroConsolidacao/rec:documento/
+           rec:conteudo/fam:familia/fam:formCadernoA/
+           fca:caracteristicasImovel/fca:tipologiaUso/text() }
+       </TD>
+       <TD>
+         { $x/rec:registroConsolidacao/rec:documento/
+           rec:conteudo/fam:familia/fam:formCadernoA/
+           fca:caracteristicasImovel/fca:tipoServico/text() }
+       </TD>
+       <TD>
+         { $x/rec:registroConsolidacao/rec:documento/
+           rec:conteudo/fam:familia/fam:formCadernoA/
+           fca:caracteristicasImovel/fca:tipoMoradia/text() }
+       </TD>
+       <TD>
+         { $x/rec:registroConsolidacao/rec:documento/
+           rec:conteudo/fam:familia/fam:formCadernoA/
+           fca:caracteristicasImovel/fca:TempoMoradia/text() }
+       </TD>
+       <TD>
+         { $x/rec:registroConsolidacao/rec:documento/
+           rec:conteudo/fam:familia/fam:formCadernoA/
+           fca:caracteristicasImovel/fca:nomeProprietario/text() }
+       </TD>
+       <TD>
+         { $x/rec:registroConsolidacao/rec:documento/
+           rec:conteudo/fam:familia/fam:formCadernoA/
+           fca:caracteristicasImovel/fca:telefoneProprietario/text() }
+       </TD>
+      </TR>
+    }
+    </TBODY>
+   </TABLE>
+  </BODY>
+ </HTML>
+&
