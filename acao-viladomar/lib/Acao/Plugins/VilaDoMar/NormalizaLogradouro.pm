@@ -132,7 +132,7 @@ sub processar{
     my $logradouro = $conteudo->{formCadernoA}{enderecoImovel}{logradouro};
 
     for my $k (keys %translate) {
-        if (index uc($logradouro), uc($k) > 0) {
+        if (index(uc($logradouro), uc($k)) >= 0) {
             $logradouro = $translate{$k};
             last;
         }
