@@ -64,8 +64,6 @@ sub extract {
       (READER => pack_type(REGISTRO_CONSOLIDACAO_NS, 'registroConsolidacao'),
        any_element => 'TAKE_ALL');
 
-    my $read_cons = $schema->compile(READER => pack_type(REGISTRO_CONSOLIDACAO_NS, 'registroConsolidacao'));
-
     while ($sedna->next){
         #atribui os itens retornados da consulta acima na variavel $xsd sob a forma de XML String
         my $xml_string = $sedna->getItem();
@@ -82,8 +80,8 @@ sub extract {
 sub transform {
     my ($data, $cons) = @_;
 
-    NormalizaBairro->processa(undef, undef, $data);
-    NormalizaLogradouro->processa(undef, undef, $data);
+    NormalizaBairro->processar(undef, undef, $data);
+    NormalizaLogradouro->processar(undef, undef, $data);
 
     #=============================CadernoA
     transform_caracteristicasImovel($data->{formCadernoA}{caracteristicasImovel});
@@ -233,8 +231,9 @@ sub transform_trabalho {
                                 ->find_or_create({status_atual => $data->{statusAtual}})->id;
     $data->{tempoprocurandotrabalho} = $dbi->resultset('DTempoProcurandoTrabalho')
                                 ->find_or_create({tempoprocurandotrabalho => $data->{tempoprocurandotrabalho}})->id;
+    $data->{pescador} = $data->{profissaoAtividade} && $data->{profissaoAtividade} =~ /pescad/igs ? 1 : 0;
     $data->{profissaoAtividade} = $dbi->resultset('DProfissaoAtividade')
-                                ->find_or_create({atividade => $data->{profissaoAtividade}})->id;
+                                ->find_or_create({atividade => uc($data->{profissaoAtividade})})->id;
 }
 
 sub transform_rendaMensal {
@@ -421,7 +420,8 @@ sub load{
                 endereco_imovel_id => $data->{formCadernoA}{enderecoImovel}{logradouro},
                 nome => $cadb->{composicaoFamiliar}{nome},
                 cpf => $cadb->{composicaoFamiliar}{cpf},
-                atividade_id => $cadb->{renda}{trabalho}{profissaoAtividade},
+                atividade_id => $cadb->{trabalho}{profissaoAtividade},
+                pescador => $cadb->{trabalho}{pescador},
         })
     }
 }
