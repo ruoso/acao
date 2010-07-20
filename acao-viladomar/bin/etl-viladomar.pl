@@ -427,6 +427,6 @@ sub load{
 }
 
 
-my $id_consolidacao = shift + 0;
+my $id_consolidacao = 0 + shift;
 die 'Precisa do id de uma consolidacao' unless $id_consolidacao;
 extract($id_consolidacao);
