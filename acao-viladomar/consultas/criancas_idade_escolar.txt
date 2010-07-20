@@ -4,8 +4,12 @@ declare namespace fcb = "http://schemas.fortaleza.ce.gov.br/habitafor/viladomar-
 declare namespace rec = "http://schemas.fortaleza.ce.gov.br/acao/controleconsolidacao.xsd";
 for $any in (1)
  return
-  <HTML><BODY>
-   <H1>Documentação dos Chefes de Família</H1>
+ <HTML>
+  <HEAD>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  </HEAD>
+  <BODY>
+   <H1>Crianças em Idade Escolar</H1>
    <TABLE>
     <THEAD>
      <TH>Controle</TH>
@@ -78,5 +82,6 @@ for $any in (1)
     }
     </TBODY>
    </TABLE>
-  </BODY></HTML>
+  </BODY>
+ </HTML>
 &
