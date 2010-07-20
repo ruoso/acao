@@ -1,0 +1,84 @@
+declare namespace fam = "http://schemas.fortaleza.ce.gov.br/habitafor/viladomar-consolidado.xsd";
+declare namespace fca = "http://schemas.fortaleza.ce.gov.br/habitafor/viladomar-cadernoa.xsd";
+declare namespace fcb = "http://schemas.fortaleza.ce.gov.br/habitafor/viladomar-cadernob.xsd";
+declare namespace rec = "http://schemas.fortaleza.ce.gov.br/acao/controleconsolidacao.xsd";
+for $any in (1)
+ return
+ <HTML>
+  <HEAD>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  </HEAD>
+  <BODY>
+   <H1>Idosos</H1>
+   <TABLE>
+    <THEAD>
+     <TH>Controle</TH>
+     <TH>Data Visita</TH>
+     <TH>Beneficiario</TH>
+     <TH>Bairro</TH>
+     <TH>Logradouro</TH>
+     <TH>Número</TH>
+     <TH>Idoso</TH>
+     <TH>Idade</TH>
+     <TH>CPF</TH>
+     <TH>NIS</TH>
+     <TH>RG</TH>
+    </THEAD>
+    <TBODY>
+    { for $x in collection("consolidacao-saida-8")[rec:registroConsolidacao/rec:documento/
+         rec:conteudo/fam:familia/fam:formCadernoB/fcb:composicaoFamiliar/fcb:idade >= 60]
+       for $idoso in $x/rec:registroConsolidacao/rec:documento/
+          rec:conteudo/fam:familia/fam:formCadernoB[fcb:composicaoFamiliar/fcb:idade>=60]
+        return
+      <TR>
+       <TH>
+         { for $entrada in $x/rec:registroConsolidacao/rec:consolidacao/rec:entradas/rec:entrada[rec:leitura=1]
+           return $entrada/rec:controle/text() }
+       </TH>
+       <TH>
+         { $x/rec:registroConsolidacao/rec:documento/
+           rec:conteudo/fam:familia/fam:formCadernoA/
+           fca:identificacao/fca:data/text() }
+       </TH>
+       <TH>
+         { $x/rec:registroConsolidacao/rec:documento/
+           rec:conteudo/fam:familia/fam:formCadernoA/
+           fca:identificacao/fca:titularBeneficiario/text() }
+       </TH>
+       <TH>
+         { $x/rec:registroConsolidacao/rec:documento/
+           rec:conteudo/fam:familia/fam:formCadernoA/
+           fca:enderecoImovel/fca:bairro/text() }
+       </TH>
+       <TH>
+         { $x/rec:registroConsolidacao/rec:documento/
+           rec:conteudo/fam:familia/fam:formCadernoA/
+           fca:enderecoImovel/fca:logradouro/text() }
+       </TH>
+       <TH>
+         { $x/rec:registroConsolidacao/rec:documento/
+           rec:conteudo/fam:familia/fam:formCadernoA/
+           fca:enderecoImovel/fca:numero/text() }
+       </TH>
+       <TH>
+         { $crianca/fcb:composicaoFamiliar/fcb:nome/text() }
+       </TH>
+       <TH>
+         { $crianca/fcb:composicaoFamiliar/fcb:idade/text() }
+       </TH>
+       <TH>
+         { $crianca/fcb:composicaoFamiliar/fcb:cpf/text() }
+       </TH>
+       <TH>
+         { $crianca/fcb:composicaoFamiliar/fcb:nis/text() }
+       </TH>
+       <TH>
+         { $crianca/fcb:composicaoFamiliar/fcb:rg/text() }
+       </TH>
+      </TR>
+    }
+    </TBODY>
+   </TABLE>
+  </BODY>
+ </HTML>
+&
