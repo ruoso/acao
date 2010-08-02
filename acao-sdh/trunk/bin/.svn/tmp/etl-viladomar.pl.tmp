@@ -1,0 +1,247 @@
+use Sedna;
+use XML::Compile::Schema;
+use XML::Compile::Util qw(pack_type);
+use DBIx::Class::Schema;
+use File::Spec::Functions;
+use FindBin qw($Bin);
+use lib catfile($Bin, '..', 'lib');
+use DateTime::Format::XSD;
+
+use aliased 'Acao::Plugins::VilaDoMar::DimSchema';
+
+#define as constantes para os caminhos dos schemas, utilizando variável de ambiente
+use constant HOME_SCHEMAS => $ENV{HOME_SCHEMAS} || catfile($Bin, '..', 'schemas');
+use constant SCHEMA_CONSOLIDADO => catfile(HOME_SCHEMAS, 'viladomar-consolidado.xsd');
+use constant SCHEMA_CADERNOA => catfile(HOME_SCHEMAS, 'viladomar-cadernoa.xsd');
+use constant SCHEMA_CADERNOB => catfile(HOME_SCHEMAS, 'viladomar-cadernob.xsd');
+
+#define uma constante com o namespace do xml schema viladomar-consolidado.xsd
+use constant VILADOMAR_CONSOLIDADO_NS => 'http://schemas.fortaleza.ce.gov.br/habitafor/viladomar-consolidado.xsd';
+
+my $sedna = Sedna->connect('127.0.0.1', 'acao', 'acao', '12345');
+my $dbi = DimSchema->connect("dbi:Pg:dbname=acaodw;host=127.0.0.1;port=5432",'acao','blableblibloblu');
+
+sub extract {
+    #recebe o id das collections consolidacao-saida a ser compilada e convertida em hash 
+    #para persistencia dos dados no data warehouse
+    my ($id_cosolidacao_saida) = @_;
+    
+    #consulta xquery para retornar as collections consolidacao-saida com os dados 
+    #da familia e de seus integrantes
+    my $xq = 'declare namespace rec = "http://schemas.fortaleza.ce.gov.br/acao/controleconsolidacao.xsd";
+              declare namespace fam = "http://schemas.fortaleza.ce.gov.br/habitafor/viladomar-consolidado.xsd";
+              for $x in collection("consolidacao-saida-'.$id_cosolidacao_saida.'")/
+                                    rec:registroConsolidacao/rec:documento/rec:conteudo/fam:familia return $x';
+
+    #inicia a conexão com o sedna
+    $sedna->begin;
+
+    #executa a consulta
+    $sedna->execute($xq);
+
+    #atribui os itens retornados da consulta acima na variavel $xsd sob a forma de XML String
+    my $xml_string = $sedna->getItem();
+
+    #cria uma nova compilacao do o XML Schema especificado
+    my $schema = XML::Compile::Schema->new(SCHEMA_CONSOLIDADO);
+    
+    #define a importação dos demais documentos XML Schema utilizados dentro do XML Schema compilado acima
+    $schema->importDefinitions(SCHEMA_CADERNOA);
+    $schema->importDefinitions(SCHEMA_CADERNOB);
+    #transforma o XML em um Hash
+    my $read = $schema->compile(READER => pack_type(VILADOMAR_CONSOLIDADO_NS , 'familia'));
+ 
+    while ($sedna->next){
+        my $data = $read->($xml_string);
+        transform($data);
+    }
+
+    $sedna->commit;
+}
+
+sub transform {    
+    my ($data) = @_;
+    #=============================CadernoA
+    transform_caracteristicasImovel($data->{formCadernoA}{caracteristicasImovel});
+    transform_infraestrutura($data->{formCadernoA}{infraestrutura});
+    transform_enderecoImovel($data->{formCadernoA}{enderecoImovel});
+    transform_resumoMembros($data->{resumoMembros});
+    #=============================CadernoB
+    transform_saude($data->{formCadernoB}{saude});
+    transform_saudeMulher($data->{formCadernoB}{saudeMulher});
+    transform_educacao($data->{formCadernoB}{educacao});
+    transform_composicaoFamiliar($data->{formCadernoB}{composicaoFamiliar});
+    load($data);
+}
+#=============================CadernoA
+sub transform_caracteristicasImovel {
+    my $data = shift;
+    $data->{areaPreservacao} = $data->{areaPreservacao} eq 'Sim' ? 1 : 0;
+    $data->{casaEmSituacaRisco} = $data->{casaEmSituacaRisco} eq 'Sim' ? 1 : 0;
+    $data->{revestimentoParede} = $dbi->resultset('DRevestimentoParedeImovel')->
+                                                          find_or_create({ revestimento_parede_imovel => $data->{revestimentoParede} })->id;
+    $data->{situacaoFundiaria} = $dbi->resultset('DSituacaoFundiariaImovel')->
+                                                          find_or_create({ situacao_fundiaria_imovel => $data->{situacaoFundiaria} })->id;
+    $data->{TempoMoradia} = $dbi->resultset('DTempoMoradiaImovel')->
+                                                          find_or_create({ tempo_moradia_imovel => $data->{TempoMoradia} })->id;
+    $data->{tipoCobertura} = $dbi->resultset('DTipoCoberturaImovel')->
+                                                          find_or_create({ tipo_cobertura_imovel => $data->{tipoCobertura} })->id;
+    $data->{tipoMoradia} = $dbi->resultset('DTipoMoradiaImovel')->
+                                                          find_or_create({ tipo_moradia_imovel => $data->{tipoMoradia} })->id;
+    $data->{tipoPiso} = $dbi->resultset('DTipoPisoImovel')->
+                                                          find_or_create({ tipo_piso_imovel => $data->{tipoPiso} })->id;
+    $data->{tipologiaConstrucao} = $dbi->resultset('DTipologiaConstrucaoImovel')->
+                                                          find_or_create({ tipologia_construcao_imovel => $data->{tipologiaConstrucao} })->id;
+    $data->{tipologiaUso} = $dbi->resultset('DTipologiaUsoImovel')->
+                                                          find_or_create({ tipologia_uso_imovel => $data->{tipologiaUso} })->id;
+}
+
+sub transform_infraestrutura {
+    my $data = shift;
+    $data->{redeDeAgua} = $data->{redeDeAgua} eq 'Sim' ? 1 : 0;
+    $data->{redeColetaEsgoto} = $data->{redeColetaEsgoto} eq 'Sim' ? 1 : 0;
+    $data->{abastecimentoAguaPublicoPrivado} = $dbi->resultset('DTipoFornecedorAbastecimentoAguaImovel')->
+                                                 find_or_create({  tipo_fornecedor_abastecimento_agua_imovel => $data->{abastecimentoAguaPublicoPrivado} })->id;
+    $data->{abastecimentoAgua}{tipoAbastecimentoAgua} = $dbi->resultset('DTipoAbastecimentoAguaImovel')->
+                                                 find_or_create({ tipo_abastecimento_agua_imovel => $data->{abastecimentoAgua}{tipoAbastecimentoAgua} })->id;
+    $data->{esgotamentoSanitario} = $dbi->resultset('DTipoRedeEsgotamentoSanitarioImovel')->
+                                                 find_or_create({ tipo_rede_esgotamento_sanitario_imovel => $data->{esgotamentoSanitario} })->id;
+    $data->{esgotamentoSanitario2}{tipo} = $dbi->resultset('DTipoEsgotamentoSanitarioImovel')->
+                                                 find_or_create({ tipo_esgotamento_sanitario_imovel => $data->{esgotamentoSanitario2}{tipo} })->id;
+    $data->{tipoLigacaoRedeEletrica} = $dbi->resultset('DTipoLigacaoRedeEletricaImovel')->
+                                                        find_or_create({ tipo_ligacao_rede_eletrica_imovel => $data->{tipoLigacaoRedeEletrica} })->id;
+    $data->{tipoPavimentacao} = $dbi->resultset('DTipoPavimentacao')->
+                                                        find_or_create({ tipo_pavimentacao => $data->{tipoPavimentacao} })->id;
+    $data->{tipoServicoTelefonicoPredominante} = $dbi->resultset('DTipoServicoTelefonico')->
+                                                        find_or_create({ tipo_servico_telefonico => $data->{tipoServicoTelefonicoPredominante} })->id;
+}
+
+sub transform_enderecoImovel {
+    my $data = shift;
+    $data->{informante} = $dbi->resultset('DSituacaoMoradorImovel')->find_or_create({ situacao_morador_imovel => $data->{informante} })->id;
+    $data->{logradouro} = $dbi->resultset('DEnderecoImovel')->find_or_create({ logradouro => $data->{logradouro},
+                                                                               numero => $data->{numero},
+                                                                               complemento => $data->{complemento},
+                                                                               bairro => $data->{bairro},
+                                                                               telefone => $data->{telefone},
+                                                                             })->id;
+    for my $campo (qw(visita1 visita2 visita3)) {
+        my $dt = DateTime::Format::XSD->parse_datetime( $data->{$campo} );
+        $data->{$campo} = $dbi->resultset('DData')->find_or_create({ data => $data->{$campo},
+                                                                      dia => $dt->day,
+                                                                      mes => $dt->month,
+                                                                      ano => $dt->year,
+                                                                      bimestre => int(($dt->month-1)/2)+1,
+                                                                      trimestre => int(($dt->month-1)/3)+1,
+                                                                      semestre => $dt->month < 6 ? 1 : 2,
+                                                                      dia_semana => $dt->day_of_week,
+                                                                    })->data;
+    }
+}
+
+sub transform_resumoMembros {
+     my ($data) = @_;
+     $data->{rendaFamiliar} = $dbi->resultset('DRenda')->find_or_create({ renda_familiar => $data->{rendaFamiliar} })->id;
+}
+
+#=============================CadernoB
+sub transform_saude {
+     my ($data) = @_;
+     $data->{deficienciaVisual} = $data->{deficienciaVisual} eq 'Sim' ? 1 : 0;
+     $data->{deficienciaMental} = $data->{deficienciaMental} eq 'Sim' ? 1 : 0;
+     $data->{deficienciaAuditiva} = $data->{deficienciaAuditiva} eq 'Sim' ? 1 : 0;
+     $data->{emtratamento} = $data->{emtratamento} eq 'Sim' ? 1 : 0;
+     $data->{deficienciaFisica} = $data->{deficienciaFisica} eq 'Sim' ? 1 : 0;
+}
+
+sub transform_saudeMulher {
+    my ($data) = @_;
+    $data->{fezPrevencao} = $data->{fezPrevencao} eq 'Sim' ? 1 : 0;
+    $data->causasObitos = $dbi->resultset('DCausasobitos')
+                            ->find_or_create({ causasobitos = $data->{causasObitos} })->id;
+}
+
+sub transform_educacao {
+    $data = @_;
+    $data->{desejaEstudar} = $data->{desejaEstudar} eq 'Sim' ? 1 : 0;
+    $data->{cursandoAtualmente} = $data->{cursandoAtualmente} eq 'Sim' ? 1 : 0;
+}
+
+sub transform_composicaoFamiliar {
+    $data = @_;    
+    $data->{sexo} = $dbi->resultset('DSexo')->find_or_create({sexo => $data->{sexo}})->id;
+}
+
+sub load{
+    my ($data) = @_;
+    
+    $dbi->resultset('FEntrevistaDomiciliarVilaDoMar')
+        ->create( { 
+              data_id => $data->{formCadernoA}{identificacao}{data},
+              situacao_morador_imovel_id => $data->{formCadernoA}{enderecoImovel}{informante},
+              tipologia_uso_imovel_id => $data->{formCadernoA}{caracteristicasImovel}{tipologiaUso},
+              situacao_fundiaria_imovel_id => $data->{formCadernoA}{caracteristicasImovel}{situacaoFundiaria},
+              tipo_moradia_imovel_id => $data->{formCadernoA}{caracteristicasImovel}{tipoMoradia},
+              tempo_moradia_imovel_id => $data->{formCadernoA}{caracteristicasImovel}{TempoMoradia},
+              endereco_imovel_id => $data->{formCadernoA}{enderecoImovel}{logradouro},
+              tipologia_construcao_imovel_id => $data->{formCadernoA}{caracteristicasImovel}{tipologiaConstrucao},
+              tipo_cobertura_imovel_id => $data->{formCadernoA}{caracteristicasImovel}{tipoCobertura},
+              tipo_piso_imovel_id => $data->{formCadernoA}{caracteristicasImovel}{tipoPiso},
+              tipo_fornecedor_abastecimento_agua_imovel_id => $data->{formCadernoA}{infraestrutura}{abastecimentoAguaPublicoPrivado},
+              tipo_abastecimento_agua_imovel_id => $data->{formCadernoA}{infraestrutura}{abastecimentoAgua}{tipoAbastecimentoAgua},
+              tipo_rede_esgoto_sanitario_imovel_id  => $data->{formCadernoA}{infraestrutura}{esgotamentoSanitario},
+              tipo_esgoto_sanitario_imovel_id => $data->{formCadernoA}{infraestrutura}{esgotamentoSanitario2}{tipo},
+              tipo_ligacao_eletrica_imovel_id => $data->{formCadernoA}{infraestrutura}{tipoLigacaoRedeEletrica},
+              revestimento_parede_imovel_id => $data->{formCadernoA}{caracteristicasImovel}{revestimentoParede},
+              tipo_pavimentacao_id => $data->{formCadernoA}{infraestrutura}{tipoPavimentacao},
+              quantidade_integrantes => $data->{resumoMembros}{qtdMembros},
+              renda_familiar_id => $data->{resumoMembros}{rendaFamiliar},
+              rede_agua => $data->{formCadernoA}{infraestrutura}{redeDeAgua},
+              rede_coleta_esgoto => $data->{formCadernoA}{infraestrutura}{redeColetaEsgoto},
+              tipo_servico_telefonico_id => $data->{formCadernoA}{infraestrutura}{tipoServicoTelefonicoPredominante},
+              valor_imovel => $data->{formCadernoA}{caracteristicasImovel}{valor},
+              situacao_risco_imovel => $data->{formCadernoA}{caracteristicasImovel}{casaEmSituacaRisco},
+              quantidade_banheiro_imovel => $data->{formCadernoA}{caracteristicasImovel}{compartimentosMoradia}{qtdBanheiros},
+              quantidade_quintal_imovel => $data->{formCadernoA}{caracteristicasImovel}{compartimentosMoradia}{qtdQuintais},
+              quantidade_cozinha_imovel => $data->{formCadernoA}{caracteristicasImovel}{compartimentosMoradia}{qtdCozinhas},
+              quantidade_quarto_imovel => $data->{formCadernoA}{caracteristicasImovel}{compartimentosMoradia}{qtdQuartos},
+              quantidade_sala_imovel => $data->{formCadernoA}{caracteristicasImovel}{compartimentosMoradia}{qtdSalas},
+              area_preservacao_imovel => $data->{formCadernoA}{caracteristicasImovel}{areaPreservacao},
+              visita1 => $data->{formCadernoA}{enderecoImovel}{visita1},
+              visita2 => $data->{formCadernoA}{enderecoImovel}{visita2},
+              visita3 => $data->{formCadernoA}{enderecoImovel}{visita3},
+              destino_lixo_sistema_coleta => $data->{formCadernoA}{infraestrutura}{destinoLixo}{sistemaColeta},
+              destino_lixo_conteiner => $data->{formCadernoA}{infraestrutura}{destinoLixo}{conteiner},
+              destino_lixo_terreno_baldio => $data->{formCadernoA}{infraestrutura}{destinoLixo}{terrenoBaldio},
+              destino_lixo_curso_dagua => $data->{formCadernoA}{infraestrutura}{destinoLixo}{cursoDagua},
+              destino_lixo_passeio => $data->{formCadernoA}{infraestrutura}{destinoLixo}{passeio},
+              destino_lixo_logradouro => $data->{formCadernoA}{infraestrutura}{destinoLixo}{logradouro},
+              destino_lixo_enterrado => $data->{formCadernoA}{infraestrutura}{destinoLixo}{enterrado},
+              destino_lixo_queimado => $data->{formCadernoA}{infraestrutura}{destinoLixo}{queimado},
+              destino_lixo_outro => $data->{formCadernoA}{infraestrutura}{destinoLixo}{outro},
+              tipo_drenagem_galeria_subterranea => $data->{formCadernoA}{infraestrutura}{tipoDrenagem}{galeriaSubterranea},
+              tipo_drenagem_sarjeta => $data->{formCadernoA}{infraestrutura}{tipoDrenagem}{sarjeta},
+              tipo_drenagem_curso_dagua_canalizado => $data->{formCadernoA}{infraestrutura}{tipoDrenagem}{cursoDaguaCanalizado},
+              tipo_drenagem_curso_dagua_nao_canalizado => $data->{formCadernoA}{infraestrutura}{tipoDrenagem}{cursoDaguaNaoCanalizado},
+              tipo_drenagem_outro => $data->{formCadernoA}{infraestrutura}{tipoDrenagem}{outro},
+              necessita_reparos_hidrosanitarias => $data->{formCadernoA}{necessitaReparos}{instalacoesHidrosanitarias},
+              necessidade_reparos_pinturas => $data->{formCadernoA}{necessitaReparos}{pintura},
+              necessidade_reparos_coberta_telhado => $data->{formCadernoA}{necessitaReparos}{cobertaTelhado},
+              necessidade_reparos_outro => $data->{formCadernoA}{necessitaReparos}{outro},
+              tipo_risco_alagamento => $data->{formCadernoA}{caracteristicasImovel}{tipoRisco}{alagamento},
+              tipo_risco_inundacao => $data->{formCadernoA}{caracteristicasImovel}{tipoRisco}{inundacao},
+              tipo_risco_deslizamento => $data->{formCadernoA}{caracteristicasImovel}{tipoRisco}{deslizamento},
+              tipo_risco_linha_alta_tensao => $data->{formCadernoA}{caracteristicasImovel}{tipoRisco}{linhaAltaTensao},
+              tipo_risco_via_ferrea => $data->{formCadernoA}{caracteristicasImovel}{tipoRisco}{viaFerrea},
+              tipo_risco_outro => $data->{formCadernoA}{caracteristicasImovel}{tipoRisco}{outro},
+              localizacao_quadra_loteada => $data->{formCadernoA}{caracteristicasImovel}{localizacao}{quadraloteada},
+              localizacao_leito_rua => $data->{formCadernoA}{caracteristicasImovel}{localizacao}{leitoDeRua},
+              localizacao_praca => $data->{formCadernoA}{caracteristicasImovel}{localizacao}{praca},
+              localizacao_area_verde => $data->{formCadernoA}{caracteristicasImovel}{localizacao}{areaVerde},
+              localizacao_terreno_eqp_comunitario => $data->{formCadernoA}{caracteristicasImovel}{localizacao}{terroParaEquipamentoComunitario},
+              localizacao_outro => $data->{formCadernoA}{caracteristicasImovel}{localizacao}{localizacaoOutro},
+              cod_pmf => $data->{formCadernoA}{identificacao}{codigoPMFNaoTem}
+             } );
+}
+
+extract('19');

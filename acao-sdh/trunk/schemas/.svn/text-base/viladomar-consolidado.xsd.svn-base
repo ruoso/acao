@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+ xmlns:xs="http://www.w3.org/2001/XMLSchema"
+ targetNamespace="http://schemas.fortaleza.ce.gov.br/habitafor/viladomar-consolidado.xsd"
+ elementFormDefault="qualified"
+ xmlns:forma="http://schemas.fortaleza.ce.gov.br/habitafor/viladomar-cadernoa.xsd"
+ xmlns:formb="http://schemas.fortaleza.ce.gov.br/habitafor/viladomar-cadernob.xsd">
+ <xs:element name="familia">
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element name="formCadernoA" type="forma:formCadernoA" />
+    <xs:element name="formCadernoB" maxOccurs="unbounded" type="formb:formCadernoB" />
+     <xs:element name="resumoMembros" minOccurs="0">
+      <xs:complexType>
+       <xs:sequence>
+            <xs:element name="rendaFamiliar" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="0 a 1⁄2 salário mínimo"/>
+                        <xs:enumeration value="1⁄2 a 1 salário mínimo"/>
+                        <xs:enumeration value="1 a 2 salários mínimos"/>
+                        <xs:enumeration value="2 a 3 salários mínimos"/>
+                        <xs:enumeration value="Mais de 4 salários mínimos"/>
+                        <xs:enumeration value="Sem Renda"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>   
+            <xs:element name="qtdMembros" type="xs:integer" minOccurs="0" />
+       </xs:sequence>
+      </xs:complexType>
+     </xs:element>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+</xs:schema>
