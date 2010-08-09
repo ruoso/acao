@@ -1,0 +1,25 @@
+# para configurar
+
+$ sudo /usr/lib/sedna/bin/se_gov 
+$ sudo /usr/lib/sedna/bin/se_sm acao
+
+# Create database
+# sudo /usr/lib/sedna/bin/se_cdb acao
+
+# Drop database
+# sudo /usr/lib/sedna/bin/se_ddb acao
+
+acao> CREATE USER "acao" WITH PASSWORD "12345" &
+acao> LOAD "../../xsdform-js/test.xsd.xml" "test.xsd.xml" &
+acao> CREATE COLLECTION "leitura-1" &
+
+# quando reiniciar...
+
+$ sudo /usr/lib/sedna/bin/se_gov 
+$ sudo /usr/lib/sedna/bin/se_sm acao
+
+# acessar o banco acao no sedna
+$ LD_LIBRARY_PATH=/usr/lib/sedna/driver/c/ /usr/lib/sedna/bin/se_term acao
+
+#Lista todas as collections
+# doc("$collections")/collections/collection    

@@ -36,8 +36,9 @@
  
   [% # O foreach abaixo vai buscar diretamente no model por estar livre de contexto %] 
   [% # (nao recebe argumento pela url) %]
-
+ 
  [% FOREACH leitura IN c.model('Digitador').listar_leituras.all %]
+ 
  <tr>
   <td>[% leitura.instrumento.projeto.nome %]</a></td>
   <td><a href="[% c.uri_for('/auth/registros/digitador') _ "/" _ leitura.id_leitura %]">[% leitura.nome %]</a></td>
