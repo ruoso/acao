@@ -600,8 +600,8 @@
 																</xs:annotation>
 															</xs:element>
 
-															<xs:element name="dataDocumento"
-																minOccurs="0" type="xs:date">
+															<xs:element name="dataDocumento" minOccurs="0"
+																type="xs:date">
 																<xs:annotation>
 																	<xs:appinfo>
 																		<label>Data
@@ -614,6 +614,396 @@
 													</xs:complexType>
 												</xs:element>
 
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+
+									<xs:element name="servicoSocial">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Serviço Social</label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="relacionamentoFamiliar">
+													<xs:annotation>
+														<xs:appinfo>
+															<label>Relacionamento familiar</label>
+														</xs:appinfo>
+													</xs:annotation>
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element name="hitoricoFamiliar" minOccurs="0"
+																type="xs:string">
+																<xs:annotation>
+																	<xs:appinfo>
+																		<label>Histórico familiar(verificar existência de
+																			conflitos, configurações de relações afetivas,
+																			responsãveis pelo adolescente ao longo de sua vida)
+																		</label>
+																	</xs:appinfo>
+																</xs:annotation>
+															</xs:element>
+
+															<xs:element name="relacionamentoDosPais"
+																minOccurs="0">
+																<xs:annotation>
+																	<xs:appinfo>
+																		<label>Relacionamento dos pais
+																		</label>
+																	</xs:appinfo>
+																</xs:annotation>
+																<xs:simpleType>
+																	<xs:restriction base="xs:string">
+																		<xs:enumeration value="Casados" />
+																		<xs:enumeration value="Separados" />
+																		<xs:enumeration value="Nunca viveram juntos" />
+																	</xs:restriction>
+																</xs:simpleType>
+															</xs:element>
+
+															<xs:element name="responsaveisAtualmentePeloAdolescente"
+																minOccurs="0">
+																<xs:annotation>
+																	<xs:appinfo>
+																		<label>Responsáveis atualmente pelo adolescente
+																		</label>
+																	</xs:appinfo>
+																</xs:annotation>
+																<xs:simpleType>
+																	<xs:restriction base="xs:string">
+																		<xs:enumeration value="Pais" />
+																		<xs:enumeration value="Pai" />
+																		<xs:enumeration value="Mãe" />
+																		<xs:enumeration value="Avós paternos" />
+																		<xs:enumeration value="Avós maternos" />
+																		<xs:enumeration value="Avô paterno" />
+																		<xs:enumeration value="Avô materno" />
+																		<xs:enumeration value="Avó paterna" />
+																		<xs:enumeration value="Avó materna" />
+																	</xs:restriction>
+																</xs:simpleType>
+															</xs:element>
+
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+
+												<xs:element name="beneficios">
+													<xs:annotation>
+														<xs:appinfo>
+															<label>Benefícios</label>
+														</xs:appinfo>
+													</xs:annotation>
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element name="beneficioRecebidoPelaFamilia"
+																minOccurs="0" type="xs:string">
+																<xs:annotation>
+																	<xs:appinfo>
+																		<label>Se a família ou algum membro da família é
+																			favorecido por algum benefício, quais 
+																		</label>
+																	</xs:appinfo>
+																</xs:annotation>
+															</xs:element>
+
+															<xs:element name="esferaDoBeneficioRecebidoPelaFamilia"
+																minOccurs="0">
+																<xs:annotation>
+																	<xs:appinfo>
+																		<label>Esfera do benefício 
+																		</label>
+																	</xs:appinfo>
+																</xs:annotation>
+																<xs:complexType>
+																	<xs:sequence>
+																		<xs:element name="municipal" minOccurs="0"
+																			type="xs:boolean">
+																			<xs:annotation>
+																				<xs:appinfo>
+																					<label> Municipal
+																					</label>
+																				</xs:appinfo>
+																			</xs:annotation>
+																		</xs:element>
+
+																		<xs:element name="estadual" minOccurs="0"
+																			type="xs:boolean">
+																			<xs:annotation>
+																				<xs:appinfo>
+																					<label> Estadual
+																					</label>
+																				</xs:appinfo>
+																			</xs:annotation>
+																		</xs:element>
+
+																		<xs:element name="federal" minOccurs="0"
+																			type="xs:boolean">
+																			<xs:annotation>
+																				<xs:appinfo>
+																					<label> Federal
+																					</label>
+																				</xs:appinfo>
+																			</xs:annotation>
+																		</xs:element>
+																	</xs:sequence>
+																</xs:complexType>
+															</xs:element>
+
+															<xs:element name="situacaoAtualDoBeneficioRecebidoPelaFamilia"
+																minOccurs="0">
+																<xs:annotation>
+																	<xs:appinfo>
+																		<label>Situação atual do benefício
+																		</label>
+																	</xs:appinfo>
+																</xs:annotation>
+																<xs:simpleType>
+																	<xs:restriction base="xs:string">
+																		<xs:enumeration value="Ativo" />
+																		<xs:enumeration value="Bloqueado" />
+																		<xs:enumeration value="Suspenso" />
+																		<xs:enumeration value="Cancelado" />
+																	</xs:restriction>
+																</xs:simpleType>
+															</xs:element>
+
+
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+
+												<xs:element name="relacionamentoComunitario">
+													<xs:annotation>
+														<xs:appinfo>
+															<label>Relacionamento Comunitário</label>
+														</xs:appinfo>
+													</xs:annotation>
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element name="historicoConvivenciaComunitaria"
+																minOccurs="0" type="xs:string">
+																<xs:annotation>
+																	<xs:appinfo>
+																		<label>Histórico de convivência comunitária(analisar
+																			período de residẽncia no endereço, informando,
+																			composição de circulo de amizades, apresentação de
+																			relações afetivas - namoro, noivado, casamento)
+																		</label>
+																	</xs:appinfo>
+																</xs:annotation>
+															</xs:element>
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+
+												<xs:element name="violencia">
+													<xs:annotation>
+														<xs:appinfo>
+															<label>Violência</label>
+														</xs:appinfo>
+													</xs:annotation>
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element name="territorialidade">
+																<xs:annotation>
+																	<xs:appinfo>
+																		<label>Territorialidade</label>
+																	</xs:appinfo>
+																</xs:annotation>
+																<xs:complexType>
+																	<xs:sequence>
+																		<xs:element name="noSeuBairroHaConflitosGruposRivais"
+																			minOccurs="0">
+																			<xs:annotation>
+																				<xs:appinfo>
+																					<label>No seu bairro ha conflitos de grupos rivais
+																					</label>
+																				</xs:appinfo>
+																			</xs:annotation>
+																			<xs:simpleType>
+																				<xs:restriction base="xs:string">
+																					<xs:enumeration value="Sim" />
+																					<xs:enumeration value="Não" />
+																				</xs:restriction>
+																			</xs:simpleType>
+																		</xs:element>
+
+																		<xs:element name="qualRivalidadeHaNoSeuBairro"
+																			minOccurs="0" type="xs:string">
+																			<xs:annotation>
+																				<xs:appinfo>
+																					<label>Qual rivalidade há no seu bairro	</label>
+																				</xs:appinfo>
+																			</xs:annotation>
+																		</xs:element>
+
+																		<xs:element name="participacaoEmGruposRivais"
+																			minOccurs="0">
+																			<xs:annotation>
+																				<xs:appinfo>
+																					<label>Participação em grupos rivais
+																					</label>
+																				</xs:appinfo>
+																			</xs:annotation>
+																			<xs:simpleType>
+																				<xs:restriction base="xs:string">
+																					<xs:enumeration value="Participa" />
+																					<xs:enumeration value="Participou" />
+																					<xs:enumeration value="Nunca participou" />
+																				</xs:restriction>
+																			</xs:simpleType>
+																		</xs:element>
+
+																	</xs:sequence>
+																</xs:complexType>
+															</xs:element>
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+
+												<xs:element name="rotinaDiaria">
+													<xs:annotation>
+														<xs:appinfo>
+															<label>Diária</label>
+														</xs:appinfo>
+													</xs:annotation>
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element name="comoESeuDia">
+																<xs:annotation>
+																	<xs:appinfo>
+																		<label>Como é seu dia</label>
+																	</xs:appinfo>
+																</xs:annotation>
+																<xs:complexType>
+																	<xs:sequence>
+																		<xs:element name="comoESuaManha" minOccurs="0"
+																			type="xs:string">
+																			<xs:annotation>
+																				<xs:appinfo>
+																					<label>Manha</label>
+																				</xs:appinfo>
+																			</xs:annotation>
+																		</xs:element>
+
+																		<xs:element name="comoESuaTarde" minOccurs="0"
+																			type="xs:string">
+																			<xs:annotation>
+																				<xs:appinfo>
+																					<label>Tarde</label>
+																				</xs:appinfo>
+																			</xs:annotation>
+																		</xs:element>
+
+																		<xs:element name="comoESuaNoite" minOccurs="0"
+																			type="xs:string">
+																			<xs:annotation>
+																				<xs:appinfo>
+																					<label>Noite</label>
+																				</xs:appinfo>
+																			</xs:annotation>
+																		</xs:element>
+
+																	</xs:sequence>
+																</xs:complexType>
+															</xs:element>
+
+															<xs:element name="praticaAtividadesSocioCulturaisEsportivas">
+																<xs:annotation>
+																	<xs:appinfo>
+																		<label>Quais atividades sócio-culturais e esportivas
+																			você pratica(público ou privado)</label>
+																	</xs:appinfo>
+																</xs:annotation>
+																<xs:complexType>
+																	<xs:sequence>
+																		<xs:element name="esportes" minOccurs="0"
+																			type="xs:string">
+																			<xs:annotation>
+																				<xs:appinfo>
+																					<label>Esportes</label>
+																				</xs:appinfo>
+																			</xs:annotation>
+																		</xs:element>
+
+																		<xs:element name="lazer" minOccurs="0"
+																			type="xs:string">
+																			<xs:annotation>
+																				<xs:appinfo>
+																					<label>Lazer</label>
+																				</xs:appinfo>
+																			</xs:annotation>
+																		</xs:element>
+
+																		<xs:element name="cultura" minOccurs="0"
+																			type="xs:string">
+																			<xs:annotation>
+																				<xs:appinfo>
+																					<label>Cultura</label>
+																				</xs:appinfo>
+																			</xs:annotation>
+																		</xs:element>
+																	</xs:sequence>
+																</xs:complexType>
+															</xs:element>
+
+
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+												<xs:element name="expectativas">
+													<xs:annotation>
+														<xs:appinfo>
+															<label>Expectativas</label>
+														</xs:appinfo>
+													</xs:annotation>
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element name="quaisSuasExpectativas" minOccurs="0"
+																type="xs:string">
+																<xs:annotation>
+																	<xs:appinfo>
+																		<label>Quais suas expectativas em relação a medida sócio-educativa </label>
+																	</xs:appinfo>
+																</xs:annotation>
+															</xs:element>
+															
+															<xs:element name="impressaoDoAtendimento"
+																minOccurs="0" type="xs:string">
+																<xs:annotation>
+																	<xs:appinfo>
+																		<label>Impressões do atendimento
+																		</label>
+																	</xs:appinfo>
+																</xs:annotation>
+															</xs:element>
+
+															<xs:element name="tecnicoResponsavel"
+																minOccurs="0" type="xs:string">
+																<xs:annotation>
+																	<xs:appinfo>
+																		<label>Técnico responsável
+																		</label>
+																	</xs:appinfo>
+																</xs:annotation>
+															</xs:element>
+
+															<xs:element name="dataDocumento" minOccurs="0"
+																type="xs:date">
+																<xs:annotation>
+																	<xs:appinfo>
+																		<label>Data
+																		</label>
+																	</xs:appinfo>
+																</xs:annotation>
+															</xs:element>
+															
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
 											</xs:sequence>
 										</xs:complexType>
 									</xs:element>
