@@ -1,0 +1,69 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-origemEncaminhamento.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-origemEncaminhamento.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="formOrigemEncaminhamento" type="formOrigemEncaminhamento">
+		<xs:annotation>
+			<xs:appinfo>
+				<label>Origem Encaminhamento</label>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="formOrigemEncaminhamento">
+		<xs:sequence>
+
+			<xs:element name="associacoes" type="xs:boolean">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Associações</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="conselhoTutelar" type="xs:boolean">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Conselho Tutelar</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="demandaEspontanea" type="xs:boolean">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Demanda Espontânea</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="judiciario" type="xs:boolean">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Judiciário</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="outrasInstituicoesOuProjetos" type="xs:boolean">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Outras Instituições ou Projetos</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="programasOuProjetosDaFunci" type="xs:boolean">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Programas ou Projetos da FUNCI</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>
