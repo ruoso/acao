@@ -1,0 +1,215 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-educacao.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-educacao.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="formEducacao" type="formEducacao">
+		<xs:annotation>
+			<xs:appinfo>
+				<label>EDUCAÇÃO</label>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="formEducacao">
+		<xs:sequence>
+
+			<xs:element name="estaMaticuladoEmAlgumaEscola" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Esta maticulado em alguma escola?</label>
+					</xs:appinfo>
+				</xs:annotation>
+
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim. No ensino público." />
+						<xs:enumeration value="Sim. No ensino privado." />
+						<xs:enumeration value="Não." />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="casoEstejaMatriculadoEstaFrenquentandoEscola"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Caso esteja matriculado/matriculada, está frenquentando
+							a escola?</label>
+					</xs:appinfo>
+				</xs:annotation>
+
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim." />
+						<xs:enumeration value="Não." />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="seNaoFrequentaQualOMotivo" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Se não frequenta qual o motivo?</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="haQuantoTempoNaoFrequenta" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Há quanto tempo não frequenta?</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="emCasoAfirmativo">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Em caso afirmativo</label>
+					</xs:appinfo>
+				</xs:annotation>
+
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="escola" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Escola</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="serieModalidades" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Serie/Modalidades</label>
+								</xs:appinfo>
+							</xs:annotation>
+
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Não Alfabetizado" />
+									<xs:enumeration value="Ensino Infantil" />
+									<xs:enumeration value="Ensino Fundamental" />
+									<xs:enumeration value="Ensino Médio" />
+									<xs:enumeration value="Ensino Técnico" />
+									<xs:enumeration value="Ensino Superior" />
+									<xs:enumeration value="Ensino EJA I" />
+									<xs:enumeration value="Ensino EJA II" />
+									<xs:enumeration value="Ensino EJA III" />
+									<xs:enumeration value="Ensino EJA IV" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="turno" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Turno</label>
+								</xs:appinfo>
+							</xs:annotation>
+
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Manhã" />
+									<xs:enumeration value="Tarde" />
+									<xs:enumeration value="Noite" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="outros" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Outros</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="escolaridade" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Escolaridade</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="escolaEmQueEstaMatriculadoSituaseProximoAResidencia"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>A escola em que esta matriculado situase proximo a sua
+							residência?</label>
+					</xs:appinfo>
+				</xs:annotation>
+
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim. No ensino público." />
+						<xs:enumeration value="Sim. No ensino privado." />
+						<xs:enumeration value="Não." />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="seNaoEstudaPorQualMotivo" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Se nao estuda, por qual motivo?</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="parouEmQueSerieModalidade" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Parou em que serie/modalidade?</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="emQueAno" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Em que ano?</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element
+				name="naSuaFamiliaTodasAsCriancasAdolescentesIdadeEscolarEstaoMatriculadasNaEscola"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Na sua familia todas as criancas/adolescentes em idade
+							escolar estao matriculadas na escola?</label>
+					</xs:appinfo>
+				</xs:annotation>
+
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim." />
+						<xs:enumeration value="Não." />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="quantos" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Quantos(as)?</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>
