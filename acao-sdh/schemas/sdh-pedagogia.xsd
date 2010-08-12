@@ -1,0 +1,373 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-pedagogia.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-pedagogia.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="formPedagogia" type="formPedagogia">
+		<xs:annotation>
+			<xs:appinfo>
+				<label>PEDAGOGIA</label>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="formPedagogia">
+		<xs:sequence>
+
+			<xs:element name="situacaoEscolar">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Situacao escolar</label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="leEscreve" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Lê e escreve</label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Sim. Ruim." />
+									<xs:enumeration value="Sim. Regular." />
+									<xs:enumeration value="Sim. Bem." />
+									<xs:enumeration value="Sim. Ótimo." />
+									<xs:enumeration value="Não." />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="repetiuAlgumAno" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Repetiu algum ano</label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Sim." />
+									<xs:enumeration value="Não." />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="especificarOMotivoSerieQueRepetiu "
+							type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Especificar o motivo e a série em que repetiu
+																		</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="temAlgumaDificuldadeDeAprendisagem"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Tem alguma dificuldade de aprendizagem?</label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Atenção" />
+									<xs:enumeration value="Concentração" />
+									<xs:enumeration value="Compreensão" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="outros" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Outros</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="observacao" type="xs:string"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Observação</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="emRelaçãoADificuldadeOQueFezOuFazParaSuperala"
+							type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Em relação a dificuldade o que fez ou faz para
+										superá-la?</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="historicoEscolar">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Histórico Escolar</label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="frequentouEscolaQuandoCrianca"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Frequentou a Escola quando criança?</label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Sim." />
+									<xs:enumeration value="Não." />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="quemOrientavaNasSuasTarefas" type="xs:string"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Quem o orientava nas suas tarefas?</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="voceGostaDeEstudar" type="xs:string"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Você gosta de estudar?</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="temOHabitoDeEstudar" type="xs:string"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Tem o hábito de estudar?</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="quaisOsConteudosEDisciplinasQueVoceMaisSeInteressa"
+							type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Quais os conteúdos e disciplinas que você mais
+										se
+										interessa?</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="seNaoFrequentouAEscolaCiteOsMotivos"
+							type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Se não frequentou a Escola, cite os motivos:
+																		</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="relacionamentoNoAmbienteEscolar">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Relacionamento no ambiente escolar</label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="oQueVoceMaisGostaNaEscola" type="xs:string"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>O que você mais gosta na Escola?</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="oQueVoceNaoGostaNaEscola?" type="xs:string"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>O que você não gosta na Escola?</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="aEscolaOfereceCondiçõesDePesquisaTaisComo:"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>A Escola oferece condições de pesquisa tais
+										como:
+															</label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+
+									<xs:element name="biblioteca" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Biblioteca</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="laboratorioDeInformática" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Laboratório de Informática </label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="reforcoEscolar" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Reforço escolar</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+
+						<xs:element name="comoESuaRelacaoComOsProfissionaisDaEscola"
+							type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Como é a sua relação com os profissionais da
+										Escola?</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="participaDeAtividadesColetivasNaEscola?"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Participa de atividades coletivas na escola?
+																		</label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Sim." />
+									<xs:enumeration value="Não." />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="qual" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Qual?</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="temInteresseEmPratica" type="xs:string"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Tem interesse em praticá-las (esportiva,
+										artística
+										ou recreativa)?</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="familia">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Família</label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="Alguém da sua família te estimula a estudar?"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Alguém da sua família te estimula a estudar?
+																		</label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Sim." />
+									<xs:enumeration value="Não." />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="quem" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Quem?</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="impressoesDoAtendimento" type="xs:string"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Impressões do atendimento:</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="técnicoResponsavel" type="xs:string"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Técnico responsável:</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="data" minOccurs="0" type="xs:date">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Data</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

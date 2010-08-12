@@ -1,0 +1,571 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-juridico.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-juridico.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="formJuridico" type="formJuridico">
+		<xs:annotation>
+			<xs:appinfo>
+				<label>JURÍDICO</label>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="formJuridico">
+		<xs:sequence>
+
+			<xs:element name="origem" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Origem</label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Admissão LA" />
+						<xs:enumeration value="Admissão LAM" />
+						<xs:enumeration value="Readmissão L.A" />
+						<xs:enumeration value="Admissão PSC" />
+						<xs:enumeration value="Admissão PSCM" />
+						<xs:enumeration value="Readmissão PSC" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="jaCumpriuOutraMedidaSocioeducativa"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Já cumpriu outra medida socioeducativa?</label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Não" />
+						<xs:enumeration value="Sim" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="qualMedidaSocioeducativa" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Qual(is)?</label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Obrigação de reparar o dano" />
+						<xs:enumeration value="Prestação de Serviços à Comunidade" />
+						<xs:enumeration value="Liberdade Assistida" />
+						<xs:enumeration value="Semiliberdade" />
+						<xs:enumeration value="Privação de Liberdade" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="qualMedidaSocioeducativa" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Qual(is)?</label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Obrigação de reparar o dano" />
+						<xs:enumeration value="Prestação de Serviços à Comunidade" />
+						<xs:enumeration value="Liberdade Assistida" />
+						<xs:enumeration value="Semiliberdade" />
+						<xs:enumeration value="Privação de Liberdade" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="historicoInfracional">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Histórico Infracional</label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="porQueEstaCumprindomedida" minOccurs="0"
+							type="xs:date">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Por que está cumprindo a medida?</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="oQueOMotivou" minOccurs="0" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>O que o motivou?</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="foiPlanejadoOuImpulso?" minOccurs="0"
+							type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Foi planejado ou impulso?</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="comoSeSenteEmRelacaoAoAto" minOccurs="0"
+							type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Como se sente em relação ao ato?</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="valeuAPena" minOccurs="0" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Valeu a pena?</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="jaCometeuOutrosAtosInfracionaisForamApurados"
+							minOccurs="0" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Já cometeu outros atos infracionais? Foram
+										apurados?</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="apuracaoDoAtoInfracional">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Apuração do Ato Infracional</label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="daAbordagemPolicialEApreensao"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>a) Da abordagem policial e apreensão</label>
+								</xs:appinfo>
+							</xs:annotation>
+
+							<xs:complexType>
+								<xs:sequence>
+
+									<xs:element name="sofreuAgressaoInstitucional"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Sofreu agressão institucional?</label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="Sim" />
+												<xs:enumeration value="Não" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
+									<xs:element name="quaisAgressões" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Quais Agressões?</label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="Verbal" />
+												<xs:enumeration value="Física" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
+									<xs:element name="foiAlgemado" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Foi Algemado?</label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="Sim" />
+												<xs:enumeration value="Não" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
+									<xs:element
+										name="foiConduzidoDeManeiraAdequadaParaAUnidadeDeRecepcao"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Foi conduzido de maneira adequada para a
+													Unidade de
+													Recepção?</label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="Sim" />
+												<xs:enumeration value="Não" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
+									<xs:element name="foiConduzidoDiretoParaAUnidadeDeRecepção"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Foi conduzido direto para a Unidade de
+													Recepção?</label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="Sim" />
+												<xs:enumeration value="Não" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
+									<xs:element
+										name="foiConduzidoParaOImlFimDeRealizarOExameDeCorpoDeDelito"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Foi conduzido para o IML, a fim de realizar
+													o
+													exame de Corpo de Delito?</label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="Sim" />
+												<xs:enumeration value="Não" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
+									<xs:element name="foiConduzidoDeManeiraAdequadaParaOIml"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Foi conduzido de maneira adequada para o
+													IML?
+																		</label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="Sim" />
+												<xs:enumeration value="Não" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
+									<xs:element name="observacoesIml" type="xs:string"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Observações</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element
+										name="osPoliciaisQueRealizaramSuaApreencaoSaoOsMesmosQueOConduziuParaOIml"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Os policiais que realizaram sua apreenção
+													são
+													os mesmos que o conduziu para o IML?
+																		</label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="Sim" />
+												<xs:enumeration value="Não" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
+									<xs:element name="voceFoiApreendidoEmFlagrante?"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Você foi apreendido em flagrante?</label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="Sim" />
+												<xs:enumeration value="Não" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
+									<xs:element name="observacoesFlagrante" type="xs:string"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Observações</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element
+										name="houvePresencaDeAdvogadoOuDefensorPublicoNoAtoDaApreensaoEmFlagrante"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Houve presenca de advogado ou defensor
+													publico
+													no ato da apreensão em flagrante?</label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="Sim" />
+												<xs:enumeration value="Não" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+
+						<xs:element name="daDelegaciaDaCriancaEDoAdolescente"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>b) Da delegacia da crianca e do adolescente
+																		</label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element
+										name="avaliarAPassagemDoAdolescentePelaDelegaciaFeituraDeExamesPericiais"
+										type="xs:string" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Avaliar a passagem do adolescente pela
+													Delegacia,
+													feitura de exames periciais, etc</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+
+						<xs:element name="daUnidadeDeRecepcao" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>c) Da unidade de recepcao</label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element
+										name="investigarSobrePeriodoDePermanênciaDoAdolescenteApreendidoNaUnidadeDeRecepcao"
+										type="xs:string" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Investigar sobre período de permanência do
+													adolescente apreendido na Unidade de Recepção
+																					</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+
+						<xs:element name="" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>d) Da apresentação</label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="contatoDoAdolescenteComOMembroDoMinistérioPublico"
+										type="xs:string" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Contato do adolescente com o Membro do
+													Ministério Publico, a Representante da Defensoria
+													Publica e Juiz e a adequada observância dos
+													direitos
+													e garantias fundamentais</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+
+						<xs:element name="remissao" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>e) Remissao:</label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element
+										name="(saberSeOAdolescenteFoiDevidamenteInformadoSobreOInstitutoDaRemissao"
+										type="xs:string" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Saber se o adolescente foi devidamente
+													informado sobre o instituto da remissão</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+
+						<xs:element name="progressaoOuRegressao" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>f) Progressão ou regressão</label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="investigarSobreAProgressaoOuRegressãoDaMedida"
+										type="xs:string" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Investigar sobre a progressão ou regressão
+													da
+													medida</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+
+						<xs:element name="julgamento" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>g) Julgamento</label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="observacoes" type="xs:string"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Observaçõees</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+
+						<xs:element name="privacaoDeLiberdade" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>h) Privação de Liberdade</label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element
+										name="saberSeOAdolescenteJaEstaEmCentroEducacionalEOTempoDePermanencia"
+										type="xs:string" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Saber se o adolescente já este em centro
+													educacional e o tempo de permanência</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+
+						<xs:element name="abrigamento" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>i) Abrigamento</label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element
+										name="saberSeOAdolescenteJaEsteveEmAbrigoQualAbrigoEOMotivoDaPermanencia."
+										type="xs:string" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Saber se o adolescente já este em centro
+													educacional e o tempo de permanência</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+
+						<xs:element name="impressoesDoAtendimento" type="xs:string"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Impressões do atendimento:</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="técnicoResponsavel" type="xs:string"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Técnico responsável:</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="data" minOccurs="0" type="xs:date">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Data</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

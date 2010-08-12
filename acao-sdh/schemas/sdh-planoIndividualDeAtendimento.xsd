@@ -1,0 +1,87 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-planoIndividualDeAtendimento.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-planoIndividualDeAtendimento.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="formPlanoIndividualDeAtendimento" type="formPlanoIndividualDeAtendimento">
+		<xs:annotation>
+			<xs:appinfo>
+				<label>PLANO INDIVIDUAL DE ATENDIMENTO</label>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="formPlanoIndividualDeAtendimento">
+		<xs:sequence>
+
+			<xs:element name="direcionamento" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Direcionamento</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="instituicaoProgramaProjeto" minOccurs="0"
+				type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Instituição/Programa/Projeto</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="Motivo" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Motivo</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="objetivo" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Objetivo</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="tecnicoResponsavel" minOccurs="0"
+				type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Técnico responsável</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="data" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Data</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="Retorno" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Retorno</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="observacoes" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Observacoes</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

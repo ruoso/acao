@@ -1,0 +1,63 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-relatoriosEncaminhados.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-relatoriosEncaminhados.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="formRelatoriosEncaminhados" type="formRelatoriosEncaminhados">
+		<xs:annotation>
+			<xs:appinfo>
+				<label>RELETÓRIOS ENCAMINHADOS</label>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="formRelatoriosEncaminhados">
+		<xs:sequence>
+
+			<xs:element name="tipoRelatorioEncaminhado" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Tipo relatório encaminhado</label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Semestral" />
+						<xs:enumeration value="Circunstancial" />
+						<xs:enumeration value="Informe" />
+						<xs:enumeration value="Cumprimento" />
+						<xs:enumeration value="Descumprimento" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="dataEntregaJuizado" minOccurs="0" type="xs:date">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Data de entrega no juizado</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="motivoEncaminhamento" minOccurs="0"
+				type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Motivo Encaminhamento</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="retornoJudiciario" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Retorno do Judiciário</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

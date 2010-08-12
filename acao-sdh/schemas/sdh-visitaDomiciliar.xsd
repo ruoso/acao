@@ -1,0 +1,370 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-visitaDomiciliar.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-visitaDomiciliar.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="formVisitaDomiciliar" type="formVisitaDomiciliar">
+		<xs:annotation>
+			<xs:appinfo>
+				<label>VISITA DOMICILIAR</label>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="formVisitaDomiciliar">
+		<xs:sequence>
+
+			<xs:element name="identificacao">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Identificação</label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="nomeEntrevistado" minOccurs="0"
+							type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Nome entrevistado
+																		</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="parentescoComAdolescente" minOccurs="0"
+							type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Parentesco com o adolescente
+																		</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="idadeEntrevistado" minOccurs="0"
+							type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Idade entrevistado
+																		</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="convivenciaComunitaria">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Convivência Comunitaria </label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="alguemDaFamiliaParticipaOuParticipouGrupoSocial "
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>alguem da família participa ou participou de
+										algum grupo social
+																					</label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Sim, participa" />
+									<xs:enumeration value="Sim, participou" />
+									<xs:enumeration value="Não, Nunca participou" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="quemDaFamiliaParticipaOuParticipouGrupoSocial"
+							minOccurs="0" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Quem da família participa ou participou
+																		</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="tipoGrupoSocialAlguemDaFamiliaParticipaOuParticipou "
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Tipo grupo social alguem da família participa
+										ou participou 
+																					</label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Grupo religioso" />
+									<xs:enumeration value="Grêmio/Movimento estudantil" />
+									<xs:enumeration value="Associação de bairro" />
+									<xs:enumeration value="Movimento político/partidário" />
+									<xs:enumeration value="Grupo musical" />
+									<xs:enumeration value="Grupo esportivo" />
+									<xs:enumeration value="Grupo de teatro" />
+									<xs:enumeration value="Grupo de dança" />
+									<xs:enumeration value="Grupo de defesa do meio ambiente" />
+									<xs:enumeration value="Cooperativa" />
+									<xs:enumeration value="ONG" />
+									<xs:enumeration value="Grupos produtivos" />
+									<xs:enumeration value="Movimento cultural" />
+									<xs:enumeration value="Organizações LGBTT" />
+									<xs:enumeration value="Movimento de mulheres" />
+									<xs:enumeration value="Movimento negro" />
+									<xs:enumeration value="Grupo de RPG" />
+									<xs:enumeration value="Grupos rivais(gangues)" />
+									<xs:enumeration value="Outros" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="alguemDaFamiliaDesenvolveAtividadeComunitaria"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Em caso de negativo, algum membro da família
+										desenvolve alguma atividade comunitária
+																					</label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Sim" />
+									<xs:enumeration value="Não" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element
+							name="qualAtividadeComunitariaEDesenvolvidaPorMembroDaFamilia"
+							minOccurs="0" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Qual atividade é desenvolvida
+																		</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="qualAtividadeComunitariaGostariamDeDesenvolver"
+							minOccurs="0" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Em caso de negativo, qual atividade gostariam
+										de desenvolver
+																		</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="comoIdentificaRelacaoFamiliaComunidade"
+							minOccurs="0" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Como identifica a relação da famíla com a
+										comunidade(vínculos com vizinhos e amigos)
+																		</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="recursosComunitarios">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Recursos comunitários</label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="recursosUtilizados" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Quais recursos utilizados 
+																		</label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="escola" minOccurs="0" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label> Escola</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="postoDeSaude" minOccurs="0"
+										type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label> Posto de saúde</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="CRAS" minOccurs="0" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label> CRAS </label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="conselhoTutelar" minOccurs="0"
+										type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label> Conselho tutelar</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="ONGs" minOccurs="0" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label> ONG's</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="associacoesMoradores" minOccurs="0"
+										type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label> Associação de moradores </label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="outros" minOccurs="0" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label> Outros</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="especifiqueOutrosRecursoscomunitarios"
+										minOccurs="0" type="xs:string">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Especifique outros recursos comunitarios
+																					</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="dinamicaFamiliar">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Dinâmica familiar</label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="comoEstaRelacaoEntreFamiliares"
+							minOccurs="0" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Como está a relação entre os familiares
+																		</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="comoAFamiliaEstaContribuindoParafacilitarMSE"
+							minOccurs="0" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Como a família está contribuindo para facilitar
+										o cumprimendo da MSE(aproveitar para responsabilizar
+										a família acerca das determinações quanto ao
+										cumprimento da medida)
+																		</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element
+							name="queProvidenciasFOramTomadasEmRelacaoAoEncaminhamentoDoNucleo"
+							minOccurs="0" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Que providências foram tomadas em relação à
+										documentação, escola, profissionalização, drogadição,
+										e demais encaminhamentos realizados pelo núcleo
+																		</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element
+							name="familiapercebeMudancaNoComportamentoDoAdolescenteDepoisDoInicioDaMedida"
+							minOccurs="0" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>A família percebe a mudança de comportamento do
+										adolescente depois do início da medida? O que pensa
+										disso
+																		</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="impressaoDoAtendimento" minOccurs="0"
+				type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Impressões do atendimento
+																		</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="tecnicoResponsavel" minOccurs="0"
+				type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Técnico responsável</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="dataDocumento" minOccurs="0" type="xs:date">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Data</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

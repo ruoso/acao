@@ -1,0 +1,249 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-psicologia.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-psicologia.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="formPsicologia" type="formPsicologia">
+		<xs:annotation>
+			<xs:appinfo>
+				<label>PSICOLOGIA</label>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="formPsicologia">
+		<xs:sequence>
+
+			<xs:element name="ambienteFamiliar">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Ambiente Familiar</label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="comoVoceSeRelacionaComSuaFamilia"
+							minOccurs="0" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Como você se relaciona com sua família?</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="deQueFormaOAtoInfracionalAfetouSuaRelacaoFamiliar"
+							minOccurs="0" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>De que forma o ato infracional afetou sua relação
+										familiar?</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="dasPessoasDaSuaFamiliaComQuemMaisVoceSeIdentifica"
+							minOccurs="0" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Das pessoas da sua família, com quem mais você se
+										identifica? Porque?</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="existeAlgumMembroNaSuaFamiliaQueVoceNaoGosta"
+							minOccurs="0" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Existe algum membro na sua família que você Não
+										gosta? Quem e porque?</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="perspectivasParaOFuturo">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Perspectivas para o futuro</label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+
+									<xs:element name="voceTemPlanosParaOSeuFuturo"
+										minOccurs="0" type="xs:string">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Você tem planos para o seu futuro? Caso
+													afirmativo, quais? Como você acha que sua vida vai
+													estar daqui a dois anos?</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="voceGostariaDeMudarAlgoEmVoceOuNaSuaVidaHoje"
+										minOccurs="0" type="xs:string">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Você gostaria de mudar algo em você ou na sua
+													vida, hoje?</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="oQueVoceGostaDeFazerNoTempoLivre"
+										minOccurs="0" type="xs:string">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>O que você gosta de fazer no tempo livre?
+																		</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+
+						<xs:element name="aspectosDaPersonalidade" minOccurs="1">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Perspectivas para o futuro</label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+
+									<xs:element name="comoVocePercebeOSeuComportamento"
+										minOccurs="0" type="xs:string">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Como você percebe o seu comportamento? O que
+													você pensa sobre isso? Houve alguma mudança depois
+													que você foi apreendido?</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="comoVoceLidaComRegrasElimites"
+										minOccurs="0" type="xs:string">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Como você lida com regras e limites? Tem
+													dificuldade em obedecer a seus pais ou à professora
+													(caso estude)? Por quê?</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element
+										name="jaPassouPorAlgumaSituaçãoConstrangedoraOuPreconceituosa"
+										minOccurs="0" type="xs:string">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Já passou por alguma situação constrangedora ou
+													preconceituosa? Como lidou com tal situação?</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+
+						<xs:element name="impressoesDoAtendimento" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Impressões do atendimento:</label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+
+									<xs:element name="agressivo" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Agressivo(a)</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="apatico" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Agressivo(a)</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="desinibido" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Desinibido(a)</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="paranóide" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Paranóide</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="instável" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Instável</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="inibido" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Inibido(a)</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="alucinado" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Alucinado(a)</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+
+						<xs:element name="técnicoResponsavel" type="xs:string"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Técnico responsável:</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="data" minOccurs="0" type="xs:date">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Data</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>
