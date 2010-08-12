@@ -1,0 +1,47 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-vinculoReligioso.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-vinculoReligioso.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="formVinculoReligioso" type="formVinculoReligioso">
+		<xs:annotation>
+			<xs:appinfo>
+				<label>VÍNCULO RELIGIOSO</label>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="formVinculoReligioso">
+		<xs:sequence>
+
+			<xs:element name="qualSeuVinculoReligiao" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Qual seu vínculo Religioso</label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Católico" />
+						<xs:enumeration value="Evangélico" />
+						<xs:enumeration value="Espírita" />
+						<xs:enumeration value="Budista" />
+						<xs:enumeration value="Cultos afros" />
+						<xs:enumeration value="Outros" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="especifiqueOutrosVinculosReligiosos"
+				type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Especifique outros vínculos religiosos</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

@@ -1,0 +1,153 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-vinculacaoNaCCA.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-vinculacaoNaCCA.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="formVinculacaoNaCCA" type="formVinculacaoNaCCA">
+		<xs:annotation>
+			<xs:appinfo>
+				<label>VINCULAÇÃO NA CCA</label>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="formVinculacaoNaCCA">
+		<xs:sequence>
+
+
+			<xs:element name="adolescenteCidadao" type="xs:boolean">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Adolescente Cidadao</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="aquarela" type="xs:boolean">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Aquarela</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="bromelia" type="xs:boolean">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Bromélia</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="casaDasMeninas" type="xs:boolean">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Casa das Meninas</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="casaDosMeninos" type="xs:boolean">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Casa dos Meninos</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="cozinhaExperimental" type="xs:boolean">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Cozinha Experimental</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="crescerComArteCidadania" type="xs:boolean">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Crescer com Arte Cidadania</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="disqueDireitosCriacaoEAdolescentes"
+				type="xs:boolean">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Disque Direitos Criação e Adolescentes - DDCA</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="erradicacaoDoTrabalhoInfantil" type="xs:boolean">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Erradicação do Trabalho Infantil</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="estiloSolidario" type="xs:boolean">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Estilo Solidário</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="ponteDeEncontro" type="xs:boolean">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Ponte de Encontro</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="liberdadeAssitida" type="xs:boolean">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Liberdade Assitida - Se Garanta</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="preservacaoDeServicosAComunidade" type="xs:boolean">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Preservação de Serviços à Comunidade - Se Garanta
+									</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="dataEncaminhamento" type="xs:dateTime"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Data do Encaminhamento</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="status" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Status</label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Ativo" />
+						<xs:enumeration value="Desligado/Ativado" />
+						<xs:enumeration value="Esperando Engajamento" />
+						<xs:enumeration value="Dessitência" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

@@ -1,0 +1,118 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-documentacao.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-documentacao.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="formDocumentacao" type="formDocumentacao">
+		<xs:annotation>
+			<xs:appinfo>
+				<labelDOCUMENTAÇÃO
+				</label>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="formDocumentacao">
+		<xs:sequence>
+
+			<xs:element name="registroDeNascimento" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Rgistro de nascimento</label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="OK" />
+						<xs:enumeration value="Não Tem" />
+						<xs:enumeration value="Solicitado" />
+						<xs:enumeration value="Não se Aplica" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="identidade" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Identidade/RG</label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="OK" />
+						<xs:enumeration value="Não Tem" />
+						<xs:enumeration value="Solicitado" />
+						<xs:enumeration value="Não se Aplica" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="cpf" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>CPF</label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="OK" />
+						<xs:enumeration value="Não Tem" />
+						<xs:enumeration value="Solicitado" />
+						<xs:enumeration value="Não se Aplica" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="ctps" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>CTPS</label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="OK" />
+						<xs:enumeration value="Não Tem" />
+						<xs:enumeration value="Solicitado" />
+						<xs:enumeration value="Não se Aplica" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="tituloDeEleitor" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Título de Eleitor</label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="OK" />
+						<xs:enumeration value="Não Tem" />
+						<xs:enumeration value="Solicitado" />
+						<xs:enumeration value="Não se Aplica" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="reservista" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Reservista</label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="OK" />
+						<xs:enumeration value="Não Tem" />
+						<xs:enumeration value="Solicitado" />
+						<xs:enumeration value="Não se Aplica" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>
