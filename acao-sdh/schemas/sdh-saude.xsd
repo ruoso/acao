@@ -1,0 +1,898 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-saude.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-saude.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="formSaude" type="formSaude">
+		<xs:annotation>
+			<xs:appinfo>
+				<label>SAÚDE</label>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="formSaude">
+		<xs:sequence>
+
+			<xs:element name="saudeDaFamilia">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Saúde da Familia</label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="nome" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Nome</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="parentesco" type="xs:string"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Parentesco</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="idade" type="xs:integer" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Idade</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="tipoDeDoenca" type="xs:string"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Tipo de doença</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="situacaoDetratamento" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Situacao de tratamento</label>
+								</xs:appinfo>
+							</xs:annotation>
+
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Iniciado" />
+									<xs:enumeration value="Suspenso" />
+									<xs:enumeration value="Concluído" />
+									<xs:enumeration value="Em andamento" />
+									<xs:enumeration value="Outros" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="especifiqueOutrosSituacaoDeTratamento"
+							type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Especifique outros situação de tratamento </label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="localDeTratamento" type="xs:string"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Local de tratamento</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="observacoes" type="xs:string"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Observações</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="suaFamiliaVaiAtendimentoMedicoRegularmente"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Sua família vai ao atendimento médico regularmente
+									</label>
+								</xs:appinfo>
+							</xs:annotation>
+
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Sim" />
+									<xs:enumeration value="Não" />
+									<xs:enumeration value="Não sei" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="especifiqueQuantasVezesAFamiliaVaiAtendimentoMedico"
+							type="xs:integer" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Especifique quantas vezes </label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="recebeMedicamentoQuandonecessario"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Recebe medicamento quando necessário</label>
+								</xs:appinfo>
+							</xs:annotation>
+
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Sim" />
+									<xs:enumeration value="Não" />
+									<xs:enumeration value="Não sei" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element
+							name="aFamiliaPossuiPessoasComHistoricoDeTranstornosMentais"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>A familia possui pessoas com histórico de transtornos
+										mentais</label>
+								</xs:appinfo>
+							</xs:annotation>
+
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Sim" />
+									<xs:enumeration value="Não" />
+									<xs:enumeration value="Não sei" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element
+							name="especifiqueQuemdaFamiliaPossuiHistoricoDeTranstornosMentais"
+							type="xs:integer" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Especifique quem da familia possui histórico de
+										transtornos mentais </label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="recebeAlgumAcompanhamentoInstitucional"
+							type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Recebe algum acompanhamento institucional</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element
+							name="especifiqueAQuantoTemporecebeAlgumAcompanhamentoInstitucional"
+							type="xs:integer" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Especifique a quanto tempo recebe algum
+										acompanhamento institucional</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="onderecebeAlgumAcompanhamentoInstitucional"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Onde recebe algum acompanhamento
+										institucional</label>
+								</xs:appinfo>
+							</xs:annotation>
+
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="CAPS" />
+									<xs:enumeration value="Hospital mental" />
+									<xs:enumeration value="Não recebe acompanhamento" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element
+							name="especifiqueOnderecebeAlgumAcompanhamentoInstitucional"
+							type="xs:integer" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Especifique onde recebe algum acompanhamento
+										institucional</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="naFamiliaExistemPessoasComAlgumaDeficiencia"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Na família existem pessoas com alguma deficiência
+									</label>
+								</xs:appinfo>
+							</xs:annotation>
+
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Sim" />
+									<xs:enumeration value="Não" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="tipoDeDeficienciaComPessoasDaFamilia"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Tipo de deficiência com pessoas da família</label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Sensorial Surdo" />
+									<xs:enumeration value="Sensorial Cego" />
+									<xs:enumeration value="Deficiência Físico/Motor" />
+									<xs:enumeration value="Mobilidade Reduzida" />
+									<xs:enumeration value="Deficiência Intelectual" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="asCriancasEstaoComVacinasEmDia"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>As crianças estão com as vacinas em dias</label>
+								</xs:appinfo>
+							</xs:annotation>
+
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Sim" />
+									<xs:enumeration value="Não" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="especifiqueAsvacinasQueAsCriancasTomaram"
+							type="xs:integer" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Especifique quais vacinas as crianças tomaram</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element
+							name="algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Algum membro da família e/ou socioeducando faz uso de
+										substâncias psicoativas</label>
+								</xs:appinfo>
+							</xs:annotation>
+
+							<xs:complexType>
+								<xs:sequence>
+
+									<xs:element
+										name="parentescoOuSocioeducandoFazUsoDeSubstanciasPsicoativas"
+										type="xs:integer" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Parentesco de quem faz uso de
+													substâncias
+													psicoativas</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="parentescoOuSocioeducandoJaUsouAlcool"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Quanto ao uso de alcool</label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="Nunca usou" />
+												<xs:enumeration value="Já experimentou" />
+												<xs:enumeration value="Fez uso" />
+												<xs:enumeration value="Consume de vez em quando" />
+												<xs:enumeration value="Consume freqüentemente" />
+												<xs:enumeration value="Não quis informar" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
+									<xs:element name="parentescoOuSocioeducandoJaUsouCigarro"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Quanto ao uso de cigarro</label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="Nunca usou" />
+												<xs:enumeration value="Já experimentou" />
+												<xs:enumeration value="Fez uso" />
+												<xs:enumeration value="Consume de vez em quando" />
+												<xs:enumeration value="Consume freqüentemente" />
+												<xs:enumeration value="Não quis informar" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
+									<xs:element name="parentescoOuSocioeducandoJaUsouMaconha"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Quanto ao uso de maconha</label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="Nunca usou" />
+												<xs:enumeration value="Já experimentou" />
+												<xs:enumeration value="Fez uso" />
+												<xs:enumeration value="Consume de vez em quando" />
+												<xs:enumeration value="Consume freqüentemente" />
+												<xs:enumeration value="Não quis informar" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
+									<xs:element name="parentescoOuSocioeducandoJaUsouCocaina"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Quanto ao uso de cocaína</label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="Nunca usou" />
+												<xs:enumeration value="Já experimentou" />
+												<xs:enumeration value="Fez uso" />
+												<xs:enumeration value="Consume de vez em quando" />
+												<xs:enumeration value="Consume freqüentemente" />
+												<xs:enumeration value="Não quis informar" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
+									<xs:element name="parentescoOuSocioeducandoJaUsouMesclado"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Quanto ao uso de mesclado</label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="Nunca usou" />
+												<xs:enumeration value="Já experimentou" />
+												<xs:enumeration value="Fez uso" />
+												<xs:enumeration value="Consume de vez em quando" />
+												<xs:enumeration value="Consume freqüentemente" />
+												<xs:enumeration value="Não quis informar" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
+									<xs:element name="parentescoOuSocioeducandoJaUsouCrack"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Quanto ao uso de crack</label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="Nunca usou" />
+												<xs:enumeration value="Já experimentou" />
+												<xs:enumeration value="Fez uso" />
+												<xs:enumeration value="Consume de vez em quando" />
+												<xs:enumeration value="Consume freqüentemente" />
+												<xs:enumeration value="Não quis informar" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
+									<xs:element name="parentescoOuSocioeducandoJaUsouComprimidos"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Quanto ao uso de comprimidos</label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="Nunca usou" />
+												<xs:enumeration value="Já experimentou" />
+												<xs:enumeration value="Fez uso" />
+												<xs:enumeration value="Consume de vez em quando" />
+												<xs:enumeration value="Consume freqüentemente" />
+												<xs:enumeration value="Não quis informar" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
+									<xs:element name="parentescoOuSocioeducandoJaUsouCola"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Quanto ao uso de cola</label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="Nunca usou" />
+												<xs:enumeration value="Já experimentou" />
+												<xs:enumeration value="Fez uso" />
+												<xs:enumeration value="Consume de vez em quando" />
+												<xs:enumeration value="Consume freqüentemente" />
+												<xs:enumeration value="Não quis informar" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
+									<xs:element name="parentescoOuSocioeducandoJaUsouInalantes"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Quanto ao uso de inalantes</label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="Nunca usou" />
+												<xs:enumeration value="Já experimentou" />
+												<xs:enumeration value="Fez uso" />
+												<xs:enumeration value="Consume de vez em quando" />
+												<xs:enumeration value="Consume freqüentemente" />
+												<xs:enumeration value="Não quis informar" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+
+
+						<xs:element name="acompanhamentoEspecificoParausoDrogras"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Acompanhamento específico para uso drogas</label>
+								</xs:appinfo>
+							</xs:annotation>
+
+							<xs:complexType>
+								<xs:sequence>
+
+									<xs:element name="nuncaFezAcompanhamento" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Nunca fez acompanhamento</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="FazAcompanhamento" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label> Onde faz acompanhamento</label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:sequence>
+
+												<xs:element name="CAPSad" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<label>CAPSad</label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="hospitalMental" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<label>Hospital mental</label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+
+									<xs:element name="especifiqueOutrosLocaisQueFazAcompanhamento"
+										type="xs:string" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Especifique onde faz acompanhamento</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="especifiqueAQuantoTempoFazAcompanhamento"
+										type="xs:string" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Especifique a quanto tempo faz acompanhamento
+															</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="FezAcompanhamento" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label> Onde fez acompanhamento</label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:sequence>
+
+												<xs:element name="CAPSad" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<label>CAPSad</label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="hospitalMental" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<label>Hospital mental</label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+
+									<xs:element name="especifiqueOutrosLocaisQueFezAcompanhamento"
+										type="xs:string" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Especifique onde fez acompanhamento</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="especifiqueAQuantoTempoFezAcompanhamento"
+										type="xs:string" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Especifique a quanto tempo fez acompanhamento
+															</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+
+						<xs:element name="jaInternadoEmAlgumaComunidadeTerapeutica"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Já internado em alguma comunidade terapêutica</label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Sim" />
+									<xs:enumeration value="Não" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="especifiqueUnidadeterapeuticaQueficouInternado"
+							type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Especifique unidade terapêutica que ficou internado
+									</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="desejaTratamento" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Deseja tratamento</label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Sim" />
+									<xs:enumeration value="Não" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="utilizaAlgumMetodoContaceptivoOuContraDSTAIDS"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Utiliza algum método contraceptivo e/ou contra
+										DST/AIDS</label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Sim" />
+									<xs:enumeration value="Não" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="qualContaceptivoUsa" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label> Se usa contraceptivo, qual ?</label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+
+									<xs:element name="preservativoMasculino" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Preservativo masculino</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="preservativoFeminino" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Preservativo feminino</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="pilulaAnticoncpcional" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Pilula anticoncpcional</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="diu" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>DIU</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="tabela" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Tabela</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="temperaturaBasal" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Temperatura basal</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="metododeBilling" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Método de Billing</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="coitoInterrompido" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Coito interrompido</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+
+						<xs:element name="porqueNaoUsaContaceptivo" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label> Se não usa contraceptivo, por que?</label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+
+									<xs:element name="naoSeiOQueEIsso" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Não sei o que é isso</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="naoTenhoInteresseEmUsar" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Não tenho Interesse em utilizá-los</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="tenhoMedoDeUsar" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Tenho medo de usar</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+
+						<xs:element name="frequentaGinecologistaRegularmente"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Freqüenta o ginecologista regularmente</label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Sim" />
+									<xs:enumeration value="Não" />
+									<xs:enumeration value="Nunca fui" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="quantasVezesVaiAoGinecologistaAoAno"
+							type="xs:integer" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Quantas vezes vai ao ginecologista ao ano</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="frequenteUrologistaRegularmente"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Freqüenta urologista regularmente</label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Sim" />
+									<xs:enumeration value="Não" />
+									<xs:enumeration value="Nunca fui" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="quantasVezesVaiAoUrologistaAoAno"
+							type="xs:integer" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Quantas vezes vai ao urologista ao ano</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="avaliacaoDoAcessoAosServicosDeSaude">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Avaliação do acesso aos serviços de saúde</label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="acessoDaFamiliaAoServicoDeSaude"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Acesso da família ao serviço de Saude</label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Ruim" />
+									<xs:enumeration value="Regular" />
+									<xs:enumeration value="Bom" />
+									<xs:enumeration value="Ótimo" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="acessoAmedicacao" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Acesso a medicação</label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Ruim" />
+									<xs:enumeration value="Regular" />
+									<xs:enumeration value="Bom" />
+									<xs:enumeration value="Ótimo" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="condicoesDeSaudeDaFamilia" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Condições de Saúde da família</label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Ruim" />
+									<xs:enumeration value="Regular" />
+									<xs:enumeration value="Bom" />
+									<xs:enumeration value="Ótimo" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+
+					</xs:sequence>
+				</xs:complexType>
+
+			</xs:element>
+
+
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

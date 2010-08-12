@@ -1,0 +1,224 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-condicoesDeMoradia.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-condicoesDeMoradia.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="formCondicoesDeMoradia" type="formCondicoesDeMoradia">
+		<xs:annotation>
+			<xs:appinfo>
+				<label>CONDIÇÕES DE MORADIA</label>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="formCondicoesDeMoradia">
+		<xs:sequence>
+
+			<xs:element name="situacaoMoradia" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Situação da Moradia</label>
+					</xs:appinfo>
+				</xs:annotation>
+
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Própria" />
+						<xs:enumeration value="Alugada" />
+						<xs:enumeration value="Ocupação" />
+						<xs:enumeration value="Cedida" />
+						<xs:enumeration value="Outros" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="tempoMoradia" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Tempo de Moradia</label>
+					</xs:appinfo>
+				</xs:annotation>
+
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Atá 01 ano" />
+						<xs:enumeration value="1-5 anos" />
+						<xs:enumeration value="5-10 anos" />
+						<xs:enumeration value="15-20 anos" />
+						<xs:enumeration value="20 anos ou mais" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="tiposConstrucao" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Tipos de Construção</label>
+					</xs:appinfo>
+				</xs:annotation>
+
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Tijolo/Alvenaria" />
+						<xs:enumeration value="Taipa/Revestida" />
+						<xs:enumeration value="Taipa não resvestida" />
+						<xs:enumeration value="Madeira" />
+						<xs:enumeration value="Material Aproveitado" />
+						<xs:enumeration value="Outros" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="especifiqueOutrosTiposConstrucao" type="xs:string"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Especifique Outros</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="quantidadeComodos" type="xs:string"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Quantidade de Cômodos</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="possuiBanheiro" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Possui Banheiro</label>
+					</xs:appinfo>
+				</xs:annotation>
+
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="tipoAbastecimentoAgua" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Tipo Abastecimento de Agua</label>
+					</xs:appinfo>
+				</xs:annotation>
+
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Rede Pública" />
+						<xs:enumeration value="Poço Profundo" />
+						<xs:enumeration value="Cacimba" />
+						<xs:enumeration value="Carro Pipa" />
+						<xs:enumeration value="Nascente (Rio ou Lagoa)" />
+						<xs:enumeration value="Outros" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="especifiqueOutrosTiposAbastecimentoAgua"
+				type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Especifique Outros</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="tratamentoAgua" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Tratamento da Água</label>
+					</xs:appinfo>
+				</xs:annotation>
+
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Filtração" />
+						<xs:enumeration value="Fervura" />
+						<xs:enumeration value="Cloração" />
+						<xs:enumeration value="Sem Tratamento" />
+						<xs:enumeration value="Outros" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="especifiqueOutrosTratamentoAgua" type="xs:string"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Especifique Outros</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="tipoIluminacao" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Tipo de Iluminação</label>
+					</xs:appinfo>
+				</xs:annotation>
+
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Regularizada" />
+						<xs:enumeration value="Não Regularizada" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="escoamentoSanitario" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Escoamento Sanitário</label>
+					</xs:appinfo>
+				</xs:annotation>
+
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Rede Pública" />
+						<xs:enumeration value="Fossa Rudimentar" />
+						<xs:enumeration value="Fossa Séptica" />
+						<xs:enumeration value="Céu Aberto" />
+						<xs:enumeration value="Outros" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="especifiqueOutrosEscoamentoSanitario"
+				type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Especifique Outros</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="destinoLixo" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Destino do Lixo</label>
+					</xs:appinfo>
+				</xs:annotation>
+
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Coleta" />
+						<xs:enumeration value="Queima" />
+						<xs:enumeration value="Enterramento" />
+						<xs:enumeration value="Céu Aberto" />
+						<xs:enumeration value="Outros" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

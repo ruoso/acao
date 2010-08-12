@@ -1,0 +1,1355 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-protecaoEspecial.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-protecaoEspecial.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="formProtecaoEspecial" type="formProtecaoEspecial">
+		<xs:annotation>
+			<xs:appinfo>
+				<label>PROTEÇÃO ESPECIAL</label>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="formProtecaoEspecial">
+		<xs:sequence>
+
+			<xs:element name="violênciaNoAmbitoIntrafamiliar"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Violência no Âmbito Intrafamiliar</label>
+					</xs:appinfo>
+				</xs:annotation>
+
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="sofreOuSofreuAlgumTipoDeViolenciaInstitucional"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Sofre ou sofreu algum tipo de violência
+										institucional?
+												</label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration
+										value="Sim. Sofre violência intrafamiliar. Há quanto tempo?" />
+									<xs:enumeration
+										value="Sim. Sofreu violência intrafamiliar. Durante quanto tempo?" />
+									<xs:enumeration
+										value="Nunca sofreu nenhum tipo de violência intrafamiliar." />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="especifiqueQuantoTempo" type="xs:string"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Especifique Quanto Tempo</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="casoTenhaSofridoViolenciaEspecifique"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Caso Tenha Sofrido Violência Especifique</label>
+								</xs:appinfo>
+							</xs:annotation>
+
+							<xs:complexType>
+								<xs:sequence>
+
+									<xs:element name="discussaoVerbal" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Discussão Verbal</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="agressaoFisica" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Agressão Física</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="violenciaDomestica" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Violência Domestica</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="abusoSexual" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Abuso Sexual</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="exploracaoSexual" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Exploração Sexual</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="agressaoPsicologica" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Agressão Psicológica</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="ameacadeMorte" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Ameaça de Morte</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="outros" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Outros</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element
+										name="especifiqueOutroCasoTenhaSofridoViolenciaEspecifique"
+										type="xs:string" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Especifique Outros</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="frequencia" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Frequência</label>
+											</xs:appinfo>
+										</xs:annotation>
+
+										<xs:complexType>
+											<xs:sequence>
+
+												<xs:element name="frequentemente" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<label>Frequentemente</label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="asVezes" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<label>Às Vezes</label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="raramente" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<label>Raramente</label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+											</xs:sequence>
+										</xs:complexType>
+
+									</xs:element>
+
+									<xs:element name="queTipoDeProvidenciaOuAtitudeFoiTomada"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Que Tipo De Providencia Ou Atitude Foi Tomada
+															</label>
+											</xs:appinfo>
+										</xs:annotation>
+
+										<xs:complexType>
+											<xs:sequence>
+
+												<xs:element name="procurouAjudaEmAlgumaInstituicao"
+													type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<label>Procurou ajuda em alguma instituição?</label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="qual" type="xs:string"
+													minOccurs="0">
+													<xs:annotation>
+														<xs:appinfo>
+															<label>Qual?</label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="resouveuASituaçãoPorContaPropria?"
+													type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<label>Resouveu a situação por conta própria?</label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="como" type="xs:string"
+													minOccurs="0">
+													<xs:annotation>
+														<xs:appinfo>
+															<label>Como?</label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="procurouAjudaDeAmigosOuParentes"
+													type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<label>Procurou ajuda de amigos(as) e/ou parentes?
+															</label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="naoTomouNenhumaAtitudeOuProvidencia"
+													type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<label>Não tomou nenhuma atitude ou providencia.
+																		</label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+											</xs:sequence>
+										</xs:complexType>
+
+									</xs:element>
+
+									<xs:element name="teveOuEstaTendoAlgumTipoDeAtendimento"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Teve Ou Esta Tendo Algum Tipo De Atendimento?
+															</label>
+											</xs:appinfo>
+										</xs:annotation>
+
+										<xs:complexType>
+											<xs:sequence>
+
+												<xs:element name="simJaTeveAtendimentoEspecializado"
+													type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<label>Sim, já teve atendimento especializado.</label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="foiSuficiente" minOccurs="0">
+													<xs:annotation>
+														<xs:appinfo>
+															<label>Foi Suficiente?</label>
+														</xs:appinfo>
+													</xs:annotation>
+
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:enumeration value="Sim" />
+															<xs:enumeration value="Não" />
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+
+												<xs:element name="simJaEstaTendoAtendimentoEspecializado"
+													type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<label>Sim, já esta tendo atendimento especializado.
+															</label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="onde" type="xs:string"
+													minOccurs="0">
+													<xs:annotation>
+														<xs:appinfo>
+															<label>Onde?</label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element
+													name="naoPoremGostariaDeSerEncaminhadoParaAtendimentoEspecializado"
+													type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<label>Não, porem gostaria de ser encaminhadoa para
+																atendimento especializado.</label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="naoTtemInteresseNoAtendimento"
+													type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<label>Não tem interesse no atendimento.</label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="violênciaNoAmbitoInstitucional"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Violência no Âmbito Institucional</label>
+					</xs:appinfo>
+				</xs:annotation>
+
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="sofreOuSofreuAlgumTipoDeViolenciaInstitucional"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Sofre ou sofreu algum tipo de violência
+										institucional?
+												</label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration
+										value="Sim. Sofre violência instutucional. Há quanto tempo?" />
+									<xs:enumeration
+										value="Sim. Sofreu violência instutucional. Durante quanto tempo?" />
+									<xs:enumeration
+										value="Nunca sofreu nenhum tipo de violência instutucional." />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="haQuantoTempo" type="xs:string"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Há quanto tempo?</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="simJaEstaTendoAtendimentoEspecializado"
+							type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Sim, já esta tendo atendimento especializado
+															</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="duranteQuantoTempo" type="xs:string"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Durante quanto tempo?</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="nuncaSofreuNenhumTipoDeViolenciaInstitucional"
+							type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Nunca sofreu nenhum tipo de violência
+										institucional
+												</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="instituicaoOndeSofreuViolencia"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Instituição onde sofreu violência</label>
+								</xs:appinfo>
+							</xs:annotation>
+
+							<xs:complexType>
+								<xs:sequence>
+
+									<xs:element name="policia" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Polícia</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="guardaMunicipal" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Guarda municipal</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="escola" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Escola</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="postoDeSaude" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Posto de saúde</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="outros" type="xs:string"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Outros</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+								</xs:sequence>
+							</xs:complexType>
+
+						</xs:element>
+
+						<xs:element name="tipoDeViolencia" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Tipo de violência</label>
+								</xs:appinfo>
+							</xs:annotation>
+
+							<xs:complexType>
+								<xs:sequence>
+
+									<xs:element name="discussaoVerbal" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Discussão Verbal</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="agressaoFisica" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Agressão Física</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="abusoSexual" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Abuso Sexual</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="exploracaoSexual" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Exploracao Sexual</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="agressaoPsicologica" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Agressão psicologica</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="ameacaDeMorte" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Ameaça de Morte</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="outros" type="xs:string"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Outros</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+
+						<xs:element name="queTipoDeProvidenciaOuAtitudeFoiTomada"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Que Tipo De Providencia Ou Atitude Foi Tomada
+													</label>
+								</xs:appinfo>
+							</xs:annotation>
+
+							<xs:complexType>
+								<xs:sequence>
+
+									<xs:element name="procurouAjudaEmAlgumaInstituicao"
+										type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Procurou ajuda em alguma instituição?</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="qual" type="xs:string" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Qual?</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="resouveuASituaçãoPorContaPropria?"
+										type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Resouveu a situação por conta própria?
+																				</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="como" type="xs:string" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Como?</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="procurouAjudaDeAmigosOuParentes"
+										type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Procurou ajuda de amigos(as) e/ou parentes?
+															</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="naoTomouNenhumaAtitudeOuProvidencia"
+										type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Não tomou nenhuma atitude ou providencia.
+																	</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+								</xs:sequence>
+							</xs:complexType>
+
+						</xs:element>
+
+						<xs:element name="teveOuEstaTendoAlgumTipoDeAtendimento"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Teve Ou Esta Tendo Algum Tipo De Atendimento?
+													</label>
+								</xs:appinfo>
+							</xs:annotation>
+
+							<xs:complexType>
+								<xs:sequence>
+
+									<xs:element name="simJaTeveAtendimentoEspecializado"
+										type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Sim, já teve atendimento especializado.
+																			</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="foiSuficiente" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Foi Suficiente?</label>
+											</xs:appinfo>
+										</xs:annotation>
+
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="Sim" />
+												<xs:enumeration value="Não" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
+									<xs:element name="simJaEstaTendoAtendimentoEspecializado"
+										type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Sim, já esta tendo atendimento especializado.
+															</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="onde" type="xs:string" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Onde?</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element
+										name="naoPoremGostariaDeSerEncaminhadoParaAtendimentoEspecializado"
+										type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Não, porem gostaria de ser encaminhadoa para
+													atendimento especializado.</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="naoTtemInteresseNoAtendimento"
+										type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Não tem interesse no atendimento.</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="violênciaNoAmbitoComunitario" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Violência no Âmbito Comunitário</label>
+					</xs:appinfo>
+				</xs:annotation>
+
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="sofreOuSofreuAlgumTipoDeViolencia"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Sofre ou sofreu algum tipo de violência?</label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Sim. Sofre violência. Há quanto tempo?" />
+									<xs:enumeration value="Sim. Sofreu violência. Durante quanto tempo?" />
+									<xs:enumeration value="Nunca sofreu nenhum tipo de violência." />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="haQuantoTempo" type="xs:string"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Há quanto tempo?</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="simJaEstaTendoAtendimentoEspecializado"
+							type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Sim, já esta tendo atendimento especializado
+															</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="duranteQuantoTempo" type="xs:string"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Durante quanto tempo?</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="nuncaSofreuNenhumTipoDeViolenciaInstitucional"
+							type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Nunca sofreu nenhum tipo de violência
+										institucional
+												</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="tipoDeViolencia" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Tipo de violência</label>
+								</xs:appinfo>
+							</xs:annotation>
+
+							<xs:complexType>
+								<xs:sequence>
+
+									<xs:element name="discussaoVerbal" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Discussão Verbal</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="agressaoFisica" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Agressão Física</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="abusoSexual" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Abuso Sexual</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="exploracaoSexual" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Exploracao Sexual</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="agressaoPsicologica" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Agressão psicologica</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="ameacaDeMorte" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Ameaça de Morte</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="outros" type="xs:string"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Outros</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+
+						<xs:element name="frequencia" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Frequência</label>
+								</xs:appinfo>
+							</xs:annotation>
+
+							<xs:complexType>
+								<xs:sequence>
+
+									<xs:element name="frequentemente" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Frequentemente</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="asVezes" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Às Vezes</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="raramente" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Raramente</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+								</xs:sequence>
+							</xs:complexType>
+
+						</xs:element>
+
+						<xs:element name="queTipoDeProvidenciaOuAtitudeFoiTomada"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Que Tipo De Providencia Ou Atitude Foi Tomada
+													</label>
+								</xs:appinfo>
+							</xs:annotation>
+
+							<xs:complexType>
+								<xs:sequence>
+
+									<xs:element name="procurouAjudaEmAlgumaInstituicao"
+										type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Procurou ajuda em alguma instituição?</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="qual" type="xs:string" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Qual?</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="resouveuASituaçãoPorContaPropria?"
+										type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Resouveu a situação por conta própria?
+																				</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="como" type="xs:string" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Como?</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="procurouAjudaDeAmigosOuParentes"
+										type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Procurou ajuda de amigos(as) e/ou parentes?
+															</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="naoTomouNenhumaAtitudeOuProvidencia"
+										type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Não tomou nenhuma atitude ou providencia.
+																	</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+								</xs:sequence>
+							</xs:complexType>
+
+						</xs:element>
+
+						<xs:element name="teveOuEstaTendoAlgumTipoDeAtendimento"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Teve Ou Esta Tendo Algum Tipo De Atendimento?
+													</label>
+								</xs:appinfo>
+							</xs:annotation>
+
+							<xs:complexType>
+								<xs:sequence>
+
+									<xs:element name="simJaTeveAtendimentoEspecializado"
+										type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Sim, já teve atendimento especializado.
+																			</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="foiSuficiente" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Foi Suficiente?</label>
+											</xs:appinfo>
+										</xs:annotation>
+
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="Sim" />
+												<xs:enumeration value="Não" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
+									<xs:element name="simJaEstaTendoAtendimentoEspecializado"
+										type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Sim, já esta tendo atendimento especializado.
+															</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="onde" type="xs:string" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Onde?</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element
+										name="naoPoremGostariaDeSerEncaminhadoParaAtendimentoEspecializado"
+										type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Não, porem gostaria de ser encaminhadoa para
+													atendimento especializado.</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="naoTtemInteresseNoAtendimento"
+										type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Não tem interesse no atendimento.</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="violênciaNoAmbitoDaExploracaoDoTrabalhoInfantil"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Violência no Âmbito Da Exploracao Do Trabalho Infantil
+						</label>
+					</xs:appinfo>
+				</xs:annotation>
+
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="sofreOuSofreuAlgumTipoDeViolencia"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Teve violado algum direito no âmbito da exploração do
+										trabalho infantiu?</label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Sim" />
+									<xs:enumeration value="Não" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="tipoDeTrabalho" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Tipo de Trabalho</label>
+								</xs:appinfo>
+							</xs:annotation>
+
+							<xs:complexType>
+								<xs:sequence>
+
+									<xs:element name="trabalhoInfantilDomestico" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Trabalho infantil domestico</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="catador" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Catador</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="pedinte" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Pedinte</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="malabarista" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Malabarista</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="engraxate" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Engraxate</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="Flanelinha" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Flanelinha</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="jornaleiro" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Jornaleiro</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="ajudanteDePedreiro" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Ajudante De Pedreiro</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="comercioDeDrogas" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Comercio De Drogas</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="pesca" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Pesca</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="carvoaria" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<label>Carvoaria</label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+
+						<xs:element name="outros" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Outros</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="cargaHorariaMensal" type="xs:string"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Carga Horária Mensal</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="estaInscritoNoPeti" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Esta Inscrito No PETI</label>
+					</xs:appinfo>
+				</xs:annotation>
+
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="sim" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Sim</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="nao" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Não</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="vivenciaNaRua" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Vivencia Na Rua</label>
+					</xs:appinfo>
+				</xs:annotation>
+
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="sim" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Sim</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="nao" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Não</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="seSim" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Se Sim</label>
+					</xs:appinfo>
+				</xs:annotation>
+
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="esteveEmVivenciaDeRua" type="xs:boolean"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Esteve em vivência de rua
+												</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="duranteQuantoTempo" type="xs:string"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Durante quanto tempo?
+												</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="estaEmVivenciaDeRua" type="xs:boolean"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Está em vivência de rua</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="haQuantoTempo" type="xs:string"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Há quanto tempo?
+												</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="motivacao" type="xs:string"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Motivação
+												</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="teveOuEstaTendoAlgumTipoDeAtendimento"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Teve ou esta tendo algum tipo de atendimento?</label>
+					</xs:appinfo>
+				</xs:annotation>
+
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="simJaTeveAtendimentoEspecializado"
+							type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Sim, já teve atendimento especializado</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="simEstaTendoAtendimentoEspecializado"
+							type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Sim, está tendo atendimento especializado</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="onde" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Onde</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element
+							name="naoPoremGostariaDeSerEncaminhadoParaAtendimentoEspecializado"
+							type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Não porem gostaria de ser encaminhado para
+										atendimento/a especializado</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="naoTemInteressenoNoAtendimento" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Não tem interesse no atendimento</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>
