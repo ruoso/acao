@@ -15,6 +15,315 @@
 	<xs:complexType name="formProfissionalizacaoHabilidades">
 		<xs:sequence>
 
+			<xs:element name="jaEstagiouAlgumaVez" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Já estagiou alguma vez</label>
+					</xs:appinfo>
+				</xs:annotation>
+
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="tipoAtividadeEstagio" type="xs:string"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Tipo de Atividade</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="quantoTempoEstagio" type="xs:integer"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Durante quanto tempo</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="jaTrabalhouAlgumaVez" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Já trabalhou alguma vez</label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="jaTrabalhouFormalmente" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Já trabalhou formalmente</label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="tipoAtividadeTrabalhou" type="xs:string"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Tipo de Atividade que trabalhou</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="quantoTempoTrabalhou" type="xs:integer"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Durante quanto tempo trabalhou</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+
+			<xs:element name="estaTrabalhandoAtualmente" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Está trabalhando atualmente</label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="estaTrabalhandoFormalmente" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Está trabalhando formalmente</label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="tipoAtividadeTrabalho" type="xs:string"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Tipo de Atividade que está trabalhando</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="desdeQuandoTrabalha" type="xs:integer"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Desde quando está trabalhando</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="cargaHorariaTrabalho" type="xs:string"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Carga horária que está Trabalhando</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="possuiAlgumasDestahabilidades">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Possui Algumas destas habilidades</label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="desenho" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Desenho</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="grafite" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Grafite</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="musica" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Música</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="teatro" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Teatro</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="danca" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Dança</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="pintura" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Pintura</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="artesanato" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Artesanato</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="costura" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Costura</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="literatura" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Literatura</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="culinaria" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Culinária</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="outras" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Lutras</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="especifiqueOutrasHabilidades" type="xs:string"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<label>Especifique outras habilidades</label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="nossoesInformatica" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Possui noções de informática</label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Não" />
+						<xs:enumeration value="Sim, básica" />
+						<xs:enumeration value="Sim, Avançada" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="cursosProficionalizantes" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Já fez algum curso profissionalizante</label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="especifiqueCursosProfissionaliantes"
+				type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Especifique cursos profissionalizantes</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="casoNaoTenhacursosProficionalizantes"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>caso não tenha feito ainda, gostaria desta oportunidade
+						</label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="especifiqueCursosProfissionaliantesQueDesejafazer"
+				type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<label>Especifique cursos profissionalizantes que deseja fazer
+						</label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
 
 		</xs:sequence>
 	</xs:complexType>
