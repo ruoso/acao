@@ -59,7 +59,7 @@ txn_method 'listar_volumes' => authorized 'gestorvolume' => sub {
 
     # sera dentro de uma transacao, e so pode ser usado por gestores de volumes
     return $self->dbic->resultset('Volume')->search(
-        { 'gestor_volumes.dn' => $self->user->id },
+        { 'gestor_volumesss.dn' => $self->user->id },
         {
 	        join => 'gestor_volumes',
         }

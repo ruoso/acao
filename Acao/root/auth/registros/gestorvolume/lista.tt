@@ -18,7 +18,7 @@
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
 %]
 [% META title = 'Lista de Leituras para o Digitador'%]
-[% INCLUDE 'auth/registros/gestor_volumes/header.tt' %]
+[% INCLUDE 'auth/registros/gestorvolume/header.tt' %]
 [% INCLUDE 'errosucesso.tt' %]
 
 <table>
@@ -38,7 +38,7 @@
 
  [% FOREACH volume IN c.model('GestorVolume').listar_volumes.all %]
   <tr>
-    <td><a href="[% c.uri_for('/auth/registros/gestor_volumes') _ "/" _ volume.id_volume %]">[% volume.nome %]</a></td>
+    <td><a href="[% c.uri_for('/auth/registros/gestorvolume') _ "/" _ volume.id_volume %]">[% volume.nome %]</a></td>
     <td></td>
     <td></td>
     <td></td>

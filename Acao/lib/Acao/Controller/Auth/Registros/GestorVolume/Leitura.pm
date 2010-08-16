@@ -1,4 +1,4 @@
-package Acao::Controller::Auth::Registros::Gestor_volumes::Leitura;
+package Acao::Controller::Auth::Registros::GestorVolume::Leitura;
 # Copyright 2010 - Prefeitura Municipal de Fortaleza
 #
 # Este arquivo é parte do programa Ação - Sistema de Acompanhamento de
@@ -23,7 +23,7 @@ use parent 'Catalyst::Controller';
 
 =head1 NAME
 
-Acao::Controller::Auth::Registros::Gestor_volumes::Leitura - Controlador
+Acao::Controller::Auth::Registros::GestorVolume::Leitura - Controlador
 que implementa as ações de digitação de uma leitura específica.
 
 =head1 ACTIONS
@@ -36,10 +36,10 @@ Carrega para o stash os dados da leitura.
 
 =cut
 
-sub base : Chained('/auth/registros/gestor_volumes/base') : PathPart('') :
+sub base : Chained('/auth/registros/gestorvolume/base') : PathPart('') :
   CaptureArgs(1) {
     my ( $self, $c, $id_leitura ) = @_;
-    $c->stash->{leitura} = $c->model('Gestor_volumes')->obter_leitura($id_leitura);
+    $c->stash->{leitura} = $c->model('GestorVolume')->obter_leitura($id_leitura);
 }
 
 =item form
@@ -64,7 +64,7 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
     my $leitura = $c->stash->{leitura};
 
     eval {
-        $c->model('Gestor_volumes')
+        $c->model('GestorVolume')
           ->salvar_digitacao( $leitura, $xml,
             scalar( $c->req->param('controle') ),
             $c->req->address );
@@ -77,7 +77,7 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
         $c->flash->{sucesso} = 'Digitação armazenada com sucesso';
     }
 
-    $c->res->redirect( $c->uri_for('/auth/registros/gestor_volumes') );
+    $c->res->redirect( $c->uri_for('/auth/registros/gestorvolume') );
 }
 
 =item xsd
@@ -89,7 +89,7 @@ Retorna o XSD dessa leitura.
 sub xsd : Chained('base') : PathPart('xsd') : Args(0) {
     my ( $self, $c ) = @_;
     $c->stash->{document} =
-      $c->model('Gestor_volumes')->obter_xsd_leitura( $c->stash->{leitura} );
+      $c->model('GestorVolume')->obter_xsd_leitura( $c->stash->{leitura} );
     $c->forward( $c->view('XML') );
 }
 

@@ -17,7 +17,37 @@
 # título "LICENCA.txt", junto com este programa, se não, escreva para a
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
 %]
-[% breadcrumb.unshift({ url => c.uri_for('/auth/registros/gestor_volumes'),
-			title => 'Gestor Volumes',
-			text => 'Gestor Volumes' }) %]
-[% INCLUDE 'auth/registros/header.tt' %]
+[% META title = 'Lista de Leituras para o Digitador'%]
+[% INCLUDE 'auth/registros/gestorvolume/header.tt' %]
+[% INCLUDE 'errosucesso.tt' %]
+
+<table>
+<thead>
+ <tr>
+  <th>Volume</th>
+  <th>Autor</th>
+  <th>Grupo</th>
+  <th>Data da Criação</th>
+  <th>Dossiês</th>
+ </tr>
+</thead>
+<TBODY>
+ 
+  [% # O foreach abaixo vai buscar diretamente no model por estar livre de contexto %] 
+  [% # (nao recebe argumento pela url) %]
+
+ [% FOREACH volume IN c.model('GestorVolume').listar_volumes.all %]
+  <tr>
+    <td><a href="[% c.uri_for('/auth/registros/gestorvolume') _ "/" _ volume.id_volume %]">[% volume.nome %]</a></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+   </tr>
+ [% END %] 
+
+
+</TBODY>
+</table>
+
+[% INCLUDE 'footer.tt' %]

@@ -1,4 +1,4 @@
-package Acao::Controller::Auth::Registros;
+package Acao::Controller::Auth::Registros::GestorVolume;
 # Copyright 2010 - Prefeitura Municipal de Fortaleza
 #
 # Este arquivo é parte do programa Ação - Sistema de Acompanhamento de
@@ -23,7 +23,8 @@ use parent 'Catalyst::Controller';
 
 =head1 NAME
 
-Acao::Controller::Auth::Registros - Raiz da área de registros.
+Acao::Controller::Auth::Registros::GestorVolume - Raiz das ações de
+digitador.
 
 =head1 ACTIONS
 
@@ -31,39 +32,24 @@ Acao::Controller::Auth::Registros - Raiz da área de registros.
 
 =item base
 
-Ação raiz da área de registros.
+Ação raiz para as ações de digitador.
 
 =cut
 
-sub base : Chained('/auth/base') : PathPart('registros') : CaptureArgs(0) {
+sub base : Chained('/auth/registros/base') : PathPart('gestorvolume') :
+  CaptureArgs(0) {
     my ( $self, $c ) = @_;
 }
 
-=item principal
+=item lista
 
-Se o usuário tem acesso apenas à ação de digitador ou revisor,
-redireciona para a área específica. De outra forma delega à view uma
-lista das sub-áreas da área de registros.
+Delega à view a renderização da lista de leituras que esse digitador
+tem acesso.
 
 =cut
 
-sub principal : Chained('base') : PathPart('') : Args(0) {
+sub lista : Chained('base') : PathPart('') : Args(0) {
     my ( $self, $c ) = @_;
-    my @roles = $c->user->roles;
-  #  warn @roles;
-    if ( ( grep { /^revisor$/ } @roles )
-        && !( grep { /^digitador$/ } @roles ) )
-    {
-        $c->res->redirect( $c->uri_for('/auth/registros/revisor') );
-    }
-    elsif ( ( grep { /^digitador$/ } @roles )
-        && !( grep { /^revisor$/ } @roles ) )
-    {
-        $c->res->redirect( $c->uri_for('/auth/registros/digitador') );
-    }
-    if (grep { /^gestorvolume$/ } @roles){
-        $c->res->redirect( $c->uri_for('/auth/registros/gestorvolume') );
-    }
 }
 
 =back
