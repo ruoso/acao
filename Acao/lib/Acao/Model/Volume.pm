@@ -24,25 +24,22 @@ use XML::Compile::Schema;
 use XML::Compile::Util;
 use DateTime;
 use Encode;
+use Data::UUID;
 
-use constant DIGITACAO_NS =>
-  'http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd';
+use constant VOLUME_NS =>'http://schemas.fortaleza.ce.gov.br/acao/volume.xsd';
 
-my $controle =
-  XML::Compile::Schema->new( Acao->path_to('schemas/controledigitacao.xsd') );
-my $controle_w = $controle->compile(
-    WRITER                => pack_type( DIGITACAO_NS, 'registroDigitacao' ),
-    use_default_namespace => 1
-);
+my $controle = XML::Compile::Schema->new( Acao->path_to('schemas/volume.xsd') );
+my $controle_w = $controle->compile( WRITER => pack_type( VOLUME_NS, 'volume' ),
+                                     use_default_namespace => 1 );
 
 =head1 NAME
 
-Acao::Model::Volume - Implementa as regras de negócio do papel volume
+Acao::Model::GestorVolume - Implementa as regras de negócio do papel gestorvolume
 
 =head1 DESCRIPTION
 
 Essa classe implementa as regras de negócio específicas para o papel
-de volume.
+de gestorvolume.
 
 =head1 METHODS
 
@@ -50,14 +47,14 @@ de volume.
 
 =item listar_volumes()
 
-Retorna as leituras as quais o usuário autenticado tem acesso.
+Retorna os volumes os quais o usuário autenticado tem acesso.
 
 =cut
 
-txn_method 'listar_volumes' => authorized 'volume' => sub {
+txn_method 'listar_volumes' => authorized 'gestorvolume' => sub {
     my $self = shift;
 
-    # sera dentro de uma transacao, e so pode ser usado por volumes
+    # sera dentro de uma transacao, e so pode ser usado por gestores de volumes
     return $self->dbic->resultset('Volume')->search(
         { 'gestor_volumes.dn' => $self->user->id },
         {
@@ -66,20 +63,74 @@ txn_method 'listar_volumes' => authorized 'volume' => sub {
     );
 };
 
-=item salvar_volume
+=item criar_volume($nome, $estado, $representaVolumeFisico, $classificacao, $localizacao ,$ip)
 
-Salva o documento $xml como uma digitação dessa $leitura. O código de
-$controle também é necessário e o $ip é guardado para fins de
-auditoria. Se o grupo de controle estiver fechado não será possível
-registrar a digitação.
+Salva o documento $xml como um volume. 
+O $ip é guardado para fins de auditoria.
 
 =cut
 
-txn_method 'salvar_volume' => authorized 'digitador' => sub {
-    my ( $self, $leitura, $xml, $controle, $ip ) = @_;
-   
-    my $xq = 'create collection ';
-    $self->sedna->execute($xq);
+txn_method 'criar_volume' => authorized 'gestorvolume' => sub {
+    my ( $self, $volume, $xml, $ip ) = @_;
+
+    my $ug  = new Data::UUID;
+    my $uuid = $ug->create();
+
+    $doc_name = 'volume-'. $uuid;
+
+    $self->sedna->execute('declare namespace cd = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";
+			                 for $x in doc("volume.xsd") return $x');
+    my $xsd = $self->sedna->get_item;
+    my $octets = encode('utf8', $xsd);
+
+    my $x_c_s    = XML::Compile::Schema->new($octets);
+    my @elements = $x_c_s->elements;
+
+    my $read = $x_c_s->compile( READER => $elements[0] );
+    my $writ = $x_c_s->compile( WRITER => $elements[0], use_default_namespace => 1 );
+    
+     my $xml_en = encode('utf8', $xml);
+
+    my $input_doc = XML::LibXML->load_xml( string => $xml_en );
+    my $element   = $input_doc->getDocumentElement;
+    my $xml_data  = $read->($element);
+
+    my $doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
+    my $conteudo_registro = $writ->( $doc, $xml_data );
+    my $res_xml = $controle_w->(
+        $doc,
+        {
+            volume => {
+                nome       => $self->user->id,
+                criacao    => DateTime->now(),
+                fechamento => $ip,
+                arquivamento => ,
+                collection => ,
+                estado => ,
+                representaVolumeFisico => ,
+                classificacao => ,
+                localizacao => ,
+                autorizacao => {
+                                principal => ,
+                                role => ,
+                                dataIni => ,
+                                dataFim => ,
+                                },
+                auditoria => {
+                                data => ,
+                                usuario => ,
+                                acao => ,
+                                ip => ,
+                                dados => ,
+                                },
+
+            },
+        }
+    );
+
+    $self->sedna->conn->loadData( $res_xml->toString, $docname,
+        'leitura-' . $leitura->id_leitura );
+    $self->sedna->conn->endLoadData();
 };
 
 =head1 COPYRIGHT AND LICENSING
