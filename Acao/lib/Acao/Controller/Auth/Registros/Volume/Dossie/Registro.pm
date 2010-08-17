@@ -1,4 +1,4 @@
-package Acao::Controller::Auth::Registros::GestorVolume::ListarVolume;
+package Acao::Controller::Auth::Registros::Volume::Dossie::Registro;
 # Copyright 2010 - Prefeitura Municipal de Fortaleza
 #
 # Este arquivo é parte do programa Ação - Sistema de Acompanhamento de
@@ -36,10 +36,10 @@ Carrega para o stash os dados da leitura.
 
 =cut
 
-sub base : Chained('/auth/registros/gestorvolume/base') : PathPart('') :
+sub base : Chained('/auth/registros/gestorvolume/listarvolume/base') : PathPart('') :
   CaptureArgs(1) {
     my ( $self, $c, $id_leitura ) = @_;
-    $c->stash->{volume} = 'volume.xsd';
+    $c->stash->{leitura} = $c->model('GestorVolume')->obter_leitura($id_leitura);
 }
 
 =item form

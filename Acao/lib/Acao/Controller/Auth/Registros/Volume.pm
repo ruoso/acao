@@ -1,4 +1,4 @@
-package Acao::Controller::Auth::Registros::GestorVolume;
+package Acao::Controller::Auth::Registros::Volume;
 # Copyright 2010 - Prefeitura Municipal de Fortaleza
 #
 # Este arquivo é parte do programa Ação - Sistema de Acompanhamento de
@@ -23,7 +23,7 @@ use parent 'Catalyst::Controller';
 
 =head1 NAME
 
-Acao::Controller::Auth::Registros::GestorVolume - Raiz das ações de
+Acao::Controller::Auth::Registros::Volume - Raiz das ações de
 digitador.
 
 =head1 ACTIONS
@@ -36,7 +36,7 @@ Ação raiz para as ações de gestor volume.
 
 =cut
 
-sub base : Chained('/auth/registros/base') : PathPart('gestorvolume') :
+sub base : Chained('/auth/registros/base') : PathPart('volume') :
   CaptureArgs(0) {
     my ( $self, $c ) = @_;
 }
@@ -50,6 +50,37 @@ tem acesso.
 
 sub lista : Chained('base') : PathPart('') : Args(0) {
     my ( $self, $c ) = @_;
+}
+
+sub form : Chained('base') : PathPart('criarvolume') : Args(0) {
+    my ( $self, $c ) = @_;
+}
+
+=item store
+
+Salva o xml como uma nova digitação.
+
+=cut
+
+sub store : Chained('base') : PathPart('store') : Args(0) {
+    my ( $self, $c ) = @_;
+    my $volume = $c->stash->{volume};
+
+    eval {
+        $c->model('Volume')
+          ->salvar_digitacao( $leitura, $xml,
+            scalar( $c->req->param('controle') ),
+            $c->req->address );
+    };
+
+    if ($@) {
+        $c->flash->{erro} = $@ . "";
+    }
+    else {
+        $c->flash->{sucesso} = 'Digitação armazenada com sucesso';
+    }
+
+    $c->res->redirect( $c->uri_for('/auth/registros/digitador') );
 }
 
 =back

@@ -1,4 +1,4 @@
-package Acao::Model::GestorVolume;
+package Acao::Model::Volume;
 # Copyright 2010 - Prefeitura Municipal de Fortaleza
 #
 # Este arquivo é parte do programa Ação - Sistema de Acompanhamento de
@@ -37,12 +37,12 @@ my $controle_w = $controle->compile(
 
 =head1 NAME
 
-Acao::Model::GestorVolume - Implementa as regras de negócio do papel gestorvolume
+Acao::Model::Volume - Implementa as regras de negócio do papel volume
 
 =head1 DESCRIPTION
 
 Essa classe implementa as regras de negócio específicas para o papel
-de gestorvolume.
+de volume.
 
 =head1 METHODS
 
@@ -54,16 +54,32 @@ Retorna as leituras as quais o usuário autenticado tem acesso.
 
 =cut
 
-txn_method 'listar_volumes' => authorized 'gestorvolume' => sub {
+txn_method 'listar_volumes' => authorized 'volume' => sub {
     my $self = shift;
 
-    # sera dentro de uma transacao, e so pode ser usado por gestores de volumes
+    # sera dentro de uma transacao, e so pode ser usado por volumes
     return $self->dbic->resultset('Volume')->search(
         { 'gestor_volumes.dn' => $self->user->id },
         {
 	        join => 'gestor_volumes',
         }
     );
+};
+
+=item salvar_volume
+
+Salva o documento $xml como uma digitação dessa $leitura. O código de
+$controle também é necessário e o $ip é guardado para fins de
+auditoria. Se o grupo de controle estiver fechado não será possível
+registrar a digitação.
+
+=cut
+
+txn_method 'salvar_volume' => authorized 'digitador' => sub {
+    my ( $self, $leitura, $xml, $controle, $ip ) = @_;
+   
+    my $xq = 'create collection ';
+    $self->sedna->execute($xq);
 };
 
 =head1 COPYRIGHT AND LICENSING

@@ -17,24 +17,7 @@
 # título "LICENCA.txt", junto com este programa, se não, escreva para a
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
 %]
-[% INCLUDE 'auth/registros/gestorvolume/listarvolume/header.tt' %]
-
- <form action="[% c.uri_for('/auth/registros/gestorvolume/criarvolume/store') %]" method="post">
-
- <fildset>
-  <dl>
-   <dt>Nome Volume: <input type="text" id="volume" name="volume"></dt>
-   <dt> <input type="checkbox" id="representaVolumeFisico" name="representaVolumeFisico"> Representa Volume Físico </dt>
-  </dl>
- <fildset>
- <tr>
-  <input type="submit" name="Submeter">
- </tr>
- </form>
-
- <script language="javascript">
-   generateForm("[% c.uri_for('/auth/registros/digitador/') _ leitura.id_leitura _ '/xsd' %]",
-                "form_container");
- </script>
-
-[% INCLUDE 'footer.tt' %]
+[% breadcrumb.unshift({ url => c.uri_for('/auth/registros/volume'),
+			title => 'Volume',
+			text => 'Volume' }) %]
+[% INCLUDE 'auth/registros/header.tt' %]

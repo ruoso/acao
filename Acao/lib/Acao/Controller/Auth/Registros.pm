@@ -61,8 +61,8 @@ sub principal : Chained('base') : PathPart('') : Args(0) {
     {
         $c->res->redirect( $c->uri_for('/auth/registros/digitador') );
     }
-    if (grep { /^gestorvolume$/ } @roles){
-        $c->res->redirect( $c->uri_for('/auth/registros/gestorvolume') );
+    if (grep { /^volume$/ } @roles){
+        $c->res->redirect( $c->uri_for('/auth/registros/volume') );
     }
 }
 
