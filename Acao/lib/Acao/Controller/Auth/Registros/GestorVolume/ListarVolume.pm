@@ -1,4 +1,4 @@
-package Acao::Controller::Auth::Registros::GestorVolume::Leitura;
+package Acao::Controller::Auth::Registros::GestorVolume::ListarVolume;
 # Copyright 2010 - Prefeitura Municipal de Fortaleza
 #
 # Este arquivo é parte do programa Ação - Sistema de Acompanhamento de
@@ -23,7 +23,7 @@ use parent 'Catalyst::Controller';
 
 =head1 NAME
 
-Acao::Controller::Auth::Registros::GestorVolume::Leitura - Controlador
+Acao::Controller::Auth::Registros::GestorVolume::ListarVolume - Controlador
 que implementa as ações de digitação de uma leitura específica.
 
 =head1 ACTIONS
@@ -39,7 +39,7 @@ Carrega para o stash os dados da leitura.
 sub base : Chained('/auth/registros/gestorvolume/base') : PathPart('') :
   CaptureArgs(1) {
     my ( $self, $c, $id_leitura ) = @_;
-    $c->stash->{leitura} = $c->model('GestorVolume')->obter_leitura($id_leitura);
+    $c->stash->{volume} = 'volume.xsd';
 }
 
 =item form

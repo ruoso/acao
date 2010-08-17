@@ -32,7 +32,7 @@ digitador.
 
 =item base
 
-Ação raiz para as ações de digitador.
+Ação raiz para as ações de gestor volume.
 
 =cut
 
@@ -43,7 +43,7 @@ sub base : Chained('/auth/registros/base') : PathPart('gestorvolume') :
 
 =item lista
 
-Delega à view a renderização da lista de leituras que esse digitador
+Delega à view a renderização da lista de volumes que esse gestor
 tem acesso.
 
 =cut

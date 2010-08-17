@@ -17,37 +17,24 @@
 # título "LICENCA.txt", junto com este programa, se não, escreva para a
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
 %]
-[% META title = 'Lista de Leituras para o Digitador'%]
-[% INCLUDE 'auth/registros/gestorvolume/header.tt' %]
-[% INCLUDE 'errosucesso.tt' %]
+[% INCLUDE 'auth/registros/gestorvolume/listarvolume/header.tt' %]
 
-<table>
-<thead>
+ <form action="[% c.uri_for('/auth/registros/gestorvolume/criarvolume/store') %]" method="post">
+
+ <fildset>
+  <dl>
+   <dt>Nome Volume: <input type="text" id="volume" name="volume"></dt>
+   <dt> <input type="checkbox" id="representaVolumeFisico" name="representaVolumeFisico"> Representa Volume Físico </dt>
+  </dl>
+ <fildset>
  <tr>
-  <th>Volume</th>
-  <th>Autor</th>
-  <th>Grupo</th>
-  <th>Data da Criação</th>
-  <th>Dossiês</th>
+  <input type="submit" name="Submeter">
  </tr>
-</thead>
-<TBODY>
- 
-  [% # O foreach abaixo vai buscar diretamente no model por estar livre de contexto %] 
-  [% # (nao recebe argumento pela url) %]
+ </form>
 
- [% FOREACH volume IN c.model('GestorVolume').listar_volumes.all %]
-  <tr>
-    <td><a href="[% c.uri_for('/auth/registros/gestorvolume') _ "/" _ volume.id_volume %]">[% volume.nome %]</a></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-   </tr>
- [% END %] 
-
-
-</TBODY>
-</table>
+ <script language="javascript">
+   generateForm("[% c.uri_for('/auth/registros/digitador/') _ leitura.id_leitura _ '/xsd' %]",
+                "form_container");
+ </script>
 
 [% INCLUDE 'footer.tt' %]
