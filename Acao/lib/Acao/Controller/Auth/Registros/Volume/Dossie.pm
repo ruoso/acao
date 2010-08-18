@@ -49,7 +49,7 @@ digitação.
 
 =cut
 
-sub form : Chained('base') : PathPart('') : Args(0) {
+sub forms : Chained('base') : PathPart('') : Args(0) {
 }
 
 

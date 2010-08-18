@@ -36,7 +36,7 @@ Ação raiz para as ações de digitador.
 
 =cut
 
-sub base : Chained('/auth/registros/base') : PathPart('gestorvolume') :
+sub base : Chained('/auth/registros/base') : PathPart('volume') :
   CaptureArgs(0) {
     my ( $self, $c ) = @_;
 }
@@ -52,6 +52,42 @@ sub lista : Chained('base') : PathPart('') : Args(0) {
     my ( $self, $c ) = @_;
 }
 
+sub form : Chained('base') : PathPart('criarvolume') : Args(0) {
+    my ( $self, $c ) = @_;
+}
+
+sub store : Chained('base') : PathPart('store') : Args(0) {
+    my ( $self, $c ) = @_;
+    my $representaVolumeFisico;
+
+    if ($c->req->param('representaVolumeFisico') eq 'on'){
+       $representaVolumeFisico = '1';
+    }
+    else {
+       $representaVolumeFisico = '0';
+    }
+    warn $representaVolumeFisico;
+    eval {
+        $c->model('Volume')->criar_volume(
+					    $self,
+					    $c->req->param('nome'),
+					    $representaVolumeFisico,
+					    $c->req->param('classificacao'),
+					    $c->req->param('localizacao'),
+					    $c->req->address
+					 );
+
+    };
+
+    if ($@) {
+        $c->flash->{erro} = $@ . "";
+    }
+    else {
+        $c->flash->{sucesso} = 'Volume criado com sucesso';
+    }
+
+    $c->res->redirect( $c->uri_for('/auth/registros/volume') );
+}
 =back
 
 =head1 COPYRIGHT AND LICENSING

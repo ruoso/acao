@@ -19,17 +19,17 @@
 %]
 [% INCLUDE 'auth/registros/volume/header.tt' %]
 
- <form action="[% c.uri_for('/auth/registros/volume/store') %]" method="post">
+ <form action="[% c.uri_for('/auth/registros/volume/store') %]" method="post" onsubmit="return validaForm();">
 
  <fildset>
   <dl>
-   <dt> Nome Volume: <input type="text" id="volume" name="volume"></dt>
+   <dt> <label> Nome Volume: </label> <input type="text" id="nome" name="nome"></dt>
    <br/>
-   <dt> Classificação: &nbsp; <input type="text" id="classificacao" name="classificacao"> </dt>
+   <dt> <label> Classificação: &nbsp; </label> <input type="text" id="classificacao" name="classificacao"> </dt>
    <br/>
-   <dt> Localização: &nbsp; &nbsp; <input type="text" id="localizacao" name="localizacao"> </dt>
+   <dt> <label> Localização: &nbsp; &nbsp; </label> <input type="text" id="localizacao" name="localizacao"> </dt>
    <br/>
-   <dt> <input type="checkbox" id="representaVolumeFisico" name="representaVolumeFisico"> Representa Volume Físico </dt>
+   <dt> <input type="checkbox" id="representaVolumeFisico" name="representaVolumeFisico" evt="representaVolumeFisico"> <label for="representaVolumeFisico"> Representa Volume Físico </label> </dt>
   </dl>
  <fildset>
  <tr>
@@ -40,6 +40,26 @@
  <script language="javascript">
    generateForm("[% c.uri_for('/auth/registros/digitador/') _ leitura.id_leitura _ '/xsd' %]",
                 "form_container");
+  function validaForm(){
+
+    if(document.getElementById('nome').value == ''){
+      alert('Informe o nome do volume');
+      document.getElementById('nome').focus();
+      return false;
+    }
+
+    if(document.getElementById('classificacao').value == ''){
+      alert('Informe o nome do classificação');
+      document.getElementById('classificacao').focus();
+      return false;
+    }
+
+    if(document.getElementById('localizacao').value == ''){
+      alert('Informe o nome da localização');
+      document.getElementById('localizacao').focus();
+      return false;
+    }
+  }
  </script>
 
 [% INCLUDE 'footer.tt' %]
