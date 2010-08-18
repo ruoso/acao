@@ -31,6 +31,7 @@ use constant VOLUME_NS =>'http://schemas.fortaleza.ce.gov.br/acao/volume.xsd';
 
 my $controle = XML::Compile::Schema->new( Acao->path_to('schemas/volume.xsd') );
 my $controle_w = $controle->compile( WRITER => pack_type( VOLUME_NS, 'volume' ), use_default_namespace => 1 );
+my $controle_r = $controle->compile( READER => pack_type( VOLUME_NS, 'volume') );
 
 =head1 NAME
 
@@ -55,12 +56,24 @@ txn_method 'listar_volumes' => authorized 'volume' => sub {
     my $self = shift;
 
     # sera dentro de uma transacao, e so pode ser usado por gestores de volumes
-    return $self->dbic->resultset('Volume')->search(
-        { 'gestor_volumes.dn' => $self->user->id },
-        {
-	        join => 'gestor_volumes',
-        }
-    );
+    # return $self->dbic->resultset('Volume')->search(
+    #    { 'gestor_volumes.dn' => $self->user->id },
+    #    {
+	#        join => 'gestor_volumes',
+    #    }
+    #);
+    my $xq = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd"; for $x in collection("volume") return $x/ns:volume';
+    $self->sedna->execute($xq);
+    my $result = $self->sedna->get_item;
+
+    my $xml = XML::LibXML->load_xml( string => $result );
+    my $hash = $controle_r->($xml);
+
+warn Dumper($hash);
+# while ( my ($key, $value) = each(%hash) ) {
+#       print "$key => $value\n";
+#   }
+
 };
 
 =item criar_volume($nome, $representaVolumeFisico, $classificacao, $localizacao ,$ip)

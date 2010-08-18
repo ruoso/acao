@@ -66,10 +66,9 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
     else {
        $representaVolumeFisico = '0';
     }
-    warn $representaVolumeFisico;
+
     eval {
         $c->model('Volume')->criar_volume(
-					    $self,
 					    $c->req->param('nome'),
 					    $representaVolumeFisico,
 					    $c->req->param('classificacao'),

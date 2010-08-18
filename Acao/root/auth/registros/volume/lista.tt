@@ -36,7 +36,7 @@
   [% # O foreach abaixo vai buscar diretamente no model por estar livre de contexto %] 
   [% # (nao recebe argumento pela url) %]
 
- [% FOREACH volume IN c.model('Volume').listar_volumes.all %]
+ [% FOREACH volume IN c.model('Volume').listar_volumes %]
   <tr>
     <td><a href="[% c.uri_for('/auth/registros/volume') _ "/" _ volume.id_volume %]">[% volume.nome %]</a></td>
     <td></td>
