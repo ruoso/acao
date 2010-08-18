@@ -29,8 +29,7 @@ use Data::UUID;
 use constant VOLUME_NS =>'http://schemas.fortaleza.ce.gov.br/acao/volume.xsd';
 
 my $controle = XML::Compile::Schema->new( Acao->path_to('schemas/volume.xsd') );
-my $controle_w = $controle->compile( WRITER => pack_type( VOLUME_NS, 'volume' ),
-                                     use_default_namespace => 1 );
+my $controle_w = $controle->compile( WRITER => pack_type( VOLUME_NS, 'volume' ), use_default_namespace => 1 );
 
 =head1 NAME
 
@@ -65,71 +64,63 @@ txn_method 'listar_volumes' => authorized 'gestorvolume' => sub {
 
 =item criar_volume($nome, $estado, $representaVolumeFisico, $classificacao, $localizacao ,$ip)
 
-Salva o documento $xml como um volume. 
-O $ip é guardado para fins de auditoria.
-
 =cut
 
 txn_method 'criar_volume' => authorized 'gestorvolume' => sub {
-    my ( $self, $volume, $xml, $ip ) = @_;
+    my ( $self, $nome, $estado, $representaVolumeFisico, $classificacao, $localizacao, $role ,$ip ) = @_;
 
     my $ug  = new Data::UUID;
     my $uuid = $ug->create();
 
-    $doc_name = 'volume-'. $uuid;
+    my $doc_name = 'volume-'. $uuid;
 
-    $self->sedna->execute('declare namespace cd = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";
-			                 for $x in doc("volume.xsd") return $x');
-    my $xsd = $self->sedna->get_item;
-    my $octets = encode('utf8', $xsd);
+    my $acao;
+    my $dados;
+    my $dataIni;
+    my $dataFim;
 
-    my $x_c_s    = XML::Compile::Schema->new($octets);
-    my @elements = $x_c_s->elements;
+#    $self->sedna->execute('declare namespace cd = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd"; for $x in doc("volume.xsd") return $x');
+#    my $xsd = $self->sedna->get_item;
+#    my $octets = encode('utf8', $xsd);
 
-    my $read = $x_c_s->compile( READER => $elements[0] );
-    my $writ = $x_c_s->compile( WRITER => $elements[0], use_default_namespace => 1 );
+#    my $x_c_s    = XML::Compile::Schema->new($octets);
+#    my @elements = $x_c_s->elements;
+
+#    my $read = $x_c_s->compile( READER => $elements[0] );
+#    my $writ = $x_c_s->compile( WRITER => $elements[0], use_default_namespace => 1 );
     
-     my $xml_en = encode('utf8', $xml);
-
-    my $input_doc = XML::LibXML->load_xml( string => $xml_en );
-    my $element   = $input_doc->getDocumentElement;
-    my $xml_data  = $read->($element);
-
     my $doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
-    my $conteudo_registro = $writ->( $doc, $xml_data );
-    my $res_xml = $controle_w->(
-        $doc,
-        {
-            volume => {
-                nome       => $self->user->id,
-                criacao    => DateTime->now(),
-                fechamento => $ip,
-                arquivamento => ,
-                collection => ,
-                estado => ,
-                representaVolumeFisico => ,
-                classificacao => ,
-                localizacao => ,
-                autorizacao => {
-                                principal => ,
-                                role => ,
-                                dataIni => ,
-                                dataFim => ,
-                                },
-                auditoria => {
-                                data => ,
-                                usuario => ,
-                                acao => ,
-                                ip => ,
-                                dados => ,
-                                },
 
-            },
+    my $res_xml = $controle_w->($doc,
+                                {
+                                    volume => {
+                                        nome       => $nome,
+                                        criacao    => DateTime->now(),
+                                        fechamento => '',
+                                        arquivamento => '',
+                                        collection => $doc_name,
+                                        estado => 'aberto',
+                                        representaVolumeFisico => $representaVolumeFisico,,
+                                        classificacao => $classificacao,
+                                        localizacao => $localizacao,
+                                        autorizacao => {
+                                                        principal => $self->user->id,
+                                                        role => $role,
+                                                        dataIni => $dataIni,
+                                                        dataFim => $dataFim,
+                                                        },
+                                        auditoria => {
+                                                        data => DateTime->now(),
+                                                        usuario => $self->user->id,
+                                                        acao => $acao,
+                                                        ip => $ip,
+                                                        dados => $dados,
+                                                        },
+                                    },
         }
     );
 
-    $self->sedna->conn->loadData( $res_xml->toString, $docname,
-        'leitura-' . $leitura->id_leitura );
+#    $self->sedna->conn->loadData( $res_xml->toString, $doc_name, 'volume' );
     $self->sedna->conn->endLoadData();
 };
 
