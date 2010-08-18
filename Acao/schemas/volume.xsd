@@ -8,7 +8,7 @@
 				<xs:element name="fechamento" type="xs:dateTime" use="optional" />
 				<xs:element name="arquivamento" type="xs:dateTime" use="optional" />
 				<xs:element name="collection" type="xs:string" />
-				<xs:element name="estado" type="xs:string">
+				<xs:element name="estado">
 					<xs:simpleType>
 						<xs:restriction base="xs:string">
 							<xs:enumeration value="aberto" />
@@ -21,17 +21,15 @@
 				<xs:element name="classificacao" type="xs:string"
 					minOccurs="unbounded" />
 				<xs:element name="localizacao" type="xs:string" />
-				<xs:element name="autorizacao" type="xs:string">
+				<xs:element name="autorizacao">
 					<xs:complexType>
-						<xs:sequence>
 							<xs:attribute name="principal" type="xs:string" use="required" />
 							<xs:attribute name="role" type="xs:string" use="required" />
 							<xs:attribute name="dataIni" type="xs:string" use="required" />
 							<xs:attribute name="dataFim" type="xs:string" use="required" />
-						</xs:sequence>
 					</xs:complexType>
 				</xs:element>
-				<xs:element name="auditoria" type="xs:string">
+				<xs:element name="auditoria">
 					<xs:complexType>
 						<xs:attribute name="data" type="xs:dateTime" use="required" />
 						<xs:attribute name="usuario" type="xs:string" use="required" />

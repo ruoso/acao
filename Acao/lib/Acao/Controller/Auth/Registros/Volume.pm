@@ -32,55 +32,24 @@ digitador.
 
 =item base
 
-Ação raiz para as ações de gestor volume.
+Ação raiz para as ações de digitador.
 
 =cut
 
-sub base : Chained('/auth/registros/base') : PathPart('volume') :
+sub base : Chained('/auth/registros/base') : PathPart('gestorvolume') :
   CaptureArgs(0) {
     my ( $self, $c ) = @_;
 }
 
 =item lista
 
-Delega à view a renderização da lista de volumes que esse gestor
+Delega à view a renderização da lista de leituras que esse gestorvolume
 tem acesso.
 
 =cut
 
 sub lista : Chained('base') : PathPart('') : Args(0) {
     my ( $self, $c ) = @_;
-}
-
-sub form : Chained('base') : PathPart('criarvolume') : Args(0) {
-    my ( $self, $c ) = @_;
-}
-
-=item store
-
-Salva o xml como uma nova digitação.
-
-=cut
-
-sub store : Chained('base') : PathPart('store') : Args(0) {
-    my ( $self, $c ) = @_;
-    my $volume = $c->stash->{volume};
-
-    eval {
-        $c->model('Volume')
-          ->salvar_digitacao( $leitura, $xml,
-            scalar( $c->req->param('controle') ),
-            $c->req->address );
-    };
-
-    if ($@) {
-        $c->flash->{erro} = $@ . "";
-    }
-    else {
-        $c->flash->{sucesso} = 'Digitação armazenada com sucesso';
-    }
-
-    $c->res->redirect( $c->uri_for('/auth/registros/digitador') );
 }
 
 =back
