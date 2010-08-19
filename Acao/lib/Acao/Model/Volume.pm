@@ -54,26 +54,18 @@ Retorna os volumes os quais o usuário autenticado tem acesso.
 
 txn_method 'listar_volumes' => authorized 'volume' => sub {
     my $self = shift;
+    my $result;
+    $self->sedna->execute('declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd"; 
+                           for $x in collection("volume") return $x');
 
-    # sera dentro de uma transacao, e so pode ser usado por gestores de volumes
-    # return $self->dbic->resultset('Volume')->search(
-    #    { 'gestor_volumes.dn' => $self->user->id },
-    #    {
-	#        join => 'gestor_volumes',
-    #    }
-    #);
-    my $xq = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd"; for $x in collection("volume") return $x/ns:volume';
-    $self->sedna->execute($xq);
-    my $result = $self->sedna->get_item;
+    while (my $doc = $self->sedna->get_item()) { 
+        $result .= $doc;
+    }
 
-    my $xml = XML::LibXML->load_xml( string => $result );
-    my $hash = $controle_r->($xml);
+    my $xml_volume = XML::LibXML->load_xml( string => $result );
+    my $hash_volume = $controle_r->($xml_volume);
 
-warn Dumper($hash);
-# while ( my ($key, $value) = each(%hash) ) {
-#       print "$key => $value\n";
-#   }
-
+    return $hash_volume;
 };
 
 =item criar_volume($nome, $representaVolumeFisico, $classificacao, $localizacao ,$ip)
