@@ -21,14 +21,24 @@
 [% INCLUDE 'auth/registros/volume/header.tt' %]
 [% INCLUDE 'errosucesso.tt' %]
 
+[%# definição da variavel schema para este template %]
+[% CALL c.model('Sedna').begin %]
+[% SET schema = c.model('Sedna').get_document('volume.xsd') %]
+[% CALL c.model('Sedna').commit %]
+
+[% xqueryret = PROCESS 'auth/registros/volume/lista_xqueryret.tt' %]
+[% xquery = PROCESS 'auth/registros/volume/lista_xquery.tt' %]
+
 <table>
 <thead>
  <tr>
   <th>Volume</th>
-  <th>Autor</th>
-  <th>Grupo</th>
-  <th>Data da Criação</th>
-  <th>Dossiês</th>
+  <th>Criação</th>
+  <th>Fechamento</th>
+  <th>Arquivamento</th>
+  <th>Estado</th>
+  <th>Classificação</th>
+  <th>Localização</th>
  </tr>
 </thead>
 <TBODY>
@@ -36,9 +46,19 @@
   [% # O foreach abaixo vai buscar diretamente no model por estar livre de contexto %] 
   [% # (nao recebe argumento pela url) %]
 
- [% FOREACH volume IN c.model('Volume').listar_volumes %]
+ [% TRY %]
+ [% c.model('Sedna').begin %]
+ [% c.model('Sedna').execute( xquery )%]
 
- [% END %] 
+ [% WHILE (item = c.model('Sedna').get_item) %]  
+ [% item %]
+ [% END %]
+ [% c.model('Sedna').commit %]
+[% CATCH %]
+ <div class="erro">ERRO AO PROCESSAR CONSULTA:
+  <PRE>[% error.info %]</PRE>
+ </div>
+[% END %]
 
 <tr>
     <td><a href="[% c.uri_for('/auth/registros/volume/criarvolume') %]">Criar Volume</a></td>

@@ -56,16 +56,15 @@ txn_method 'listar_volumes' => authorized 'volume' => sub {
     my $self = shift;
     my $result;
     $self->sedna->execute('declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd"; 
-                           for $x in collection("volume") return $x');
+                            for $x in collection("volume") return $x/ns:volume');
 
+ my %hash_volume;
     while (my $doc = $self->sedna->get_item()) { 
-        $result .= $doc;
+        $result = $doc;
+        my $xml_volume = XML::LibXML->load_xml( string => $result );
+        %hash_volume = ($controle_r->($xml_volume));
     }
 
-    my $xml_volume = XML::LibXML->load_xml( string => $result );
-    my $hash_volume = $controle_r->($xml_volume);
-
-    return $hash_volume;
 };
 
 =item criar_volume($nome, $representaVolumeFisico, $classificacao, $localizacao ,$ip)
