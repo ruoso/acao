@@ -21,5 +21,8 @@
         <td>
 	        {$x/ns:volume/ns:localizacao/text()}
         </td>
+        <td>
+	       { if ( $x/ns:volume/ns:representaVolumeFisico/text() eq '1' ) then ("Sim") else ("Não") }
+        </td>
     </tr>
 )
