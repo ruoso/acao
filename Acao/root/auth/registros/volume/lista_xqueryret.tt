@@ -24,5 +24,14 @@
         <td>
 	       { if ( $x/ns:volume/ns:representaVolumeFisico/text() eq '1' ) then ("Sim") else ("Não") }
         </td>
+        <td>
+	       <a href="[% c.uri_for('')%]" class="aprovar" title="abrir" > Abrir </a>
+        </td>
+        <td>
+           <a href="[% c.uri_for('')%]" class="fechar" title="Fechar" > Fechar </a>
+        </td>
+        <td>
+           <a href="[% c.uri_for('')%]" class="fechar" title="Arquivar" > Arquivar </a>
+        </td>
     </tr>
 )
