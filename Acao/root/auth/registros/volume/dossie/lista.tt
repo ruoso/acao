@@ -1,0 +1,73 @@
+[%#
+# Copyright 2010 - Prefeitura Municipal de Fortaleza
+#
+# Este arquivo é parte do programa Ação - Sistema de Acompanhamento de
+# Projetos Sociais
+#
+# O Ação é um software livre; você pode redistribui-lo e/ou modifica-lo
+# dentro dos termos da Licença Pública Geral GNU como publicada pela
+# Fundação do Software Livre (FSF); na versão 2 da Licença.
+#
+# Este programa é distribuido na esperança que possa ser util, mas SEM
+# NENHUMA GARANTIA; sem uma garantia implicita de ADEQUAÇÂO a qualquer
+# MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a Licença Pública Geral GNU
+# para maiores detalhes.
+#
+# Você deve ter recebido uma cópia da Licença Pública Geral GNU, sob o
+# título "LICENCA.txt", junto com este programa, se não, escreva para a
+# Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
+%]
+[% META title = 'Lista de Leituras para o Digitador'%]
+[% INCLUDE 'auth/registros/volume/dossie/header.tt' %]
+[% INCLUDE 'errosucesso.tt' %]
+
+[%# definição da variavel schema para este template %]
+[% CALL c.model('Sedna').begin %]
+[% SET schema = c.model('Sedna').get_document('volume.xsd') %]
+[% CALL c.model('Sedna').commit %]
+
+[% xqueryret = PROCESS 'auth/registros/volume/dossie/lista_xqueryret.tt' %]
+[% xquery = PROCESS 'auth/registros/volume/dossie/lista_xquery.tt' %]
+
+<table>
+<thead>
+ <tr>
+  <th>Dossiê</th>
+  <th>Criação</th>
+  <th>Fechamento</th>
+  <th>Arquivamento</th>
+  <th>Estado</th>
+  <th>Classificação</th>
+  <th>Localização</th>
+  <th>Representa Volume Físico</th>
+  <th colspan="3">Ação</th>
+ </tr>
+</thead>
+<TBODY>
+
+  [% # O foreach abaixo vai buscar diretamente no model por estar livre de contexto %] 
+  [% # (nao recebe argumento pela url) %]
+
+ [% TRY %]
+ [% c.model('Sedna').begin %]
+ [% c.model('Sedna').execute( xquery )%]
+
+ [% WHILE (item = c.model('Sedna').get_item) %]  
+ [% item %]
+ [% END %]
+ [% c.model('Sedna').commit %]
+[% CATCH %]
+ <div class="erro">ERRO AO PROCESSAR CONSULTA:
+  <PRE>[% error.info %]</PRE>
+ </div>
+[% END %]
+
+<tr>
+    <td><a href="[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/criardossie') %]">Criar Dossiê</a></td>
+</tr>
+</TBODY>
+</table>
+
+
+
+[% INCLUDE 'footer.tt' %]
