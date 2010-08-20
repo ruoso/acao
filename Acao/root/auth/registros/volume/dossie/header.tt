@@ -17,7 +17,7 @@
 # título "LICENCA.txt", junto com este programa, se não, escreva para a
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
 %]
-[% breadcrumb.unshift({ url => c.uri_for('/auth/registros/gestorvolume/listarvolume') _ leitura.id_leitura,
-			title => 'Formulário',
-			text => 'Formulário' }) %]
-[% INCLUDE 'auth/registros/gestorvolume/header.tt' %]
+[% breadcrumb.unshift({ url => c.uri_for('/auth/registros/volume/') _ id_volume,
+			title => 'Dossiê',
+			text => 'Dossiê' }) %]
+[% INCLUDE 'auth/registros/volume/header.tt' %]

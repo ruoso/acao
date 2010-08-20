@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"
 	elementFormDefault="qualified">
-	<xs:element name="volume">
-		<xs:complexType name="volume">
+	<xs:element name="dossie">
+		<xs:complexType>
 			<xs:sequence>
 				<xs:element name="nome" type="xs:string" />
 				<xs:element name="criacao" type="xs:dateTime" />
@@ -19,8 +19,9 @@
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
-				<xs:element name="representaVolumeFisico" type="xs:boolean" />
-				<xs:element name="classificacao" type="xs:string" minOccurs="unbounded" />
+				<xs:element name="representaDossieFisico" type="xs:boolean" />
+				<xs:element name="classificacao" type="xs:string"
+					minOccurs="unbounded" />
 				<xs:element name="localizacao" type="xs:string" />
 				<xs:element name="autorizacao">
 					<xs:complexType>
@@ -37,6 +38,27 @@
 						<xs:attribute name="acao" type="xs:string" use="required" />
 						<xs:attribute name="ip" type="xs:string" use="required" />
 						<xs:attribute name="dados" type="xs:string" use="required" />
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="documento" maxOccurs="unbounded" >
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="id" type="xs:string" />
+							<xs:element name="controle" type="xs:string" />
+							<xs:element name="estado">
+								<xs:complexType>
+									<xs:attribute name="Aberto" type="xs:string" use="optional" />
+									<xs:attribute name="Fechado" type="xs:string" use="optional" />
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="conteudo">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:any minOccurs="1" maxOccurs="unbounded" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
 					</xs:complexType>
 				</xs:element>
 			</xs:sequence>

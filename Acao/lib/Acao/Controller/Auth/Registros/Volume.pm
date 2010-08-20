@@ -78,13 +78,8 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
 
     };
 
-    if ($@) {
-        $c->flash->{erro} = $@ . "";
-    }
-    else {
-        $c->flash->{sucesso} = 'Volume criado com sucesso';
-    }
-
+    if ($@) { $c->flash->{erro} = $@ . ""; }
+    else { $c->flash->{sucesso} = 'Volume criado com sucesso'; }
     $c->res->redirect( $c->uri_for('/auth/registros/volume') );
 }
 =back

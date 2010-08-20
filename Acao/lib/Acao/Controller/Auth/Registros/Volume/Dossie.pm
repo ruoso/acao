@@ -23,7 +23,7 @@ use parent 'Catalyst::Controller';
 
 =head1 NAME
 
-Acao::Controller::Auth::Registros::GestorVolume::Dossie - Controlador
+Acao::Controller::Auth::Registros::Volume::Dossie - Controlador
 que implementa as ações de digitação de uma leitura específica.
 
 =head1 ACTIONS
@@ -32,27 +32,64 @@ que implementa as ações de digitação de uma leitura específica.
 
 =item base
 
-Carrega para o stash os dados da leitura.
+Carrega para o stash os dados do dossiê.
 
 =cut
 
-sub base : Chained('/auth/registros/gestorvolume/base') : PathPart('') :
-  CaptureArgs(1) {
-    my ( $self, $c, $id_leitura ) = @_;
-    $c->stash->{volume} = 'volume.xsd';
+sub base : Chained('/auth/registros/volume/base') :PathPart('') :CaptureArgs(1) {
+    my ( $self, $c, $id_volume ) = @_;
+    $c->stash->{id_volume} = $id_volume
+      or $c->detach('/public/default');
+
+
 }
 
 =item form
 
-Delega à view a renderização do formulário dessa leitura para uma nova
-digitação.
+Delega à view a renderização do formulário desse dossiê.
 
 =cut
 
-sub forms : Chained('base') : PathPart('') : Args(0) {
+sub lista : Chained('base') : PathPart('') : Args(0) {
 }
 
+sub form : Chained('base') : PathPart('criardossie') : Args(0) {
+}
 
+sub store : Chained('base') : PathPart('store') : Args(0) {
+    my ( $self, $c ) = @_;
+
+    my $representaVolumeFisico;
+
+    if ($c->req->param('representaVolumeFisico') eq 'on'){
+       $representaVolumeFisico = '1';
+    }
+    else {
+       $representaVolumeFisico = '0';
+    }
+
+
+    eval {
+        $c->model('Volume')->criar_volume(
+					    $c->req->param('nome'),
+					    $representaVolumeFisico,
+					    $c->req->param('classificacao'),
+					    $c->req->param('localizacao'),
+					    $c->req->address
+					 );
+
+    };
+
+    if ($@) { $c->flash->{erro} = $@ . "";  }
+    else { $c->flash->{sucesso} = 'Dossie criado com sucesso'; }
+    $c->res->redirect( $c->uri_for('/auth/registros/volume/dossie') );
+}
+
+sub xsd : Chained('base') : PathPart('xsd') : Args(0) {
+    my ( $self, $c ) = @_;
+    $c->stash->{document} = $c->model('Dossie')->obter_xsd_dossie( 'sdh-identificacaoPessoal.xsd' );
+    $c->forward( $c->view('XML') );
+}
 
 =head1 COPYRIGHT AND LICENSING
 
