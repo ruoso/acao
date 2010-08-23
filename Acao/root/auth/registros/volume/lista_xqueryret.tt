@@ -1,7 +1,7 @@
 (
     <tr>
         <td>
-	        <a href="[% c.uri_for('') %]/{$x/ns:volume/ns:collection/text()} " > {$x/ns:volume/ns:nome/text()} </a>
+	        <a href="[% c.uri_for('/auth/registros/volume') %]/{$x/ns:volume/ns:collection/text()}" > {$x/ns:volume/ns:nome/text()} </a>
         </td>
         <td>
 	        {$x/ns:volume/ns:criacao/text()}

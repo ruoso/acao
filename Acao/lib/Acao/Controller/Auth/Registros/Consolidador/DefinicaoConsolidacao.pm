@@ -42,9 +42,7 @@ sub base : Chained('/auth/registros/consolidador/base') : PathPart('') :
   CaptureArgs(1) {
     my ( $self, $c, $id_definicao_consolidacao ) = @_;
     $c->stash->{id_definicao_consolidacao} = $id_definicao_consolidacao;
-    $c->stash->{definicao_consolidacao} =
-      $c->model("Consolidador")
-      ->obter_definicao_consolidacao($id_definicao_consolidacao)
+    $c->stash->{definicao_consolidacao} = $c->model("Consolidador")->obter_definicao_consolidacao($id_definicao_consolidacao)
       or $c->detach('/public/default');
 }
 

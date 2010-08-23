@@ -70,10 +70,11 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
 # $c->req->param('nome'), $representaDossieFisico, $c->req->param('classificacao'), $c->req->param('localizacao'),
     eval {
         $c->model('Dossie')->criar_dossie(
-		                          $c->req->address,
-		                          $c->request->param('processed_xml'),
-					  $c->req->param('id_volume'),
-					 );
+		                                  $c->req->address,
+		                                  $c->request->param('processed_xml'),
+					                      $c->req->param('id_volume'),
+					                      $c->req->param('controle')
+					                     );
 
     };
 

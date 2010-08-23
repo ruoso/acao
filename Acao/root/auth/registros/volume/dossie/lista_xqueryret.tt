@@ -1,28 +1,33 @@
 (
     <tr>
         <td>
-	        <a href="[% c.uri_for('') %]/{$x/ns:volume/ns:collection/text()} " > {$x/ns:volume/ns:nome/text()} </a>
+	       <a href="[% c.uri_for('/auth/registros/volume/') %]{$x/ns:dossie/ns:collection/text()}/{$x/ns:dossie/ns:documento/ns:controle/text()}" > 
+                   {$x/ns:dossie/ns:documento/ns:controle/text()}
+           </a>
         </td>
         <td>
-	        {$x/ns:volume/ns:criacao/text()}
+	        {$x/ns:dossie/ns:nome/text()}
         </td>
         <td>
-	        {$x/ns:volume/ns:fechamento/text()}
+	        {$x/ns:dossie/ns:criacao/text()}
         </td>
         <td>
-	        {$x/ns:volume/ns:arquivamento/text()}
+	        {$x/ns:dossie/ns:fechamento/text()}
         </td>
         <td>
-	        {$x/ns:volume/ns:estado/text()}
+	        {$x/ns:dossie/ns:arquivamento/text()}
         </td>
         <td>
-	        {$x/ns:volume/ns:classificacao/text()}
+	        {$x/ns:dossie/ns:estado/text()}
         </td>
         <td>
-	        {$x/ns:volume/ns:localizacao/text()}
+	        {$x/ns:dossie/ns:classificacao/text()}
         </td>
         <td>
-	       { if ( $x/ns:volume/ns:representaVolumeFisico/text() eq '1' ) then ("Sim") else ("Não") }
+	        {$x/ns:dossie/ns:localizacao/text()}
+        </td>
+        <td>
+	       { if ( $x/ns:dossie/ns:representadossieFisico/text() eq '1' ) then ("Sim") else ("Não") }
         </td>
         <td>
 	       <a href="[% c.uri_for('')%]" class="aprovar" title="abrir" > Abrir </a>
@@ -33,6 +38,6 @@
         <td>
            <a href="[% c.uri_for('')%]" class="fechar" title="Arquivar" > Arquivar </a>
         </td>
-	<input type="hidden" id="id_volume" nome="id_volume" value="{$x/ns:volume/ns:collection/text()}"/>
+	<input type="hidden" id="id_dossie" nome="id_dossie" value="{$x/ns:dossie/ns:collection/text()}"/>
     </tr>
 )

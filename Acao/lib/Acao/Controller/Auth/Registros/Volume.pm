@@ -73,7 +73,7 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
 					    $representaVolumeFisico,
 					    $c->req->param('classificacao'),
 					    $c->req->param('localizacao'),
-					    $c->req->address
+					    $c->req->address,
 					 );
 
     };
