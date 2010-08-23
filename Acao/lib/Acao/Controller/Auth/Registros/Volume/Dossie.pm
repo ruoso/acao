@@ -59,30 +59,27 @@ sub form : Chained('base') : PathPart('criardossie') : Args(0) {
 sub store : Chained('base') : PathPart('store') : Args(0) {
     my ( $self, $c ) = @_;
 
-    my $representaVolumeFisico;
+    my $representaDossieFisico;
 
-    if ($c->req->param('representaVolumeFisico') eq 'on'){
-       $representaVolumeFisico = '1';
+    if ($c->req->param('representaDossieFisico') eq 'on'){
+       $representaDossieFisico = '1';
     }
     else {
-       $representaVolumeFisico = '0';
+       $representaDossieFisico = '0';
     }
-
-
+# $c->req->param('nome'), $representaDossieFisico, $c->req->param('classificacao'), $c->req->param('localizacao'),
     eval {
-        $c->model('Volume')->criar_volume(
-					    $c->req->param('nome'),
-					    $representaVolumeFisico,
-					    $c->req->param('classificacao'),
-					    $c->req->param('localizacao'),
-					    $c->req->address
+        $c->model('Dossie')->criar_dossie(
+		                          $c->req->address,
+		                          $c->request->param('processed_xml'),
+					  $c->req->param('id_volume'),
 					 );
 
     };
 
     if ($@) { $c->flash->{erro} = $@ . "";  }
     else { $c->flash->{sucesso} = 'Dossie criado com sucesso'; }
-    $c->res->redirect( $c->uri_for('/auth/registros/volume/dossie') );
+    $c->res->redirect( $c->uri_for('/auth/registros/volume/' . $c->req->param('id_volume') ) );
 }
 
 sub xsd : Chained('base') : PathPart('xsd') : Args(0) {

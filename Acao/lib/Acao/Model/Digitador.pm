@@ -25,15 +25,11 @@ use XML::Compile::Util;
 use DateTime;
 use Encode;
 
-use constant DIGITACAO_NS =>
-  'http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd';
+use constant DIGITACAO_NS => 'http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd';
 
-my $controle =
-  XML::Compile::Schema->new( Acao->path_to('schemas/controledigitacao.xsd') );
-my $controle_w = $controle->compile(
-    WRITER                => pack_type( DIGITACAO_NS, 'registroDigitacao' ),
-    use_default_namespace => 1
-);
+my $controle = XML::Compile::Schema->new( Acao->path_to('schemas/controledigitacao.xsd') );
+my $controle_w = $controle->compile(WRITER => pack_type( DIGITACAO_NS, 'registroDigitacao' ),
+				    use_default_namespace => 1 );
 
 =head1 NAME
 
@@ -117,26 +113,20 @@ txn_method 'salvar_digitacao' => authorized 'digitador' => sub {
        $leitura->id_leitura, $self->user->id, time;
     $docname =~ s/[^a-zA-Z0-9]/_/gs;
 
-    my $xq =
-'declare namespace cd = "http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd"; 
-	      for $x in
-              collection("leitura-'
-      . $leitura->id_leitura
-      . '")/cd:registroDigitacao/cd:documento[cd:controle="'
-      . $controle . '"]
-              return data($x/cd:estadoControle)';
+    my $xq = 'declare namespace cd = "http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd"; 
+	      for $x in collection("leitura-'. $leitura->id_leitura. '")/cd:registroDigitacao/cd:documento
+		[cd:controle="'. $controle . '"] return data($x/cd:estadoControle)';
+
     $self->sedna->execute($xq);
+
     while ( my $estadoGrupo = $self->sedna->get_item ) {
         if ( $estadoGrupo eq "Fechado" ) {
             die "formulario-fechado";
         }
     }
 
-    $self->sedna->execute(
-'declare namespace cd = "http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd";
-			    for $x in doc("'
-          . $leitura->instrumento->xml_schema . '") return $x'
-    );
+    $self->sedna->execute('declare namespace cd = "http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd";
+			    for $x in doc("'. $leitura->instrumento->xml_schema . '") return $x');
     my $xsd = $self->sedna->get_item;
     my $octets = encode('utf8', $xsd);
 
@@ -152,7 +142,7 @@ txn_method 'salvar_digitacao' => authorized 'digitador' => sub {
     my $input_doc = XML::LibXML->load_xml( string => $xml_en );
     my $element   = $input_doc->getDocumentElement;
     my $xml_data  = $read->($element);
-
+warn $xml;
     my $doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
     my $conteudo_registro = $writ->( $doc, $xml_data );
     my $res_xml = $controle_w->(

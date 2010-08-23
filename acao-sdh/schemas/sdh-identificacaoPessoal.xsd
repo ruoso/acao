@@ -1,7 +1,7 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-identificacaoPessoal.xsd"
-	targetNamespace="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-identificacaoPessoal.xsd"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-identificacaoPessoal.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-identificacaoPessoal.xsd"
 	elementFormDefault="qualified">
 
 	<xs:element name="formIdentificacaoPessoal" type="formIdentificacaoPessoal">
@@ -15,8 +15,7 @@
 	<xs:complexType name="formIdentificacaoPessoal">
 		<xs:sequence>
 
-			<xs:element name="nomeCompleto" type="xs:string"
-				minOccurs="0">
+			<xs:element name="nomeCompleto" type="xs:string" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
 						<label>Nome Completo</label>

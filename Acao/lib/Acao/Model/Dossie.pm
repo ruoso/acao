@@ -27,11 +27,9 @@ use Encode;
 use Data::UUID;
 use Data::Dumper;
 
-use constant VOLUME_NS =>'http://schemas.fortaleza.ce.gov.br/acao/volume.xsd';
-
-my $controle = XML::Compile::Schema->new( Acao->path_to('schemas/volume.xsd') );
-my $controle_w = $controle->compile( WRITER => pack_type( VOLUME_NS, 'volume' ), use_default_namespace => 1 );
-my $controle_r = $controle->compile( READER => pack_type( VOLUME_NS, 'volume') );
+use constant DOSSIE_NS =>'http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd';
+my $controle = XML::Compile::Schema->new( Acao->path_to('schemas/dossie.xsd') );
+my $controle_w = $controle->compile( WRITER => pack_type( DOSSIE_NS, 'dossie' ), use_default_namespace => 1 );
 
 =head1 NAME
 
@@ -53,6 +51,77 @@ de volume.
 txn_method 'obter_xsd_dossie' => authorized 'volume' => sub {
     my ( $self, $dossie ) = @_;
     return $self->sedna->get_document( $dossie );
+};
+
+=item criar_dossie()
+
+=cut
+
+txn_method 'criar_dossie' => authorized 'volume' => sub {
+    my $self = shift;
+    my ($ip, $xml, $id_volume ) = @_;
+    my($nome, $representaDossieFisico, $classificacao, $localizacao);
+    my $acao = 'inserir';
+    my $dados = '';
+    my $dataIni = DateTime->now();
+    my $dataFim = DateTime->now();
+    my $role = 'role';
+
+    $self->sedna->execute('declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/sdh-identificacaoPessoal.xsd"; 
+			   for $x in doc("sdh-identificacaoPessoal.xsd") return $x');
+
+    my $xsd = $self->sedna->get_item;
+    my $octets = encode('utf8', $xsd);
+
+    my $x_c_s    = XML::Compile::Schema->new($octets);
+    my @elements = $x_c_s->elements;
+
+    my $read = $x_c_s->compile( READER => $elements[0] );
+    my $writ = $x_c_s->compile( WRITER => $elements[0], use_default_namespace => 1 );
+    
+    my $xml_en = encode('utf8', $xml);
+
+    my $input_doc = XML::LibXML->load_xml( string => $xml_en );
+    my $element   = $input_doc->getDocumentElement;
+    my $xml_data  = $read->($element);
+
+    my $doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
+    my $conteudo_registro = $writ->( $doc, $xml_data );
+    my $res_xml = $controle_w->($doc,
+                                {
+                                    nome       => 'a',
+                                    criacao    => DateTime->now(),
+                                    fechamento => '',
+                                    arquivamento => '',
+                                    collection => $id_volume,
+                                    estado => 'aberto',
+                                    representaDossieFisico => 1,
+                                    classificacao => $classificacao,
+                                    localizacao => 'a',
+                                    autorizacao => {
+                                                    principal => $self->user->id,
+                                                    role => $role,
+                                                    dataIni => $dataIni,
+                                                    dataFim => $dataFim,
+                                                    },
+                                    auditoria => {
+                                                    data => DateTime->now(),
+                                                    usuario => $self->user->id,
+                                                    acao => $acao,
+                                                    ip => $ip,
+                                                    dados => $dados,
+                                                    },
+                                    documento => {
+                                                    id             => '',
+                                                    controle       => $controle,
+                                                    estado         => 'aberto',
+                                                    conteudo       => { "{}conteudo" => $conteudo_registro },
+                                                }
+                                }
+                               );
+
+    $self->sedna->conn->loadData( $res_xml->toString, 'dossie', $id_volume );
+    $self->sedna->conn->endLoadData();
 };
 
 =head1 COPYRIGHT AND LICENSING
