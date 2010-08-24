@@ -23,8 +23,9 @@
 <form action="[% c.uri_for('/auth/registros/volume/dossie') _ id_volume _ '/store' %]" method="post"
     onsubmit="return generateXml('[% c.uri_for('/auth/registros/volume/dossie') _ id_volume _ '/xsd' %]', this.processed_xml);">
  <input type="hidden" name="processed_xml">
- <input type="hidden" name="id_volume" value="[% id_volume %]">
-
+ <input type="hidden" name="id_volume" value="[%id_volume%]">
+ <input type="hidden" name="xsdDocumento" value="[%xsdDocumento%]">
+ [% xsdDocumento %]
  <fieldset>
   <legend>Dados do Volume</legend>
   <dl>
@@ -35,6 +36,13 @@
     <dt>Localização:</dt>
     <dd>&nbsp;</dd>
     <dd>&nbsp;</dd>
+    <dt>Controle:</dt>
+    <dd>
+	  <div name="xsdFormValidation">
+		<input type="text" name="controle" />
+		<div name="requiredField" style="display: none;">true</div>
+	  </div>
+    </dd>
   </dl>
  </fieldset>
  
@@ -46,7 +54,7 @@
  </form>
 
  <script language="javascript">
-   generateForm("[% c.uri_for('/auth/registros/volume/') _ id_volume _ '/xsd' %]", "form_container");
+   generateForm("[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/' _ controle _ '/xsd') %]", "form_container");
  </script>
 
 [% INCLUDE 'footer.tt' %]

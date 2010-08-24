@@ -40,8 +40,6 @@ sub base : Chained('/auth/registros/volume/base') :PathPart('') :CaptureArgs(1) 
     my ( $self, $c, $id_volume ) = @_;
     $c->stash->{id_volume} = $id_volume
       or $c->detach('/public/default');
-
-
 }
 
 =item form

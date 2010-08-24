@@ -61,12 +61,33 @@
  </div>
 [% END %]
 
-<tr>
-    <td><a href="[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/inserirdocumento') %]">Inserir Documento</a></td>
-</tr>
 </TBODY>
 </table>
+<br/>
 
+<form action="[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/' _ controle _ '/inserirdocumento') %]" id="form" name="form" method="post" onsubmit="return validaDropDonw()">
 
+    <fildset>
+        <dt>
+            <select id="xsdDocumento" name="xsdDocumento">
+                <option value="">Escolha uma opção</option>
+                <option value="sdh-educacao.xsd">Educação</option>
+            </select>
+
+            <input type="submit"  value="Inserir Documento">
+        </dt>
+    </fildset>
+
+</form>
+
+<script language="javascript" type="text/javascript">
+    function validaDropDonw(){
+        if (document.getElementById('xsdDocumento').value == '') {
+            alert('Selecine um tipo de documento');
+            document.getElementById('xsdDocumento').focus();
+            return false;
+        }
+    }
+</script>
 
 [% INCLUDE 'footer.tt' %]

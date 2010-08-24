@@ -21,6 +21,7 @@ use strict;
 use warnings;
 use parent 'Catalyst::Controller';
 
+
 =head1 NAME
 
 Acao::Controller::Auth::Registros::Volume::Dossie::Documento - Controlador
@@ -37,10 +38,12 @@ Carrega para o stash os dados do dossiê.
 =cut
 
 sub base : Chained('/auth/registros/volume/base') :PathPart('') :CaptureArgs(2) {
-    my ( $self, $c, $id_volume, $controle ) = @_;
+    my ( $self, $c, $id_volume, $controle) = @_;
     $c->stash->{id_volume} = $id_volume;
     $c->stash->{controle} = $controle
       or $c->detach('/public/default');
+    $c->stash->{xsdDocumento} = '|'.$c->request->param('xsdDocumento').'|';
+    #$c->stash->{xsdDocumento} = 'sdh-educacao.xsd';
 }
 
 =item form
@@ -75,7 +78,7 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
 
 sub xsd : Chained('base') : PathPart('xsd') : Args(0) {
     my ( $self, $c ) = @_;
-    $c->stash->{document} = $c->model('Dossie')->obter_xsd_dossie( 'sdh-identificacaoPessoal.xsd' );
+    $c->stash->{document} = $c->model('Documento')->obter_xsd_dossie( $c->stash->{xsdDocumento} );
     $c->forward( $c->view('XML') );
 }
 
