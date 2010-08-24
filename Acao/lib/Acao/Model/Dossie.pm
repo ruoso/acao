@@ -86,10 +86,11 @@ txn_method 'criar_dossie' => authorized 'volume' => sub {
     my $xml_data  = $read->($element);
 
     my $doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
+
     my $conteudo_registro = $writ->( $doc, $xml_data );
     my $res_xml = $controle_w->($doc,
                                 {
-                                    nome       => 'a',
+                                    nome       => $xml_data->{nomeCompleto},
                                     criacao    => DateTime->now(),
                                     fechamento => '',
                                     arquivamento => '',
@@ -120,7 +121,7 @@ txn_method 'criar_dossie' => authorized 'volume' => sub {
                                 }
                                );
 
-    $self->sedna->conn->loadData( $res_xml->toString, 'dossie', $id_volume );
+    $self->sedna->conn->loadData( $res_xml->toString, $controle, $id_volume );
     $self->sedna->conn->endLoadData();
 };
 
