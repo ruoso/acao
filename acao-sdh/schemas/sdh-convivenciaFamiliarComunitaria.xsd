@@ -1,13 +1,14 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-convivenciaFamiliarComunitaria.xsd"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
 	targetNamespace="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-convivenciaFamiliarComunitaria.xsd"
 	elementFormDefault="qualified">
 
 	<xs:element name="formConvivenciaFamiliarComunitaria" type="formConvivenciaFamiliarComunitaria">
 		<xs:annotation>
 			<xs:appinfo>
-				<label>CONVIVÊNCIA FAMILIAR E COMUNITÁRIA</label>
+				<xhtml:label>CONVIVÊNCIA FAMILIAR E COMUNITÁRIA</xhtml:label>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
@@ -19,7 +20,7 @@
 
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Convêniencia Familiar e Comunitária</label>
+						<xhtml:label>Convêniencia Familiar e Comunitária</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 
@@ -29,7 +30,7 @@
 						<xs:element name="nome" type="xs:string" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Nome</label>
+									<xhtml:label>Nome</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -37,7 +38,7 @@
 						<xs:element name="parentesco" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>*Parentesco</label>
+									<xhtml:label>*Parentesco</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 
@@ -63,7 +64,7 @@
 						<xs:element name="idade" type="xs:string" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Idade</label>
+									<xhtml:label>Idade</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -71,7 +72,7 @@
 						<xs:element name="escolaridade" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>**Escolaridade</label>
+									<xhtml:label>**Escolaridade</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 
@@ -95,7 +96,7 @@
 						<xs:element name="situacaoEscolaridade" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>***Situação da Escolaridade</label>
+									<xhtml:label>***Situação da Escolaridade</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 
@@ -113,7 +114,7 @@
 						<xs:element name="ocupacao" type="xs:string" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Ocupação</label>
+									<xhtml:label>Ocupação</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -122,7 +123,7 @@
 							type="xs:string" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Especifique Outros</label>
+									<xhtml:label>Especifique Outros</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -130,7 +131,7 @@
 						<xs:element name="valorRendaMensal" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>****Valor Mensal da Renda</label>
+									<xhtml:label>****Valor Mensal da Renda</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 
@@ -147,7 +148,7 @@
 						<xs:element name="origemRenda" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>*****Origem da Renda</label>
+									<xhtml:label>*****Origem da Renda</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 
@@ -171,7 +172,7 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Especifique Outros</label>
+									<xhtml:label>Especifique Outros</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -184,7 +185,7 @@
 				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Alguém da casa possui habilidades produtivas</label>
+						<xhtml:label>Alguém da casa possui habilidades produtivas</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 
@@ -200,7 +201,7 @@
 				type="xs:string" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Especifique habilidades</label>
+						<xhtml:label>Especifique habilidades</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -209,9 +210,9 @@
 				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Algum membro da família contribui para a Previdência
+						<xhtml:label>Algum membro da família contribui para a Previdência
 							Social
-						</label>
+						</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 
@@ -228,8 +229,8 @@
 				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>A família já foi desligada de algum projeto em que era
-							concedida bolsa</label>
+						<xhtml:label>A família já foi desligada de algum projeto em que era
+							concedida bolsa</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 
@@ -245,7 +246,7 @@
 				type="xs:string" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Especifique o projeto que a família foi desligada</label>
+						<xhtml:label>Especifique o projeto que a família foi desligada</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -254,8 +255,8 @@
 				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>A família participa de outro projeto da Coordenadoria da
-							Criança e do Adolescente</label>
+						<xhtml:label>A família participa de outro projeto da Coordenadoria da
+							Criança e do Adolescente</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 
@@ -271,8 +272,8 @@
 				type="xs:string" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Especifique o projeto da CCA que a família participa
-						</label>
+						<xhtml:label>Especifique o projeto da CCA que a família participa
+						</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -281,7 +282,7 @@
 				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Atos infracionais com Membros da Família</label>
+						<xhtml:label>Atos infracionais com Membros da Família</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -290,7 +291,7 @@
 						<xs:element name="membrodaFamiliaComPena" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Pena</label>
+									<xhtml:label>Pena</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
@@ -299,7 +300,7 @@
 									<xs:element name="cumpre" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Cumpre</label>
+												<xhtml:label>Cumpre</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -307,7 +308,7 @@
 									<xs:element name="jaCumpriu" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Já Cumpriu</label>
+												<xhtml:label>Já Cumpriu</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -320,7 +321,7 @@
 						<xs:element name="membrodaFamiliaComMSE" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label> MSE</label>
+									<xhtml:label> MSE</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
@@ -329,7 +330,7 @@
 									<xs:element name="cumpre" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Cumpre</label>
+												<xhtml:label>Cumpre</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -337,7 +338,7 @@
 									<xs:element name="jaCumpriu" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Já Cumpriu</label>
+												<xhtml:label>Já Cumpriu</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -354,8 +355,8 @@
 				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Número de Pessoas que já passarm por Pena ou MSE
-						</label>
+						<xhtml:label>Número de Pessoas que já passarm por Pena ou MSE
+						</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 
@@ -372,8 +373,8 @@
 			<xs:element name="faixaEtariaPessoaEnvolvida" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Faixa etária da pessoa envolvida 
-						</label>
+						<xhtml:label>Faixa etária da pessoa envolvida 
+						</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 
@@ -391,7 +392,7 @@
 			<xs:element name="InfracoesCometidas" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label> Infrações Cometidas</label>
+						<xhtml:label> Infrações Cometidas</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -400,7 +401,7 @@
 						<xs:element name="contraOPatrimonio" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Contra o patrimônio</label>
+									<xhtml:label>Contra o patrimônio</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -408,7 +409,7 @@
 						<xs:element name="contraAVida" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Contra a vida</label>
+									<xhtml:label>Contra a vida</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -416,7 +417,7 @@
 						<xs:element name="outros" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Outros</label>
+									<xhtml:label>Outros</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -425,8 +426,8 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Especifique outras infrações
-						</label>
+									<xhtml:label>Especifique outras infrações
+						</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -440,7 +441,7 @@
 				type="xs:boolean">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Nunca houve envolvimento com atos infracionais</label>
+						<xhtml:label>Nunca houve envolvimento com atos infracionais</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>

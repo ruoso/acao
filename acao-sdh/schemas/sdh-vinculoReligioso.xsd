@@ -1,13 +1,14 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-vinculoReligioso.xsd"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
 	targetNamespace="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-vinculoReligioso.xsd"
 	elementFormDefault="qualified">
 
 	<xs:element name="formVinculoReligioso" type="formVinculoReligioso">
 		<xs:annotation>
 			<xs:appinfo>
-				<label>VÍNCULO RELIGIOSO</label>
+				<xhtml:label>VÍNCULO RELIGIOSO</xhtml:label>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
@@ -18,7 +19,7 @@
 			<xs:element name="qualSeuVinculoReligiao" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Qual seu vínculo Religioso</label>
+						<xhtml:label>Qual seu vínculo Religioso</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -36,7 +37,7 @@
 				type="xs:string" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Especifique outros vínculos religiosos</label>
+						<xhtml:label>Especifique outros vínculos religiosos</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>

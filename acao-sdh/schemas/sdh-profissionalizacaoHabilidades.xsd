@@ -1,13 +1,14 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-profissionalizacaoHabilidades.xsd"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
 	targetNamespace="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-profissionalizacaoHabilidades.xsd"
 	elementFormDefault="qualified">
 
 	<xs:element name="formProfissionalizacaoHabilidades" type="formProfissionalizacaoHabilidades">
 		<xs:annotation>
 			<xs:appinfo>
-				<label>PROFISSIONALIZAÇÃO / HABILIDADES</label>
+				<xhtml:label>PROFISSIONALIZAÇÃO / HABILIDADES</xhtml:label>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
@@ -18,7 +19,7 @@
 			<xs:element name="jaEstagiouAlgumaVez" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Já estagiou alguma vez</label>
+						<xhtml:label>Já estagiou alguma vez</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 
@@ -34,7 +35,7 @@
 				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Tipo de Atividade</label>
+						<xhtml:label>Tipo de Atividade</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -43,7 +44,7 @@
 				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Durante quanto tempo</label>
+						<xhtml:label>Durante quanto tempo</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -51,7 +52,7 @@
 			<xs:element name="jaTrabalhouAlgumaVez" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Já trabalhou alguma vez</label>
+						<xhtml:label>Já trabalhou alguma vez</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -65,7 +66,7 @@
 			<xs:element name="jaTrabalhouFormalmente" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Já trabalhou formalmente</label>
+						<xhtml:label>Já trabalhou formalmente</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -80,7 +81,7 @@
 				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Tipo de Atividade que trabalhou</label>
+						<xhtml:label>Tipo de Atividade que trabalhou</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -89,7 +90,7 @@
 				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Durante quanto tempo trabalhou</label>
+						<xhtml:label>Durante quanto tempo trabalhou</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -98,7 +99,7 @@
 			<xs:element name="estaTrabalhandoAtualmente" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Está trabalhando atualmente</label>
+						<xhtml:label>Está trabalhando atualmente</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -112,7 +113,7 @@
 			<xs:element name="estaTrabalhandoFormalmente" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Está trabalhando formalmente</label>
+						<xhtml:label>Está trabalhando formalmente</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -127,7 +128,7 @@
 				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Tipo de Atividade que está trabalhando</label>
+						<xhtml:label>Tipo de Atividade que está trabalhando</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -136,7 +137,7 @@
 				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Desde quando está trabalhando</label>
+						<xhtml:label>Desde quando está trabalhando</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -145,7 +146,7 @@
 				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Carga horária que está Trabalhando</label>
+						<xhtml:label>Carga horária que está Trabalhando</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -153,7 +154,7 @@
 			<xs:element name="possuiAlgumasDestahabilidades">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Possui Algumas destas habilidades</label>
+						<xhtml:label>Possui Algumas destas habilidades</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -162,7 +163,7 @@
 						<xs:element name="desenho" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Desenho</label>
+									<xhtml:label>Desenho</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -170,7 +171,7 @@
 						<xs:element name="grafite" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Grafite</label>
+									<xhtml:label>Grafite</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -178,7 +179,7 @@
 						<xs:element name="musica" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Música</label>
+									<xhtml:label>Música</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -186,7 +187,7 @@
 						<xs:element name="teatro" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Teatro</label>
+									<xhtml:label>Teatro</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -194,7 +195,7 @@
 						<xs:element name="danca" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Dança</label>
+									<xhtml:label>Dança</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -202,7 +203,7 @@
 						<xs:element name="pintura" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Pintura</label>
+									<xhtml:label>Pintura</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -210,7 +211,7 @@
 						<xs:element name="artesanato" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Artesanato</label>
+									<xhtml:label>Artesanato</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -218,7 +219,7 @@
 						<xs:element name="costura" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Costura</label>
+									<xhtml:label>Costura</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -226,7 +227,7 @@
 						<xs:element name="literatura" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Literatura</label>
+									<xhtml:label>Literatura</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -234,7 +235,7 @@
 						<xs:element name="culinaria" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Culinária</label>
+									<xhtml:label>Culinária</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -242,7 +243,7 @@
 						<xs:element name="outras" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Lutras</label>
+									<xhtml:label>Lutras</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -251,7 +252,7 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Especifique outras habilidades</label>
+									<xhtml:label>Especifique outras habilidades</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -263,7 +264,7 @@
 			<xs:element name="nossoesInformatica" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Possui noções de informática</label>
+						<xhtml:label>Possui noções de informática</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -278,7 +279,7 @@
 			<xs:element name="cursosProficionalizantes" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Já fez algum curso profissionalizante</label>
+						<xhtml:label>Já fez algum curso profissionalizante</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -293,7 +294,7 @@
 				type="xs:string" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Especifique cursos profissionalizantes</label>
+						<xhtml:label>Especifique cursos profissionalizantes</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -302,8 +303,8 @@
 				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>caso não tenha feito ainda, gostaria desta oportunidade
-						</label>
+						<xhtml:label>caso não tenha feito ainda, gostaria desta oportunidade
+						</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -318,8 +319,8 @@
 				type="xs:string" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Especifique cursos profissionalizantes que deseja fazer
-						</label>
+						<xhtml:label>Especifique cursos profissionalizantes que deseja fazer
+						</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>

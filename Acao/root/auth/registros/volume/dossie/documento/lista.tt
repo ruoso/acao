@@ -71,7 +71,7 @@
         <dt>
             <select id="xsdDocumento" name="xsdDocumento">
                 <option value="">Escolha uma opção</option>
-                <option value="sdh-educacao.xsd">Educação</option>
+                [% c.model('XSD').options_xsd %]
             </select>
 
             <input type="submit"  value="Inserir Documento">

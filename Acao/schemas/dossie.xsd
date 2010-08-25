@@ -20,8 +20,7 @@
 					</xs:simpleType>
 				</xs:element>
 				<xs:element name="representaDossieFisico" type="xs:boolean" />
-				<xs:element name="classificacao" type="xs:string"
-					minOccurs="unbounded" />
+				<xs:element name="classificacao" type="xs:string" maxOccurs="unbounded" />
 				<xs:element name="localizacao" type="xs:string" />
 				<xs:element name="autorizacao">
 					<xs:complexType>

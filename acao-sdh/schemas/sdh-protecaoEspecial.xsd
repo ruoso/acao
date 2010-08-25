@@ -1,13 +1,14 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-protecaoEspecial.xsd"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
 	targetNamespace="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-protecaoEspecial.xsd"
 	elementFormDefault="qualified">
 
 	<xs:element name="formProtecaoEspecial" type="formProtecaoEspecial">
 		<xs:annotation>
 			<xs:appinfo>
-				<label>PROTEÇÃO ESPECIAL</label>
+				<xhtml:label>PROTEÇÃO ESPECIAL</xhtml:label>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
@@ -19,7 +20,7 @@
 				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Violência no Âmbito Intrafamiliar</label>
+						<xhtml:label>Violência no Âmbito Intrafamiliar</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 
@@ -30,9 +31,9 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Sofre ou sofreu algum tipo de violência
+									<xhtml:label>Sofre ou sofreu algum tipo de violência
 										institucional?
-												</label>
+												</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -51,7 +52,7 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Especifique Quanto Tempo</label>
+									<xhtml:label>Especifique Quanto Tempo</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -60,7 +61,7 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Caso Tenha Sofrido Violência Especifique</label>
+									<xhtml:label>Caso Tenha Sofrido Violência Especifique</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 
@@ -70,7 +71,7 @@
 									<xs:element name="discussaoVerbal" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Discussão Verbal</label>
+												<xhtml:label>Discussão Verbal</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -78,7 +79,7 @@
 									<xs:element name="agressaoFisica" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Agressão Física</label>
+												<xhtml:label>Agressão Física</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -86,7 +87,7 @@
 									<xs:element name="violenciaDomestica" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Violência Domestica</label>
+												<xhtml:label>Violência Domestica</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -94,7 +95,7 @@
 									<xs:element name="abusoSexual" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Abuso Sexual</label>
+												<xhtml:label>Abuso Sexual</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -102,7 +103,7 @@
 									<xs:element name="exploracaoSexual" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Exploração Sexual</label>
+												<xhtml:label>Exploração Sexual</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -110,7 +111,7 @@
 									<xs:element name="agressaoPsicologica" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Agressão Psicológica</label>
+												<xhtml:label>Agressão Psicológica</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -118,7 +119,7 @@
 									<xs:element name="ameacadeMorte" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Ameaça de Morte</label>
+												<xhtml:label>Ameaça de Morte</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -126,7 +127,7 @@
 									<xs:element name="outros" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Outros</label>
+												<xhtml:label>Outros</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -136,7 +137,7 @@
 										type="xs:string" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Especifique Outros</label>
+												<xhtml:label>Especifique Outros</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -144,7 +145,7 @@
 									<xs:element name="frequencia" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Frequência</label>
+												<xhtml:label>Frequência</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 
@@ -154,7 +155,7 @@
 												<xs:element name="frequentemente" type="xs:boolean">
 													<xs:annotation>
 														<xs:appinfo>
-															<label>Frequentemente</label>
+															<xhtml:label>Frequentemente</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
@@ -162,7 +163,7 @@
 												<xs:element name="asVezes" type="xs:boolean">
 													<xs:annotation>
 														<xs:appinfo>
-															<label>Às Vezes</label>
+															<xhtml:label>Às Vezes</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
@@ -170,7 +171,7 @@
 												<xs:element name="raramente" type="xs:boolean">
 													<xs:annotation>
 														<xs:appinfo>
-															<label>Raramente</label>
+															<xhtml:label>Raramente</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
@@ -184,8 +185,8 @@
 										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Que Tipo De Providencia Ou Atitude Foi Tomada
-															</label>
+												<xhtml:label>Que Tipo De Providencia Ou Atitude Foi Tomada
+															</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 
@@ -196,7 +197,7 @@
 													type="xs:boolean">
 													<xs:annotation>
 														<xs:appinfo>
-															<label>Procurou ajuda em alguma instituição?</label>
+															<xhtml:label>Procurou ajuda em alguma instituição?</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
@@ -205,7 +206,7 @@
 													minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
-															<label>Qual?</label>
+															<xhtml:label>Qual?</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
@@ -214,7 +215,7 @@
 													type="xs:boolean">
 													<xs:annotation>
 														<xs:appinfo>
-															<label>Resouveu a situação por conta própria?</label>
+															<xhtml:label>Resouveu a situação por conta própria?</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
@@ -223,7 +224,7 @@
 													minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
-															<label>Como?</label>
+															<xhtml:label>Como?</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
@@ -232,8 +233,8 @@
 													type="xs:boolean">
 													<xs:annotation>
 														<xs:appinfo>
-															<label>Procurou ajuda de amigos(as) e/ou parentes?
-															</label>
+															<xhtml:label>Procurou ajuda de amigos(as) e/ou parentes?
+															</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
@@ -242,8 +243,8 @@
 													type="xs:boolean">
 													<xs:annotation>
 														<xs:appinfo>
-															<label>Não tomou nenhuma atitude ou providencia.
-																		</label>
+															<xhtml:label>Não tomou nenhuma atitude ou providencia.
+																		</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
@@ -257,8 +258,8 @@
 										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Teve Ou Esta Tendo Algum Tipo De Atendimento?
-															</label>
+												<xhtml:label>Teve Ou Esta Tendo Algum Tipo De Atendimento?
+															</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 
@@ -269,7 +270,7 @@
 													type="xs:boolean">
 													<xs:annotation>
 														<xs:appinfo>
-															<label>Sim, já teve atendimento especializado.</label>
+															<xhtml:label>Sim, já teve atendimento especializado.</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
@@ -277,7 +278,7 @@
 												<xs:element name="foiSuficiente" minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
-															<label>Foi Suficiente?</label>
+															<xhtml:label>Foi Suficiente?</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 
@@ -293,8 +294,8 @@
 													type="xs:boolean">
 													<xs:annotation>
 														<xs:appinfo>
-															<label>Sim, já esta tendo atendimento especializado.
-															</label>
+															<xhtml:label>Sim, já esta tendo atendimento especializado.
+															</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
@@ -303,7 +304,7 @@
 													minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
-															<label>Onde?</label>
+															<xhtml:label>Onde?</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
@@ -313,8 +314,8 @@
 													type="xs:boolean">
 													<xs:annotation>
 														<xs:appinfo>
-															<label>Não, porem gostaria de ser encaminhadoa para
-																atendimento especializado.</label>
+															<xhtml:label>Não, porem gostaria de ser encaminhadoa para
+																atendimento especializado.</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
@@ -323,7 +324,7 @@
 													type="xs:boolean">
 													<xs:annotation>
 														<xs:appinfo>
-															<label>Não tem interesse no atendimento.</label>
+															<xhtml:label>Não tem interesse no atendimento.</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
@@ -342,7 +343,7 @@
 				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Violência no Âmbito Institucional</label>
+						<xhtml:label>Violência no Âmbito Institucional</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 
@@ -352,9 +353,9 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Sofre ou sofreu algum tipo de violência
+									<xhtml:label>Sofre ou sofreu algum tipo de violência
 										institucional?
-												</label>
+												</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -373,7 +374,7 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Há quanto tempo?</label>
+									<xhtml:label>Há quanto tempo?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -382,8 +383,8 @@
 							type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Sim, já esta tendo atendimento especializado
-															</label>
+									<xhtml:label>Sim, já esta tendo atendimento especializado
+															</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -392,7 +393,7 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Durante quanto tempo?</label>
+									<xhtml:label>Durante quanto tempo?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -401,9 +402,9 @@
 							type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Nunca sofreu nenhum tipo de violência
+									<xhtml:label>Nunca sofreu nenhum tipo de violência
 										institucional
-												</label>
+												</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -412,7 +413,7 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Instituição onde sofreu violência</label>
+									<xhtml:label>Instituição onde sofreu violência</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 
@@ -422,7 +423,7 @@
 									<xs:element name="policia" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Polícia</label>
+												<xhtml:label>Polícia</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -430,7 +431,7 @@
 									<xs:element name="guardaMunicipal" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Guarda municipal</label>
+												<xhtml:label>Guarda municipal</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -438,7 +439,7 @@
 									<xs:element name="escola" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Escola</label>
+												<xhtml:label>Escola</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -446,7 +447,7 @@
 									<xs:element name="postoDeSaude" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Posto de saúde</label>
+												<xhtml:label>Posto de saúde</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -455,7 +456,7 @@
 										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Outros</label>
+												<xhtml:label>Outros</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -468,7 +469,7 @@
 						<xs:element name="tipoDeViolencia" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Tipo de violência</label>
+									<xhtml:label>Tipo de violência</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 
@@ -478,7 +479,7 @@
 									<xs:element name="discussaoVerbal" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Discussão Verbal</label>
+												<xhtml:label>Discussão Verbal</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -486,7 +487,7 @@
 									<xs:element name="agressaoFisica" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Agressão Física</label>
+												<xhtml:label>Agressão Física</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -494,7 +495,7 @@
 									<xs:element name="abusoSexual" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Abuso Sexual</label>
+												<xhtml:label>Abuso Sexual</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -502,7 +503,7 @@
 									<xs:element name="exploracaoSexual" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Exploracao Sexual</label>
+												<xhtml:label>Exploracao Sexual</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -510,7 +511,7 @@
 									<xs:element name="agressaoPsicologica" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Agressão psicologica</label>
+												<xhtml:label>Agressão psicologica</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -518,7 +519,7 @@
 									<xs:element name="ameacaDeMorte" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Ameaça de Morte</label>
+												<xhtml:label>Ameaça de Morte</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -527,7 +528,7 @@
 										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Outros</label>
+												<xhtml:label>Outros</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -539,8 +540,8 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Que Tipo De Providencia Ou Atitude Foi Tomada
-													</label>
+									<xhtml:label>Que Tipo De Providencia Ou Atitude Foi Tomada
+													</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 
@@ -551,7 +552,7 @@
 										type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Procurou ajuda em alguma instituição?</label>
+												<xhtml:label>Procurou ajuda em alguma instituição?</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -559,7 +560,7 @@
 									<xs:element name="qual" type="xs:string" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Qual?</label>
+												<xhtml:label>Qual?</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -568,8 +569,8 @@
 										type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Resouveu a situação por conta própria?
-																				</label>
+												<xhtml:label>Resouveu a situação por conta própria?
+																				</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -577,7 +578,7 @@
 									<xs:element name="como" type="xs:string" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Como?</label>
+												<xhtml:label>Como?</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -586,8 +587,8 @@
 										type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Procurou ajuda de amigos(as) e/ou parentes?
-															</label>
+												<xhtml:label>Procurou ajuda de amigos(as) e/ou parentes?
+															</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -596,8 +597,8 @@
 										type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Não tomou nenhuma atitude ou providencia.
-																	</label>
+												<xhtml:label>Não tomou nenhuma atitude ou providencia.
+																	</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -611,8 +612,8 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Teve Ou Esta Tendo Algum Tipo De Atendimento?
-													</label>
+									<xhtml:label>Teve Ou Esta Tendo Algum Tipo De Atendimento?
+													</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 
@@ -623,8 +624,8 @@
 										type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Sim, já teve atendimento especializado.
-																			</label>
+												<xhtml:label>Sim, já teve atendimento especializado.
+																			</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -632,7 +633,7 @@
 									<xs:element name="foiSuficiente" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Foi Suficiente?</label>
+												<xhtml:label>Foi Suficiente?</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 
@@ -648,8 +649,8 @@
 										type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Sim, já esta tendo atendimento especializado.
-															</label>
+												<xhtml:label>Sim, já esta tendo atendimento especializado.
+															</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -657,7 +658,7 @@
 									<xs:element name="onde" type="xs:string" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Onde?</label>
+												<xhtml:label>Onde?</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -667,8 +668,8 @@
 										type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Não, porem gostaria de ser encaminhadoa para
-													atendimento especializado.</label>
+												<xhtml:label>Não, porem gostaria de ser encaminhadoa para
+													atendimento especializado.</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -677,7 +678,7 @@
 										type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Não tem interesse no atendimento.</label>
+												<xhtml:label>Não tem interesse no atendimento.</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -693,7 +694,7 @@
 			<xs:element name="violênciaNoAmbitoComunitario" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Violência no Âmbito Comunitário</label>
+						<xhtml:label>Violência no Âmbito Comunitário</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 
@@ -703,7 +704,7 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Sofre ou sofreu algum tipo de violência?</label>
+									<xhtml:label>Sofre ou sofreu algum tipo de violência?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -719,7 +720,7 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Há quanto tempo?</label>
+									<xhtml:label>Há quanto tempo?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -728,8 +729,8 @@
 							type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Sim, já esta tendo atendimento especializado
-															</label>
+									<xhtml:label>Sim, já esta tendo atendimento especializado
+															</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -738,7 +739,7 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Durante quanto tempo?</label>
+									<xhtml:label>Durante quanto tempo?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -747,9 +748,9 @@
 							type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Nunca sofreu nenhum tipo de violência
+									<xhtml:label>Nunca sofreu nenhum tipo de violência
 										institucional
-												</label>
+												</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -757,7 +758,7 @@
 						<xs:element name="tipoDeViolencia" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Tipo de violência</label>
+									<xhtml:label>Tipo de violência</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 
@@ -767,7 +768,7 @@
 									<xs:element name="discussaoVerbal" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Discussão Verbal</label>
+												<xhtml:label>Discussão Verbal</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -775,7 +776,7 @@
 									<xs:element name="agressaoFisica" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Agressão Física</label>
+												<xhtml:label>Agressão Física</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -783,7 +784,7 @@
 									<xs:element name="abusoSexual" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Abuso Sexual</label>
+												<xhtml:label>Abuso Sexual</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -791,7 +792,7 @@
 									<xs:element name="exploracaoSexual" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Exploracao Sexual</label>
+												<xhtml:label>Exploracao Sexual</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -799,7 +800,7 @@
 									<xs:element name="agressaoPsicologica" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Agressão psicologica</label>
+												<xhtml:label>Agressão psicologica</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -807,7 +808,7 @@
 									<xs:element name="ameacaDeMorte" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Ameaça de Morte</label>
+												<xhtml:label>Ameaça de Morte</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -816,7 +817,7 @@
 										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Outros</label>
+												<xhtml:label>Outros</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -827,7 +828,7 @@
 						<xs:element name="frequencia" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Frequência</label>
+									<xhtml:label>Frequência</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 
@@ -837,7 +838,7 @@
 									<xs:element name="frequentemente" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Frequentemente</label>
+												<xhtml:label>Frequentemente</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -845,7 +846,7 @@
 									<xs:element name="asVezes" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Às Vezes</label>
+												<xhtml:label>Às Vezes</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -853,7 +854,7 @@
 									<xs:element name="raramente" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Raramente</label>
+												<xhtml:label>Raramente</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -867,8 +868,8 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Que Tipo De Providencia Ou Atitude Foi Tomada
-													</label>
+									<xhtml:label>Que Tipo De Providencia Ou Atitude Foi Tomada
+													</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 
@@ -879,7 +880,7 @@
 										type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Procurou ajuda em alguma instituição?</label>
+												<xhtml:label>Procurou ajuda em alguma instituição?</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -887,7 +888,7 @@
 									<xs:element name="qual" type="xs:string" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Qual?</label>
+												<xhtml:label>Qual?</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -896,8 +897,8 @@
 										type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Resouveu a situação por conta própria?
-																				</label>
+												<xhtml:label>Resouveu a situação por conta própria?
+																				</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -905,7 +906,7 @@
 									<xs:element name="como" type="xs:string" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Como?</label>
+												<xhtml:label>Como?</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -914,8 +915,8 @@
 										type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Procurou ajuda de amigos(as) e/ou parentes?
-															</label>
+												<xhtml:label>Procurou ajuda de amigos(as) e/ou parentes?
+															</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -924,8 +925,8 @@
 										type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Não tomou nenhuma atitude ou providencia.
-																	</label>
+												<xhtml:label>Não tomou nenhuma atitude ou providencia.
+																	</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -939,8 +940,8 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Teve Ou Esta Tendo Algum Tipo De Atendimento?
-													</label>
+									<xhtml:label>Teve Ou Esta Tendo Algum Tipo De Atendimento?
+													</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 
@@ -951,8 +952,8 @@
 										type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Sim, já teve atendimento especializado.
-																			</label>
+												<xhtml:label>Sim, já teve atendimento especializado.
+																			</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -960,7 +961,7 @@
 									<xs:element name="foiSuficiente" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Foi Suficiente?</label>
+												<xhtml:label>Foi Suficiente?</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 
@@ -976,8 +977,8 @@
 										type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Sim, já esta tendo atendimento especializado.
-															</label>
+												<xhtml:label>Sim, já esta tendo atendimento especializado.
+															</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -985,7 +986,7 @@
 									<xs:element name="onde" type="xs:string" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Onde?</label>
+												<xhtml:label>Onde?</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -995,8 +996,8 @@
 										type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Não, porem gostaria de ser encaminhadoa para
-													atendimento especializado.</label>
+												<xhtml:label>Não, porem gostaria de ser encaminhadoa para
+													atendimento especializado.</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -1005,7 +1006,7 @@
 										type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Não tem interesse no atendimento.</label>
+												<xhtml:label>Não tem interesse no atendimento.</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -1022,8 +1023,8 @@
 				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Violência no Âmbito Da Exploracao Do Trabalho Infantil
-						</label>
+						<xhtml:label>Violência no Âmbito Da Exploracao Do Trabalho Infantil
+						</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 
@@ -1033,8 +1034,8 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Teve violado algum direito no âmbito da exploração do
-										trabalho infantiu?</label>
+									<xhtml:label>Teve violado algum direito no âmbito da exploração do
+										trabalho infantiu?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -1048,7 +1049,7 @@
 						<xs:element name="tipoDeTrabalho" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Tipo de Trabalho</label>
+									<xhtml:label>Tipo de Trabalho</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 
@@ -1058,7 +1059,7 @@
 									<xs:element name="trabalhoInfantilDomestico" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Trabalho infantil domestico</label>
+												<xhtml:label>Trabalho infantil domestico</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -1066,7 +1067,7 @@
 									<xs:element name="catador" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Catador</label>
+												<xhtml:label>Catador</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -1074,7 +1075,7 @@
 									<xs:element name="pedinte" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Pedinte</label>
+												<xhtml:label>Pedinte</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -1082,7 +1083,7 @@
 									<xs:element name="malabarista" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Malabarista</label>
+												<xhtml:label>Malabarista</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -1090,7 +1091,7 @@
 									<xs:element name="engraxate" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Engraxate</label>
+												<xhtml:label>Engraxate</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -1098,7 +1099,7 @@
 									<xs:element name="Flanelinha" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Flanelinha</label>
+												<xhtml:label>Flanelinha</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -1106,7 +1107,7 @@
 									<xs:element name="jornaleiro" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Jornaleiro</label>
+												<xhtml:label>Jornaleiro</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -1114,7 +1115,7 @@
 									<xs:element name="ajudanteDePedreiro" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Ajudante De Pedreiro</label>
+												<xhtml:label>Ajudante De Pedreiro</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -1122,7 +1123,7 @@
 									<xs:element name="comercioDeDrogas" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Comercio De Drogas</label>
+												<xhtml:label>Comercio De Drogas</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -1130,7 +1131,7 @@
 									<xs:element name="pesca" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Pesca</label>
+												<xhtml:label>Pesca</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -1138,7 +1139,7 @@
 									<xs:element name="carvoaria" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Carvoaria</label>
+												<xhtml:label>Carvoaria</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -1149,7 +1150,7 @@
 						<xs:element name="outros" type="xs:string" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Outros</label>
+									<xhtml:label>Outros</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -1158,7 +1159,7 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Carga Horária Mensal</label>
+									<xhtml:label>Carga Horária Mensal</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -1170,7 +1171,7 @@
 			<xs:element name="estaInscritoNoPeti" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Esta Inscrito No PETI</label>
+						<xhtml:label>Esta Inscrito No PETI</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 
@@ -1180,7 +1181,7 @@
 						<xs:element name="sim" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Sim</label>
+									<xhtml:label>Sim</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -1188,7 +1189,7 @@
 						<xs:element name="nao" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Não</label>
+									<xhtml:label>Não</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -1200,7 +1201,7 @@
 			<xs:element name="vivenciaNaRua" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Vivencia Na Rua</label>
+						<xhtml:label>Vivencia Na Rua</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 
@@ -1210,7 +1211,7 @@
 						<xs:element name="sim" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Sim</label>
+									<xhtml:label>Sim</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -1218,7 +1219,7 @@
 						<xs:element name="nao" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Não</label>
+									<xhtml:label>Não</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -1230,7 +1231,7 @@
 			<xs:element name="seSim" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Se Sim</label>
+						<xhtml:label>Se Sim</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 
@@ -1241,8 +1242,8 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Esteve em vivência de rua
-												</label>
+									<xhtml:label>Esteve em vivência de rua
+												</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -1251,8 +1252,8 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Durante quanto tempo?
-												</label>
+									<xhtml:label>Durante quanto tempo?
+												</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -1261,7 +1262,7 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Está em vivência de rua</label>
+									<xhtml:label>Está em vivência de rua</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -1270,8 +1271,8 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Há quanto tempo?
-												</label>
+									<xhtml:label>Há quanto tempo?
+												</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -1280,8 +1281,8 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Motivação
-												</label>
+									<xhtml:label>Motivação
+												</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -1293,7 +1294,7 @@
 				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Teve ou esta tendo algum tipo de atendimento?</label>
+						<xhtml:label>Teve ou esta tendo algum tipo de atendimento?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 
@@ -1304,7 +1305,7 @@
 							type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Sim, já teve atendimento especializado</label>
+									<xhtml:label>Sim, já teve atendimento especializado</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -1313,7 +1314,7 @@
 							type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Sim, está tendo atendimento especializado</label>
+									<xhtml:label>Sim, está tendo atendimento especializado</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -1321,7 +1322,7 @@
 						<xs:element name="onde" type="xs:string" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Onde</label>
+									<xhtml:label>Onde</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -1331,8 +1332,8 @@
 							type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Não porem gostaria de ser encaminhado para
-										atendimento/a especializado</label>
+									<xhtml:label>Não porem gostaria de ser encaminhado para
+										atendimento/a especializado</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -1340,7 +1341,7 @@
 						<xs:element name="naoTemInteressenoNoAtendimento" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Não tem interesse no atendimento</label>
+									<xhtml:label>Não tem interesse no atendimento</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>

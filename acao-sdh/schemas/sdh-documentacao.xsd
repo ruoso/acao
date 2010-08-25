@@ -1,13 +1,14 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-documentacao.xsd"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
 	targetNamespace="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-documentacao.xsd"
 	elementFormDefault="qualified">
 
 	<xs:element name="formDocumentacao" type="formDocumentacao">
 		<xs:annotation>
 			<xs:appinfo>
-				<label> DOCUMENTAÇÃO </label>
+				<xhtml:label> DOCUMENTAÇÃO </xhtml:label>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
@@ -18,7 +19,7 @@
 			<xs:element name="registroDeNascimento" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Rgistro de nascimento</label>
+						<xhtml:label>Rgistro de nascimento</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -34,7 +35,7 @@
 			<xs:element name="identidade" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Identidade/RG</label>
+						<xhtml:label>Identidade/RG</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -50,7 +51,7 @@
 			<xs:element name="cpf" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>CPF</label>
+						<xhtml:label>CPF</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -66,7 +67,7 @@
 			<xs:element name="ctps" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>CTPS</label>
+						<xhtml:label>CTPS</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -82,7 +83,7 @@
 			<xs:element name="tituloDeEleitor" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Título de Eleitor</label>
+						<xhtml:label>Título de Eleitor</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -98,7 +99,7 @@
 			<xs:element name="reservista" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Reservista</label>
+						<xhtml:label>Reservista</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>

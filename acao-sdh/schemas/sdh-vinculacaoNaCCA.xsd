@@ -1,13 +1,14 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-vinculacaoNaCCA.xsd"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
 	targetNamespace="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-vinculacaoNaCCA.xsd"
 	elementFormDefault="qualified">
 
 	<xs:element name="formVinculacaoNaCCA" type="formVinculacaoNaCCA">
 		<xs:annotation>
 			<xs:appinfo>
-				<label>VINCULAÇÃO NA CCA</label>
+				<xhtml:label>VINCULAÇÃO NA CCA</xhtml:label>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
@@ -19,7 +20,7 @@
 			<xs:element name="adolescenteCidadao" type="xs:boolean">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Adolescente Cidadao</label>
+						<xhtml:label>Adolescente Cidadao</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -27,7 +28,7 @@
 			<xs:element name="aquarela" type="xs:boolean">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Aquarela</label>
+						<xhtml:label>Aquarela</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -35,7 +36,7 @@
 			<xs:element name="bromelia" type="xs:boolean">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Bromélia</label>
+						<xhtml:label>Bromélia</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -43,7 +44,7 @@
 			<xs:element name="casaDasMeninas" type="xs:boolean">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Casa das Meninas</label>
+						<xhtml:label>Casa das Meninas</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -51,7 +52,7 @@
 			<xs:element name="casaDosMeninos" type="xs:boolean">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Casa dos Meninos</label>
+						<xhtml:label>Casa dos Meninos</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -59,7 +60,7 @@
 			<xs:element name="cozinhaExperimental" type="xs:boolean">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Cozinha Experimental</label>
+						<xhtml:label>Cozinha Experimental</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -67,7 +68,7 @@
 			<xs:element name="crescerComArteCidadania" type="xs:boolean">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Crescer com Arte Cidadania</label>
+						<xhtml:label>Crescer com Arte Cidadania</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -76,7 +77,7 @@
 				type="xs:boolean">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Disque Direitos Criação e Adolescentes - DDCA</label>
+						<xhtml:label>Disque Direitos Criação e Adolescentes - DDCA</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -84,7 +85,7 @@
 			<xs:element name="erradicacaoDoTrabalhoInfantil" type="xs:boolean">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Erradicação do Trabalho Infantil</label>
+						<xhtml:label>Erradicação do Trabalho Infantil</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -92,7 +93,7 @@
 			<xs:element name="estiloSolidario" type="xs:boolean">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Estilo Solidário</label>
+						<xhtml:label>Estilo Solidário</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -100,7 +101,7 @@
 			<xs:element name="ponteDeEncontro" type="xs:boolean">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Ponte de Encontro</label>
+						<xhtml:label>Ponte de Encontro</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -108,7 +109,7 @@
 			<xs:element name="liberdadeAssitida" type="xs:boolean">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Liberdade Assitida - Se Garanta</label>
+						<xhtml:label>Liberdade Assitida - Se Garanta</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -116,8 +117,8 @@
 			<xs:element name="preservacaoDeServicosAComunidade" type="xs:boolean">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Preservação de Serviços à Comunidade - Se Garanta
-									</label>
+						<xhtml:label>Preservação de Serviços à Comunidade - Se Garanta
+									</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -126,7 +127,7 @@
 				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Data do Encaminhamento</label>
+						<xhtml:label>Data do Encaminhamento</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -134,7 +135,7 @@
 			<xs:element name="status" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Status</label>
+						<xhtml:label>Status</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>

@@ -1,13 +1,14 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-convivenciaSocial.xsd"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
 	targetNamespace="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-convivenciaSocial.xsd"
 	elementFormDefault="qualified">
 
 	<xs:element name="formConvivenciaSocial" type="formConvivenciaSocial">
 		<xs:annotation>
 			<xs:appinfo>
-				<label>CONVIVÊNCIA SOCIAL</label>
+				<xhtml:label>CONVIVÊNCIA SOCIAL</xhtml:label>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
@@ -19,7 +20,7 @@
 				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Participa ou participu de algum grupo social</label>
+						<xhtml:label>Participa ou participu de algum grupo social</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 
@@ -36,7 +37,7 @@
 				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Teve ou esta tendo algum tipo de atendimento?</label>
+						<xhtml:label>Teve ou esta tendo algum tipo de atendimento?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 
@@ -46,7 +47,7 @@
 						<xs:element name="emCasoAfirmativoDeQueTipo" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Em caso afirmativo, de que tipo</label>
+									<xhtml:label>Em caso afirmativo, de que tipo</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -54,7 +55,7 @@
 						<xs:element name="grupoReligioso" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Grupo religioso</label>
+									<xhtml:label>Grupo religioso</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -62,7 +63,7 @@
 						<xs:element name="gremioMovimentoEstudantil" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Gremio/movimento estudantil</label>
+									<xhtml:label>Gremio/movimento estudantil</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -70,7 +71,7 @@
 						<xs:element name="associacaoDeBairro" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Associação de bairro</label>
+									<xhtml:label>Associação de bairro</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -78,7 +79,7 @@
 						<xs:element name="movimentoPoliticoPartidario" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Movimento politico partidário</label>
+									<xhtml:label>Movimento politico partidário</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -86,7 +87,7 @@
 						<xs:element name="grupoMusical" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Grupo musical</label>
+									<xhtml:label>Grupo musical</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -94,7 +95,7 @@
 						<xs:element name="grupoEsportivo" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Grupo esportivo</label>
+									<xhtml:label>Grupo esportivo</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -102,7 +103,7 @@
 						<xs:element name="grupoDeTeatro" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Grupo de teatro</label>
+									<xhtml:label>Grupo de teatro</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -110,7 +111,7 @@
 						<xs:element name="grupoDeDanca" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Grupo de dança</label>
+									<xhtml:label>Grupo de dança</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -118,7 +119,7 @@
 						<xs:element name="grupoDeDefesaDoMeioAmbiente" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Grupo de defesa do meio ambiente</label>
+									<xhtml:label>Grupo de defesa do meio ambiente</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -126,7 +127,7 @@
 						<xs:element name="cooperativa" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Cooperativa</label>
+									<xhtml:label>Cooperativa</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -134,7 +135,7 @@
 						<xs:element name="ong" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>ONG</label>
+									<xhtml:label>ONG</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -142,7 +143,7 @@
 						<xs:element name="gruposProdutivos" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Grupos produtivos</label>
+									<xhtml:label>Grupos produtivos</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -150,7 +151,7 @@
 						<xs:element name="movimentoCultural" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Movimento cultural</label>
+									<xhtml:label>Movimento cultural</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -158,7 +159,7 @@
 						<xs:element name="organizacoesLgbtt" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Organizacoes LGBTT</label>
+									<xhtml:label>Organizacoes LGBTT</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -166,7 +167,7 @@
 						<xs:element name="moviementoDeMulheres" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Moviemento de mulheres</label>
+									<xhtml:label>Moviemento de mulheres</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -174,7 +175,7 @@
 						<xs:element name="moviementoNegro" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Moviemento Negro</label>
+									<xhtml:label>Moviemento Negro</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -182,7 +183,7 @@
 						<xs:element name="grupoDeRpg" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Grupo de RPG</label>
+									<xhtml:label>Grupo de RPG</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -190,7 +191,7 @@
 						<xs:element name="gruposRivaisGuangues" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Grupos rivais (guangues)</label>
+									<xhtml:label>Grupos rivais (guangues)</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -198,7 +199,7 @@
 						<xs:element name="gruposRivaisGuangues" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Grupos rivais (guangues)</label>
+									<xhtml:label>Grupos rivais (guangues)</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -206,7 +207,7 @@
 						<xs:element name="outros" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Outros</label>
+									<xhtml:label>Outros</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -219,8 +220,8 @@
 				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Em caso negativo, desenvolve alguma atividade
-							comunitaria</label>
+						<xhtml:label>Em caso negativo, desenvolve alguma atividade
+							comunitaria</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -228,7 +229,7 @@
 						<xs:element name="sim" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Sim</label>
+									<xhtml:label>Sim</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -236,7 +237,7 @@
 						<xs:element name="qual" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Qual?</label>
+									<xhtml:label>Qual?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -244,7 +245,7 @@
 						<xs:element name="nao" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Não</label>
+									<xhtml:label>Não</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>

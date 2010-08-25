@@ -42,8 +42,6 @@ sub base : Chained('/auth/registros/volume/base') :PathPart('') :CaptureArgs(2) 
     $c->stash->{id_volume} = $id_volume;
     $c->stash->{controle} = $controle
       or $c->detach('/public/default');
-    $c->stash->{xsdDocumento} = '|'.$c->request->param('xsdDocumento').'|';
-    #$c->stash->{xsdDocumento} = 'sdh-educacao.xsd';
 }
 
 =item form
@@ -76,11 +74,6 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
     $c->res->redirect( $c->uri_for('/auth/registros/volume/' . $c->req->param('id_volume') . '/' . $c->req->param('controle') ) );
 }
 
-sub xsd : Chained('base') : PathPart('xsd') : Args(0) {
-    my ( $self, $c ) = @_;
-    $c->stash->{document} = $c->model('Documento')->obter_xsd_dossie( $c->stash->{xsdDocumento} );
-    $c->forward( $c->view('XML') );
-}
 
 =head1 COPYRIGHT AND LICENSING
 

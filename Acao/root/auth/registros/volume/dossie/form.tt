@@ -53,7 +53,7 @@
  </form>
 
  <script language="javascript">
-   generateForm("[% c.uri_for('/auth/registros/volume/') _ id_volume _ '/xsd' %]", "form_container");
+   generateForm("[% c.uri_for_action('/auth/registros/xsd/raw', ['http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd'] ) %]", "form_container");
  </script>
 
 [% INCLUDE 'footer.tt' %]

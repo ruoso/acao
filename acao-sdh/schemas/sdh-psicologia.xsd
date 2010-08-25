@@ -1,13 +1,14 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-psicologia.xsd"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
 	targetNamespace="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-psicologia.xsd"
 	elementFormDefault="qualified">
 
 	<xs:element name="formPsicologia" type="formPsicologia">
 		<xs:annotation>
 			<xs:appinfo>
-				<label>PSICOLOGIA</label>
+				<xhtml:label>PSICOLOGIA</xhtml:label>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
@@ -18,7 +19,7 @@
 			<xs:element name="ambienteFamiliar">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Ambiente Familiar</label>
+						<xhtml:label>Ambiente Familiar</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -28,7 +29,7 @@
 							minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Como você se relaciona com sua família?</label>
+									<xhtml:label>Como você se relaciona com sua família?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -37,8 +38,8 @@
 							minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>De que forma o ato infracional afetou sua relação
-										familiar?</label>
+									<xhtml:label>De que forma o ato infracional afetou sua relação
+										familiar?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -47,8 +48,8 @@
 							minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Das pessoas da sua família, com quem mais você se
-										identifica? Porque?</label>
+									<xhtml:label>Das pessoas da sua família, com quem mais você se
+										identifica? Porque?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -57,8 +58,8 @@
 							minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Existe algum membro na sua família que você Não
-										gosta? Quem e porque?</label>
+									<xhtml:label>Existe algum membro na sua família que você Não
+										gosta? Quem e porque?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -66,7 +67,7 @@
 						<xs:element name="perspectivasParaOFuturo">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Perspectivas para o futuro</label>
+									<xhtml:label>Perspectivas para o futuro</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
@@ -76,9 +77,9 @@
 										minOccurs="0" type="xs:string">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Você tem planos para o seu futuro? Caso
+												<xhtml:label>Você tem planos para o seu futuro? Caso
 													afirmativo, quais? Como você acha que sua vida vai
-													estar daqui a dois anos?</label>
+													estar daqui a dois anos?</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -87,8 +88,8 @@
 										minOccurs="0" type="xs:string">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Você gostaria de mudar algo em você ou na sua
-													vida, hoje?</label>
+												<xhtml:label>Você gostaria de mudar algo em você ou na sua
+													vida, hoje?</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -97,8 +98,8 @@
 										minOccurs="0" type="xs:string">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>O que você gosta de fazer no tempo livre?
-																		</label>
+												<xhtml:label>O que você gosta de fazer no tempo livre?
+																		</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -110,7 +111,7 @@
 						<xs:element name="aspectosDaPersonalidade" minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Perspectivas para o futuro</label>
+									<xhtml:label>Perspectivas para o futuro</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
@@ -120,9 +121,9 @@
 										minOccurs="0" type="xs:string">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Como você percebe o seu comportamento? O que
+												<xhtml:label>Como você percebe o seu comportamento? O que
 													você pensa sobre isso? Houve alguma mudança depois
-													que você foi apreendido?</label>
+													que você foi apreendido?</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -131,9 +132,9 @@
 										minOccurs="0" type="xs:string">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Como você lida com regras e limites? Tem
+												<xhtml:label>Como você lida com regras e limites? Tem
 													dificuldade em obedecer a seus pais ou à professora
-													(caso estude)? Por quê?</label>
+													(caso estude)? Por quê?</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -143,8 +144,8 @@
 										minOccurs="0" type="xs:string">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Já passou por alguma situação constrangedora ou
-													preconceituosa? Como lidou com tal situação?</label>
+												<xhtml:label>Já passou por alguma situação constrangedora ou
+													preconceituosa? Como lidou com tal situação?</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -156,7 +157,7 @@
 						<xs:element name="impressoesDoAtendimento" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Impressões do atendimento:</label>
+									<xhtml:label>Impressões do atendimento:</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
@@ -165,7 +166,7 @@
 									<xs:element name="agressivo" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Agressivo(a)</label>
+												<xhtml:label>Agressivo(a)</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -173,7 +174,7 @@
 									<xs:element name="apatico" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Agressivo(a)</label>
+												<xhtml:label>Agressivo(a)</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -181,7 +182,7 @@
 									<xs:element name="desinibido" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Desinibido(a)</label>
+												<xhtml:label>Desinibido(a)</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -189,7 +190,7 @@
 									<xs:element name="paranóide" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Paranóide</label>
+												<xhtml:label>Paranóide</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -197,7 +198,7 @@
 									<xs:element name="instável" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Instável</label>
+												<xhtml:label>Instável</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -205,7 +206,7 @@
 									<xs:element name="inibido" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Inibido(a)</label>
+												<xhtml:label>Inibido(a)</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -213,7 +214,7 @@
 									<xs:element name="alucinado" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Alucinado(a)</label>
+												<xhtml:label>Alucinado(a)</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -226,7 +227,7 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Técnico responsável:</label>
+									<xhtml:label>Técnico responsável:</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -234,7 +235,7 @@
 						<xs:element name="data" minOccurs="0" type="xs:date">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Data</label>
+									<xhtml:label>Data</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>

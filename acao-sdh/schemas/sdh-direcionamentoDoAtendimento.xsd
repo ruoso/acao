@@ -1,13 +1,14 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-direcionamentoDoAtendimento.xsd"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
 	targetNamespace="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-direcionamentoDoAtendimento.xsd"
 	elementFormDefault="qualified">
 
 	<xs:element name="formDirecionamentoDoAtendimento" type="formDirecionamentoDoAtendimento">
 		<xs:annotation>
 			<xs:appinfo>
-				<label>DIRECIONAMENTO DO ATENDIMENTO</label>
+				<xhtml:label>DIRECIONAMENTO DO ATENDIMENTO</xhtml:label>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
@@ -18,7 +19,7 @@
 			<xs:element name="encaminhamentoInterno" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Encaminhamento interno</label>
+						<xhtml:label>Encaminhamento interno</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -42,7 +43,7 @@
 				type="xs:string" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Especifique outro encaminhamento interno</label>
+						<xhtml:label>Especifique outro encaminhamento interno</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -50,7 +51,7 @@
 			<xs:element name="encaminhamentoExterno" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Encaminhamento externo</label>
+						<xhtml:label>Encaminhamento externo</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -74,7 +75,7 @@
 				type="xs:string" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Especifique outro encaminhamento externo</label>
+						<xhtml:label>Especifique outro encaminhamento externo</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -83,7 +84,7 @@
 				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Observações do direcionamento</label>
+						<xhtml:label>Observações do direcionamento</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -92,7 +93,7 @@
 				type="xs:string" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Profissional responsável pelo direcionamento</label>
+						<xhtml:label>Profissional responsável pelo direcionamento</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -101,7 +102,7 @@
 				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Data do direcionamento</label>
+						<xhtml:label>Data do direcionamento</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>

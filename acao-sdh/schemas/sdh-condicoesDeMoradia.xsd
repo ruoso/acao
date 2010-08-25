@@ -1,13 +1,14 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-condicoesDeMoradia.xsd"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
 	targetNamespace="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-condicoesDeMoradia.xsd"
 	elementFormDefault="qualified">
 
 	<xs:element name="formCondicoesDeMoradia" type="formCondicoesDeMoradia">
 		<xs:annotation>
 			<xs:appinfo>
-				<label>CONDIÇÕES DE MORADIA</label>
+				<xhtml:label>CONDIÇÕES DE MORADIA</xhtml:label>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
@@ -18,7 +19,7 @@
 			<xs:element name="situacaoMoradia" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Situação da Moradia</label>
+						<xhtml:label>Situação da Moradia</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 
@@ -36,7 +37,7 @@
 			<xs:element name="tempoMoradia" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Tempo de Moradia</label>
+						<xhtml:label>Tempo de Moradia</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 
@@ -54,7 +55,7 @@
 			<xs:element name="tiposConstrucao" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Tipos de Construção</label>
+						<xhtml:label>Tipos de Construção</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 
@@ -74,7 +75,7 @@
 				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Especifique Outros</label>
+						<xhtml:label>Especifique Outros</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -83,7 +84,7 @@
 				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Quantidade de Cômodos</label>
+						<xhtml:label>Quantidade de Cômodos</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -91,7 +92,7 @@
 			<xs:element name="possuiBanheiro" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Possui Banheiro</label>
+						<xhtml:label>Possui Banheiro</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 
@@ -106,7 +107,7 @@
 			<xs:element name="tipoAbastecimentoAgua" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Tipo Abastecimento de Agua</label>
+						<xhtml:label>Tipo Abastecimento de Agua</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 
@@ -126,7 +127,7 @@
 				type="xs:string" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Especifique Outros</label>
+						<xhtml:label>Especifique Outros</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -134,7 +135,7 @@
 			<xs:element name="tratamentoAgua" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Tratamento da Água</label>
+						<xhtml:label>Tratamento da Água</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 
@@ -153,7 +154,7 @@
 				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Especifique Outros</label>
+						<xhtml:label>Especifique Outros</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -161,7 +162,7 @@
 			<xs:element name="tipoIluminacao" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Tipo de Iluminação</label>
+						<xhtml:label>Tipo de Iluminação</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 
@@ -176,7 +177,7 @@
 			<xs:element name="escoamentoSanitario" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Escoamento Sanitário</label>
+						<xhtml:label>Escoamento Sanitário</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 
@@ -195,7 +196,7 @@
 				type="xs:string" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Especifique Outros</label>
+						<xhtml:label>Especifique Outros</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -203,7 +204,7 @@
 			<xs:element name="destinoLixo" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Destino do Lixo</label>
+						<xhtml:label>Destino do Lixo</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 

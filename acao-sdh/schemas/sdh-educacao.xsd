@@ -1,13 +1,14 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-educacao.xsd"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
 	targetNamespace="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-educacao.xsd"
 	elementFormDefault="qualified">
 
 	<xs:element name="formEducacao" type="formEducacao">
 		<xs:annotation>
 			<xs:appinfo>
-				<label>EDUCAÇÃO</label>
+				<xhtml:label>EDUCAÇÃO</xhtml:label>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
@@ -18,7 +19,7 @@
 			<xs:element name="estaMaticuladoEmAlgumaEscola" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Esta maticulado em alguma escola?</label>
+						<xhtml:label>Esta maticulado em alguma escola?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 
@@ -35,8 +36,8 @@
 				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Caso esteja matriculado/matriculada, está frenquentando
-							a escola?</label>
+						<xhtml:label>Caso esteja matriculado/matriculada, está frenquentando
+							a escola?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 
@@ -51,7 +52,7 @@
 			<xs:element name="seNaoFrequentaQualOMotivo" type="xs:string">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Se não frequenta qual o motivo?</label>
+						<xhtml:label>Se não frequenta qual o motivo?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -59,7 +60,7 @@
 			<xs:element name="haQuantoTempoNaoFrequenta" type="xs:string">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Há quanto tempo não frequenta?</label>
+						<xhtml:label>Há quanto tempo não frequenta?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -67,7 +68,7 @@
 			<xs:element name="emCasoAfirmativo">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Em caso afirmativo</label>
+						<xhtml:label>Em caso afirmativo</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 
@@ -77,7 +78,7 @@
 						<xs:element name="escola" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Escola</label>
+									<xhtml:label>Escola</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -85,7 +86,7 @@
 						<xs:element name="serieModalidades" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Serie/Modalidades</label>
+									<xhtml:label>Serie/Modalidades</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 
@@ -108,7 +109,7 @@
 						<xs:element name="turno" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Turno</label>
+									<xhtml:label>Turno</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 
@@ -124,7 +125,7 @@
 						<xs:element name="outros" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Outros</label>
+									<xhtml:label>Outros</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -132,7 +133,7 @@
 						<xs:element name="escolaridade" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Escolaridade</label>
+									<xhtml:label>Escolaridade</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -145,8 +146,8 @@
 				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>A escola em que esta matriculado situase proximo a sua
-							residência?</label>
+						<xhtml:label>A escola em que esta matriculado situase proximo a sua
+							residência?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 
@@ -162,7 +163,7 @@
 			<xs:element name="seNaoEstudaPorQualMotivo" type="xs:string">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Se nao estuda, por qual motivo?</label>
+						<xhtml:label>Se nao estuda, por qual motivo?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -170,7 +171,7 @@
 			<xs:element name="parouEmQueSerieModalidade" type="xs:string">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Parou em que serie/modalidade?</label>
+						<xhtml:label>Parou em que serie/modalidade?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -178,7 +179,7 @@
 			<xs:element name="emQueAno" type="xs:string">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Em que ano?</label>
+						<xhtml:label>Em que ano?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -188,8 +189,8 @@
 				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Na sua familia todas as criancas/adolescentes em idade
-							escolar estao matriculadas na escola?</label>
+						<xhtml:label>Na sua familia todas as criancas/adolescentes em idade
+							escolar estao matriculadas na escola?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 
@@ -204,7 +205,7 @@
 			<xs:element name="quantos" type="xs:string">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Quantos(as)?</label>
+						<xhtml:label>Quantos(as)?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>

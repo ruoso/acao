@@ -1,13 +1,14 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-servicoSocial.xsd"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
 	targetNamespace="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-servicoSocial.xsd"
 	elementFormDefault="qualified">
 
 	<xs:element name="formServicoSocial" type="formServicoSocial">
 		<xs:annotation>
 			<xs:appinfo>
-				<label>SERVIÇO SOCIAL</label>
+				<xhtml:label>SERVIÇO SOCIAL</xhtml:label>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
@@ -18,7 +19,7 @@
 			<xs:element name="relacionamentoFamiliar">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Relacionamento familiar</label>
+						<xhtml:label>Relacionamento familiar</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -27,12 +28,12 @@
 							type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Histórico familiar(verificar existência de
+									<xhtml:label>Histórico familiar(verificar existência de
 										conflitos,
 										configurações de relações afetivas,
 										responsãveis pelo
 										adolescente ao longo de sua vida)
-																		</label>
+																		</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -40,8 +41,8 @@
 						<xs:element name="relacionamentoDosPais" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Relacionamento dos pais
-																		</label>
+									<xhtml:label>Relacionamento dos pais
+																		</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -57,8 +58,8 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Responsáveis atualmente pelo adolescente
-																		</label>
+									<xhtml:label>Responsáveis atualmente pelo adolescente
+																		</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -83,7 +84,7 @@
 			<xs:element name="beneficios">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Benefícios</label>
+						<xhtml:label>Benefícios</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -92,10 +93,10 @@
 							minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Se a família ou algum membro da família é
+									<xhtml:label>Se a família ou algum membro da família é
 										favorecido por
 										algum benefício, quais 
-																		</label>
+																		</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -104,8 +105,8 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Esfera do benefício 
-																		</label>
+									<xhtml:label>Esfera do benefício 
+																		</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
@@ -113,7 +114,7 @@
 									<xs:element name="municipal" minOccurs="0" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label> Municipal</label>
+												<xhtml:label> Municipal</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -121,7 +122,7 @@
 									<xs:element name="estadual" minOccurs="0" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label> Estadual</label>
+												<xhtml:label> Estadual</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -129,7 +130,7 @@
 									<xs:element name="federal" minOccurs="0" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label> Federal</label>
+												<xhtml:label> Federal</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -141,8 +142,8 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Situação atual do benefício
-																		</label>
+									<xhtml:label>Situação atual do benefício
+																		</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -163,7 +164,7 @@
 			<xs:element name="relacionamentoComunitario">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Relacionamento Comunitário</label>
+						<xhtml:label>Relacionamento Comunitário</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -172,14 +173,14 @@
 							minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Histórico de convivência comunitária(analisar
+									<xhtml:label>Histórico de convivência comunitária(analisar
 										período de
 										residẽncia no endereço, informando,
 										composição de circulo de
 										amizades, apresentação de
 										relações afetivas - namoro, noivado,
 										casamento)
-																		</label>
+																		</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -190,7 +191,7 @@
 			<xs:element name="violencia">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Violência</label>
+						<xhtml:label>Violência</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -198,7 +199,7 @@
 						<xs:element name="territorialidade">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Territorialidade</label>
+									<xhtml:label>Territorialidade</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
@@ -207,8 +208,8 @@
 										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>No seu bairro ha conflitos de grupos rivais
-																					</label>
+												<xhtml:label>No seu bairro ha conflitos de grupos rivais
+																					</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:simpleType>
@@ -223,7 +224,7 @@
 										minOccurs="0" type="xs:string">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Qual rivalidade há no seu bairro	</label>
+												<xhtml:label>Qual rivalidade há no seu bairro	</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -232,8 +233,8 @@
 										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Participação em grupos rivais
-																					</label>
+												<xhtml:label>Participação em grupos rivais
+																					</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:simpleType>
@@ -255,7 +256,7 @@
 			<xs:element name="rotinaDiaria">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Diária</label>
+						<xhtml:label>Diária</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -263,7 +264,7 @@
 						<xs:element name="comoESeuDia">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Como é seu dia</label>
+									<xhtml:label>Como é seu dia</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
@@ -272,7 +273,7 @@
 										type="xs:string">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Manha</label>
+												<xhtml:label>Manha</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -281,7 +282,7 @@
 										type="xs:string">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Tarde</label>
+												<xhtml:label>Tarde</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -290,7 +291,7 @@
 										type="xs:string">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Noite</label>
+												<xhtml:label>Noite</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -302,9 +303,9 @@
 						<xs:element name="praticaAtividadesSocioCulturaisEsportivas">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Quais atividades sócio-culturais e esportivas
+									<xhtml:label>Quais atividades sócio-culturais e esportivas
 										você
-										pratica(público ou privado)</label>
+										pratica(público ou privado)</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
@@ -312,7 +313,7 @@
 									<xs:element name="esportes" minOccurs="0" type="xs:string">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Esportes</label>
+												<xhtml:label>Esportes</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -320,7 +321,7 @@
 									<xs:element name="lazer" minOccurs="0" type="xs:string">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Lazer</label>
+												<xhtml:label>Lazer</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -328,7 +329,7 @@
 									<xs:element name="cultura" minOccurs="0" type="xs:string">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Cultura</label>
+												<xhtml:label>Cultura</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -344,7 +345,7 @@
 			<xs:element name="expectativas">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Expectativas</label>
+						<xhtml:label>Expectativas</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -353,8 +354,8 @@
 							type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Quais suas expectativas em relação a medida
-										sócio-educativa </label>
+									<xhtml:label>Quais suas expectativas em relação a medida
+										sócio-educativa </xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -367,8 +368,8 @@
 				type="xs:string">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Impressões do atendimento
-																		</label>
+						<xhtml:label>Impressões do atendimento
+																		</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -377,8 +378,8 @@
 				type="xs:string">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Técnico responsável
-																		</label>
+						<xhtml:label>Técnico responsável
+																		</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -386,8 +387,8 @@
 			<xs:element name="dataDocumento" minOccurs="0" type="xs:date">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Data
-																		</label>
+						<xhtml:label>Data
+																		</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>

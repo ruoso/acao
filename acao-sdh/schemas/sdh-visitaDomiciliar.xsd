@@ -1,13 +1,14 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-visitaDomiciliar.xsd"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
 	targetNamespace="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-visitaDomiciliar.xsd"
 	elementFormDefault="qualified">
 
 	<xs:element name="formVisitaDomiciliar" type="formVisitaDomiciliar">
 		<xs:annotation>
 			<xs:appinfo>
-				<label>VISITA DOMICILIAR</label>
+				<xhtml:label>VISITA DOMICILIAR</xhtml:label>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
@@ -18,7 +19,7 @@
 			<xs:element name="identificacao">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Identificação</label>
+						<xhtml:label>Identificação</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -27,8 +28,8 @@
 							type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Nome entrevistado
-																		</label>
+									<xhtml:label>Nome entrevistado
+																		</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -37,8 +38,8 @@
 							type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Parentesco com o adolescente
-																		</label>
+									<xhtml:label>Parentesco com o adolescente
+																		</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -47,8 +48,8 @@
 							type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Idade entrevistado
-																		</label>
+									<xhtml:label>Idade entrevistado
+																		</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -61,7 +62,7 @@
 			<xs:element name="convivenciaComunitaria">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Convivência Comunitaria </label>
+						<xhtml:label>Convivência Comunitaria </xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -70,9 +71,9 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>alguem da família participa ou participou de
+									<xhtml:label>alguem da família participa ou participou de
 										algum grupo social
-																					</label>
+																					</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -88,8 +89,8 @@
 							minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Quem da família participa ou participou
-																		</label>
+									<xhtml:label>Quem da família participa ou participou
+																		</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -98,9 +99,9 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Tipo grupo social alguem da família participa
+									<xhtml:label>Tipo grupo social alguem da família participa
 										ou participou 
-																					</label>
+																					</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -132,9 +133,9 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Em caso de negativo, algum membro da família
+									<xhtml:label>Em caso de negativo, algum membro da família
 										desenvolve alguma atividade comunitária
-																					</label>
+																					</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -150,8 +151,8 @@
 							minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Qual atividade é desenvolvida
-																		</label>
+									<xhtml:label>Qual atividade é desenvolvida
+																		</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -160,9 +161,9 @@
 							minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Em caso de negativo, qual atividade gostariam
+									<xhtml:label>Em caso de negativo, qual atividade gostariam
 										de desenvolver
-																		</label>
+																		</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -171,9 +172,9 @@
 							minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Como identifica a relação da famíla com a
+									<xhtml:label>Como identifica a relação da famíla com a
 										comunidade(vínculos com vizinhos e amigos)
-																		</label>
+																		</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -185,7 +186,7 @@
 			<xs:element name="recursosComunitarios">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Recursos comunitários</label>
+						<xhtml:label>Recursos comunitários</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -193,8 +194,8 @@
 						<xs:element name="recursosUtilizados" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Quais recursos utilizados 
-																		</label>
+									<xhtml:label>Quais recursos utilizados 
+																		</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
@@ -202,7 +203,7 @@
 									<xs:element name="escola" minOccurs="0" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label> Escola</label>
+												<xhtml:label> Escola</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -211,7 +212,7 @@
 										type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label> Posto de saúde</label>
+												<xhtml:label> Posto de saúde</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -219,7 +220,7 @@
 									<xs:element name="CRAS" minOccurs="0" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label> CRAS </label>
+												<xhtml:label> CRAS </xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -228,7 +229,7 @@
 										type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label> Conselho tutelar</label>
+												<xhtml:label> Conselho tutelar</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -236,7 +237,7 @@
 									<xs:element name="ONGs" minOccurs="0" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label> ONG's</label>
+												<xhtml:label> ONG's</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -245,7 +246,7 @@
 										type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label> Associação de moradores </label>
+												<xhtml:label> Associação de moradores </xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -253,7 +254,7 @@
 									<xs:element name="outros" minOccurs="0" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label> Outros</label>
+												<xhtml:label> Outros</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -262,8 +263,8 @@
 										minOccurs="0" type="xs:string">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Especifique outros recursos comunitarios
-																					</label>
+												<xhtml:label>Especifique outros recursos comunitarios
+																					</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -278,7 +279,7 @@
 			<xs:element name="dinamicaFamiliar">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Dinâmica familiar</label>
+						<xhtml:label>Dinâmica familiar</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -287,8 +288,8 @@
 							minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Como está a relação entre os familiares
-																		</label>
+									<xhtml:label>Como está a relação entre os familiares
+																		</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -297,11 +298,11 @@
 							minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Como a família está contribuindo para facilitar
+									<xhtml:label>Como a família está contribuindo para facilitar
 										o cumprimendo da MSE(aproveitar para responsabilizar
 										a família acerca das determinações quanto ao
 										cumprimento da medida)
-																		</label>
+																		</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -311,10 +312,10 @@
 							minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Que providências foram tomadas em relação à
+									<xhtml:label>Que providências foram tomadas em relação à
 										documentação, escola, profissionalização, drogadição,
 										e demais encaminhamentos realizados pelo núcleo
-																		</label>
+																		</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -324,10 +325,10 @@
 							minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>A família percebe a mudança de comportamento do
+									<xhtml:label>A família percebe a mudança de comportamento do
 										adolescente depois do início da medida? O que pensa
 										disso
-																		</label>
+																		</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -341,8 +342,8 @@
 				type="xs:string">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Impressões do atendimento
-																		</label>
+						<xhtml:label>Impressões do atendimento
+																		</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -351,7 +352,7 @@
 				type="xs:string">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Técnico responsável</label>
+						<xhtml:label>Técnico responsável</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -359,7 +360,7 @@
 			<xs:element name="dataDocumento" minOccurs="0" type="xs:date">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Data</label>
+						<xhtml:label>Data</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>

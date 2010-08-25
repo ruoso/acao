@@ -62,6 +62,19 @@ sub get_document {
     return $data;
 }
 
+=item get_collection($id)
+
+Retorna o conteúdo de uma collection pelo seu $id.
+
+=cut
+
+sub get_collection {
+    my ( $self, $doc ) = @_;
+    $self->execute( 'for $x in collection("' . $doc . '") return $x' );
+    my $data = $self->get_item;
+    return $data;
+}
+
 =item store_document($xml, $doc_id, $collection)
 
 Salva o documento $xml utilizando o id $doc_id na collection de nome

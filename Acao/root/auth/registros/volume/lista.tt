@@ -23,7 +23,7 @@
 
 [%# definição da variavel schema para este template %]
 [% CALL c.model('Sedna').begin %]
-[% SET schema = c.model('Sedna').get_document('volume.xsd') %]
+[% SET schema = c.model('Sedna').get_collection('volume') %]
 [% CALL c.model('Sedna').commit %]
 
 [% xqueryret = PROCESS 'auth/registros/volume/lista_xqueryret.tt' %]

@@ -1,13 +1,14 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-juridico.xsd"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
 	targetNamespace="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-juridico.xsd"
 	elementFormDefault="qualified">
 
 	<xs:element name="formJuridico" type="formJuridico">
 		<xs:annotation>
 			<xs:appinfo>
-				<label>JURÍDICO</label>
+				<xhtml:label>JURÍDICO</xhtml:label>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
@@ -18,7 +19,7 @@
 			<xs:element name="origem" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Origem</label>
+						<xhtml:label>Origem</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -37,7 +38,7 @@
 				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Já cumpriu outra medida socioeducativa?</label>
+						<xhtml:label>Já cumpriu outra medida socioeducativa?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -51,7 +52,7 @@
 			<xs:element name="qualMedidaSocioeducativa" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Qual(is)?</label>
+						<xhtml:label>Qual(is)?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -68,7 +69,7 @@
 			<xs:element name="qualMedidaSocioeducativa" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Qual(is)?</label>
+						<xhtml:label>Qual(is)?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -85,7 +86,7 @@
 			<xs:element name="historicoInfracional">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Histórico Infracional</label>
+						<xhtml:label>Histórico Infracional</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -95,7 +96,7 @@
 							type="xs:date">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Por que está cumprindo a medida?</label>
+									<xhtml:label>Por que está cumprindo a medida?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -103,7 +104,7 @@
 						<xs:element name="oQueOMotivou" minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>O que o motivou?</label>
+									<xhtml:label>O que o motivou?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -112,7 +113,7 @@
 							type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Foi planejado ou impulso?</label>
+									<xhtml:label>Foi planejado ou impulso?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -121,7 +122,7 @@
 							type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Como se sente em relação ao ato?</label>
+									<xhtml:label>Como se sente em relação ao ato?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -129,7 +130,7 @@
 						<xs:element name="valeuAPena" minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Valeu a pena?</label>
+									<xhtml:label>Valeu a pena?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -138,8 +139,8 @@
 							minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Já cometeu outros atos infracionais? Foram
-										apurados?</label>
+									<xhtml:label>Já cometeu outros atos infracionais? Foram
+										apurados?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -151,7 +152,7 @@
 			<xs:element name="apuracaoDoAtoInfracional">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Apuração do Ato Infracional</label>
+						<xhtml:label>Apuração do Ato Infracional</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -161,7 +162,7 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>a) Da abordagem policial e apreensão</label>
+									<xhtml:label>a) Da abordagem policial e apreensão</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 
@@ -172,7 +173,7 @@
 										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Sofreu agressão institucional?</label>
+												<xhtml:label>Sofreu agressão institucional?</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:simpleType>
@@ -186,7 +187,7 @@
 									<xs:element name="quaisAgressões" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Quais Agressões?</label>
+												<xhtml:label>Quais Agressões?</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:simpleType>
@@ -200,7 +201,7 @@
 									<xs:element name="foiAlgemado" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Foi Algemado?</label>
+												<xhtml:label>Foi Algemado?</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:simpleType>
@@ -216,9 +217,9 @@
 										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Foi conduzido de maneira adequada para a
+												<xhtml:label>Foi conduzido de maneira adequada para a
 													Unidade de
-													Recepção?</label>
+													Recepção?</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:simpleType>
@@ -233,8 +234,8 @@
 										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Foi conduzido direto para a Unidade de
-													Recepção?</label>
+												<xhtml:label>Foi conduzido direto para a Unidade de
+													Recepção?</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:simpleType>
@@ -250,9 +251,9 @@
 										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Foi conduzido para o IML, a fim de realizar
+												<xhtml:label>Foi conduzido para o IML, a fim de realizar
 													o
-													exame de Corpo de Delito?</label>
+													exame de Corpo de Delito?</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:simpleType>
@@ -267,9 +268,9 @@
 										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Foi conduzido de maneira adequada para o
+												<xhtml:label>Foi conduzido de maneira adequada para o
 													IML?
-																		</label>
+																		</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:simpleType>
@@ -284,7 +285,7 @@
 										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Observações</label>
+												<xhtml:label>Observações</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -294,10 +295,10 @@
 										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Os policiais que realizaram sua apreenção
+												<xhtml:label>Os policiais que realizaram sua apreenção
 													são
 													os mesmos que o conduziu para o IML?
-																		</label>
+																		</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:simpleType>
@@ -312,7 +313,7 @@
 										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Você foi apreendido em flagrante?</label>
+												<xhtml:label>Você foi apreendido em flagrante?</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:simpleType>
@@ -327,7 +328,7 @@
 										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Observações</label>
+												<xhtml:label>Observações</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -337,9 +338,9 @@
 										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Houve presenca de advogado ou defensor
+												<xhtml:label>Houve presenca de advogado ou defensor
 													publico
-													no ato da apreensão em flagrante?</label>
+													no ato da apreensão em flagrante?</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:simpleType>
@@ -358,8 +359,8 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>b) Da delegacia da crianca e do adolescente
-																		</label>
+									<xhtml:label>b) Da delegacia da crianca e do adolescente
+																		</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
@@ -369,9 +370,9 @@
 										type="xs:string" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Avaliar a passagem do adolescente pela
+												<xhtml:label>Avaliar a passagem do adolescente pela
 													Delegacia,
-													feitura de exames periciais, etc</label>
+													feitura de exames periciais, etc</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -382,7 +383,7 @@
 						<xs:element name="daUnidadeDeRecepcao" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>c) Da unidade de recepcao</label>
+									<xhtml:label>c) Da unidade de recepcao</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
@@ -392,9 +393,9 @@
 										type="xs:string" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Investigar sobre período de permanência do
+												<xhtml:label>Investigar sobre período de permanência do
 													adolescente apreendido na Unidade de Recepção
-																					</label>
+																					</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -405,7 +406,7 @@
 						<xs:element name="" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>d) Da apresentação</label>
+									<xhtml:label>d) Da apresentação</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
@@ -414,11 +415,11 @@
 										type="xs:string" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Contato do adolescente com o Membro do
+												<xhtml:label>Contato do adolescente com o Membro do
 													Ministério Publico, a Representante da Defensoria
 													Publica e Juiz e a adequada observância dos
 													direitos
-													e garantias fundamentais</label>
+													e garantias fundamentais</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -429,7 +430,7 @@
 						<xs:element name="remissao" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>e) Remissao:</label>
+									<xhtml:label>e) Remissao:</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
@@ -439,8 +440,8 @@
 										type="xs:string" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Saber se o adolescente foi devidamente
-													informado sobre o instituto da remissão</label>
+												<xhtml:label>Saber se o adolescente foi devidamente
+													informado sobre o instituto da remissão</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -451,7 +452,7 @@
 						<xs:element name="progressaoOuRegressao" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>f) Progressão ou regressão</label>
+									<xhtml:label>f) Progressão ou regressão</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
@@ -460,9 +461,9 @@
 										type="xs:string" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Investigar sobre a progressão ou regressão
+												<xhtml:label>Investigar sobre a progressão ou regressão
 													da
-													medida</label>
+													medida</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -473,7 +474,7 @@
 						<xs:element name="julgamento" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>g) Julgamento</label>
+									<xhtml:label>g) Julgamento</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
@@ -482,7 +483,7 @@
 										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Observaçõees</label>
+												<xhtml:label>Observaçõees</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -493,7 +494,7 @@
 						<xs:element name="privacaoDeLiberdade" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>h) Privação de Liberdade</label>
+									<xhtml:label>h) Privação de Liberdade</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
@@ -503,8 +504,8 @@
 										type="xs:string" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Saber se o adolescente já este em centro
-													educacional e o tempo de permanência</label>
+												<xhtml:label>Saber se o adolescente já este em centro
+													educacional e o tempo de permanência</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -515,7 +516,7 @@
 						<xs:element name="abrigamento" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>i) Abrigamento</label>
+									<xhtml:label>i) Abrigamento</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
@@ -525,8 +526,8 @@
 										type="xs:string" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Saber se o adolescente já este em centro
-													educacional e o tempo de permanência</label>
+												<xhtml:label>Saber se o adolescente já este em centro
+													educacional e o tempo de permanência</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -538,7 +539,7 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Impressões do atendimento:</label>
+									<xhtml:label>Impressões do atendimento:</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -547,7 +548,7 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Técnico responsável:</label>
+									<xhtml:label>Técnico responsável:</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -555,7 +556,7 @@
 						<xs:element name="data" minOccurs="0" type="xs:date">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Data</label>
+									<xhtml:label>Data</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>

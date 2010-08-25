@@ -73,6 +73,7 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
 					    $representaVolumeFisico,
 					    $c->req->param('classificacao'),
 					    $c->req->param('localizacao'),
+					    $c->req->param('autorizacao'),
 					    $c->req->address,
 					 );
 
@@ -82,6 +83,13 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
     else { $c->flash->{sucesso} = 'Volume criado com sucesso'; }
     $c->res->redirect( $c->uri_for('/auth/registros/volume') );
 }
+
+sub xsd : Chained('base') : PathPart('xsd') : Args(1) {
+    my ( $self, $c, $xsd ) = @_;
+    $c->stash->{document} = $c->model('XSD')->obter_xsd( $xsd );
+    $c->forward( $c->view('XML') );
+}
+
 =back
 
 =head1 COPYRIGHT AND LICENSING

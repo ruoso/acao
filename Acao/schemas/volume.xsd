@@ -20,7 +20,7 @@
 					</xs:simpleType>
 				</xs:element>
 				<xs:element name="representaVolumeFisico" type="xs:boolean" />
-				<xs:element name="classificacao" type="xs:string" minOccurs="unbounded" />
+				<xs:element name="classificacao" type="xs:string" maxnOccurs="unbounded" />
 				<xs:element name="localizacao" type="xs:string" />
 				<xs:element name="autorizacao">
 					<xs:complexType>

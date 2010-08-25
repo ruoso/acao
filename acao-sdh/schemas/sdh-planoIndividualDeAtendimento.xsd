@@ -1,13 +1,14 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-planoIndividualDeAtendimento.xsd"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
 	targetNamespace="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-planoIndividualDeAtendimento.xsd"
 	elementFormDefault="qualified">
 
 	<xs:element name="formPlanoIndividualDeAtendimento" type="formPlanoIndividualDeAtendimento">
 		<xs:annotation>
 			<xs:appinfo>
-				<label>PLANO INDIVIDUAL DE ATENDIMENTO</label>
+				<xhtml:label>PLANO INDIVIDUAL DE ATENDIMENTO</xhtml:label>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
@@ -18,7 +19,7 @@
 			<xs:element name="direcionamento" minOccurs="0" type="xs:string">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Direcionamento</label>
+						<xhtml:label>Direcionamento</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -27,7 +28,7 @@
 				type="xs:string">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Instituição/Programa/Projeto</label>
+						<xhtml:label>Instituição/Programa/Projeto</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -35,7 +36,7 @@
 			<xs:element name="Motivo" minOccurs="0" type="xs:string">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Motivo</label>
+						<xhtml:label>Motivo</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -43,7 +44,7 @@
 			<xs:element name="objetivo" minOccurs="0" type="xs:string">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Objetivo</label>
+						<xhtml:label>Objetivo</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -52,7 +53,7 @@
 				type="xs:string">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Técnico responsável</label>
+						<xhtml:label>Técnico responsável</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -60,7 +61,7 @@
 			<xs:element name="data" minOccurs="0" type="xs:string">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Data</label>
+						<xhtml:label>Data</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -68,7 +69,7 @@
 			<xs:element name="Retorno" minOccurs="0" type="xs:string">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Retorno</label>
+						<xhtml:label>Retorno</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -76,7 +77,7 @@
 			<xs:element name="observacoes" minOccurs="0" type="xs:string">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Observacoes</label>
+						<xhtml:label>Observacoes</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>

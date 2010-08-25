@@ -1,13 +1,14 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-saude.xsd"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
 	targetNamespace="http://schemas.fortaleza.ce.gov.br/habitafor/sdh-saude.xsd"
 	elementFormDefault="qualified">
 
 	<xs:element name="formSaude" type="formSaude">
 		<xs:annotation>
 			<xs:appinfo>
-				<label>SAÚDE</label>
+				<xhtml:label>SAÚDE</xhtml:label>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
@@ -18,7 +19,7 @@
 			<xs:element name="saudeDaFamilia">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Saúde da Familia</label>
+						<xhtml:label>Saúde da Familia</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -27,7 +28,7 @@
 						<xs:element name="nome" type="xs:string" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Nome</label>
+									<xhtml:label>Nome</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -36,7 +37,7 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Parentesco</label>
+									<xhtml:label>Parentesco</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -44,7 +45,7 @@
 						<xs:element name="idade" type="xs:integer" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Idade</label>
+									<xhtml:label>Idade</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -53,7 +54,7 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Tipo de doença</label>
+									<xhtml:label>Tipo de doença</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -61,7 +62,7 @@
 						<xs:element name="situacaoDetratamento" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Situacao de tratamento</label>
+									<xhtml:label>Situacao de tratamento</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 
@@ -80,7 +81,7 @@
 							type="xs:string" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Especifique outros situação de tratamento </label>
+									<xhtml:label>Especifique outros situação de tratamento </xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -89,7 +90,7 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Local de tratamento</label>
+									<xhtml:label>Local de tratamento</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -98,7 +99,7 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Observações</label>
+									<xhtml:label>Observações</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -107,8 +108,8 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Sua família vai ao atendimento médico regularmente
-									</label>
+									<xhtml:label>Sua família vai ao atendimento médico regularmente
+									</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 
@@ -125,7 +126,7 @@
 							type="xs:integer" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Especifique quantas vezes </label>
+									<xhtml:label>Especifique quantas vezes </xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -134,7 +135,7 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Recebe medicamento quando necessário</label>
+									<xhtml:label>Recebe medicamento quando necessário</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 
@@ -152,8 +153,8 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>A familia possui pessoas com histórico de transtornos
-										mentais</label>
+									<xhtml:label>A familia possui pessoas com histórico de transtornos
+										mentais</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 
@@ -171,8 +172,8 @@
 							type="xs:integer" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Especifique quem da familia possui histórico de
-										transtornos mentais </label>
+									<xhtml:label>Especifique quem da familia possui histórico de
+										transtornos mentais </xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -181,7 +182,7 @@
 							type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Recebe algum acompanhamento institucional</label>
+									<xhtml:label>Recebe algum acompanhamento institucional</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -191,8 +192,8 @@
 							type="xs:integer" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Especifique a quanto tempo recebe algum
-										acompanhamento institucional</label>
+									<xhtml:label>Especifique a quanto tempo recebe algum
+										acompanhamento institucional</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -201,8 +202,8 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Onde recebe algum acompanhamento
-										institucional</label>
+									<xhtml:label>Onde recebe algum acompanhamento
+										institucional</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 
@@ -220,8 +221,8 @@
 							type="xs:integer" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Especifique onde recebe algum acompanhamento
-										institucional</label>
+									<xhtml:label>Especifique onde recebe algum acompanhamento
+										institucional</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -230,8 +231,8 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Na família existem pessoas com alguma deficiência
-									</label>
+									<xhtml:label>Na família existem pessoas com alguma deficiência
+									</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 
@@ -247,7 +248,7 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Tipo de deficiência com pessoas da família</label>
+									<xhtml:label>Tipo de deficiência com pessoas da família</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -265,7 +266,7 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>As crianças estão com as vacinas em dias</label>
+									<xhtml:label>As crianças estão com as vacinas em dias</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 
@@ -281,7 +282,7 @@
 							type="xs:integer" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Especifique quais vacinas as crianças tomaram</label>
+									<xhtml:label>Especifique quais vacinas as crianças tomaram</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -291,8 +292,8 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Algum membro da família e/ou socioeducando faz uso de
-										substâncias psicoativas</label>
+									<xhtml:label>Algum membro da família e/ou socioeducando faz uso de
+										substâncias psicoativas</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 
@@ -304,9 +305,9 @@
 										type="xs:integer" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Parentesco de quem faz uso de
+												<xhtml:label>Parentesco de quem faz uso de
 													substâncias
-													psicoativas</label>
+													psicoativas</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -315,7 +316,7 @@
 										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Quanto ao uso de alcool</label>
+												<xhtml:label>Quanto ao uso de alcool</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:simpleType>
@@ -334,7 +335,7 @@
 										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Quanto ao uso de cigarro</label>
+												<xhtml:label>Quanto ao uso de cigarro</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:simpleType>
@@ -353,7 +354,7 @@
 										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Quanto ao uso de maconha</label>
+												<xhtml:label>Quanto ao uso de maconha</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:simpleType>
@@ -372,7 +373,7 @@
 										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Quanto ao uso de cocaína</label>
+												<xhtml:label>Quanto ao uso de cocaína</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:simpleType>
@@ -391,7 +392,7 @@
 										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Quanto ao uso de mesclado</label>
+												<xhtml:label>Quanto ao uso de mesclado</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:simpleType>
@@ -410,7 +411,7 @@
 										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Quanto ao uso de crack</label>
+												<xhtml:label>Quanto ao uso de crack</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:simpleType>
@@ -429,7 +430,7 @@
 										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Quanto ao uso de comprimidos</label>
+												<xhtml:label>Quanto ao uso de comprimidos</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:simpleType>
@@ -448,7 +449,7 @@
 										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Quanto ao uso de cola</label>
+												<xhtml:label>Quanto ao uso de cola</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:simpleType>
@@ -467,7 +468,7 @@
 										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Quanto ao uso de inalantes</label>
+												<xhtml:label>Quanto ao uso de inalantes</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:simpleType>
@@ -491,7 +492,7 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Acompanhamento específico para uso drogas</label>
+									<xhtml:label>Acompanhamento específico para uso drogas</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 
@@ -501,7 +502,7 @@
 									<xs:element name="nuncaFezAcompanhamento" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Nunca fez acompanhamento</label>
+												<xhtml:label>Nunca fez acompanhamento</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -509,7 +510,7 @@
 									<xs:element name="FazAcompanhamento" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label> Onde faz acompanhamento</label>
+												<xhtml:label> Onde faz acompanhamento</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:complexType>
@@ -518,7 +519,7 @@
 												<xs:element name="CAPSad" type="xs:boolean">
 													<xs:annotation>
 														<xs:appinfo>
-															<label>CAPSad</label>
+															<xhtml:label>CAPSad</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
@@ -526,7 +527,7 @@
 												<xs:element name="hospitalMental" type="xs:boolean">
 													<xs:annotation>
 														<xs:appinfo>
-															<label>Hospital mental</label>
+															<xhtml:label>Hospital mental</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
@@ -538,7 +539,7 @@
 										type="xs:string" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Especifique onde faz acompanhamento</label>
+												<xhtml:label>Especifique onde faz acompanhamento</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -546,8 +547,8 @@
 										type="xs:string" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Especifique a quanto tempo faz acompanhamento
-															</label>
+												<xhtml:label>Especifique a quanto tempo faz acompanhamento
+															</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -555,7 +556,7 @@
 									<xs:element name="FezAcompanhamento" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label> Onde fez acompanhamento</label>
+												<xhtml:label> Onde fez acompanhamento</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:complexType>
@@ -564,7 +565,7 @@
 												<xs:element name="CAPSad" type="xs:boolean">
 													<xs:annotation>
 														<xs:appinfo>
-															<label>CAPSad</label>
+															<xhtml:label>CAPSad</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
@@ -572,7 +573,7 @@
 												<xs:element name="hospitalMental" type="xs:boolean">
 													<xs:annotation>
 														<xs:appinfo>
-															<label>Hospital mental</label>
+															<xhtml:label>Hospital mental</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
@@ -585,7 +586,7 @@
 										type="xs:string" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Especifique onde fez acompanhamento</label>
+												<xhtml:label>Especifique onde fez acompanhamento</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -594,8 +595,8 @@
 										type="xs:string" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Especifique a quanto tempo fez acompanhamento
-															</label>
+												<xhtml:label>Especifique a quanto tempo fez acompanhamento
+															</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -608,7 +609,7 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Já internado em alguma comunidade terapêutica</label>
+									<xhtml:label>Já internado em alguma comunidade terapêutica</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -623,8 +624,8 @@
 							type="xs:string" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Especifique unidade terapêutica que ficou internado
-									</label>
+									<xhtml:label>Especifique unidade terapêutica que ficou internado
+									</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -632,7 +633,7 @@
 						<xs:element name="desejaTratamento" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Deseja tratamento</label>
+									<xhtml:label>Deseja tratamento</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -647,8 +648,8 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Utiliza algum método contraceptivo e/ou contra
-										DST/AIDS</label>
+									<xhtml:label>Utiliza algum método contraceptivo e/ou contra
+										DST/AIDS</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -662,7 +663,7 @@
 						<xs:element name="qualContaceptivoUsa" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label> Se usa contraceptivo, qual ?</label>
+									<xhtml:label> Se usa contraceptivo, qual ?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
@@ -671,7 +672,7 @@
 									<xs:element name="preservativoMasculino" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Preservativo masculino</label>
+												<xhtml:label>Preservativo masculino</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -679,7 +680,7 @@
 									<xs:element name="preservativoFeminino" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Preservativo feminino</label>
+												<xhtml:label>Preservativo feminino</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -687,7 +688,7 @@
 									<xs:element name="pilulaAnticoncpcional" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Pilula anticoncpcional</label>
+												<xhtml:label>Pilula anticoncpcional</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -695,7 +696,7 @@
 									<xs:element name="diu" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>DIU</label>
+												<xhtml:label>DIU</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -703,7 +704,7 @@
 									<xs:element name="tabela" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Tabela</label>
+												<xhtml:label>Tabela</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -711,7 +712,7 @@
 									<xs:element name="temperaturaBasal" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Temperatura basal</label>
+												<xhtml:label>Temperatura basal</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -719,7 +720,7 @@
 									<xs:element name="metododeBilling" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Método de Billing</label>
+												<xhtml:label>Método de Billing</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -727,7 +728,7 @@
 									<xs:element name="coitoInterrompido" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Coito interrompido</label>
+												<xhtml:label>Coito interrompido</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -739,7 +740,7 @@
 						<xs:element name="porqueNaoUsaContaceptivo" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label> Se não usa contraceptivo, por que?</label>
+									<xhtml:label> Se não usa contraceptivo, por que?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
@@ -748,7 +749,7 @@
 									<xs:element name="naoSeiOQueEIsso" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Não sei o que é isso</label>
+												<xhtml:label>Não sei o que é isso</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -756,7 +757,7 @@
 									<xs:element name="naoTenhoInteresseEmUsar" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Não tenho Interesse em utilizá-los</label>
+												<xhtml:label>Não tenho Interesse em utilizá-los</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -764,7 +765,7 @@
 									<xs:element name="tenhoMedoDeUsar" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<label>Tenho medo de usar</label>
+												<xhtml:label>Tenho medo de usar</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -777,7 +778,7 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Freqüenta o ginecologista regularmente</label>
+									<xhtml:label>Freqüenta o ginecologista regularmente</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -793,7 +794,7 @@
 							type="xs:integer" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Quantas vezes vai ao ginecologista ao ano</label>
+									<xhtml:label>Quantas vezes vai ao ginecologista ao ano</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -802,7 +803,7 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Freqüenta urologista regularmente</label>
+									<xhtml:label>Freqüenta urologista regularmente</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -818,7 +819,7 @@
 							type="xs:integer" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Quantas vezes vai ao urologista ao ano</label>
+									<xhtml:label>Quantas vezes vai ao urologista ao ano</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -830,7 +831,7 @@
 			<xs:element name="avaliacaoDoAcessoAosServicosDeSaude">
 				<xs:annotation>
 					<xs:appinfo>
-						<label>Avaliação do acesso aos serviços de saúde</label>
+						<xhtml:label>Avaliação do acesso aos serviços de saúde</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -840,7 +841,7 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Acesso da família ao serviço de Saude</label>
+									<xhtml:label>Acesso da família ao serviço de Saude</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -856,7 +857,7 @@
 						<xs:element name="acessoAmedicacao" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Acesso a medicação</label>
+									<xhtml:label>Acesso a medicação</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -872,7 +873,7 @@
 						<xs:element name="condicoesDeSaudeDaFamilia" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<label>Condições de Saúde da família</label>
+									<xhtml:label>Condições de Saúde da família</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
