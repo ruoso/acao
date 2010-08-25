@@ -68,9 +68,7 @@ txn_method 'criar_dossie' => authorized 'volume' => sub {
     my $dataFim = DateTime->now();
     my $role = 'role';
 
-    $self->sedna->execute('declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/sdh-identificacaoPessoal.xsd"; 
-                            for $x in collection("acao-schemas")[xs:schema/@targetNamespace="
-                                http://schemas.fortaleza.ce.gov.br/acao/sdh-identificacaoPessoal.xsd"] return $x');
+    $self->sedna->execute('declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/sdh-identificacaoPessoal.xsd"; for $x in collection("acao-schemas")[xs:schema/@targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-identificacaoPessoal.xsd"] return $x');
 
     my $xsd = $self->sedna->get_item;
     my $octets = encode('utf8', $xsd);
@@ -84,6 +82,7 @@ txn_method 'criar_dossie' => authorized 'volume' => sub {
     my $xml_en = encode('utf8', $xml);
 
     my $input_doc = XML::LibXML->load_xml( string => $xml_en );
+
     my $element   = $input_doc->getDocumentElement;
     my $xml_data  = $read->($element);
 
@@ -99,8 +98,8 @@ txn_method 'criar_dossie' => authorized 'volume' => sub {
                                     collection => $id_volume,
                                     estado => 'aberto',
                                     representaDossieFisico => 1,
-                                    classificacao => $classificacao,
-                                    localizacao => 'a',
+                                    classificacao => 'c',
+                                    localizacao => 'l',
                                     autorizacao => {
                                                     principal => $self->user->id,
                                                     role => $role,
