@@ -65,7 +65,6 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
     else {
        $representaDossieFisico = '0';
     }
-# $c->req->param('nome'), $representaDossieFisico, $c->req->param('classificacao'), $c->req->param('localizacao'),
     eval {
         $c->model('Dossie')->criar_dossie(
 		                                  $c->req->address,
@@ -79,12 +78,6 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
     if ($@) { $c->flash->{erro} = $@ . "";  }
     else { $c->flash->{sucesso} = 'Dossie criado com sucesso'; }
     $c->res->redirect( $c->uri_for('/auth/registros/volume/' . $c->req->param('id_volume') ) );
-}
-
-sub xsd : Chained('base') : PathPart('xsd') : Args(0) {
-    my ( $self, $c ) = @_;
-    $c->stash->{document} = $c->model('Dossie')->obter_xsd_dossie( 'sdh-identificacaoPessoal.xsd' );
-    $c->forward( $c->view('XML') );
 }
 
 =head1 COPYRIGHT AND LICENSING
