@@ -68,7 +68,9 @@ txn_method 'criar_dossie' => authorized 'volume' => sub {
     my $dataFim = DateTime->now();
     my $role = 'role';
 
-    $self->sedna->execute('declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/sdh-identificacaoPessoal.xsd"; for $x in collection("acao-schemas")[xs:schema/@targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-identificacaoPessoal.xsd"] return $x');
+    $self->sedna->execute('declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/sdh-identificacaoPessoal.xsd"; 
+                            for $x in collection("acao-schemas")
+                            [xs:schema/@targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-identificacaoPessoal.xsd"] return $x');
 
     my $xsd = $self->sedna->get_item;
     my $octets = encode('utf8', $xsd);

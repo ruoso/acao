@@ -53,14 +53,15 @@ txn_method 'obter_xsd_dossie' => authorized 'volume' => sub {
     return $self->sedna->get_document( $dossie );
 };
 
-=item criar_dossie()
+=item inserir_documento()
 
 =cut
 
-txn_method 'criar_dossie' => authorized 'volume' => sub {
+txn_method 'inserir_documento' => authorized 'volume' => sub {
     my $self = shift;
-    my ($ip, $xml, $id_volume, $controle ) = @_;
-    my($nome, $representaDossieFisico, $classificacao, $localizacao);
+    my ($ip, $xml, $id_volume, $controle, $namespace ) = @_;
+
+    my($nome, $representaDocumentoFisico, $classificacao, $localizacao);
     my $acao = 'inserir';
     my $dados = '';
     my $dataIni = DateTime->now();
@@ -68,7 +69,8 @@ txn_method 'criar_dossie' => authorized 'volume' => sub {
     my $role = 'role';
 
     $self->sedna->execute('declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/sdh-identificacaoPessoal.xsd"; 
-			               for $x in doc("sdh-identificacaoPessoal.xsd") return $x');
+                            for $x in collection("acao-schemas")
+                            [xs:schema/@targetNamespace="'.$namespace.'"] return $x');
 
     my $xsd = $self->sedna->get_item;
     my $octets = encode('utf8', $xsd);
@@ -82,22 +84,24 @@ txn_method 'criar_dossie' => authorized 'volume' => sub {
     my $xml_en = encode('utf8', $xml);
 
     my $input_doc = XML::LibXML->load_xml( string => $xml_en );
+
     my $element   = $input_doc->getDocumentElement;
     my $xml_data  = $read->($element);
 
     my $doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
+
     my $conteudo_registro = $writ->( $doc, $xml_data );
     my $res_xml = $controle_w->($doc,
                                 {
-                                    nome       => 'a',
+                                    nome       => $xml_data->{nomeCompleto},
                                     criacao    => DateTime->now(),
                                     fechamento => '',
                                     arquivamento => '',
                                     collection => $id_volume,
                                     estado => 'aberto',
                                     representaDossieFisico => 1,
-                                    classificacao => $classificacao,
-                                    localizacao => 'a',
+                                    classificacao => 'c',
+                                    localizacao => 'l',
                                     autorizacao => {
                                                     principal => $self->user->id,
                                                     role => $role,
@@ -120,7 +124,7 @@ txn_method 'criar_dossie' => authorized 'volume' => sub {
                                 }
                                );
 
-    $self->sedna->conn->loadData( $res_xml->toString, 'dossie', $id_volume );
+    $self->sedna->conn->loadData( $res_xml->toString, $controle, $id_volume );
     $self->sedna->conn->endLoadData();
 };
 
