@@ -139,11 +139,13 @@ txn_method 'visualizar' => authorized 'volume' => sub {
     return $xml;
 };
 
+
+
 txn_method 'visualizar' => authorized 'volume' => sub {
-    my ( $self, $idvolume, $controle ,$id_documento ) = @_;
-    
-    my $xml = $self->sedna->get_item;
-    return $xml;
+    my ( $self, $leitura, $id_doc ) = @_;
+    warn 'Chegou no MODEL VISUALIZAR WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW';
+    #my $xml = $self->sedna->get_item;
+    #return $xml;
 };
 =head1 COPYRIGHT AND LICENSING
 

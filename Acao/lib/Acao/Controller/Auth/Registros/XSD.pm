@@ -51,16 +51,6 @@ sub raw : Chained('dados') : PathPart('raw') : Args(0) {
     $c->forward( $c->view('XML') );
 }
 
-
-sub xml : Chained('dados') : PathPart('xml') : Args(0) {
-    my ( $self, $c ) = @_;
-warn "Thunder cat HOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO";
-warn $c->stash->{document};
-warn $c->stash->{id_volume};
-warn $c->stash->{conrtole};
-warn $c->stash->{id_documento};
-}
-
 =back
 
 =head1 COPYRIGHT AND LICENSING

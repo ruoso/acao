@@ -80,6 +80,21 @@ sub visualizar : Chained('base') : PathPart('visualizar') : Args(1) {
         or $c->detach('/public/default');
 }
 
+=item xml
+
+Delega à view XML a exibição do documento específico.
+
+=cut
+
+sub xml : Chained('visualizar') : PathPart : Args(1) {
+    my ( $self, $c, $id_documento ) = @_;
+    warn 'Chegou no XML controller WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW';
+    $c->stash->{document} =
+      $c->model('Documento')
+      ->visualizar( $c->stash->{id_documento}, $id_documento );
+    $c->forward( $c->view('XML') );
+}
+
 =head1 COPYRIGHT AND LICENSING
 
 Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
