@@ -229,11 +229,8 @@ txn_method 'obter_campo_controle' => authorized 'revisor' => sub {
     my $xml;
     $self->sedna->execute(
 'declare namespace cd = "http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd";
-	     for $x in collection("leitura-'
-          . $leitura->id_leitura
-          . '")/cd:registroDigitacao/cd:documento[cd:id = "'
-          . $id_doc . '"] 
-                            return data($x/cd:controle)'
+	     for $x in collection("leitura-'. $leitura->id_leitura. '")/cd:registroDigitacao/
+            cd:documento[cd:id = "'. $id_doc . '"] return data($x/cd:controle)'
     );
     $xml = $self->sedna->get_item;
     return $xml;

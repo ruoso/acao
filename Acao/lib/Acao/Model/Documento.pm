@@ -128,6 +128,23 @@ txn_method 'inserir_documento' => authorized 'volume' => sub {
     $self->sedna->conn->endLoadData();
 };
 
+txn_method 'visualizar' => authorized 'volume' => sub {
+    my ( $self, $id_volume, $controle, $id_documento ) = @_;
+    $self->sedna->execute('declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; 
+                            for $x in collection('.$id_volume.')[ns:dossie/ns:documento/ns:controle ='.$controle.'and 
+                            ns:dossie/ns:documento/ns:conteudo['.$id_documento.']] return $x/ns:dossie/ns:documento/ns:conteudo');
+
+
+    my $xml = $self->sedna->get_item;
+    return $xml;
+};
+
+txn_method 'visualizar' => authorized 'volume' => sub {
+    my ( $self, $idvolume, $controle ,$id_documento ) = @_;
+    
+    my $xml = $self->sedna->get_item;
+    return $xml;
+};
 =head1 COPYRIGHT AND LICENSING
 
 Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado

@@ -74,6 +74,11 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
     $c->res->redirect( $c->uri_for('/auth/registros/volume/' . $c->req->param('id_volume') . '/' . $c->req->param('controle') ) );
 }
 
+sub visualizar : Chained('base') : PathPart('visualizar') : Args(1) {
+    my ( $self, $c, $id_documento ) = @_;
+    $c->stash->{id_volume} = $id_documento
+        or $c->detach('/public/default');
+}
 
 =head1 COPYRIGHT AND LICENSING
 

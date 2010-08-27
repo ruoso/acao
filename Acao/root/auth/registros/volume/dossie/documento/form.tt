@@ -17,7 +17,7 @@
 # título "LICENCA.txt", junto com este programa, se não, escreva para a
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
 %]
-[% INCLUDE 'auth/registros/volume/dossie/header.tt' %]
+[% INCLUDE 'auth/registros/volume/dossie/documento/header.tt' %]
 <script SRC="[% c.uri_for('/static/js/xsdForm.js') %]" language="Javascript" ></script>
 
 <form action="[% c.uri_for('/auth/registros/volume/') _ id_volume _ '/' _ controle _ '/store' %]" method="post"

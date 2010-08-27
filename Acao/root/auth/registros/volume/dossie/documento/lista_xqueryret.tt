@@ -1,7 +1,9 @@
 (
     <tr>
         <td>
-	        <a href="#" > {$x/ns:dossie/ns:nome/text()} </a>
+	        <a href="[% c.uri_for('/auth/registros/volume/') %]{$x/ns:dossie/ns:collection/text()}/{$x/ns:dossie/ns:documento/ns:controle/text()}/visualizar/1" >
+                {$x/ns:dossie/ns:nome/text()}
+            </a>
         </td>
         <td>
 	        {$x/ns:dossie/ns:criacao/text()}
