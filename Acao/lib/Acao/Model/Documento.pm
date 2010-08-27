@@ -60,7 +60,6 @@ txn_method 'obter_xsd_dossie' => authorized 'volume' => sub {
 txn_method 'inserir_documento' => authorized 'volume' => sub {
     my $self = shift;
     my ($ip, $xml, $id_volume, $controle, $namespace ) = @_;
-
     my($nome, $representaDocumentoFisico, $classificacao, $localizacao);
     my $acao = 'inserir';
     my $dados = '';
@@ -68,9 +67,9 @@ txn_method 'inserir_documento' => authorized 'volume' => sub {
     my $dataFim = DateTime->now();
     my $role = 'role';
 
-    $self->sedna->execute('declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/sdh-identificacaoPessoal.xsd"; 
-                            for $x in collection("acao-schemas")
-                            [xs:schema/@targetNamespace="'.$namespace.'"] return $x');
+    my $xq = 'declare namespace ns = "'.$namespace.'"; for $x in collection("acao-schemas") [xs:schema/@targetNamespace="'.$namespace.'"] return $x';
+
+    $self->sedna->execute($xq);
 
     my $xsd = $self->sedna->get_item;
     my $octets = encode('utf8', $xsd);
@@ -129,12 +128,14 @@ txn_method 'inserir_documento' => authorized 'volume' => sub {
 };
 
 txn_method 'visualizar' => authorized 'volume' => sub {
-    my ( $self, $id_volume, $controle, $id_documento ) = @_;
+    my ( $self, $id_volume, $controle, $id_documento, $namespace ) = @_;
+    $namespace = "http://schemas.fortaleza.ce.gov.br/acao/sdh-identificacaoPessoal.xsd";
     my $xq = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; 
-                            declare namespace f="http://schemas.fortaleza.ce.gov.br/acao/sdh-identificacaoPessoal.xsd";
+                            declare namespace f="'.$namespace.'";
                             for $x in collection("'.$id_volume.'")[ns:dossie/ns:documento/ns:controle = '.$controle.' and 
                             ns:dossie/ns:documento/ns:conteudo['.$id_documento.']] 
                             return $x/ns:dossie/ns:documento/ns:conteudo/f:formIdentificacaoPessoal';
+warn $xq;
     $self->sedna->execute($xq);
 
     my $xml = $self->sedna->get_item;

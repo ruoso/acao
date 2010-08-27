@@ -59,7 +59,7 @@
                                      ],{}) %]", 
                 "form_container");
 
-   fillValues  ("[% c.uri_for_action('/auth/registros/volume/dossie/documento/xml',[],{}) %]");
+   fillValues  ("[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/' _ controle _ '/xml/' _ id_documento) %]");
  </script>
 
 [% INCLUDE 'footer.tt' %]

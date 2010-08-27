@@ -37,9 +37,8 @@ Carrega para o stash os dados do dossiê.
 
 =cut
 
-sub base : Chained('/auth/registros/volume/base') :PathPart('') :CaptureArgs(2) {
-    my ( $self, $c, $id_volume, $controle) = @_;
-    $c->stash->{id_volume} = $id_volume;
+sub base : Chained('/auth/registros/volume/dossie/base') :PathPart('') :CaptureArgs(1) {
+    my ( $self, $c, $controle ) = @_;
     $c->stash->{controle} = $controle
       or $c->detach('/public/default');
 }
@@ -64,7 +63,8 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
 		                                  $c->req->address,
 		                                  $c->request->param('processed_xml'),
 					                      $c->req->param('id_volume'),
-					                      $c->req->param('controle')
+					                      $c->req->param('controle'),
+					                      $c->req->param('xsdDocumento')
 					                     );
 
     };
@@ -74,18 +74,17 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
     $c->res->redirect( $c->uri_for('/auth/registros/volume/' . $c->req->param('id_volume') . '/' . $c->req->param('controle') ) );
 }
 
-sub visualizar : Chained('base') : PathPart('visualizar') : Args(1) {
+sub visualizar : Chained('base') : PathPart('visualizar') : Args(1){
     my ( $self, $c, $id_documento ) = @_;
     $c->stash->{id_documento} = $id_documento
         or $c->detach('/public/default');
 }
 
-sub xml : Chained('visualizar') : PathPart('xml') : Args(0) {
-    my ( $self, $c ) = @_;
-    warn 'TA VENDO ESSE WARN, ELE NAO APARECE NO CONSOLE';
-    warn 'EU POSSO CHAMAR O METODO ABAIXO PASSANDO O STASH?';
+sub xml : Chained('base') : PathPart : Args(1) {
+    my ( $self, $c, $id_documento ) = @_;
+    $c->stash->{id_documento} = $id_documento;
     $c->stash->{document} = 
-        $c->model('Documento')->visualizar( $c->stash->{id_volume}, $c->stash->{controle}, $c->stash->{id_documento} );
+        $c->model('Documento')->visualizar( $c->stash->{id_volume},  $c->stash->{controle},  $c->stash->{id_documento} );
     $c->forward( $c->view('XML') );
 }
 
