@@ -130,23 +130,18 @@ txn_method 'inserir_documento' => authorized 'volume' => sub {
 
 txn_method 'visualizar' => authorized 'volume' => sub {
     my ( $self, $id_volume, $controle, $id_documento ) = @_;
-    $self->sedna->execute('declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; 
-                            for $x in collection('.$id_volume.')[ns:dossie/ns:documento/ns:controle ='.$controle.'and 
-                            ns:dossie/ns:documento/ns:conteudo['.$id_documento.']] return $x/ns:dossie/ns:documento/ns:conteudo');
-
+    my $xq = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; 
+                            declare namespace f="http://schemas.fortaleza.ce.gov.br/acao/sdh-identificacaoPessoal.xsd";
+                            for $x in collection("'.$id_volume.'")[ns:dossie/ns:documento/ns:controle = '.$controle.' and 
+                            ns:dossie/ns:documento/ns:conteudo['.$id_documento.']] 
+                            return $x/ns:dossie/ns:documento/ns:conteudo/f:formIdentificacaoPessoal';
+    $self->sedna->execute($xq);
 
     my $xml = $self->sedna->get_item;
     return $xml;
 };
 
 
-
-txn_method 'visualizar' => authorized 'volume' => sub {
-    my ( $self, $leitura, $id_doc ) = @_;
-    warn 'Chegou no MODEL VISUALIZAR WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW';
-    #my $xml = $self->sedna->get_item;
-    #return $xml;
-};
 =head1 COPYRIGHT AND LICENSING
 
 Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado

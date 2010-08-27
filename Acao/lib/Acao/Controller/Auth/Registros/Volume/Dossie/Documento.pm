@@ -76,8 +76,17 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
 
 sub visualizar : Chained('base') : PathPart('visualizar') : Args(1) {
     my ( $self, $c, $id_documento ) = @_;
-    $c->stash->{id_volume} = $id_documento
+    $c->stash->{id_documento} = $id_documento
         or $c->detach('/public/default');
+}
+
+sub xml : Chained('visualizar') : PathPart('xml') : Args(0) {
+    my ( $self, $c ) = @_;
+    warn 'TA VENDO ESSE WARN, ELE NAO APARECE NO CONSOLE';
+    warn 'EU POSSO CHAMAR O METODO ABAIXO PASSANDO O STASH?';
+    $c->stash->{document} = 
+        $c->model('Documento')->visualizar( $c->stash->{id_volume}, $c->stash->{controle}, $c->stash->{id_documento} );
+    $c->forward( $c->view('XML') );
 }
 
 =item xml
@@ -85,15 +94,6 @@ sub visualizar : Chained('base') : PathPart('visualizar') : Args(1) {
 Delega à view XML a exibição do documento específico.
 
 =cut
-
-sub xml : Chained('visualizar') : PathPart : Args(1) {
-    my ( $self, $c, $id_documento ) = @_;
-    warn 'Chegou no XML controller WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW';
-    $c->stash->{document} =
-      $c->model('Documento')
-      ->visualizar( $c->stash->{id_documento}, $id_documento );
-    $c->forward( $c->view('XML') );
-}
 
 =head1 COPYRIGHT AND LICENSING
 
