@@ -63,8 +63,7 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
 		                                  $c->req->address,
 		                                  $c->request->param('processed_xml'),
 					                      $c->req->param('id_volume'),
-					                      $c->req->param('controle'),
-					                      $c->req->param('xsdDocumento')
+					                      $c->req->param('controle')
 					                     );
 
     };
@@ -73,6 +72,8 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
     else { $c->flash->{sucesso} = 'Documento criado com sucesso'; }
     $c->res->redirect( $c->uri_for('/auth/registros/volume/' . $c->req->param('id_volume') . '/' . $c->req->param('controle') ) );
 }
+
+
 
 sub visualizar : Chained('base') : PathPart('visualizar') : Args(1){
     my ( $self, $c, $id_documento ) = @_;

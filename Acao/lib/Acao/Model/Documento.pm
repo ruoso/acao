@@ -59,24 +59,25 @@ txn_method 'obter_xsd_dossie' => authorized 'volume' => sub {
 
 txn_method 'inserir_documento' => authorized 'volume' => sub {
     my $self = shift;
-    my ($ip, $xml, $id_volume, $controle, $namespace ) = @_;
+    my ($ip, $xml, $id_volume, $controle ) = @_;
+    
+    my $xq = ('declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; 
+               UPDATE insert ('.$xml.') into collection("'.$id_volume.'")/ns:dossie/ns:documento[ns:controle='.$controle.']/ns:conteudo' );
 
-
+    $self->sedna->execute($xq);
 };
 
 txn_method 'visualizar' => authorized 'volume' => sub {
-    my ( $self, $id_volume, $controle, $id_documento, $namespace ) = @_;
-    $namespace = "http://schemas.fortaleza.ce.gov.br/acao/sdh-identificacaoPessoal.xsd";
+    my ( $self, $id_volume, $controle, $id_documento ) = @_;
     my $xq = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; 
-                            declare namespace f="'.$namespace.'";
                             for $x in collection("'.$id_volume.'")[ns:dossie/ns:documento/ns:controle = '.$controle.' and 
-                            ns:dossie/ns:documento/ns:conteudo['.$id_documento.']] 
-                            return $x/ns:dossie/ns:documento/ns:conteudo/f:formIdentificacaoPessoal';
+                            ns:dossie/ns:documento/ns:conteudo] 
+                            return $x/ns:dossie/ns:documento/ns:conteudo/*['.$id_documento.']';
 warn $xq;
-    $self->sedna->execute($xq);
 
-    my $xml = $self->sedna->get_item;
-    return $xml;
+     $self->sedna->execute($xq);
+     my $xml = $self->sedna->get_item;
+     return $xml;
 };
 
 
