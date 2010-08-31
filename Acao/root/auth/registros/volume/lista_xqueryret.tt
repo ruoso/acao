@@ -24,15 +24,26 @@
         <td>
 	       { if ( $x/ns:volume/ns:representaVolumeFisico/text() eq '1' ) then ("Sim") else ("Não") }
         </td>
+           { if ( $x/ns:volume/ns:estado/text() eq 'fechado') then (
         <td>
 	       <a href="[% c.uri_for('/auth/registros/volume/alterar_estado/')%]{$x/ns:volume/ns:nome/text()}/aberto" class="aprovar" title="abrir" > Abrir </a>
         </td>
+           ) else ( )}
+           { if ( $x/ns:volume/ns:estado/text() eq 'aberto' or $x/ns:volume/ns:estado/text() eq 'arquivado') then (
         <td>
            <a href="[% c.uri_for('/auth/registros/volume/alterar_estado/')%]{$x/ns:volume/ns:nome/text()}/fechado" class="fechar" title="Fechar" > Fechar </a>
         </td>
+           ) else ( )}
+           { if ( $x/ns:volume/ns:estado/text() eq 'fechado' ) then (    
         <td>
            <a href="[% c.uri_for('/auth/registros/volume/alterar_estado/')%]{$x/ns:volume/ns:nome/text()}/arquivado" class="fechar" title="Arquivar" > Arquivar </a>
         </td>
+         ) else ( )}
+         { if ( $x/ns:volume/ns:estado/text() eq 'arquivado') then (
+        <td>
+           <a href="[% c.uri_for('/auth/registros/volume/alterar_estado/')%]{$x/ns:volume/ns:nome/text()}/descartar" class="fechar" title="Descartar" > Descartar </a>
+        </td>
+         ) else ( )}
 	<input type="hidden" id="id_volume" nome="id_volume" value="{$x/ns:volume/ns:collection/text()}"/>
     </tr>
 )
