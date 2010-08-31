@@ -90,6 +90,20 @@ sub xsd : Chained('base') : PathPart('xsd') : Args(1) {
     $c->forward( $c->view('XML') );
 }
 
+sub alterar_estado : Chained('base') : PathPart('alterar_estado') : Args(2) {
+     my ( $self, $c, $nome, $estado ) = @_;
+     eval {
+             $c->model('Volume')->alterar_estado($nome, $estado); 
+          };
+    if ($@) {
+        $c->flash->{erro} = $@;
+    }
+    else {
+        $c->flash->{sucesso} = 'Estado alterado com sucesso!';
+    }
+    $c->res->redirect( $c->uri_for('/auth/registros/volume') );
+}
+
 =back
 
 =head1 COPYRIGHT AND LICENSING

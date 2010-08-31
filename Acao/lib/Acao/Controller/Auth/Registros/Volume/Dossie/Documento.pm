@@ -75,17 +75,17 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
 
 
 
-sub visualizar : Chained('base') : PathPart('visualizar') : Args(1){
-    my ( $self, $c, $id_documento ) = @_;
-    $c->stash->{id_documento} = $id_documento
+sub visualizar : Chained('base') : PathPart('visualizar') : Args(2){
+    my ( $self, $c, $id_documento, $xsdDocumento ) = @_;
+    $c->stash->{id_documento} = $id_documento;
+    $c->stash->{xsdDocumento} = 'http://schemas.fortaleza.ce.gov.br/acao/'.$xsdDocumento
         or $c->detach('/public/default');
 }
 
 sub xml : Chained('base') : PathPart : Args(1) {
     my ( $self, $c, $id_documento ) = @_;
     $c->stash->{id_documento} = $id_documento;
-    $c->stash->{document} = 
-        $c->model('Documento')->visualizar( $c->stash->{id_volume},  $c->stash->{controle},  $c->stash->{id_documento} );
+    $c->stash->{document} = $c->model('Documento')->visualizar( $c->stash->{id_volume},  $c->stash->{controle},  $c->stash->{id_documento} );
     $c->forward( $c->view('XML') );
 }
 

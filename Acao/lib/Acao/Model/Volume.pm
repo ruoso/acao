@@ -106,6 +106,13 @@ txn_method 'criar_volume' => authorized 'volume' => sub {
     $self->sedna->conn->endLoadData();
 };
 
+txn_method 'alterar_estado' => authorized 'volume' => sub {
+    my $self = shift;
+    my ( $nome, $estado ) = @_;
+    my $xq = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd"; 
+             update replace $x in collection("volume")/ns:volume[ns:nome="'.$nome.'"]/ns:estado with <ns:estado>'.$estado.'</ns:estado> ';
+    $self->sedna->execute($xq);
+};
 
 =cut
 

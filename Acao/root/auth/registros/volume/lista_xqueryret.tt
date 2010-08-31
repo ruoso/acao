@@ -25,13 +25,13 @@
 	       { if ( $x/ns:volume/ns:representaVolumeFisico/text() eq '1' ) then ("Sim") else ("Não") }
         </td>
         <td>
-	       <a href="[% c.uri_for('')%]" class="aprovar" title="abrir" > Abrir </a>
+	       <a href="[% c.uri_for('/auth/registros/volume/alterar_estado/')%]{$x/ns:volume/ns:nome/text()}/aberto" class="aprovar" title="abrir" > Abrir </a>
         </td>
         <td>
-           <a href="[% c.uri_for('')%]" class="fechar" title="Fechar" > Fechar </a>
+           <a href="[% c.uri_for('/auth/registros/volume/alterar_estado/')%]{$x/ns:volume/ns:nome/text()}/fechado" class="fechar" title="Fechar" > Fechar </a>
         </td>
         <td>
-           <a href="[% c.uri_for('')%]" class="fechar" title="Arquivar" > Arquivar </a>
+           <a href="[% c.uri_for('/auth/registros/volume/alterar_estado/')%]{$x/ns:volume/ns:nome/text()}/arquivado" class="fechar" title="Arquivar" > Arquivar </a>
         </td>
 	<input type="hidden" id="id_volume" nome="id_volume" value="{$x/ns:volume/ns:collection/text()}"/>
     </tr>

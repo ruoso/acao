@@ -1,8 +1,8 @@
 (
     <tr>
         <td>
-	        <a href="[% c.uri_for('/auth/registros/volume/') _ id_volume _ '/' _ controle %]/visualizar/{$i}" >
-                {$x/name()} 
+	        <a href="[% c.uri_for('/auth/registros/volume/') _ id_volume _ '/' _ controle %]/visualizar/{$i}/{substring(namespace-uri($x),41)}" >
+                {$i} 
             </a>
         </td>
         <td>

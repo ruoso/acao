@@ -107,21 +107,12 @@ txn_method 'aprovar' => authorized 'revisor' => sub {
 
         #Aprova a digitacao selecionada
 
-        $self->sedna->execute(
-'declare namespace cd = "http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd";
-	     UPDATE replace $a in
-                  collection("leitura-'
-              . $leitura->id_leitura
-              . '")/cd:registroDigitacao/cd:documento/cd:estado[../cd:controle="'
-              . $controle . '"]
-                  with (
-                      if ($a[../cd:id="' . $id_doc . '"]) then (
-                        <cd:estado>Aprovado</cd:estado>
-                      ) else (
-                        <cd:estado>Rejeitado</cd:estado>
-                      )
-                  )'
-        );
+        $self->sedna->execute('declare namespace cd = "http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd";
+                        	     UPDATE replace $a in collection("leitura-'. $leitura->id_leitura. '")
+                                        /cd:registroDigitacao/cd:documento/cd:estado[../cd:controle="'. $controle . '"]
+                                    with ( if ($a[../cd:id="' . $id_doc . '"]) then ( <cd:estado>Aprovado</cd:estado> )
+                                             else ( <cd:estado>Rejeitado</cd:estado> ) )'
+                             );
     }
     else {
         die 'estadocontrole-fechado';
