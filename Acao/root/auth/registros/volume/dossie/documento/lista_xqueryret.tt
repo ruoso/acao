@@ -2,7 +2,7 @@
     <tr>
         <td>
 	        <a href="[% c.uri_for('/auth/registros/volume/') _ id_volume _ '/' _ controle %]/visualizar/{$i}" >
-                {$x/*:nomeCompleto/text()} 
+                {$x/name()} 
             </a>
         </td>
         <td>

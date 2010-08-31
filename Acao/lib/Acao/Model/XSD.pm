@@ -57,7 +57,7 @@ txn_method 'options_xsd' => authorized 'volume' => sub {
     while (my $item = $self->sedna->get_item()) {
        $ret .= $item;
     }
-  warn  $ret;
+   return $ret;
 };
 
 =cut
