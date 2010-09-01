@@ -80,6 +80,20 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
     $c->res->redirect( $c->uri_for('/auth/registros/volume/' . $c->req->param('id_volume') ) );
 }
 
+sub alterar_estado : Chained('base') : PathPart('alterar_estado') : Args(3) {
+     my ( $self, $c, $volume, $controle, $estado ) = @_;
+     warn "CONTROLER ALTERAR ESTADO...WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW";
+     eval {
+             $c->model('Dossie')->alterar_estado($volume, $controle); 
+          };
+    if ($@) {
+        $c->flash->{erro} = $@;
+    }
+    else {
+        $c->flash->{sucesso} = 'Estado alterado com sucesso!';
+    }
+    $c->res->redirect( $c->uri_for('/auth/registros/volume/' . $volume) );
+}
 =head1 COPYRIGHT AND LICENSING
 
 Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado

@@ -127,6 +127,14 @@ txn_method 'criar_dossie' => authorized 'volume' => sub {
     $self->sedna->conn->loadData( $res_xml->toString, $controle, $id_volume );
     $self->sedna->conn->endLoadData();
 };
+txn_method 'alterar_estado' => authorized 'volume' => sub {
+    warn "MODEL ALTERAR ESTADO...WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW";
+    my $self = shift;
+    my ( $volume, $controle, $estado ) = @_;
+    #my $xq = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd"; 
+    #         update replace $x in collection("volume")/ns:volume[ns:nome="'.$nome.'"]/ns:estado with <ns:estado>'.$estado.'</ns:estado> ';
+    #$self->sedna->execute($xq);
+};
 
 =head1 COPYRIGHT AND LICENSING
 
