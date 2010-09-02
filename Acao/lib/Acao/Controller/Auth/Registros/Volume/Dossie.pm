@@ -82,9 +82,8 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
 
 sub alterar_estado : Chained('base') : PathPart('alterar_estado') : Args(3) {
      my ( $self, $c, $volume, $controle, $estado ) = @_;
-     warn "CONTROLER ALTERAR ESTADO...WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW";
      eval {
-             $c->model('Dossie')->alterar_estado($volume, $controle); 
+             $c->model('Dossie')->alterar_estado($volume, $controle, $estado); 
           };
     if ($@) {
         $c->flash->{erro} = $@;
