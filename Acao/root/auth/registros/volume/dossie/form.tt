@@ -20,10 +20,9 @@
 [% INCLUDE 'auth/registros/volume/dossie/header.tt' %]
 <script SRC="[% c.uri_for('/static/js/xsdForm.js') %]" language="Javascript" ></script>
 
-<form action="[% c.uri_for('/auth/registros/volume/') _ id_volume _ '/store' %]" method="post"
-    onsubmit="return generateXml('[% c.uri_for_action('/auth/registros/xsd/raw', ['http://schemas.fortaleza.ce.gov.br/acao/sdh-identificacaoPessoal.xsd'] ) %]', this.processed_xml);">
- <input type="hidden" name="processed_xml">
+<form action="[% c.uri_for('/auth/registros/volume/') _ id_volume _ '/store' %]" method="post">
  <input type="hidden" name="id_volume" value="[% id_volume %]">
+
 
  <fieldset>
   <legend>Dados do Volume</legend>
@@ -43,7 +42,16 @@
 	  </div>
     </dd>
   </dl>
- </fieldset>
+  <legend>Dados do Dossiê</legend>
+  <dl>
+   <dt> <label> Nome Dossie: </label> </dt>
+   <dd> <input type="text" id="nome" name="nome"> </dd>
+   <br/>
+   <dt> <input type="checkbox" id="representaDossieFisico" name="representaDossieFisico" evt="representaDossieFisico"> <label for="representaDossieFisico"> Representa Dossie Físico </label> </dt>
+  </dl>
+ </fildset>
+
+ </form>
  
  
  <div id="form_container"></div>
@@ -51,9 +59,5 @@
  <input type="submit" name="Submeter">
 
  </form>
-
- <script language="javascript">
-   generateForm("[% c.uri_for_action('/auth/registros/xsd/raw', ['http://schemas.fortaleza.ce.gov.br/acao/sdh-identificacaoPessoal.xsd'] ) %]", "form_container");
- </script>
 
 [% INCLUDE 'footer.tt' %]

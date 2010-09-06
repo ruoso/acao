@@ -68,7 +68,7 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
     eval {
         $c->model('Dossie')->criar_dossie(
 		                                  $c->req->address,
-		                                  $c->request->param('processed_xml'),
+		                                  $c->req->param('nome'),
 					                      $c->req->param('id_volume'),
 					                      $c->req->param('controle')
 					                     );

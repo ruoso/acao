@@ -63,7 +63,8 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
 		                                  $c->req->address,
 		                                  $c->request->param('processed_xml'),
 					                      $c->req->param('id_volume'),
-					                      $c->req->param('controle')
+					                      $c->req->param('controle'),
+                                          $c->req->param('xsdDocumento'),
 					                     );
 
     };
