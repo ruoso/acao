@@ -27,9 +27,9 @@ use Encode;
 use Data::UUID;
 use Data::Dumper;
 
-use constant DOSSIE_NS =>'http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd';
-my $controle = XML::Compile::Schema->new( Acao->path_to('schemas/dossie.xsd') );
-my $controle_w = $controle->compile( WRITER => pack_type( DOSSIE_NS, 'dossie' ), use_default_namespace => 1 );
+use constant DOCUMENTO_NS =>'http://schemas.fortaleza.ce.gov.br/acao/documento.xsd';
+my $controle = XML::Compile::Schema->new( Acao->path_to('schemas/documento.xsd') );
+my $controle_w = $controle->compile( WRITER => pack_type( DOCUMENTO_NS, 'documento' ), use_default_namespace => 1 );
 
 =head1 NAME
 
@@ -59,10 +59,68 @@ txn_method 'obter_xsd_dossie' => authorized 'volume' => sub {
 
 txn_method 'inserir_documento' => authorized 'volume' => sub {
     my $self = shift;
-    my ($ip, $xml, $id_volume, $controle ) = @_;
+    my ($ip, $xml, $id_volume, $controle, $xsdDocumento ) = @_;
     
+    my($nome, $representaDossieFisico, $classificacao, $localizacao);
+    my $acao = 'inserir';
+    my $dados = '';
+    my $dataIni = DateTime->now();
+    my $dataFim = DateTime->now();
+    my $role = 'role';
+warn $xsdDocumento;
+    $self->sedna->execute(' for $x in collection("acao-schemas")
+                            [xs:schema/@targetNamespace="'.$xsdDocumento.'"] return $x');
+
+    my $xsd = $self->sedna->get_item;
+    my $octets = encode('utf8', $xsd);
+
+    my $x_c_s    = XML::Compile::Schema->new($octets);
+    my @elements = $x_c_s->elements;
+
+    my $read = $x_c_s->compile( READER => $elements[0] );
+    my $writ = $x_c_s->compile( WRITER => $elements[0], use_default_namespace => 1 );
+    my $xml_en = encode('utf8', $xml);
+
+    my $input_doc = XML::LibXML->load_xml( string => $xml_en );
+
+    my $element   = $input_doc->getDocumentElement;
+    my $xml_data  = $read->($element);
+
+    my $doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
+
+    my $conteudo_registro = $writ->( $doc, $xml_data );
+    my $res_xml = $controle_w->($doc,
+                                {
+                                    nome       => 'a',
+                                    criacao    => DateTime->now(),
+                                    fechamento => '',
+                                    arquivamento => '',
+                                    collection => $id_volume,
+                                    estado => 'aberto',
+                                    representaDossieFisico => 1,
+                                    classificacao => 'c',
+                                    localizacao => 'l',
+                                    autorizacao => {
+                                                    principal => $self->user->id,
+                                                    role => $role,
+                                                    dataIni => $dataIni,
+                                                    dataFim => $dataFim,
+                                                    },
+                                    auditoria => {
+                                                    data => DateTime->now(),
+                                                    usuario => $self->user->id,
+                                                    acao => $acao,
+                                                    ip => $ip,
+                                                    dados => $dados,
+                                                    },
+                                    documento => {
+                                                    conteudo       => { "{}conteudo" => $conteudo_registro },
+                                                }
+                                }
+                               );
+
     my $xq = ('declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; 
-               UPDATE insert ('.$xml.') into collection("'.$id_volume.'")/ns:dossie/ns:documento[ns:controle='.$controle.']/ns:conteudo' );
+               UPDATE insert ('.$res_xml->toString.') into collection("'.$id_volume.'")/ns:dossie/ns:documento[ns:controle='.$controle.']/ns:conteudo' );
 
     $self->sedna->execute($xq);
 };
@@ -73,7 +131,6 @@ txn_method 'visualizar' => authorized 'volume' => sub {
                             for $x in collection("'.$id_volume.'")[ns:dossie/ns:documento/ns:controle = '.$controle.' and 
                             ns:dossie/ns:documento/ns:conteudo] 
                             return $x/ns:dossie/ns:documento/ns:conteudo/*['.$id_documento.']';
-warn $xq;
 
      $self->sedna->execute($xq);
      my $xml = $self->sedna->get_item;

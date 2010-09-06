@@ -19,8 +19,10 @@
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
+				<xs:element name="controle" type="xs:string" />
 				<xs:element name="representaDossieFisico" type="xs:boolean" />
-				<xs:element name="classificacao" type="xs:string" maxOccurs="unbounded" />
+				<xs:element name="classificacao" type="xs:string"
+					maxOccurs="unbounded" />
 				<xs:element name="localizacao" type="xs:string" />
 				<xs:element name="autorizacao">
 					<xs:complexType>
@@ -42,20 +44,10 @@
 				<xs:element name="documento" maxOccurs="unbounded">
 					<xs:complexType>
 						<xs:sequence>
-							<xs:element name="id" type="xs:string" />
-							<xs:element name="controle" type="xs:string" />
-							<xs:element name="estado">
-								<xs:simpleType>
-									<xs:restriction base="xs:string">
-										<xs:enumeration value="aberto" />
-										<xs:enumeration value="fechado" />
-									</xs:restriction>
-								</xs:simpleType>
-							</xs:element>
 							<xs:element name="conteudo">
 								<xs:complexType>
 									<xs:sequence>
-										<xs:any minOccurs="1" maxOccurs="unbounded" />
+										<xs:any minOccurs="0" maxOccurs="unbounded" />
 									</xs:sequence>
 								</xs:complexType>
 							</xs:element>

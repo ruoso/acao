@@ -59,41 +59,20 @@ txn_method 'obter_xsd_dossie' => authorized 'volume' => sub {
 
 txn_method 'criar_dossie' => authorized 'volume' => sub {
     my $self = shift;
-    my ($ip, $xml, $id_volume, $controle ) = @_;
+    my ($ip, $nome, $id_volume, $controle ) = @_;
 
-    my($nome, $representaDossieFisico, $classificacao, $localizacao);
+    my($representaDossieFisico, $classificacao, $localizacao);
     my $acao = 'inserir';
     my $dados = '';
     my $dataIni = DateTime->now();
     my $dataFim = DateTime->now();
     my $role = 'role';
 
-    $self->sedna->execute('declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/sdh-identificacaoPessoal.xsd"; 
-                            for $x in collection("acao-schemas")
-                            [xs:schema/@targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-identificacaoPessoal.xsd"] return $x');
-
-    my $xsd = $self->sedna->get_item;
-    my $octets = encode('utf8', $xsd);
-
-    my $x_c_s    = XML::Compile::Schema->new($octets);
-    my @elements = $x_c_s->elements;
-
-    my $read = $x_c_s->compile( READER => $elements[0] );
-    my $writ = $x_c_s->compile( WRITER => $elements[0], use_default_namespace => 1 );
-    
-    my $xml_en = encode('utf8', $xml);
-
-    my $input_doc = XML::LibXML->load_xml( string => $xml_en );
-
-    my $element   = $input_doc->getDocumentElement;
-    my $xml_data  = $read->($element);
-
     my $doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
 
-    my $conteudo_registro = $writ->( $doc, $xml_data );
     my $res_xml = $controle_w->($doc,
                                 {
-                                    nome       => $xml_data->{nomeCompleto},
+                                    nome       => $nome,
                                     criacao    => DateTime->now(),
                                     fechamento => '',
                                     arquivamento => '',
@@ -119,7 +98,7 @@ txn_method 'criar_dossie' => authorized 'volume' => sub {
                                                     id             => '',
                                                     controle       => $controle,
                                                     estado         => 'aberto',
-                                                    conteudo       => { "{}conteudo" => $conteudo_registro },
+                                                    conteudo       => {},
                                                 }
                                 }
                                );
