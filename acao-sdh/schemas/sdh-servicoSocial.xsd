@@ -54,27 +54,106 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="responsaveisAtualmentePeloAdolescente"
-							minOccurs="0">
+						<xs:element name="responsaveisAtualmentePeloAdolescente">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Responsáveis atualmente pelo adolescente
-																		</xhtml:label>
+									</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
-							<xs:simpleType>
-								<xs:restriction base="xs:string">
-									<xs:enumeration value="Pais" />
-									<xs:enumeration value="Pai" />
-									<xs:enumeration value="Mãe" />
-									<xs:enumeration value="Avós paternos" />
-									<xs:enumeration value="Avós maternos" />
-									<xs:enumeration value="Avô paterno" />
-									<xs:enumeration value="Avô materno" />
-									<xs:enumeration value="Avó paterna" />
-									<xs:enumeration value="Avó materna" />
-								</xs:restriction>
-							</xs:simpleType>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="Pais" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Pais</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="Pai" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Pai</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="mae" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Mãe</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="avosPaternos" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Avós paternos</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="avosMaternos" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Avós maternos</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="avoPaterno" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Avô paterno</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="avoMaterno" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Avô materno</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="avoPaterna" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Avó paterna</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="avoMaterna" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Avó materna</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="outros" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Outros</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+
+						<xs:element name="epecifiqueOutrosResponsaveis" type="xs:string"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Especifique outros</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
 						</xs:element>
 
 					</xs:sequence>
@@ -176,9 +255,11 @@
 									<xhtml:label>Histórico de convivência comunitária(analisar
 										período de
 										residẽncia no endereço, informando,
-										composição de circulo de
+										composição de
+										circulo de
 										amizades, apresentação de
-										relações afetivas - namoro, noivado,
+										relações afetivas - namoro,
+										noivado,
 										casamento)
 																		</xhtml:label>
 								</xs:appinfo>
@@ -209,7 +290,7 @@
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>No seu bairro ha conflitos de grupos rivais
-																					</xhtml:label>
+												</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:simpleType>
@@ -341,7 +422,7 @@
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
-			
+
 			<xs:element name="expectativas">
 				<xs:annotation>
 					<xs:appinfo>
@@ -364,12 +445,11 @@
 				</xs:complexType>
 			</xs:element>
 
-			<xs:element name="impressaoDoAtendimento" minOccurs="0"
+			<xs:element name="impressaoDoAtendimento" minOccurs="1"
 				type="xs:string">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Impressões do atendimento
-																		</xhtml:label>
+						<xhtml:label>Impressões do atendimento</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -378,8 +458,7 @@
 				type="xs:string">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Técnico responsável
-																		</xhtml:label>
+						<xhtml:label>Técnico responsável</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -387,12 +466,10 @@
 			<xs:element name="dataDocumento" minOccurs="0" type="xs:date">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Data
-																		</xhtml:label>
+						<xhtml:label>Data</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
-
 
 		</xs:sequence>
 	</xs:complexType>

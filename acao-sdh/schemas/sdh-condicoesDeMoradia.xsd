@@ -52,23 +52,64 @@
 				</xs:simpleType>
 			</xs:element>
 
-			<xs:element name="tiposConstrucao" minOccurs="0">
+			<xs:element name="tiposConstrucao">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Tipos de Construção</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="tijoloAlvenaria" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Tijolo/Alvenaria</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
 
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:enumeration value="Tijolo/Alvenaria" />
-						<xs:enumeration value="Taipa/Revestida" />
-						<xs:enumeration value="Taipa não resvestida" />
-						<xs:enumeration value="Madeira" />
-						<xs:enumeration value="Material Aproveitado" />
-						<xs:enumeration value="Outros" />
-					</xs:restriction>
-				</xs:simpleType>
+						<xs:element name="taipaRevestida" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Taipa/Revestida</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="taipaNaoResvestida" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Taipa não resvestida</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="madeira" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Madeira</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="materialAproveitado" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Material Aproveitado</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="outros" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Outros</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
 			</xs:element>
 
 			<xs:element name="especifiqueOutrosTiposConstrucao" type="xs:string"
@@ -104,23 +145,64 @@
 				</xs:simpleType>
 			</xs:element>
 
-			<xs:element name="tipoAbastecimentoAgua" minOccurs="0">
+			<xs:element name="tipoAbastecimentoAgua">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Tipo Abastecimento de Agua</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="redePublica" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Rede Pública</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
 
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:enumeration value="Rede Pública" />
-						<xs:enumeration value="Poço Profundo" />
-						<xs:enumeration value="Cacimba" />
-						<xs:enumeration value="Carro Pipa" />
-						<xs:enumeration value="Nascente (Rio ou Lagoa)" />
-						<xs:enumeration value="Outros" />
-					</xs:restriction>
-				</xs:simpleType>
+						<xs:element name="pocoProfundo" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Poço Profundo</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="cacimba" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Cacimba</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="carroPipa" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Carro Pipa</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="nascenteRioLagoa)" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nascente (Rio ou Lagoa)</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="outros" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Outros</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
 			</xs:element>
 
 			<xs:element name="especifiqueOutrosTiposAbastecimentoAgua"
@@ -132,22 +214,56 @@
 				</xs:annotation>
 			</xs:element>
 
-			<xs:element name="tratamentoAgua" minOccurs="0">
+			<xs:element name="tratamentoAgua">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Tratamento da Água</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="filtracao" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Filtração</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
 
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:enumeration value="Filtração" />
-						<xs:enumeration value="Fervura" />
-						<xs:enumeration value="Cloração" />
-						<xs:enumeration value="Sem Tratamento" />
-						<xs:enumeration value="Outros" />
-					</xs:restriction>
-				</xs:simpleType>
+						<xs:element name="fervura" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Fervura</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="cloracao" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Cloração</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="semTratamento" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Sem Tratamento</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="outros" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Outros</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
 			</xs:element>
 
 			<xs:element name="especifiqueOutrosTratamentoAgua" type="xs:string"
@@ -174,22 +290,56 @@
 				</xs:simpleType>
 			</xs:element>
 
-			<xs:element name="escoamentoSanitario" minOccurs="0">
+			<xs:element name="escoamentoSanitario">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Escoamento Sanitário</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="redePublica" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Rede Pública</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
 
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:enumeration value="Rede Pública" />
-						<xs:enumeration value="Fossa Rudimentar" />
-						<xs:enumeration value="Fossa Séptica" />
-						<xs:enumeration value="Céu Aberto" />
-						<xs:enumeration value="Outros" />
-					</xs:restriction>
-				</xs:simpleType>
+						<xs:element name="fossaRudimentar" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Fossa Rudimentar</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="fossaSeptica" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Fossa Séptica</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="ceuAberto" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Céu Aberto</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="outros" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Outros</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
 			</xs:element>
 
 			<xs:element name="especifiqueOutrosEscoamentoSanitario"
@@ -201,22 +351,56 @@
 				</xs:annotation>
 			</xs:element>
 
-			<xs:element name="destinoLixo" minOccurs="0">
+			<xs:element name="destinoLixo">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Destino do Lixo</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="coleta" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Coleta</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
 
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:enumeration value="Coleta" />
-						<xs:enumeration value="Queima" />
-						<xs:enumeration value="Enterramento" />
-						<xs:enumeration value="Céu Aberto" />
-						<xs:enumeration value="Outros" />
-					</xs:restriction>
-				</xs:simpleType>
+						<xs:element name="queima" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Queima</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="enterramento" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Enterramento</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="ceuAberto" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Céu Aberto</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="outros" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Outros</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
 			</xs:element>
 
 		</xs:sequence>

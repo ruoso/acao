@@ -13,7 +13,7 @@
 		</xs:annotation>
 	</xs:element>
 
-	<xs:complexType name="formOrigemEncaminhamento">
+	<xs:complexType name="formOrigemEncaminhamento" minOccurs="1">
 		<xs:sequence>
 
 			<xs:element name="associacoes" type="xs:boolean">

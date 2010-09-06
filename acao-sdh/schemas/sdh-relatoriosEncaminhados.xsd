@@ -16,7 +16,7 @@
 	<xs:complexType name="formRelatoriosEncaminhados">
 		<xs:sequence>
 
-			<xs:element name="tipoRelatorioEncaminhado" minOccurs="0">
+			<xs:element name="tipoRelatorioEncaminhado" minOccurs="1">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Tipo relatório encaminhado</xhtml:label>
@@ -33,7 +33,7 @@
 				</xs:simpleType>
 			</xs:element>
 
-			<xs:element name="dataEntregaJuizado" minOccurs="0" type="xs:date">
+			<xs:element name="dataEntregaJuizado" minOccurs="1" type="xs:date">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Data de entrega no juizado</xhtml:label>

@@ -16,7 +16,8 @@
 	<xs:complexType name="formIdentificacaoPessoal">
 		<xs:sequence>
 
-			<xs:element name="nomeCompleto" type="xs:string" minOccurs="0">
+			<xs:element name="nomeCompleto" type="xs:string"
+				minOccurs="1">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Nome Completo</xhtml:label>
@@ -32,10 +33,10 @@
 				</xs:annotation>
 			</xs:element>
 
-			<xs:element name="idade" type="xs:integer" minOccurs="0">
+			<xs:element name="idade" type="xs:integer" minOccurs="1">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>idade</xhtml:label>
+						<xhtml:label>Idade</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -44,21 +45,12 @@
 				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>naturalidade</xhtml:label>
+						<xhtml:label>Naturalidade</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
 
-			<xs:element name="dataNascimento" type="xs:date"
-				minOccurs="0">
-				<xs:annotation>
-					<xs:appinfo>
-						<xhtml:label>Data de Nascimento</xhtml:label>
-					</xs:appinfo>
-				</xs:annotation>
-			</xs:element>
-
-			<xs:element name="sexo" minOccurs="0">
+			<xs:element name="sexo" minOccurs="1">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Sexo</xhtml:label>
@@ -71,7 +63,6 @@
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
-
 
 			<xs:element name="orientacaoSexual" minOccurs="0">
 				<xs:annotation>
@@ -87,6 +78,15 @@
 						<xs:enumeration value="Transexual" />
 					</xs:restriction>
 				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="dataNascimento" type="xs:date"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Data de Nascimento</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
 			</xs:element>
 
 			<xs:element name="epecifiqueOutrosOrientacaoSexual" type="xs:string"
@@ -114,7 +114,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="mae" type="xs:string" minOccurs="0">
+						<xs:element name="mae" type="xs:string" minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Mãe</xhtml:label>
@@ -173,7 +173,7 @@
 							<xs:complexType>
 								<xs:sequence>
 
-									<xs:element name="fixoResidencial" type="xs:string"
+									<xs:element name="fixoResidencial" type="xs:integer"
 										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
@@ -182,7 +182,7 @@
 										</xs:annotation>
 									</xs:element>
 
-									<xs:element name="publico" type="xs:string"
+									<xs:element name="publico" type="xs:integer"
 										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
@@ -191,7 +191,7 @@
 										</xs:annotation>
 									</xs:element>
 
-									<xs:element name="celular" type="xs:string"
+									<xs:element name="celular" type="xs:integer"
 										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
@@ -239,7 +239,7 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="quantos" type="xs:string" minOccurs="0">
+						<xs:element name="quantos" type="xs:integer" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Quantos</xhtml:label>
@@ -247,7 +247,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="idade" type="xs:string" minOccurs="0">
+						<xs:element name="idade" type="xs:integer" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Idade</xhtml:label>
@@ -310,21 +310,56 @@
 				</xs:simpleType>
 			</xs:element>
 
-			<xs:element name="possuiAlgumaDeficiencia" minOccurs="0">
+			<xs:element name="possuiAlgumaDeficiencia">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Possui alguma deficiência</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:enumeration value="Sensorial Surdo" />
-						<xs:enumeration value="Sensorial Cego" />
-						<xs:enumeration value="Deficiência Físico/Motor" />
-						<xs:enumeration value="Mobilidade Reduzida" />
-						<xs:enumeration value="Deficiência Intelectual" />
-					</xs:restriction>
-				</xs:simpleType>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="sensorialSurdo" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Sensorial Surdo</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="sensorialCego" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Sensorial Cego</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="deficienciaFisicoMotor" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Deficiência Físico/Motor</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="mobilidadeReduzida" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Mobilidade Reduzida</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="deficienciaIntelectual" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Deficiência Intelectual</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
 			</xs:element>
 
 		</xs:sequence>
