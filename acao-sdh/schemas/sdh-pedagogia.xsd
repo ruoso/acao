@@ -1,8 +1,7 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-pedagogia.xsd"
-	xmlns:xhtml="http://www.w3.org/1999/xhtml"
-	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-pedagogia.xsd"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml" targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-pedagogia.xsd"
 	elementFormDefault="qualified">
 
 	<xs:element name="formPedagogia" type="formPedagogia">
@@ -56,30 +55,51 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="especificarOMotivoSerieQueRepetiu "
+						<xs:element name="especificarOMotivoSerieQueRepetiu"
 							type="xs:string" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Especificar o motivo e a série em que repetiu
-																		</xhtml:label>
+									</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="temAlgumaDificuldadeDeAprendisagem"
-							minOccurs="0">
+						<xs:element name="temAlgumaDificuldadeDeAprendisagem">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Tem alguma dificuldade de aprendizagem?</xhtml:label>
+									<xhtml:label>Tem alguma dificuldade de aprendizagem?
+									</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
-							<xs:simpleType>
-								<xs:restriction base="xs:string">
-									<xs:enumeration value="Atenção" />
-									<xs:enumeration value="Concentração" />
-									<xs:enumeration value="Compreensão" />
-								</xs:restriction>
-							</xs:simpleType>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="atencao" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Atenção</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="concentracao" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Concentração</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="compreensao" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Compreensão</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+								</xs:sequence>
+							</xs:complexType>
 						</xs:element>
 
 						<xs:element name="outros" type="xs:string" minOccurs="0">
@@ -180,7 +200,7 @@
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Se não frequentou a Escola, cite os motivos:
-																		</xhtml:label>
+									</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -222,7 +242,7 @@
 								<xs:appinfo>
 									<xhtml:label>A Escola oferece condições de pesquisa tais
 										como:
-															</xhtml:label>
+									</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
@@ -271,7 +291,7 @@
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Participa de atividades coletivas na escola?
-																		</xhtml:label>
+									</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -319,7 +339,7 @@
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Alguém da sua família te estimula a estudar?
-																		</xhtml:label>
+									</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -343,7 +363,7 @@
 			</xs:element>
 
 			<xs:element name="impressoesDoAtendimento" type="xs:string"
-				minOccurs="0">
+				minOccurs="1">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Impressões do atendimento:</xhtml:label>

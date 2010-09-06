@@ -16,66 +16,253 @@
 	<xs:complexType name="formDirecionamentoDoAtendimento">
 		<xs:sequence>
 
-			<xs:element name="encaminhamentoInterno" minOccurs="0">
+			<xs:element name="encaminhamentoInterno">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Encaminhamento interno</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:enumeration value="Encaminhado para Projeto Crescer com Arte" />
-						<xs:enumeration value="Encaminhado para Projeto Famílias Defensoras" />
-						<xs:enumeration value="Encaminhado para Projeto Adolescente Cidadão" />
-						<xs:enumeration value="Encaminhado para Projeto Estilo Solidário" />
-						<xs:enumeration value="Encaminhado para Projeto Cozinha Criativa" />
-						<xs:enumeration value="Encaminhado para Projeto Bromélia" />
-						<xs:enumeration value="Encaminhado para Projeto Ponte de Encontro" />
-						<xs:enumeration value="Encaminhado para Espaço Aquarela" />
-						<xs:enumeration value="Encaminhado para Casa dos Meninos" />
-						<xs:enumeration value="Encaminhado para Casa das Meninas" />
-						<xs:enumeration value="Outros" />
-					</xs:restriction>
-				</xs:simpleType>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="encaminhadoParaProjetoCrescerComArte"
+							type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Encaminhado para Projeto Crescer com Arte
+									</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="encaminhadoParaProjetoFamiliasDefensoras"
+							type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Encaminhado para Projeto Famílias Defensoras
+									</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="encaminhadoParaProjetoAdolescenteCidadao"
+							type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Encaminhado para Projeto Adolescente Cidadão
+									</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="encaminhadoParaProjetoCozinhaCriativa"
+							type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Encaminhado para Projeto Cozinha Criativa
+									</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+
+						<xs:element name="encaminhadoParaProjetoEstiloSolidario"
+							type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Encaminhado para Projeto Estilo Solidário
+									</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="encaminhadoParaProjetoBromelia" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Encaminhado para Projeto Bromélia
+									</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="encaminhadoParaProjetoPonteDeEncontro"
+							type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Encaminhado para Projeto Ponte de Encontro
+									</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="encaminhadoParaEspacoAquarela" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Encaminhado para Espaço Aquarela
+									</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="encaminhadoParaCasaDosMeninos" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Encaminhado para Casa dos Meninos
+									</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="encaminhadoParaCasaDasMeninas" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Encaminhado para Casa das Meninas
+									</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="Outros" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Outros
+									</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
 			</xs:element>
 
 			<xs:element name="especifiqueOutroEncaminhamentoInterno"
 				type="xs:string" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Especifique outro encaminhamento interno</xhtml:label>
+						<xhtml:label>Especifique outro encaminhamento interno
+						</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
 
-			<xs:element name="encaminhamentoExterno" minOccurs="0">
+			<xs:element name="encaminhamentoExterno">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Encaminhamento externo</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:enumeration value="CRAS" />
-						<xs:enumeration value="CREAS" />
-						<xs:enumeration value="CAPSad" />
-						<xs:enumeration value="CAPSi" />
-						<xs:enumeration value="CAPS" />
-						<xs:enumeration value="Atendimento hospitalar" />
-						<xs:enumeration value="Atendimento jurídico" />
-						<xs:enumeration value="Inserção em cursos profissionalizantes" />
-						<xs:enumeration value="Inserção em escola" />
-						<xs:enumeration value="PETI" />
-						<xs:enumeration value="Outros" />
-					</xs:restriction>
-				</xs:simpleType>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="CRAS" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>CRAS
+									</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="CREAS" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>CREAS
+									</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="CAPSad" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>CAPSad
+									</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="CAPSi" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>CAPSi
+									</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+
+						<xs:element name="CAPS" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>CAPS
+									</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="atendimentoHospitalar" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Atendimento hospitalar
+									</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="atendimentoJuridico" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Atendimento jurídico
+									</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="insercaoEmCursosProfissionalizantes"
+							type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Inserção em cursos profissionalizantes
+									</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="insercaoEmEscola" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Inserção em escola
+									</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="PETI" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>PETI
+									</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="Outros" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Outros
+									</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
 			</xs:element>
 
 			<xs:element name="especifiqueOutroEncaminhamentoExterno"
 				type="xs:string" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Especifique outro encaminhamento externo</xhtml:label>
+						<xhtml:label>Especifique outro encaminhamento externo
+						</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -93,7 +280,8 @@
 				type="xs:string" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Profissional responsável pelo direcionamento</xhtml:label>
+						<xhtml:label>Profissional responsável pelo direcionamento
+						</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>

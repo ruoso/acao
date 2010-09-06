@@ -1,8 +1,7 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-juridico.xsd"
-	xmlns:xhtml="http://www.w3.org/1999/xhtml"
-	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-juridico.xsd"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml" targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-juridico.xsd"
 	elementFormDefault="qualified">
 
 	<xs:element name="formJuridico" type="formJuridico">
@@ -16,7 +15,7 @@
 	<xs:complexType name="formJuridico">
 		<xs:sequence>
 
-			<xs:element name="origem" minOccurs="0">
+			<xs:element name="origem" minOccurs="1">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Origem</xhtml:label>
@@ -49,38 +48,57 @@
 				</xs:simpleType>
 			</xs:element>
 
-			<xs:element name="qualMedidaSocioeducativa" minOccurs="0">
+			<xs:element name="qualMedidaSocioeducativa">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Qual(is)?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:enumeration value="Obrigação de reparar o dano" />
-						<xs:enumeration value="Prestação de Serviços à Comunidade" />
-						<xs:enumeration value="Liberdade Assistida" />
-						<xs:enumeration value="Semiliberdade" />
-						<xs:enumeration value="Privação de Liberdade" />
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="obrigaçãoDeRepararODano" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Obrigação de reparar o dano</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
 
-			<xs:element name="qualMedidaSocioeducativa" minOccurs="0">
-				<xs:annotation>
-					<xs:appinfo>
-						<xhtml:label>Qual(is)?</xhtml:label>
-					</xs:appinfo>
-				</xs:annotation>
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:enumeration value="Obrigação de reparar o dano" />
-						<xs:enumeration value="Prestação de Serviços à Comunidade" />
-						<xs:enumeration value="Liberdade Assistida" />
-						<xs:enumeration value="Semiliberdade" />
-						<xs:enumeration value="Privação de Liberdade" />
-					</xs:restriction>
-				</xs:simpleType>
+						<xs:element name="Prestação de Serviços à Comunidade"
+							type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Prestação de Serviços à Comunidade</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="Liberdade Assistida" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Liberdade Assistida</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="Semiliberdade" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Semiliberdade</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="Privação de Liberdade" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Privação de Liberdade</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
 			</xs:element>
 
 			<xs:element name="historicoInfracional">
@@ -184,19 +202,34 @@
 										</xs:simpleType>
 									</xs:element>
 
-									<xs:element name="quaisAgressões" minOccurs="0">
+									<xs:element name="quaisAgressoes">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Quais Agressões?</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
-										<xs:simpleType>
-											<xs:restriction base="xs:string">
-												<xs:enumeration value="Verbal" />
-												<xs:enumeration value="Física" />
-											</xs:restriction>
-										</xs:simpleType>
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="Verbal" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Verbal</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="Fisica" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Física</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+											</xs:sequence>
+										</xs:complexType>
 									</xs:element>
+
 
 									<xs:element name="foiAlgemado" minOccurs="0">
 										<xs:annotation>
@@ -270,7 +303,7 @@
 											<xs:appinfo>
 												<xhtml:label>Foi conduzido de maneira adequada para o
 													IML?
-																		</xhtml:label>
+												</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:simpleType>
@@ -297,7 +330,8 @@
 											<xs:appinfo>
 												<xhtml:label>Os policiais que realizaram sua apreenção
 													são
-													os mesmos que o conduziu para o IML?
+													os
+													mesmos que o conduziu para o IML?
 																		</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
@@ -360,7 +394,7 @@
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>b) Da delegacia da crianca e do adolescente
-																		</xhtml:label>
+									</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
@@ -417,9 +451,11 @@
 											<xs:appinfo>
 												<xhtml:label>Contato do adolescente com o Membro do
 													Ministério Publico, a Representante da Defensoria
-													Publica e Juiz e a adequada observância dos
+													Publica e
+													Juiz e a adequada observância dos
 													direitos
-													e garantias fundamentais</xhtml:label>
+													e garantias
+													fundamentais</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -536,7 +572,7 @@
 						</xs:element>
 
 						<xs:element name="impressoesDoAtendimento" type="xs:string"
-							minOccurs="0">
+							minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Impressões do atendimento:</xhtml:label>

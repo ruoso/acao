@@ -13,14 +13,15 @@
 		</xs:annotation>
 	</xs:element>
 
-	<xs:complexType >
+	<xs:complexType name="formConvivenciaSocial">
 		<xs:sequence>
 
 			<xs:element name="participaOuParticipuDeAlgumGrupoSocial"
 				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Participa ou participu de algum grupo social</xhtml:label>
+						<xhtml:label>Participa ou participu de algum grupo social
+						</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 
@@ -37,7 +38,8 @@
 				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Teve ou esta tendo algum tipo de atendimento?</xhtml:label>
+						<xhtml:label>Teve ou esta tendo algum tipo de atendimento?
+						</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 
@@ -196,15 +198,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="gruposRivaisGuangues" type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Grupos rivais (guangues)</xhtml:label>
-								</xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-
-						<xs:element name="outros" type="xs:string">
+						<xs:element name="outros" type="xs:string" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Outros</xhtml:label>
@@ -234,7 +228,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="qual" type="xs:string">
+						<xs:element name="qual" type="xs:string" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Qual?</xhtml:label>
@@ -242,7 +236,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="nao" type="xs:string">
+						<xs:element name="nao" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Não</xhtml:label>

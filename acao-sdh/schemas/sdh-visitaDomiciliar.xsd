@@ -71,9 +71,9 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>alguem da família participa ou participou de
-										algum grupo social
-																					</xhtml:label>
+									<xhtml:label>Alguem da família participa ou participou de
+										algum
+										grupo social</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -90,43 +90,184 @@
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Quem da família participa ou participou
-																		</xhtml:label>
+									</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="tipoGrupoSocialAlguemDaFamiliaParticipaOuParticipou "
-							minOccurs="0">
+						<xs:element name="tipoGrupoSocialAlguemDaFamiliaParticipaOuParticipou">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Tipo grupo social alguem da família participa
-										ou participou 
-																					</xhtml:label>
+									<xhtml:label>Tipo grupo social alguem da família participa ou
+										participou</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
-							<xs:simpleType>
-								<xs:restriction base="xs:string">
-									<xs:enumeration value="Grupo religioso" />
-									<xs:enumeration value="Grêmio/Movimento estudantil" />
-									<xs:enumeration value="Associação de bairro" />
-									<xs:enumeration value="Movimento político/partidário" />
-									<xs:enumeration value="Grupo musical" />
-									<xs:enumeration value="Grupo esportivo" />
-									<xs:enumeration value="Grupo de teatro" />
-									<xs:enumeration value="Grupo de dança" />
-									<xs:enumeration value="Grupo de defesa do meio ambiente" />
-									<xs:enumeration value="Cooperativa" />
-									<xs:enumeration value="ONG" />
-									<xs:enumeration value="Grupos produtivos" />
-									<xs:enumeration value="Movimento cultural" />
-									<xs:enumeration value="Organizações LGBTT" />
-									<xs:enumeration value="Movimento de mulheres" />
-									<xs:enumeration value="Movimento negro" />
-									<xs:enumeration value="Grupo de RPG" />
-									<xs:enumeration value="Grupos rivais(gangues)" />
-									<xs:enumeration value="Outros" />
-								</xs:restriction>
-							</xs:simpleType>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="grupoReligioso" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Grupo religioso</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="gremioMovimentoEstudantil" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Grêmio/Movimento estudantil</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="associacaoDeBairro" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Associação de bairro</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="movimentoPoliticoOartidario" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Movimento político/partidário</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="grupoMusical" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Grupo musical</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="grupoEsportivo" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Grupo esportivo</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="grupoDeTeatro" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Grupo de teatro</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="Grupo de dança" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Grupo de dança</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="grupoDeDefesaDoMeioAmbiente" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Grupo de defesa do meio ambiente</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="cooperativa" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Cooperativa</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="ONG" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>ONG</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="gruposProdutivos" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Grupos produtivos</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="movimentoCultural" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Movimento cultural</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="organizaçõesLGBTT" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Organizações LGBTT</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="movimentoDeMulheres" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Movimento de mulheres</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="movimentoNegro" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Movimento negro</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="grupoDeRPG" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Grupo de RPG</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="gruposRivaisGangues" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Grupos rivais(gangues)</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="outros" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Outros</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+
+						<xs:element name="especifiqueOutrosGrupos" minOccurs="0"
+							type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Especifique grupo
+									</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
 						</xs:element>
 
 						<xs:element name="alguemDaFamiliaDesenvolveAtividadeComunitaria"
@@ -162,7 +303,8 @@
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Em caso de negativo, qual atividade gostariam
-										de desenvolver
+										de
+										desenvolver
 																		</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
@@ -264,7 +406,7 @@
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Especifique outros recursos comunitarios
-																					</xhtml:label>
+												</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -289,7 +431,7 @@
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Como está a relação entre os familiares
-																		</xhtml:label>
+									</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -299,10 +441,12 @@
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Como a família está contribuindo para facilitar
-										o cumprimendo da MSE(aproveitar para responsabilizar
-										a família acerca das determinações quanto ao
+										o
+										cumprimendo da MSE(aproveitar para responsabilizar
+										a família
+										acerca das determinações quanto ao
 										cumprimento da medida)
-																		</xhtml:label>
+									</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -314,7 +458,8 @@
 								<xs:appinfo>
 									<xhtml:label>Que providências foram tomadas em relação à
 										documentação, escola, profissionalização, drogadição,
-										e demais encaminhamentos realizados pelo núcleo
+										e demais
+										encaminhamentos realizados pelo núcleo
 																		</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
@@ -328,7 +473,7 @@
 									<xhtml:label>A família percebe a mudança de comportamento do
 										adolescente depois do início da medida? O que pensa
 										disso
-																		</xhtml:label>
+									</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -338,7 +483,7 @@
 				</xs:complexType>
 			</xs:element>
 
-			<xs:element name="impressaoDoAtendimento" minOccurs="0"
+			<xs:element name="impressaoDoAtendimento" minOccurs="1"
 				type="xs:string">
 				<xs:annotation>
 					<xs:appinfo>
