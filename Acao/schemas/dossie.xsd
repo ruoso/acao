@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"
-	elementFormDefault="qualified">
+	elementFormDefault="qualified" 
+	xmlns:doc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd" >
 	<xs:element name="dossie">
 		<xs:complexType>
 			<xs:sequence>
@@ -20,8 +21,7 @@
 				</xs:element>
 				<xs:element name="controle" type="xs:string" />
 				<xs:element name="representaDossieFisico" type="xs:boolean" />
-				<xs:element name="classificacao" type="xs:string"
-					maxOccurs="unbounded" />
+				<xs:element name="classificacao" type="xs:string" maxOccurs="unbounded" />
 				<xs:element name="autorizacao">
 					<xs:complexType>
 						<xs:attribute name="principal" type="xs:string" use="required" />
@@ -39,19 +39,7 @@
 						<xs:attribute name="dados" type="xs:string" use="required" />
 					</xs:complexType>
 				</xs:element>
-				<xs:element name="documento" maxOccurs="unbounded">
-					<xs:complexType>
-						<xs:sequence>
-							<xs:element name="conteudo">
-								<xs:complexType>
-									<xs:sequence>
-										<xs:any minOccurs="0" maxOccurs="unbounded" />
-									</xs:sequence>
-								</xs:complexType>
-							</xs:element>
-						</xs:sequence>
-					</xs:complexType>
-				</xs:element>
+				<xs:element name="documento" minOccurs="0" maxOccurs="unbounded" type="doc:documento" />
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>

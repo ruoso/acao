@@ -72,12 +72,12 @@ txn_method 'criar_dossie' => authorized 'volume' => sub {
 
     my $res_xml = $controle_w->($doc,
                                 {
-                                    nome       => $nome,
-                                    criacao    => DateTime->now(),
-                                    fechamento => '',
+                                    nome         => $nome,
+                                    criacao      => DateTime->now(),
+                                    fechamento   => '',
                                     arquivamento => '',
-                                    collection => $id_volume,
-                                    estado => 'aberto',
+                                    estado       => 'aberto',
+                                    controle     => $controle,
                                     representaDossieFisico => 1,
                                     classificacao => 'c',
                                     localizacao => 'l',
@@ -95,11 +95,8 @@ txn_method 'criar_dossie' => authorized 'volume' => sub {
                                                     dados => $dados,
                                                     },
                                     documento => {
-                                                    id             => '',
-                                                    controle       => $controle,
-                                                    estado         => 'aberto',
                                                     conteudo       => {},
-                                                }
+                                                 }
                                 }
                                );
 
