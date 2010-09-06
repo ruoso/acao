@@ -7,9 +7,7 @@
 			<xs:sequence>
 				<xs:element name="nome" type="xs:string" />
 				<xs:element name="criacao" type="xs:dateTime" />
-				<xs:element name="fechamento" type="xs:dateTime" use="optional" />
-				<xs:element name="arquivamento" type="xs:dateTime" use="optional" />
-				<xs:element name="collection" type="xs:string" />
+				<xs:element name="invalidacao" type="xs:dateTime" />
 				<xs:element name="estado">
 					<xs:simpleType>
 						<xs:restriction base="xs:string">
@@ -19,9 +17,8 @@
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
-				<xs:element name="representaDossieFisico" type="xs:boolean" />
+				<xs:element name="representaDocumentoFisico" type="xs:boolean" />
 				<xs:element name="classificacao" type="xs:string" maxOccurs="unbounded" />
-				<xs:element name="localizacao" type="xs:string" />
 				<xs:element name="autorizacao">
 					<xs:complexType>
 						<xs:attribute name="principal" type="xs:string" use="required" />
