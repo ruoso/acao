@@ -21,7 +21,8 @@
 				</xs:element>
 				<xs:element name="controle" type="xs:string" />
 				<xs:element name="representaDossieFisico" type="xs:boolean" />
-				<xs:element name="classificacao" type="xs:string" maxOccurs="unbounded" />
+				<xs:element name="classificacao" type="xs:string"
+					maxOccurs="unbounded" />
 				<xs:element name="autorizacao">
 					<xs:complexType>
 						<xs:attribute name="principal" type="xs:string" use="required" />
@@ -39,7 +40,13 @@
 						<xs:attribute name="dados" type="xs:string" use="required" />
 					</xs:complexType>
 				</xs:element>
-				<xs:element name="documento" minOccurs="0" maxOccurs="unbounded" type="doc:documento" />
+				<xs:element name="doc" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="documento" type="doc:documento" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>

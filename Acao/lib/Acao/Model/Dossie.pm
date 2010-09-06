@@ -98,9 +98,7 @@ txn_method 'criar_dossie' => authorized 'volume' => sub {
                                                     ip => $ip,
                                                     dados => $dados,
                                                     },
-                                    documento => { 
-                                                    conteudo => ''
-                                                 },
+                                    doc=>{},
                                 }
                                );
 

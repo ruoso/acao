@@ -67,7 +67,7 @@ txn_method 'inserir_documento' => authorized 'volume' => sub {
     my $dataIni = DateTime->now();
     my $dataFim = DateTime->now();
     my $role = 'role';
-warn $xsdDocumento;
+
     $self->sedna->execute(' for $x in collection("acao-schemas")
                             [xs:schema/@targetNamespace="'.$xsdDocumento.'"] return $x');
 
@@ -93,13 +93,9 @@ warn $xsdDocumento;
                                 {
                                     nome       => 'a',
                                     criacao    => DateTime->now(),
-                                    fechamento => '',
-                                    arquivamento => '',
-                                    collection => $id_volume,
-                                    estado => 'aberto',
-                                    representaDossieFisico => 1,
+                                    invalidacao => DateTime->now(),
+                                    representaDocumentoFisico => 1,
                                     classificacao => 'c',
-                                    localizacao => 'l',
                                     autorizacao => {
                                                     principal => $self->user->id,
                                                     role => $role,
@@ -120,18 +116,20 @@ warn $xsdDocumento;
                                );
 
     my $xq = ('declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; 
-               UPDATE insert ('.$res_xml->toString.') into collection("'.$id_volume.'")/ns:dossie/ns:documento[ns:controle='.$controle.']/ns:conteudo' );
-
+               UPDATE insert ('.$res_xml->toString.') into collection("'.$id_volume.'")/ns:dossie[ns:controle='.$controle.']/ns:doc' );
+warn $xq;
     $self->sedna->execute($xq);
 };
 
 txn_method 'visualizar' => authorized 'volume' => sub {
     my ( $self, $id_volume, $controle, $id_documento ) = @_;
-    my $xq = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; 
-                            for $x in collection("'.$id_volume.'")[ns:dossie/ns:documento/ns:controle = '.$controle.' and 
-                            ns:dossie/ns:documento/ns:conteudo] 
-                            return $x/ns:dossie/ns:documento/ns:conteudo/*['.$id_documento.']';
+#    my $xq = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; 
+#                            for $x in collection("'.$id_volume.'")[ns:dossie/ns:documento/ns:controle = '.$controle.' and 
+#                            ns:dossie/ns:documento/ns:conteudo] 
+#                            return $x/ns:dossie/ns:doc/ns:documento/ns:conteudo/*['.$id_documento.']';
 
+    my $xq = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; 
+                     for $x in collection("'.$id_volume.'")/ns:dossie/ns:doc/*['.$id_documento.']  return $x/*/*/*';
      $self->sedna->execute($xq);
      my $xml = $self->sedna->get_item;
      return $xml;

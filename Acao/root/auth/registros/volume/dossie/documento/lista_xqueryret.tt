@@ -9,28 +9,7 @@
 	        {$x/ns:dossie/ns:criacao/text()}
         </td>
         <td>
-	        {$x/ns:dossie/ns:fechamento/text()}
-        </td>
-        <td>
-	        {$x/ns:dossie/ns:arquivamento/text()}
-        </td>
-        <td>
-	        {$x/ns:dossie/ns:estado/text()}
-        </td>
-        <td>
 	        {$x/ns:dossie/ns:classificacao/text()}
-        </td>
-        <td>
-	        {$x/ns:dossie/ns:localizacao/text()}
-        </td>
-        <td>
-	       <a href="[% c.uri_for('')%]" class="aprovar" title="abrir" > Abrir </a>
-        </td>
-        <td>
-           <a href="[% c.uri_for('')%]" class="fechar" title="Fechar" > Fechar </a>
-        </td>
-        <td>
-           <a href="[% c.uri_for('')%]" class="fechar" title="Arquivar" > Arquivar </a>
         </td>
 	<input type="hidden" id="id_dossie" nome="id_dossie" value="{$x/ns:dossie/ns:collection/text()}"/>
     </tr>
