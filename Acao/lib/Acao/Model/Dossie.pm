@@ -29,7 +29,11 @@ use Data::Dumper;
 
 use constant DOSSIE_NS =>'http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd';
 my $controle = XML::Compile::Schema->new( Acao->path_to('schemas/dossie.xsd') );
+
+$controle->importDefinitions( Acao->path_to('schemas/documento.xsd') );
+
 my $controle_w = $controle->compile( WRITER => pack_type( DOSSIE_NS, 'dossie' ), use_default_namespace => 1 );
+
 
 =head1 NAME
 
@@ -94,7 +98,9 @@ txn_method 'criar_dossie' => authorized 'volume' => sub {
                                                     ip => $ip,
                                                     dados => $dados,
                                                     },
-                                    documentos => { },
+                                    documento => { 
+                                                    conteudo => ''
+                                                 },
                                 }
                                );
 

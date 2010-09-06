@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:doc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd"
 	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"
-	elementFormDefault="qualified" 
-	xmlns:doc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd" >
+	elementFormDefault="qualified">
 	<xs:element name="dossie">
 		<xs:complexType>
 			<xs:sequence>
@@ -39,7 +39,7 @@
 						<xs:attribute name="dados" type="xs:string" use="required" />
 					</xs:complexType>
 				</xs:element>
-				<xs:element name="documentos" minOccurs="0" maxOccurs="unbounded" type="doc:documento" />
+				<xs:element name="documento" minOccurs="0" maxOccurs="unbounded" type="doc:documento" />
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>

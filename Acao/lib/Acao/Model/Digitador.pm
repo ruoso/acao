@@ -142,7 +142,7 @@ txn_method 'salvar_digitacao' => authorized 'digitador' => sub {
     my $input_doc = XML::LibXML->load_xml( string => $xml_en );
     my $element   = $input_doc->getDocumentElement;
     my $xml_data  = $read->($element);
-warn $xml;
+
     my $doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
     my $conteudo_registro = $writ->( $doc, $xml_data );
     my $res_xml = $controle_w->(
