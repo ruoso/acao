@@ -10,10 +10,9 @@ sub base : Chained('/') : PathPart('ldap') : CaptureArgs(0) {
 
 sub principal :Chained('base') :PathPart('') : Args(0) {
     my ( $self, $c) = @_;
-    warn 'WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW';
-    my $mesg = $c->model('Ldap')->search('(cn=Lou Rhodes)');
+    my $mesg = $c->model('Ldap')->search('(cn=VIRGO)');
     my @entries = $mesg->entries;
-    warn $entries[0]->sn;
+  #  warn $entries[0]->sn;
 }
 
 1;
