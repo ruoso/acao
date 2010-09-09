@@ -59,8 +59,10 @@ sub login : Chained('base') : PathPart('') : Args(0) {
             return;
         }
         else {
-            $c->flash->{erro} = 'usuario-invalido';
+            $c->flash->{erro} = 'Usuário Inválido';
         }
+    } else {
+		  $c->flash->{erro} = 'Usuário Inválido';
     }
 }
 
