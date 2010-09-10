@@ -20,7 +20,7 @@ package Acao::Controller::Public::Login;
 use strict;
 use warnings;
 use parent 'Catalyst::Controller';
-
+use Data::Dumper;
 =head1 NAME
 
 Acao::Controller::Public::Login - Implementa a chamada para o início
