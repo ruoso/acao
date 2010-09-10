@@ -57,7 +57,14 @@ sub form : Chained('base') : PathPart('inserirdocumento') : Args(0) {
 
 sub store : Chained('base') : PathPart('store') : Args(0) {
     my ( $self, $c ) = @_;
+    my $representaDocumentoFisico;
 
+    if ($c->req->param('representaDocumentoFisico') eq 'on'){
+       $representaDocumentoFisico = '1';
+    }
+    else {
+       $representaDocumentoFisico = '0';
+    }
     eval {
         $c->model('Documento')->inserir_documento(
 		                                  $c->req->address,
@@ -65,6 +72,7 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
 					                      $c->req->param('id_volume'),
 					                      $c->req->param('controle'),
                                           $c->req->param('xsdDocumento'),
+                                          $representaDocumentoFisico,
 					                     );
 
     };

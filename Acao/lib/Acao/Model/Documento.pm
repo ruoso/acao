@@ -59,13 +59,11 @@ txn_method 'obter_xsd_dossie' => authorized 'volume' => sub {
 
 txn_method 'inserir_documento' => authorized 'volume' => sub {
     my $self = shift;
-    my ($ip, $xml, $id_volume, $controle, $xsdDocumento ) = @_;
+    my ($ip, $xml, $id_volume, $controle, $xsdDocumento, $representaDocumentoFisico ) = @_;
     
-    my($nome, $representaDossieFisico, $classificacao, $localizacao);
+    my($classificacao, $localizacao);
     my $acao = 'inserir';
     my $dados = '';
-    my $dataIni = DateTime->now();
-    my $dataFim = DateTime->now();
     my $role = 'role';
 
     $self->sedna->execute(' for $x in collection("acao-schemas")
@@ -84,6 +82,7 @@ txn_method 'inserir_documento' => authorized 'volume' => sub {
     my $input_doc = XML::LibXML->load_xml( string => $xml_en );
 
     my $element   = $input_doc->getDocumentElement;
+
     my $xml_data  = $read->($element);
 
     my $doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
@@ -91,16 +90,16 @@ txn_method 'inserir_documento' => authorized 'volume' => sub {
     my $conteudo_registro = $writ->( $doc, $xml_data );
     my $res_xml = $controle_w->($doc,
                                 {
-                                    nome       => 'a',
+                                    nome       => '',
                                     criacao    => DateTime->now(),
-                                    invalidacao => DateTime->now(),
-                                    representaDocumentoFisico => 1,
+                                    invalidacao => '',
+                                    representaDocumentoFisico => $representaDocumentoFisico,
                                     classificacao => 'c',
                                     autorizacao => {
                                                     principal => $self->user->id,
                                                     role => $role,
-                                                    dataIni => $dataIni,
-                                                    dataFim => $dataFim,
+                                                    dataIni => DateTime->now(),
+                                                    dataFim => '',
                                                     },
                                     auditoria => {
                                                     data => DateTime->now(),
@@ -115,24 +114,22 @@ txn_method 'inserir_documento' => authorized 'volume' => sub {
                                 }
                                );
 
-    my $xq = ('declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; 
-               UPDATE insert ('.$res_xml->toString.') into collection("'.$id_volume.'")/ns:dossie[ns:controle='.$controle.']/ns:doc' );
-warn $xq;
+    my $xq  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";'; 
+       $xq .= 'update insert ('.$res_xml->toString.') into collection("'.$id_volume.'")/ns:dossie[ns:controle='.$controle.']/ns:doc';
+
     $self->sedna->execute($xq);
 };
 
 txn_method 'visualizar' => authorized 'volume' => sub {
     my ( $self, $id_volume, $controle, $id_documento ) = @_;
-#    my $xq = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; 
-#                            for $x in collection("'.$id_volume.'")[ns:dossie/ns:documento/ns:controle = '.$controle.' and 
-#                            ns:dossie/ns:documento/ns:conteudo] 
-#                            return $x/ns:dossie/ns:doc/ns:documento/ns:conteudo/*['.$id_documento.']';
 
     my $xq = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; 
-                     for $x in collection("'.$id_volume.'")/ns:dossie/ns:doc/*['.$id_documento.']  return $x/*/*/*';
-     $self->sedna->execute($xq);
-     my $xml = $self->sedna->get_item;
-     return $xml;
+              for $x in collection("'.$id_volume.'")/ns:dossie/ns:doc/*['.$id_documento.']  return $x/*/*/*';
+    $self->sedna->execute($xq);
+
+    my $xml = $self->sedna->get_item;
+
+    return $xml;
 };
 
 

@@ -91,9 +91,9 @@ sub xsd : Chained('base') : PathPart('xsd') : Args(1) {
 }
 
 sub alterar_estado : Chained('base') : PathPart('alterar_estado') : Args(2) {
-     my ( $self, $c, $nome, $estado ) = @_;
+     my ( $self, $c, $id_volume, $estado ) = @_;
      eval {
-             $c->model('Volume')->alterar_estado($nome, $estado); 
+             $c->model('Volume')->alterar_estado($id_volume, $estado, $c->req->address); 
           };
     if ($@) {
         $c->flash->{erro} = $@;
