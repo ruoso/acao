@@ -65,10 +65,8 @@ txn_method 'criar_volume' => authorized 'volume' => sub {
     my $str = $ug->to_string($uuid);
     my $doc_name = 'volume-' . $str;
 
-    my $acao = 'inserir';
-    my $dados = 'create collection "' . $doc_name . '"';
-    my $dataIni = DateTime->now();
-    my $dataFim = DateTime->now();
+    my $acao = 'insert';
+    my $dados = 'create collection ("'.$doc_name.'")';
     my $role = 'role';
 
     $self->sedna->execute($dados);
@@ -89,16 +87,18 @@ txn_method 'criar_volume' => authorized 'volume' => sub {
                                     autorizacao => {
                                                     principal => $self->user->id,
                                                     role => $role,
-                                                    dataIni => $dataIni,
-                                                    dataFim => $dataFim,
+                                                    dataIni => DateTime->now(),
+                                                    dataFim => '',
                                                     },
-                                    auditoria => {
-                                                    data => DateTime->now(),
-                                                    usuario => $self->user->id,
-                                                    acao => $acao,
-                                                    ip => $ip,
-                                                    dados => $dados,
-                                                    },
+                                    audit      =>  { 
+                                                    auditoria => {
+                                                                  data => DateTime->now(),
+                                                                  usuario => $self->user->id,
+                                                                  acao => $acao,
+                                                                  ip => $ip,
+                                                                  dados => $dados,
+                                                                 },
+                                                   },
                                 }
                                );
 
@@ -108,15 +108,30 @@ txn_method 'criar_volume' => authorized 'volume' => sub {
 
 txn_method 'alterar_estado' => authorized 'volume' => sub {
     my $self = shift;
-    my ( $nome, $estado ) = @_;
-    my $xq = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd"; 
-             update replace $x in collection("volume")/ns:volume[ns:nome="'.$nome.'"]/ns:estado with <ns:estado>'.$estado.'</ns:estado> ';
+    my ( $id_volume, $estado, $ip ) = @_;
+
+    my $xq  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";';
+       $xq .= 'update replace $x in collection("volume")/ns:volume[ns:collection="'.$id_volume.'"]/ns:estado with <ns:estado>'.$estado.'</ns:estado> ';
+
     $self->sedna->execute($xq);
+
+    my $audit = '<auditoria>
+                    <data>'.DateTime->now().'</data>
+                    <usuario>'.$self->user->id.'</usuario> 
+                    <acao>replace</acao>
+                    <ip>'.$ip.'</ip>
+                    <dados>'.$xq.'</dados>
+                </auditoria>';
+
+    my $xq_audit = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd"; 
+                    update insert ('.$audit.') into collection("volume")/ns:volume[ns:collection="'.$id_volume.'"]/ns:audit';
+
+    $self->sedna->execute($xq_audit);
 };
 
 =cut
 
-=item criar_dossie($nome, $representaVolumeFisico, $classificacao, $localizacao ,$ip)
+=item 
 
 =cut
 

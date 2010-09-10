@@ -27,16 +27,22 @@
 						<xs:attribute name="principal" type="xs:string" use="required" />
 						<xs:attribute name="role" type="xs:string" use="required" />
 						<xs:attribute name="dataIni" type="xs:string" use="required" />
-						<xs:attribute name="dataFim" type="xs:string" use="required" />
+						<xs:attribute name="dataFim" type="xs:string" use="optional" />
 					</xs:complexType>
 				</xs:element>
-				<xs:element name="auditoria">
+				<xs:element name="audit" maxOccurs="unbounded">
 					<xs:complexType>
-						<xs:attribute name="data" type="xs:dateTime" use="required" />
-						<xs:attribute name="usuario" type="xs:string" use="required" />
-						<xs:attribute name="acao" type="xs:string" use="required" />
-						<xs:attribute name="ip" type="xs:string" use="required" />
-						<xs:attribute name="dados" type="xs:string" use="required" />
+						<xs:sequence>
+							<xs:element name="auditoria">
+								<xs:complexType>
+									<xs:attribute name="data" type="xs:dateTime" use="required" />
+									<xs:attribute name="usuario" type="xs:string" use="required" />
+									<xs:attribute name="acao" type="xs:string" use="required" />
+									<xs:attribute name="ip" type="xs:string" use="required" />
+									<xs:attribute name="dados" type="xs:string" use="required" />
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
 					</xs:complexType>
 				</xs:element>
 			</xs:sequence>

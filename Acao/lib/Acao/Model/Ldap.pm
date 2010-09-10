@@ -6,8 +6,13 @@ __PACKAGE__->config(
 #    host => 'ldap.ufl.edu',
 #    base => 'ou=People,dc=ufl,dc=edu'
 
-    host => '10.101.40.200',
-    base => 'ou=logos,dc=virgo,dc=atlantico,dc=net,dc=br'
+   host              => 'logos.virgo.atlantico.net.br',
+   base              => 'cn=Browser Default Schema',
+   dn                => '',
+   password          => '',
+   start_tls         => 0,
+   start_tls_options => {},
+   options           => {},  # Options passed to search
 
 );
 1;

@@ -70,7 +70,8 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
 		                                  $c->req->address,
 		                                  $c->req->param('nome'),
 					                      $c->req->param('id_volume'),
-					                      $c->req->param('controle')
+					                      $c->req->param('controle'),
+                                          $representaDossieFisico,
 					                     );
 
     };
@@ -81,9 +82,9 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
 }
 
 sub alterar_estado : Chained('base') : PathPart('alterar_estado') : Args(3) {
-     my ( $self, $c, $volume, $controle, $estado ) = @_;
+     my ( $self, $c, $id_volume, $controle, $estado ) = @_;
      eval {
-             $c->model('Dossie')->alterar_estado($volume, $controle, $estado); 
+             $c->model('Dossie')->alterar_estado($id_volume, $controle, $estado, $c->req->address ); 
           };
     if ($@) {
         $c->flash->{erro} = $@;
@@ -91,7 +92,7 @@ sub alterar_estado : Chained('base') : PathPart('alterar_estado') : Args(3) {
     else {
         $c->flash->{sucesso} = 'Estado alterado com sucesso!';
     }
-    $c->res->redirect( $c->uri_for('/auth/registros/volume/' . $volume) );
+    $c->res->redirect( $c->uri_for('/auth/registros/volume/' . $id_volume) );
 }
 =head1 COPYRIGHT AND LICENSING
 

@@ -20,10 +20,11 @@
 [% INCLUDE 'auth/registros/volume/dossie/documento/header.tt' %]
 <script SRC="[% c.uri_for('/static/js/xsdForm.js') %]" language="Javascript" ></script>
 
-<form action="[% c.uri_for('/auth/registros/volume/') _ id_volume _ '/store' %]" method="post"
+<form action="[% c.uri_for('/auth/registros/volume/') _ id_volume _ '/' _ controle _ '/store' %]" method="post"
     onsubmit="return generateXml('[% c.uri_for_action('/auth/registros/xsd/raw', [xsdDocumento] ) %]', this.processed_xml);">
  <input type="hidden" name="processed_xml">
  <input type="hidden" name="id_volume" value="[% id_volume %]">
+ <input type="hidden" name="xsdDocumento" value="[% xsdDocumento %]">
 
  <fieldset>
   <legend>Dados do Volume</legend>
@@ -38,13 +39,19 @@
     <dt>Controle:</dt>
     <dd>
 	  <div name="xsdFormValidation">
-		<input type="text" name="controle" />
+		<input type="hidden" name="controle" value = "[% controle %]"/>
+        [% controle %]
 		<div name="requiredField" style="display: none;">true</div>
 	  </div>
     </dd>
+    <dt> 
+        <input type="checkbox" id="representaDocumentoFisico" name="representaDocumentoFisico" evt="representaDocumentoFisico"> 
+            <label for="representaDocumentoFisico"> Representa Documento Físico </label>
+    </dt>
   </dl>
  </fieldset>
- 
+
+
  <div id="form_container"></div>
 
 [% IF c.user.roles.grep('digitador') %]

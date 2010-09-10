@@ -1,0 +1,187 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-composicaoFamiliar.xsd"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-composicaoFamiliar.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="formComposicaoFamiliar" type="formComposicaoFamiliar">
+		<xs:annotation>
+			<xs:appinfo>
+				<xhtml:label>COMPOSIÇÃO FAMILIAR</xhtml:label>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="formComposicaoFamiliar">
+		<xs:sequence>
+
+			<xs:element name="composicaoFamiliar">
+
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Composição Familiar</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="nome" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nome</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="parentesco" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Parentesco</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Mae" />
+									<xs:enumeration value="Pai" />
+									<xs:enumeration value="Irmã(o)" />
+									<xs:enumeration value="Padrasto" />
+									<xs:enumeration value="Madrasta" />
+									<xs:enumeration value="Esposo(a)" />
+									<xs:enumeration value="Namorado(a)" />
+									<xs:enumeration value="Primo(a)" />
+									<xs:enumeration value="Avô Materno" />
+									<xs:enumeration value="Avó Materna" />
+									<xs:enumeration value="Avô Paterno" />
+									<xs:enumeration value="Avó Paterna" />
+									<xs:enumeration value="Outros" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="idade" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Idade</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="escolaridade" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Escolaridade</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Alfabetizado" />
+									<xs:enumeration value="Não Alfabetizado" />
+									<xs:enumeration value="Ensino Fundamental" />
+									<xs:enumeration value="Ensino Médio" />
+									<xs:enumeration value="Técnico" />
+									<xs:enumeration value="Superior" />
+									<xs:enumeration value="Pós-graduação" />
+									<xs:enumeration value="EJA I" />
+									<xs:enumeration value="EJA II" />
+									<xs:enumeration value="EJA III" />
+									<xs:enumeration value="EJA IV" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="situacaoEscolaridade" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Situação da Escolaridade</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Concluido" />
+									<xs:enumeration value="Cursando" />
+									<xs:enumeration value="Abandonado" />
+									<xs:enumeration value="Outros" />
+								</xs:restriction>
+							</xs:simpleType>
+
+						</xs:element>
+
+						<xs:element name="ocupacao" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Ocupação</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="especifiqueOutrosSituacaoEscolaridade"
+							type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Especifique Outros</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="valorRendaMensal" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Valor Mensal da Renda</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Abaixo do Salário Mínimo" />
+									<xs:enumeration value="1 a 2 Salários Mínimos" />
+									<xs:enumeration value="2 a 3 Salários Mínimos" />
+									<xs:enumeration value="Acima dos Valores Citados" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="origemRenda" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Origem da Renda</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Autônomo" />
+									<xs:enumeration value="Viculo Empregatício" />
+									<xs:enumeration value="Aposentadoria" />
+									<xs:enumeration value="BPC" />
+									<xs:enumeration value="PROJOVEM" />
+									<xs:enumeration value="Bolsa Família" />
+									<xs:enumeration value="Bolsa do Família Defensoras" />
+									<xs:enumeration value="Adolescente Cidadão" />
+									<xs:enumeration value="Bolsa Monitoria" />
+									<xs:enumeration value="Outros" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="especifiqueOutrosOrigemRenda" type="xs:string"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Especifique Outros</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

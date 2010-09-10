@@ -63,13 +63,11 @@ txn_method 'obter_xsd_dossie' => authorized 'volume' => sub {
 
 txn_method 'criar_dossie' => authorized 'volume' => sub {
     my $self = shift;
-    my ($ip, $nome, $id_volume, $controle ) = @_;
+    my ($ip, $nome, $id_volume, $controle, $representaDossieFisico ) = @_;
 
-    my($representaDossieFisico, $classificacao, $localizacao);
+    my( $classificacao, $localizacao);
     my $acao = 'inserir';
     my $dados = '';
-    my $dataIni = DateTime->now();
-    my $dataFim = DateTime->now();
     my $role = 'role';
 
     my $doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
@@ -82,22 +80,24 @@ txn_method 'criar_dossie' => authorized 'volume' => sub {
                                     arquivamento => '',
                                     estado       => 'aberto',
                                     controle     => $controle,
-                                    representaDossieFisico => 1,
+                                    representaDossieFisico => $representaDossieFisico,
                                     classificacao => 'c',
                                     localizacao => 'l',
                                     autorizacao => {
                                                     principal => $self->user->id,
                                                     role => $role,
-                                                    dataIni => $dataIni,
-                                                    dataFim => $dataFim,
-                                                    },
-                                    auditoria => {
-                                                    data => DateTime->now(),
-                                                    usuario => $self->user->id,
-                                                    acao => $acao,
-                                                    ip => $ip,
-                                                    dados => $dados,
-                                                    },
+                                                    dataIni => DateTime->now(),
+                                                    dataFim => '',
+                                                   },
+                                    audit      =>  { 
+                                                    auditoria => {
+                                                                  data => DateTime->now(),
+                                                                  usuario => $self->user->id,
+                                                                  acao => $acao,
+                                                                  ip => $ip,
+                                                                  dados => $dados,
+                                                                 },
+                                                   },
                                     doc=>{},
                                 }
                                );
@@ -107,11 +107,25 @@ txn_method 'criar_dossie' => authorized 'volume' => sub {
 };
 txn_method 'alterar_estado' => authorized 'volume' => sub {
     my $self = shift;
-    my ( $volume, $controle, $estado ) = @_;
-    my $xq = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; 
-                update replace $x in collection("'.$volume.'")/ns:dossie[ns:documento/ns:controle="'.$controle.'"]
-                        /ns:estado with <ns:estado>'.$estado.'</ns:estado> ';
+    my ( $id_volume, $controle, $estado, $ip ) = @_;
+
+    my $xq  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";';
+       $xq .= 'update replace $x in collection("'.$id_volume.'")/ns:dossie[ns:controle="'.$controle.'"]';
+       $xq .= '/ns:estado with <ns:estado>'.$estado.'</ns:estado> '; 
     $self->sedna->execute($xq);
+
+    my $audit = '<auditoria>
+                    <data>'.DateTime->now().'</data>
+                    <usuario>'.$self->user->id.'</usuario> 
+                    <acao>replace</acao>
+                    <ip>'.$ip.'</ip>
+                    <dados>'.$xq.'</dados>
+                </auditoria>';
+
+    my $xq_audit = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; 
+                    update insert ('.$audit.') into collection("'.$id_volume.'")/ns:dossie[ns:controle='.$controle.']/ns:audit';
+
+    $self->sedna->execute($xq_audit);
 };
 
 =head1 COPYRIGHT AND LICENSING
