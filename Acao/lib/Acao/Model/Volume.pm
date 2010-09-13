@@ -32,6 +32,8 @@ use constant VOLUME_NS =>'http://schemas.fortaleza.ce.gov.br/acao/volume.xsd';
 my $controle = XML::Compile::Schema->new( Acao->path_to('schemas/volume.xsd') );
 my $controle_w = $controle->compile( WRITER => pack_type( VOLUME_NS, 'volume' ), use_default_namespace => 1 );
 my $controle_r = $controle->compile( READER => pack_type( VOLUME_NS, 'volume') );
+my $role_criar = Acao->config->{'roles'}->{'volume'}->{'criar'};
+my $role_alterar = Acao->config->{'roles'}->{'volume'}->{'alterar'};
 
 =head1 NAME
 
@@ -56,7 +58,7 @@ Retorna os volumes os quais o usuário autenticado tem acesso.
 
 =cut
 
-txn_method 'criar_volume' => authorized 'volume' => sub {
+txn_method 'criar_volume' => authorized $role_criar => sub {
     my $self = shift;
     my ( $nome, $representaVolumeFisico, $classificacao, $localizacao, $ip ) = @_;
 
@@ -106,7 +108,7 @@ txn_method 'criar_volume' => authorized 'volume' => sub {
     $self->sedna->conn->endLoadData();
 };
 
-txn_method 'alterar_estado' => authorized 'volume' => sub {
+txn_method 'alterar_estado' => authorized $role_alterar => sub {
     my $self = shift;
     my ( $id_volume, $estado, $ip ) = @_;
 

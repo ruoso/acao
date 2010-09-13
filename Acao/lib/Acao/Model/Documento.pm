@@ -30,6 +30,8 @@ use Data::Dumper;
 use constant DOCUMENTO_NS =>'http://schemas.fortaleza.ce.gov.br/acao/documento.xsd';
 my $controle = XML::Compile::Schema->new( Acao->path_to('schemas/documento.xsd') );
 my $controle_w = $controle->compile( WRITER => pack_type( DOCUMENTO_NS, 'documento' ), use_default_namespace => 1 );
+my $role_visualizar = Acao->config->{'roles'}->{'documento'}->{'visualizar'};
+my $role_inserir = Acao->config->{'roles'}->{'documento'}->{'inserir'};
 
 =head1 NAME
 
@@ -48,7 +50,9 @@ de volume.
 
 =cut
 
-txn_method 'obter_xsd_dossie' => authorized 'volume' => sub {
+
+
+txn_method 'obter_xsd_dossie' => authorized $role_visualizar => sub {
     my ( $self, $dossie ) = @_;
     return $self->sedna->get_document( $dossie );
 };
@@ -57,7 +61,7 @@ txn_method 'obter_xsd_dossie' => authorized 'volume' => sub {
 
 =cut
 
-txn_method 'inserir_documento' => authorized 'volume' => sub {
+txn_method 'inserir_documento' => authorized $role_inserir => sub {
     my $self = shift;
     my ($ip, $xml, $id_volume, $controle, $xsdDocumento, $representaDocumentoFisico ) = @_;
     
@@ -120,7 +124,7 @@ txn_method 'inserir_documento' => authorized 'volume' => sub {
     $self->sedna->execute($xq);
 };
 
-txn_method 'visualizar' => authorized 'volume' => sub {
+txn_method 'visualizar' => authorized $role_visualizar => sub {
     my ( $self, $id_volume, $controle, $id_documento ) = @_;
 
     my $xq = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; 

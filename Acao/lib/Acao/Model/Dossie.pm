@@ -33,7 +33,8 @@ my $controle = XML::Compile::Schema->new( Acao->path_to('schemas/dossie.xsd') );
 $controle->importDefinitions( Acao->path_to('schemas/documento.xsd') );
 
 my $controle_w = $controle->compile( WRITER => pack_type( DOSSIE_NS, 'dossie' ), use_default_namespace => 1 );
-
+my $role_alterar = Acao->config->{'roles'}->{'dossie'}->{'alterar'};
+my $role_criar = Acao->config->{'roles'}->{'dossie'}->{'criar'};
 
 =head1 NAME
 
@@ -61,7 +62,7 @@ txn_method 'obter_xsd_dossie' => authorized 'volume' => sub {
 
 =cut
 
-txn_method 'criar_dossie' => authorized 'volume' => sub {
+txn_method 'criar_dossie' => authorized $role_criar => sub {
     my $self = shift;
     my ($ip, $nome, $id_volume, $controle, $representaDossieFisico ) = @_;
 
@@ -105,7 +106,8 @@ txn_method 'criar_dossie' => authorized 'volume' => sub {
     $self->sedna->conn->loadData( $res_xml->toString, $controle, $id_volume );
     $self->sedna->conn->endLoadData();
 };
-txn_method 'alterar_estado' => authorized 'volume' => sub {
+
+txn_method 'alterar_estado' => authorized $role_alterar => sub {
     my $self = shift;
     my ( $id_volume, $controle, $estado, $ip ) = @_;
 
