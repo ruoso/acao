@@ -50,6 +50,14 @@ Delega à view a renderização do formulário desse dossiê.
 =cut
 
 sub lista : Chained('base') : PathPart('') : Args(0) {
+ my ( $self, $c ) = @_;
+    eval {
+        $c->model('Documento')->auditoria_listar(
+                                              $c->req->address, 
+                                              $c->stash->{id_volume},
+                                               $c->stash->{controle},
+                                             );
+    }
 }
 
 sub form : Chained('base') : PathPart('inserirdocumento') : Args(0) {
@@ -94,7 +102,11 @@ sub visualizar : Chained('base') : PathPart('visualizar') : Args(2){
 sub xml : Chained('base') : PathPart : Args(1) {
     my ( $self, $c, $id_documento ) = @_;
     $c->stash->{id_documento} = $id_documento;
-    $c->stash->{document} = $c->model('Documento')->visualizar( $c->stash->{id_volume},  $c->stash->{controle},  $c->stash->{id_documento} );
+    $c->stash->{document} = $c->model('Documento')->visualizar( $c->stash->{id_volume},  
+                                                                $c->stash->{controle},  
+                                                                $c->stash->{id_documento}, 
+                                                                $c->req->address,
+                                                              );
     $c->forward( $c->view('XML') );
 }
 
