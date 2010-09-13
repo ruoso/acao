@@ -68,7 +68,6 @@ txn_method 'inserir_documento' => authorized 'volume' => sub {
     
     my($classificacao, $localizacao);
     my $acao = 'insert';
-    my $dados = '';
     my $role = 'role';
 
     $self->sedna->execute(' for $x in collection("acao-schemas")
@@ -133,7 +132,7 @@ txn_method 'inserir_documento' => authorized 'volume' => sub {
                                               usuario => $self->user->id,
                                               acao => 'insert',
                                               ip => $ip,
-                                              dados => $dados,
+                                              dados => $xq,
                                             },
                                    );
 
@@ -148,8 +147,9 @@ txn_method 'inserir_documento' => authorized 'volume' => sub {
 txn_method 'visualizar' => authorized 'volume' => sub {
     my ( $self, $id_volume, $controle, $id_documento, $ip ) = @_;
 
-    my $xq = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; 
-              for $x in collection("'.$id_volume.'")/ns:dossie/ns:doc/*['.$id_documento.']  return $x/*/*/*';
+    my $xq  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";';
+       $xq .= 'declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";';
+       $xq .= 'for $x in collection("'.$id_volume.'")/ns:dossie/ns:doc/*['.$id_documento.'] return $x/dc:documento/*/*';
     $self->sedna->execute($xq);
 
     my $xml = $self->sedna->get_item;
@@ -160,7 +160,7 @@ txn_method 'visualizar' => authorized 'volume' => sub {
                                         {
                                           data => DateTime->now(),
                                           usuario => $self->user->id,
-                                          acao => 'open',
+                                          acao => 'visualize',
                                           ip => $ip,
                                           dados => $xq,
                                         },
@@ -172,8 +172,35 @@ txn_method 'visualizar' => authorized 'volume' => sub {
 
     $self->sedna->execute($xq_audit);
 
-
     return $xml;
+};
+
+txn_method 'auditoria_listar' => authorized 'volume' => sub {
+    my $self = shift;
+    my ( $ip, $id_volume, $controle ) = @_;
+
+    my $dados  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";';
+       $dados .= 'declare namespace dc = "http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";';
+       $dados .= 'for $x at $i in collection("'.$id_volume.'")/ns:dossie[ns:controle = '.$controle.']';
+       $dados .= '/ns:doc/* return $x';
+
+    my $doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
+
+    my $audit = $controle_audit_w->($doc,
+                                        {
+                                          data => DateTime->now(),
+                                          usuario => $self->user->id,
+                                          acao => 'list',
+                                          ip => $ip,
+                                          dados => $dados,
+                                        },
+                                   );
+
+   my $xq_audit = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; 
+                   declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";  
+                   update insert ('.$audit->toString.') into collection("'.$id_volume.'")/ns:dossie[ns:controle='.$controle.']/ns:doc/*/dc:audit';
+
+    $self->sedna->execute($xq_audit);
 };
 
 

@@ -50,6 +50,14 @@ Delega à view a renderização do formulário desse dossiê.
 =cut
 
 sub lista : Chained('base') : PathPart('') : Args(0) {
+ my ( $self, $c ) = @_;
+    eval {
+        $c->model('Documento')->auditoria_listar(
+                                              $c->req->address, 
+                                              $c->stash->{id_volume},
+                                               $c->stash->{controle},
+                                             );
+    }
 }
 
 sub form : Chained('base') : PathPart('inserirdocumento') : Args(0) {

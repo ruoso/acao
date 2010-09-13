@@ -69,7 +69,6 @@ txn_method 'criar_dossie' => authorized 'volume' => sub {
 
     my( $classificacao, $localizacao);
     my $acao = 'insert';
-    my $dados = '';
     my $role = 'role';
 
     my $doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
@@ -114,7 +113,7 @@ txn_method 'criar_dossie' => authorized 'volume' => sub {
                                               usuario => $self->user->id,
                                               acao => 'insert',
                                               ip => $ip,
-                                              dados => $dados,
+                                              dados => '$self->sedna->conn->loadData('.$res_xml->toString.','.$controle.','. $id_volume.');',
                                             },
                                    );
 
