@@ -1,0 +1,13 @@
+declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
+declare namespace dc = "http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";
+<<<<<<< HEAD:Acao/root/auth/registros/volume/dossie/documento/lista_xquery.tt
+for $x at $i in collection("[% id_volume %]")/ns:dossie[ns:controle = [% controle %] ]/ns:doc/*  return [% xqueryret %]
+=======
+for $x at $i in collection("[% id_volume %]")/ns:dossie[ns:controle = [% controle %] ]/ns:doc/*/*/*/*  
+return [% xqueryret %]
+
+[% # declare namespace xhtml="http://www.w3.org/1999/xhtml"; %]
+[% # declare namespace xss="http://www.w3.org/2001/XMLSchema"; %]
+[% # for $y in collection("acao-schemas") %]
+[% # return $y/xss:schema/xss:element/xss:annotation/xss:appinfo/xhtml:label/text() [starts-with($y/xss:schema/@targetNamespace, "http://schemas.fortaleza.ce.gov.br/acao/sdh-")] %]
+>>>>>>> d42cd32f9d14edc59a353cba049cfac5b012bc98:Acao/root/auth/registros/volume/dossie/documento/lista_xquery.tt
