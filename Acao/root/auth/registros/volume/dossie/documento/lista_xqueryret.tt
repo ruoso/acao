@@ -17,6 +17,9 @@
     <td>
 	  { if ( $x/dc:representaDocumentoFisico/text() eq '1' ) then ("Sim") else ("Não") }
      </td>
+    <td>
+
+    </td>
     <input type="hidden" id="id_dossie" nome="id_dossie" value="{$x/ns:dossie/ns:collection/text()}"/>
   </tr>
 )
