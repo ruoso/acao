@@ -94,7 +94,11 @@ sub visualizar : Chained('base') : PathPart('visualizar') : Args(2){
 sub xml : Chained('base') : PathPart : Args(1) {
     my ( $self, $c, $id_documento ) = @_;
     $c->stash->{id_documento} = $id_documento;
-    $c->stash->{document} = $c->model('Documento')->visualizar( $c->stash->{id_volume},  $c->stash->{controle},  $c->stash->{id_documento} );
+    $c->stash->{document} = $c->model('Documento')->visualizar( $c->stash->{id_volume},  
+                                                                $c->stash->{controle},  
+                                                                $c->stash->{id_documento}, 
+                                                                $c->req->address,
+                                                              );
     $c->forward( $c->view('XML') );
 }
 

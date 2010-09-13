@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:audt="http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd"
 	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd"
 	elementFormDefault="qualified">
 	<xs:element name="volume">
@@ -30,18 +31,10 @@
 						<xs:attribute name="dataFim" type="xs:string" use="optional" />
 					</xs:complexType>
 				</xs:element>
-				<xs:element name="audit" maxOccurs="unbounded">
+				<xs:element name="audit" minOccurs="0">
 					<xs:complexType>
 						<xs:sequence>
-							<xs:element name="auditoria">
-								<xs:complexType>
-									<xs:attribute name="data" type="xs:dateTime" use="required" />
-									<xs:attribute name="usuario" type="xs:string" use="required" />
-									<xs:attribute name="acao" type="xs:string" use="required" />
-									<xs:attribute name="ip" type="xs:string" use="required" />
-									<xs:attribute name="dados" type="xs:string" use="required" />
-								</xs:complexType>
-							</xs:element>
+							<xs:element name="auditoria" type="audt:auditoria"	minOccurs="0" />
 						</xs:sequence>
 					</xs:complexType>
 				</xs:element>

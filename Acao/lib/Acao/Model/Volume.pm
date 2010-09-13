@@ -28,10 +28,14 @@ use Data::UUID;
 use Data::Dumper;
 
 use constant VOLUME_NS =>'http://schemas.fortaleza.ce.gov.br/acao/volume.xsd';
-
 my $controle = XML::Compile::Schema->new( Acao->path_to('schemas/volume.xsd') );
+$controle->importDefinitions( Acao->path_to('schemas/auditoria.xsd') );
 my $controle_w = $controle->compile( WRITER => pack_type( VOLUME_NS, 'volume' ), use_default_namespace => 1 );
 my $controle_r = $controle->compile( READER => pack_type( VOLUME_NS, 'volume') );
+
+use constant AUDITORIA_NS =>'http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd';
+my $controle_audit = XML::Compile::Schema->new( Acao->path_to('schemas/auditoria.xsd') );
+my $controle_audit_w = $controle_audit->compile( WRITER => pack_type( AUDITORIA_NS, 'auditoria' ), use_default_namespace => 1 );
 
 =head1 NAME
 
@@ -91,19 +95,35 @@ txn_method 'criar_volume' => authorized 'volume' => sub {
                                                     dataFim => '',
                                                     },
                                     audit      =>  { 
-                                                    auditoria => {
-                                                                  data => DateTime->now(),
-                                                                  usuario => $self->user->id,
-                                                                  acao => $acao,
-                                                                  ip => $ip,
-                                                                  dados => $dados,
-                                                                 },
+#                                                    auditoria => {
+#                                                                  data => DateTime->now(),
+#                                                                  usuario => $self->user->id,
+#                                                                  acao => $acao,
+#                                                                  ip => $ip,
+#                                                                  dados => $dados,
+#                                                                 },
                                                    },
-                                }
+                                },
                                );
 
     $self->sedna->conn->loadData( $res_xml->toString, $doc_name, 'volume' );
     $self->sedna->conn->endLoadData();
+
+    my $doc_audit = XML::LibXML::Document->new( '1.0', 'UTF-8' );
+    my $audit = $controle_audit_w->($doc_audit,
+                                            {
+                                              data => DateTime->now(),
+                                              usuario => $self->user->id,
+                                              acao => 'insert',
+                                              ip => $ip,
+                                              dados => $dados,
+                                            },
+                                   );
+
+    my $xq_audit = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd"; 
+                    update insert ('.$audit->toString.') into collection("volume")/ns:volume[ns:collection="'.$doc_name.'"]/ns:audit';
+    $self->sedna->execute($xq_audit);
+
 };
 
 txn_method 'alterar_estado' => authorized 'volume' => sub {
@@ -112,20 +132,46 @@ txn_method 'alterar_estado' => authorized 'volume' => sub {
 
     my $xq  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";';
        $xq .= 'update replace $x in collection("volume")/ns:volume[ns:collection="'.$id_volume.'"]/ns:estado with <ns:estado>'.$estado.'</ns:estado> ';
-
     $self->sedna->execute($xq);
 
-    my $audit = '<auditoria>
-                    <data>'.DateTime->now().'</data>
-                    <usuario>'.$self->user->id.'</usuario> 
-                    <acao>replace</acao>
-                    <ip>'.$ip.'</ip>
-                    <dados>'.$xq.'</dados>
-                </auditoria>';
+    my $doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
+    my $audit = $controle_audit_w->($doc,
+                                        {
+                                          data => DateTime->now(),
+                                          usuario => $self->user->id,
+                                          acao => 'replace',
+                                          ip => $ip,
+                                          dados => $xq,
+                                        },
+                                   );
 
     my $xq_audit = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd"; 
-                    update insert ('.$audit.') into collection("volume")/ns:volume[ns:collection="'.$id_volume.'"]/ns:audit';
+                    update insert ('.$audit->toString.') into collection("volume")/ns:volume[ns:collection="'.$id_volume.'"]/ns:audit';
+    $self->sedna->execute($xq_audit);
 
+};
+
+txn_method 'auditoria_listar' => authorized 'volume' => sub {
+    my $self = shift;
+    my ( $ip ) = @_;
+
+    my $dados  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";';
+       $dados .= 'for $x in collection("volume") return $x';
+
+    my $doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
+
+    my $audit = $controle_audit_w->($doc,
+                                        {
+                                          data => DateTime->now(),
+                                          usuario => $self->user->id,
+                                          acao => 'list',
+                                          ip => $ip,
+                                          dados => $dados,
+                                        },
+                                   );
+
+    my $xq_audit = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";
+                    update insert ('.$audit->toString.') into collection("volume")/ns:volume/ns:audit';
     $self->sedna->execute($xq_audit);
 };
 
