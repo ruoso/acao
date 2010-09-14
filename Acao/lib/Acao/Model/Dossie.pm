@@ -35,6 +35,7 @@ my $controle_w = $controle->compile( WRITER => pack_type( DOSSIE_NS, 'dossie' ),
 
 my $role_alterar = Acao->config->{'roles'}->{'dossie'}->{'alterar'};
 my $role_criar = Acao->config->{'roles'}->{'dossie'}->{'criar'};
+my $role_listar = Acao->config->{'roles'}->{'dossie'}->{'listar'};
 
 use constant AUDITORIA_NS =>'http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd';
 my $controle_audit = XML::Compile::Schema->new( Acao->path_to('schemas/auditoria.xsd') );
@@ -58,7 +59,7 @@ de volume.
 
 =cut
 
-txn_method 'obter_xsd_dossie' => authorized 'volume' => sub {
+txn_method 'obter_xsd_dossie' => authorized $role_listar => sub {
     my ( $self, $dossie ) = @_;
     return $self->sedna->get_document( $dossie );
 };
@@ -153,7 +154,7 @@ txn_method 'alterar_estado' => authorized $role_alterar => sub {
     $self->sedna->execute($xq_audit);
 };
 
-txn_method 'auditoria_listar' => authorized 'volume' => sub {
+txn_method 'auditoria_listar' => authorized $role_listar => sub {
     my $self = shift;
     my ( $ip, $id_volume ) = @_;
 
