@@ -27,6 +27,8 @@ use Encode;
 use Data::UUID;
 use Data::Dumper;
 
+my $role_listar = Acao->config->{'roles'}->{'documento'}->{'listar'};
+
 =head1 NAME
 
 Acao::Model::Volume - Implementa as regras de negócio do papel volume
@@ -40,8 +42,7 @@ de volume.
 
 =cut
 
-
-txn_method 'obter_xsd' => authorized 'volume' => sub {
+txn_method 'obter_xsd' => authorized $role_listar => sub {
     my ( $self, $namespace ) = @_;
     my $xq = 'declare namespace xs="http://www.w3.org/2001/XMLSchema"; 
               for $x in collection("acao-schemas")[xs:schema/@targetNamespace="'.$namespace.'"] return $x';
@@ -49,7 +50,7 @@ txn_method 'obter_xsd' => authorized 'volume' => sub {
     return $self->sedna->get_item();
 };
 
-txn_method 'options_xsd' => authorized 'volume' => sub {
+txn_method 'options_xsd' => authorized $role_listar => sub {
     my ( $self, $namespace ) = @_;
     my $xq = 'declare namespace xhtml="http://www.w3.org/1999/xhtml"; declare namespace xs="http://www.w3.org/2001/XMLSchema"; for $x in collection("acao-schemas") return <option value="{ $x/xs:schema/@targetNamespace }">{ $x/xs:schema/xs:element/xs:annotation/xs:appinfo/xhtml:label/text() }</option> [starts-with($x/xs:schema/@targetNamespace, "http://schemas.fortaleza.ce.gov.br/acao/sdh")]';
     $self->sedna->execute($xq);
