@@ -58,7 +58,6 @@ sub lista : Chained('base') : PathPart('') : Args(0) {
 
 sub form : Chained('base') : PathPart('criarvolume') : Args(0) {
     my ( $self, $c ) = @_;
-        or $c->detach('/public/default');
 }
 
 sub store : Chained('base') : PathPart('store') : Args(0) {
