@@ -50,12 +50,12 @@ Delega à view a renderização do formulário desse dossiê.
 
 sub lista : Chained('base') : PathPart('') : Args(0) {
     my ( $self, $c ) = @_;
-    eval {
-        $c->model('Dossie')->auditoria_listar(
-                                              $c->req->address, 
-                                              $c->stash->{id_volume},
-                                             );
-    }
+#    eval {
+#        $c->model('Dossie')->auditoria_listar(
+#                                              $c->req->address, 
+#                                              $c->stash->{id_volume},
+#                                             );
+#    }
 }
 
 sub form : Chained('base') : PathPart('criardossie') : Args(0) {

@@ -118,7 +118,7 @@ txn_method 'criar_dossie' => authorized 'volume' => sub {
                                    );
 
    my $xq_audit = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; 
-                    update insert ('.$audit->toString.') into collection("'.$id_volume.'")/ns:dossie/ns:audit';
+                    update insert ('.$audit->toString.') into collection("'.$id_volume.'")/ns:dossie[ns:controle="'.$controle.'"]/ns:audit';
     $self->sedna->execute($xq_audit);
 
 };
@@ -150,7 +150,9 @@ txn_method 'alterar_estado' => authorized 'volume' => sub {
 
 txn_method 'auditoria_listar' => authorized 'volume' => sub {
     my $self = shift;
-    my ( $ip, $id_volume ) = @_;
+       my ($controles, $id_volume) = @_;
+    my $ip = '222.222.2.2';
+    my (@control, $where);
 
     my $dados  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";';
        $dados .= 'for $x in collection("'.$id_volume.'") return $x';
@@ -166,9 +168,14 @@ txn_method 'auditoria_listar' => authorized 'volume' => sub {
                                           dados => $dados,
                                         },
                                    );
+      @control = split(/___/,$controles);
+
+    foreach (@control){
+        $where .= ' or ns:collection = '. $_;
+    }
 
    my $xq_audit = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; 
-                    update insert ('.$audit->toString.') into collection("'.$id_volume.'")/ns:dossie/ns:audit';
+                    update insert ('.$audit->toString.') into collection("'.$id_volume.'")/ns:dossie[1=1 '.$where.']/ns:audit';
 
     $self->sedna->execute($xq_audit);
 };

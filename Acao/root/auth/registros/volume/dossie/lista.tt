@@ -25,6 +25,7 @@
 [% CALL c.model('Sedna').begin %]
 [% SET schema = c.model('Sedna').get_collection('volume') %]
 [% CALL c.model('Sedna').commit %]
+[% SET controles = '' %]
 
 [% xqueryret = PROCESS 'auth/registros/volume/dossie/lista_xqueryret.tt' %]
 [% xquery = PROCESS 'auth/registros/volume/dossie/lista_xquery.tt' %]
@@ -52,10 +53,11 @@
  [% TRY %]
  [% c.model('Sedna').begin %]
  [% c.model('Sedna').execute( xquery )%]
-
- [% WHILE (item = c.model('Sedna').get_item) %]  
- [% item %]
- [% END %]
+[% WHILE (control = c.model('Sedna').get_item) %]
+ [% SET html = c.model('Sedna').get_item %]
+    [% html %]
+[% controles = control _ '___' _ controles %]
+[% END %]
  [% c.model('Sedna').commit %]
 [% CATCH %]
  <div class="erro">ERRO AO PROCESSAR CONSULTA:
@@ -63,6 +65,7 @@
  </div>
 [% END %]
 
+[% c.model('Dossie').auditoria_listar(controles, id_volume) %]
 <tr>
     <td><a href="[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/criardossie') %]">Criar Dossiê</a></td>
 </tr>

@@ -50,9 +50,9 @@ tem acesso.
 
 sub lista : Chained('base') : PathPart('') : Args(0) {
     my ( $self, $c ) = @_;
-    eval {
-        $c->model('Volume')->auditoria_listar($c->req->address);
-    }
+    #eval {
+    #    $c->model('Volume')->auditoria_listar($c->req->address);
+    #}
 }
 
 sub form : Chained('base') : PathPart('criarvolume') : Args(0) {
