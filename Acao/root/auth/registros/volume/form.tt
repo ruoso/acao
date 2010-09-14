@@ -25,9 +25,20 @@
   <dl>
    <dt> <label> Nome Volume: </label> <input type="text" id="nome" name="nome"></dt>
    <br/>
-   <dt> <label> Classificação: &nbsp; </label> <input type="text" id="classificacao" name="classificacao"> </dt>
+   <dt> 
+    <label> Classificação: &nbsp; </label> 
+    <!-- <input type="text" id="classificacao" name="classificacao"> -->
+    <select name="classificacao" id="classificacao">
+     [% # FOREACH memberof IN c.user.memberof %]
+      <option value="[% c.config.default.classificacao %]"> [% c.config.default.classificacao %] </option>
+    </select>
+   </dt>
    <br/>
-   <dt> <label> Localização: &nbsp; &nbsp; </label> <input type="text" id="localizacao" name="localizacao"> </dt>
+   <dt> 
+    <label> Localização: &nbsp; &nbsp; </label> 
+    <select name="localizacao" id="localizacao">
+      <option value="[% c.config.default.localizacao %]"> [% c.config.default.localizacao %] </option>
+    </select>
    <br/>
    <dt> <input type="checkbox" id="representaVolumeFisico" name="representaVolumeFisico" evt="representaVolumeFisico"> <label for="representaVolumeFisico"> Representa Volume Físico </label> </dt>
   </dl>

@@ -33,6 +33,10 @@ $controle->importDefinitions( Acao->path_to('schemas/auditoria.xsd') );
 my $controle_w = $controle->compile( WRITER => pack_type( VOLUME_NS, 'volume' ), use_default_namespace => 1 );
 my $controle_r = $controle->compile( READER => pack_type( VOLUME_NS, 'volume') );
 
+my $role_criar = Acao->config->{'roles'}->{'volume'}->{'criar'};
+my $role_alterar = Acao->config->{'roles'}->{'volume'}->{'alterar'};
+my $role_listar = Acao->config->{'roles'}->{'volume'}->{'listar'};
+
 use constant AUDITORIA_NS =>'http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd';
 my $controle_audit = XML::Compile::Schema->new( Acao->path_to('schemas/auditoria.xsd') );
 my $controle_audit_w = $controle_audit->compile( WRITER => pack_type( AUDITORIA_NS, 'auditoria' ), use_default_namespace => 1 );
@@ -60,7 +64,7 @@ Retorna os volumes os quais o usuário autenticado tem acesso.
 
 =cut
 
-txn_method 'criar_volume' => authorized 'volume' => sub {
+txn_method 'criar_volume' => authorized $role_criar => sub {
     my $self = shift;
     my ( $nome, $representaVolumeFisico, $classificacao, $localizacao, $ip ) = @_;
 
@@ -126,7 +130,7 @@ txn_method 'criar_volume' => authorized 'volume' => sub {
 
 };
 
-txn_method 'alterar_estado' => authorized 'volume' => sub {
+txn_method 'alterar_estado' => authorized $role_alterar => sub {
     my $self = shift;
     my ( $id_volume, $estado, $ip ) = @_;
 
@@ -151,7 +155,7 @@ txn_method 'alterar_estado' => authorized 'volume' => sub {
 
 };
 
-txn_method 'auditoria_listar' => authorized 'volume' => sub {
+txn_method 'auditoria_listar' => authorized $role_listar => sub {
     my $self = shift;
     my ($string_volumes) = @_;
     my $ip = '222.222.2.2';

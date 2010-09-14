@@ -32,6 +32,10 @@ my $controle = XML::Compile::Schema->new( Acao->path_to('schemas/documento.xsd')
 $controle->importDefinitions( Acao->path_to('schemas/auditoria.xsd') );
 my $controle_w = $controle->compile( WRITER => pack_type( DOCUMENTO_NS, 'documento' ), use_default_namespace => 1 );
 
+my $role_visualizar = Acao->config->{'roles'}->{'documento'}->{'visualizar'};
+my $role_criar = Acao->config->{'roles'}->{'documento'}->{'criar'};
+my $role_listar = Acao->config->{'roles'}->{'documento'}->{'listar'};
+
 use constant AUDITORIA_NS =>'http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd';
 my $controle_audit = XML::Compile::Schema->new( Acao->path_to('schemas/auditoria.xsd') );
 my $controle_audit_w = $controle_audit->compile( WRITER => pack_type( AUDITORIA_NS, 'auditoria' ), use_default_namespace => 1 );
@@ -53,7 +57,7 @@ de volume.
 
 =cut
 
-txn_method 'obter_xsd_dossie' => authorized 'volume' => sub {
+txn_method 'obter_xsd_dossie' => authorized $role_visualizar => sub {
     my ( $self, $dossie ) = @_;
     return $self->sedna->get_document( $dossie );
 };
@@ -62,16 +66,16 @@ txn_method 'obter_xsd_dossie' => authorized 'volume' => sub {
 
 =cut
 
-txn_method 'inserir_documento' => authorized 'volume' => sub {
+txn_method 'inserir_documento' => authorized $role_criar => sub {
     my $self = shift;
-    my ($ip, $xml, $id_volume, $controle, $xsdDocumento, $representaDocumentoFisico ) = @_;
+    my ($ip, $xml, $id_volume, $controle, $xsdDocumento, $representaDocumentoFisico) = @_;
     
     my($classificacao, $localizacao);
     my $acao = 'insert';
     my $role = 'role';
 
-    $self->sedna->execute(' for $x in collection("acao-schemas")
-                            [xs:schema/@targetNamespace="'.$xsdDocumento.'"] return $x');
+    $self->sedna->execute('for $x in collection("acao-schemas")
+                           [xs:schema/@targetNamespace="'.$xsdDocumento.'"] return $x');
 
     my $xsd = $self->sedna->get_item;
     my $octets = encode('utf8', $xsd);
@@ -144,8 +148,9 @@ txn_method 'inserir_documento' => authorized 'volume' => sub {
 
 };
 
-txn_method 'visualizar' => authorized 'volume' => sub {
+txn_method 'visualizar' => authorized $role_visualizar => sub {
     my ( $self, $id_volume, $controle, $id_documento, $ip ) = @_;
+
 
     my $xq  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";';
        $xq .= 'declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";';
@@ -175,7 +180,8 @@ txn_method 'visualizar' => authorized 'volume' => sub {
     return $xml;
 };
 
-txn_method 'auditoria_listar' => authorized 'volume' => sub {
+# Incluir o cabecalho de auditoria ao efetuar uma listagem nos documentos
+txn_method 'auditoria_listar' => authorized $role_listar => sub {
     my $self = shift;
     my ( $ip, $id_volume, $controle ) = @_;
 

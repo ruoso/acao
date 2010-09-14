@@ -87,10 +87,13 @@ exceção caso não tenha.
 sub authorized {
     my ( $role, $code ) = @_;
     return sub {
-        if ( grep { $_ eq $role } $_[0]->user->roles ) {
+        if (grep { $_ eq $role } @{$_[0]->user->memberof}) {
             $code->(@_);
         }
         else {
+            warn "*******************";
+            warn $role;
+            warn "*******************";
             die 'access-denied!';
         }
       }

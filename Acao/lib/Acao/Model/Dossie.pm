@@ -33,9 +33,14 @@ $controle->importDefinitions( Acao->path_to('schemas/documento.xsd') );
 $controle->importDefinitions( Acao->path_to('schemas/auditoria.xsd') );
 my $controle_w = $controle->compile( WRITER => pack_type( DOSSIE_NS, 'dossie' ), use_default_namespace => 1 );
 
+my $role_alterar = Acao->config->{'roles'}->{'dossie'}->{'alterar'};
+my $role_criar = Acao->config->{'roles'}->{'dossie'}->{'criar'};
+my $role_listar = Acao->config->{'roles'}->{'dossie'}->{'listar'};
+
 use constant AUDITORIA_NS =>'http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd';
 my $controle_audit = XML::Compile::Schema->new( Acao->path_to('schemas/auditoria.xsd') );
 my $controle_audit_w = $controle_audit->compile( WRITER => pack_type( AUDITORIA_NS, 'auditoria' ), use_default_namespace => 1 );
+
 
 =head1 NAME
 
@@ -54,7 +59,7 @@ de volume.
 
 =cut
 
-txn_method 'obter_xsd_dossie' => authorized 'volume' => sub {
+txn_method 'obter_xsd_dossie' => authorized $role_listar => sub {
     my ( $self, $dossie ) = @_;
     return $self->sedna->get_document( $dossie );
 };
@@ -63,7 +68,7 @@ txn_method 'obter_xsd_dossie' => authorized 'volume' => sub {
 
 =cut
 
-txn_method 'criar_dossie' => authorized 'volume' => sub {
+txn_method 'criar_dossie' => authorized $role_criar => sub {
     my $self = shift;
     my ($ip, $nome, $id_volume, $controle, $representaDossieFisico ) = @_;
 
@@ -122,7 +127,8 @@ txn_method 'criar_dossie' => authorized 'volume' => sub {
     $self->sedna->execute($xq_audit);
 
 };
-txn_method 'alterar_estado' => authorized 'volume' => sub {
+
+txn_method 'alterar_estado' => authorized $role_alterar => sub {
     my $self = shift;
     my ( $id_volume, $controle, $estado, $ip ) = @_;
 
@@ -148,7 +154,7 @@ txn_method 'alterar_estado' => authorized 'volume' => sub {
     $self->sedna->execute($xq_audit);
 };
 
-txn_method 'auditoria_listar' => authorized 'volume' => sub {
+txn_method 'auditoria_listar' => authorized $role_listar => sub {
     my $self = shift;
        my ($controles, $id_volume) = @_;
     my $ip = '222.222.2.2';

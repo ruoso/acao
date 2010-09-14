@@ -52,7 +52,6 @@
  [% TRY %]
  [% c.model('Sedna').begin %]
  [% c.model('Sedna').execute( xquery )%]
-
 [% WHILE (volumeid = c.model('Sedna').get_item) %]
  [% SET html = c.model('Sedna').get_item %]
     [% html %]
