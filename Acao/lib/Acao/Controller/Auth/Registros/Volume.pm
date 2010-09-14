@@ -50,16 +50,6 @@ tem acesso.
 
 sub lista : Chained('base') : PathPart('') : Args(0) {
     my ( $self, $c ) = @_;
-<<<<<<< HEAD:Acao/lib/Acao/Controller/Auth/Registros/Volume.pm
-    #eval {
-    #    $c->model('Volume')->auditoria_listar($c->req->address);
-    #}
-=======
-    Acao->config->{'default'}->{'localizacao'};
-    eval {
-        $c->model('Volume')->auditoria_listar($c->req->address);
-    }
->>>>>>> 477415c5b20590be760629a1d57441538809f2b4:Acao/lib/Acao/Controller/Auth/Registros/Volume.pm
 }
 
 sub form : Chained('base') : PathPart('criarvolume') : Args(0) {
