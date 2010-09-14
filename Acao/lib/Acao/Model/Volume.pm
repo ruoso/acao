@@ -35,6 +35,7 @@ my $controle_r = $controle->compile( READER => pack_type( VOLUME_NS, 'volume') )
 
 my $role_criar = Acao->config->{'roles'}->{'volume'}->{'criar'};
 my $role_alterar = Acao->config->{'roles'}->{'volume'}->{'alterar'};
+my $role_listar = Acao->config->{'roles'}->{'volume'}->{'listar'};
 
 use constant AUDITORIA_NS =>'http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd';
 my $controle_audit = XML::Compile::Schema->new( Acao->path_to('schemas/auditoria.xsd') );
@@ -154,7 +155,7 @@ txn_method 'alterar_estado' => authorized $role_alterar => sub {
 
 };
 
-txn_method 'auditoria_listar' => authorized 'volume' => sub {
+txn_method 'auditoria_listar' => authorized $role_listar => sub {
     my $self = shift;
     my ( $ip ) = @_;
 
