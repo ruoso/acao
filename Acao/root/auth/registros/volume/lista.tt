@@ -54,6 +54,7 @@
 
  [% WHILE (item = c.model('Sedna').get_item) %]  
  [% item %]
+
  [% END %]
  [% c.model('Sedna').commit %]
 [% CATCH %]
