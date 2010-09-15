@@ -1,2 +1,2 @@
 declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; 
-for $x in collection("[% id_volume %]") return [% xqueryret %]
+for $x in collection("[% id_volume %]") return ($x/ns:dossie/ns:controle/text(), [% xqueryret %])

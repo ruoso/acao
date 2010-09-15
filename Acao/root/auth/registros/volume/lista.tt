@@ -25,6 +25,7 @@
 [% CALL c.model('Sedna').begin %]
 [% SET schema = c.model('Sedna').get_collection('volume') %]
 [% CALL c.model('Sedna').commit %]
+[% SET volumes = '' %]
 
 [% xqueryret = PROCESS 'auth/registros/volume/lista_xqueryret.tt' %]
 [% xquery = PROCESS 'auth/registros/volume/lista_xquery.tt' %]
@@ -51,11 +52,11 @@
  [% TRY %]
  [% c.model('Sedna').begin %]
  [% c.model('Sedna').execute( xquery )%]
-
- [% WHILE (item = c.model('Sedna').get_item) %]  
- [% item %]
-
- [% END %]
+[% WHILE (volumeid = c.model('Sedna').get_item) %]
+ [% SET html = c.model('Sedna').get_item %]
+    [% html %]
+[% volumes = volumeid _ '___' _ volumes %]
+[% END %]
  [% c.model('Sedna').commit %]
 [% CATCH %]
  <div class="erro">ERRO AO PROCESSAR CONSULTA:
@@ -63,6 +64,7 @@
  </div>
 [% END %]
 
+[% c.model('Volume').auditoria_listar(volumes) %]
 <tr>
     <td><a href="[% c.uri_for('/auth/registros/volume/criarvolume') %]">Criar Volume</a></td>
 </tr>

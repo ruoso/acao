@@ -7,6 +7,7 @@
                 <a href="" > {$x/ns:volume/ns:nome/text()} </a>
             )}
         </td>
+
         <td>
 	        {$x/ns:volume/ns:criacao/text()}
         </td>
@@ -51,3 +52,5 @@
 	<input type="hidden" id="id_volume" nome="id_volume" value="{$x/ns:volume/ns:collection/text()}"/>
     </tr>
 )
+
+

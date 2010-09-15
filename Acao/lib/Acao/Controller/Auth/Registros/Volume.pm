@@ -50,10 +50,6 @@ tem acesso.
 
 sub lista : Chained('base') : PathPart('') : Args(0) {
     my ( $self, $c ) = @_;
-    Acao->config->{'default'}->{'localizacao'};
-    eval {
-        $c->model('Volume')->auditoria_listar($c->req->address);
-    }
 }
 
 sub form : Chained('base') : PathPart('criarvolume') : Args(0) {

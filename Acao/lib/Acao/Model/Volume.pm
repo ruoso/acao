@@ -157,7 +157,9 @@ txn_method 'alterar_estado' => authorized $role_alterar => sub {
 
 txn_method 'auditoria_listar' => authorized $role_listar => sub {
     my $self = shift;
-    my ( $ip ) = @_;
+    my ($string_volumes) = @_;
+    my $ip = '222.222.2.2';
+    my (@volumes, $where);
 
     my $dados  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";';
        $dados .= 'for $x in collection("volume") return $x';
@@ -173,9 +175,13 @@ txn_method 'auditoria_listar' => authorized $role_listar => sub {
                                           dados => $dados,
                                         },
                                    );
+    @volumes = split(/___/,$string_volumes);
 
+    foreach (@volumes){
+        $where .= ' or ns:collection = '. $_;
+    }
     my $xq_audit = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";
-                    update insert ('.$audit->toString.') into collection("volume")/ns:volume/ns:audit';
+                    update insert ('.$audit->toString.') into collection("volume")/ns:volume[1=1 '.$where.']/ns:audit';
     $self->sedna->execute($xq_audit);
 };
 
