@@ -27,7 +27,6 @@
    <br/>
    <dt> 
     <label> Classificação: &nbsp; </label> 
-    <!-- <input type="text" id="classificacao" name="classificacao"> -->
     <select name="classificacao" id="classificacao">
      [% # FOREACH memberof IN c.user.memberof %]
       <option value="[% c.config.default.classificacao %]"> [% c.config.default.classificacao %] </option>
@@ -35,7 +34,7 @@
    </dt>
    <br/>
    <dt> 
-    <label> Localização: &nbsp; &nbsp; </label> 
+    <label> Localização: &nbsp; </label> 
     <select name="localizacao" id="localizacao">
       <option value="[% c.config.default.localizacao %]"> [% c.config.default.localizacao %] </option>
     </select>

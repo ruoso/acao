@@ -23,6 +23,7 @@
 				<xs:element name="controle" type="xs:string" />
 				<xs:element name="representaDossieFisico" type="xs:boolean" />
 				<xs:element name="classificacao" type="xs:string" maxOccurs="unbounded" />
+				<xs:element name="localizacao" type="xs:string" maxOccurs="unbounded" />
 				<xs:element name="autorizacao">
 					<xs:complexType>
 						<xs:attribute name="principal" type="xs:string" use="required" />

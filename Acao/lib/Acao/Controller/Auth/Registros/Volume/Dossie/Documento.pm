@@ -51,13 +51,6 @@ Delega à view a renderização do formulário desse dossiê.
 
 sub lista : Chained('base') : PathPart('') : Args(0) {
  my ( $self, $c ) = @_;
-    eval {
-        $c->model('Documento')->auditoria_listar(
-                                              $c->req->address, 
-                                              $c->stash->{id_volume},
-                                               $c->stash->{controle},
-                                             );
-    }
 }
 
 sub form : Chained('base') : PathPart('inserirdocumento') : Args(0) {
@@ -81,6 +74,7 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
 					                      $c->req->param('controle'),
                                           $c->req->param('xsdDocumento'),
                                           $representaDocumentoFisico,
+                                          $c->req->param('id_documento'),
 					                     );
 
     };

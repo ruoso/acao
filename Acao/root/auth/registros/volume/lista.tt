@@ -64,7 +64,8 @@
  </div>
 [% END %]
 
-[% c.model('Volume').auditoria_listar(volumes) %]
+[% c.model('Volume').auditoria_listar(c.req.address,volumes) %]
+
 <tr>
     <td><a href="[% c.uri_for('/auth/registros/volume/criarvolume') %]">Criar Volume</a></td>
 </tr>

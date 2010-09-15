@@ -28,12 +28,36 @@
   <legend>Dados do Volume</legend>
   <dl>
     <dt>Volume:</dt>
+    <dd>[% id_volume %]</dd>
+    <br>
     <dd>&nbsp;</dd>
-    <dt>Classificação:</dt>
+     <dt>
+       <label> Classificação: &nbsp; </label>
+     <dd>  
+       <select name="classificacao" id="classificacao">
+         [% # FOREACH memberof IN c.user.memberof %]
+          <option value="[% c.config.default.classificacao %]"> [% c.config.default.classificacao %] </option>
+        </select>
+     </dd>
+    </dt>
+   <br/>
+   <dt> 
+        <label> Localização: &nbsp; </label>
+    <dd>
+       <select name="localizacao" id="localizacao">
+         [% # FOREACH memberof IN c.user.memberof %]
+          <option value="[% c.config.default.localizacao %]"> [% c.config.default.localizacao %] </option>
+        </select>
+    </dd>
+   </dt>
     <dd>&nbsp;</dd>
-    <dt>Localização:</dt>
     <dd>&nbsp;</dd>
-    <dd>&nbsp;</dd>
+  </dl>
+  <legend>Dados do Dossiê</legend>
+  <dl>
+   <dt> <label> Nome Dossie: </label> </dt>
+   <dd> <input type="text" id="nome" name="nome"> </dd>
+   <br/> 
     <dt>Controle:</dt>
     <dd>
 	  <div name="xsdFormValidation">
@@ -41,23 +65,21 @@
 		<div name="requiredField" style="display: none;">true</div>
 	  </div>
     </dd>
-  </dl>
-  <legend>Dados do Dossiê</legend>
-  <dl>
-   <dt> <label> Nome Dossie: </label> </dt>
-   <dd> <input type="text" id="nome" name="nome"> </dd>
    <br/>
    <dt> <input type="checkbox" id="representaDossieFisico" name="representaDossieFisico" evt="representaDossieFisico"> <label for="representaDossieFisico"> Representa Dossiê Físico </label> </dt>
+
   </dl>
  </fildset>
 
  </form>
- 
+ [% c.model('Volume').getDadosVolumeId(id_volume) %]
  
  <div id="form_container"></div>
 
  <input type="submit" name="Submeter">
 
  </form>
+
+
 
 [% INCLUDE 'footer.tt' %]

@@ -21,13 +21,13 @@
 	        {$x/ns:dossie/ns:estado/text()}
         </td>
         <td>
-	        {$x/ns:dossie/ns:classificacao/text()}
+        <span title="{$x/ns:dossie/ns:classificacao/text()}">{substring($x/ns:dossie/ns:classificacao/text(),0, 20)}...</span>
         </td>
         <td>
-	        {$x/ns:dossie/ns:localizacao/text()}
+        <span title="{$x/ns:dossie/ns:localizacao/text()}">{substring($x/ns:dossie/ns:localizacao/text(),0, 20)}...</span>
         </td>
         <td>
-	       { if ( $x/ns:dossie/ns:representadossieFisico/text() eq '1' ) then ("Sim") else ("Não") }
+	       { if ( $x/ns:dossie/ns:representaDossieFisico/text() = 1 ) then ("Sim") else ("Não") }
         </td>
            { if ( $x/ns:dossie/ns:estado/text() eq 'fechado') then (
         <td>

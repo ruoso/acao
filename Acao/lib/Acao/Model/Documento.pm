@@ -68,14 +68,13 @@ txn_method 'obter_xsd_dossie' => authorized $role_visualizar => sub {
 
 txn_method 'inserir_documento' => authorized $role_criar => sub {
     my $self = shift;
-    my ($ip, $xml, $id_volume, $controle, $xsdDocumento, $representaDocumentoFisico) = @_;
+    my ($ip, $xml, $id_volume, $controle, $xsdDocumento, $representaDocumentoFisico, $id_documento) = @_;
     
-    my($classificacao, $localizacao);
-    my $acao = 'insert';
+    my $classificacao = 'c';
+    my $localizacao = 'c';
     my $role = 'role';
 
-    $self->sedna->execute('for $x in collection("acao-schemas")
-                           [xs:schema/@targetNamespace="'.$xsdDocumento.'"] return $x');
+    $self->sedna->execute('for $x in collection("acao-schemas")[xs:schema/@targetNamespace="'.$xsdDocumento.'"] return $x');
 
     my $xsd = $self->sedna->get_item;
     my $octets = encode('utf8', $xsd);
@@ -102,24 +101,17 @@ txn_method 'inserir_documento' => authorized $role_criar => sub {
                                     criacao    => DateTime->now(),
                                     invalidacao => '',
                                     representaDocumentoFisico => $representaDocumentoFisico,
-                                    classificacao => 'c',
+                                    classificacao => 'C',
+                                    localizacao => 'L',
                                     autorizacao => {
                                                     principal => $self->user->id,
                                                     role => $role,
                                                     dataIni => DateTime->now(),
                                                     dataFim => '',
                                                     },
-                                    audit      =>  { 
-#                                                    auditoria => {
-#                                                                  data => DateTime->now(),
-#                                                                  usuario => $self->user->id,
-#                                                                  acao => $acao,
-#                                                                  ip => $ip,
-#                                                                  dados => $dados,
-#                                                                 },
-                                                   },
+                                    audit      =>  {},
                                     documento => {
-                                                    conteudo       => { "{}conteudo" => $conteudo_registro },
+                                                    conteudo => { "{}conteudo" => $conteudo_registro },
                                                 }
                                 }
                                );
@@ -129,12 +121,14 @@ txn_method 'inserir_documento' => authorized $role_criar => sub {
 
     $self->sedna->execute($xq);
 
+    my $acao = $id_documento eq '' ? 'insert' : 'edit';
     my $doc_audit = XML::LibXML::Document->new( '1.0', 'UTF-8' );
     my $audit = $controle_audit_w->($doc_audit,
                                             {
                                               data => DateTime->now(),
                                               usuario => $self->user->id,
-                                              acao => 'insert',
+                                              acao => $acao,
+                                              original => $id_documento,
                                               ip => $ip,
                                               dados => $xq,
                                             },
@@ -183,7 +177,9 @@ txn_method 'visualizar' => authorized $role_visualizar => sub {
 # Incluir o cabecalho de auditoria ao efetuar uma listagem nos documentos
 txn_method 'auditoria_listar' => authorized $role_listar => sub {
     my $self = shift;
-    my ( $ip, $id_volume, $controle ) = @_;
+    my ($ip, $documentos, $id_volume, $controle ) = @_;
+
+    my (@doc, $where);
 
     my $dados  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";';
        $dados .= 'declare namespace dc = "http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";';
@@ -201,11 +197,17 @@ txn_method 'auditoria_listar' => authorized $role_listar => sub {
                                           dados => $dados,
                                         },
                                    );
+    @doc = split(/___/,$documentos);
+
+    foreach (@doc){
+        $where .= ' or '. $_;
+    }
+
 
    my $xq_audit = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; 
                    declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";  
-                   update insert ('.$audit->toString.') into collection("'.$id_volume.'")/ns:dossie[ns:controle='.$controle.']/ns:doc/*/dc:audit';
-
+                   update insert ('.$audit->toString.') into collection("'.$id_volume.'")/ns:dossie[ns:controle='.$controle.']/ns:doc/*[1=1 '. $where.']/dc:audit';
+warn $xq_audit;
     $self->sedna->execute($xq_audit);
 };
 

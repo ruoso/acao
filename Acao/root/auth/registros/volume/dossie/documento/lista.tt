@@ -25,6 +25,7 @@
 [% CALL c.model('Sedna').begin %]
 [% SET schema = c.model('Sedna').get_collection('volume') %]
 [% CALL c.model('Sedna').commit %]
+[% SET documentos = '' %]
 
 [% xqueryret = PROCESS 'auth/registros/volume/dossie/documento/lista_xqueryret.tt' %]
 [% xquery = PROCESS 'auth/registros/volume/dossie/documento/lista_xquery.tt' %]
@@ -48,9 +49,10 @@
  [% TRY %]
  [% c.model('Sedna').begin %]
  [% c.model('Sedna').execute( xquery )%]
-
- [% WHILE (item = c.model('Sedna').get_item) %]  
- [% item %]
+ [% WHILE (doc = c.model('Sedna').get_item) %]
+ [% SET html = c.model('Sedna').get_item %]
+    [% html %]
+ [% documentos = doc _ '___' _ documentos %]
  [% END %]
  [% c.model('Sedna').commit %]
 [% CATCH %]
@@ -58,6 +60,8 @@
   <PRE>[% error.info %]</PRE>
  </div>
 [% END %]
+
+[% c.model('Documento').auditoria_listar(c.req.address, documentos, id_volume, controle) %]
 
 </TBODY>
 </table>

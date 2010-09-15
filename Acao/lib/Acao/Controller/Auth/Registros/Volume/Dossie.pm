@@ -50,12 +50,6 @@ Delega à view a renderização do formulário desse dossiê.
 
 sub lista : Chained('base') : PathPart('') : Args(0) {
     my ( $self, $c ) = @_;
-#    eval {
-#        $c->model('Dossie')->auditoria_listar(
-#                                              $c->req->address, 
-#                                              $c->stash->{id_volume},
-#                                             );
-#    }
 }
 
 sub form : Chained('base') : PathPart('criardossie') : Args(0) {
@@ -79,6 +73,8 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
 					                      $c->req->param('id_volume'),
 					                      $c->req->param('controle'),
                                           $representaDossieFisico,
+					                      $c->req->param('classificacao'),
+					                      $c->req->param('localizacao'),
 					                     );
 
     };

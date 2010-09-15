@@ -8,11 +8,12 @@
 
 	<xs:complexType name="auditoria">
 		<xs:sequence>
-			<xs:element name="data" type="xs:dateTime" />
-			<xs:element name="usuario" type="xs:string"  />
-			<xs:element name="acao" type="xs:string"  />
-			<xs:element name="ip" type="xs:string"  />
-			<xs:element name="dados" type="xs:string"  />
+			<xs:element name="data"     type="xs:dateTime" />
+			<xs:element name="usuario"  type="xs:string"  />
+			<xs:element name="acao"     type="xs:string"  />
+			<xs:element name="original" type="xs:string"  minOccurs="0"/>
+			<xs:element name="ip"       type="xs:string"  />
+			<xs:element name="dados"    type="xs:string"  />
 		</xs:sequence>
 	</xs:complexType>
 

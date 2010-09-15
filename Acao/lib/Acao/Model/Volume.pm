@@ -98,15 +98,7 @@ txn_method 'criar_volume' => authorized $role_criar => sub {
                                                     dataIni => DateTime->now(),
                                                     dataFim => '',
                                                     },
-                                    audit      =>  { 
-#                                                    auditoria => {
-#                                                                  data => DateTime->now(),
-#                                                                  usuario => $self->user->id,
-#                                                                  acao => $acao,
-#                                                                  ip => $ip,
-#                                                                  dados => $dados,
-#                                                                 },
-                                                   },
+                                    audit      =>  {},
                                 },
                                );
 
@@ -157,10 +149,8 @@ txn_method 'alterar_estado' => authorized $role_alterar => sub {
 
 txn_method 'auditoria_listar' => authorized $role_listar => sub {
     my $self = shift;
-    my ($string_volumes) = @_;
-    my $ip = '222.222.2.2';
+    my ($ip, $string_volumes) = @_;
     my (@volumes, $where);
-
     my $dados  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";';
        $dados .= 'for $x in collection("volume") return $x';
 
@@ -184,6 +174,16 @@ txn_method 'auditoria_listar' => authorized $role_listar => sub {
                     update insert ('.$audit->toString.') into collection("volume")/ns:volume[1=1 '.$where.']/ns:audit';
     $self->sedna->execute($xq_audit);
 };
+
+txn_method 'getDadosVolume' => authorized $role_listar => sub {
+    my $self = shift;
+    my ($id_volume) = @_;
+    my $xq = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";
+                    for $x in collection("volume")/ns:volume[ns:collection="'.$id_volume.'"] return $x';
+   $self->sedna->execute($xq);
+    my $vol = $self->sedna->get_item;
+  # return $vol;
+}
 
 =cut
 

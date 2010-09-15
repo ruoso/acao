@@ -70,9 +70,8 @@ txn_method 'obter_xsd_dossie' => authorized $role_listar => sub {
 
 txn_method 'criar_dossie' => authorized $role_criar => sub {
     my $self = shift;
-    my ($ip, $nome, $id_volume, $controle, $representaDossieFisico ) = @_;
+    my ($ip, $nome, $id_volume, $controle, $representaDossieFisico, $classificacao, $localizacao) = @_;
 
-    my( $classificacao, $localizacao);
     my $acao = 'insert';
     my $role = 'role';
 
@@ -87,23 +86,15 @@ txn_method 'criar_dossie' => authorized $role_criar => sub {
                                     estado       => 'aberto',
                                     controle     => $controle,
                                     representaDossieFisico => $representaDossieFisico,
-                                    classificacao => 'c',
-                                    localizacao => 'l',
+                                    classificacao => $classificacao,
+                                    localizacao => $localizacao,
                                     autorizacao => {
                                                     principal => $self->user->id,
                                                     role => $role,
                                                     dataIni => DateTime->now(),
                                                     dataFim => '',
                                                    },
-                                    audit      =>  { 
-#                                                    auditoria => {
-#                                                                  data => DateTime->now(),
-#                                                                  usuario => $self->user->id,
-#                                                                  acao => $acao,
-#                                                                  ip => $ip,
-#                                                                  dados => $dados,
-#                                                                 },
-                                                   },
+                                    audit      =>  {},
                                     doc=>{},
                                 }
                                );
@@ -156,8 +147,7 @@ txn_method 'alterar_estado' => authorized $role_alterar => sub {
 
 txn_method 'auditoria_listar' => authorized $role_listar => sub {
     my $self = shift;
-       my ($controles, $id_volume) = @_;
-    my $ip = '222.222.2.2';
+    my ($ip, $controles, $id_volume) = @_;
     my (@control, $where);
 
     my $dados  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";';

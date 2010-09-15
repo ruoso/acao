@@ -41,7 +41,7 @@
   <th>Estado</th>
   <th>Classificação</th>
   <th>Localização</th>
-  <th>Representa Volume Físico</th>
+  <th>Representa Dossie Físico</th>
   <th colspan="3">Ação</th>
  </tr>
 </thead>
@@ -53,19 +53,18 @@
  [% TRY %]
  [% c.model('Sedna').begin %]
  [% c.model('Sedna').execute( xquery )%]
-[% WHILE (control = c.model('Sedna').get_item) %]
+ [% WHILE (control = c.model('Sedna').get_item) %]
  [% SET html = c.model('Sedna').get_item %]
     [% html %]
-[% controles = control _ '___' _ controles %]
-[% END %]
+ [% controles = control _ '___' _ controles %]
+ [% END %]
  [% c.model('Sedna').commit %]
 [% CATCH %]
  <div class="erro">ERRO AO PROCESSAR CONSULTA:
   <PRE>[% error.info %]</PRE>
  </div>
 [% END %]
-
-[% c.model('Dossie').auditoria_listar(controles, id_volume) %]
+[% c.model('Dossie').auditoria_listar(c.req.address, controles, id_volume) %]
 <tr>
     <td><a href="[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/criardossie') %]">Criar Dossiê</a></td>
 </tr>
