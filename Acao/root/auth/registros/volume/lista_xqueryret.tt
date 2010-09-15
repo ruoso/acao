@@ -1,7 +1,11 @@
 (
     <tr>
         <td>
-	        <a href="[% c.uri_for('/auth/registros/volume') %]/{$x/ns:volume/ns:collection/text()}" > {$x/ns:volume/ns:nome/text()} </a>
+	        { if ( $x/ns:volume/ns:estado/text() eq 'aberto') then (
+                <a href="[% c.uri_for('/auth/registros/volume') %]/{$x/ns:volume/ns:collection/text()}" > {$x/ns:volume/ns:nome/text()} </a>
+            ) else (
+                <a href="" > {$x/ns:volume/ns:nome/text()} </a>
+            )}
         </td>
         <td>
 	        {$x/ns:volume/ns:criacao/text()}
@@ -16,10 +20,10 @@
 	        {$x/ns:volume/ns:estado/text()}
         </td>
         <td>
-	        {$x/ns:volume/ns:classificacao/text()}
+	        <span title="{$x/ns:volume/ns:classificacao/text()}">{substring($x/ns:volume/ns:classificacao/text(),0, 20)}...</span>
         </td>
         <td>
-	        {$x/ns:volume/ns:localizacao/text()}
+	         <span title="{$x/ns:volume/ns:localizacao/text()}">{substring($x/ns:volume/ns:localizacao/text(),0, 20)}...</span>
         </td>
         <td>
 	       { if ( $x/ns:volume/ns:representaVolumeFisico/text() eq '1' ) then ("Sim") else ("Não") }

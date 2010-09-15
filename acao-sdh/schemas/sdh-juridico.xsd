@@ -1,7 +1,8 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-juridico.xsd"
-	xmlns:xhtml="http://www.w3.org/1999/xhtml" targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-juridico.xsd"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml" 
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-juridico.xsd"
 	elementFormDefault="qualified">
 
 	<xs:element name="formJuridico" type="formJuridico">
@@ -18,7 +19,7 @@
 			<xs:element name="origem" minOccurs="1">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Origem</xhtml:label>
+						<xhtml:label>Orígem</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -56,7 +57,7 @@
 				</xs:annotation>
 				<xs:complexType>
 					<xs:sequence>
-						<xs:element name="obrigaçãoDeRepararODano" type="xs:boolean">
+						<xs:element name="obrigacaoDeRepararODano" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Obrigação de reparar o dano</xhtml:label>
@@ -64,7 +65,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="Prestação de Serviços à Comunidade"
+						<xs:element name="prestacaoDeServicosAComunidade"
 							type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
@@ -73,7 +74,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="Liberdade Assistida" type="xs:boolean">
+						<xs:element name="liberdadeAssistida" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Liberdade Assistida</xhtml:label>
@@ -81,7 +82,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="Semiliberdade" type="xs:boolean">
+						<xs:element name="semiliberdade" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Semiliberdade</xhtml:label>
@@ -89,7 +90,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="Privação de Liberdade" type="xs:boolean">
+						<xs:element name="privacaoDeLiberdade" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Privação de Liberdade</xhtml:label>
@@ -127,7 +128,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="foiPlanejadoOuImpulso?" minOccurs="0"
+						<xs:element name="foiPlanejadoOuImpulso" minOccurs="0"
 							type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
@@ -210,7 +211,7 @@
 										</xs:annotation>
 										<xs:complexType>
 											<xs:sequence>
-												<xs:element name="Verbal" type="xs:boolean">
+												<xs:element name="verbal" type="xs:boolean">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label>Verbal</xhtml:label>
@@ -218,7 +219,7 @@
 													</xs:annotation>
 												</xs:element>
 
-												<xs:element name="Fisica" type="xs:boolean">
+												<xs:element name="fisica" type="xs:boolean">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label>Física</xhtml:label>
@@ -263,7 +264,7 @@
 										</xs:simpleType>
 									</xs:element>
 
-									<xs:element name="foiConduzidoDiretoParaAUnidadeDeRecepção"
+									<xs:element name="foiConduzidoDiretoParaAUnidadeDeRecepcao"
 										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
@@ -343,7 +344,7 @@
 										</xs:simpleType>
 									</xs:element>
 
-									<xs:element name="voceFoiApreendidoEmFlagrante?"
+									<xs:element name="voceFoiApreendidoEmFlagrante"
 										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
@@ -423,7 +424,7 @@
 							<xs:complexType>
 								<xs:sequence>
 									<xs:element
-										name="investigarSobrePeriodoDePermanênciaDoAdolescenteApreendidoNaUnidadeDeRecepcao"
+										name="investigarSobrePeriodoDePermanenciaDoAdolescenteApreendidoNaUnidadeDeRecepcao"
 										type="xs:string" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
@@ -437,7 +438,7 @@
 							</xs:complexType>
 						</xs:element>
 
-						<xs:element name="" minOccurs="0">
+						<xs:element name="daApresentacao" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>d) Da apresentação</xhtml:label>
@@ -445,7 +446,7 @@
 							</xs:annotation>
 							<xs:complexType>
 								<xs:sequence>
-									<xs:element name="contatoDoAdolescenteComOMembroDoMinistérioPublico"
+									<xs:element name="contatoDoAdolescenteComOMembroDoMinisterioPublico"
 										type="xs:string" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
@@ -472,7 +473,7 @@
 							<xs:complexType>
 								<xs:sequence>
 									<xs:element
-										name="(saberSeOAdolescenteFoiDevidamenteInformadoSobreOInstitutoDaRemissao"
+										name="saberSeOAdolescenteFoiDevidamenteInformadoSobreOInstitutoDaRemissao"
 										type="xs:string" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
@@ -493,7 +494,7 @@
 							</xs:annotation>
 							<xs:complexType>
 								<xs:sequence>
-									<xs:element name="investigarSobreAProgressaoOuRegressãoDaMedida"
+									<xs:element name="investigarSobreAProgressaoOuRegressaoDaMedida"
 										type="xs:string" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
@@ -558,7 +559,7 @@
 							<xs:complexType>
 								<xs:sequence>
 									<xs:element
-										name="saberSeOAdolescenteJaEsteveEmAbrigoQualAbrigoEOMotivoDaPermanencia."
+										name="saberSeOAdolescenteJaEsteveEmAbrigoQualAbrigoEOMotivoDaPermanencia"
 										type="xs:string" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
@@ -580,7 +581,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="técnicoResponsavel" type="xs:string"
+						<xs:element name="tecnicoResponsavel" type="xs:string"
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
@@ -600,7 +601,6 @@
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
-
 
 		</xs:sequence>
 	</xs:complexType>

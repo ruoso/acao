@@ -54,7 +54,8 @@
 
  <div id="form_container"></div>
 
-[% IF c.user.roles.grep('digitador') %]
+[% # IF c.user.roles.grep('digitador') %]
+[% IF c.config.roles.dossie.criar %]
  <input type="submit" value="Submeter alterações como novo documento">
 [% END %]
 
