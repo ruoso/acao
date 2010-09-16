@@ -20,6 +20,9 @@
     <td>
         { $y }
     </td>
+    <td>
+<a href="[% c.uri_for('/auth/registros/volume/') _ id_volume _ '/' _ controle %]/visualizar/{$x/dc:audit/adt:auditoria/adt:original/text()}/{substring(namespace-uri($x/dc:documento/*/*),41)}" >  {$x/dc:audit/adt:auditoria/adt:original/text()} </a>
+    </td>
     <input type="hidden" id="id_dossie" nome="id_dossie" value="{$x/ns:dossie/ns:collection/text()}"/>
   </tr>
 )

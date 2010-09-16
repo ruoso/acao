@@ -175,15 +175,31 @@ txn_method 'auditoria_listar' => authorized $role_listar => sub {
     $self->sedna->execute($xq_audit);
 };
 
-txn_method 'getDadosVolume' => authorized $role_listar => sub {
+txn_method 'getDadosVolumeId' => authorized $role_listar => sub {
     my $self = shift;
     my ($id_volume) = @_;
     my $xq = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";
-                    for $x in collection("volume")/ns:volume[ns:collection="'.$id_volume.'"] return $x';
+                    for $x in collection("volume")/ns:volume[ns:collection="'.$id_volume.'"] 
+                    return ($x/ns:nome/text(), $x/ns:classificacao/text(), $x/ns:localizacao/text())';
    $self->sedna->execute($xq);
-    my $vol = $self->sedna->get_item;
-  # return $vol;
-}
+
+    my ($nome, $clas, $loc);
+    my @a;
+    while($nome = $self->sedna->get_item){
+        $a[0] = $nome;
+        $a[1] = $self->sedna->get_item;
+        $a[2] = $self->sedna->get_item;
+    };
+
+
+    my %vol = (
+                nome => $nome, 
+                classificacao => $clas, 
+                localizacao  => $loc,
+              );
+
+   return %vol;
+};
 
 =cut
 

@@ -18,6 +18,10 @@
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
 %]
 [% INCLUDE 'auth/registros/volume/dossie/header.tt' %]
+
+[% SET vol = { } %]
+[% # c.model('Volume').getDadosVolumeId(id_volume) %]
+
 <script SRC="[% c.uri_for('/static/js/xsdForm.js') %]" language="Javascript" ></script>
 
 <form action="[% c.uri_for('/auth/registros/volume/') _ id_volume _ '/store' %]" method="post">
@@ -28,10 +32,22 @@
   <legend>Dados do Volume</legend>
   <dl>
     <dt>Volume:</dt>
-    <dd>[% id_volume %]</dd>
+    <dd>[% a.nome %]</dd>
+    <br>
+    <dt>Classificação:</dt>
+    <dd>[% vol.classificacao %]</dd>
+    <br>
+    <dt>Localização:</dt>
+    <dd>[% vol.2 %]</dd>
     <br>
     <dd>&nbsp;</dd>
-     <dt>
+  </dl>
+  <legend>Dados do Dossiê</legend>
+  <dl>
+   <dt> <label> Nome Dossie: </label> </dt>
+   <dd> <input type="text" id="nome" name="nome"> </dd>
+   <br/>
+<dt>
        <label> Classificação: &nbsp; </label>
      <dd>  
        <select name="classificacao" id="classificacao">
@@ -50,14 +66,8 @@
         </select>
     </dd>
    </dt>
-    <dd>&nbsp;</dd>
-    <dd>&nbsp;</dd>
-  </dl>
-  <legend>Dados do Dossiê</legend>
-  <dl>
-   <dt> <label> Nome Dossie: </label> </dt>
-   <dd> <input type="text" id="nome" name="nome"> </dd>
-   <br/> 
+
+    <br/>
     <dt>Controle:</dt>
     <dd>
 	  <div name="xsdFormValidation">
@@ -72,7 +82,6 @@
  </fildset>
 
  </form>
- [% c.model('Volume').getDadosVolumeId(id_volume) %]
  
  <div id="form_container"></div>
 

@@ -1,5 +1,6 @@
 declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
 declare namespace dc = "http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";
+declare namespace adt = "http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd";
 declare namespace xhtml="http://www.w3.org/1999/xhtml";
 declare namespace xss="http://www.w3.org/2001/XMLSchema";
 for $x at $i in collection("[% id_volume %]")/ns:dossie[ns:controle = [% controle %] ]/ns:doc/* ,

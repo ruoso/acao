@@ -207,7 +207,7 @@ txn_method 'auditoria_listar' => authorized $role_listar => sub {
    my $xq_audit = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; 
                    declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";  
                    update insert ('.$audit->toString.') into collection("'.$id_volume.'")/ns:dossie[ns:controle='.$controle.']/ns:doc/*[1=1 '. $where.']/dc:audit';
-warn $xq_audit;
+
     $self->sedna->execute($xq_audit);
 };
 
