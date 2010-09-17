@@ -18,6 +18,8 @@
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
 %]
 [% INCLUDE 'auth/registros/volume/dossie/documento/header.tt' %]
+[% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume) ) %]
+
 <script SRC="[% c.uri_for('/static/js/xsdForm.js') %]" language="Javascript" ></script>
 
 <form action="[% c.uri_for('/auth/registros/volume/') _ id_volume _ '/' _ controle _ '/store' %]" method="post"
@@ -29,13 +31,15 @@
  <fieldset>
   <legend>Dados do Volume</legend>
   <dl>
-    <dt>Volume: </dt>
-    <dd>&nbsp;</dd>
+    <dt>Volume:</dt>
+    <dd>[% vol.nome %]</dd>
+    <br>
     <dt>Classificação:</dt>
-    <dd>&nbsp;</dd>
+    <dd>[% vol.classificacao %]</dd>
+    <br>
     <dt>Localização:</dt>
-    <dd>&nbsp;</dd>
-    <dd>&nbsp;</dd>
+    <dd>[% vol.localizacao %]</dd>
+    <br>
     <dt>Controle:</dt>
     <dd>
 	  <div name="xsdFormValidation">
@@ -44,6 +48,8 @@
 		<div name="requiredField" style="display: none;">true</div>
 	  </div>
     </dd>
+    <dt>         <input type="checkbox" id="representaDocumentoFisico" name="representaDocumentoFisico" evt="representaDocumentoFisico"> 
+            <label for="representaDocumentoFisico"> Representa Documento Físico </label> </dt>
   </dl>
  </fieldset>
  

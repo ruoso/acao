@@ -19,8 +19,7 @@
 %]
 [% INCLUDE 'auth/registros/volume/dossie/header.tt' %]
 
-[% SET vol = { } %]
-[% # c.model('Volume').getDadosVolumeId(id_volume) %]
+[% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume) ) %]
 
 <script SRC="[% c.uri_for('/static/js/xsdForm.js') %]" language="Javascript" ></script>
 
@@ -32,13 +31,13 @@
   <legend>Dados do Volume</legend>
   <dl>
     <dt>Volume:</dt>
-    <dd>[% a.nome %]</dd>
+    <dd>[% vol.nome %]</dd>
     <br>
     <dt>Classificação:</dt>
     <dd>[% vol.classificacao %]</dd>
     <br>
     <dt>Localização:</dt>
-    <dd>[% vol.2 %]</dd>
+    <dd>[% vol.localizacao %]</dd>
     <br>
     <dd>&nbsp;</dd>
   </dl>

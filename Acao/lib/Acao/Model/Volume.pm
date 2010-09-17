@@ -183,22 +183,16 @@ txn_method 'getDadosVolumeId' => authorized $role_listar => sub {
                     return ($x/ns:nome/text(), $x/ns:classificacao/text(), $x/ns:localizacao/text())';
    $self->sedna->execute($xq);
 
-    my ($nome, $clas, $loc);
-    my @a;
-    while($nome = $self->sedna->get_item){
-        $a[0] = $nome;
-        $a[1] = $self->sedna->get_item;
-        $a[2] = $self->sedna->get_item;
+    my $vol = {};
+    while(my $nome = $self->sedna->get_item){
+        $vol = {
+                    nome => $nome, 
+                    classificacao => $self->sedna->get_item, 
+                    localizacao  => $self->sedna->get_item,
+                  };
     };
 
-
-    my %vol = (
-                nome => $nome, 
-                classificacao => $clas, 
-                localizacao  => $loc,
-              );
-
-   return %vol;
+   return $vol;
 };
 
 =cut
