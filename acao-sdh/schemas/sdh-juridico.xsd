@@ -16,24 +16,6 @@
 	<xs:complexType name="formJuridico">
 		<xs:sequence>
 
-			<xs:element name="origem" minOccurs="1">
-				<xs:annotation>
-					<xs:appinfo>
-						<xhtml:label>Orígem</xhtml:label>
-					</xs:appinfo>
-				</xs:annotation>
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:enumeration value="Admissão LA" />
-						<xs:enumeration value="Admissão LAM" />
-						<xs:enumeration value="Readmissão L.A" />
-						<xs:enumeration value="Admissão PSC" />
-						<xs:enumeration value="Admissão PSCM" />
-						<xs:enumeration value="Readmissão PSC" />
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
-
 			<xs:element name="jaCumpriuOutraMedidaSocioeducativa"
 				minOccurs="0">
 				<xs:annotation>
@@ -181,7 +163,7 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>a) Da abordagem policial e apreensão</xhtml:label>
+									<xhtml:label>Da abordagem policial e apreensão</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 
@@ -394,7 +376,7 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>b) Da delegacia da crianca e do adolescente
+									<xhtml:label>Da delegacia da crianca e do adolescente
 									</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
@@ -418,7 +400,7 @@
 						<xs:element name="daUnidadeDeRecepcao" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>c) Da unidade de recepcao</xhtml:label>
+									<xhtml:label>Da unidade de recepção</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
@@ -441,7 +423,7 @@
 						<xs:element name="daApresentacao" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>d) Da apresentação</xhtml:label>
+									<xhtml:label>Da apresentação</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
@@ -467,7 +449,7 @@
 						<xs:element name="remissao" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>e) Remissao:</xhtml:label>
+									<xhtml:label>Remissão:</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
@@ -489,7 +471,7 @@
 						<xs:element name="progressaoOuRegressao" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>f) Progressão ou regressão</xhtml:label>
+									<xhtml:label>Progressão ou regressão</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
@@ -511,7 +493,7 @@
 						<xs:element name="julgamento" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>g) Julgamento</xhtml:label>
+									<xhtml:label>Julgamento</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
@@ -531,7 +513,7 @@
 						<xs:element name="privacaoDeLiberdade" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>h) Privação de Liberdade</xhtml:label>
+									<xhtml:label>Privação de Liberdade</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
@@ -541,7 +523,7 @@
 										type="xs:string" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Saber se o adolescente já este em centro
+												<xhtml:label>Saber se o adolescente já esteve em centro
 													educacional e o tempo de permanência</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
@@ -553,7 +535,7 @@
 						<xs:element name="abrigamento" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>i) Abrigamento</xhtml:label>
+									<xhtml:label>Abrigamento</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
@@ -563,8 +545,7 @@
 										type="xs:string" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Saber se o adolescente já este em centro
-													educacional e o tempo de permanência</xhtml:label>
+												<xhtml:label>Saber se o adolescente já esteve em abrigo, qual abrigo e o motivo de permanência</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>

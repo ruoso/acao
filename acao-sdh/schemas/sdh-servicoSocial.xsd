@@ -48,8 +48,9 @@
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
 									<xs:enumeration value="Casados" />
+									<xs:enumeration value="Vivem juntos" />									
 									<xs:enumeration value="Separados" />
-									<xs:enumeration value="Nunca viveram juntos" />
+									<xs:enumeration value="Nunca viveram juntos" />									
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
@@ -337,7 +338,7 @@
 			<xs:element name="rotinaDiaria">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Diária</xhtml:label>
+						<xhtml:label>Rotina diária</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -384,9 +385,7 @@
 						<xs:element name="praticaAtividadesSocioCulturaisEsportivas">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Quais atividades sócio-culturais e esportivas
-										você
-										pratica(público ou privado)</xhtml:label>
+									<xhtml:label>Quais atividades socioculturais e esportivas você pratica(público ou privado)</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
@@ -435,8 +434,7 @@
 							type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Quais suas expectativas em relação a medida
-										sócio-educativa </xhtml:label>
+									<xhtml:label>Quais suas expectativas em relação a medida socioeducativa </xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>

@@ -98,7 +98,8 @@
 						<xs:element name="tipoGrupoSocialAlguemDaFamiliaParticipaOuParticipou">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Tipo grupo social alguem da família participa ou
+									<xhtml:label>Tipo grupo social que alguem da família participa
+										ou
 										participou</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
@@ -411,6 +412,15 @@
 										</xs:annotation>
 									</xs:element>
 
+									<xs:element name="frequenciaDosRecursosComunitarios"
+										minOccurs="0" type="xs:string">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Com que freqüência</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
 								</xs:sequence>
 							</xs:complexType>
 						</xs:element>
@@ -441,12 +451,7 @@
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Como a família está contribuindo para facilitar
-										o
-										cumprimendo da MSE(aproveitar para responsabilizar
-										a família
-										acerca das determinações quanto ao
-										cumprimento da medida)
-									</xhtml:label>
+										o cumprimendo da MSE</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -472,7 +477,7 @@
 								<xs:appinfo>
 									<xhtml:label>A família percebe a mudança de comportamento do
 										adolescente depois do início da medida? O que pensa
-										disso
+										disso?
 									</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
@@ -483,12 +488,11 @@
 				</xs:complexType>
 			</xs:element>
 
-			<xs:element name="impressaoDoAtendimento" minOccurs="1"
+			<xs:element name="impressaoDaVisita" minOccurs="1"
 				type="xs:string">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Impressões do atendimento
-																		</xhtml:label>
+						<xhtml:label>Impressões da visita</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>

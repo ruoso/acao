@@ -33,10 +33,10 @@
 							</xs:annotation>
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
-									<xs:enumeration value="Sim. Ruim." />
-									<xs:enumeration value="Sim. Regular." />
-									<xs:enumeration value="Sim. Bem." />
-									<xs:enumeration value="Sim. Ótimo." />
+									<xs:enumeration value="Ruim." />
+									<xs:enumeration value="Regular." />
+									<xs:enumeration value="Bem." />
+									<xs:enumeration value="Ótimo." />
 									<xs:enumeration value="Não." />
 								</xs:restriction>
 							</xs:simpleType>
@@ -237,13 +237,10 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="aEscolaOfereceCondicoesDePesquisaTaisComo"
-							minOccurs="0">
+						<xs:element name="aEscolaOfereceCondicoesDePesquisaTaisComo" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>A Escola oferece condições de pesquisa tais
-										como:
-									</xhtml:label>
+									<xhtml:label>A Escola oferece condições de pesquisa tais como:</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
@@ -297,8 +294,8 @@
 							</xs:annotation>
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
-									<xs:enumeration value="Sim." />
-									<xs:enumeration value="Não." />
+									<xs:enumeration value="Sim" />
+									<xs:enumeration value="Não" />
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
@@ -311,13 +308,26 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="temInteresseEmPratica" type="xs:string"
-							minOccurs="0">
+						<xs:element name="temInteresseEmPratica" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Tem interesse em praticá-las (esportiva,
-										artística
-										ou recreativa)?</xhtml:label>
+										artística ou recreativa)?</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Sim" />
+									<xs:enumeration value="Não" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						
+						<xs:element name="qualEsporteTemInteresseEmPratica" type="xs:string"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Quais?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
