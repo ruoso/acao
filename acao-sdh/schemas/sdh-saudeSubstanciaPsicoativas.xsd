@@ -1,7 +1,8 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-saudeSubstanciaPsicoativa.xsd"
-	xmlns:xhtml="http://www.w3.org/1999/xhtml" targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-saudeSubstanciaPsicoativa.xsd"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-saudeSubstanciaPsicoativa.xsd"
 	elementFormDefault="qualified">
 
 	<xs:element name="formSaudeSubstanciaPsicoativa" type="formSaudeSubstanciaPsicoativa">
@@ -50,270 +51,83 @@
 										</xs:annotation>
 									</xs:element>
 
-									<xs:element name="parentescoOuSocioeducandoJaUsouAlcool"
-										minOccurs="0">
+									<xs:element name="nuncaUsou" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Quanto ao uso de alcool</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-										<xs:simpleType>
-											<xs:restriction base="xs:string">
-												<xs:enumeration value="Nunca usou" />
-												<xs:enumeration value="Já experimentou" />
-												<xs:enumeration value="Fez uso" />
-												<xs:enumeration value="Consume de vez em quando" />
-												<xs:enumeration value="Consume freqüentemente" />
-												<xs:enumeration value="Não quis informar" />
-											</xs:restriction>
-										</xs:simpleType>
-									</xs:element>
-
-									<xs:element name="parentescoOuSocioeducandoJaUsouCigarro"
-										minOccurs="0">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Quanto ao uso de cigarro</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-										<xs:simpleType>
-											<xs:restriction base="xs:string">
-												<xs:enumeration value="Nunca usou" />
-												<xs:enumeration value="Já experimentou" />
-												<xs:enumeration value="Fez uso" />
-												<xs:enumeration value="Consume de vez em quando" />
-												<xs:enumeration value="Consume freqüentemente" />
-												<xs:enumeration value="Não quis informar" />
-											</xs:restriction>
-										</xs:simpleType>
-									</xs:element>
-
-									<xs:element name="parentescoOuSocioeducandoJaUsouMaconha"
-										minOccurs="0">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Quanto ao uso de maconha</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-										<xs:simpleType>
-											<xs:restriction base="xs:string">
-												<xs:enumeration value="Nunca usou" />
-												<xs:enumeration value="Já experimentou" />
-												<xs:enumeration value="Fez uso" />
-												<xs:enumeration value="Consume de vez em quando" />
-												<xs:enumeration value="Consume freqüentemente" />
-												<xs:enumeration value="Não quis informar" />
-											</xs:restriction>
-										</xs:simpleType>
-									</xs:element>
-
-									<xs:element name="parentescoOuSocioeducandoJaUsouCocaina"
-										minOccurs="0">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Quanto ao uso de cocaína</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-										<xs:simpleType>
-											<xs:restriction base="xs:string">
-												<xs:enumeration value="Nunca usou" />
-												<xs:enumeration value="Já experimentou" />
-												<xs:enumeration value="Fez uso" />
-												<xs:enumeration value="Consume de vez em quando" />
-												<xs:enumeration value="Consume freqüentemente" />
-												<xs:enumeration value="Não quis informar" />
-											</xs:restriction>
-										</xs:simpleType>
-									</xs:element>
-
-									<xs:element name="parentescoOuSocioeducandoJaUsouMesclado"
-										minOccurs="0">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Quanto ao uso de mesclado</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-										<xs:simpleType>
-											<xs:restriction base="xs:string">
-												<xs:enumeration value="Nunca usou" />
-												<xs:enumeration value="Já experimentou" />
-												<xs:enumeration value="Fez uso" />
-												<xs:enumeration value="Consume de vez em quando" />
-												<xs:enumeration value="Consume freqüentemente" />
-												<xs:enumeration value="Não quis informar" />
-											</xs:restriction>
-										</xs:simpleType>
-									</xs:element>
-
-									<xs:element name="parentescoOuSocioeducandoJaUsouCrack"
-										minOccurs="0">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Quanto ao uso de crack</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-										<xs:simpleType>
-											<xs:restriction base="xs:string">
-												<xs:enumeration value="Nunca usou" />
-												<xs:enumeration value="Já experimentou" />
-												<xs:enumeration value="Fez uso" />
-												<xs:enumeration value="Consume de vez em quando" />
-												<xs:enumeration value="Consume freqüentemente" />
-												<xs:enumeration value="Não quis informar" />
-											</xs:restriction>
-										</xs:simpleType>
-									</xs:element>
-
-									<xs:element name="parentescoOuSocioeducandoJaUsouComprimidos"
-										minOccurs="0">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Quanto ao uso de comprimidos</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-										<xs:simpleType>
-											<xs:restriction base="xs:string">
-												<xs:enumeration value="Nunca usou" />
-												<xs:enumeration value="Já experimentou" />
-												<xs:enumeration value="Fez uso" />
-												<xs:enumeration value="Consume de vez em quando" />
-												<xs:enumeration value="Consume freqüentemente" />
-												<xs:enumeration value="Não quis informar" />
-											</xs:restriction>
-										</xs:simpleType>
-									</xs:element>
-
-									<xs:element name="parentescoOuSocioeducandoJaUsouCola"
-										minOccurs="0">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Quanto ao uso de cola</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-										<xs:simpleType>
-											<xs:restriction base="xs:string">
-												<xs:enumeration value="Nunca usou" />
-												<xs:enumeration value="Já experimentou" />
-												<xs:enumeration value="Fez uso" />
-												<xs:enumeration value="Consume de vez em quando" />
-												<xs:enumeration value="Consume freqüentemente" />
-												<xs:enumeration value="Não quis informar" />
-											</xs:restriction>
-										</xs:simpleType>
-									</xs:element>
-
-									<xs:element name="parentescoOuSocioeducandoJaUsouInalantes"
-										minOccurs="0">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Quanto ao uso de inalantes</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-										<xs:simpleType>
-											<xs:restriction base="xs:string">
-												<xs:enumeration value="Nunca usou" />
-												<xs:enumeration value="Já experimentou" />
-												<xs:enumeration value="Fez uso" />
-												<xs:enumeration value="Consume de vez em quando" />
-												<xs:enumeration value="Consume freqüentemente" />
-												<xs:enumeration value="Não quis informar" />
-											</xs:restriction>
-										</xs:simpleType>
-									</xs:element>
-
-								</xs:sequence>
-							</xs:complexType>
-						</xs:element>
-
-
-						<xs:element name="acompanhamentoEspecificoParausoDrogras"
-							minOccurs="0">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Acompanhamento específico para uso drogas
-									</xhtml:label>
-								</xs:appinfo>
-							</xs:annotation>
-
-							<xs:complexType>
-								<xs:sequence>
-
-									<xs:element name="nuncaFezAcompanhamento" type="xs:boolean">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Nunca fez acompanhamento</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-
-									<xs:element name="FazAcompanhamento" minOccurs="0">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label> Onde faz acompanhamento</xhtml:label>
+												<xhtml:label>Nunca usou</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:complexType>
 											<xs:sequence>
 
-												<xs:element name="CAPSad" type="xs:boolean">
+												<xs:element name="alcool" type="xs:boolean">
 													<xs:annotation>
 														<xs:appinfo>
-															<xhtml:label>CAPSad</xhtml:label>
+															<xhtml:label>Alcool</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
 
-												<xs:element name="hospitalMental" type="xs:boolean">
+												<xs:element name="cigarro" type="xs:boolean">
 													<xs:annotation>
 														<xs:appinfo>
-															<xhtml:label>Hospital mental</xhtml:label>
-														</xs:appinfo>
-													</xs:annotation>
-												</xs:element>
-											</xs:sequence>
-										</xs:complexType>
-									</xs:element>
-
-									<xs:element name="especifiqueOutrosLocaisQueFazAcompanhamento"
-										type="xs:string" minOccurs="0">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Especifique onde faz acompanhamento
-												</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="especifiqueAQuantoTempoFazAcompanhamento"
-										type="xs:string" minOccurs="0">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Especifique a quanto tempo faz acompanhamento
-												</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-
-									<xs:element name="FezAcompanhamento" minOccurs="0">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label> Onde fez acompanhamento</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-										<xs:complexType>
-											<xs:sequence>
-
-												<xs:element name="CAPSad" type="xs:boolean">
-													<xs:annotation>
-														<xs:appinfo>
-															<xhtml:label>CAPSad</xhtml:label>
+															<xhtml:label>Cigarro</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
 
-												<xs:element name="hospitalMental" type="xs:boolean">
+												<xs:element name="maconha" type="xs:boolean">
 													<xs:annotation>
 														<xs:appinfo>
-															<xhtml:label>Hospital mental</xhtml:label>
+															<xhtml:label>Maconha</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="cacaina" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Cacaína</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="mesclado" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Mesclado</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="crack" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Crack</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="comprimidos" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Comprimidos</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="cola" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Cola</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="Inalantes" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>inalantes</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
@@ -322,77 +136,602 @@
 										</xs:complexType>
 									</xs:element>
 
-									<xs:element name="especifiqueOutrosLocaisQueFezAcompanhamento"
+									<xs:element name="jaExperimentou" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Já experimentou</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:sequence>
+
+												<xs:element name="alcool" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Alcool</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="cigarro" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Cigarro</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="maconha" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Maconha</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="cacaina" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Cacaína</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="mesclado" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Mesclado</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="crack" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Crack</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="comprimidos" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Comprimidos</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="cola" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Cola</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="Inalantes" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>inalantes</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+
+									<xs:element name="fezUso" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Fez uso</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:sequence>
+
+												<xs:element name="alcool" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Alcool</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="cigarro" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Cigarro</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="maconha" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Maconha</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="cacaina" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Cacaína</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="mesclado" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Mesclado</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="crack" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Crack</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="comprimidos" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Comprimidos</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="cola" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Cola</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="Inalantes" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>inalantes</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+
+									<xs:element name="costumeDeVezEmQuando" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Costume de vez em quando</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:sequence>
+
+												<xs:element name="alcool" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Alcool</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="cigarro" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Cigarro</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="maconha" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Maconha</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="cacaina" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Cacaína</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="mesclado" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Mesclado</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="crack" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Crack</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="comprimidos" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Comprimidos</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="cola" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Cola</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="Inalantes" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>inalantes</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+
+									<xs:element name="costumeFrequentemente" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Costume frequentemente</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:sequence>
+
+												<xs:element name="alcool" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Alcool</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="cigarro" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Cigarro</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="maconha" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Maconha</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="cacaina" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Cacaína</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="mesclado" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Mesclado</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="crack" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Crack</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="comprimidos" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Comprimidos</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="cola" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Cola</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="Inalantes" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>inalantes</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+
+									<xs:element name="naoQuisInformar" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Não quis informar</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:sequence>
+
+												<xs:element name="alcool" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Alcool</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="cigarro" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Cigarro</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="maconha" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Maconha</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="cacaina" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Cacaína</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="mesclado" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Mesclado</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="crack" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Crack</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="comprimidos" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Comprimidos</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="cola" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Cola</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="Inalantes" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>inalantes</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+
+									<xs:element name="acompanhamentoEspecificoParausoDrogras"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Acompanhamento específico para uso drogas
+												</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+
+										<xs:complexType>
+											<xs:sequence>
+
+												<xs:element name="nuncaFezAcompanhamento" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Nunca fez acompanhamento</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="FazAcompanhamento" minOccurs="0">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label> Onde faz acompanhamento</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+													<xs:complexType>
+														<xs:sequence>
+
+															<xs:element name="CAPSad" type="xs:boolean">
+																<xs:annotation>
+																	<xs:appinfo>
+																		<xhtml:label>CAPSad</xhtml:label>
+																	</xs:appinfo>
+																</xs:annotation>
+															</xs:element>
+
+															<xs:element name="hospitalMental" type="xs:boolean">
+																<xs:annotation>
+																	<xs:appinfo>
+																		<xhtml:label>Hospital mental</xhtml:label>
+																	</xs:appinfo>
+																</xs:annotation>
+															</xs:element>
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+
+												<xs:element name="especifiqueOutrosLocaisQueFazAcompanhamento"
+													type="xs:string" minOccurs="0">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Especifique onde faz acompanhamento
+															</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="especifiqueAQuantoTempoFazAcompanhamento"
+													type="xs:string" minOccurs="0">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Especifique a quanto tempo faz
+																acompanhamento
+												</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="FezAcompanhamento" minOccurs="0">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label> Onde fez acompanhamento</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+													<xs:complexType>
+														<xs:sequence>
+
+															<xs:element name="CAPSad" type="xs:boolean">
+																<xs:annotation>
+																	<xs:appinfo>
+																		<xhtml:label>CAPSad</xhtml:label>
+																	</xs:appinfo>
+																</xs:annotation>
+															</xs:element>
+
+															<xs:element name="hospitalMental" type="xs:boolean">
+																<xs:annotation>
+																	<xs:appinfo>
+																		<xhtml:label>Hospital mental</xhtml:label>
+																	</xs:appinfo>
+																</xs:annotation>
+															</xs:element>
+
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+
+												<xs:element name="especifiqueOutrosLocaisQueFezAcompanhamento"
+													type="xs:string" minOccurs="0">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Especifique onde fez acompanhamento
+															</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="especifiqueAQuantoTempoFezAcompanhamento"
+													type="xs:string" minOccurs="0">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Especifique a quanto tempo fez
+																acompanhamento
+												</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+
+									<xs:element name="jaInternadoEmAlgumaComunidadeTerapeutica"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Já internado em alguma comunidade terapêutica
+												</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="Sim" />
+												<xs:enumeration value="Não" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
+									<xs:element name="especifiqueUnidadeterapeuticaQueficouInternado"
 										type="xs:string" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Especifique onde fez acompanhamento
-												</xhtml:label>
+												<xhtml:label>Especifique unidade terapêutica que ficou
+													internado
+									</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
 
-									<xs:element name="especifiqueAQuantoTempoFezAcompanhamento"
-										type="xs:string" minOccurs="0">
+									<xs:element name="desejaTratamento" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Especifique a quanto tempo fez acompanhamento
-												</xhtml:label>
+												<xhtml:label>Deseja tratamento</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="Sim" />
+												<xs:enumeration value="Não" />
+											</xs:restriction>
+										</xs:simpleType>
 									</xs:element>
 
 								</xs:sequence>
 							</xs:complexType>
-						</xs:element>
-
-						<xs:element name="jaInternadoEmAlgumaComunidadeTerapeutica"
-							minOccurs="0">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Já internado em alguma comunidade terapêutica
-									</xhtml:label>
-								</xs:appinfo>
-							</xs:annotation>
-							<xs:simpleType>
-								<xs:restriction base="xs:string">
-									<xs:enumeration value="Sim" />
-									<xs:enumeration value="Não" />
-								</xs:restriction>
-							</xs:simpleType>
-						</xs:element>
-
-						<xs:element name="especifiqueUnidadeterapeuticaQueficouInternado"
-							type="xs:string" minOccurs="0">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Especifique unidade terapêutica que ficou
-										internado
-									</xhtml:label>
-								</xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-
-						<xs:element name="desejaTratamento" minOccurs="0">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Deseja tratamento</xhtml:label>
-								</xs:appinfo>
-							</xs:annotation>
-							<xs:simpleType>
-								<xs:restriction base="xs:string">
-									<xs:enumeration value="Sim" />
-									<xs:enumeration value="Não" />
-								</xs:restriction>
-							</xs:simpleType>
 						</xs:element>
 
 					</xs:sequence>
 				</xs:complexType>
-
 			</xs:element>
-
+			
 		</xs:sequence>
 	</xs:complexType>
-
 </xs:schema>
