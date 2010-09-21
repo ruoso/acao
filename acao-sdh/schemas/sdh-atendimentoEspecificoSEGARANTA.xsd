@@ -40,16 +40,43 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="medidaDoEncaminhamento" minOccurs="1">
+						<xs:element name="medidaDoEncaminhamentoDeOndeVem"
+							minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Medida do encaminhamento </xhtml:label>
+									<xhtml:label>Medida do encaminhamento - De onde vem
+									</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
-									<xs:enumeration value="Progressão de medida" />
-									<xs:enumeration value="Regressão de medida" />
+									<xs:enumeration value="Progressão de medida Advertência" />
+									<xs:enumeration
+										value="Progressão de medida Obrigação de reparar dano" />
+									<xs:enumeration value="Progressão de medida PSC" />
+									<xs:enumeration value="Progressão de medida LA" />
+									<xs:enumeration value="Progressão de medida Semiliberdade" />
+									<xs:enumeration value="Progressão de medida PL" />
+									<xs:enumeration value="Regressão de medida LA" />
+									<xs:enumeration value="Regressão de medida Semiliberdade" />
+									<xs:enumeration value="Regressão de medida PL" />
+									<xs:enumeration value="Sentença" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="medidaDoEncaminhamentoParaOndeVai"
+							minOccurs="1">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Medida do encaminhamento - Para onde vai
+									</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="PSC" />
+									<xs:enumeration value="LA" />
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
@@ -226,6 +253,20 @@
 
 					</xs:sequence>
 				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="motivoDesligamento" minOccurs="1">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Motivo do desligamento
+						</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Falecimento" />
+					</xs:restriction>
+				</xs:simpleType>
 			</xs:element>
 
 		</xs:sequence>
