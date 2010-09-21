@@ -18,7 +18,7 @@
 			<xs:element name="saudeDaFamilia">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Saúde da Familia</xhtml:label>
+						<xhtml:label>Saúde da Família</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -263,7 +263,7 @@
 						</xs:element>
 
 						<xs:element name="especifiqueAsvacinasQueAsCriancasTomaram"
-							type="xs:integer" minOccurs="0">
+							type="xs:string" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Especifique quais vacinas as crianças tomaram
@@ -275,8 +275,8 @@
 						<xs:element name="aPartirDe12Anos">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>A Partir De 12 Anos
-										_______________________________________________________
+									<xhtml:label>* A Partir De 12 Anos
+										___________________________________________________________________________________________
 									</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
@@ -288,7 +288,7 @@
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>
-													Utiliza algum método contraceptivo e/ou contra
+													* Utiliza algum método contraceptivo e/ou contra
 													DST/AIDS
 												</xhtml:label>
 											</xs:appinfo>
@@ -304,7 +304,7 @@
 									<xs:element name="qualContaceptivoUsa" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label> Se usa contraceptivo, qual ?</xhtml:label>
+												<xhtml:label> * Se usa contraceptivo, qual?</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:complexType>
@@ -382,7 +382,7 @@
 										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label> Se não usa contraceptivo, por que?
+												<xhtml:label> * Se não usa contraceptivo, por que?
 												</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
@@ -422,7 +422,7 @@
 										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Freqüenta o ginecologista regularmente
+												<xhtml:label> * Freqüenta o ginecologista regularmente
 												</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
@@ -439,7 +439,7 @@
 										type="xs:integer" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Quantas vezes vai ao ginecologista ao ano
+												<xhtml:label> * Quantas vezes vai ao ginecologista ao ano
 												</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
@@ -449,7 +449,7 @@
 										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Freqüenta urologista regularmente</xhtml:label>
+												<xhtml:label> * Freqüenta urologista regularmente</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:simpleType>
@@ -465,7 +465,7 @@
 										type="xs:integer" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Quantas vezes vai ao urologista ao ano
+												<xhtml:label> * Quantas vezes vai ao urologista ao ano
 												</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
