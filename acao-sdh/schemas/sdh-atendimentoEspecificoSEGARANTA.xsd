@@ -264,11 +264,35 @@
 				</xs:annotation>
 				<xs:simpleType>
 					<xs:restriction base="xs:string">
-						<xs:enumeration value="Falecimento" />
+						<xs:enumeration	value="Liberação por cumprimento da Medida - Órdem Judicial" />
+						<xs:enumeration value="Perca de Sentido da Medida - Órdem Judicial" />
+						<xs:enumeration value="Respondendo em Vara Criminal (preso ou resp.)" />
+						<xs:enumeration value="Mudança de Comarca" />
+						<xs:enumeration value="Liberação por imputabilidade penal - 21 anos" />
+						<xs:enumeration value="Sentenciado com Medida Socioeducativa Privativa de Liberdade" />
+						<xs:enumeration value="Falecdo" />
+						<xs:enumeration value="Mortalidade por Causa Natural" />
+						<xs:enumeration value="Mortalidade por Suicídio" />
+						<xs:enumeration value="Mortalidade por Queimadura" />
+						<xs:enumeration value="Mortalidade por Afogamento" />
+						<xs:enumeration value="Mortalidade por DST" />
+						<xs:enumeration value="Mortalidade por Acidente de Trânsito" />
+						<xs:enumeration value="Mortalidade por Homicídio por Arma de Fogo" />
+						<xs:enumeration value="Mortalidade por Homicídio por Arma Branca" />
+						<xs:enumeration value="Mortalidade por Choque Elétrico" />
+						<xs:enumeration value="Outros" />
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
-
+			
+			<xs:element name="especifiqueOutrosCausaDesligamento" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Especifique outros</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			
 		</xs:sequence>
 	</xs:complexType>
 

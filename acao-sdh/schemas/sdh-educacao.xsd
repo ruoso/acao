@@ -31,6 +31,32 @@
 				</xs:simpleType>
 			</xs:element>
 
+			<xs:element name="seNaoEstudaPorQualMotivo" type="xs:string"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Se nao estuda, por qual motivo?</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="parouEmQueSerieModalidade" type="xs:string"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Parou em que serie/modalidade?</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="emQueAno" type="xs:integer" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Em que ano?</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
 			<xs:element name="casoEstejaMatriculadoEstaFrenquentandoEscola"
 				minOccurs="0">
 				<xs:annotation>
@@ -49,7 +75,8 @@
 				</xs:simpleType>
 			</xs:element>
 
-			<xs:element name="seNaoFrequentaQualOMotivo" type="xs:string" minOccurs="0">
+			<xs:element name="seNaoFrequentaQualOMotivo" type="xs:string"
+				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Se não frequenta qual o motivo?</xhtml:label>
@@ -57,7 +84,8 @@
 				</xs:annotation>
 			</xs:element>
 
-			<xs:element name="haQuantoTempoNaoFrequenta" type="xs:string" minOccurs="0">
+			<xs:element name="haQuantoTempoNaoFrequenta" type="xs:string"
+				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Há quanto tempo não frequenta?</xhtml:label>
@@ -130,7 +158,8 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="escolaridade" type="xs:string" minOccurs="0">
+						<xs:element name="escolaridade" type="xs:string"
+							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Escolaridade</xhtml:label>
@@ -159,30 +188,6 @@
 						<xs:enumeration value="Não." />
 					</xs:restriction>
 				</xs:simpleType>
-			</xs:element>
-
-			<xs:element name="seNaoEstudaPorQualMotivo" type="xs:string" minOccurs="0">
-				<xs:annotation>
-					<xs:appinfo>
-						<xhtml:label>Se nao estuda, por qual motivo?</xhtml:label>
-					</xs:appinfo>
-				</xs:annotation>
-			</xs:element>
-
-			<xs:element name="parouEmQueSerieModalidade" type="xs:string" minOccurs="0">
-				<xs:annotation>
-					<xs:appinfo>
-						<xhtml:label>Parou em que serie/modalidade?</xhtml:label>
-					</xs:appinfo>
-				</xs:annotation>
-			</xs:element>
-
-			<xs:element name="emQueAno" type="xs:integer" minOccurs="0">
-				<xs:annotation>
-					<xs:appinfo>
-						<xhtml:label>Em que ano?</xhtml:label>
-					</xs:appinfo>
-				</xs:annotation>
 			</xs:element>
 
 			<xs:element

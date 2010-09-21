@@ -102,27 +102,27 @@
 				<xs:complexType>
 					<xs:sequence>
 
-						<xs:element name="membrodaFamiliaComPena" minOccurs="0">
+						<xs:element name="membrodaFamiliaCumpre" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Pena</xhtml:label>
+									<xhtml:label>Cumpre</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
 								<xs:sequence>
 
-									<xs:element name="cumpre" type="xs:boolean">
+									<xs:element name="pena" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Cumpre</xhtml:label>
+												<xhtml:label>Pena</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
 
-									<xs:element name="jaCumpriu" type="xs:boolean">
+									<xs:element name="mse" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Já Cumpriu</xhtml:label>
+												<xhtml:label>MSE</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -132,27 +132,27 @@
 						</xs:element>
 
 
-						<xs:element name="membrodaFamiliaComMSE" minOccurs="0">
+						<xs:element name="membrodaFamiliaCumpriu" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label> MSE</xhtml:label>
+									<xhtml:label>Cumpriu</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
 								<xs:sequence>
 
-									<xs:element name="cumpre" type="xs:boolean">
+									<xs:element name="pena" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Cumpre</xhtml:label>
+												<xhtml:label>Pena</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
 
-									<xs:element name="jaCumpriu" type="xs:boolean">
+									<xs:element name="mse" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Já Cumpriu</xhtml:label>
+												<xhtml:label>MSE</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -163,6 +163,16 @@
 
 					</xs:sequence>
 				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="nuncaHouveEnvolvimentoComAtosInfracionais"
+				type="xs:boolean">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Nunca houve envolvimento com atos infracionais
+						</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
 			</xs:element>
 
 			<xs:element name="numeroDePessoasQueJaPassaramPorPenaMSE"
@@ -248,16 +258,6 @@
 
 					</xs:sequence>
 				</xs:complexType>
-			</xs:element>
-
-			<xs:element name="nuncaHouveEnvolvimentoComAtosInfracionais"
-				type="xs:boolean">
-				<xs:annotation>
-					<xs:appinfo>
-						<xhtml:label>Nunca houve envolvimento com atos infracionais
-						</xhtml:label>
-					</xs:appinfo>
-				</xs:annotation>
 			</xs:element>
 
 		</xs:sequence>

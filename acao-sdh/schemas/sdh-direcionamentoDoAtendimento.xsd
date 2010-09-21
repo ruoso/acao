@@ -34,6 +34,20 @@
 							</xs:annotation>
 						</xs:element>
 
+						<xs:element name="estadoDoEncaminhamento" minOccurs="1">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Estado Do Encaminhamento</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Aguardando retorno" />
+									<xs:enumeration value="Efetivado" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
 						<xs:element name="encaminhadoParaProjetoFamiliasDefensoras"
 							type="xs:boolean">
 							<xs:annotation>
@@ -42,6 +56,20 @@
 									</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="estadoDoEncaminhamento" minOccurs="1">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Estado Do Encaminhamento</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Aguardando retorno" />
+									<xs:enumeration value="Efetivado" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
 						<xs:element name="encaminhadoParaProjetoAdolescenteCidadao"
@@ -54,6 +82,20 @@
 							</xs:annotation>
 						</xs:element>
 
+						<xs:element name="estadoDoEncaminhamento" minOccurs="1">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Estado Do Encaminhamento</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Aguardando retorno" />
+									<xs:enumeration value="Efetivado" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
 						<xs:element name="encaminhadoParaProjetoCozinhaCriativa"
 							type="xs:boolean">
 							<xs:annotation>
@@ -64,6 +106,19 @@
 							</xs:annotation>
 						</xs:element>
 
+						<xs:element name="estadoDoEncaminhamento" minOccurs="1">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Estado Do Encaminhamento</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Aguardando retorno" />
+									<xs:enumeration value="Efetivado" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
 
 						<xs:element name="encaminhadoParaProjetoEstiloSolidario"
 							type="xs:boolean">
@@ -75,6 +130,20 @@
 							</xs:annotation>
 						</xs:element>
 
+						<xs:element name="estadoDoEncaminhamento" minOccurs="1">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Estado Do Encaminhamento</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Aguardando retorno" />
+									<xs:enumeration value="Efetivado" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
 						<xs:element name="encaminhadoParaProjetoBromelia" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
@@ -82,6 +151,20 @@
 									</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="estadoDoEncaminhamento" minOccurs="1">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Estado Do Encaminhamento</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Aguardando retorno" />
+									<xs:enumeration value="Efetivado" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
 						<xs:element name="encaminhadoParaProjetoPonteDeEncontro"
@@ -94,6 +177,20 @@
 							</xs:annotation>
 						</xs:element>
 
+						<xs:element name="estadoDoEncaminhamento" minOccurs="1">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Estado Do Encaminhamento</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Aguardando retorno" />
+									<xs:enumeration value="Efetivado" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
 						<xs:element name="encaminhadoParaEspacoAquarela" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
@@ -101,6 +198,20 @@
 									</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="estadoDoEncaminhamento" minOccurs="1">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Estado Do Encaminhamento</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Aguardando retorno" />
+									<xs:enumeration value="Efetivado" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
 						<xs:element name="encaminhadoParaCasaDosMeninos" type="xs:boolean">
@@ -112,6 +223,20 @@
 							</xs:annotation>
 						</xs:element>
 
+						<xs:element name="estadoDoEncaminhamento" minOccurs="1">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Estado Do Encaminhamento</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Aguardando retorno" />
+									<xs:enumeration value="Efetivado" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
 						<xs:element name="encaminhadoParaCasaDasMeninas" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
@@ -121,6 +246,20 @@
 							</xs:annotation>
 						</xs:element>
 
+						<xs:element name="estadoDoEncaminhamento" minOccurs="1">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Estado Do Encaminhamento</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Aguardando retorno" />
+									<xs:enumeration value="Efetivado" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
 						<xs:element name="Outros" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
@@ -128,6 +267,20 @@
 									</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="estadoDoEncaminhamento" minOccurs="1">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Estado Do Encaminhamento</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Aguardando retorno" />
+									<xs:enumeration value="Efetivado" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
 					</xs:sequence>
@@ -161,6 +314,20 @@
 							</xs:annotation>
 						</xs:element>
 
+						<xs:element name="estadoDoEncaminhamento" minOccurs="1">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Estado Do Encaminhamento</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Aguardando retorno" />
+									<xs:enumeration value="Efetivado" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
 						<xs:element name="CREAS" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
@@ -168,6 +335,20 @@
 									</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="estadoDoEncaminhamento" minOccurs="1">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Estado Do Encaminhamento</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Aguardando retorno" />
+									<xs:enumeration value="Efetivado" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
 						<xs:element name="CAPSad" type="xs:boolean">
@@ -179,6 +360,20 @@
 							</xs:annotation>
 						</xs:element>
 
+						<xs:element name="estadoDoEncaminhamento" minOccurs="1">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Estado Do Encaminhamento</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Aguardando retorno" />
+									<xs:enumeration value="Efetivado" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
 						<xs:element name="CAPSi" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
@@ -188,6 +383,19 @@
 							</xs:annotation>
 						</xs:element>
 
+						<xs:element name="estadoDoEncaminhamento" minOccurs="1">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Estado Do Encaminhamento</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Aguardando retorno" />
+									<xs:enumeration value="Efetivado" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
 
 						<xs:element name="CAPS" type="xs:boolean">
 							<xs:annotation>
@@ -196,6 +404,20 @@
 									</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="estadoDoEncaminhamento" minOccurs="1">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Estado Do Encaminhamento</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Aguardando retorno" />
+									<xs:enumeration value="Efetivado" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
 						<xs:element name="atendimentoHospitalar" type="xs:boolean">
@@ -207,6 +429,20 @@
 							</xs:annotation>
 						</xs:element>
 
+						<xs:element name="estadoDoEncaminhamento" minOccurs="1">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Estado Do Encaminhamento</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Aguardando retorno" />
+									<xs:enumeration value="Efetivado" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
 						<xs:element name="atendimentoJuridico" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
@@ -214,6 +450,20 @@
 									</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="estadoDoEncaminhamento" minOccurs="1">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Estado Do Encaminhamento</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Aguardando retorno" />
+									<xs:enumeration value="Efetivado" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
 						<xs:element name="insercaoEmCursosProfissionalizantes"
@@ -226,6 +476,20 @@
 							</xs:annotation>
 						</xs:element>
 
+						<xs:element name="estadoDoEncaminhamento" minOccurs="1">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Estado Do Encaminhamento</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Aguardando retorno" />
+									<xs:enumeration value="Efetivado" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
 						<xs:element name="insercaoEmEscola" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
@@ -233,6 +497,20 @@
 									</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="estadoDoEncaminhamento" minOccurs="1">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Estado Do Encaminhamento</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Aguardando retorno" />
+									<xs:enumeration value="Efetivado" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
 						<xs:element name="PETI" type="xs:boolean">
@@ -244,13 +522,85 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="Outros" type="xs:boolean">
+						<xs:element name="estadoDoEncaminhamento" minOccurs="1">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Estado Do Encaminhamento</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Aguardando retorno" />
+									<xs:enumeration value="Efetivado" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="abrigo" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Abrigo</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="estadoDoEncaminhamento" minOccurs="1">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Estado Do Encaminhamento</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Aguardando retorno" />
+									<xs:enumeration value="Efetivado" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="comunidadeTerapeutica" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Comunidade Terapêutica</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="estadoDoEncaminhamento" minOccurs="1">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Estado Do Encaminhamento</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Aguardando retorno" />
+									<xs:enumeration value="Efetivado" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="outros" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Outros
 									</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="estadoDoEncaminhamento" minOccurs="1">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Estado Do Encaminhamento</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Aguardando retorno" />
+									<xs:enumeration value="Efetivado" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
 					</xs:sequence>

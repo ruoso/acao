@@ -52,6 +52,7 @@
 									<xs:enumeration value="Esposo(a)" />
 									<xs:enumeration value="Namorado(a)" />
 									<xs:enumeration value="Primo(a)" />
+									<xs:enumeration value="Tio(a)" />
 									<xs:enumeration value="Avô Materno" />
 									<xs:enumeration value="Avó Materna" />
 									<xs:enumeration value="Avô Paterno" />
@@ -61,7 +62,7 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="idade" type="xs:string" minOccurs="0">
+						<xs:element name="idade" type="xs:integer" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Idade</xhtml:label>
@@ -138,6 +139,7 @@
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
 									<xs:enumeration value="Abaixo do Salário Mínimo" />
+									<xs:enumeration value="Salário Mínimo" />
 									<xs:enumeration value="1 a 2 Salários Mínimos" />
 									<xs:enumeration value="2 a 3 Salários Mínimos" />
 									<xs:enumeration value="Acima dos Valores Citados" />
