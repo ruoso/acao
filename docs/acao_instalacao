@@ -1,0 +1,180 @@
+=================================================================================================================
+=============================================Instalando/Configurando=============================================
+=================================================================================================================
+
+1 - Criando usuario no github
+    1.1 - Criar usuario (http://github.com/)
+        1.1.1 - Para gerar chave ssh digite no terminal: ssh-keygen
+        1.1.2 - "Digite seu password para o github"
+        1.1.3 - "Confirme seu password para o github"
+        1.1.4 - Para ver a chave gerada digite no terminal: cat /home/jackson/.ssh/id_rsa.pub
+    1.2 - Copie a chave gerada para o campo "chave ssh" no formulario de cadastro do github e conclua o cadastro
+
+2 - Pelo terninal entre no diretorio para onde o projeto ação será baixado (Ex: devel)
+
+3 - Instalando os pacotes necessarios no Linux
+    3.1 - Para instalar o pacote do github digite no terminal: sudo apt-get install git-core
+    3.2 - Para instalar o Postgre SQL digite no terminal: sudo apt-get install postgresql
+
+4 - Baixando o sistema pelo github
+    4.1 - Pelo terminal abra o diretorio onde deseja baixar o sistema Ação
+    4.2 - Abra seu WebBrowser e insira a url: http://github.com/ruoso/acao
+    4.3 - Copie o endereço localizado no campo Read-Only | HTTP Read-Only
+    4.4 - Para baixar o sistema açao digite no terminal: git clone "cole o endereço copiado no passo 4.3"
+
+5 - Baixando os arquivos Sedna pelo github 
+    5.1 - Pelo terminal abra o mesmo diretorio aberto no passo 4.1
+    5.2 - Abra seu WebBrowser e digite a url: http://github.com/ruoso/Sedna
+    5.3 - Copie o endereço localizado no campo Read-Only | HTTP Read-Only
+    5.4 - Para baixar o Sedna digite no terminal: git clone "cole o endereço copiado no passo 6.3"
+    5.5 - Pelo console acesse o diretorio Sedna que foi baixado, digite e execute:
+        5.5.1 - perl Makefile.PL
+        5.5.2 - make
+        5.5.3 - sudo make install
+
+6 - Baixando o Catalyst-Model-Sedna pelo github
+    6.1 - Pelo terminal abra o mesmo diretorio aberto no passo 4.1
+    6.2 - Abra seu WebBrowser e digite a url: http://github.com/ruoso/Catalyst-Model-Sedna
+    6.3 - Copie o endereço localizado no campo Read-Only | HTTP Read-Only
+    6.4 - Para baixar o Catalyst-Model-Sedna digite no terminal: git clone "cole o endereço copiado no passo 6.3"
+    6.5 - Pelo console acesse o diretorio Catalyst-Model-Sedna que foi baixado, digite e execute:
+        6.5.1 - perl Makefile.PL
+        6.5.2 - make
+        6.5.3 - sudo make install
+
+7 - Instalando o Framework Catalyst e demais pacotes necessarios para a aplicação
+    7.1 - Pelo terminal do linux abra o terminal do CPAN digitando: sudo cpan
+    7.2 - install Catalyst::Runtime
+    7.3 - install Catalyst::Devel
+    7.4 - install Task::Catalyst
+    7.5 - install Catalyst::Plugin::Unicode
+    7.6 - install Catalyst::Model::LDAP
+    7.7 - install Catalyst::Authentication::Store::LDAP
+
+8 - Instalando o SGBD XML Sedna
+    8.1 - Baixe o pacote de instalção do sedna do site oficial e execute a instalação do pacote;
+    8.2 - Para iniciar o Sedna digite no terminal: sudo /usr/lib/sedna/bin/se_gov
+    8.3 - Para criar o DataBase no sedna do ação digite no terminal: sudo /usr/lib/sedna/bin/se_cdb acao
+    8.4 - Para iniciar o banco criado digite no terminal: sudo /usr/lib/sedna/bin/se_sm acao
+    8.5 - Para inicair o console do Sedna digite no terminal: LD_LIBRARY_PATH=/usr/lib/sedna/driver/c/ /usr/lib/sedna/bin/se_term acao
+    8.6 - Para criar o usuario acao digite: acao> CREATE USER "acao" WITH PASSWORD "12345" &
+    8.7 - No console do SEDNA crei a collection volume com o comando: create collection "volume" &
+    8.8 - No console do SEDNA crei a collection acao-schemas com o comando: create collection "acao-schemas" &
+    8.9 - Isira todos os arquivos que estão na pasta acao/acao-sdh na collection acao-schemas com o comando:
+        8.9.1 - Pelo console do linux navegue ate o doretorio acao
+        8.9.2 - Inicie o console do SEDNA a partir do diretorio acao
+        8.9.3 - Copie os comandos abaixo
+            LOAD "acao-sdh/schemas/sdh-origemEncaminhamento.xsd" "sdh-origemEncaminhamento.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-vinculacaoNaCCA.xsd" "sdh-vinculacaoNaCCA.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-identificacaoPessoal.xsd" "sdh-identificacaoPessoal.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-documentacao.xsd" "sdh-documentacao.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-convivenciaFamiliarComunitaria.xsd" "sdh-convivenciaFamiliarComunitaria.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-composicaoFamiliar.xsd" "sdh-composicaoFamiliar.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-documentacaoFamiliar.xsd" "sdh-documentacaoFamiliar.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-profissionalizacaoHabilidades.xsd" "sdh-profissionalizacaoHabilidades.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-vinculoReligioso.xsd" "sdh-vinculoReligioso.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-condicoesDeMoradia.xsd" "sdh-condicoesDeMoradia.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-protecaoEspecial.xsd" "sdh-protecaoEspecial.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-saude.xsd" "sdh-saude.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-saudeFamiliar.xsd" "sdh-saudeFamiliar.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-saudeSubstanciaPsicoativas.xsd" "sdh-saudeSubstanciaPsicoativas.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-convivenciaSocial.xsd" "sdh-convivenciaSocial.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-educacao.xsd" "sdh-educacao.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-direcionamentoDoAtendimento.xsd" "sdh-direcionamentoDoAtendimento.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-atendimentoEspecificoSEGARANTA.xsd" "sdh-atendimentoEspecificoSEGARANTA.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-individualFamilia.xsd" "sdh-individualFamilia.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-juridico.xsd" "sdh-juridico.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-servicoSocial.xsd" "sdh-servicoSocial.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-psicologia.xsd" "sdh-psicologia.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-pedagogia.xsd" "sdh-pedagogia.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-visitaDomiciliar.xsd" "sdh-visitaDomiciliar.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-relatoriosEncaminhados.xsd" "sdh-relatoriosEncaminhados.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-planoIndividualDeAtendimento.xsd" "sdh-planoIndividualDeAtendimento.xsd" "acao-schemas" &
+        8.9.4 - Cole os comando acima no cosole do SEDNA e cetifique do sucesso da persistencia de TODOS os arquivos.
+
+9 - Para criar o Usuario e Data Base acao no SGBD Postgre SQL digite no terminal
+    9.1 - createuser -P acao
+    9.2 - createdb -Uacao -h127.0.0.1 acao
+    9.3 - Para recriar a estrutura do banco em acordo com o model do sistema
+        9.3.1 - Pelo terminal abra o diretorio onde está o projeto ação (Ex: devel/acao/Acao)
+        9.3.2 - Digite o comando: perl -Ilib -MAcao -e 'Acao->model("DB")->schema->deploy'
+
+10 - Instalando o LibXML no Linux
+    10.1 Para baixar e instalar o LibXML digite no console: sudo apt-get install libxml2-dev
+    10.2 Abra com o console do CPAN dogitando no console do Linux: cpan
+    10.3 Para instalar o libXML digite no terminal do CPAN: install XML::LibXML
+    10.4 Para instalar o XMLCompile digite no terminal do CPAN: install XML::Compile
+
+11- Instalando o SVN
+    11.1 Para baixar o svn digite no console: sudo apt-get install subversion
+    11.2 [password = svnadm@]
+
+12 - Fazer checkout do SVN
+    12.1 Envie a chave publica do ssh para o email: daniel@ruoso.com
+    12.2 Após a aprovação efetue o comando no console: svn checkout svn+ssh://svnadm@172.30.116.2/srv/svn/"NOME DO PROJETO"
+
+13 - Outros comando do SVN
+    13.1 svn add    (adicionar um arquivo no subversion)
+    13.1 svn commit (subir os arquivos locais para o subversion )
+    13.1 svn update (atualizar os arquivos locais a partir do subversion)
+
+14 - Instalando pacotes necessarios 
+    14.1 - sudo apt-get install libpq-dev
+    14.2 - sudo cpan
+        14.2.1 - install DBD::Pg [force install DBD::Pg]
+
+=================================================================================================================
+=======================================Comandos para manipulacao do sedina=======================================
+=================================================================================================================
+
+# Iniciar sedna
+sudo /usr/lib/sedna/bin/se_gov 
+
+# Conectar banco acao
+sudo /usr/lib/sedna/bin/se_sm acao
+
+# Acessar o banco acao no sedna
+LD_LIBRARY_PATH=/usr/lib/sedna/driver/c/ /usr/lib/sedna/bin/se_term acao
+
+# Parar sedna
+sudo /usr/lib/sedna/bin/se_stop 
+
+# Create database
+sudo /usr/lib/sedna/bin/se_cdb acao
+
+# Drop database
+sudo /usr/lib/sedna/bin/se_ddb acao
+
+# Criar usuario
+CREATE USER "acao" WITH PASSWORD "12345" &
+
+# Carregar documentos no banco
+LOAD "devel/acao-viladomar/trunk/schemas/viladomar-cadernoa.xsd" "viladomar-cadernoa.xsd" &
+
+# Deletar documentos no banco
+drop document 'viladomar-cadernoa.xsd'
+
+# Criar collection
+CREATE COLLECTION "leitura-1" &
+
+# Lista todas as collections
+doc("$collections")/collections/collection 
+
+# Lista todos os documentos
+doc("$documents")/documents/document  
+
+===============================================================================================================
+=============================================Iniciando a Aplicação=============================================
+===============================================================================================================
+
+1 - Para iniciar a aplicação faça
+    1.1 - Pelo terminal abra o diretorio onde está a raiz dos codigos fontes do sitema ação (Ex. cd devel/acao/Acao)
+    1.2 - Digite no console: sudo /usr/lib/sedna/bin/se_gov
+    1.3 - Digite no console: sudo /usr/lib/sedna/bin/se_sm acao
+    1.4 - DBIC_TRACE=1 script/acao_server.pl -r (Obs. o trcho DBIC_TRACE=1 habilita a visualização via terminal dos passos realizados pelo sistam durante seu uso mostrando por exemplo as comsultas sql realizadas; o trecho -r desabilita a necessidade de reiniciar o servidor conforme e sistema é alterado;)
+    1.4 - Para iniciar visualizar o sistema digite a url: http://localhost:3000
+
+
+
+
+
