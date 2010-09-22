@@ -11,9 +11,6 @@
       {replace ($x/dc:invalidacao/text(), '1970-01-01T00:00:00Z', '-')}
     </td>
     <td>
-      {$x/dc:classificacao/text()}
-    </td>
-    <td>
 	  { if ( $x/dc:representaDocumentoFisico/text() eq '1' ) then ("Sim") else ("Não") }
     </td>
 
