@@ -63,20 +63,6 @@
 				</xs:simpleType>
 			</xs:element>
 
-			<xs:element name="jaTrabalhouFormalmente" minOccurs="0">
-				<xs:annotation>
-					<xs:appinfo>
-						<xhtml:label>Já trabalhou formalmente</xhtml:label>
-					</xs:appinfo>
-				</xs:annotation>
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:enumeration value="Sim" />
-						<xs:enumeration value="Não" />
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
-
 			<xs:element name="tipoAtividadeTrabalhou" type="xs:string"
 				minOccurs="0">
 				<xs:annotation>
@@ -84,6 +70,35 @@
 						<xhtml:label>Tipo de Atividade que trabalhou</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="seJaTabalhou">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Se já trabalhou</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="fromalmente" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Fromalmente</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="informalmente" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Informalmente</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
 			</xs:element>
 
 			<xs:element name="quantoTempoTrabalhou" type="xs:integer"
@@ -110,18 +125,33 @@
 				</xs:simpleType>
 			</xs:element>
 
-			<xs:element name="estaTrabalhandoFormalmente" minOccurs="0">
+			<xs:element name="seEstaTabalhando">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Está trabalhando formalmente</xhtml:label>
+						<xhtml:label>Se está trabalhando</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:enumeration value="Sim" />
-						<xs:enumeration value="Não" />
-					</xs:restriction>
-				</xs:simpleType>
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="fromalmente" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Fromalmente</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="informalmente" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Informalmente</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
 			</xs:element>
 
 			<xs:element name="tipoAtividadeTrabalho" type="xs:string"
@@ -149,6 +179,24 @@
 						<xhtml:label>Carga horária que está Trabalhando</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="valorRendaMensal" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Valor Mensal da Renda</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Abaixo do Salário Mínimo" />
+						<xs:enumeration value="Salário Mínimo" />
+						<xs:enumeration value="1 a 2 Salários Mínimos" />
+						<xs:enumeration value="2 a 3 Salários Mínimos" />
+						<xs:enumeration value="Acima dos Valores Citados" />
+					</xs:restriction>
+				</xs:simpleType>
 			</xs:element>
 
 			<xs:element name="possuiAlgumasDestahabilidades">
@@ -303,7 +351,8 @@
 				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>caso não tenha feito ainda, gostaria desta oportunidade
+						<xhtml:label>caso não tenha feito ainda, gostaria desta
+							oportunidade
 						</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
@@ -319,7 +368,8 @@
 				type="xs:string" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Especifique cursos profissionalizantes que deseja fazer
+						<xhtml:label>Especifique cursos profissionalizantes que deseja
+							fazer
 						</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>

@@ -68,7 +68,7 @@
 			<xs:element name="crescerComArteCidadania" type="xs:boolean">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Crescer com Arte Cidadania</xhtml:label>
+						<xhtml:label>Crescer com Arte e Cidadania</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -141,9 +141,9 @@
 				<xs:simpleType>
 					<xs:restriction base="xs:string">
 						<xs:enumeration value="Ativo" />
-						<xs:enumeration value="Desligado/Ativado" />
+						<xs:enumeration value="Desligado/Arquivado" />
 						<xs:enumeration value="Esperando Engajamento" />
-						<xs:enumeration value="Dessitência" />
+						<xs:enumeration value="Desistência" />
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>

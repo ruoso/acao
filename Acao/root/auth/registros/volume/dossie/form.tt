@@ -23,7 +23,7 @@
 
 <script SRC="[% c.uri_for('/static/js/xsdForm.js') %]" language="Javascript" ></script>
 
-<form action="[% c.uri_for('/auth/registros/volume/') _ id_volume _ '/store' %]" method="post">
+<form action="[% c.uri_for('/auth/registros/volume/') _ id_volume _ '/store' %]" method="post" onsubmit="return validaForm();">
  <input type="hidden" name="id_volume" value="[% id_volume %]">
 
 
@@ -41,38 +41,38 @@
     <br>
     <dd>&nbsp;</dd>
   </dl>
-  <legend>Dados do Dossiê</legend>
+  <legend>Dados do Prontuário</legend>
   <dl>
-   <dt> <label> Nome Dossie: </label> </dt>
-   <dd> <input type="text" id="nome" name="nome"> </dd>
-   <br/>
-<dt>
-       <label> Classificação: &nbsp; </label>
-     <dd>  
-       <select name="classificacao" id="classificacao">
-         [% # FOREACH memberof IN c.user.memberof %]
-          <option value="[% c.config.default.classificacao %]"> [% c.config.default.classificacao %] </option>
+    <dt> <label> Nome Prontuário: </label> </dt>
+    <dd> <input type="text" id="nome" name="nome"> </dd>
+    <br/>
+    <dt>
+      <label> Classificação: &nbsp; </label>
+      <dd>  
+        <select name="classificacao" id="classificacao">
+          [% # FOREACH memberof IN c.user.memberof %]
+            <option value="[% c.config.default.classificacao %]"> [% c.config.default.classificacao %] </option>
         </select>
-     </dd>
+      </dd>
     </dt>
-   <br/>
-   <dt> 
-        <label> Localização: &nbsp; </label>
-    <dd>
-       <select name="localizacao" id="localizacao">
-         [% # FOREACH memberof IN c.user.memberof %]
-          <option value="[% c.config.default.localizacao %]"> [% c.config.default.localizacao %] </option>
+    <br/>
+    <dt> 
+      <label> Localização: &nbsp; </label>
+      <dd>
+        <select name="localizacao" id="localizacao">
+          [% # FOREACH memberof IN c.user.memberof %]
+            <option value="[% c.config.default.localizacao %]"> [% c.config.default.localizacao %] </option>
         </select>
-    </dd>
-   </dt>
+      </dd>
+    </dt>
 
     <br/>
     <dt>Controle:</dt>
     <dd>
      <input type="text" name="controle" id="controle" value="[% c.model('Dossie').gerar_uuid %]" />
     </dd>
-   <br/>
-   <dt> <input type="checkbox" id="representaDossieFisico" name="representaDossieFisico" evt="representaDossieFisico"> <label for="representaDossieFisico"> Representa Dossiê Físico </label> </dt>
+    <br/>
+    <dt> <input type="checkbox" id="representaDossieFisico" name="representaDossieFisico" evt="representaDossieFisico"> <label for="representaDossieFisico"> Representa Prontuário Físico </label> </dt>
 
   </dl>
  </fildset>
@@ -83,6 +83,33 @@
 
  </form>
 
+ <script language="javascript">
+  function validaForm(){
 
+    if(document.getElementById('nome').value == ''){
+      alert('Informe o nome do Prontuário');
+      document.getElementById('nome').focus();
+      return false;
+    }
+
+    if(document.getElementById('classificacao').value == ''){
+      alert('Informe o nome do classificação');
+      document.getElementById('classificacao').focus();
+      return false;
+    }
+
+    if(document.getElementById('localizacao').value == ''){
+      alert('Informe o nome da localização');
+      document.getElementById('localizacao').focus();
+      return false;
+    }
+
+    if(document.getElementById('controle').value == ''){
+      alert('Informe o controle do Prontuário');
+      document.getElementById('controle').focus();
+      return false;
+    }
+  }
+ </script>
 
 [% INCLUDE 'footer.tt' %]

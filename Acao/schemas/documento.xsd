@@ -9,12 +9,11 @@
 
 	<xs:complexType name="documento">
 		<xs:sequence>
+			<xs:element name="id" type="xs:string" minOccurs="0" />
 			<xs:element name="nome" type="xs:string" minOccurs="0" />
 			<xs:element name="criacao" type="xs:dateTime" minOccurs="0" />
 			<xs:element name="invalidacao" type="xs:dateTime" />
 			<xs:element name="representaDocumentoFisico" type="xs:boolean" />
-			<xs:element name="classificacao" type="xs:string" maxOccurs="unbounded" />
-			<xs:element name="localizacao" type="xs:string" maxOccurs="unbounded" />
 			<xs:element name="autorizacao">
 				<xs:complexType>
 					<xs:attribute name="principal" type="xs:string" use="required" />

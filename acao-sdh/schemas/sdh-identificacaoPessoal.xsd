@@ -33,6 +33,15 @@
 				</xs:annotation>
 			</xs:element>
 
+			<xs:element name="dataNascimento" type="xs:date"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Data de Nascimento</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
 			<xs:element name="idade" type="xs:integer" minOccurs="1">
 				<xs:annotation>
 					<xs:appinfo>
@@ -64,38 +73,45 @@
 				</xs:simpleType>
 			</xs:element>
 
-			<xs:element name="orientacaoSexual" minOccurs="0">
+			<xs:element name="aPartirDe14Anos">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Orientação Sexual</xhtml:label>
+						<xhtml:label>* A Partir De 14 Anos
+							___________________________________________________________________________________________
+						</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:enumeration value="Heterosexual" />
-						<xs:enumeration value="Homosexual" />
-						<xs:enumeration value="Bisexual" />
-						<xs:enumeration value="Transexual" />
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
 
-			<xs:element name="dataNascimento" type="xs:date"
-				minOccurs="0">
-				<xs:annotation>
-					<xs:appinfo>
-						<xhtml:label>Data de Nascimento</xhtml:label>
-					</xs:appinfo>
-				</xs:annotation>
-			</xs:element>
+				<xs:complexType>
+					<xs:sequence>
 
-			<xs:element name="epecifiqueOutrosOrientacaoSexual" type="xs:string"
-				minOccurs="0">
-				<xs:annotation>
-					<xs:appinfo>
-						<xhtml:label>Especifique outros</xhtml:label>
-					</xs:appinfo>
-				</xs:annotation>
+						<xs:element name="orientacaoSexual" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>* Orientação Sexual</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Heterosexual" />
+									<xs:enumeration value="Homosexual" />
+									<xs:enumeration value="Bisexual" />
+									<xs:enumeration value="Transexual" />
+									<xs:enumeration value="Outros" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="epecifiqueOutrosOrientacaoSexual"
+							type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Especifique outros</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
 			</xs:element>
 
 			<xs:element name="filiacao">
@@ -104,6 +120,7 @@
 						<xhtml:label>Filiação</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
+
 				<xs:complexType>
 					<xs:sequence>
 						<xs:element name="pai" type="xs:string" minOccurs="0">
@@ -217,60 +234,78 @@
 				</xs:complexType>
 			</xs:element>
 
-			<xs:element name="filhos">
+			<xs:element name="aPartirDe11Anos">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Filhos(as)</xhtml:label>
+						<xhtml:label>** A Partir De 11 Anos
+							___________________________________________________________________________________________
+						</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
 					<xs:sequence>
-						<xs:element name="temFilhos" minOccurs="0">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Tem Filhos</xhtml:label>
-								</xs:appinfo>
-							</xs:annotation>
-							<xs:simpleType>
-								<xs:restriction base="xs:string">
-									<xs:enumeration value="Sim" />
-									<xs:enumeration value="Não" />
-								</xs:restriction>
-							</xs:simpleType>
-						</xs:element>
 
-						<xs:element name="quantos" type="xs:integer" minOccurs="0">
+						<xs:element name="filhos">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Quantos</xhtml:label>
+									<xhtml:label>** Filhos(as)</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
-						</xs:element>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="temFilhos" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>** Tem Filhos</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="Sim" />
+												<xs:enumeration value="Não" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
 
-						<xs:element name="idade" type="xs:integer" minOccurs="0">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Idade</xhtml:label>
-								</xs:appinfo>
-							</xs:annotation>
-						</xs:element>
+									<xs:element name="quantos" type="xs:integer"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>** Quantos</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
 
-						<xs:element name="comQuemMora" type="xs:string"
-							minOccurs="0">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Com quem mora(m)</xhtml:label>
-								</xs:appinfo>
-							</xs:annotation>
-						</xs:element>
+									<xs:element name="idade" type="xs:integer"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>** Idade</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
 
-						<xs:element name="comQueIdadeTevePrimeiroFilho" type="xs:integer"
-							minOccurs="0">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Com que idade teve o primeiro filho</xhtml:label>
-								</xs:appinfo>
-							</xs:annotation>
+									<xs:element name="comQuemMora" type="xs:string"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>** Com quem mora(m)</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="comQueIdadeTevePrimeiroFilho"
+										type="xs:integer" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>** Com que idade teve o primeiro filho
+												</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+								</xs:sequence>
+							</xs:complexType>
 						</xs:element>
 
 					</xs:sequence>
@@ -293,21 +328,35 @@
 				</xs:simpleType>
 			</xs:element>
 
-			<xs:element name="estadoCivil" minOccurs="0">
+			<xs:element name="aPartirDe16Anos">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Estado Civil</xhtml:label>
+						<xhtml:label>*** A Partir De 16 Anos
+							___________________________________________________________________________________________
+						</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:enumeration value="Solteiro" />
-						<xs:enumeration value="Casado" />
-						<xs:enumeration value="Separado" />
-						<xs:enumeration value="Viúvo" />
-						<xs:enumeration value="União Estável" />
-					</xs:restriction>
-				</xs:simpleType>
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="estadoCivil" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>*** Estado Civil</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Solteiro" />
+									<xs:enumeration value="Casado" />
+									<xs:enumeration value="Separado" />
+									<xs:enumeration value="Viúvo" />
+									<xs:enumeration value="União Estável" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
 			</xs:element>
 
 			<xs:element name="possuiAlgumaDeficiencia">

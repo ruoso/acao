@@ -13,7 +13,8 @@
 		</xs:annotation>
 	</xs:element>
 
-	<xs:complexType name="formOrigemEncaminhamento" minOccurs="1">
+	<xs:complexType name="formOrigemEncaminhamento"
+		minOccurs="1">
 		<xs:sequence>
 
 			<xs:element name="associacoes" type="xs:boolean">
@@ -56,6 +57,15 @@
 				</xs:annotation>
 			</xs:element>
 
+			<xs:element name="EspecifiqueOutrasInstituicoesOuProjetos" minOccurs="0"
+				type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Especifique Outras</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
 			<xs:element name="programasOuProjetosDaFunci" type="xs:boolean">
 				<xs:annotation>
 					<xs:appinfo>
@@ -64,7 +74,15 @@
 				</xs:annotation>
 			</xs:element>
 
+			<xs:element name="especifiqueProgramaFunci" minOccurs="0"
+				type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Especifique programa FUNCI</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
 		</xs:sequence>
 	</xs:complexType>
-
 </xs:schema>
