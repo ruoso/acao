@@ -207,5 +207,4 @@ Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
 sob a GPL versão 2.
 
 =cut
-
 42;
