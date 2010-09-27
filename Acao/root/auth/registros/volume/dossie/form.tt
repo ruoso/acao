@@ -69,7 +69,7 @@
     <br/>
     <dt>Controle:</dt>
     <dd>
-     <input type="text" name="controle" id="controle" value="[% c.model('Dossie').gerar_uuid %]" />
+     <input type="text" name="controle" id="controle" value="[% c.model('Dossie').gerar_uuid %]" disabled="true"/>
     </dd>
     <br/>
     <dt> <input type="checkbox" id="representaDossieFisico" name="representaDossieFisico" evt="representaDossieFisico"> <label for="representaDossieFisico"> Representa Prontuário Físico </label> </dt>
