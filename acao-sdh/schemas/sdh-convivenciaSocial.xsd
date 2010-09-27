@@ -29,7 +29,7 @@
 					<xs:restriction base="xs:string">
 						<xs:enumeration value="Sim. Participei de grupo social." />
 						<xs:enumeration value="Sim. Participo de grupo social." />
-						<xs:enumeration value="Não. Nunca participei de grupo social." />
+						<xs:enumeration value="Não. Nunca participou de grupo social." />
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
@@ -46,14 +46,6 @@
 				<xs:complexType>
 					<xs:sequence>
 
-						<xs:element name="emCasoAfirmativoDeQueTipo" type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Em caso afirmativo, de que tipo</xhtml:label>
-								</xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-
 						<xs:element name="grupoReligioso" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
@@ -65,7 +57,7 @@
 						<xs:element name="gremioMovimentoEstudantil" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Gremio/movimento estudantil</xhtml:label>
+									<xhtml:label>Grêmio/movimento estudantil</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -81,7 +73,7 @@
 						<xs:element name="movimentoPoliticoPartidario" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Movimento politico partidário</xhtml:label>
+									<xhtml:label>Movimento político partidário</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>

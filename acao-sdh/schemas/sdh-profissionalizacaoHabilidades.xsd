@@ -40,7 +40,7 @@
 				</xs:annotation>
 			</xs:element>
 
-			<xs:element name="quantoTempoEstagio" type="xs:integer"
+			<xs:element name="quantoTempoEstagio" type="xs:string"
 				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
@@ -84,7 +84,7 @@
 						<xs:element name="fromalmente" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Fromalmente</xhtml:label>
+									<xhtml:label>Formalmente</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -101,7 +101,7 @@
 				</xs:complexType>
 			</xs:element>
 
-			<xs:element name="quantoTempoTrabalhou" type="xs:integer"
+			<xs:element name="quantoTempoTrabalhou" type="xs:string"
 				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
@@ -137,7 +137,7 @@
 						<xs:element name="fromalmente" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Fromalmente</xhtml:label>
+									<xhtml:label>Formalmente</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -163,7 +163,7 @@
 				</xs:annotation>
 			</xs:element>
 
-			<xs:element name="desdeQuandoTrabalha" type="xs:integer"
+			<xs:element name="desdeQuandoTrabalha" type="xs:date"
 				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
@@ -202,7 +202,7 @@
 			<xs:element name="possuiAlgumasDestahabilidades">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Possui Algumas destas habilidades</xhtml:label>
+						<xhtml:label>Possui algumas destas habilidades</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>

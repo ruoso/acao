@@ -18,6 +18,6 @@
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
 %]
 [% breadcrumb.unshift({ url => c.uri_for('/auth/registros/volume/') _ id_volume,
-			title => 'Dossiê',
-			text => 'Dossiê' }) %]
+			title => 'Prontuário',
+			text => 'Prontuário' }) %]
 [% INCLUDE 'auth/registros/volume/header.tt' %]

@@ -77,7 +77,8 @@
 				type="xs:boolean">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Disque Direitos Criação e Adolescentes - DDCA</xhtml:label>
+						<xhtml:label>Disque Direitos Criação e Adolescentes - DDCA
+						</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -114,20 +115,11 @@
 				</xs:annotation>
 			</xs:element>
 
-			<xs:element name="preservacaoDeServicosAComunidade" type="xs:boolean">
+			<xs:element name="prestacaoDeServicosAComunidade" type="xs:boolean">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Preservação de Serviços à Comunidade - Se Garanta
-									</xhtml:label>
-					</xs:appinfo>
-				</xs:annotation>
-			</xs:element>
-
-			<xs:element name="dataEncaminhamento" type="xs:dateTime"
-				minOccurs="0">
-				<xs:annotation>
-					<xs:appinfo>
-						<xhtml:label>Data do Encaminhamento</xhtml:label>
+						<xhtml:label>Prestação de Serviços à Comunidade - Se Garanta
+						</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -138,6 +130,7 @@
 						<xhtml:label>Status</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
+
 				<xs:simpleType>
 					<xs:restriction base="xs:string">
 						<xs:enumeration value="Ativo" />
@@ -146,6 +139,15 @@
 						<xs:enumeration value="Desistência" />
 					</xs:restriction>
 				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="dataEncaminhamento" type="xs:date"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Data do Encaminhamento</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
 			</xs:element>
 
 		</xs:sequence>
