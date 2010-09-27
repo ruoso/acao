@@ -96,6 +96,18 @@ txn_method 'inserir_documento' => authorized $role_criar => sub {
     my $uuid = $ug->create();
     my $uuid_str = $ug->to_string($uuid);
 
+    if ($id_documento ne '')
+    {
+            my $xq_invalido  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; 
+                                declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd"; 
+                                declare namespace audt="http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd"; 
+                                update replace $x in collection("'.$id_volume.'")/ns:dossie[ns:controle="'.$controle.'"]
+                                   /ns:doc/dc:documento[namespace-uri(dc:documento/dc:conteudo/*) = "'.$xsdDocumento.'"]/dc:invalidacao 
+                                    with <dc:invalidacao>'.DateTime->now().'</dc:invalidacao>';
+            $self->sedna->execute($xq_invalido );
+    }
+
+
     my $conteudo_registro = $writ->( $doc, $xml_data );
     my $res_xml = $controle_w->($doc,
                                 {
@@ -139,18 +151,6 @@ txn_method 'inserir_documento' => authorized $role_criar => sub {
                    declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";  
                    update insert ('.$audit->toString.') into collection("'.$id_volume.'")/ns:dossie[ns:controle="'.$controle.'"]/ns:doc/*[1]/dc:audit';
    $self->sedna->execute($xq_audit);
-
-    if ($id_documento ne '')
-    {
-            my $xq_invalido  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; 
-                                declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd"; 
-                                declare namespace audt="http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd"; 
-                                update replace $x in collection("'.$id_volume.'")/ns:dossie[ns:controle="'.$controle.'"]
-                                        /ns:doc/dc:documento[dc:id = "'.$id_documento.'"]/dc:invalidacao 
-                                    with <dc:invalidacao>'.DateTime->now().'</dc:invalidacao>';
-            $self->sedna->execute($xq_invalido );
-    }
-
 
 };
 
