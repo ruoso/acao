@@ -118,7 +118,7 @@ txn_method 'inserir_documento' => authorized $role_criar => sub {
                                );
 
     my $xq  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";'; 
-       $xq .= 'update insert ('.$res_xml->toString.') into collection("'.$id_volume.'")/ns:dossie[ns:controle='.$controle.']/ns:doc';
+       $xq .= 'update insert ('.$res_xml->toString.') into collection("'.$id_volume.'")/ns:dossie[ns:controle="'.$controle.'"]/ns:doc';
 
     $self->sedna->execute($xq);
 
@@ -137,7 +137,7 @@ txn_method 'inserir_documento' => authorized $role_criar => sub {
 
    my $xq_audit = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
                    declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";  
-                   update insert ('.$audit->toString.') into collection("'.$id_volume.'")/ns:dossie[ns:controle='.$controle.']/ns:doc/*[1]/dc:audit';
+                   update insert ('.$audit->toString.') into collection("'.$id_volume.'")/ns:dossie[ns:controle="'.$controle.'"]/ns:doc/*[1]/dc:audit';
    $self->sedna->execute($xq_audit);
 
 
@@ -168,7 +168,7 @@ txn_method 'visualizar' => authorized $role_visualizar => sub {
 
    my $xq_audit = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; 
                    declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";  
-                   update insert ('.$audit->toString.') into collection("'.$id_volume.'")/ns:dossie[ns:controle='.$controle.']/ns:doc[dc:id="'. $id_documento.'"]/*/dc:audit';
+                   update insert ('.$audit->toString.') into collection("'.$id_volume.'")/ns:dossie[ns:controle="'.$controle.'"]/ns:doc[dc:id="'. $id_documento.'"]/*/dc:audit';
 
     $self->sedna->execute($xq_audit);
 
@@ -184,7 +184,7 @@ txn_method 'auditoria_listar' => authorized $role_listar => sub {
 
     my $dados  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";';
        $dados .= 'declare namespace dc = "http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";';
-       $dados .= 'for $x at $i in collection("'.$id_volume.'")/ns:dossie[ns:controle = '.$controle.']';
+       $dados .= 'for $x at $i in collection("'.$id_volume.'")/ns:dossie[ns:controle = "'.$controle.'"]';
        $dados .= '/ns:doc/* return $x';
 
     my $doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
