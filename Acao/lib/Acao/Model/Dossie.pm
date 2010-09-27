@@ -98,7 +98,6 @@ txn_method 'criar_dossie' => authorized $role_criar => sub {
                                     doc=>{},
                                 }
                                );
-
     $self->sedna->conn->loadData( $res_xml->toString, $controle, $id_volume );
     $self->sedna->conn->endLoadData();
 
@@ -140,7 +139,7 @@ txn_method 'alterar_estado' => authorized $role_alterar => sub {
                                    );
 
     my $xq_audit = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; 
-                    update insert ('.$audit->toString.') into collection("'.$id_volume.'")/ns:dossie[ns:controle='.$controle.']/ns:audit';
+                    update insert ('.$audit->toString.') into collection("'.$id_volume.'")/ns:dossie[ns:controle="'.$controle.'"]/ns:audit';
 
     $self->sedna->execute($xq_audit);
 };
@@ -167,13 +166,20 @@ txn_method 'auditoria_listar' => authorized $role_listar => sub {
       @control = split(/___/,$controles);
 
     foreach (@control){
-        $where .= ' or ns:collection = '. $_;
+        $where .= ' or ns:controle = "'. $_ .'"';
     }
 
    my $xq_audit = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; 
                     update insert ('.$audit->toString.') into collection("'.$id_volume.'")/ns:dossie[1=1 '.$where.']/ns:audit';
 
     $self->sedna->execute($xq_audit);
+};
+
+txn_method 'gerar_uuid' => authorized $role_criar => sub {
+    my $ug  = new Data::UUID;
+    my $uuid = $ug->create();
+    my $str = $ug->to_string($uuid);
+   return $str;
 };
 
 =head1 COPYRIGHT AND LICENSING

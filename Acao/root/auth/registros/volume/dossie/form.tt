@@ -69,10 +69,7 @@
     <br/>
     <dt>Controle:</dt>
     <dd>
-	  <div name="xsdFormValidation">
-	    <input type="text" name="controle" id="controle"/>
-		<div name="requiredField" style="display: none;">true</div>
-	  </div>
+     <input type="text" name="controle" id="controle" value="[% c.model('Dossie').gerar_uuid %]" />
     </dd>
     <br/>
     <dt> <input type="checkbox" id="representaDossieFisico" name="representaDossieFisico" evt="representaDossieFisico"> <label for="representaDossieFisico"> Representa Prontuário Físico </label> </dt>
