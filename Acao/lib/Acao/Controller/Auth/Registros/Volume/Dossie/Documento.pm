@@ -86,9 +86,10 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
 
 
 
-sub visualizar : Chained('base') : PathPart('visualizar') : Args(2){
-    my ( $self, $c, $id_documento, $xsdDocumento ) = @_;
+sub visualizar : Chained('base') : PathPart('visualizar') : Args(3){
+    my ( $self, $c, $id_documento, $xsdDocumento, $invalidacao ) = @_;
     $c->stash->{id_documento} = $id_documento;
+    $c->stash->{invalidacao} = $invalidacao;
     $c->stash->{xsdDocumento} = 'http://schemas.fortaleza.ce.gov.br/acao/'.$xsdDocumento
         or $c->detach('/public/default');
 }
