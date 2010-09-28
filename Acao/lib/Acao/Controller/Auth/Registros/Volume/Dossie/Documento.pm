@@ -84,8 +84,6 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
     $c->res->redirect( $c->uri_for('/auth/registros/volume/' . $c->req->param('id_volume') . '/' . $c->req->param('controle') ) );
 }
 
-
-
 sub visualizar : Chained('base') : PathPart('visualizar') : Args(3){
     my ( $self, $c, $id_documento, $xsdDocumento, $invalidacao ) = @_;
     $c->stash->{id_documento} = $id_documento;
@@ -94,9 +92,23 @@ sub visualizar : Chained('base') : PathPart('visualizar') : Args(3){
         or $c->detach('/public/default');
 }
 
+sub invalidar_documento : Chained('base') : PathPart('invalidar_documento') : Args(1){
+    my ( $self, $c, $id_documento ) = @_;
+     $c->stash->{id_documento} = $id_documento;
+      eval {
+        $c->model('Documento')->invalidar_documento(
+		                                              $c->stash->{id_volume},
+		                                              $c->stash->{controle},
+					                                  $c->stash->{id_documento},
+					                                 );
+        };
+    if ($@) { $c->flash->{erro} = $@ . "";  }
+    else { $c->flash->{sucesso} = 'Documento alterado com sucesso'; }
+    $c->res->redirect( $c->uri_for('/auth/registros/volume/' . $c->stash->{id_volume} . '/' . $c->stash->{controle} ) );
+}
+
 sub xml : Chained('base') : PathPart : Args(1) {
     my ( $self, $c, $id_documento ) = @_;
-    warn $id_documento;
     $c->stash->{id_documento} = $id_documento;
     $c->stash->{document} = $c->model('Documento')->visualizar( $c->stash->{id_volume},  
                                                                 $c->stash->{controle},  

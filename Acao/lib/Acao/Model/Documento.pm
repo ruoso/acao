@@ -221,6 +221,17 @@ txn_method 'auditoria_listar' => authorized $role_listar => sub {
     $self->sedna->execute($xq_audit);
 };
 
+txn_method 'invalidar_documento' => authorized $role_listar => sub {
+  my $self = shift;
+  my ( $id_volume, $controle, $id_documento) = @_;
+  my $xq_invalido  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; 
+                                declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd"; 
+                                declare namespace audt="http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd"; 
+                                update replace $x in collection("'.$id_volume.'")/ns:dossie[ns:controle="'.$controle.'"]
+                                   /ns:doc/dc:documento[dc:id = "'.$id_documento.'"]/dc:invalidacao 
+                                    with <dc:invalidacao>'.DateTime->now().'</dc:invalidacao>';
+    $self->sedna->execute($xq_invalido );
+};
 
 =head1 COPYRIGHT AND LICENSING
 

@@ -38,6 +38,7 @@
   <th>Invalidação</th>
   <th>Representa Documento Físico</th>
   <th>Original</th>
+  <th>Ação</th>
  </tr>
 </thead>
 <TBODY>
@@ -88,7 +89,11 @@
             document.getElementById('xsdDocumento').focus();
             return false;
         }
-    }
+    function confirmaInvalidacao(){
+        if (!confirm('Deseja invalidar este documento?')){
+             return false;        
+        }   
+     }
 </script>
 
 [% INCLUDE 'footer.tt' %]
