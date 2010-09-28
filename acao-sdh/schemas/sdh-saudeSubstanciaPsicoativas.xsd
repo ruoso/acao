@@ -84,10 +84,10 @@
 													</xs:annotation>
 												</xs:element>
 
-												<xs:element name="cacaina" type="xs:boolean">
+												<xs:element name="cocaina" type="xs:boolean">
 													<xs:annotation>
 														<xs:appinfo>
-															<xhtml:label>Cacaína</xhtml:label>
+															<xhtml:label>Cocaína</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
@@ -124,10 +124,10 @@
 													</xs:annotation>
 												</xs:element>
 
-												<xs:element name="Inalantes" type="xs:boolean">
+												<xs:element name="inalantes" type="xs:boolean">
 													<xs:annotation>
 														<xs:appinfo>
-															<xhtml:label>inalantes</xhtml:label>
+															<xhtml:label>Inalantes</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
@@ -140,346 +140,6 @@
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Já experimentou</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-										<xs:complexType>
-											<xs:sequence>
-
-												<xs:element name="alcool" type="xs:boolean">
-													<xs:annotation>
-														<xs:appinfo>
-															<xhtml:label>Alcool</xhtml:label>
-														</xs:appinfo>
-													</xs:annotation>
-												</xs:element>
-
-												<xs:element name="cigarro" type="xs:boolean">
-													<xs:annotation>
-														<xs:appinfo>
-															<xhtml:label>Cigarro</xhtml:label>
-														</xs:appinfo>
-													</xs:annotation>
-												</xs:element>
-
-												<xs:element name="maconha" type="xs:boolean">
-													<xs:annotation>
-														<xs:appinfo>
-															<xhtml:label>Maconha</xhtml:label>
-														</xs:appinfo>
-													</xs:annotation>
-												</xs:element>
-
-												<xs:element name="cocaina" type="xs:boolean">
-													<xs:annotation>
-														<xs:appinfo>
-															<xhtml:label>Cacaína</xhtml:label>
-														</xs:appinfo>
-													</xs:annotation>
-												</xs:element>
-
-												<xs:element name="mesclado" type="xs:boolean">
-													<xs:annotation>
-														<xs:appinfo>
-															<xhtml:label>Mesclado</xhtml:label>
-														</xs:appinfo>
-													</xs:annotation>
-												</xs:element>
-
-												<xs:element name="crack" type="xs:boolean">
-													<xs:annotation>
-														<xs:appinfo>
-															<xhtml:label>Crack</xhtml:label>
-														</xs:appinfo>
-													</xs:annotation>
-												</xs:element>
-
-												<xs:element name="comprimidos" type="xs:boolean">
-													<xs:annotation>
-														<xs:appinfo>
-															<xhtml:label>Comprimidos</xhtml:label>
-														</xs:appinfo>
-													</xs:annotation>
-												</xs:element>
-
-												<xs:element name="cola" type="xs:boolean">
-													<xs:annotation>
-														<xs:appinfo>
-															<xhtml:label>Cola</xhtml:label>
-														</xs:appinfo>
-													</xs:annotation>
-												</xs:element>
-
-												<xs:element name="Inalantes" type="xs:boolean">
-													<xs:annotation>
-														<xs:appinfo>
-															<xhtml:label>inalantes</xhtml:label>
-														</xs:appinfo>
-													</xs:annotation>
-												</xs:element>
-
-											</xs:sequence>
-										</xs:complexType>
-									</xs:element>
-
-									<xs:element name="fezUso" minOccurs="0">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Fez uso</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-										<xs:complexType>
-											<xs:sequence>
-
-												<xs:element name="alcool" type="xs:boolean">
-													<xs:annotation>
-														<xs:appinfo>
-															<xhtml:label>Alcool</xhtml:label>
-														</xs:appinfo>
-													</xs:annotation>
-												</xs:element>
-
-												<xs:element name="cigarro" type="xs:boolean">
-													<xs:annotation>
-														<xs:appinfo>
-															<xhtml:label>Cigarro</xhtml:label>
-														</xs:appinfo>
-													</xs:annotation>
-												</xs:element>
-
-												<xs:element name="maconha" type="xs:boolean">
-													<xs:annotation>
-														<xs:appinfo>
-															<xhtml:label>Maconha</xhtml:label>
-														</xs:appinfo>
-													</xs:annotation>
-												</xs:element>
-
-												<xs:element name="cocaina" type="xs:boolean">
-													<xs:annotation>
-														<xs:appinfo>
-															<xhtml:label>Cacaína</xhtml:label>
-														</xs:appinfo>
-													</xs:annotation>
-												</xs:element>
-
-												<xs:element name="mesclado" type="xs:boolean">
-													<xs:annotation>
-														<xs:appinfo>
-															<xhtml:label>Mesclado</xhtml:label>
-														</xs:appinfo>
-													</xs:annotation>
-												</xs:element>
-
-												<xs:element name="crack" type="xs:boolean">
-													<xs:annotation>
-														<xs:appinfo>
-															<xhtml:label>Crack</xhtml:label>
-														</xs:appinfo>
-													</xs:annotation>
-												</xs:element>
-
-												<xs:element name="comprimidos" type="xs:boolean">
-													<xs:annotation>
-														<xs:appinfo>
-															<xhtml:label>Comprimidos</xhtml:label>
-														</xs:appinfo>
-													</xs:annotation>
-												</xs:element>
-
-												<xs:element name="cola" type="xs:boolean">
-													<xs:annotation>
-														<xs:appinfo>
-															<xhtml:label>Cola</xhtml:label>
-														</xs:appinfo>
-													</xs:annotation>
-												</xs:element>
-
-												<xs:element name="Inalantes" type="xs:boolean">
-													<xs:annotation>
-														<xs:appinfo>
-															<xhtml:label>inalantes</xhtml:label>
-														</xs:appinfo>
-													</xs:annotation>
-												</xs:element>
-
-											</xs:sequence>
-										</xs:complexType>
-									</xs:element>
-
-									<xs:element name="costumeDeVezEmQuando" minOccurs="0">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Costume de vez em quando</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-										<xs:complexType>
-											<xs:sequence>
-
-												<xs:element name="alcool" type="xs:boolean">
-													<xs:annotation>
-														<xs:appinfo>
-															<xhtml:label>Alcool</xhtml:label>
-														</xs:appinfo>
-													</xs:annotation>
-												</xs:element>
-
-												<xs:element name="cigarro" type="xs:boolean">
-													<xs:annotation>
-														<xs:appinfo>
-															<xhtml:label>Cigarro</xhtml:label>
-														</xs:appinfo>
-													</xs:annotation>
-												</xs:element>
-
-												<xs:element name="maconha" type="xs:boolean">
-													<xs:annotation>
-														<xs:appinfo>
-															<xhtml:label>Maconha</xhtml:label>
-														</xs:appinfo>
-													</xs:annotation>
-												</xs:element>
-
-												<xs:element name="cocaina" type="xs:boolean">
-													<xs:annotation>
-														<xs:appinfo>
-															<xhtml:label>Cacaína</xhtml:label>
-														</xs:appinfo>
-													</xs:annotation>
-												</xs:element>
-
-												<xs:element name="mesclado" type="xs:boolean">
-													<xs:annotation>
-														<xs:appinfo>
-															<xhtml:label>Mesclado</xhtml:label>
-														</xs:appinfo>
-													</xs:annotation>
-												</xs:element>
-
-												<xs:element name="crack" type="xs:boolean">
-													<xs:annotation>
-														<xs:appinfo>
-															<xhtml:label>Crack</xhtml:label>
-														</xs:appinfo>
-													</xs:annotation>
-												</xs:element>
-
-												<xs:element name="comprimidos" type="xs:boolean">
-													<xs:annotation>
-														<xs:appinfo>
-															<xhtml:label>Comprimidos</xhtml:label>
-														</xs:appinfo>
-													</xs:annotation>
-												</xs:element>
-
-												<xs:element name="cola" type="xs:boolean">
-													<xs:annotation>
-														<xs:appinfo>
-															<xhtml:label>Cola</xhtml:label>
-														</xs:appinfo>
-													</xs:annotation>
-												</xs:element>
-
-												<xs:element name="Inalantes" type="xs:boolean">
-													<xs:annotation>
-														<xs:appinfo>
-															<xhtml:label>inalantes</xhtml:label>
-														</xs:appinfo>
-													</xs:annotation>
-												</xs:element>
-
-											</xs:sequence>
-										</xs:complexType>
-									</xs:element>
-
-									<xs:element name="costumeFrequentemente" minOccurs="0">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Costume frequentemente</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-										<xs:complexType>
-											<xs:sequence>
-
-												<xs:element name="alcool" type="xs:boolean">
-													<xs:annotation>
-														<xs:appinfo>
-															<xhtml:label>Alcool</xhtml:label>
-														</xs:appinfo>
-													</xs:annotation>
-												</xs:element>
-
-												<xs:element name="cigarro" type="xs:boolean">
-													<xs:annotation>
-														<xs:appinfo>
-															<xhtml:label>Cigarro</xhtml:label>
-														</xs:appinfo>
-													</xs:annotation>
-												</xs:element>
-
-												<xs:element name="maconha" type="xs:boolean">
-													<xs:annotation>
-														<xs:appinfo>
-															<xhtml:label>Maconha</xhtml:label>
-														</xs:appinfo>
-													</xs:annotation>
-												</xs:element>
-
-												<xs:element name="cocaina" type="xs:boolean">
-													<xs:annotation>
-														<xs:appinfo>
-															<xhtml:label>Cacaína</xhtml:label>
-														</xs:appinfo>
-													</xs:annotation>
-												</xs:element>
-
-												<xs:element name="mesclado" type="xs:boolean">
-													<xs:annotation>
-														<xs:appinfo>
-															<xhtml:label>Mesclado</xhtml:label>
-														</xs:appinfo>
-													</xs:annotation>
-												</xs:element>
-
-												<xs:element name="crack" type="xs:boolean">
-													<xs:annotation>
-														<xs:appinfo>
-															<xhtml:label>Crack</xhtml:label>
-														</xs:appinfo>
-													</xs:annotation>
-												</xs:element>
-
-												<xs:element name="comprimidos" type="xs:boolean">
-													<xs:annotation>
-														<xs:appinfo>
-															<xhtml:label>Comprimidos</xhtml:label>
-														</xs:appinfo>
-													</xs:annotation>
-												</xs:element>
-
-												<xs:element name="cola" type="xs:boolean">
-													<xs:annotation>
-														<xs:appinfo>
-															<xhtml:label>Cola</xhtml:label>
-														</xs:appinfo>
-													</xs:annotation>
-												</xs:element>
-
-												<xs:element name="Inalantes" type="xs:boolean">
-													<xs:annotation>
-														<xs:appinfo>
-															<xhtml:label>inalantes</xhtml:label>
-														</xs:appinfo>
-													</xs:annotation>
-												</xs:element>
-
-											</xs:sequence>
-										</xs:complexType>
-									</xs:element>
-
-									<xs:element name="naoQuisInformar" minOccurs="0">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Não quis informar</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:complexType>
@@ -549,10 +209,286 @@
 													</xs:annotation>
 												</xs:element>
 
-												<xs:element name="Inalantes" type="xs:boolean">
+												<xs:element name="inalantes" type="xs:boolean">
 													<xs:annotation>
 														<xs:appinfo>
-															<xhtml:label>inalantes</xhtml:label>
+															<xhtml:label>Inalantes</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+
+									<xs:element name="fezUso" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Fez uso</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:sequence>
+
+												<xs:element name="alcool" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Alcool</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="cigarro" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Cigarro</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="maconha" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Maconha</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="cocaina" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Cocaína</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="mesclado" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Mesclado</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="crack" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Crack</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="comprimidos" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Comprimidos</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="cola" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Cola</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="inalantes" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Inalantes</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+
+									<xs:element name="costumeDeVezEmQuando" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Costume de vez em quando</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:sequence>
+
+												<xs:element name="alcool" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Alcool</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="cigarro" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Cigarro</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="maconha" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Maconha</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="cocaina" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Cocaína</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="mesclado" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Mesclado</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="crack" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Crack</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="comprimidos" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Comprimidos</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="cola" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Cola</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="inalantes" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Inalantes</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+
+									<xs:element name="costumeFrequentemente" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Costume frequentemente</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:sequence>
+
+												<xs:element name="alcool" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Alcool</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="cigarro" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Cigarro</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="maconha" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Maconha</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="cocaina" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Cocaína</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="mesclado" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Mesclado</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="crack" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Crack</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="comprimidos" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Comprimidos</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="cola" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Cola</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="inalantes" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Inalantes</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+
+									<xs:element name="naoQuisInformar" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Não quis informar</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:sequence>
+
+												<xs:element name="naoQuisInformarUsoSubstanciaPisicoativa" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Não quis informar uso de nenhuma substância</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>

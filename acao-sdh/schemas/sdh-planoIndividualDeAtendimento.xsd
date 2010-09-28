@@ -58,7 +58,7 @@
 				</xs:annotation>
 			</xs:element>
 
-			<xs:element name="data" minOccurs="0" type="xs:string">
+			<xs:element name="data" minOccurs="0" type="xs:date">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Data</xhtml:label>
@@ -78,31 +78,6 @@
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Observações</xhtml:label>
-					</xs:appinfo>
-				</xs:annotation>
-			</xs:element>
-
-			<xs:element name="descricao" minOccurs="1" type="xs:string">
-				<xs:annotation>
-					<xs:appinfo>
-						<xhtml:label>Descrição</xhtml:label>
-					</xs:appinfo>
-				</xs:annotation>
-			</xs:element>
-
-			<xs:element name="tecnicoResponsavel" minOccurs="0"
-				type="xs:string">
-				<xs:annotation>
-					<xs:appinfo>
-						<xhtml:label>Técnico responsável</xhtml:label>
-					</xs:appinfo>
-				</xs:annotation>
-			</xs:element>
-
-			<xs:element name="dataDocumento" minOccurs="0" type="xs:date">
-				<xs:annotation>
-					<xs:appinfo>
-						<xhtml:label>Data</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>

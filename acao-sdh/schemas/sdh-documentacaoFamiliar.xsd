@@ -57,7 +57,7 @@
 						<xs:element name="registroDeNascimento" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Rgistro de nascimento</xhtml:label>
+									<xhtml:label>Registro de nascimento</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -70,11 +70,11 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="registroDeNascimentoNumero" type="xs:integer"
+						<xs:element name="registroDeNascimentoNumero" type="xs:string"
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Rgistro de nascimento (numeração)
+									<xhtml:label>Registro de nascimento (numeração)
 						</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
@@ -100,7 +100,7 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Identidade/RG(numeração)
+									<xhtml:label>Identidade/RG (numeração) / Orgão Emissor 
 						</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>

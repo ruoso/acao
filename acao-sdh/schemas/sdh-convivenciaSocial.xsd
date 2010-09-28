@@ -16,11 +16,11 @@
 	<xs:complexType name="formConvivenciaSocial">
 		<xs:sequence>
 
-			<xs:element name="participaOuParticipuDeAlgumGrupoSocial"
+			<xs:element name="participaOuParticipouDeAlgumGrupoSocial"
 				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Participa ou participu de algum grupo social
+						<xhtml:label>Participa ou participou de algum grupo social
 						</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
@@ -185,15 +185,24 @@
 						<xs:element name="gruposRivaisGuangues" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Grupos rivais (guangues)</xhtml:label>
+									<xhtml:label>Grupos rivais(gangues)</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="outros" type="xs:string" minOccurs="0">
+						<xs:element name="outros" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Outros</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="especifiqueOutros" type="xs:string"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Especifique Outros</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -203,41 +212,27 @@
 			</xs:element>
 
 			<xs:element name="emCasoNegativoDesenvolveAlgumaAtividadeComunitaria"
-				minOccurs="0">
+				minOccurs="1">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Em caso negativo, desenvolve alguma atividade
 							comunitaria</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
-				<xs:complexType>
-					<xs:sequence>
-						<xs:element name="sim" type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Sim</xhtml:label>
-								</xs:appinfo>
-							</xs:annotation>
-						</xs:element>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
 
-						<xs:element name="qual" type="xs:string" minOccurs="0">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Qual?</xhtml:label>
-								</xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-
-						<xs:element name="nao" type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Não</xhtml:label>
-								</xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-
-					</xs:sequence>
-				</xs:complexType>
+			<xs:element name="seSimEspecifique" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Se sim especifique</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
 			</xs:element>
 
 		</xs:sequence>
