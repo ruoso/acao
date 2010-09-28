@@ -130,6 +130,36 @@ txn_method 'alterar_estado' => authorized $role_alterar => sub {
        $xq .= 'update replace $x in collection("volume")/ns:volume[ns:collection="'.$id_volume.'"]/ns:estado with <ns:estado>'.$estado.'</ns:estado> ';
     $self->sedna->execute($xq);
 
+    if($estado eq 'fechado')
+    {
+            my $xq  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";';
+               $xq .= 'update replace $x in collection("volume")/ns:volume[ns:collection="'.$id_volume.'"]';
+               $xq .= '/ns:fechamento with <ns:fechamento>'.DateTime->now().'</ns:fechamento>'; 
+            $self->sedna->execute($xq);
+    }
+
+    if($estado eq 'arquivado')
+    {
+            my $xq  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";';
+               $xq .= 'update replace $x in collection("volume")/ns:volume[ns:collection="'.$id_volume.'"]';
+               $xq .= '/ns:arquivamento with <ns:arquivamento>'.DateTime->now().'</ns:arquivamento>'; 
+            $self->sedna->execute($xq);
+    }
+
+    if($estado eq 'aberto')
+    {
+            my $xq  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";';
+               $xq .= 'update replace $x in collection("volume")/ns:volume[ns:collection="'.$id_volume.'"]';
+               $xq .= '/ns:arquivamento with <ns:arquivamento></ns:arquivamento>'; 
+            $self->sedna->execute($xq);
+
+               $xq  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";';
+               $xq .= 'update replace $x in collection("volume")/ns:volume[ns:collection="'.$id_volume.'"]';
+               $xq .= '/ns:fechamento with <ns:fechamento></ns:fechamento>'; 
+            $self->sedna->execute($xq);
+    }
+
+
     my $doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
     my $audit = $controle_audit_w->($doc,
                                         {
