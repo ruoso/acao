@@ -69,11 +69,11 @@
     <br/>
     <dt>Controle:</dt>
     <dd>
-     <input type="text" name="controle" id="controle" value="[% c.model('Dossie').gerar_uuid %]" disabled="true"/>
+     <input type="text" name="controle" id="controle" value="[% c.model('Dossie').gerar_uuid %]" readonly="readonly"/>
     </dd>
     <br/>
-    <dt> <input type="checkbox" id="representaDossieFisico" name="representaDossieFisico" evt="representaDossieFisico"> <label for="representaDossieFisico"> Representa Prontuário Físico </label> </dt>
-
+    <dt> <input type="checkbox" id="representaDossieFisico" name="representaDossieFisico" evt="representaDossieFisico">
+           <label for="representaDossieFisico"> Representa Prontuário Físico </label> </dt>
   </dl>
  </fildset>
  
