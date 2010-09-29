@@ -8,7 +8,7 @@
 	<xs:element name="formSaudeSubstanciaPsicoativa" type="formSaudeSubstanciaPsicoativa">
 		<xs:annotation>
 			<xs:appinfo>
-				<xhtml:label>SAÚDE - SUBSTÂNCIA PSICOATIVA</xhtml:label>
+				<xhtml:label>14.SAÚDE - SUBSTÂNCIA PSICOATIVA</xhtml:label>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
@@ -414,7 +414,7 @@
 									<xs:element name="costumeFrequentemente" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Costume frequentemente</xhtml:label>
+												<xhtml:label>Consume frequentemente</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:complexType>
@@ -539,7 +539,7 @@
 													</xs:annotation>
 												</xs:element>
 
-												<xs:element name="FazAcompanhamento" minOccurs="0">
+												<xs:element name="ondeFazAcompanhamento" minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label> Onde faz acompanhamento</xhtml:label>
@@ -548,10 +548,18 @@
 													<xs:complexType>
 														<xs:sequence>
 
-															<xs:element name="CAPSad" type="xs:boolean">
+															<xs:element name="capsad" type="xs:boolean">
 																<xs:annotation>
 																	<xs:appinfo>
-																		<xhtml:label>CAPSad</xhtml:label>
+																		<xhtml:label>CAPS AD</xhtml:label>
+																	</xs:appinfo>
+																</xs:annotation>
+															</xs:element>
+															
+															<xs:element name="capsi" type="xs:boolean">
+																<xs:annotation>
+																	<xs:appinfo>
+																		<xhtml:label>CAPSi</xhtml:label>
 																	</xs:appinfo>
 																</xs:annotation>
 															</xs:element>
@@ -587,7 +595,7 @@
 													</xs:annotation>
 												</xs:element>
 
-												<xs:element name="FezAcompanhamento" minOccurs="0">
+												<xs:element name="ondeFezAcompanhamento" minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label> Onde fez acompanhamento</xhtml:label>
@@ -596,10 +604,18 @@
 													<xs:complexType>
 														<xs:sequence>
 
-															<xs:element name="CAPSad" type="xs:boolean">
+															<xs:element name="capsad" type="xs:boolean">
 																<xs:annotation>
 																	<xs:appinfo>
-																		<xhtml:label>CAPSad</xhtml:label>
+																		<xhtml:label>CAPS AD</xhtml:label>
+																	</xs:appinfo>
+																</xs:annotation>
+															</xs:element>
+															
+															<xs:element name="capsi" type="xs:boolean">
+																<xs:annotation>
+																	<xs:appinfo>
+																		<xhtml:label>CAPSi</xhtml:label>
 																	</xs:appinfo>
 																</xs:annotation>
 															</xs:element>
