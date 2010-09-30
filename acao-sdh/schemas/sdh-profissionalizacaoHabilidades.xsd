@@ -8,7 +8,7 @@
 	<xs:element name="formProfissionalizacaoHabilidades" type="formProfissionalizacaoHabilidades">
 		<xs:annotation>
 			<xs:appinfo>
-				<xhtml:label>PROFISSIONALIZAÇÃO / HABILIDADES</xhtml:label>
+				<xhtml:label>08.PROFISSIONALIZAÇÃO / HABILIDADES</xhtml:label>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
@@ -163,7 +163,7 @@
 				</xs:annotation>
 			</xs:element>
 
-			<xs:element name="desdeQuandoTrabalha" type="xs:date"
+			<xs:element name="desdeQuandoTrabalha" type="xs:string"
 				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
@@ -288,10 +288,27 @@
 							</xs:annotation>
 						</xs:element>
 
+						<xs:element name="esportes" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Esportes</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						
+						<xs:element name="especifiqueEsporte" type="xs:string"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Especifique esporte</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						
 						<xs:element name="outras" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Lutras</xhtml:label>
+									<xhtml:label>outras</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>

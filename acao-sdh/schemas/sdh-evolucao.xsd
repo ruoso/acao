@@ -1,0 +1,48 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-evolucao.xsd"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-evolucao.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="formEvolucao" type="formEvolucao">
+		<xs:annotation>
+			<xs:appinfo>
+				<xhtml:label>SG 02.EVOLUÇÃO</xhtml:label>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="formEvolucao">
+		<xs:sequence>
+
+			<xs:element name="data" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Data</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="impressoesDoAtendimento" type="xs:string"
+				minOccurs="1">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Impressões do atendimento</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="tecnicoResponsavel" type="xs:string"
+				minOccurs="1">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Técnico responsável</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

@@ -7,7 +7,7 @@
 	<xs:element name="formEducacao" type="formEducacao">
 		<xs:annotation>
 			<xs:appinfo>
-				<xhtml:label>EDUCAÇÃO</xhtml:label>
+				<xhtml:label>16.EDUCAÇÃO</xhtml:label>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
@@ -18,7 +18,7 @@
 			<xs:element name="estaMaticuladoEmAlgumaEscola" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Esta maticulado em alguma escola?</xhtml:label>
+						<xhtml:label>Esta matriculado em alguma escola?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 
@@ -111,27 +111,14 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="serieModalidades" minOccurs="0">
+
+						<xs:element name="serieModalidades" type="xs:string"
+							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Serie/Modalidades</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
-
-							<xs:simpleType>
-								<xs:restriction base="xs:string">
-									<xs:enumeration value="Não Alfabetizado" />
-									<xs:enumeration value="Ensino Infantil" />
-									<xs:enumeration value="Ensino Fundamental" />
-									<xs:enumeration value="Ensino Médio" />
-									<xs:enumeration value="Ensino Técnico" />
-									<xs:enumeration value="Ensino Superior" />
-									<xs:enumeration value="Ensino EJA I" />
-									<xs:enumeration value="Ensino EJA II" />
-									<xs:enumeration value="Ensino EJA III" />
-									<xs:enumeration value="Ensino EJA IV" />
-								</xs:restriction>
-							</xs:simpleType>
 						</xs:element>
 
 						<xs:element name="turno" minOccurs="0">
@@ -158,13 +145,27 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="escolaridade" type="xs:string"
-							minOccurs="0">
+						<xs:element name="escolaridade" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Escolaridade</xhtml:label>
+									<xhtml:label>Escolariadade</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Não Alfabetizado" />
+									<xs:enumeration value="Ensino Infantil" />
+									<xs:enumeration value="Ensino Fundamental" />
+									<xs:enumeration value="Ensino Médio" />
+									<xs:enumeration value="Ensino Técnico" />
+									<xs:enumeration value="Ensino Superior" />
+									<xs:enumeration value="Ensino EJA I" />
+									<xs:enumeration value="Ensino EJA II" />
+									<xs:enumeration value="Ensino EJA III" />
+									<xs:enumeration value="Ensino EJA IV" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
 					</xs:sequence>
@@ -195,7 +196,7 @@
 				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Na sua familia todas as criancas/adolescentes em
+						<xhtml:label>Na sua família todas as criancas/adolescentes em
 							idade
 							escolar estao matriculadas na escola?</xhtml:label>
 					</xs:appinfo>

@@ -8,7 +8,7 @@
 	<xs:element name="formVisitaDomiciliar" type="formVisitaDomiciliar">
 		<xs:annotation>
 			<xs:appinfo>
-				<xhtml:label>VISITA DOMICILIAR</xhtml:label>
+				<xhtml:label>SG 08.VISITA DOMICILIAR</xhtml:label>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
@@ -67,7 +67,7 @@
 				</xs:annotation>
 				<xs:complexType>
 					<xs:sequence>
-						<xs:element name="alguemDaFamiliaParticipaOuParticipouGrupoSocial "
+						<xs:element name="alguemDaFamiliaParticipaOuParticipouGrupoSocial"
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
@@ -185,7 +185,7 @@
 										</xs:annotation>
 									</xs:element>
 
-									<xs:element name="ONG" type="xs:boolean">
+									<xs:element name="ong" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>ONG</xhtml:label>
@@ -233,7 +233,7 @@
 										</xs:annotation>
 									</xs:element>
 
-									<xs:element name="grupoDeRPG" type="xs:boolean">
+									<xs:element name="grupoDeRpg" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Grupo de RPG</xhtml:label>
@@ -276,8 +276,7 @@
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Em caso de negativo, algum membro da família
-										desenvolve alguma atividade comunitária
-																					</xhtml:label>
+										desenvolve alguma atividade comunitária</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -355,12 +354,12 @@
 										type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label> Posto de saúde</xhtml:label>
+												<xhtml:label>Posto de saúde</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
 
-									<xs:element name="CRAS" minOccurs="0" type="xs:boolean">
+									<xs:element name="cras" minOccurs="0" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label> CRAS </xhtml:label>
@@ -372,7 +371,7 @@
 										type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label> Conselho tutelar</xhtml:label>
+												<xhtml:label>Conselho tutelar</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -380,7 +379,7 @@
 									<xs:element name="ONGs" minOccurs="0" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label> ONG's</xhtml:label>
+												<xhtml:label>ONG's</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -389,7 +388,7 @@
 										type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label> Associação de moradores </xhtml:label>
+												<xhtml:label>Associação de moradores </xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -397,7 +396,7 @@
 									<xs:element name="outros" minOccurs="0" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label> Outros</xhtml:label>
+												<xhtml:label>Outros</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -483,7 +482,6 @@
 							</xs:annotation>
 						</xs:element>
 
-
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
@@ -516,5 +514,4 @@
 
 		</xs:sequence>
 	</xs:complexType>
-
 </xs:schema>

@@ -7,7 +7,7 @@
 	<xs:element name="formSaudeFamiliar" type="formSaudeFamiliar">
 		<xs:annotation>
 			<xs:appinfo>
-				<xhtml:label>SAÚDE DA FAMILIA</xhtml:label>
+				<xhtml:label>12.SAÚDE (Composição Familiar)</xhtml:label>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
@@ -18,7 +18,7 @@
 			<xs:element name="saudeDaFamiliaFamiliar">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Saúde da Família</xhtml:label>
+						<xhtml:label>Saúde (Composição Familiar)</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -32,16 +32,34 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="parentesco" type="xs:string"
-							minOccurs="0">
+						<xs:element name="parentesco" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Parentesco</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Mae" />
+									<xs:enumeration value="Pai" />
+									<xs:enumeration value="Irmã(o)" />
+									<xs:enumeration value="Padrasto" />
+									<xs:enumeration value="Madrasta" />
+									<xs:enumeration value="Esposo(a)" />
+									<xs:enumeration value="Namorado(a)" />
+									<xs:enumeration value="Primo(a)" />
+									<xs:enumeration value="Tio(a)" />
+									<xs:enumeration value="Avô Materno" />
+									<xs:enumeration value="Avó Materna" />
+									<xs:enumeration value="Avô Paterno" />
+									<xs:enumeration value="Avó Paterna" />
+									<xs:enumeration value="Outros" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="idade" type="xs:integer" minOccurs="0">
+						<xs:element name="idade" type="xs:string" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Idade</xhtml:label>
