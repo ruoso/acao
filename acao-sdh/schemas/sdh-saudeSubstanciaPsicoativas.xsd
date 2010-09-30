@@ -79,6 +79,14 @@
 										</xs:annotation>
 										<xs:complexType>
 											<xs:sequence>
+												
+												<xs:element name="nuncaUsouNenhumTipoDeSubstancia" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Nunca usou nenhum tipo de substância</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
 
 												<xs:element name="alcool" type="xs:boolean">
 													<xs:annotation>
@@ -539,7 +547,8 @@
 													</xs:annotation>
 												</xs:element>
 
-												<xs:element name="ondeFazAcompanhamento" minOccurs="0">
+												<xs:element name="ondeFazAcompanhamento"
+													minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label> Onde faz acompanhamento</xhtml:label>
@@ -555,7 +564,7 @@
 																	</xs:appinfo>
 																</xs:annotation>
 															</xs:element>
-															
+
 															<xs:element name="capsi" type="xs:boolean">
 																<xs:annotation>
 																	<xs:appinfo>
@@ -595,7 +604,8 @@
 													</xs:annotation>
 												</xs:element>
 
-												<xs:element name="ondeFezAcompanhamento" minOccurs="0">
+												<xs:element name="ondeFezAcompanhamento"
+													minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label> Onde fez acompanhamento</xhtml:label>
@@ -611,7 +621,7 @@
 																	</xs:appinfo>
 																</xs:annotation>
 															</xs:element>
-															
+
 															<xs:element name="capsi" type="xs:boolean">
 																<xs:annotation>
 																	<xs:appinfo>
