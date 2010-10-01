@@ -53,13 +53,13 @@
 									<xs:enumeration value="Progressão de medida Advertência" />
 									<xs:enumeration
 										value="Progressão de medida Obrigação de reparar dano" />
-									<xs:enumeration value="Progressão de medida PSC" />
-									<xs:enumeration value="Progressão de medida LA" />
-									<xs:enumeration value="Progressão de medida Semiliberdade" />
-									<xs:enumeration value="Progressão de medida PL" />
-									<xs:enumeration value="Regressão de medida LA" />
-									<xs:enumeration value="Regressão de medida Semiliberdade" />
-									<xs:enumeration value="Regressão de medida PL" />
+									<xs:enumeration value="PSC - Progressão de medida" />
+									<xs:enumeration value="LA - Progressão de medida" />
+									<xs:enumeration value="Semiliberdade - Progressão de medida" />
+									<xs:enumeration value="PL - Progressão de medida" />
+									<xs:enumeration value="LA - Regressão de medida " />
+									<xs:enumeration value="Semiliberdade - Regressão de medida" />
+									<xs:enumeration value="PL - Regressão de medida" />
 									<xs:enumeration value="Sentença" />
 								</xs:restriction>
 							</xs:simpleType>
@@ -270,7 +270,8 @@
 						<xs:enumeration value="Mudança de Comarca" />
 						<xs:enumeration value="Liberação por imputabilidade penal - 21 anos" />
 						<xs:enumeration value="Sentenciado com Medida Socioeducativa Privativa de Liberdade" />
-						<xs:enumeration value="Falecido" />
+						<xs:enumeration value="Sentenciado com Medida Socioeducativa de Liberdade Assistida" />
+						<xs:enumeration value="Sentenciado com Medida Socioeducativa Privativa de Semiliberdade" />
 						<xs:enumeration value="Mortalidade por Causa Natural" />
 						<xs:enumeration value="Mortalidade por Suicídio" />
 						<xs:enumeration value="Mortalidade por Queimadura" />
@@ -281,6 +282,7 @@
 						<xs:enumeration value="Mortalidade por Homicídio por Arma Branca" />
 						<xs:enumeration value="Mortalidade por Choque Elétrico" />
 						<xs:enumeration value="Ainda não desligado" />
+						<xs:enumeration value="Liberação compulsória" />
 						<xs:enumeration value="Outros" />
 					</xs:restriction>
 				</xs:simpleType>

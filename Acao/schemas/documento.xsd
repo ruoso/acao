@@ -12,7 +12,8 @@
 			<xs:element name="id" type="xs:string" minOccurs="0" />
 			<xs:element name="nome" type="xs:string" minOccurs="0" />
 			<xs:element name="criacao" type="xs:dateTime" minOccurs="0" />
-			<xs:element name="invalidacao" type="xs:dateTime" />
+			<xs:element name="invalidacao" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="motivoInvalidacao" type="xs:string" minOccurs="0"/>
 			<xs:element name="representaDocumentoFisico" type="xs:boolean" />
 			<xs:element name="autorizacao">
 				<xs:complexType>

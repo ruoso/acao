@@ -24,6 +24,16 @@
 				</xs:annotation>
 				<xs:complexType>
 					<xs:sequence>
+
+						<xs:element name="historicoDoSeuEnvolvimentoComAtoInfracionalMotivacao" minOccurs="0"
+							type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Histórico do seu envolvimento com ato infracional (Motivação)</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
 						<xs:element name="hitoricoFamiliar" minOccurs="0"
 							type="xs:string">
 							<xs:annotation>
@@ -48,9 +58,9 @@
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
 									<xs:enumeration value="Casados" />
-									<xs:enumeration value="Vivem juntos" />									
+									<xs:enumeration value="Vivem juntos" />
 									<xs:enumeration value="Separados" />
-									<xs:enumeration value="Nunca viveram juntos" />									
+									<xs:enumeration value="Nunca viveram juntos" />
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
@@ -385,7 +395,8 @@
 						<xs:element name="praticaAtividadesSocioCulturaisEsportivas">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Quais atividades socioculturais e esportivas você pratica(público ou privado)</xhtml:label>
+									<xhtml:label>Quais atividades socioculturais e esportivas você
+										pratica(público ou privado)</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
@@ -434,7 +445,8 @@
 							type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Quais suas expectativas em relação a medida socioeducativa </xhtml:label>
+									<xhtml:label>Quais suas expectativas em relação a medida
+										socioeducativa </xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
