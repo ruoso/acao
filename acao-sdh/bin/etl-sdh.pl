@@ -22,14 +22,63 @@ BEGIN {
 
 #define as constantes para os caminhos dos schemas, utilizando variável de ambiente
 use constant HOME_SCHEMAS => $ENV{HOME_SCHEMAS} || catfile($Bin, '..', 'schemas');
-use constant SCHEMA_IDENTIFICACAO_PESSOAL => catfile(HOME_SCHEMAS, 'sdh-identificacaoPessoal.xsd');
+use constant SCHEMA_DOSSIE => catfile($ENV{ACAO_HOME}, 'schemas', 'dossie.xsd');
+use constant SCHEMA_AUDITORIA => catfile($ENV{ACAO_HOME}, 'schemas', 'auditoria.xsd');
+use constant SCHEMA_DOCUMENTO => catfile($ENV{ACAO_HOME}, 'schemas', 'documento.xsd');
+use constant SCHEMA_ATENDIMENTOESPECIFICOSEGARANTA => catfile(HOME_SCHEMAS, 'sdh-atendimentoEspecificoSEGARANTA.xsd');
+use constant SCHEMA_CONDICOESDEMORADIA             => catfile(HOME_SCHEMAS, 'sdh-condicoesDeMoradia.xsd');
+use constant SCHEMA_CONVIVENCIAFAMILIARCOMUNITARIA => catfile(HOME_SCHEMAS, 'sdh-convivenciaFamiliarComunitaria.xsd');
+use constant SCHEMA_CONVIVENCIASOCIAL              => catfile(HOME_SCHEMAS, 'sdh-convivenciaSocial.xsd');
+use constant SCHEMA_DIRECIONAMENTODOATENDIMENTO    => catfile(HOME_SCHEMAS, 'sdh-direcionamentoDoAtendimento.xsd');
+use constant SCHEMA_DOCUMENTACAO                   => catfile(HOME_SCHEMAS, 'sdh-documentacao.xsd');
+use constant SCHEMA_EDUCACAO                       => catfile(HOME_SCHEMAS, 'sdh-educacao.xsd');
+use constant SCHEMA_IDENTIFICACAOPESSOAL           => catfile(HOME_SCHEMAS, 'sdh-identificacaoPessoal.xsd');
+use constant SCHEMA_JURIDICO                       => catfile(HOME_SCHEMAS, 'sdh-juridico.xsd');
+use constant SCHEMA_ORIGEMENCAMINHAMENTO           => catfile(HOME_SCHEMAS, 'sdh-origemEncaminhamento.xsd');
+use constant SCHEMA_PEDAGOGIA                      => catfile(HOME_SCHEMAS, 'sdh-pedagogia.xsd');
+use constant SCHEMA_PLANOINDIVIDUALDEATENDIMENTO   => catfile(HOME_SCHEMAS, 'sdh-planoIndividualDeAtendimento.xsd');
+use constant SCHEMA_PROFISSIONALIZACAOHABILIDADES  => catfile(HOME_SCHEMAS, 'sdh-profissionalizacaoHabilidades.xsd');
+use constant SCHEMA_PSICOLOGIA                     => catfile(HOME_SCHEMAS, 'sdh-psicologia.xsd');
+use constant SCHEMA_RELATORIOSENCAMINHADOS         => catfile(HOME_SCHEMAS, 'sdh-relatoriosEncaminhados.xsd');
+use constant SCHEMA_SAUDE                          => catfile(HOME_SCHEMAS, 'sdh-saude.xsd');
+use constant SCHEMA_SERVICOSOCIAL                  => catfile(HOME_SCHEMAS, 'sdh-servicoSocial.xsd');
+use constant SCHEMA_VINCULACAONACCA                => catfile(HOME_SCHEMAS, 'sdh-vinculacaoNaCCA.xsd');
+use constant SCHEMA_VINCULORELIGIOSO               => catfile(HOME_SCHEMAS, 'sdh-vinculoReligioso.xsd');
+use constant SCHEMA_VISITADOMICILIAR               => catfile(HOME_SCHEMAS, 'sdh-visitaDomiciliar.xsd');
+use constant SCHEMA_PROTECAOESPECIAL               => catfile(HOME_SCHEMAS, 'sdh-protecaoEspecial.xsd');
+use constant SCHEMA_INDIVIDUALFAMILIA              => catfile(HOME_SCHEMAS, 'sdh-individualFamilia.xsd');
 
-use constant SCHEMA_CONSOLIDADO => catfile(HOME_SCHEMAS, 'sdh-consolidado.xsd');
-use constant SDH_CONSOLIDADO_NS =>"http://schemas.fortaleza.ce.gov.br/acao/sdh-consolidado.xsd";
+use constant DOSSIE_NS => 'http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd';
+use constant DOCUMENTO_NS => 'http://schemas.fortaleza.ce.gov.br/acao/documento.xsd';
+use constant AUDITORIA_NS => 'http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd';
 
-my $schema = XML::Compile::Schema->new(SCHEMA_CONSOLIDADO);
-my $read = $schema->compile(READER => pack_type(SDH_CONSOLIDADO_NS , 'conteudo'));
+my $schema = XML::Compile::Schema->new(SCHEMA_DOSSIE);
+$schema->importDefinitions(SCHEMA_AUDITORIA);
+$schema->importDefinitions(SCHEMA_DOCUMENTO);
+$schema->importDefinitions(SCHEMA_ATENDIMENTOESPECIFICOSEGARANTA);
+$schema->importDefinitions(SCHEMA_CONDICOESDEMORADIA);
+$schema->importDefinitions(SCHEMA_CONVIVENCIAFAMILIARCOMUNITARIA);
+$schema->importDefinitions(SCHEMA_CONVIVENCIASOCIAL);
+$schema->importDefinitions(SCHEMA_DIRECIONAMENTODOATENDIMENTO);
+$schema->importDefinitions(SCHEMA_DOCUMENTACAO);
+$schema->importDefinitions(SCHEMA_EDUCACAO);
+$schema->importDefinitions(SCHEMA_IDENTIFICACAOPESSOAL);
+$schema->importDefinitions(SCHEMA_JURIDICO);
+$schema->importDefinitions(SCHEMA_ORIGEMENCAMINHAMENTO);
+$schema->importDefinitions(SCHEMA_PEDAGOGIA);
+$schema->importDefinitions(SCHEMA_PLANOINDIVIDUALDEATENDIMENTO);
+$schema->importDefinitions(SCHEMA_PROFISSIONALIZACAOHABILIDADES);
+$schema->importDefinitions(SCHEMA_PSICOLOGIA);
+$schema->importDefinitions(SCHEMA_RELATORIOSENCAMINHADOS);
+$schema->importDefinitions(SCHEMA_SAUDE);
+$schema->importDefinitions(SCHEMA_SERVICOSOCIAL);
+$schema->importDefinitions(SCHEMA_VINCULACAONACCA);
+$schema->importDefinitions(SCHEMA_VINCULORELIGIOSO);
+$schema->importDefinitions(SCHEMA_VISITADOMICILIAR);
+$schema->importDefinitions(SCHEMA_PROTECAOESPECIAL);
+$schema->importDefinitions(SCHEMA_INDIVIDUALFAMILIA);
 
+my $read = $schema->compile(READER => pack_type(DOSSIE_NS, 'dossie'));
 
 sub extract {
 
@@ -37,8 +86,8 @@ sub extract {
 
     my $xq = 'declare namespace dos = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
               declare namespace dc = "http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";
-                    for $x in collection("volume-48F1B8CA-CAFF-11DF-9F68-C6003924FB0B")/dos:dossie[dos:controle="4A982326-CAFF-11DF-9F68-C6003924FB0B"]
-                    /dos:doc/dc:documento[dc:invalidacao/text() eq "1970-01-01T00:00:00Z"]/dc:documento/* return $x';
+                    for $x in collection("volume-D5EB5D3E-CFD8-11DF-B1A5-E50A42D8BC49")/dos:dossie[dos:controle="D828732A-CFD8-11DF-BE99-9C2242D8BC49"]
+                    /dos:doc/dc:documento[dc:invalidacao/text() eq "1970-01-01T00:00:00Z"]/dc:documento/* return $x/../../../../..';
 
     #inicia a conexão com o sedna
     $sedna->begin;
@@ -49,6 +98,8 @@ sub extract {
   while ($sedna->next){
         #atribui os itens retornados da consulta acima na variavel $xsd sob a forma de XML String
         my $xml_string = $sedna->getItem();
+#warn $xml_string;
+        my $data = $read->($xml_string);
   }
     $sedna->commit;
     
