@@ -147,6 +147,30 @@ sub transform_data {
                                                               })->id_data;
 }
 
+sub transform_destino_lixo {
+    my $data = shift;
+    $data->{destino_lixo} = $dbi->resultset('DDestinoLixo')->find_or_create({ destino_lixo => $data->{destino_lixo},
+                                                                            })->id_destino_lixo;
+}
+
+sub transform_escoamento_sanitario{
+    my $data = shift;
+    $data->{escoamento_sanitario} = $dbi->resultset('DEscoamentoSanitario')->find_or_create({ escoamento_sanitario => $data->{escoamento_sanitario},
+                                                                            })->id_escoamento_sanitario;
+}
+
+sub transform_tipo_iluminacao {
+    my $data = shift;
+    $data->{tipo_iluminacao} = $dbi->resultset('DTipoIluminacao')->find_or_create({ tipo_iluminacao => $data->{tipo_iluminacao},
+                                                                            })->id_tipo_iluminacao;
+}
+
+sub transform_tratamento_agua {
+    my $data = shift;
+    $data->{tratamento_agua} = $dbi->resultset('DTratamentoAgua')->find_or_create({ tratamento_agua => $data->{tratamento_agua},
+                                                                            })->id_tratamento_agua;
+}
+
 sub load{
     my ($data) = @_;
      $dbi->resultset('FAtendimento')
