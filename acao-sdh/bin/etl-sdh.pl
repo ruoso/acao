@@ -171,6 +171,76 @@ sub transform_tratamento_agua {
                                                                             })->id_tratamento_agua;
 }
 
+sub transform_tipo_abastecimento_agua {
+    my $data = shift;
+    $data->{tipo_abastecimento_agua} = $dbi->resultset('DTipoAbastecimentoAgua')->find_or_create(
+                                                                            { tipo_abastecimento_agua => $data->{tipo_abastecimento_agua},
+                                                                            })->id_tipo_abastecimento_agua;
+}
+
+sub transform_tipo_contrucao_moradia {
+    my $data = shift;
+    $data->{tipo_contrucao_moradia} = $dbi->resultset('DTipoConstrucaoMoradia')->find_or_create(
+                                                                            { tipo_contrucao_moradia => $data->{tipo_contrucao_moradia},
+                                                                            })->id_tipo_contrucao_moradia;
+}
+
+sub transform_tempo_moradia {
+    my $data = shift;
+    $data->{tempo_moradia} = $dbi->resultset('DTempoMoradia')->find_or_create(
+                                                                            { tempo_moradia => $data->{tempo_moradia},
+                                                                            })->id_tempo_moradia;
+}
+
+sub transform_situacao_moradia {
+    my $data = shift;
+    $data->{situacao_moradia} = $dbi->resultset('DSituacaoMoradia')->find_or_create(
+                                                                            { situacao_moradia => $data->{situacao_moradia},
+                                                                            })->id_situacao_moradia;
+}
+
+sub transform_vinculo_religioso {
+    my $data = shift;
+    $data->{vinculo_religioso} = $dbi->resultset('DVinculoReligioso')->find_or_create(
+                                                                            { vinculo_religioso => $data->{vinculo_religioso},
+                                                                            })->id_vinculo_religioso;
+}
+
+sub transform_origem_encaminhamento {
+    my $data = shift;
+    $data->{origem_encaminhamento} = $dbi->resultset('DOrigemEncaminhamento')->find_or_create(
+                                                                            { origem_encaminhamento => $data->{origem_encaminhamento},
+                                                                            })->id_origem_encaminhamento;
+}
+
+sub transform_vinculacao_cca {
+    my $data = shift;
+    $data->{vinculacao_cca} = $dbi->resultset('DVinculacaoCca')->find_or_create({ vinculacao_cca => $data->{vinculacao_cca},
+                                                                            })->id_vinculacao_cca;
+}
+
+sub transform_nucleo {
+    my $data = shift;
+    $data->{nucleo} = $dbi->resultset('DNucleo')->find_or_create({ nucleo => $data->{nucleo},})->id_nucleo;
+}
+
+sub transform_uso_drogas {
+    my $data = shift;
+    $data->{uso_drogas} = $dbi->resultset('DUsoDrogas')->find_or_create({ uso_drogas => $data->{uso_drogas},})->id_uso_drogas;
+}
+
+sub transform_acompanhamento_uso_drogas {
+    my $data = shift;
+    $data->{acompanhamento_uso_drogas} = $dbi->resultset('DAcompanhamentoUsoDrogas')->find_or_create(
+                                                                        { acompanhamento_uso_drogas => $data->{acompanhamento_uso_drogas},
+                                                                        })->id_acompanhamento_uso_drogas;
+}
+
+sub transform_contraceptivo {
+    my $data = shift;
+    $data->{contraceptivo} = $dbi->resultset('DContraceptivo')->find_or_create({ contraceptivo => $data->{contraceptivo},})->id_contraceptivo;
+}
+
 sub load{
     my ($data) = @_;
      $dbi->resultset('FAtendimento')
