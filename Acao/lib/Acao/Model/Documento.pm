@@ -103,6 +103,7 @@ txn_method 'inserir_documento' => authorized $role_criar => sub {
                                     nome       => '',
                                     criacao    => DateTime->now(),
                                     invalidacao => '',
+                                    motivoInvalidacao => '',
                                     representaDocumentoFisico => $representaDocumentoFisico,
                                     autorizacao => {
                                                     principal => $self->user->id,
@@ -142,13 +143,22 @@ txn_method 'inserir_documento' => authorized $role_criar => sub {
 
     if ($id_documento ne '')
     {
-            my $xq_invalido  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; 
-                                declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd"; 
-                                declare namespace audt="http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd"; 
-                                update replace $x in collection("'.$id_volume.'")/ns:dossie[ns:controle="'.$controle.'"]
-                                   /ns:doc/dc:documento[dc:id = "'.$id_documento.'"]/dc:invalidacao 
-                                    with <dc:invalidacao>'.DateTime->now().'</dc:invalidacao>';
-            $self->sedna->execute($xq_invalido );
+            my $xq_invalidacao  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; 
+                                   declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd"; 
+                                   declare namespace audt="http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd"; 
+                                   update replace $x in collection("'.$id_volume.'")/ns:dossie[ns:controle="'.$controle.'"]
+                                                  /ns:doc/dc:documento[dc:id = "'.$id_documento.'"]/dc:invalidacao 
+                                                  with <dc:invalidacao>'.DateTime->now().'</dc:invalidacao>';
+            $self->sedna->execute($xq_invalidacao);
+    
+            my $xq_motivo_invalidacao  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; 
+                                          declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd"; 
+                                          declare namespace audt="http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd"; 
+                                          update replace $x in collection("'.$id_volume.'")/ns:dossie[ns:controle="'.$controle.'"]
+                                                         /ns:doc/dc:documento[dc:id = "'.$id_documento.'"]/dc:motivoInvalidacao
+                                                         with <dc:motivoInvalidacao>replace</dc:motivoInvalidacao>';
+            $self->sedna->execute($xq_motivo_invalidacao);
+
     }
 
 };
@@ -224,13 +234,22 @@ txn_method 'auditoria_listar' => authorized $role_listar => sub {
 txn_method 'invalidar_documento' => authorized $role_listar => sub {
   my $self = shift;
   my ( $id_volume, $controle, $id_documento) = @_;
-  my $xq_invalido  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; 
+  my $xq_invalidacao  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; 
+                         declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd"; 
+                         declare namespace audt="http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd"; 
+                         update replace $x in collection("'.$id_volume.'")/ns:dossie[ns:controle="'.$controle.'"]
+                                        /ns:doc/dc:documento[dc:id = "'.$id_documento.'"]/dc:invalidacao
+                                        with <dc:invalidacao>'.DateTime->now().'</dc:invalidacao>';
+
+  $self->sedna->execute($xq_invalidacao);
+
+  my $xq_motivo_invalidacao  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; 
                                 declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd"; 
                                 declare namespace audt="http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd"; 
                                 update replace $x in collection("'.$id_volume.'")/ns:dossie[ns:controle="'.$controle.'"]
-                                   /ns:doc/dc:documento[dc:id = "'.$id_documento.'"]/dc:invalidacao 
-                                    with <dc:invalidacao>'.DateTime->now().'</dc:invalidacao>';
-    $self->sedna->execute($xq_invalido );
+                                               /ns:doc/dc:documento[dc:id = "'.$id_documento.'"]/dc:motivoInvalidacao
+                                               with <dc:motivoInvalidacao>erro</dc:motivoInvalidacao>';
+  $self->sedna->execute($xq_motivo_invalidacao);
 };
 
 =head1 COPYRIGHT AND LICENSING

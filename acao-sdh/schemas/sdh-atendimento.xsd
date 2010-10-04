@@ -16,6 +16,45 @@
 	<xs:complexType name="formAtendimento">
 		<xs:sequence>
 
+			<xs:element name="tipo" minOccurs="1">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Tipo</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Interprofissional" />
+						<xs:enumeration value="Acompanhamento" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="categoria" minOccurs="1">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Categoria</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Jurídico" />
+						<xs:enumeration value="Pedagogia" />
+						<xs:enumeration value="Psicologia" />
+						<xs:enumeration value="Serviço Social" />
+						<xs:enumeration value="Outros" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="especifiqueOutros" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Especifique outros</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
 			<xs:element name="data" type="xs:date" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>

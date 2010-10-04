@@ -4,7 +4,7 @@
 	        { if ( $x/ns:volume/ns:estado/text() eq 'aberto') then (
                 <a href="[% c.uri_for('/auth/registros/volume') %]/{$x/ns:volume/ns:collection/text()}" > {$x/ns:volume/ns:nome/text()} </a>
             ) else (
-                <a href="" > {$x/ns:volume/ns:nome/text()} </a>
+                <a href="" onclick="javasctipt:alert('Volume deve estar no estado ABERTO para que possa ser visualizado!')"> {$x/ns:volume/ns:nome/text()} </a>
             )}
         </td>
 
@@ -52,5 +52,3 @@
 	<input type="hidden" id="id_volume" nome="id_volume" value="{$x/ns:volume/ns:collection/text()}"/>
     </tr>
 )
-
-
