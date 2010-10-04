@@ -241,6 +241,64 @@ sub transform_contraceptivo {
     $data->{contraceptivo} = $dbi->resultset('DContraceptivo')->find_or_create({ contraceptivo => $data->{contraceptivo},})->id_contraceptivo;
 }
 
+sub transform_avaliacao_servico_saude {
+    my $data = shift;
+    $data->{avaliacao_servico_saude} = $dbi->resultset('DAvaliacaoServicoSaude')->find_or_create(
+                                                                                      { avaliacao_servico_saude => $data->{avaliacao_servico_saude},
+                                                                                      })->id_avaliacao_servico_saude;
+}
+
+sub transform_acesso_medicacao {
+    my $data = shift;
+    $data->{acesso_medicacao} = $dbi->resultset('DAcessoMedicacao')->find_or_create({ acesso_medicacao => $data->{acesso_medicacao},
+                                                                                    })->id_acesso_medicacao;
+}
+
+sub transform_avaliacao_condicao_saude_familia {
+    my $data = shift;
+    $data->{avaliacao_condicao_saude_familia} = $dbi->resultset('DAvaliacaoCondicaoSaudeFamilia')->find_or_create(
+                                                            { avaliacao_condicao_saude_familia => $data->{avaliacao_condicao_saude_familia},
+                                                            })->id_avaliacao_condicao_saude_familia;
+}
+
+sub transform_participacao_grupo_social {
+    my $data = shift;
+    $data->{participacao_grupo_social} = $dbi->resultset('DParticipacaoGrupoSocial')->find_or_create(
+                                                                            { participacao_grupo_social => $data->{participacao_grupo_social},
+                                                                            })->id_participacao_grupo_social;
+}
+
+sub transform_tipo_escola_matriculado {
+    my $data = shift;
+    $data->{tipo_escola_matriculado} = $dbi->resultset('DTipoEscolaMatriculado')->find_or_create(
+                                                                    { tipo_escola_matriculado => $data->{tipo_escola_matriculado},
+                                                                    })->id_tipo_escola_matriculado;
+}
+
+sub transform_escolaridade {
+    my $data = shift;
+    $data->{escolaridade} = $dbi->resultset('DEscolaridade')->find_or_create({ escolaridade => $data->{escolaridade},})->id_escolaridade;
+}
+
+sub transform_turno_estuda {
+    my $data = shift;
+    $data->{turno_estuda} = $dbi->resultset('DTurnoEstuda')->find_or_create({ turno_estuda => $data->{turno_estuda},})->id_turno_estuda;
+}
+
+sub transform_avaliacao_frequencia_escolar {
+    my $data = shift;
+    $data->{avaliacao_frequencia_escolar} = $dbi->resultset('DAvaliacaoFrequenciaEscolar')->find_or_create(
+                                                                { avaliacao_frequencia_escolar => $data->{avaliacao_frequencia_escolar},
+                                                                })->id_avaliacao_frequencia_escolar;
+}
+
+sub transform_avaliacao_rendimento_escolar {
+    my $data = shift;
+    $data->{avaliacao_rendimento_escolar} = $dbi->resultset('DAvaliacaoRendimentoEscolar')->find_or_create(
+                                                                { avaliacao_rendimento_escolar => $data->{avaliacao_rendimento_escolar},
+                                                                })->id_avaliacao_rendimento_escolar;
+}
+
 sub load{
     my ($data) = @_;
      $dbi->resultset('FAtendimento')
