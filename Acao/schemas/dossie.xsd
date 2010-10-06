@@ -22,8 +22,10 @@
 				</xs:element>
 				<xs:element name="controle" type="xs:string" />
 				<xs:element name="representaDossieFisico" type="xs:boolean" />
-				<xs:element name="classificacao" type="xs:string" maxOccurs="unbounded" />
-				<xs:element name="localizacao" type="xs:string" maxOccurs="unbounded" />
+				<xs:element name="classificacao" type="xs:string"
+					maxOccurs="unbounded" />
+				<xs:element name="localizacao" type="xs:string"
+					maxOccurs="unbounded" />
 				<xs:element name="autorizacao">
 					<xs:complexType>
 						<xs:attribute name="principal" type="xs:string" use="required" />
@@ -32,20 +34,8 @@
 						<xs:attribute name="dataFim" type="xs:string" use="optional" />
 					</xs:complexType>
 				</xs:element>
-				<xs:element name="audit" minOccurs="0">
-					<xs:complexType>
-						<xs:sequence>
-							<xs:element name="auditoria" type="audt:auditoria" minOccurs="0" />
-						</xs:sequence>
-					</xs:complexType>
-				</xs:element>
-				<xs:element name="doc" minOccurs="0">
-					<xs:complexType>
-						<xs:sequence>
-							<xs:element name="documento" type="doc:documento" minOccurs="0" />
-						</xs:sequence>
-					</xs:complexType>
-				</xs:element>
+				<xs:element name="audit" type="audt:audit" minOccurs="0" />
+				<xs:element name="doc" type="doc:doc" minOccurs="0" />
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>

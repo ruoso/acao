@@ -5,6 +5,13 @@
 	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd"
 	elementFormDefault="qualified">
 
+	<xs:complexType name="doc">
+		<xs:sequence>
+			<xs:element name="documento" type="documento"
+				minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
 	<xs:element name="documento" type="documento" />
 
 	<xs:complexType name="documento">
@@ -12,10 +19,10 @@
 			<xs:element name="id" type="xs:string" minOccurs="0" />
 			<xs:element name="nome" type="xs:string" minOccurs="0" />
 			<xs:element name="criacao" type="xs:dateTime" minOccurs="0" />
-			<xs:element name="invalidacao" type="xs:dateTime" minOccurs="0"/>
-			<xs:element name="motivoInvalidacao" type="xs:string" minOccurs="0"/>
-			<xs:element name="representaDocumentoFisico" type="xs:boolean" />
-			<xs:element name="autorizacao">
+			<xs:element name="invalidacao" type="xs:dateTime" minOccurs="0" />
+			<xs:element name="motivoInvalidacao" type="xs:string" minOccurs="0" />
+			<xs:element name="representaDocumentoFisico" type="xs:boolean" minOccurs="0" />
+			<xs:element name="autorizacao" minOccurs="0">
 				<xs:complexType>
 					<xs:attribute name="principal" type="xs:string" use="required" />
 					<xs:attribute name="role" type="xs:string" use="required" />
@@ -23,14 +30,7 @@
 					<xs:attribute name="dataFim" type="xs:string" use="optional" />
 				</xs:complexType>
 			</xs:element>
-			<xs:element name="audit" minOccurs="0">
-				<xs:complexType>
-					<xs:sequence>
-						<xs:element name="auditoria" type="audt:auditoria"
-							minOccurs="0" />
-					</xs:sequence>
-				</xs:complexType>
-			</xs:element>
+			<xs:element name="audit" type="audt:audit" minOccurs="0" />
 			<xs:element name="documento" maxOccurs="unbounded">
 				<xs:complexType>
 					<xs:sequence>

@@ -22,7 +22,7 @@ BEGIN {
 
 #define as constantes para os caminhos dos schemas, utilizando variável de ambiente
 use constant HOME_SCHEMAS => $ENV{HOME_SCHEMAS} || catfile($Bin, '..', 'schemas');
-use constant SCHEMA_DOSSIE => catfile($ENV{ACAO_HOME}, 'schemas', 'dossie.xsd');
+use constant SCHEMA_DOSSIE    => catfile($ENV{ACAO_HOME}, 'schemas', 'dossie.xsd');
 use constant SCHEMA_AUDITORIA => catfile($ENV{ACAO_HOME}, 'schemas', 'auditoria.xsd');
 use constant SCHEMA_DOCUMENTO => catfile($ENV{ACAO_HOME}, 'schemas', 'documento.xsd');
 use constant SCHEMA_ATENDIMENTOESPECIFICOSEGARANTA => catfile(HOME_SCHEMAS, 'sdh-atendimentoEspecificoSEGARANTA.xsd');
@@ -48,37 +48,14 @@ use constant SCHEMA_VISITADOMICILIAR               => catfile(HOME_SCHEMAS, 'sdh
 use constant SCHEMA_PROTECAOESPECIAL               => catfile(HOME_SCHEMAS, 'sdh-protecaoEspecial.xsd');
 use constant SCHEMA_INDIVIDUALFAMILIA              => catfile(HOME_SCHEMAS, 'sdh-individualFamilia.xsd');
 
-use constant DOSSIE_NS => 'http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd';
+use constant DOSSIE_NS    => 'http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd';
 use constant DOCUMENTO_NS => 'http://schemas.fortaleza.ce.gov.br/acao/documento.xsd';
 use constant AUDITORIA_NS => 'http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd';
 
-my $schema = XML::Compile::Schema->new(SCHEMA_DOSSIE);
-$schema->importDefinitions(SCHEMA_AUDITORIA);
-$schema->importDefinitions(SCHEMA_DOCUMENTO);
-$schema->importDefinitions(SCHEMA_ATENDIMENTOESPECIFICOSEGARANTA);
-$schema->importDefinitions(SCHEMA_CONDICOESDEMORADIA);
-$schema->importDefinitions(SCHEMA_CONVIVENCIAFAMILIARCOMUNITARIA);
-$schema->importDefinitions(SCHEMA_CONVIVENCIASOCIAL);
-$schema->importDefinitions(SCHEMA_DIRECIONAMENTODOATENDIMENTO);
-$schema->importDefinitions(SCHEMA_DOCUMENTACAO);
-$schema->importDefinitions(SCHEMA_EDUCACAO);
-$schema->importDefinitions(SCHEMA_IDENTIFICACAOPESSOAL);
-$schema->importDefinitions(SCHEMA_JURIDICO);
-$schema->importDefinitions(SCHEMA_ORIGEMENCAMINHAMENTO);
-$schema->importDefinitions(SCHEMA_PEDAGOGIA);
-$schema->importDefinitions(SCHEMA_PLANOINDIVIDUALDEATENDIMENTO);
-$schema->importDefinitions(SCHEMA_PROFISSIONALIZACAOHABILIDADES);
-$schema->importDefinitions(SCHEMA_PSICOLOGIA);
-$schema->importDefinitions(SCHEMA_RELATORIOSENCAMINHADOS);
-$schema->importDefinitions(SCHEMA_SAUDE);
-$schema->importDefinitions(SCHEMA_SERVICOSOCIAL);
-$schema->importDefinitions(SCHEMA_VINCULACAONACCA);
-$schema->importDefinitions(SCHEMA_VINCULORELIGIOSO);
-$schema->importDefinitions(SCHEMA_VISITADOMICILIAR);
-$schema->importDefinitions(SCHEMA_PROTECAOESPECIAL);
-$schema->importDefinitions(SCHEMA_INDIVIDUALFAMILIA);
+my $schema = XML::Compile::Schema->new([ SCHEMA_DOSSIE, SCHEMA_AUDITORIA, SCHEMA_DOCUMENTO ]);
 
 my $read = $schema->compile(READER => pack_type(DOSSIE_NS, 'dossie'));
+#my $read = $schema->compile(READER => pack_type(DOCUMENTO_NS, 'documento'));
 
 sub extract {
 
@@ -86,8 +63,8 @@ sub extract {
 
     my $xq = 'declare namespace dos = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
               declare namespace dc = "http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";
-                    for $x in collection("volume-D5EB5D3E-CFD8-11DF-B1A5-E50A42D8BC49")/dos:dossie[dos:controle="D828732A-CFD8-11DF-BE99-9C2242D8BC49"]
-                    /dos:doc/dc:documento[dc:invalidacao/text() eq "1970-01-01T00:00:00Z"]/dc:documento/* return $x/../../../../..';
+                    for $x in collection("volume-095A780C-D15B-11DF-92FE-6EBCAB6082DE")/dos:dossie[dos:controle="0BD40A26-D16A-11DF-92FE-6EBCAB6082DE"]
+                    /dos:doc/dc:documento[dc:invalidacao/text() eq "1970-01-01T00:00:00Z"] return $x/../..';
 
     #inicia a conexão com o sedna
     $sedna->begin;
@@ -98,7 +75,7 @@ sub extract {
   while ($sedna->next){
         #atribui os itens retornados da consulta acima na variavel $xsd sob a forma de XML String
         my $xml_string = $sedna->getItem();
-#warn $xml_string;
+warn $xml_string;
         my $data = $read->($xml_string);
   }
     $sedna->commit;
@@ -372,5 +349,6 @@ sub load{
 
 
 extract();
+#my $data = $read->('/tmp/bla.xml');
 
 # load();
