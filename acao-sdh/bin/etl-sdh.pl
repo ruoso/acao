@@ -52,10 +52,33 @@ use constant DOSSIE_NS    => 'http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd
 use constant DOCUMENTO_NS => 'http://schemas.fortaleza.ce.gov.br/acao/documento.xsd';
 use constant AUDITORIA_NS => 'http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd';
 
-my $schema = XML::Compile::Schema->new([ SCHEMA_DOSSIE, SCHEMA_AUDITORIA, SCHEMA_DOCUMENTO ]);
+my $schema_form = {
+               'formAtendimentoEspecificosegaranta' => XML::Compile::Schema->new(SCHEMA_ATENDIMENTOESPECIFICOSEGARANTA),
+               'formCondicoesDeMoradia'             => XML::Compile::Schema->new(SCHEMA_CONDICOESDEMORADIA),
+               'formConvivenciafamiliarcomunitaria' => XML::Compile::Schema->new(SCHEMA_CONVIVENCIAFAMILIARCOMUNITARIA),
+               'formconvivenciasocial'              => XML::Compile::Schema->new(SCHEMA_CONVIVENCIASOCIAL),
+               'formdirecionamentodoatendimento'    => XML::Compile::Schema->new(SCHEMA_DIRECIONAMENTODOATENDIMENTO),
+               'formDocumentacao'                   => XML::Compile::Schema->new(SCHEMA_DOCUMENTACAO),
+               'formeducacao'                       => XML::Compile::Schema->new(SCHEMA_EDUCACAO),
+               'formidentificacaopessoal'           => XML::Compile::Schema->new(SCHEMA_IDENTIFICACAOPESSOAL),
+               'formjuridico'                       => XML::Compile::Schema->new(SCHEMA_JURIDICO),
+               'formorigemencaminhamento'           => XML::Compile::Schema->new(SCHEMA_ORIGEMENCAMINHAMENTO),
+               'formpedagogia'                      => XML::Compile::Schema->new(SCHEMA_PEDAGOGIA),
+               'formplanoindividualdeatendimento'   => XML::Compile::Schema->new(SCHEMA_PLANOINDIVIDUALDEATENDIMENTO),
+               'formprofissionalizacaohabilidades'  => XML::Compile::Schema->new(SCHEMA_PROFISSIONALIZACAOHABILIDADES),
+               'formPsicologia'                     => XML::Compile::Schema->new(SCHEMA_PSICOLOGIA),
+               'formrelatoriosencaminhados'         => XML::Compile::Schema->new(SCHEMA_RELATORIOSENCAMINHADOS),
+               'formsaude'                          => XML::Compile::Schema->new(SCHEMA_SAUDE),
+               'formservicosocial'                  => XML::Compile::Schema->new(SCHEMA_SERVICOSOCIAL),
+               'formvinculacaonacca'                => XML::Compile::Schema->new(SCHEMA_VINCULACAONACCA),
+               'formvinculoreligioso'               => XML::Compile::Schema->new(SCHEMA_VINCULORELIGIOSO),
+               'formvisitadomiciliar'               => XML::Compile::Schema->new(SCHEMA_VISITADOMICILIAR),
+               'formprotecaoespecial'               => XML::Compile::Schema->new(SCHEMA_PROTECAOESPECIAL),
+               'formindividualfamilia'              => XML::Compile::Schema->new(SCHEMA_INDIVIDUALFAMILIA),
+                  };
 
-my $read = $schema->compile(READER => pack_type(DOSSIE_NS, 'dossie'));
-#my $read = $schema->compile(READER => pack_type(DOCUMENTO_NS, 'documento'));
+my $schema = XML::Compile::Schema->new([SCHEMA_DOCUMENTO, SCHEMA_AUDITORIA]);
+my $read = $schema->compile(READER => pack_type(DOCUMENTO_NS, 'documento'),  any_element => 'TAKE_ALL');
 
 sub extract {
 
@@ -63,21 +86,31 @@ sub extract {
 
     my $xq = 'declare namespace dos = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
               declare namespace dc = "http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";
-                    for $x in collection("volume-095A780C-D15B-11DF-92FE-6EBCAB6082DE")/dos:dossie[dos:controle="0BD40A26-D16A-11DF-92FE-6EBCAB6082DE"]
-                    /dos:doc/dc:documento[dc:invalidacao/text() eq "1970-01-01T00:00:00Z"] return $x/../..';
+                    for $x in collection("volume-BE4B7112-D214-11DF-97B9-284E42D8BC49")/dos:dossie[dos:controle="BFB8827E-D214-11DF-97B9-284E42D8BC49"]
+                    /dos:doc/dc:documento[dc:invalidacao/text() eq "1970-01-01T00:00:00Z"] return $x';
 
     #inicia a conexão com o sedna
     $sedna->begin;
 
     #executa a consulta
     $sedna->execute($xq);
-
+  my $result;
   while ($sedna->next){
-        #atribui os itens retornados da consulta acima na variavel $xsd sob a forma de XML String
-        my $xml_string = $sedna->getItem();
-warn $xml_string;
-        my $data = $read->($xml_string);
+       #atribui os itens retornados da consulta acima na variavel $xsd sob a forma de XML String
+       my $xml_string = $sedna->getItem();
+       my $data = $read->($xml_string);
+
+       my @array_keys = keys( %{ $data->{documento}[0]{conteudo}} );
+       my @namespace = split(/}/, $array_keys[0]);
+
+       my $read_doc = $schema_form->{$namespace[1]}->compile(READER => pack_type( substr($namespace[0],1) , $namespace[1] ));
+       my $data_doc =  $read_doc->($data->{documento}[0]{conteudo}{pack_type(substr($namespace[0],1) ,  $namespace[1])}[0]);
+       
+       $result = { $namespace[1] =>  $data_doc };
   }
+
+warn Dumper($result);
+
     $sedna->commit;
     
 }
