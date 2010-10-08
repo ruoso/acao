@@ -94,7 +94,9 @@ sub extract {
 
     #executa a consulta
     $sedna->execute($xq);
-  my $result;
+  my @result;
+  my $result_hash = ();
+my $nr = 0;
   while ($sedna->next){
        #atribui os itens retornados da consulta acima na variavel $xsd sob a forma de XML String
        my $xml_string = $sedna->getItem();
@@ -105,12 +107,13 @@ sub extract {
 
        my $read_doc = $schema_form->{$namespace[1]}->compile(READER => pack_type( substr($namespace[0],1) , $namespace[1] ));
        my $data_doc =  $read_doc->($data->{documento}[0]{conteudo}{pack_type(substr($namespace[0],1) ,  $namespace[1])}[0]);
-       
-       $result = { $namespace[1] =>  $data_doc };
+
+      push @result, { $namespace[1] . $nr => $data_doc};
+$nr++;
   }
 
-warn Dumper($result);
-
+ %{$result_hash}  = (%{$result[0]} , %{$result[1]} ,%{$result[2]});
+warn $result_hash->{formDocumentacao0}{registroDeNascimentoNumero};
     $sedna->commit;
     
 }
