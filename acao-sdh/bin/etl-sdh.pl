@@ -9,6 +9,7 @@ use DateTime::Format::XSD;
 use strict;
 use warnings;
 use Data::Dumper;
+use Switch;
 
 use aliased 'Acao::Plugins::SDH::DimSchema';
 
@@ -82,7 +83,7 @@ my $schema_form = {
                'formEvolucao'                       => XML::Compile::Schema->new(SCHEMA_EVOLUCAO),
                'formSaudeSubstanciaPsicoativa'      => XML::Compile::Schema->new(SCHEMA_SAUDESUBSTANCIAPSICOATIVA),
                'formDocumentacaoFamiliar'           => XML::Compile::Schema->new(SCHEMA_DOCUMENTACAOFAMILIAR),
-               'formComposicaoFamiliar'           => XML::Compile::Schema->new(SCHEMA_COMPOSICAOFAMILIAR),
+               'formComposicaoFamiliar'             => XML::Compile::Schema->new(SCHEMA_COMPOSICAOFAMILIAR),
 
                   };
 
@@ -114,39 +115,78 @@ my $nr = 0;
        my @array_keys = keys( %{ $data->{documento}[0]{conteudo}} );
        my @namespace = split(/}/, $array_keys[0]);
 
-warn $namespace[1];
+#warn $namespace[1];
        my $read_doc = $schema_form->{$namespace[1]}->compile(READER => pack_type( substr($namespace[0],1) , $namespace[1] ));
-       my $data_doc =  $read_doc->($data->{documento}[0]{conteudo}{pack_type(substr($namespace[0],1) ,  $namespace[1])}[0]);
+       my $data_doc = $read_doc->($data->{documento}[0]{conteudo}{pack_type(substr($namespace[0],1) ,  $namespace[1])}[0]);
 
+       push @result, { $namespace[1] => $data_doc};
 
-       push @result, { $namespace[1] . $nr => $data_doc};
        $nr++;
 
   }
-
- %{$result_hash}  = (%{$result[0]} , %{$result[1]} ,%{$result[2]});
+# %{$result_hash}  = (%{$result[0]} , %{$result[1]} ,%{$result[2]});
 #warn $result_hash->{formDocumentacao0}{registroDeNascimentoNumero};
     $sedna->commit;
-    
+
+   transform(@result);
 }
 
 sub transform {
-    my ($data) = @_;
-    transform_endereco($data->{formIdentificacaoPessoal}{endereco});
+    my (@result) = @_;
+  #  transform_endereco($data->{formIdentificacaoPessoal}{endereco});
+
+    for (my $i=0; $i < scalar(@result); $i++){
+        my @array = keys(%{$result[$i]});
+        switch ($array[0]) {
+            case 'formAtendimentoEspecificoSEGARANTA' { }
+            case 'formCondicoesDeMoradia'             {}
+            case 'formConvivenciaFamiliarComunitaria' {}
+            case 'formConvivenciaSocial'              {}
+            case 'formDirecionamentoDoAtendimento'    {}
+            case 'formDocumentacao'                   {}
+            case 'formEducacao'                       {}
+            case 'formIdentificacaoPessoal'           { transform_estado_civil($result[$i]->{formIdentificacaoPessoal}); 
+                                                        transform_sexo($result[$i]->{formIdentificacaoPessoal});
+                                                        transform_endereco($result[$i]->{formIdentificacaoPessoal});
+                                                        transform_sexualidade($result[$i]->{formIdentificacaoPessoal});
+                                                        transform_data_nascimento($result[$i]->{formIdentificacaoPessoal});
+                                                       }
+            case 'formJuridico'                       {}
+            case 'formOrigemEncaminhamento'           {}
+            case 'formPedagogia'                      {}
+            case 'formPlanoIndividualDeAtendimento'   {}
+            case 'formProfissionalizacaoHabilidades'  {}
+            case 'formPsicologia'                     {}
+            case 'formRelatoriosEncaminhados'         {}
+            case 'formSaude'                          {}
+            case 'formServicoSocial'                  {}
+            case 'formVinculacaoNaCCA'                {}
+            case 'formVinculoReligioso'               {}
+            case 'formVisitaDomiciliar'               {}
+            case 'formProtecaoEspecial'               {}
+            case 'formIndividualFamilia'              { }
+            case 'formEvolucao'                       {}
+            case 'formSaudeSubstanciaPsicoativa'      {}
+            case 'formDocumentacaoFamiliar'           {}
+            case 'formComposicaoFamiliar'             {}
+        }
+    }
+
+
 }
 
 sub transform_endereco {
     my $data = shift;
-    $data->{endereco} = $dbi->resultset('DEndereco')->find_or_create({ endereco => $data->{endereco},
-                                                                       bairro => $data->{bairro},
-                                                                       cidade => $data->{cidade},
+    $data->{filiacao}{endereco} = $dbi->resultset('DEndereco')->find_or_create({ endereco => $data->{filiacao}{endereco},
+                                                                       bairro => $data->{filiacao}{bairro},
                                                                      })->id_endereco;
 }
 
 sub transform_estado_civil {
     my $data = shift;
-    $data->{estado_civil} = $dbi->resultset('DEstadoCivil')->find_or_create({ estado_civil => $data->{estado_civil},
-                                                                            })->id_estado_civil;
+    $data->{aPartirDe16Anos}{estadoCivil} = $dbi->resultset('DEstadoCivil')->find_or_create({ estado_civil =>  
+                                                                                                $data->{aPartirDe16Anos}{estadoCivil},
+                                                                                            })->id_estado_civil;
 }
 
 sub transform_raca_etnia {
@@ -157,13 +197,19 @@ sub transform_raca_etnia {
 
 sub transform_sexo {
     my $data = shift;
-    $data->{sexo} = $dbi->resultset('DSexo')->find_or_create({ raca_etnia => $data->{sexo},
+    $data->{sexo} = $dbi->resultset('DSexo')->find_or_create({ sexo => $data->{sexo},
                                                                             })->id_sexo;
 }
 
 sub transform_sexualidade {
     my $data = shift;
-    $data->{sexualidade} = $dbi->resultset('DSexualidade')->find_or_create({ raca_etnia => $data->{sexualidade},
+    my $orientacao = 'Não Informado';
+    if ($data->{aPartirDe14Anos}{orientacaoSexual}){
+        $orientacao = $data->{aPartirDe14Anos}{orientacaoSexual};
+    }
+
+    $data->{aPartirDe14Anos}{orientacaoSexual} = 
+                            $dbi->resultset('DSexualidade')->find_or_create({ sexualidade => $orientacao,
                                                                             })->id_sexualidade;
 }
 
@@ -209,10 +255,13 @@ sub transform_nis {
                                                                             })->id_nis;
 }
 
-sub transform_data {
+sub transform_data_nascimento {
     my $data = shift;
-    my $dt = DateTime::Format::XSD->parse_datetime( $data->{data} );
-    $data->{data} = $dbi->resultset('DData')->find_or_create({ data => $data->{data},
+    my $dt = DateTime::Format::XSD->parse_datetime( $data->{dataNascimento} );
+    my $dt_int =  $data->{dataNascimento};
+    $dt_int=~s/[\-]//gis;
+    $data->{data} = $dbi->resultset('DData')->find_or_create({ id_data => $dt_int,
+                                                               data => $data->{dataNascimento},
                                                                dia  => $dt->day,
                                                                mes  => $dt->month,
                                                                ano  => $dt->year,
@@ -390,7 +439,7 @@ sub load{
               deficiencia_sensorial_surdo =>$data->{deficiencia_sensorial_surd},
               deficiencia_sensorial_cego =>$data->{deficiencia_sensorial_cego},
               deficiencia_fisico_motor =>$data->{deficiencia_fisico_motor},
-              deficiencia_mobilidade_reduzida =>$data->{deficiencia_mobilidade_reduzida},
+              deficiencia_mobilidade_reduzida =>$data->{possuiAlgumaDeficiencia}{deficiencia_mobilidade_reduzida},
               deficiencia_intelectual =>$data->{deficiencia_intelectual},
      })
 }
