@@ -47,34 +47,43 @@ use constant SCHEMA_VINCULORELIGIOSO               => catfile(HOME_SCHEMAS, 'sdh
 use constant SCHEMA_VISITADOMICILIAR               => catfile(HOME_SCHEMAS, 'sdh-visitaDomiciliar.xsd');
 use constant SCHEMA_PROTECAOESPECIAL               => catfile(HOME_SCHEMAS, 'sdh-protecaoEspecial.xsd');
 use constant SCHEMA_INDIVIDUALFAMILIA              => catfile(HOME_SCHEMAS, 'sdh-individualFamilia.xsd');
+use constant SCHEMA_EVOLUCAO                       => catfile(HOME_SCHEMAS, 'sdh-evolucao.xsd');
+use constant SCHEMA_SAUDESUBSTANCIAPSICOATIVA      => catfile(HOME_SCHEMAS, 'sdh-saudeSubstanciaPsicoativas.xsd');
+use constant SCHEMA_DOCUMENTACAOFAMILIAR           => catfile(HOME_SCHEMAS, 'sdh-documentacaoFamiliar.xsd');
+use constant SCHEMA_COMPOSICAOFAMILIAR             => catfile(HOME_SCHEMAS, 'sdh-composicaoFamiliar.xsd');
 
 use constant DOSSIE_NS    => 'http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd';
 use constant DOCUMENTO_NS => 'http://schemas.fortaleza.ce.gov.br/acao/documento.xsd';
 use constant AUDITORIA_NS => 'http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd';
 
 my $schema_form = {
-               'formAtendimentoEspecificosegaranta' => XML::Compile::Schema->new(SCHEMA_ATENDIMENTOESPECIFICOSEGARANTA),
+               'formAtendimentoEspecificoSEGARANTA' => XML::Compile::Schema->new(SCHEMA_ATENDIMENTOESPECIFICOSEGARANTA),
                'formCondicoesDeMoradia'             => XML::Compile::Schema->new(SCHEMA_CONDICOESDEMORADIA),
-               'formConvivenciafamiliarcomunitaria' => XML::Compile::Schema->new(SCHEMA_CONVIVENCIAFAMILIARCOMUNITARIA),
-               'formconvivenciasocial'              => XML::Compile::Schema->new(SCHEMA_CONVIVENCIASOCIAL),
-               'formdirecionamentodoatendimento'    => XML::Compile::Schema->new(SCHEMA_DIRECIONAMENTODOATENDIMENTO),
+               'formConvivenciaFamiliarComunitaria' => XML::Compile::Schema->new(SCHEMA_CONVIVENCIAFAMILIARCOMUNITARIA),
+               'formConvivenciaSocial'              => XML::Compile::Schema->new(SCHEMA_CONVIVENCIASOCIAL),
+               'formDirecionamentoDoAtendimento'    => XML::Compile::Schema->new(SCHEMA_DIRECIONAMENTODOATENDIMENTO),
                'formDocumentacao'                   => XML::Compile::Schema->new(SCHEMA_DOCUMENTACAO),
-               'formeducacao'                       => XML::Compile::Schema->new(SCHEMA_EDUCACAO),
-               'formidentificacaopessoal'           => XML::Compile::Schema->new(SCHEMA_IDENTIFICACAOPESSOAL),
-               'formjuridico'                       => XML::Compile::Schema->new(SCHEMA_JURIDICO),
-               'formorigemencaminhamento'           => XML::Compile::Schema->new(SCHEMA_ORIGEMENCAMINHAMENTO),
-               'formpedagogia'                      => XML::Compile::Schema->new(SCHEMA_PEDAGOGIA),
-               'formplanoindividualdeatendimento'   => XML::Compile::Schema->new(SCHEMA_PLANOINDIVIDUALDEATENDIMENTO),
-               'formprofissionalizacaohabilidades'  => XML::Compile::Schema->new(SCHEMA_PROFISSIONALIZACAOHABILIDADES),
+               'formEducacao'                       => XML::Compile::Schema->new(SCHEMA_EDUCACAO),
+               'formIdentificacaoPessoal'           => XML::Compile::Schema->new(SCHEMA_IDENTIFICACAOPESSOAL),
+               'formJuridico'                       => XML::Compile::Schema->new(SCHEMA_JURIDICO),
+               'formOrigemEncaminhamento'           => XML::Compile::Schema->new(SCHEMA_ORIGEMENCAMINHAMENTO),
+               'formPedagogia'                      => XML::Compile::Schema->new(SCHEMA_PEDAGOGIA),
+               'formPlanoIndividualDeAtendimento'   => XML::Compile::Schema->new(SCHEMA_PLANOINDIVIDUALDEATENDIMENTO),
+               'formProfissionalizacaoHabilidades'  => XML::Compile::Schema->new(SCHEMA_PROFISSIONALIZACAOHABILIDADES),
                'formPsicologia'                     => XML::Compile::Schema->new(SCHEMA_PSICOLOGIA),
-               'formrelatoriosencaminhados'         => XML::Compile::Schema->new(SCHEMA_RELATORIOSENCAMINHADOS),
-               'formsaude'                          => XML::Compile::Schema->new(SCHEMA_SAUDE),
-               'formservicosocial'                  => XML::Compile::Schema->new(SCHEMA_SERVICOSOCIAL),
-               'formvinculacaonacca'                => XML::Compile::Schema->new(SCHEMA_VINCULACAONACCA),
-               'formvinculoreligioso'               => XML::Compile::Schema->new(SCHEMA_VINCULORELIGIOSO),
-               'formvisitadomiciliar'               => XML::Compile::Schema->new(SCHEMA_VISITADOMICILIAR),
-               'formprotecaoespecial'               => XML::Compile::Schema->new(SCHEMA_PROTECAOESPECIAL),
-               'formindividualfamilia'              => XML::Compile::Schema->new(SCHEMA_INDIVIDUALFAMILIA),
+               'formRelatoriosEncaminhados'         => XML::Compile::Schema->new(SCHEMA_RELATORIOSENCAMINHADOS),
+               'formSaude'                          => XML::Compile::Schema->new(SCHEMA_SAUDE),
+               'formServicoSocial'                  => XML::Compile::Schema->new(SCHEMA_SERVICOSOCIAL),
+               'formVinculacaoNaCCA'                => XML::Compile::Schema->new(SCHEMA_VINCULACAONACCA),
+               'formVinculoReligioso'               => XML::Compile::Schema->new(SCHEMA_VINCULORELIGIOSO),
+               'formVisitaDomiciliar'               => XML::Compile::Schema->new(SCHEMA_VISITADOMICILIAR),
+               'formProtecaoEspecial'               => XML::Compile::Schema->new(SCHEMA_PROTECAOESPECIAL),
+               'formIndividualFamilia'              => XML::Compile::Schema->new(SCHEMA_INDIVIDUALFAMILIA),
+               'formEvolucao'                       => XML::Compile::Schema->new(SCHEMA_EVOLUCAO),
+               'formSaudeSubstanciaPsicoativa'      => XML::Compile::Schema->new(SCHEMA_SAUDESUBSTANCIAPSICOATIVA),
+               'formDocumentacaoFamiliar'           => XML::Compile::Schema->new(SCHEMA_DOCUMENTACAOFAMILIAR),
+               'formComposicaoFamiliar'           => XML::Compile::Schema->new(SCHEMA_COMPOSICAOFAMILIAR),
+
                   };
 
 my $schema = XML::Compile::Schema->new([SCHEMA_DOCUMENTO, SCHEMA_AUDITORIA]);
@@ -86,7 +95,7 @@ sub extract {
 
     my $xq = 'declare namespace dos = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
               declare namespace dc = "http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";
-                    for $x in collection("volume-BE4B7112-D214-11DF-97B9-284E42D8BC49")/dos:dossie[dos:controle="BFB8827E-D214-11DF-97B9-284E42D8BC49"]
+                    for $x in collection("volume-2633497e-7395-411b-9587-a9ec8da00c05")/dos:dossie[dos:controle="ff035582-a113-41c2-b424-acd5094c8673"]
                     /dos:doc/dc:documento[dc:invalidacao/text() eq "1970-01-01T00:00:00Z"] return $x';
 
     #inicia a conexão com o sedna
@@ -105,15 +114,18 @@ my $nr = 0;
        my @array_keys = keys( %{ $data->{documento}[0]{conteudo}} );
        my @namespace = split(/}/, $array_keys[0]);
 
+warn $namespace[1];
        my $read_doc = $schema_form->{$namespace[1]}->compile(READER => pack_type( substr($namespace[0],1) , $namespace[1] ));
        my $data_doc =  $read_doc->($data->{documento}[0]{conteudo}{pack_type(substr($namespace[0],1) ,  $namespace[1])}[0]);
 
-      push @result, { $namespace[1] . $nr => $data_doc};
-$nr++;
+
+       push @result, { $namespace[1] . $nr => $data_doc};
+       $nr++;
+
   }
 
  %{$result_hash}  = (%{$result[0]} , %{$result[1]} ,%{$result[2]});
-warn $result_hash->{formDocumentacao0}{registroDeNascimentoNumero};
+#warn $result_hash->{formDocumentacao0}{registroDeNascimentoNumero};
     $sedna->commit;
     
 }
