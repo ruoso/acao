@@ -166,6 +166,11 @@ doc("$collections")/collections/collection
 # Lista todos os documentos
 doc("$documents")/documents/document  
 
+# backup
+sudo LD_LIBRARY_PATH=/usr/lib/sedna/driver/c/ /usr/lib/sedna/bin/se_exp export acao /home/"SEU DIRETORIO"
+
+# restore
+sudo LD_LIBRARY_PATH=/usr/lib/sedna/driver/c/ /usr/lib/sedna/bin/se_exp import acao /home/"SEU DIRETORIO"
 
 Configurando a aplicação
 ========================
