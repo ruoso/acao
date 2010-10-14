@@ -29,19 +29,19 @@ __PACKAGE__->table("d_endereco");
 =head2 endereco
 
   data_type: 'text'
-  is_nullable: 0
+  is_nullable: 1
   original: {data_type => "varchar"}
 
 =head2 bairro
 
   data_type: 'text'
-  is_nullable: 0
+  is_nullable: 1
   original: {data_type => "varchar"}
 
 =head2 cidade
 
   data_type: 'text'
-  is_nullable: 0
+  is_nullable: 1
   original: {data_type => "varchar"}
 
 =cut
@@ -57,19 +57,19 @@ __PACKAGE__->add_columns(
   "endereco",
   {
     data_type   => "text",
-    is_nullable => 0,
+    is_nullable => 1,
     original    => { data_type => "varchar" },
   },
   "bairro",
   {
     data_type   => "text",
-    is_nullable => 0,
+    is_nullable => 1,
     original    => { data_type => "varchar" },
   },
   "cidade",
   {
     data_type   => "text",
-    is_nullable => 0,
+    is_nullable => 1,
     original    => { data_type => "varchar" },
   },
 );
@@ -93,8 +93,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-13 16:29:11
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:kDkb3XqVKFDUWqkk89/eeg
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-14 15:32:31
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:0Qc/FxKZzDdloyoO7Uy19g
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

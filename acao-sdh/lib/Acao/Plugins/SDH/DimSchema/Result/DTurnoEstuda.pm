@@ -45,8 +45,8 @@ __PACKAGE__->add_columns(
 __PACKAGE__->set_primary_key("id_turno_estuda");
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-13 16:29:11
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:efwO0+HClFTEbFdFh8XVxQ
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-14 15:32:31
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:CJVldgMsRI0+DtjCbld8Eg
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

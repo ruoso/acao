@@ -272,12 +272,6 @@ __PACKAGE__->table("f_atendimento");
   is_foreign_key: 1
   is_nullable: 0
 
-=head2 id_tipo_construcao_moradia
-
-  data_type: 'integer'
-  is_foreign_key: 1
-  is_nullable: 0
-
 =head2 id_origem_encaminhamento
 
   data_type: 'integer'
@@ -308,7 +302,7 @@ __PACKAGE__->table("f_atendimento");
   is_foreign_key: 1
   is_nullable: 0
 
-=head2 violencia_intrafamiliar_discurssao_verbal
+=head2 violencia_intrafamiliar_discussao_verbal
 
   data_type: 'integer'
   is_nullable: 0
@@ -375,7 +369,7 @@ __PACKAGE__->table("f_atendimento");
   data_type: 'integer'
   is_nullable: 0
 
-=head2 violencia_institucional_discurssao_verbal
+=head2 violencia_institucional_discussao_verbal
 
   data_type: 'integer'
   is_nullable: 0
@@ -435,7 +429,7 @@ __PACKAGE__->table("f_atendimento");
   is_foreign_key: 1
   is_nullable: 0
 
-=head2 violencia_ambito_comunitario_discurssao_verbal
+=head2 violencia_ambito_comunitario_discussao_verbal
 
   data_type: 'integer'
   is_nullable: 0
@@ -807,6 +801,42 @@ __PACKAGE__->table("f_atendimento");
   is_foreign_key: 1
   is_nullable: 0
 
+=head2 data_nascimento
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 id_possui_banheiro
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 tipo_construcao_moradia_madeira
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 tipo_construcao_moradia_material_aproveitado
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 tipo_construcao_moradia_taipa_nao_resvestida
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 tipo_construcao_moradia_taipa_revestida
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 tipo_construcao_moradia_tijolo_alvenaria
+
+  data_type: 'integer'
+  is_nullable: 0
+
 =cut
 
 __PACKAGE__->add_columns(
@@ -902,8 +932,6 @@ __PACKAGE__->add_columns(
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
   "id_destino_lixo",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "id_tipo_construcao_moradia",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
   "id_origem_encaminhamento",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
   "id_vinculacao_cca",
@@ -914,7 +942,7 @@ __PACKAGE__->add_columns(
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
   "id_violencia_intrafamiliar",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "violencia_intrafamiliar_discurssao_verbal",
+  "violencia_intrafamiliar_discussao_verbal",
   { data_type => "integer", is_nullable => 0 },
   "violencia_intrafamiliar_agressao_fisica",
   { data_type => "integer", is_nullable => 0 },
@@ -940,7 +968,7 @@ __PACKAGE__->add_columns(
   { data_type => "integer", is_nullable => 0 },
   "violencia_instituicao_posto_saude",
   { data_type => "integer", is_nullable => 0 },
-  "violencia_institucional_discurssao_verbal",
+  "violencia_institucional_discussao_verbal",
   { data_type => "integer", is_nullable => 0 },
   "violencia_institucional_agressao_fisica",
   { data_type => "integer", is_nullable => 0 },
@@ -962,7 +990,7 @@ __PACKAGE__->add_columns(
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
   "id_violencia_ambiente_comunitario",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "violencia_ambito_comunitario_discurssao_verbal",
+  "violencia_ambito_comunitario_discussao_verbal",
   { data_type => "integer", is_nullable => 0 },
   "violencia_ambito_comunitario_agressao_fisica",
   { data_type => "integer", is_nullable => 0 },
@@ -1104,6 +1132,20 @@ __PACKAGE__->add_columns(
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
   "id_atendimento_contra_violencia_comunitario",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "data_nascimento",
+  { data_type => "integer", is_nullable => 0 },
+  "id_possui_banheiro",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "tipo_construcao_moradia_madeira",
+  { data_type => "integer", is_nullable => 0 },
+  "tipo_construcao_moradia_material_aproveitado",
+  { data_type => "integer", is_nullable => 0 },
+  "tipo_construcao_moradia_taipa_nao_resvestida",
+  { data_type => "integer", is_nullable => 0 },
+  "tipo_construcao_moradia_taipa_revestida",
+  { data_type => "integer", is_nullable => 0 },
+  "tipo_construcao_moradia_tijolo_alvenaria",
+  { data_type => "integer", is_nullable => 0 },
 );
 
 =head1 RELATIONS
@@ -1685,21 +1727,6 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
-=head2 id_tipo_construcao_moradia
-
-Type: belongs_to
-
-Related object: L<Acao::Plugins::SDH::DimSchema::Result::DTipoConstrucaoMoradia>
-
-=cut
-
-__PACKAGE__->belongs_to(
-  "id_tipo_construcao_moradia",
-  "Acao::Plugins::SDH::DimSchema::Result::DTipoConstrucaoMoradia",
-  { id_tipo_construcao_moradia => "id_tipo_construcao_moradia" },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
-
 =head2 id_uso_droga
 
 Type: belongs_to
@@ -1806,6 +1833,21 @@ __PACKAGE__->belongs_to(
   {
     id_avaliacao_condicao_saude_familia => "id_avaliacao_condicao_saude_familia",
   },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_possui_banheiro
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DPossuiBanheiro>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_possui_banheiro",
+  "Acao::Plugins::SDH::DimSchema::Result::DPossuiBanheiro",
+  { id_possui_banheiro => "id_possui_banheiro" },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
@@ -1934,8 +1976,8 @@ __PACKAGE__->belongs_to(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-13 16:29:11
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:iOvaQ45V8i846SQoCzbPIQ
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-14 15:32:31
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:G/AeRIxrBKbvHZq6rvcaHA
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

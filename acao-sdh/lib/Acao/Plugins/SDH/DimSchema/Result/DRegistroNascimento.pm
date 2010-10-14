@@ -22,7 +22,9 @@ __PACKAGE__->table("d_registro_nascimento");
 =head2 id_registro_nascimento
 
   data_type: 'integer'
+  is_auto_increment: 1
   is_nullable: 0
+  sequence: 'd_registro_nascimento_id_registro_nascimento_seq'
 
 =head2 situacao
 
@@ -34,7 +36,12 @@ __PACKAGE__->table("d_registro_nascimento");
 
 __PACKAGE__->add_columns(
   "id_registro_nascimento",
-  { data_type => "integer", is_nullable => 0 },
+  {
+    data_type         => "integer",
+    is_auto_increment => 1,
+    is_nullable       => 0,
+    sequence          => "d_registro_nascimento_id_registro_nascimento_seq",
+  },
   "situacao",
   {
     data_type   => "text",
@@ -64,8 +71,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-13 16:29:11
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:06YCkUCYHy/cXkgQlAX4fg
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-14 15:32:31
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:wF3O62Z6svR5cnofakIDHg
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

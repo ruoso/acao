@@ -15,6 +15,8 @@ use aliased 'Acao::Plugins::SDH::DimSchema';
 
 my $sedna = Sedna->connect('127.0.0.1', 'acao', 'acao', '12345');
 
+$sedna->setConnectionAttr(AUTOCOMMIT => Sedna::SEDNA_AUTOCOMMIT_OFF() );
+
 my $dbi = DimSchema->connect("dbi:Pg:dbname=sdh;host=127.0.0.1;port=5432",'acao','blableblibloblu');
 
 BEGIN {
@@ -96,7 +98,7 @@ sub extract {
 
     my $xq = 'declare namespace dos = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
               declare namespace dc = "http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";
-                    for $x in collection("volume-2633497e-7395-411b-9587-a9ec8da00c05")/dos:dossie[dos:controle="ff035582-a113-41c2-b424-acd5094c8673"]
+                    for $x in collection("volume-2633497e-7395-411b-9587-a9ec8da00c05")/dos:dossie[dos:controle="017c57c9-37e9-4365-8907-1a8feefe9974"]
                     /dos:doc/dc:documento[dc:invalidacao/text() eq "1970-01-01T00:00:00Z"] return $x';
 
     #inicia a conexão com o sedna
@@ -115,11 +117,15 @@ my $nr = 0;
        my @array_keys = keys( %{ $data->{documento}[0]{conteudo}} );
        my @namespace = split(/}/, $array_keys[0]);
 
-#warn $namespace[1];
+
        my $read_doc = $schema_form->{$namespace[1]}->compile(READER => pack_type( substr($namespace[0],1) , $namespace[1] ));
        my $data_doc = $read_doc->($data->{documento}[0]{conteudo}{pack_type(substr($namespace[0],1) ,  $namespace[1])}[0]);
 
        push @result, { $namespace[1] => $data_doc};
+if($namespace[1] eq 'formCondicoesDeMoradia')
+{
+warn Dumper($data_doc);
+}
 
        $nr++;
 
@@ -132,24 +138,44 @@ my $nr = 0;
 }
 
 sub transform {
-    my (@result) = @_;
+    my (@data) = @_;
   #  transform_endereco($data->{formIdentificacaoPessoal}{endereco});
 
-    for (my $i=0; $i < scalar(@result); $i++){
-        my @array = keys(%{$result[$i]});
+    for (my $i=0; $i < scalar(@data); $i++){
+        my @array = keys(%{$data[$i]});
         switch ($array[0]) {
             case 'formAtendimentoEspecificoSEGARANTA' { }
-            case 'formCondicoesDeMoradia'             {}
+            case 'formCondicoesDeMoradia'             {
+#                                                        transform_tipo_contrucao_moradia($data[$i]->{formCondicoesDeMoradia});
+#                                                        transform_tipo_abastecimento_agua($data[$i]->{formCondicoesDeMoradia});
+#                                                        transform_tratamento_agua($data[$i]->{formCondicoesDeMoradia});
+#                                                        transform_escoamento_sanitario($data[$i]->{formCondicoesDeMoradia});
+#                                                        transform_destino_lixo($data[$i]->{formCondicoesDeMoradia});
+                                                        transform_situacao_moradia($data[$i]->{formCondicoesDeMoradia});
+                                                        transform_tipo_iluminacao($data[$i]->{formCondicoesDeMoradia}); 
+                                                        transform_tempo_moradia($data[$i]->{formCondicoesDeMoradia});
+                                                        transform_possui_banheiro($data[$i]->{formCondicoesDeMoradia});
+                                                      }
             case 'formConvivenciaFamiliarComunitaria' {}
             case 'formConvivenciaSocial'              {}
             case 'formDirecionamentoDoAtendimento'    {}
-            case 'formDocumentacao'                   {}
+            case 'formDocumentacao'                   { 
+                                                        transform_registro_nascimento($data[$i]->{formDocumentacao});
+                                                        transform_identidade($data[$i]->{formDocumentacao});
+                                                        transform_cpf($data[$i]->{formDocumentacao});
+                                                        transform_ctps($data[$i]->{formDocumentacao});
+                                                        transform_titulo_eleitor($data[$i]->{formDocumentacao});
+                                                        transform_reservista($data[$i]->{formDocumentacao});
+                                                        transform_nis($data[$i]->{formDocumentacao});
+
+                                                      }
             case 'formEducacao'                       {}
-            case 'formIdentificacaoPessoal'           { transform_estado_civil($result[$i]->{formIdentificacaoPessoal}); 
-                                                        transform_sexo($result[$i]->{formIdentificacaoPessoal});
-                                                        transform_endereco($result[$i]->{formIdentificacaoPessoal});
-                                                        transform_sexualidade($result[$i]->{formIdentificacaoPessoal});
-                                                        transform_data_nascimento($result[$i]->{formIdentificacaoPessoal});
+            case 'formIdentificacaoPessoal'           { 
+                                                        transform_estado_civil($data[$i]->{formIdentificacaoPessoal}); 
+                                                        transform_sexo($data[$i]->{formIdentificacaoPessoal});
+                                                        transform_endereco($data[$i]->{formIdentificacaoPessoal});
+                                                        transform_sexualidade($data[$i]->{formIdentificacaoPessoal});
+                                                        transform_data_nascimento($data[$i]->{formIdentificacaoPessoal});
                                                        }
             case 'formJuridico'                       {}
             case 'formOrigemEncaminhamento'           {}
@@ -184,75 +210,102 @@ sub transform_endereco {
 
 sub transform_estado_civil {
     my $data = shift;
-    $data->{aPartirDe16Anos}{estadoCivil} = $dbi->resultset('DEstadoCivil')->find_or_create({ estado_civil =>  
-                                                                                                $data->{aPartirDe16Anos}{estadoCivil},
-                                                                                            })->id_estado_civil;
+    my $value = 'Não Informado';
+    if ($data->{aPartirDe16Anos}{estadoCivil}){
+        $value = $data->{aPartirDe16Anos}{estadoCivil};
+    }
+    $data->{aPartirDe16Anos}{estadoCivil} = $dbi->resultset('DEstadoCivil')->find_or_create({ estado_civil =>  $value, })->id_estado_civil;
 }
 
 sub transform_raca_etnia {
     my $data = shift;
-    $data->{raca_etnia} = $dbi->resultset('DRacaEtinia')->find_or_create({ raca_etnia => $data->{raca_etnia},
-                                                                            })->id_estado_civil;
+    my $value = 'Não Informado';
+    if ($data->{raca_etnia}){
+        $value = $data->{raca_etnia};
+    }
+    $data->{raca_etnia} = $dbi->resultset('DRacaEtinia')->find_or_create({ raca_etnia => $value, })->id_estado_civil;
 }
 
 sub transform_sexo {
     my $data = shift;
-    $data->{sexo} = $dbi->resultset('DSexo')->find_or_create({ sexo => $data->{sexo},
-                                                                            })->id_sexo;
+    my $value = 'Não Informado';
+    if ($data->{sexo}){
+        $value = $data->{sexo};
+    }
+    $data->{sexo} = $dbi->resultset('DSexo')->find_or_create({ sexo => $value, })->id_sexo;
 }
 
 sub transform_sexualidade {
     my $data = shift;
-    my $orientacao = 'Não Informado';
+    my $value = 'Não Informado';
     if ($data->{aPartirDe14Anos}{orientacaoSexual}){
-        $orientacao = $data->{aPartirDe14Anos}{orientacaoSexual};
+        $value = $data->{aPartirDe14Anos}{orientacaoSexual};
     }
-
     $data->{aPartirDe14Anos}{orientacaoSexual} = 
-                            $dbi->resultset('DSexualidade')->find_or_create({ sexualidade => $orientacao,
-                                                                            })->id_sexualidade;
+                            $dbi->resultset('DSexualidade')->find_or_create({ sexualidade => $value, })->id_sexualidade;
 }
 
 sub transform_registro_nascimento {
     my $data = shift;
-    $data->{registro_nascimento} = $dbi->resultset('DRegistroNascimento')->find_or_create({ situacao => $data->{registro_nascimento},
-                                                                            })->id_registro_nascimento;
+    my $value = 'Não Informado';
+    if ($data->{registroDeNascimento}){
+        $value = $data->{registroDeNascimento};
+    }
+    $data->{registro_nascimento} = $dbi->resultset('DRegistroNascimento')->find_or_create({ situacao => $value, })->id_registro_nascimento;
 }
 
 sub transform_identidade {
     my $data = shift;
-    $data->{identidade} = $dbi->resultset('DIdentidade')->find_or_create({ situacao => $data->{identidade},
-                                                                            })->id_identidade;
+    my $value =  'Não informado';
+    if($data->{identidade}){
+        $value = $data->{identidade};
+    }
+    $data->{identidade} = $dbi->resultset('DIdentidade')->find_or_create({ situacao => $value, })->id_identidade;
 }
 
 sub transform_cpf {
     my $data = shift;
-    $data->{cpf} = $dbi->resultset('DCpf')->find_or_create({ situacao => $data->{cpf},
-                                                                            })->id_cpf;
+    my $value =  'Não informado';
+    if($data->{cpf}){
+        $value = $data->{cpf};
+    }
+    $data->{cpf} = $dbi->resultset('DCpf')->find_or_create({ situacao => $value, })->id_cpf;
 }
 
 sub transform_ctps {
     my $data = shift;
-    $data->{ctps} = $dbi->resultset('DCtps')->find_or_create({ situacao => $data->{ctps},
-                                                                            })->id_ctps;
+    my $value =  'Não informado';
+    if($data->{ctps}){
+        $value = $data->{ctps};
+    }
+    $data->{ctps} = $dbi->resultset('DCtp')->find_or_create({ situacao => $value, })->id_ctps;
 }
 
 sub transform_titulo_eleitor {
     my $data = shift;
-    $data->{titulo_eleitor} = $dbi->resultset('DTitulo_eleitor')->find_or_create({ situacao => $data->{titulo_eleitor},
-                                                                            })->id_titulo_eleitor;
+    my $value =  'Não informado';
+    if($data->{titulo_eleitor}){
+        $value = $data->{titulo_eleitor};
+    }
+    $data->{titulo_eleitor} = $dbi->resultset('DTituloEleitor')->find_or_create({ situacao =>$value, })->id_titulo_eleitor;
 }
 
 sub transform_reservista {
     my $data = shift;
-    $data->{reservista} = $dbi->resultset('DReservista')->find_or_create({ situacao => $data->{reservista},
-                                                                            })->id_reservista;
+    my $value =  'Não informado';
+    if($data->{reservista}){
+        $value = $data->{reservista};
+    }
+    $data->{reservista} = $dbi->resultset('DReservista')->find_or_create({ situacao => $value, })->id_reservista;
 }
 
 sub transform_nis {
     my $data = shift;
-    $data->{nis} = $dbi->resultset('DNis')->find_or_create({ situacao => $data->{nis},
-                                                                            })->id_nis;
+    my $value =  'Não informado';
+    if($data->{nis}){
+        $value = $data->{nis};
+    }
+    $data->{nis} = $dbi->resultset('DNi')->find_or_create({ situacao => $value, })->id_nis;
 }
 
 sub transform_data_nascimento {
@@ -272,56 +325,89 @@ sub transform_data_nascimento {
                                                               })->id_data;
 }
 
-sub transform_destino_lixo {
-    my $data = shift;
-    $data->{destino_lixo} = $dbi->resultset('DDestinoLixo')->find_or_create({ destino_lixo => $data->{destino_lixo},
-                                                                            })->id_destino_lixo;
-}
-
-sub transform_escoamento_sanitario{
-    my $data = shift;
-    $data->{escoamento_sanitario} = $dbi->resultset('DEscoamentoSanitario')->find_or_create({ escoamento_sanitario => $data->{escoamento_sanitario},
-                                                                            })->id_escoamento_sanitario;
-}
-
 sub transform_tipo_iluminacao {
     my $data = shift;
-    $data->{tipo_iluminacao} = $dbi->resultset('DTipoIluminacao')->find_or_create({ tipo_iluminacao => $data->{tipo_iluminacao},
-                                                                            })->id_tipo_iluminacao;
+    my $value =  'Não informado';
+    if($data->{tipoIluminacao}){
+        $value = $data->{tipoIluminacao};
+    }
+    $data->{tipoIluminacao} = $dbi->resultset('DTipoIluminacao')->find_or_create({ tipo_iluminacao => $value, })->id_tipo_iluminacao;
 }
 
-sub transform_tratamento_agua {
-    my $data = shift;
-    $data->{tratamento_agua} = $dbi->resultset('DTratamentoAgua')->find_or_create({ tratamento_agua => $data->{tratamento_agua},
-                                                                            })->id_tratamento_agua;
-}
 
-sub transform_tipo_abastecimento_agua {
-    my $data = shift;
-    $data->{tipo_abastecimento_agua} = $dbi->resultset('DTipoAbastecimentoAgua')->find_or_create(
-                                                                            { tipo_abastecimento_agua => $data->{tipo_abastecimento_agua},
-                                                                            })->id_tipo_abastecimento_agua;
-}
+#sub transform_destino_lixo {
+#    my $data = shift;
+#    my $value =  'Não informado';
+#    if($data->{destinoLixo}){
+#        $value = $data->{destinoLixo};
+#    }
+#    $data->{destinoLixo} = $dbi->resultset('DDestinoLixo')->find_or_create({ destino_lixo => $value, })->id_destino_lixo;
+#}
 
-sub transform_tipo_contrucao_moradia {
-    my $data = shift;
-    $data->{tipo_contrucao_moradia} = $dbi->resultset('DTipoConstrucaoMoradia')->find_or_create(
-                                                                            { tipo_contrucao_moradia => $data->{tipo_contrucao_moradia},
-                                                                            })->id_tipo_contrucao_moradia;
-}
+#sub transform_escoamento_sanitario{
+#    my $data = shift;
+#    my $value =  'Não informado';
+#    if($data->{escoamentoSanitario}){
+#        $value = $data->{escoamentoSanitario};
+#    }
+#    $data->{escoamentoSanitario} = $dbi->resultset('DEscoamentoSanitario')->find_or_create({ escoamento_sanitario => $value,
+#                                                                            })->id_escoamento_sanitario;
+#}
+
+#sub transform_tratamento_agua {
+#    my $data = shift;
+#    my $value =  'Não informado';
+#    if($data->{tratamentoAgua}){
+#        $value = $data->{tratamentoAgua};
+#    }
+#    $data->{tratamentoAgua} = $dbi->resultset('DTratamentoAgua')->find_or_create({ tratamento_agua => $value, })->id_tratamento_agua;
+#}
+
+#sub transform_tipo_abastecimento_agua {
+#    my $data = shift;
+#    my $value =  'Não informado';
+#    if($data->{tipoAbastecimentoAgua}){
+#        $value = $data->{tipoAbastecimentoAgua};
+#    }
+#    $data->{tipoAbastecimentoAgua} = $dbi->resultset('DTipoAbastecimentoAgua')->find_or_create( { tipo_abastecimento_agua => $value,
+#                                                                                                   })->id_tipo_abastecimento_agua;
+#}
+
+#sub transform_tipo_contrucao_moradia {
+#    my $data = shift;
+#    my $value =  'Não informado';
+#    if($data->{tiposConstrucao}){
+#        $value = $data->{tiposConstrucao};
+#    }
+#    $data->{tiposConstrucao} = $dbi->resultset('DTipoConstrucaoMoradia')->find_or_create( { tipo_contrucao_moradia => $value,
+#                                                                                                 })->id_tipo_contrucao_moradia;
+#}
 
 sub transform_tempo_moradia {
     my $data = shift;
-    $data->{tempo_moradia} = $dbi->resultset('DTempoMoradia')->find_or_create(
-                                                                            { tempo_moradia => $data->{tempo_moradia},
-                                                                            })->id_tempo_moradia;
+    my $value =  'Não informado';
+    if($data->{tempoMoradia}){
+        $value = $data->{tempoMoradia};
+    }
+    $data->{tempoMoradia} = $dbi->resultset('DTempoMoradia')->find_or_create( { tempo_moradia => $value, })->id_tempo_moradia;
 }
 
 sub transform_situacao_moradia {
     my $data = shift;
-    $data->{situacao_moradia} = $dbi->resultset('DSituacaoMoradia')->find_or_create(
-                                                                            { situacao_moradia => $data->{situacao_moradia},
-                                                                            })->id_situacao_moradia;
+    my $value =  'Não informado';
+    if($data->{situacaoMoradia}){
+        $value = $data->{situacaoMoradia};
+    }
+    $data->{situacaoMoradia} = $dbi->resultset('DSituacaoMoradia')->find_or_create( { situacao_moradia => $value, })->id_situacao_moradia;
+}
+
+sub transform_possui_banheiro{
+    my $data = shift;
+    my $value =  'Não informado';
+    if($data->{possuiBanheiro}){
+        $value = $data->{possuiBanheiro};
+    }
+    $data->{possuiBanheiro} = $dbi->resultset('DPossuiBanheiro')->find_or_create( { situacao_moradia => $value,})->id_possui_banheiro;
 }
 
 sub transform_vinculo_religioso {
