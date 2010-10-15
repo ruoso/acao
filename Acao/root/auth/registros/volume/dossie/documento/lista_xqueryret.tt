@@ -19,9 +19,8 @@
     <td>
 	  { if ( $x/dc:representaDocumentoFisico/text() eq '1' ) then ("Sim") else ("Não") }
     </td>
-
     <td>
-    { if ($x/dc:audit/adt:auditoria/adt:original/text() ne '' ) then (
+ { if (exists($x/dc:audit/adt:auditoria/adt:original) ) then (
 <a title="{$x/dc:audit/adt:auditoria/adt:original/text()}" href="[% c.uri_for('/auth/registros/volume/') _ id_volume _ '/' _ controle %]/visualizar/{$x/dc:audit/adt:auditoria/adt:original/text()}/{substring(namespace-uri($x/dc:documento/*/*),41)}/invalidado" >Original</a>
 ) else ( ) } 
     </td>
