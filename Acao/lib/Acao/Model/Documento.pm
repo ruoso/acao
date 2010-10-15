@@ -138,7 +138,7 @@ txn_method 'inserir_documento' => authorized $role_criar => sub {
 
    my $xq_audit = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
                    declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";  
-                   update insert ('.$audit->toString.') into collection("'.$id_volume.'")/ns:dossie[ns:controle="'.$controle.'"]/ns:doc/*[1]/dc:audit';
+                   update insert ('.$audit->toString.') into collection("'.$id_volume.'")/ns:dossie[ns:controle="'.$controle.'"]/ns:doc/dc:documento[dc:id = "'.$uuid_str.'"]/dc:audit';
    $self->sedna->execute($xq_audit);
 
     if ($id_documento ne '')
