@@ -22,7 +22,9 @@ __PACKAGE__->table("d_vinculacao_cca");
 =head2 id_vinculacao_cca
 
   data_type: 'integer'
+  is_auto_increment: 1
   is_nullable: 0
+  sequence: 'd_vinculacao_cca_id_vinculacao_cca_seq'
 
 =head2 vinculacao_cca
 
@@ -34,7 +36,12 @@ __PACKAGE__->table("d_vinculacao_cca");
 
 __PACKAGE__->add_columns(
   "id_vinculacao_cca",
-  { data_type => "integer", is_nullable => 0 },
+  {
+    data_type         => "integer",
+    is_auto_increment => 1,
+    is_nullable       => 0,
+    sequence          => "d_vinculacao_cca_id_vinculacao_cca_seq",
+  },
   "vinculacao_cca",
   {
     data_type   => "text",
@@ -62,8 +69,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-14 15:32:31
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:0v7mE8M3LMEUhSiGOw1G+Q
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-15 16:51:40
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:BkzlG0u3tkPCuycxRDRgOA
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

@@ -242,31 +242,7 @@ __PACKAGE__->table("f_atendimento");
   data_type: 'integer'
   is_nullable: 0
 
-=head2 id_tipo_abastecimento_agua
-
-  data_type: 'integer'
-  is_foreign_key: 1
-  is_nullable: 0
-
-=head2 id_tratamento_agua
-
-  data_type: 'integer'
-  is_foreign_key: 1
-  is_nullable: 0
-
 =head2 id_tipo_iluminacao
-
-  data_type: 'integer'
-  is_foreign_key: 1
-  is_nullable: 0
-
-=head2 id_escoamento_sanitario
-
-  data_type: 'integer'
-  is_foreign_key: 1
-  is_nullable: 0
-
-=head2 id_destino_lixo
 
   data_type: 'integer'
   is_foreign_key: 1
@@ -731,23 +707,13 @@ __PACKAGE__->table("f_atendimento");
   is_foreign_key: 1
   is_nullable: 0
 
-=head2 frequentando_escola
-
-  data_type: 'integer'
-  is_nullable: 0
-
-=head2 escola_matriculado_proximo_residencia
-
-  data_type: 'integer'
-  is_nullable: 0
-
 =head2 id_escolaridade
 
   data_type: 'integer'
   is_foreign_key: 1
   is_nullable: 0
 
-=head2 id_avaliacao_frequencia_escolar
+=head2 id_auto_avaliacao_frequencia_escolar
 
   data_type: 'integer'
   is_foreign_key: 1
@@ -759,7 +725,7 @@ __PACKAGE__->table("f_atendimento");
   is_foreign_key: 1
   is_nullable: 0
 
-=head2 id_avaliacao_rendimento_escolar
+=head2 id_auto_avaliacao_rendimento_escolar
 
   data_type: 'integer'
   is_foreign_key: 1
@@ -812,17 +778,12 @@ __PACKAGE__->table("f_atendimento");
   is_foreign_key: 1
   is_nullable: 0
 
-=head2 tipo_construcao_moradia_madeira
-
-  data_type: 'integer'
-  is_nullable: 0
-
-=head2 tipo_construcao_moradia_material_aproveitado
-
-  data_type: 'integer'
-  is_nullable: 0
-
 =head2 tipo_construcao_moradia_taipa_nao_resvestida
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 tipo_construcao_moradia_madeira
 
   data_type: 'integer'
   is_nullable: 0
@@ -832,9 +793,129 @@ __PACKAGE__->table("f_atendimento");
   data_type: 'integer'
   is_nullable: 0
 
+=head2 tipo_construcao_moradia_material_aproveitado
+
+  data_type: 'integer'
+  is_nullable: 0
+
 =head2 tipo_construcao_moradia_tijolo_alvenaria
 
   data_type: 'integer'
+  is_nullable: 0
+
+=head2 tipo_abastecimento_agua_rede_publica
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 tipo_abastecimento_agua_poco_profundo
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 tipo_abastecimento_agua_cacimba
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 tipo_abastecimento_agua_carro_pipa
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 tipo_abastecimento_agua_rio_lagoa
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 tratamento_agua_filtracao
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 tratamento_agua_fervura
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 tratamento_agua_cloracao
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 tratamento_agua_sem_tratamento
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 escoamento_sanitario_rede_publica
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 escoamento_sanitario_fossa_rudimentar
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 escoamento_sanitario_fossa_septica
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 escoamento_sanitario_ceu_aberto
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 destino_lixo_coleta
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 destino_lixo_queima
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 destino_lixo_queima_enterramento
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 destino_lixo_ceu_aberto
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 id_esta_frequentando_escola
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_escola_matriculado_proximo_residencia
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_criancas_familia_todas_matriculadas
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_auto_avaliacao_participacao_atividade_escolar
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_auto_avaliacao_participacao_familia_escola
+
+  data_type: 'integer'
+  is_foreign_key: 1
   is_nullable: 0
 
 =cut
@@ -922,15 +1003,7 @@ __PACKAGE__->add_columns(
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
   "possui_banheiro",
   { data_type => "integer", is_nullable => 0 },
-  "id_tipo_abastecimento_agua",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "id_tratamento_agua",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
   "id_tipo_iluminacao",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "id_escoamento_sanitario",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "id_destino_lixo",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
   "id_origem_encaminhamento",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
@@ -1108,17 +1181,13 @@ __PACKAGE__->add_columns(
   { data_type => "integer", is_nullable => 0 },
   "id_tipo_escola_matriculado",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "frequentando_escola",
-  { data_type => "integer", is_nullable => 0 },
-  "escola_matriculado_proximo_residencia",
-  { data_type => "integer", is_nullable => 0 },
   "id_escolaridade",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "id_avaliacao_frequencia_escolar",
+  "id_auto_avaliacao_frequencia_escolar",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
   "id_avaliacao_preparacao_atividades_escolares",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "id_avaliacao_rendimento_escolar",
+  "id_auto_avaliacao_rendimento_escolar",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
   "id_avaliacao_familia_vida_escolar",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
@@ -1136,16 +1205,60 @@ __PACKAGE__->add_columns(
   { data_type => "integer", is_nullable => 0 },
   "id_possui_banheiro",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "tipo_construcao_moradia_madeira",
-  { data_type => "integer", is_nullable => 0 },
-  "tipo_construcao_moradia_material_aproveitado",
-  { data_type => "integer", is_nullable => 0 },
   "tipo_construcao_moradia_taipa_nao_resvestida",
+  { data_type => "integer", is_nullable => 0 },
+  "tipo_construcao_moradia_madeira",
   { data_type => "integer", is_nullable => 0 },
   "tipo_construcao_moradia_taipa_revestida",
   { data_type => "integer", is_nullable => 0 },
+  "tipo_construcao_moradia_material_aproveitado",
+  { data_type => "integer", is_nullable => 0 },
   "tipo_construcao_moradia_tijolo_alvenaria",
   { data_type => "integer", is_nullable => 0 },
+  "tipo_abastecimento_agua_rede_publica",
+  { data_type => "integer", is_nullable => 0 },
+  "tipo_abastecimento_agua_poco_profundo",
+  { data_type => "integer", is_nullable => 0 },
+  "tipo_abastecimento_agua_cacimba",
+  { data_type => "integer", is_nullable => 0 },
+  "tipo_abastecimento_agua_carro_pipa",
+  { data_type => "integer", is_nullable => 0 },
+  "tipo_abastecimento_agua_rio_lagoa",
+  { data_type => "integer", is_nullable => 0 },
+  "tratamento_agua_filtracao",
+  { data_type => "integer", is_nullable => 0 },
+  "tratamento_agua_fervura",
+  { data_type => "integer", is_nullable => 0 },
+  "tratamento_agua_cloracao",
+  { data_type => "integer", is_nullable => 0 },
+  "tratamento_agua_sem_tratamento",
+  { data_type => "integer", is_nullable => 0 },
+  "escoamento_sanitario_rede_publica",
+  { data_type => "integer", is_nullable => 0 },
+  "escoamento_sanitario_fossa_rudimentar",
+  { data_type => "integer", is_nullable => 0 },
+  "escoamento_sanitario_fossa_septica",
+  { data_type => "integer", is_nullable => 0 },
+  "escoamento_sanitario_ceu_aberto",
+  { data_type => "integer", is_nullable => 0 },
+  "destino_lixo_coleta",
+  { data_type => "integer", is_nullable => 0 },
+  "destino_lixo_queima",
+  { data_type => "integer", is_nullable => 0 },
+  "destino_lixo_queima_enterramento",
+  { data_type => "integer", is_nullable => 0 },
+  "destino_lixo_ceu_aberto",
+  { data_type => "integer", is_nullable => 0 },
+  "id_esta_frequentando_escola",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_escola_matriculado_proximo_residencia",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_criancas_familia_todas_matriculadas",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_auto_avaliacao_participacao_atividade_escolar",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_auto_avaliacao_participacao_familia_escola",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
 );
 
 =head1 RELATIONS
@@ -1263,21 +1376,6 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
-=head2 id_tipo_abastecimento_agua
-
-Type: belongs_to
-
-Related object: L<Acao::Plugins::SDH::DimSchema::Result::DTipoAbastecimentoAgua>
-
-=cut
-
-__PACKAGE__->belongs_to(
-  "id_tipo_abastecimento_agua",
-  "Acao::Plugins::SDH::DimSchema::Result::DTipoAbastecimentoAgua",
-  { id_tipo_abastecimento_agua => "id_tipo_abastecimento_agua" },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
-
 =head2 id_sexualidade
 
 Type: belongs_to
@@ -1305,21 +1403,6 @@ __PACKAGE__->belongs_to(
   "id_raca_etnia",
   "Acao::Plugins::SDH::DimSchema::Result::DRacaEtnia",
   { id_raca_etnia => "id_raca_etnia" },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
-
-=head2 id_escoamento_sanitario
-
-Type: belongs_to
-
-Related object: L<Acao::Plugins::SDH::DimSchema::Result::DEscoamentoSanitario>
-
-=cut
-
-__PACKAGE__->belongs_to(
-  "id_escoamento_sanitario",
-  "Acao::Plugins::SDH::DimSchema::Result::DEscoamentoSanitario",
-  { id_escoamento_sanitario => "id_escoamento_sanitario" },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
@@ -1415,21 +1498,6 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
-=head2 id_tratamento_agua
-
-Type: belongs_to
-
-Related object: L<Acao::Plugins::SDH::DimSchema::Result::DTratamentoAgua>
-
-=cut
-
-__PACKAGE__->belongs_to(
-  "id_tratamento_agua",
-  "Acao::Plugins::SDH::DimSchema::Result::DTratamentoAgua",
-  { id_tratamento_agua => "id_tratamento_agua" },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
-
 =head2 id_frequencia_violencia_institucional
 
 Type: belongs_to
@@ -1443,6 +1511,23 @@ __PACKAGE__->belongs_to(
   "Acao::Plugins::SDH::DimSchema::Result::DFrequenciaViolenciaInstitucional",
   {
     id_frequencia_violencia_institucional => "id_frequencia_violencia_institucional",
+  },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_auto_avaliacao_participacao_familia_escola
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DAutoAvaliacaoParticipacaoFamiliaEscola>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_auto_avaliacao_participacao_familia_escola",
+  "Acao::Plugins::SDH::DimSchema::Result::DAutoAvaliacaoParticipacaoFamiliaEscola",
+  {
+    id_auto_avaliacao_participacao_familia_escola => "id_auto_avaliacao_participacao_familia_escola",
   },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
@@ -1541,19 +1626,19 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
-=head2 id_avaliacao_frequencia_escolar
+=head2 id_auto_avaliacao_frequencia_escolar
 
 Type: belongs_to
 
-Related object: L<Acao::Plugins::SDH::DimSchema::Result::DAvaliacaoFrequenciaEscolar>
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DAutoAvaliacaoFrequenciaEscolar>
 
 =cut
 
 __PACKAGE__->belongs_to(
-  "id_avaliacao_frequencia_escolar",
-  "Acao::Plugins::SDH::DimSchema::Result::DAvaliacaoFrequenciaEscolar",
+  "id_auto_avaliacao_frequencia_escolar",
+  "Acao::Plugins::SDH::DimSchema::Result::DAutoAvaliacaoFrequenciaEscolar",
   {
-    id_avaliacao_frequencia_escolar => "id_avaliacao_frequencia_escolar",
+    id_auto_avaliacao_frequencia_escolar => "id_auto_avaliacao_frequencia_escolar",
   },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
@@ -1618,21 +1703,6 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
-=head2 id_destino_lixo
-
-Type: belongs_to
-
-Related object: L<Acao::Plugins::SDH::DimSchema::Result::DDestinoLixo>
-
-=cut
-
-__PACKAGE__->belongs_to(
-  "id_destino_lixo",
-  "Acao::Plugins::SDH::DimSchema::Result::DDestinoLixo",
-  { id_destino_lixo => "id_destino_lixo" },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
-
 =head2 id_violencia_institucional
 
 Type: belongs_to
@@ -1663,6 +1733,23 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
+=head2 id_criancas_familia_todas_matriculada
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DCriancasFamiliaTodasMatriculada>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_criancas_familia_todas_matriculada",
+  "Acao::Plugins::SDH::DimSchema::Result::DCriancasFamiliaTodasMatriculada",
+  {
+    id_criancas_familia_todas_matriculadas => "id_criancas_familia_todas_matriculadas",
+  },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
 =head2 id_contraceptivo
 
 Type: belongs_to
@@ -1678,19 +1765,34 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
-=head2 id_avaliacao_rendimento_escolar
+=head2 id_esta_frequentando_escola
 
 Type: belongs_to
 
-Related object: L<Acao::Plugins::SDH::DimSchema::Result::DAvaliacaoRendimentoEscolar>
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DEstaFrequentandoEscola>
 
 =cut
 
 __PACKAGE__->belongs_to(
-  "id_avaliacao_rendimento_escolar",
-  "Acao::Plugins::SDH::DimSchema::Result::DAvaliacaoRendimentoEscolar",
+  "id_esta_frequentando_escola",
+  "Acao::Plugins::SDH::DimSchema::Result::DEstaFrequentandoEscola",
+  { id_esta_frequentando_escola => "id_esta_frequentando_escola" },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_auto_avaliacao_rendimento_escolar
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DAutoAvaliacaoRendimentoEscolar>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_auto_avaliacao_rendimento_escolar",
+  "Acao::Plugins::SDH::DimSchema::Result::DAutoAvaliacaoRendimentoEscolar",
   {
-    id_avaliacao_rendimento_escolar => "id_avaliacao_rendimento_escolar",
+    id_auto_avaliacao_rendimento_escolar => "id_auto_avaliacao_rendimento_escolar",
   },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
@@ -1723,6 +1825,23 @@ __PACKAGE__->belongs_to(
   "Acao::Plugins::SDH::DimSchema::Result::DAtendimentoContraViolenciaIntrafamiliar",
   {
     id_atendimento_contra_violencia_intrafamiliar => "id_atendimento_contra_violencia_intrafamiliar",
+  },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_auto_avaliacao_participacao_atividade_escolar
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DAutoAvaliacaoParticipacaoAtividadeEscolar>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_auto_avaliacao_participacao_atividade_escolar",
+  "Acao::Plugins::SDH::DimSchema::Result::DAutoAvaliacaoParticipacaoAtividadeEscolar",
+  {
+    id_auto_avaliacao_participacao_atividade_escolar => "id_auto_avaliacao_participacao_atividade_escolar",
   },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
@@ -1915,6 +2034,23 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
+=head2 id_escola_matriculado_proximo_residencia
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DEscolaMatriculadoProximoResidencia>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_escola_matriculado_proximo_residencia",
+  "Acao::Plugins::SDH::DimSchema::Result::DEscolaMatriculadoProximoResidencia",
+  {
+    id_escola_matriculado_proximo_residencia => "id_escola_matriculado_proximo_residencia",
+  },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
 =head2 id_violencia_intrafamiliar
 
 Type: belongs_to
@@ -1976,8 +2112,8 @@ __PACKAGE__->belongs_to(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-14 15:32:31
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:G/AeRIxrBKbvHZq6rvcaHA
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-15 16:51:40
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:4LQ/aHJGdtbfe0NwEgxblw
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

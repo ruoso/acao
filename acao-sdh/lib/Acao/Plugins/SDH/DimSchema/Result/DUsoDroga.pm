@@ -22,7 +22,9 @@ __PACKAGE__->table("d_uso_drogas");
 =head2 id_uso_drogas
 
   data_type: 'integer'
+  is_auto_increment: 1
   is_nullable: 0
+  sequence: 'd_uso_drogas_id_uso_drogas_seq'
 
 =head2 uso_drogas
 
@@ -34,7 +36,12 @@ __PACKAGE__->table("d_uso_drogas");
 
 __PACKAGE__->add_columns(
   "id_uso_drogas",
-  { data_type => "integer", is_nullable => 0 },
+  {
+    data_type         => "integer",
+    is_auto_increment => 1,
+    is_nullable       => 0,
+    sequence          => "d_uso_drogas_id_uso_drogas_seq",
+  },
   "uso_drogas",
   {
     data_type   => "text",
@@ -62,8 +69,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-14 15:32:31
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:eh5x6KBkSzxnP175ICIx0g
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-15 16:51:40
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:xshOnbJiPn8CjNmrcXkYPA
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

@@ -22,7 +22,9 @@ __PACKAGE__->table("d_nocoes_informatica");
 =head2 id_nocoes_informatica
 
   data_type: 'integer'
+  is_auto_increment: 1
   is_nullable: 0
+  sequence: 'd_nocoes_informatica_id_nocoes_informatica_seq'
 
 =head2 nocoes_informatica
 
@@ -34,7 +36,12 @@ __PACKAGE__->table("d_nocoes_informatica");
 
 __PACKAGE__->add_columns(
   "id_nocoes_informatica",
-  { data_type => "integer", is_nullable => 0 },
+  {
+    data_type         => "integer",
+    is_auto_increment => 1,
+    is_nullable       => 0,
+    sequence          => "d_nocoes_informatica_id_nocoes_informatica_seq",
+  },
   "nocoes_informatica",
   {
     data_type   => "text",
@@ -62,8 +69,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-14 15:32:31
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:bMU4l7IvAXaJ5R9tUCFtmQ
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-15 16:51:40
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:vSS4QKTKwOEVogMpoDS1Bg
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

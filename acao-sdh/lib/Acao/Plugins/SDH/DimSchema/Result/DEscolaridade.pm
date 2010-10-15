@@ -22,7 +22,9 @@ __PACKAGE__->table("d_escolaridade");
 =head2 id_escolaridade
 
   data_type: 'integer'
+  is_auto_increment: 1
   is_nullable: 0
+  sequence: 'd_escolaridade_id_escolaridade_seq'
 
 =head2 escolaridade
 
@@ -34,7 +36,12 @@ __PACKAGE__->table("d_escolaridade");
 
 __PACKAGE__->add_columns(
   "id_escolaridade",
-  { data_type => "integer", is_nullable => 0 },
+  {
+    data_type         => "integer",
+    is_auto_increment => 1,
+    is_nullable       => 0,
+    sequence          => "d_escolaridade_id_escolaridade_seq",
+  },
   "escolaridade",
   {
     data_type   => "text",
@@ -62,8 +69,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-14 15:32:31
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:vrogtY97ee3xIV8U8oifCA
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-15 16:51:40
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:Emr5s0ykWn5xaz6SCkJ0zg
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

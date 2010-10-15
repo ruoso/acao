@@ -22,7 +22,9 @@ __PACKAGE__->table("d_avaliacao_servico_saude");
 =head2 id_avaliacao_servico_saude
 
   data_type: 'integer'
+  is_auto_increment: 1
   is_nullable: 0
+  sequence: 'd_avaliacao_servico_saude_id_avaliacao_servico_saude_seq'
 
 =head2 avaliacao_servico_saude
 
@@ -34,7 +36,12 @@ __PACKAGE__->table("d_avaliacao_servico_saude");
 
 __PACKAGE__->add_columns(
   "id_avaliacao_servico_saude",
-  { data_type => "integer", is_nullable => 0 },
+  {
+    data_type         => "integer",
+    is_auto_increment => 1,
+    is_nullable       => 0,
+    sequence          => "d_avaliacao_servico_saude_id_avaliacao_servico_saude_seq",
+  },
   "avaliacao_servico_saude",
   {
     data_type   => "text",
@@ -64,8 +71,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-14 15:32:31
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:IIL3G9VeE1osP6X9+D5K/w
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-15 16:51:40
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:+iKYiMhHAVDKrGHWHfKBIQ
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

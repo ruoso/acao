@@ -1,4 +1,4 @@
-package Acao::Plugins::SDH::DimSchema::Result::DViolenciaIntrafamiliar;
+package Acao::Plugins::SDH::DimSchema::Result::DCriancasFamiliaTodasMatriculada;
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
@@ -11,22 +11,22 @@ use base 'DBIx::Class::Core';
 
 =head1 NAME
 
-Acao::Plugins::SDH::DimSchema::Result::DViolenciaIntrafamiliar
+Acao::Plugins::SDH::DimSchema::Result::DCriancasFamiliaTodasMatriculada
 
 =cut
 
-__PACKAGE__->table("d_violencia_intrafamiliar");
+__PACKAGE__->table("d_criancas_familia_todas_matriculadas");
 
 =head1 ACCESSORS
 
-=head2 id_violencia_intrafamiliar
+=head2 id_criancas_familia_todas_matriculadas
 
   data_type: 'integer'
   is_auto_increment: 1
   is_nullable: 0
-  sequence: 'd_violencia_intrafamiliar_id_violencia_intrafamiliar_seq'
+  sequence: 'd_criancas_familia_todas_matriculadas_id_criancas_familia_to622'
 
-=head2 violencia_intrafamiliar
+=head2 criancas_familia_todas_matriculadas
 
   data_type: 'text'
   is_nullable: 0
@@ -35,21 +35,21 @@ __PACKAGE__->table("d_violencia_intrafamiliar");
 =cut
 
 __PACKAGE__->add_columns(
-  "id_violencia_intrafamiliar",
+  "id_criancas_familia_todas_matriculadas",
   {
     data_type         => "integer",
     is_auto_increment => 1,
     is_nullable       => 0,
-    sequence          => "d_violencia_intrafamiliar_id_violencia_intrafamiliar_seq",
+    sequence          => "d_criancas_familia_todas_matriculadas_id_criancas_familia_to622",
   },
-  "violencia_intrafamiliar",
+  "criancas_familia_todas_matriculadas",
   {
     data_type   => "text",
     is_nullable => 0,
     original    => { data_type => "varchar" },
   },
 );
-__PACKAGE__->set_primary_key("id_violencia_intrafamiliar");
+__PACKAGE__->set_primary_key("id_criancas_familia_todas_matriculadas");
 
 =head1 RELATIONS
 
@@ -65,14 +65,14 @@ __PACKAGE__->has_many(
   "f_atendimentoes",
   "Acao::Plugins::SDH::DimSchema::Result::FAtendimento",
   {
-    "foreign.id_violencia_intrafamiliar" => "self.id_violencia_intrafamiliar",
+    "foreign.id_criancas_familia_todas_matriculadas" => "self.id_criancas_familia_todas_matriculadas",
   },
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
 
 # Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-15 16:51:40
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:KalurU4OKIHj3blCjLTqxA
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:j1ZabywV9dRDZrQvN5zn+Q
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

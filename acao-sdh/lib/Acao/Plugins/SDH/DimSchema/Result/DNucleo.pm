@@ -22,7 +22,9 @@ __PACKAGE__->table("d_nucleo");
 =head2 id_nucleo
 
   data_type: 'integer'
+  is_auto_increment: 1
   is_nullable: 0
+  sequence: 'd_nucleo_id_nucleo_seq'
 
 =head2 nucleo
 
@@ -34,7 +36,12 @@ __PACKAGE__->table("d_nucleo");
 
 __PACKAGE__->add_columns(
   "id_nucleo",
-  { data_type => "integer", is_nullable => 0 },
+  {
+    data_type         => "integer",
+    is_auto_increment => 1,
+    is_nullable       => 0,
+    sequence          => "d_nucleo_id_nucleo_seq",
+  },
   "nucleo",
   {
     data_type   => "text",
@@ -62,8 +69,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-14 15:32:31
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:1tP6LgyCGWQYHuk2Iwn+sQ
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-15 16:51:40
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:a5kOBMvGuzxWYBd7L5Dc2A
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

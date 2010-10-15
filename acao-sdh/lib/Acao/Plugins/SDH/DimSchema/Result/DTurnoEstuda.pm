@@ -22,7 +22,9 @@ __PACKAGE__->table("d_turno_estuda");
 =head2 id_turno_estuda
 
   data_type: 'integer'
+  is_auto_increment: 1
   is_nullable: 0
+  sequence: 'd_turno_estuda_id_turno_estuda_seq'
 
 =head2 turno_estuda
 
@@ -34,7 +36,12 @@ __PACKAGE__->table("d_turno_estuda");
 
 __PACKAGE__->add_columns(
   "id_turno_estuda",
-  { data_type => "integer", is_nullable => 0 },
+  {
+    data_type         => "integer",
+    is_auto_increment => 1,
+    is_nullable       => 0,
+    sequence          => "d_turno_estuda_id_turno_estuda_seq",
+  },
   "turno_estuda",
   {
     data_type   => "text",
@@ -45,8 +52,8 @@ __PACKAGE__->add_columns(
 __PACKAGE__->set_primary_key("id_turno_estuda");
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-14 15:32:31
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:CJVldgMsRI0+DtjCbld8Eg
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-15 16:51:40
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:rsfjGZ+yytab2umiLmtmig
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

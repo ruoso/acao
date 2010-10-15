@@ -22,7 +22,9 @@ __PACKAGE__->table("d_tipo_iluminacao");
 =head2 id_tipo_iluminacao
 
   data_type: 'integer'
+  is_auto_increment: 1
   is_nullable: 0
+  sequence: 'd_tipo_iluminacao_id_tipo_iluminacao_seq'
 
 =head2 tipo_iluminacao
 
@@ -34,7 +36,12 @@ __PACKAGE__->table("d_tipo_iluminacao");
 
 __PACKAGE__->add_columns(
   "id_tipo_iluminacao",
-  { data_type => "integer", is_nullable => 0 },
+  {
+    data_type         => "integer",
+    is_auto_increment => 1,
+    is_nullable       => 0,
+    sequence          => "d_tipo_iluminacao_id_tipo_iluminacao_seq",
+  },
   "tipo_iluminacao",
   {
     data_type   => "text",
@@ -62,8 +69,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-14 15:32:31
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:NGtkDkFih4WyrE4K12ilbQ
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-15 16:51:40
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:ZFtBAFaFUqKbHCUsqpKG/g
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

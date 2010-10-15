@@ -1,4 +1,4 @@
-package Acao::Plugins::SDH::DimSchema::Result::DViolenciaIntrafamiliar;
+package Acao::Plugins::SDH::DimSchema::Result::DEscolaMatriculadoProximoResidencia;
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
@@ -11,22 +11,22 @@ use base 'DBIx::Class::Core';
 
 =head1 NAME
 
-Acao::Plugins::SDH::DimSchema::Result::DViolenciaIntrafamiliar
+Acao::Plugins::SDH::DimSchema::Result::DEscolaMatriculadoProximoResidencia
 
 =cut
 
-__PACKAGE__->table("d_violencia_intrafamiliar");
+__PACKAGE__->table("d_escola_matriculado_proximo_residencia");
 
 =head1 ACCESSORS
 
-=head2 id_violencia_intrafamiliar
+=head2 id_escola_matriculado_proximo_residencia
 
   data_type: 'integer'
   is_auto_increment: 1
   is_nullable: 0
-  sequence: 'd_violencia_intrafamiliar_id_violencia_intrafamiliar_seq'
+  sequence: 'd_escola_matriculado_proximo_residencia_id_escola_matriculad406'
 
-=head2 violencia_intrafamiliar
+=head2 escola_matriculado_proximo_residencia
 
   data_type: 'text'
   is_nullable: 0
@@ -35,21 +35,21 @@ __PACKAGE__->table("d_violencia_intrafamiliar");
 =cut
 
 __PACKAGE__->add_columns(
-  "id_violencia_intrafamiliar",
+  "id_escola_matriculado_proximo_residencia",
   {
     data_type         => "integer",
     is_auto_increment => 1,
     is_nullable       => 0,
-    sequence          => "d_violencia_intrafamiliar_id_violencia_intrafamiliar_seq",
+    sequence          => "d_escola_matriculado_proximo_residencia_id_escola_matriculad406",
   },
-  "violencia_intrafamiliar",
+  "escola_matriculado_proximo_residencia",
   {
     data_type   => "text",
     is_nullable => 0,
     original    => { data_type => "varchar" },
   },
 );
-__PACKAGE__->set_primary_key("id_violencia_intrafamiliar");
+__PACKAGE__->set_primary_key("id_escola_matriculado_proximo_residencia");
 
 =head1 RELATIONS
 
@@ -65,14 +65,14 @@ __PACKAGE__->has_many(
   "f_atendimentoes",
   "Acao::Plugins::SDH::DimSchema::Result::FAtendimento",
   {
-    "foreign.id_violencia_intrafamiliar" => "self.id_violencia_intrafamiliar",
+    "foreign.id_escola_matriculado_proximo_residencia" => "self.id_escola_matriculado_proximo_residencia",
   },
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
 
 # Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-15 16:51:40
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:KalurU4OKIHj3blCjLTqxA
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:An5w8fsyQ1M+g1JKpBr8Cw
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

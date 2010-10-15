@@ -22,7 +22,9 @@ __PACKAGE__->table("d_tempo_moradia");
 =head2 id_tempo_moradia
 
   data_type: 'integer'
+  is_auto_increment: 1
   is_nullable: 0
+  sequence: 'd_tempo_moradia_id_tempo_moradia_seq'
 
 =head2 tempo_moradia
 
@@ -34,7 +36,12 @@ __PACKAGE__->table("d_tempo_moradia");
 
 __PACKAGE__->add_columns(
   "id_tempo_moradia",
-  { data_type => "integer", is_nullable => 0 },
+  {
+    data_type         => "integer",
+    is_auto_increment => 1,
+    is_nullable       => 0,
+    sequence          => "d_tempo_moradia_id_tempo_moradia_seq",
+  },
   "tempo_moradia",
   {
     data_type   => "text",
@@ -62,8 +69,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-14 15:32:31
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:gQywBv58RzMJQsihxr86fA
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-15 16:51:40
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:5SJs0WAo9+MqnvAeLdRiVA
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

@@ -22,7 +22,9 @@ __PACKAGE__->table("d_participacao_grupo_social");
 =head2 id_participacao_grupo_social
 
   data_type: 'integer'
+  is_auto_increment: 1
   is_nullable: 0
+  sequence: 'd_participacao_grupo_social_id_participacao_grupo_social_seq'
 
 =head2 participacao_grupo_social
 
@@ -34,7 +36,12 @@ __PACKAGE__->table("d_participacao_grupo_social");
 
 __PACKAGE__->add_columns(
   "id_participacao_grupo_social",
-  { data_type => "integer", is_nullable => 0 },
+  {
+    data_type         => "integer",
+    is_auto_increment => 1,
+    is_nullable       => 0,
+    sequence          => "d_participacao_grupo_social_id_participacao_grupo_social_seq",
+  },
   "participacao_grupo_social",
   {
     data_type   => "text",
@@ -64,8 +71,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-14 15:32:31
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:rrqRqw+eL/fM5NRigrkjGw
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-15 16:51:40
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:sB1tqIVZZEeptZrwBX3QbQ
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

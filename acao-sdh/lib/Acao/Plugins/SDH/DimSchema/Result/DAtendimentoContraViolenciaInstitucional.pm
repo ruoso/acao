@@ -22,7 +22,9 @@ __PACKAGE__->table("d_atendimento_contra_violencia_institucional");
 =head2 id_atendimento_contra_violencia_institucional
 
   data_type: 'integer'
+  is_auto_increment: 1
   is_nullable: 0
+  sequence: 'd_atendimento_contra_violencia_institucional_id_atendimento_664'
 
 =head2 atendimento_contra_violencia_institucional
 
@@ -34,7 +36,12 @@ __PACKAGE__->table("d_atendimento_contra_violencia_institucional");
 
 __PACKAGE__->add_columns(
   "id_atendimento_contra_violencia_institucional",
-  { data_type => "integer", is_nullable => 0 },
+  {
+    data_type         => "integer",
+    is_auto_increment => 1,
+    is_nullable       => 0,
+    sequence          => "d_atendimento_contra_violencia_institucional_id_atendimento_664",
+  },
   "atendimento_contra_violencia_institucional",
   {
     data_type   => "text",
@@ -64,8 +71,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-14 15:32:31
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:Ungxxy/4mrYBnUOy8P+RsA
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-15 16:51:40
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:ss/dTD3U9XmDyq/OA/vEoQ
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

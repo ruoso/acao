@@ -122,7 +122,7 @@ my $nr = 0;
        my $data_doc = $read_doc->($data->{documento}[0]{conteudo}{pack_type(substr($namespace[0],1) ,  $namespace[1])}[0]);
 
        push @result, { $namespace[1] => $data_doc};
-if($namespace[1] eq 'formCondicoesDeMoradia')
+if($namespace[1] eq 'formEducacao')
 {
 warn Dumper($data_doc);
 }
@@ -157,7 +157,9 @@ sub transform {
                                                         transform_possui_banheiro($data[$i]->{formCondicoesDeMoradia});
                                                       }
             case 'formConvivenciaFamiliarComunitaria' {}
-            case 'formConvivenciaSocial'              {}
+            case 'formConvivenciaSocial'              {
+                                                        transform_participacao_grupo_social($data[$i]->{formConvivenciaSocial});
+                                                       }
             case 'formDirecionamentoDoAtendimento'    {}
             case 'formDocumentacao'                   { 
                                                         transform_registro_nascimento($data[$i]->{formDocumentacao});
@@ -169,7 +171,17 @@ sub transform {
                                                         transform_nis($data[$i]->{formDocumentacao});
 
                                                       }
-            case 'formEducacao'                       {}
+            case 'formEducacao'                       {
+                                                       transform_tipo_escola_matriculado($data[$i]->{formEducacao}); 
+                                                       transform_esta_frequentando_escola($data[$i]->{formEducacao}); 
+                                                       transform_turno_estuda($data[$i]->{formEducacao});
+                                                       transform_escolaridade($data[$i]->{formEducacao});
+                                                       transform_criancas_familia_todas_matriculadas($data[$i]->{formEducacao});
+                                                       transform_auto_avaliacao_rendimento_escolar($data[$i]->{formEducacao});
+                                                       transform_auto_avaliacao_participacao_atividade_escolar($data[$i]->{formEducacao});
+                                                       transform_auto_avaliacao_participacao_familia_escola($data[$i]->{formEducacao});
+                                                       transform_auto_avaliacao_frequencia_escolar($data[$i]->{formEducacao});
+                                                       }
             case 'formIdentificacaoPessoal'           { 
                                                         transform_estado_civil($data[$i]->{formIdentificacaoPessoal}); 
                                                         transform_sexo($data[$i]->{formIdentificacaoPessoal});
@@ -407,7 +419,7 @@ sub transform_possui_banheiro{
     if($data->{possuiBanheiro}){
         $value = $data->{possuiBanheiro};
     }
-    $data->{possuiBanheiro} = $dbi->resultset('DPossuiBanheiro')->find_or_create( { situacao_moradia => $value,})->id_possui_banheiro;
+    $data->{possuiBanheiro} = $dbi->resultset('DPossuiBanheiro')->find_or_create( { possui_banheiro => $value,})->id_possui_banheiro;
 }
 
 sub transform_vinculo_religioso {
@@ -474,40 +486,115 @@ sub transform_avaliacao_condicao_saude_familia {
 
 sub transform_participacao_grupo_social {
     my $data = shift;
-    $data->{participacao_grupo_social} = $dbi->resultset('DParticipacaoGrupoSocial')->find_or_create(
-                                                                            { participacao_grupo_social => $data->{participacao_grupo_social},
-                                                                            })->id_participacao_grupo_social;
+    my $value =  'Não informado';
+    if($data->{participaOuParticipouDeAlgumGrupoSocial}){
+        $value = $data->{participaOuParticipouDeAlgumGrupoSocial};
+    }
+    $data->{participacao_grupo_social} = $dbi->resultset('DParticipacaoGrupoSocial')->find_or_create( { participacao_grupo_social => $value,
+                                                                                                       })->id_participacao_grupo_social;
 }
 
 sub transform_tipo_escola_matriculado {
     my $data = shift;
-    $data->{tipo_escola_matriculado} = $dbi->resultset('DTipoEscolaMatriculado')->find_or_create(
-                                                                    { tipo_escola_matriculado => $data->{tipo_escola_matriculado},
-                                                                    })->id_tipo_escola_matriculado;
+    my $value =  'Não informado';
+    if($data->{estaMaticuladoEmAlgumaEscola}){
+        $value = $data->{estaMaticuladoEmAlgumaEscola};
+        $value=~s/Sim. No ensino |\.//gis;
+    }
+    $data->{tipo_escola_matriculado} = $dbi->resultset('DTipoEscolaMatriculado')->find_or_create( { tipo_escola_matriculado => $value,
+                                                                                                  })->id_tipo_escola_matriculado;
+}
+
+sub transform_esta_frequentando_escola {
+    my $data = shift;
+    my $value =  'Não informado';
+    if($data->{casoEstejaMatriculadoEstaFrenquentandoEscola}){
+        $value = $data->{casoEstejaMatriculadoEstaFrenquentandoEscola};
+    }
+    $data->{tipo_escola_matriculado} = $dbi->resultset('DEstaFrequentandoEscola')->find_or_create( { esta_frequentando_escola => $value,
+                                                                                                  })->id_esta_frequentando_escola;
 }
 
 sub transform_escolaridade {
     my $data = shift;
-    $data->{escolaridade} = $dbi->resultset('DEscolaridade')->find_or_create({ escolaridade => $data->{escolaridade},})->id_escolaridade;
+    my $value =  'Não informado';
+    if($data->{emCasoAfirmativo}{escolaridade}){
+        $value = $data->{emCasoAfirmativo}{escolaridade};
+    }
+    $data->{emCasoAfirmativo}{escolaridade} = $dbi->resultset('DEscolaridade')->find_or_create({ escolaridade => $value,})->id_escolaridade;
+}
+
+sub transform_escola_matriculado_proximo_residencia {
+    my $data = shift;
+    my $value =  'Não informado';
+    if($data->{escolaEmQueEstaMatriculadoSituaseProximoAResidencia}){
+        $value = $data->{escolaEmQueEstaMatriculadoSituaseProximoAResidencia};
+    }
+    $data->{escolaEmQueEstaMatriculadoSituaseProximoAResidencia} = $dbi->resultset('DEscolaMatriculadoProximoResidencia')
+                                                            ->find_or_create({ escola_matriculado_proximo_residencia => $value,
+                                                                            })->id_escola_matriculado_proximo_residencia;
+}
+
+sub transform_criancas_familia_todas_matriculadas {
+    my $data = shift;
+    my $value =  'Não informado';
+    if($data->{naSuaFamiliaTodasAsCriancasAdolescentesIdadeEscolarEstaoMatriculadasNaEscola}){
+        $value = $data->{naSuaFamiliaTodasAsCriancasAdolescentesIdadeEscolarEstaoMatriculadasNaEscola};
+    }
+    $data->{naSuaFamiliaTodasAsCriancasAdolescentesIdadeEscolarEstaoMatriculadasNaEscola} = $dbi->resultset('DCriancasFamiliaTodasMatriculada')
+                                                                                ->find_or_create({ criancas_familia_todas_matriculadas => $value,
+                                                                                                 })->id_criancas_familia_todas_matriculadas;
 }
 
 sub transform_turno_estuda {
     my $data = shift;
-    $data->{turno_estuda} = $dbi->resultset('DTurnoEstuda')->find_or_create({ turno_estuda => $data->{turno_estuda},})->id_turno_estuda;
+    my $value =  'Não informado';
+    if($data->{emCasoAfirmativo}{turno}){
+        $value = $data->{emCasoAfirmativo}{turno};
+    }
+    $data->{emCasoAfirmativo}{turno} = $dbi->resultset('DTurnoEstuda')->find_or_create({ turno_estuda => $value,})->id_turno_estuda;
 }
 
-sub transform_avaliacao_frequencia_escolar {
+sub transform_auto_avaliacao_frequencia_escolar {
     my $data = shift;
-    $data->{avaliacao_frequencia_escolar} = $dbi->resultset('DAvaliacaoFrequenciaEscolar')->find_or_create(
-                                                                { avaliacao_frequencia_escolar => $data->{avaliacao_frequencia_escolar},
-                                                                })->id_avaliacao_frequencia_escolar;
+    my $value =  'Não informado';
+    if($data->{avaliacaoDaVidaEscolar}{suaFrequenciaEscolar}){
+        $value = $data->{avaliacaoDaVidaEscolar}{suaFrequenciaEscolar};
+    }
+    $data->{avaliacaoDaVidaEscolar}{suaFrequenciaEscolar} = $dbi->resultset('DAutoAvaliacaoFrequenciaEscolar')
+                                                            ->find_or_create( { auto_avaliacao_frequencia_escolar => $value, 
+                                                                })->id_auto_avaliacao_frequencia_escolar;
 }
 
-sub transform_avaliacao_rendimento_escolar {
+sub transform_auto_avaliacao_rendimento_escolar {
     my $data = shift;
-    $data->{avaliacao_rendimento_escolar} = $dbi->resultset('DAvaliacaoRendimentoEscolar')->find_or_create(
-                                                                { avaliacao_rendimento_escolar => $data->{avaliacao_rendimento_escolar},
-                                                                })->id_avaliacao_rendimento_escolar;
+    my $value =  'Não informado';
+    if($data->{avaliacaoDaVidaEscolar}{rendimentoEscolar}){
+        $value = $data->{avaliacaoDaVidaEscolar}{rendimentoEscolar};
+    }
+    $data->{avaliacaoDaVidaEscolar}{rendimentoEscolar} = $dbi->resultset('DAutoAvaliacaoRendimentoEscolar')->find_or_create(
+                                                                { auto_avaliacao_rendimento_escolar => $value, })->id_auto_avaliacao_rendimento_escolar;
+}
+
+sub transform_auto_avaliacao_participacao_atividade_escolar {
+    my $data = shift;
+    my $value =  'Não informado';
+    if($data->{avaliacaoDaVidaEscolar}{participacaoNasAtividadesEscolares}){
+        $value = $data->{avaliacaoDaVidaEscolar}{participacaoNasAtividadesEscolares};
+    }
+    $data->{avaliacaoDaVidaEscolar}{participacaoNasAtividadesEscolares} = $dbi->resultset('DAutoAvaliacaoParticipacaoAtividadeEscolar')
+                                                        ->find_or_create({ auto_avaliacao_participacao_atividade_escolar => $value,
+                                                                        })->id_auto_avaliacao_participacao_atividade_escolar;
+}
+
+sub transform_auto_avaliacao_participacao_familia_escola {
+    my $data = shift;
+    my $value =  'Não informado';
+    if($data->{avaliacaoDaVidaEscolar}{participacaoDaFamiliaNaSuaVidaEscolar}){
+        $value = $data->{avaliacaoDaVidaEscolar}{participacaoDaFamiliaNaSuaVidaEscolar};
+    }
+    $data->{avaliacaoDaVidaEscolar}{participacaoDaFamiliaNaSuaVidaEscolar} = $dbi->resultset('DAutoAvaliacaoParticipacaoFamiliaEscola')->find_or_create(
+                                                                { auto_avaliacao_participacao_familia_escola => $value, })->id_auto_avaliacao_participacao_familia_escola;
 }
 
 sub load{

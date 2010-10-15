@@ -22,7 +22,9 @@ __PACKAGE__->table("d_avaliacao_preparacao_atividades_escolares");
 =head2 id_avaliacao_preparacao_atividades_escolares
 
   data_type: 'integer'
+  is_auto_increment: 1
   is_nullable: 0
+  sequence: 'd_avaliacao_preparacao_atividades_escolares_id_avaliacao_pre894'
 
 =head2 avaliacao_preparacao_atividades_escolares
 
@@ -34,7 +36,12 @@ __PACKAGE__->table("d_avaliacao_preparacao_atividades_escolares");
 
 __PACKAGE__->add_columns(
   "id_avaliacao_preparacao_atividades_escolares",
-  { data_type => "integer", is_nullable => 0 },
+  {
+    data_type         => "integer",
+    is_auto_increment => 1,
+    is_nullable       => 0,
+    sequence          => "d_avaliacao_preparacao_atividades_escolares_id_avaliacao_pre894",
+  },
   "avaliacao_preparacao_atividades_escolares",
   {
     data_type   => "text",
@@ -64,8 +71,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-14 15:32:31
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:5rbr4nKn8dT3U4RLsh1Kgw
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-15 16:51:40
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:lfKM4UctGHmobcKTxsgfdw
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration
