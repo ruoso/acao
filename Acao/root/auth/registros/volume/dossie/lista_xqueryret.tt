@@ -2,7 +2,7 @@
     <tr>
         <td>
 	       <a href="[% c.uri_for('/auth/registros/volume/') _ id_volume %]/{$x/ns:dossie/ns:controle/text()}" > 
-               <span title="{$x/ns:dossie/ns:controle/text()}">{substring($x/ns:dossie/ns:controle/text(),0, 20)}...</span>
+               <span title="{$x/ns:dossie/ns:controle/text()}">{substring($x/ns:dossie/ns:controle/text(),0, 10)}...</span>
            </a>
         </td>
         <td>
@@ -21,10 +21,10 @@
 	        {$x/ns:dossie/ns:estado/text()}
         </td>
         <td>
-        <span title="{$x/ns:dossie/ns:classificacao/text()}">{substring($x/ns:dossie/ns:classificacao/text(),0, 20)}...</span>
+        <span title="{$x/ns:dossie/ns:classificacao/text()}">{substring($x/ns:dossie/ns:classificacao/text(),0, 15)}...</span>
         </td>
         <td>
-        <span title="{$x/ns:dossie/ns:localizacao/text()}">{substring($x/ns:dossie/ns:localizacao/text(),0, 20)}...</span>
+        <span title="{$x/ns:dossie/ns:localizacao/text()}">{substring($x/ns:dossie/ns:localizacao/text(),0, 15)}...</span>
         </td>
         <td>
 	       { if ( $x/ns:dossie/ns:representaDossieFisico/text() = 1 ) then ("Sim") else ("Não") }

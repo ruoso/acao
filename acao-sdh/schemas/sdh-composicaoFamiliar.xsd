@@ -44,7 +44,7 @@
 
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
-									<xs:enumeration value="Mae" />
+									<xs:enumeration value="Mãe" />
 									<xs:enumeration value="Pai" />
 									<xs:enumeration value="Irmã(o)" />
 									<xs:enumeration value="Padrasto" />
@@ -60,6 +60,14 @@
 									<xs:enumeration value="Outros" />
 								</xs:restriction>
 							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="especifiqueOutros" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Especifique outros</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
 						</xs:element>
 
 						<xs:element name="idade" type="xs:integer" minOccurs="0">
