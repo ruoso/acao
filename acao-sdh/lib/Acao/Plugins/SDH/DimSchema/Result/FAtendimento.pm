@@ -128,45 +128,10 @@ __PACKAGE__->table("f_atendimento");
   is_foreign_key: 1
   is_nullable: 0
 
-=head2 ja_estagiou
-
-  data_type: 'integer'
-  is_nullable: 0
-
-=head2 ja_trabalhou_formalmente
-
-  data_type: 'integer'
-  is_nullable: 0
-
-=head2 ja_trabalhou_informalmente
-
-  data_type: 'integer'
-  is_nullable: 0
-
-=head2 esta_trabalhando_formalmente
-
-  data_type: 'integer'
-  is_nullable: 0
-
-=head2 esta_trabalhando_informalmente
-
-  data_type: 'integer'
-  is_nullable: 0
-
 =head2 id_nocoes_informatica
 
   data_type: 'integer'
   is_foreign_key: 1
-  is_nullable: 0
-
-=head2 fez_curso_profissionalizante
-
-  data_type: 'integer'
-  is_nullable: 0
-
-=head2 tem_interesse_curso_profissionalizante
-
-  data_type: 'integer'
   is_nullable: 0
 
 =head2 habilidade_desenho
@@ -248,25 +213,13 @@ __PACKAGE__->table("f_atendimento");
   is_foreign_key: 1
   is_nullable: 0
 
-=head2 id_origem_encaminhamento
-
-  data_type: 'integer'
-  is_foreign_key: 1
-  is_nullable: 0
-
-=head2 id_vinculacao_cca
-
-  data_type: 'integer'
-  is_foreign_key: 1
-  is_nullable: 0
-
 =head2 id_nucleo
 
   data_type: 'integer'
   is_foreign_key: 1
   is_nullable: 0
 
-=head2 id_status_vinculacao
+=head2 id_status_vinculacao_cca
 
   data_type: 'integer'
   is_foreign_key: 1
@@ -719,19 +672,7 @@ __PACKAGE__->table("f_atendimento");
   is_foreign_key: 1
   is_nullable: 0
 
-=head2 id_avaliacao_preparacao_atividades_escolares
-
-  data_type: 'integer'
-  is_foreign_key: 1
-  is_nullable: 0
-
 =head2 id_auto_avaliacao_rendimento_escolar
-
-  data_type: 'integer'
-  is_foreign_key: 1
-  is_nullable: 0
-
-=head2 id_avaliacao_familia_vida_escolar
 
   data_type: 'integer'
   is_foreign_key: 1
@@ -918,6 +859,127 @@ __PACKAGE__->table("f_atendimento");
   is_foreign_key: 1
   is_nullable: 0
 
+=head2 id_ja_estagiou
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_ja_trabalhou
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_esta_trabalhando
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_fez_curso_profissionalizante
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_interesse_curso_profissionalizante
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 origem_encaminhamento_associacoes
+
+  data_type: 'text'
+  is_nullable: 0
+  original: {data_type => "varchar"}
+
+=head2 origem_encaminhamento_conselho_tutelar
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 origem_encaminhamento_demanda_espontanea
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 origem_encaminhamento_judiciario
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 origem_encaminhamento_programas_projetos_funci
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 vinculacao_cca_adolescente_cidadao
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 vinculacao_cca_aquarela
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 vinculacao_cca_bromelia
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 vinculacao_cca_casa_meninas
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 vinculacao_cca_casa_meninos
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 vinculacao_cca_cozinha_experimental
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 vinculacao_cca_crescer_arte_cidadania
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 vinculacao_cca_ddca
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 vinculacao_cca_erradicacao_trabalho_infantil
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 vinculacao_cca_estilo_solitario
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 vinculacao_cca_ponte_encontro
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 vinculacao_cca_se_garanta_liberdade_assitida
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 vinculacao_cca_se_garanta_prestacao_servico_comunidade
+
+  data_type: 'integer'
+  is_nullable: 0
+
 =cut
 
 __PACKAGE__->add_columns(
@@ -959,22 +1021,8 @@ __PACKAGE__->add_columns(
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
   "id_nis",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "ja_estagiou",
-  { data_type => "integer", is_nullable => 0 },
-  "ja_trabalhou_formalmente",
-  { data_type => "integer", is_nullable => 0 },
-  "ja_trabalhou_informalmente",
-  { data_type => "integer", is_nullable => 0 },
-  "esta_trabalhando_formalmente",
-  { data_type => "integer", is_nullable => 0 },
-  "esta_trabalhando_informalmente",
-  { data_type => "integer", is_nullable => 0 },
   "id_nocoes_informatica",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "fez_curso_profissionalizante",
-  { data_type => "integer", is_nullable => 0 },
-  "tem_interesse_curso_profissionalizante",
-  { data_type => "integer", is_nullable => 0 },
   "habilidade_desenho",
   { data_type => "integer", is_nullable => 0 },
   "habilidade_artesanato",
@@ -1005,13 +1053,9 @@ __PACKAGE__->add_columns(
   { data_type => "integer", is_nullable => 0 },
   "id_tipo_iluminacao",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "id_origem_encaminhamento",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "id_vinculacao_cca",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
   "id_nucleo",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "id_status_vinculacao",
+  "id_status_vinculacao_cca",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
   "id_violencia_intrafamiliar",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
@@ -1185,11 +1229,7 @@ __PACKAGE__->add_columns(
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
   "id_auto_avaliacao_frequencia_escolar",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "id_avaliacao_preparacao_atividades_escolares",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
   "id_auto_avaliacao_rendimento_escolar",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "id_avaliacao_familia_vida_escolar",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
   "id_acesso_medicacao",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
@@ -1259,6 +1299,56 @@ __PACKAGE__->add_columns(
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
   "id_auto_avaliacao_participacao_familia_escola",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_ja_estagiou",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_ja_trabalhou",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_esta_trabalhando",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_fez_curso_profissionalizante",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_interesse_curso_profissionalizante",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "origem_encaminhamento_associacoes",
+  {
+    data_type   => "text",
+    is_nullable => 0,
+    original    => { data_type => "varchar" },
+  },
+  "origem_encaminhamento_conselho_tutelar",
+  { data_type => "integer", is_nullable => 0 },
+  "origem_encaminhamento_demanda_espontanea",
+  { data_type => "integer", is_nullable => 0 },
+  "origem_encaminhamento_judiciario",
+  { data_type => "integer", is_nullable => 0 },
+  "origem_encaminhamento_programas_projetos_funci",
+  { data_type => "integer", is_nullable => 0 },
+  "vinculacao_cca_adolescente_cidadao",
+  { data_type => "integer", is_nullable => 0 },
+  "vinculacao_cca_aquarela",
+  { data_type => "integer", is_nullable => 0 },
+  "vinculacao_cca_bromelia",
+  { data_type => "integer", is_nullable => 0 },
+  "vinculacao_cca_casa_meninas",
+  { data_type => "integer", is_nullable => 0 },
+  "vinculacao_cca_casa_meninos",
+  { data_type => "integer", is_nullable => 0 },
+  "vinculacao_cca_cozinha_experimental",
+  { data_type => "integer", is_nullable => 0 },
+  "vinculacao_cca_crescer_arte_cidadania",
+  { data_type => "integer", is_nullable => 0 },
+  "vinculacao_cca_ddca",
+  { data_type => "integer", is_nullable => 0 },
+  "vinculacao_cca_erradicacao_trabalho_infantil",
+  { data_type => "integer", is_nullable => 0 },
+  "vinculacao_cca_estilo_solitario",
+  { data_type => "integer", is_nullable => 0 },
+  "vinculacao_cca_ponte_encontro",
+  { data_type => "integer", is_nullable => 0 },
+  "vinculacao_cca_se_garanta_liberdade_assitida",
+  { data_type => "integer", is_nullable => 0 },
+  "vinculacao_cca_se_garanta_prestacao_servico_comunidade",
+  { data_type => "integer", is_nullable => 0 },
 );
 
 =head1 RELATIONS
@@ -1276,23 +1366,6 @@ __PACKAGE__->belongs_to(
   "Acao::Plugins::SDH::DimSchema::Result::DAtendimentoContraViolenciaInstitucional",
   {
     id_atendimento_contra_violencia_institucional => "id_atendimento_contra_violencia_institucional",
-  },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
-
-=head2 id_avaliacao_familia_vida_escolar
-
-Type: belongs_to
-
-Related object: L<Acao::Plugins::SDH::DimSchema::Result::DAvaliacaoFamiliaVidaEscolar>
-
-=cut
-
-__PACKAGE__->belongs_to(
-  "id_avaliacao_familia_vida_escolar",
-  "Acao::Plugins::SDH::DimSchema::Result::DAvaliacaoFamiliaVidaEscolar",
-  {
-    id_avaliacao_familia_vida_escolar => "id_avaliacao_familia_vida_escolar",
   },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
@@ -1453,6 +1526,23 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
+=head2 id_interesse_curso_profissionalizante
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DInteresseCursoProfissionalizante>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_interesse_curso_profissionalizante",
+  "Acao::Plugins::SDH::DimSchema::Result::DInteresseCursoProfissionalizante",
+  {
+    id_interesse_curso_profissionalizante => "id_interesse_curso_profissionalizante",
+  },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
 =head2 situacao_moradia
 
 Type: belongs_to
@@ -1480,21 +1570,6 @@ __PACKAGE__->belongs_to(
   "id_reservista",
   "Acao::Plugins::SDH::DimSchema::Result::DReservista",
   { id_reservista => "id_reservista" },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
-
-=head2 id_origem_encaminhamento
-
-Type: belongs_to
-
-Related object: L<Acao::Plugins::SDH::DimSchema::Result::DOrigemEncaminhamento>
-
-=cut
-
-__PACKAGE__->belongs_to(
-  "id_origem_encaminhamento",
-  "Acao::Plugins::SDH::DimSchema::Result::DOrigemEncaminhamento",
-  { id_origem_encaminhamento => "id_origem_encaminhamento" },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
@@ -1529,21 +1604,6 @@ __PACKAGE__->belongs_to(
   {
     id_auto_avaliacao_participacao_familia_escola => "id_auto_avaliacao_participacao_familia_escola",
   },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
-
-=head2 id_vinculacao_cca
-
-Type: belongs_to
-
-Related object: L<Acao::Plugins::SDH::DimSchema::Result::DVinculacaoCca>
-
-=cut
-
-__PACKAGE__->belongs_to(
-  "id_vinculacao_cca",
-  "Acao::Plugins::SDH::DimSchema::Result::DVinculacaoCca",
-  { id_vinculacao_cca => "id_vinculacao_cca" },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
@@ -1658,6 +1718,21 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
+=head2 id_esta_trabalhando
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DEstaTrabalhando>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_esta_trabalhando",
+  "Acao::Plugins::SDH::DimSchema::Result::DEstaTrabalhando",
+  { id_esta_trabalhando => "id_esta_trabalhando" },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
 =head2 id_vinculo_religioso
 
 Type: belongs_to
@@ -1670,6 +1745,23 @@ __PACKAGE__->belongs_to(
   "id_vinculo_religioso",
   "Acao::Plugins::SDH::DimSchema::Result::DVinculoReligioso",
   { id_vinculo_religioso => "id_vinculo_religioso" },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_fez_curso_profissionalizante
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DFezCursoProfissionalizante>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_fez_curso_profissionalizante",
+  "Acao::Plugins::SDH::DimSchema::Result::DFezCursoProfissionalizante",
+  {
+    id_fez_curso_profissionalizante => "id_fez_curso_profissionalizante",
+  },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
@@ -1876,23 +1968,6 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
-=head2 id_avaliacao_preparacao_atividades_escolare
-
-Type: belongs_to
-
-Related object: L<Acao::Plugins::SDH::DimSchema::Result::DAvaliacaoPreparacaoAtividadesEscolare>
-
-=cut
-
-__PACKAGE__->belongs_to(
-  "id_avaliacao_preparacao_atividades_escolare",
-  "Acao::Plugins::SDH::DimSchema::Result::DAvaliacaoPreparacaoAtividadesEscolare",
-  {
-    id_avaliacao_preparacao_atividades_escolares => "id_avaliacao_preparacao_atividades_escolares",
-  },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
-
 =head2 id_avaliacao_servico_saude
 
 Type: belongs_to
@@ -1984,6 +2059,21 @@ __PACKAGE__->belongs_to(
   {
     id_atendimento_contra_violencia_comunitario => "id_atendimento_contra_violencia_comunitario",
   },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_ja_estagiou
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DJaEstagiou>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_ja_estagiou",
+  "Acao::Plugins::SDH::DimSchema::Result::DJaEstagiou",
+  { id_ja_estagiou => "id_ja_estagiou" },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
@@ -2081,18 +2171,33 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
-=head2 id_status_vinculacao
+=head2 id_status_vinculacao_cca
 
 Type: belongs_to
 
-Related object: L<Acao::Plugins::SDH::DimSchema::Result::DStatusVinculacao>
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DStatusVinculacaoCca>
 
 =cut
 
 __PACKAGE__->belongs_to(
-  "id_status_vinculacao",
-  "Acao::Plugins::SDH::DimSchema::Result::DStatusVinculacao",
-  { id_status_vinculacao => "id_status_vinculacao" },
+  "id_status_vinculacao_cca",
+  "Acao::Plugins::SDH::DimSchema::Result::DStatusVinculacaoCca",
+  { id_status_vinculacao_cca => "id_status_vinculacao_cca" },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_ja_trabalhou
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DJaTrabalhou>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_ja_trabalhou",
+  "Acao::Plugins::SDH::DimSchema::Result::DJaTrabalhou",
+  { id_ja_trabalhou => "id_ja_trabalhou" },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
@@ -2112,8 +2217,8 @@ __PACKAGE__->belongs_to(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-15 16:51:40
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:4LQ/aHJGdtbfe0NwEgxblw
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-18 14:12:56
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:pIYJA3pdbbaCxmaPOpZRKQ
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration
