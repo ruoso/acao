@@ -54,6 +54,14 @@
 							</xs:simpleType>
 						</xs:element>
 
+ 						<xs:element name="especifiqueOutros" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Especifique outros</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
 						<xs:element name="registroDeNascimento" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>

@@ -36,7 +36,7 @@
   <th>Tipo Documento</th> 
   <th>Criação</th>
   <th>Invalidação / Motivo</th>
-  <th>Representa Documento Físico</th>
+  <th>Doc. Físico</th>
   <th>Original</th>
   <th>Ação</th>
  </tr>
@@ -81,7 +81,6 @@
     </fildset>
 
 </form>
-
 <script language="javascript" type="text/javascript">
     function validaDropDonw(){
         if (document.getElementById('xsdDocumento').value == '') {
@@ -95,5 +94,4 @@
         }   
      }
 </script>
-
 [% INCLUDE 'footer.tt' %]

@@ -34,6 +34,15 @@
 				</xs:simpleType>
 			</xs:element>
 
+			<xs:element name="especifiqueOutros" type="xs:string"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Especifique outros</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
 			<xs:element name="tempoMoradia" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
@@ -43,7 +52,7 @@
 
 				<xs:simpleType>
 					<xs:restriction base="xs:string">
-						<xs:enumeration value="Ate 01 ano" />
+						<xs:enumeration value="Até 01 ano" />
 						<xs:enumeration value="1 a 5 anos" />
 						<xs:enumeration value="5 a 10 anos" />
 						<xs:enumeration value="10 a 15 anos" />
