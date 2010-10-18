@@ -122,7 +122,7 @@ my $nr = 0;
        my $data_doc = $read_doc->($data->{documento}[0]{conteudo}{pack_type(substr($namespace[0],1) ,  $namespace[1])}[0]);
 
        push @result, { $namespace[1] => $data_doc};
-if($namespace[1] eq 'formEducacao')
+if($namespace[1] eq 'formVinculacaoNaCCA')
 {
 warn Dumper($data_doc);
 }
@@ -144,7 +144,7 @@ sub transform {
     for (my $i=0; $i < scalar(@data); $i++){
         my @array = keys(%{$data[$i]});
         switch ($array[0]) {
-            case 'formAtendimentoEspecificoSEGARANTA' { }
+            case 'formAtendimentoEspecificoSEGARANTA' {}
             case 'formCondicoesDeMoradia'             {
 #                                                        transform_tipo_contrucao_moradia($data[$i]->{formCondicoesDeMoradia});
 #                                                        transform_tipo_abastecimento_agua($data[$i]->{formCondicoesDeMoradia});
@@ -188,21 +188,32 @@ sub transform {
                                                         transform_endereco($data[$i]->{formIdentificacaoPessoal});
                                                         transform_sexualidade($data[$i]->{formIdentificacaoPessoal});
                                                         transform_data_nascimento($data[$i]->{formIdentificacaoPessoal});
-                                                       }
+                                                      }
             case 'formJuridico'                       {}
             case 'formOrigemEncaminhamento'           {}
             case 'formPedagogia'                      {}
             case 'formPlanoIndividualDeAtendimento'   {}
-            case 'formProfissionalizacaoHabilidades'  {}
+            case 'formProfissionalizacaoHabilidades'  {
+                                                        transform_ja_estagiou($data[$i]->{formProfissionalizacaoHabilidades});
+                                                        transform_esta_trabalhando($data[$i]->{formProfissionalizacaoHabilidades});
+                                                        transform_ja_trabalhou($data[$i]->{formProfissionalizacaoHabilidades});
+                                                        transform_nocoes_informatica($data[$i]->{formProfissionalizacaoHabilidades});
+                                                        transform_fez_curso_profissionalizante($data[$i]->{formProfissionalizacaoHabilidades});
+                                                        transform_interesse_curso_profissionalizante($data[$i]->{formProfissionalizacaoHabilidades});
+                                                       }
             case 'formPsicologia'                     {}
             case 'formRelatoriosEncaminhados'         {}
             case 'formSaude'                          {}
             case 'formServicoSocial'                  {}
-            case 'formVinculacaoNaCCA'                {}
-            case 'formVinculoReligioso'               {}
+            case 'formVinculacaoNaCCA'                {
+                                                       transform_status_vinculacao_cca($data[$i]->{formVinculoReligioso});
+                                                       }
+            case 'formVinculoReligioso'               {
+                                                        transform_vinculo_religioso($data[$i]->{formVinculoReligioso});
+                                                       }
             case 'formVisitaDomiciliar'               {}
             case 'formProtecaoEspecial'               {}
-            case 'formIndividualFamilia'              { }
+            case 'formIndividualFamilia'              {}
             case 'formEvolucao'                       {}
             case 'formSaudeSubstanciaPsicoativa'      {}
             case 'formDocumentacaoFamiliar'           {}
@@ -595,6 +606,82 @@ sub transform_auto_avaliacao_participacao_familia_escola {
     }
     $data->{avaliacaoDaVidaEscolar}{participacaoDaFamiliaNaSuaVidaEscolar} = $dbi->resultset('DAutoAvaliacaoParticipacaoFamiliaEscola')->find_or_create(
                                                                 { auto_avaliacao_participacao_familia_escola => $value, })->id_auto_avaliacao_participacao_familia_escola;
+}
+
+
+sub transform_ja_estagiou {
+    my $data = shift;
+    my $value =  'Não informado';
+    if($data->{jaEstagiouAlgumaVez}){
+        $value = $data->{jaEstagiouAlgumaVez};
+    }
+    $data->{jaEstagiouAlgumaVez} = $dbi->resultset('DJaEstagiou')->find_or_create({ ja_estagiou => $value,})->id_ja_estagiou;
+}
+
+sub transform_ja_trabalhou {
+    my $data = shift;
+    my $value =  'Não informado';
+    if($data->{jaTrabalhouAlgumaVez}){
+        $value = $data->{jaTrabalhouAlgumaVez};
+    }
+    $data->{jaTrabalhouAlgumaVez} = $dbi->resultset('DJaTrabalhou')->find_or_create({ ja_trabalhou => $value,})->id_ja_trabalhou;
+}
+
+sub transform_esta_trabalhando {
+    my $data = shift;
+    my $value =  'Não informado';
+    if($data->{estaTrabalhandoAtualmente}){
+        $value = $data->{estaTrabalhandoAtualmente};
+    }
+    $data->{estaTrabalhandoAtualmente} = $dbi->resultset('DEstaTrabalhando')->find_or_create({ esta_trabalhando => $value,})->id_esta_trabalhando;
+}
+
+sub transform_nocoes_informatica {
+    my $data = shift;
+    my $value =  'Não informado';
+    if($data->{nossoesInformatica}){
+        $value = $data->{nossoesInformatica};
+    }
+    $data->{nossoesInformatica} = $dbi->resultset('DNocoesInformatica')->find_or_create({ nocoes_informatica => $value,})->id_nocoes_informatica;
+}
+
+sub transform_fez_curso_profissionalizante {
+    my $data = shift;
+    my $value =  'Não informado';
+    if($data->{cursosProficionalizantes}){
+        $value = $data->{cursosProficionalizantes};
+    }
+    $data->{cursosProficionalizantes} = $dbi->resultset('DFezCursoProfissionalizante')->find_or_create({ fez_curso_profissionalizante => $value,
+                                                                                                        })->id_fez_curso_profissionalizante;
+}
+
+sub transform_interesse_curso_profissionalizante {
+    my $data = shift;
+    my $value =  'Não informado';
+    if($data->{casoNaoTenhacursosProficionalizantes}){
+        $value = $data->{casoNaoTenhacursosProficionalizantes};
+    }
+    $data->{casoNaoTenhacursosProficionalizantes} = $dbi->resultset('DInteresseCursoProfissionalizante')
+                                                                ->find_or_create({ interesse_curso_profissionalizante 
+                                                                 => $value,})->id_interesse_curso_profissionalizante;
+}
+
+sub transform_vinculo_religioso {
+    my $data = shift;
+    my $value =  'Não informado';
+    if($data->{qualSeuVinculoReligiao}){
+        $value = $data->{qualSeuVinculoReligiao};
+    }
+    $data->{qualSeuVinculoReligiao} = $dbi->resultset('DVinculoReligioso')->find_or_create({ vinculo_religioso => $value,})->id_vinculo_religioso;
+}
+
+sub transform_status_vinculacao_cca{
+    my $data = shift;
+    my $value =  'Não informado';
+    if($data->{status}){
+        $value = $data->{status};
+    }
+    $data->{status} = $dbi->resultset('DStatusVinculacaoCca')->find_or_create({ status_vinculacao_cca => $value,})->id_status_vinculacao_cca;
 }
 
 sub load{
