@@ -278,6 +278,12 @@ Iniciando a Aplicação
     1.4 - Para iniciar visualizar o sistema digite a url: http://localhost:3000
 
 
+COMANDOS ÚTEIS
+===============
 
+#busca strings em vários documentos
+ack-grep 'STRING'
 
+#busca strings em vários documentos e substitui a string buscada.
+grep -lr -e 'OLDSTRING' * | xargs sed -i 's/OLDSTRING/NEWSTRING/g'
 
