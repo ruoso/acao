@@ -116,13 +116,17 @@ my $nr = 0;
 
        my @array_keys = keys( %{ $data->{documento}[0]{conteudo}} );
        my @namespace = split(/}/, $array_keys[0]);
+if($namespace[1] eq 'formProtecaoEspecial')
+{
+#warn $xml_string;
+}
 
 
        my $read_doc = $schema_form->{$namespace[1]}->compile(READER => pack_type( substr($namespace[0],1) , $namespace[1] ));
        my $data_doc = $read_doc->($data->{documento}[0]{conteudo}{pack_type(substr($namespace[0],1) ,  $namespace[1])}[0]);
 
        push @result, { $namespace[1] => $data_doc};
-if($namespace[1] eq 'formVinculacaoNaCCA')
+if($namespace[1] eq 'formProtecaoEspecial')
 {
 warn Dumper($data_doc);
 }
@@ -146,11 +150,6 @@ sub transform {
         switch ($array[0]) {
             case 'formAtendimentoEspecificoSEGARANTA' {}
             case 'formCondicoesDeMoradia'             {
-#                                                        transform_tipo_contrucao_moradia($data[$i]->{formCondicoesDeMoradia});
-#                                                        transform_tipo_abastecimento_agua($data[$i]->{formCondicoesDeMoradia});
-#                                                        transform_tratamento_agua($data[$i]->{formCondicoesDeMoradia});
-#                                                        transform_escoamento_sanitario($data[$i]->{formCondicoesDeMoradia});
-#                                                        transform_destino_lixo($data[$i]->{formCondicoesDeMoradia});
                                                         transform_situacao_moradia($data[$i]->{formCondicoesDeMoradia});
                                                         transform_tipo_iluminacao($data[$i]->{formCondicoesDeMoradia}); 
                                                         transform_tempo_moradia($data[$i]->{formCondicoesDeMoradia});
@@ -212,7 +211,9 @@ sub transform {
                                                         transform_vinculo_religioso($data[$i]->{formVinculoReligioso});
                                                        }
             case 'formVisitaDomiciliar'               {}
-            case 'formProtecaoEspecial'               {}
+            case 'formProtecaoEspecial'               {
+                                                        
+                                                      }
             case 'formIndividualFamilia'              {}
             case 'formEvolucao'                       {}
             case 'formSaudeSubstanciaPsicoativa'      {}
@@ -357,55 +358,6 @@ sub transform_tipo_iluminacao {
     $data->{tipoIluminacao} = $dbi->resultset('DTipoIluminacao')->find_or_create({ tipo_iluminacao => $value, })->id_tipo_iluminacao;
 }
 
-
-#sub transform_destino_lixo {
-#    my $data = shift;
-#    my $value =  'Não informado';
-#    if($data->{destinoLixo}){
-#        $value = $data->{destinoLixo};
-#    }
-#    $data->{destinoLixo} = $dbi->resultset('DDestinoLixo')->find_or_create({ destino_lixo => $value, })->id_destino_lixo;
-#}
-
-#sub transform_escoamento_sanitario{
-#    my $data = shift;
-#    my $value =  'Não informado';
-#    if($data->{escoamentoSanitario}){
-#        $value = $data->{escoamentoSanitario};
-#    }
-#    $data->{escoamentoSanitario} = $dbi->resultset('DEscoamentoSanitario')->find_or_create({ escoamento_sanitario => $value,
-#                                                                            })->id_escoamento_sanitario;
-#}
-
-#sub transform_tratamento_agua {
-#    my $data = shift;
-#    my $value =  'Não informado';
-#    if($data->{tratamentoAgua}){
-#        $value = $data->{tratamentoAgua};
-#    }
-#    $data->{tratamentoAgua} = $dbi->resultset('DTratamentoAgua')->find_or_create({ tratamento_agua => $value, })->id_tratamento_agua;
-#}
-
-#sub transform_tipo_abastecimento_agua {
-#    my $data = shift;
-#    my $value =  'Não informado';
-#    if($data->{tipoAbastecimentoAgua}){
-#        $value = $data->{tipoAbastecimentoAgua};
-#    }
-#    $data->{tipoAbastecimentoAgua} = $dbi->resultset('DTipoAbastecimentoAgua')->find_or_create( { tipo_abastecimento_agua => $value,
-#                                                                                                   })->id_tipo_abastecimento_agua;
-#}
-
-#sub transform_tipo_contrucao_moradia {
-#    my $data = shift;
-#    my $value =  'Não informado';
-#    if($data->{tiposConstrucao}){
-#        $value = $data->{tiposConstrucao};
-#    }
-#    $data->{tiposConstrucao} = $dbi->resultset('DTipoConstrucaoMoradia')->find_or_create( { tipo_contrucao_moradia => $value,
-#                                                                                                 })->id_tipo_contrucao_moradia;
-#}
-
 sub transform_tempo_moradia {
     my $data = shift;
     my $value =  'Não informado';
@@ -431,26 +383,6 @@ sub transform_possui_banheiro{
         $value = $data->{possuiBanheiro};
     }
     $data->{possuiBanheiro} = $dbi->resultset('DPossuiBanheiro')->find_or_create( { possui_banheiro => $value,})->id_possui_banheiro;
-}
-
-sub transform_vinculo_religioso {
-    my $data = shift;
-    $data->{vinculo_religioso} = $dbi->resultset('DVinculoReligioso')->find_or_create(
-                                                                            { vinculo_religioso => $data->{vinculo_religioso},
-                                                                            })->id_vinculo_religioso;
-}
-
-sub transform_origem_encaminhamento {
-    my $data = shift;
-    $data->{origem_encaminhamento} = $dbi->resultset('DOrigemEncaminhamento')->find_or_create(
-                                                                            { origem_encaminhamento => $data->{origem_encaminhamento},
-                                                                            })->id_origem_encaminhamento;
-}
-
-sub transform_vinculacao_cca {
-    my $data = shift;
-    $data->{vinculacao_cca} = $dbi->resultset('DVinculacaoCca')->find_or_create({ vinculacao_cca => $data->{vinculacao_cca},
-                                                                            })->id_vinculacao_cca;
 }
 
 sub transform_nucleo {
@@ -666,7 +598,7 @@ sub transform_interesse_curso_profissionalizante {
                                                                  => $value,})->id_interesse_curso_profissionalizante;
 }
 
-sub transform_vinculo_religioso {
+sub transform_vinculo_religioso{
     my $data = shift;
     my $value =  'Não informado';
     if($data->{qualSeuVinculoReligiao}){
