@@ -225,7 +225,13 @@ __PACKAGE__->table("f_atendimento");
   is_foreign_key: 1
   is_nullable: 0
 
-=head2 id_violencia_intrafamiliar
+=head2 id_sofre_violencia_intrafamiliar
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_sofreu_violencia_intrafamiliar
 
   data_type: 'integer'
   is_foreign_key: 1
@@ -264,12 +270,6 @@ __PACKAGE__->table("f_atendimento");
 =head2 violencia_intrafamiliar_ameaca_morte
 
   data_type: 'integer'
-  is_nullable: 0
-
-=head2 id_providencia_contra_violencia_intrafamiliar
-
-  data_type: 'integer'
-  is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_violencia_institucional
@@ -696,12 +696,6 @@ __PACKAGE__->table("f_atendimento");
   is_foreign_key: 1
   is_nullable: 0
 
-=head2 id_atendimento_contra_violencia_intrafamiliar
-
-  data_type: 'integer'
-  is_foreign_key: 1
-  is_nullable: 0
-
 =head2 id_atendimento_contra_violencia_comunitario
 
   data_type: 'integer'
@@ -980,6 +974,46 @@ __PACKAGE__->table("f_atendimento");
   data_type: 'integer'
   is_nullable: 0
 
+=head2 contra_violencia_intrafamiliar_procurou_instituicao
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 contra_violencia_intrafamiliar_resolveu_conta_propia
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 contra_violencia_intrafamiliar_procurou_amigos
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 contra_violencia_intrafamiliar_nao_tomou_atitude
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 teve_atendimento_especializado_contra_violencia_intrafamiliar
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 esta_tendo_atendimento_especializado_contra_violencia_intrafami
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 nao_tem_mas_goataria_ter_atendimento_especializado_contra_viole
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 nao_tem_interesse_atendimento_especializado_contra_violencia_in
+
+  data_type: 'integer'
+  is_nullable: 0
+
 =cut
 
 __PACKAGE__->add_columns(
@@ -1057,7 +1091,9 @@ __PACKAGE__->add_columns(
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
   "id_status_vinculacao_cca",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "id_violencia_intrafamiliar",
+  "id_sofre_violencia_intrafamiliar",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_sofreu_violencia_intrafamiliar",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
   "violencia_intrafamiliar_discussao_verbal",
   { data_type => "integer", is_nullable => 0 },
@@ -1073,8 +1109,6 @@ __PACKAGE__->add_columns(
   { data_type => "integer", is_nullable => 0 },
   "violencia_intrafamiliar_ameaca_morte",
   { data_type => "integer", is_nullable => 0 },
-  "id_providencia_contra_violencia_intrafamiliar",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
   "id_violencia_institucional",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
   "violencia_instituicao_policial",
@@ -1237,8 +1271,6 @@ __PACKAGE__->add_columns(
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
   "id_avaliacao_condicao_saude_familia",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "id_atendimento_contra_violencia_intrafamiliar",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
   "id_atendimento_contra_violencia_comunitario",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
   "data_nascimento",
@@ -1349,6 +1381,22 @@ __PACKAGE__->add_columns(
   { data_type => "integer", is_nullable => 0 },
   "vinculacao_cca_se_garanta_prestacao_servico_comunidade",
   { data_type => "integer", is_nullable => 0 },
+  "contra_violencia_intrafamiliar_procurou_instituicao",
+  { data_type => "integer", is_nullable => 0 },
+  "contra_violencia_intrafamiliar_resolveu_conta_propia",
+  { data_type => "integer", is_nullable => 0 },
+  "contra_violencia_intrafamiliar_procurou_amigos",
+  { data_type => "integer", is_nullable => 0 },
+  "contra_violencia_intrafamiliar_nao_tomou_atitude",
+  { data_type => "integer", is_nullable => 0 },
+  "teve_atendimento_especializado_contra_violencia_intrafamiliar",
+  { data_type => "integer", is_nullable => 0 },
+  "esta_tendo_atendimento_especializado_contra_violencia_intrafami",
+  { data_type => "integer", is_nullable => 0 },
+  "nao_tem_mas_goataria_ter_atendimento_especializado_contra_viole",
+  { data_type => "integer", is_nullable => 0 },
+  "nao_tem_interesse_atendimento_especializado_contra_violencia_in",
+  { data_type => "integer", is_nullable => 0 },
 );
 
 =head1 RELATIONS
@@ -1366,6 +1414,23 @@ __PACKAGE__->belongs_to(
   "Acao::Plugins::SDH::DimSchema::Result::DAtendimentoContraViolenciaInstitucional",
   {
     id_atendimento_contra_violencia_institucional => "id_atendimento_contra_violencia_institucional",
+  },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_sofreu_violencia_intrafamiliar
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DSofreuViolenciaIntrafamiliar>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_sofreu_violencia_intrafamiliar",
+  "Acao::Plugins::SDH::DimSchema::Result::DSofreuViolenciaIntrafamiliar",
+  {
+    id_sofreu_violencia_intrafamiliar => "id_sofreu_violencia_intrafamiliar",
   },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
@@ -1603,23 +1668,6 @@ __PACKAGE__->belongs_to(
   "Acao::Plugins::SDH::DimSchema::Result::DAutoAvaliacaoParticipacaoFamiliaEscola",
   {
     id_auto_avaliacao_participacao_familia_escola => "id_auto_avaliacao_participacao_familia_escola",
-  },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
-
-=head2 id_providencia_contra_violencia_intrafamiliar
-
-Type: belongs_to
-
-Related object: L<Acao::Plugins::SDH::DimSchema::Result::DProvidenciaContraViolenciaIntrafamiliar>
-
-=cut
-
-__PACKAGE__->belongs_to(
-  "id_providencia_contra_violencia_intrafamiliar",
-  "Acao::Plugins::SDH::DimSchema::Result::DProvidenciaContraViolenciaIntrafamiliar",
-  {
-    id_providencia_contra_violencia_intrafamiliar => "id_providencia_contra_violencia_intrafamiliar",
   },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
@@ -1904,23 +1952,6 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
-=head2 id_atendimento_contra_violencia_intrafamiliar
-
-Type: belongs_to
-
-Related object: L<Acao::Plugins::SDH::DimSchema::Result::DAtendimentoContraViolenciaIntrafamiliar>
-
-=cut
-
-__PACKAGE__->belongs_to(
-  "id_atendimento_contra_violencia_intrafamiliar",
-  "Acao::Plugins::SDH::DimSchema::Result::DAtendimentoContraViolenciaIntrafamiliar",
-  {
-    id_atendimento_contra_violencia_intrafamiliar => "id_atendimento_contra_violencia_intrafamiliar",
-  },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
-
 =head2 id_auto_avaliacao_participacao_atividade_escolar
 
 Type: belongs_to
@@ -2141,18 +2172,20 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
-=head2 id_violencia_intrafamiliar
+=head2 id_sofre_violencia_intrafamiliar
 
 Type: belongs_to
 
-Related object: L<Acao::Plugins::SDH::DimSchema::Result::DViolenciaIntrafamiliar>
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DSofreViolenciaIntrafamiliar>
 
 =cut
 
 __PACKAGE__->belongs_to(
-  "id_violencia_intrafamiliar",
-  "Acao::Plugins::SDH::DimSchema::Result::DViolenciaIntrafamiliar",
-  { id_violencia_intrafamiliar => "id_violencia_intrafamiliar" },
+  "id_sofre_violencia_intrafamiliar",
+  "Acao::Plugins::SDH::DimSchema::Result::DSofreViolenciaIntrafamiliar",
+  {
+    id_sofre_violencia_intrafamiliar => "id_sofre_violencia_intrafamiliar",
+  },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
@@ -2217,8 +2250,8 @@ __PACKAGE__->belongs_to(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-18 14:12:56
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:pIYJA3pdbbaCxmaPOpZRKQ
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-19 17:40:25
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:BhShxByXwP6UTY63GRyIrw
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration
