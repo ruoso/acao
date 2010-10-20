@@ -108,7 +108,7 @@ sub extract {
     $sedna->execute($xq);
   my @result;
   my $result_hash = ();
-my $nr = 0;
+  my $nr = 0;
   while ($sedna->next){
        #atribui os itens retornados da consulta acima na variavel $xsd sob a forma de XML String
        my $xml_string = $sedna->getItem();
@@ -128,7 +128,7 @@ if($namespace[1] eq 'formProtecaoEspecial')
        push @result, { $namespace[1] => $data_doc};
 if($namespace[1] eq 'formProtecaoEspecial')
 {
-warn Dumper($data_doc);
+#warn Dumper($data_doc);
 }
 
        $nr++;
@@ -212,7 +212,9 @@ sub transform {
                                                        }
             case 'formVisitaDomiciliar'               {}
             case 'formProtecaoEspecial'               {
-                                                        
+                                                        transform_frequencia_violencia_intra_familiar($data[$i]->{formProtecaoEspecial});
+                                                        transform_sofre_violencia_intra_familiar($data[$i]->{formProtecaoEspecial});
+                                                        transform_sofreu_violencia_intra_familiar($data[$i]->{formProtecaoEspecial});
                                                       }
             case 'formIndividualFamilia'              {}
             case 'formEvolucao'                       {}
@@ -536,8 +538,10 @@ sub transform_auto_avaliacao_participacao_familia_escola {
     if($data->{avaliacaoDaVidaEscolar}{participacaoDaFamiliaNaSuaVidaEscolar}){
         $value = $data->{avaliacaoDaVidaEscolar}{participacaoDaFamiliaNaSuaVidaEscolar};
     }
-    $data->{avaliacaoDaVidaEscolar}{participacaoDaFamiliaNaSuaVidaEscolar} = $dbi->resultset('DAutoAvaliacaoParticipacaoFamiliaEscola')->find_or_create(
-                                                                { auto_avaliacao_participacao_familia_escola => $value, })->id_auto_avaliacao_participacao_familia_escola;
+    $data->{avaliacaoDaVidaEscolar}{participacaoDaFamiliaNaSuaVidaEscolar} = 
+                                                            $dbi->resultset('DAutoAvaliacaoParticipacaoFamiliaEscola')
+                                                                            ->find_or_create({ auto_avaliacao_participacao_familia_escola => $value, 
+                                                                                            })->id_auto_avaliacao_participacao_familia_escola;
 }
 
 
@@ -614,6 +618,64 @@ sub transform_status_vinculacao_cca{
         $value = $data->{status};
     }
     $data->{status} = $dbi->resultset('DStatusVinculacaoCca')->find_or_create({ status_vinculacao_cca => $value,})->id_status_vinculacao_cca;
+}
+
+sub transform_sofre_violencia_intra_familiar{
+    my $data = shift;
+    my $value =  'Não informado';
+    if($data->{violenciaNoAmbitoIntrafamiliar}{nuncaSofreNenhumTipoDeViolenciaIntrafamiliar} ){
+        $value = $data->{violenciaNoAmbitoIntrafamiliar}{nuncaSofreNenhumTipoDeViolenciaIntrafamiliar} == 1 ? 'Nunca Sofreu' : 'Sim Sofreu';
+    }
+     else {
+        if($data->{violenciaNoAmbitoIntrafamiliar}{sofreAlgumTipoDeViolenciaIntrafamiliar}){
+             $value = $data->{violenciaNoAmbitoIntrafamiliar}{sofreAlgumTipoDeViolenciaIntrafamiliar};
+         }
+    }
+    $data->{violenciaNoAmbitoIntrafamiliar}{sofreAlgumTipoDeViolenciaIntrafamiliar} = 
+                                                                                 $dbi->resultset('DSofreViolenciaIntrafamiliar')
+                                                                                    ->find_or_create({sofre_violencia_intrafamiliar => $value,
+                                                                                                     })->id_sofre_violencia_intrafamiliar;
+}
+
+sub transform_sofreu_violencia_intra_familiar{
+    my $data = shift;
+    my $value =  'Não informado';
+    if($data->{violenciaNoAmbitoIntrafamiliar}{nuncaSofreNenhumTipoDeViolenciaIntrafamiliar} ){
+        $value = $data->{violenciaNoAmbitoIntrafamiliar}{nuncaSofreNenhumTipoDeViolenciaIntrafamiliar} == 1 ? 'Nunca Sofreu' : 'Sim Sofreu';
+    }
+     else {
+        if($data->{violenciaNoAmbitoIntrafamiliar}{sofreuAlgumTipoDeViolenciaIntrafamiliar}){
+             $value = $data->{violenciaNoAmbitoIntrafamiliar}{sofreuAlgumTipoDeViolenciaIntrafamiliar};
+         }
+    }
+    $data->{violenciaNoAmbitoIntrafamiliar}{sofreuAlgumTipoDeViolenciaIntrafamiliar} = 
+                                                                                 $dbi->resultset('DSofreuViolenciaIntrafamiliar')
+                                                                                    ->find_or_create({sofreu_violencia_intrafamiliar => $value,
+                                                                                                     })->id_sofreu_violencia_intrafamiliar;
+}
+
+sub transform_frequencia_violencia_intra_familiar{
+    my $data = shift;
+
+    my $value = $data->{violenciaNoAmbitoIntrafamiliar}{casoTenhaSofridoViolenciaEspecifique}{frequencia}{frequentemente} + 
+                 $data->{violenciaNoAmbitoIntrafamiliar}{casoTenhaSofridoViolenciaEspecifique}{frequencia}{raramente}      +  
+                 $data->{violenciaNoAmbitoIntrafamiliar}{casoTenhaSofridoViolenciaEspecifique}{frequencia}{asVezes};
+
+    if ($value == 0 or $value > 1){
+        $value = 'Não informado'; 
+    }
+    else
+    {
+        my $hash = ();
+        %{$hash} = reverse %{$data->{violenciaNoAmbitoIntrafamiliar}{casoTenhaSofridoViolenciaEspecifique}{frequencia}};
+        $value = $hash->{1};
+    }
+
+    $data->{violenciaNoAmbitoIntrafamiliar}{casoTenhaSofridoViolenciaEspecifique}{frequencia} = 
+                                                                                 $dbi->resultset('DFrequenciaViolenciaIntrafamiliar')
+                                                                                    ->find_or_create({frequencia_violencia_intrafamiliar => $value,
+                                                                                                     })->id_frequencia_violencia_intrafamiliar;
+
 }
 
 sub load{
