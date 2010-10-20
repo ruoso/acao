@@ -76,7 +76,7 @@
   <PRE>[% error.info %]</PRE>
  </div>
 [% END %]
-[% c.model('Dossie').auditoria_listar(c.req.address, controles, id_volume) %]
+[%# c.model('Dossie').auditoria_listar(c.req.address, controles, id_volume) %]
 <tr>
     <td><a href="[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/criardossie') %]">Criar Prontuário</a></td>
 </tr>

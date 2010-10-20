@@ -675,6 +675,63 @@ sub transform_frequencia_violencia_intra_familiar{
                                                                                  $dbi->resultset('DFrequenciaViolenciaIntrafamiliar')
                                                                                     ->find_or_create({frequencia_violencia_intrafamiliar => $value,
                                                                                                      })->id_frequencia_violencia_intrafamiliar;
+}
+
+sub transform_sofre_violencia_comunitaria{
+    my $data = shift;
+    my $value =  'Não informado';
+    if($data->{violenciaNoAmbitoIntrafamiliar}{nuncaSofreNenhumTipoDeViolenciaIntrafamiliar} ){
+        $value = $data->{violenciaNoAmbitoIntrafamiliar}{nuncaSofreNenhumTipoDeViolenciaIntrafamiliar} == 1 ? 'Nunca Sofreu' : 'Sim Sofreu';
+    }
+     else {
+        if($data->{violenciaNoAmbitoIntrafamiliar}{sofreAlgumTipoDeViolenciaIntrafamiliar}){
+             $value = $data->{violenciaNoAmbitoIntrafamiliar}{sofreAlgumTipoDeViolenciaIntrafamiliar};
+         }
+    }
+    $data->{violenciaNoAmbitoIntrafamiliar}{sofreAlgumTipoDeViolenciaIntrafamiliar} = 
+                                                                                 $dbi->resultset('DSofreViolenciaIntrafamiliar')
+                                                                                    ->find_or_create({sofre_violencia_intrafamiliar => $value,
+                                                                                                     })->id_sofre_violencia_intrafamiliar;
+}
+
+sub transform_sofreu_violencia_comunitaria{
+    my $data = shift;
+    my $value =  'Não informado';
+    if($data->{violenciaNoAmbitoIntrafamiliar}{nuncaSofreNenhumTipoDeViolenciaIntrafamiliar} ){
+        $value = $data->{violenciaNoAmbitoIntrafamiliar}{nuncaSofreNenhumTipoDeViolenciaIntrafamiliar} == 1 ? 'Nunca Sofreu' : 'Sim Sofreu';
+    }
+     else {
+        if($data->{violenciaNoAmbitoIntrafamiliar}{sofreuAlgumTipoDeViolenciaIntrafamiliar}){
+             $value = $data->{violenciaNoAmbitoIntrafamiliar}{sofreuAlgumTipoDeViolenciaIntrafamiliar};
+         }
+    }
+    $data->{violenciaNoAmbitoIntrafamiliar}{sofreuAlgumTipoDeViolenciaIntrafamiliar} = 
+                                                                                 $dbi->resultset('DSofreuViolenciaIntrafamiliar')
+                                                                                    ->find_or_create({sofreu_violencia_intrafamiliar => $value,
+                                                                                                     })->id_sofreu_violencia_intrafamiliar;
+}
+
+sub transform_frequencia_violencia_comunitaria{
+    my $data = shift;
+
+    my $value = $data->{violenciaNoAmbitoIntrafamiliar}{casoTenhaSofridoViolenciaEspecifique}{frequencia}{frequentemente} + 
+                 $data->{violenciaNoAmbitoIntrafamiliar}{casoTenhaSofridoViolenciaEspecifique}{frequencia}{raramente}      +  
+                 $data->{violenciaNoAmbitoIntrafamiliar}{casoTenhaSofridoViolenciaEspecifique}{frequencia}{asVezes};
+
+    if ($value == 0 or $value > 1){
+        $value = 'Não informado'; 
+    }
+    else
+    {
+        my $hash = ();
+        %{$hash} = reverse %{$data->{violenciaNoAmbitoIntrafamiliar}{casoTenhaSofridoViolenciaEspecifique}{frequencia}};
+        $value = $hash->{1};
+    }
+
+    $data->{violenciaNoAmbitoIntrafamiliar}{casoTenhaSofridoViolenciaEspecifique}{frequencia} = 
+                                                                                 $dbi->resultset('DFrequenciaViolenciaIntrafamiliar')
+                                                                                    ->find_or_create({frequencia_violencia_intrafamiliar => $value,
+                                                                                                     })->id_frequencia_violencia_intrafamiliar;
 
 }
 
