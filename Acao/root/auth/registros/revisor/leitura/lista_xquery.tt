@@ -31,6 +31,6 @@ subsequence(
       return $ungrouped/cd:registroDigitacao/cd:documento/cd:controle
    ),
    [% (interval_ini * num_por_pagina) + 1 %], [% num_por_pagina %])
-   let $form := collection("leitura-[% leitura.id_leitura %]")/cd:registroDigitacao[cd:documento/cd:controle = $control] 
+   let $form := collection("leitura-[% leitura.id_leitura %]")/cd:registroDigitacao[cd:documento/cd:controle = $control]
         for $reg at $pos in $form
         return [% xqueryret %]

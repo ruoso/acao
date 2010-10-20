@@ -84,11 +84,12 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
     $c->res->redirect( $c->uri_for('/auth/registros/volume/' . $c->req->param('id_volume') . '/' . $c->req->param('controle') ) );
 }
 
-sub visualizar : Chained('base') : PathPart('visualizar') : Args(3){
-    my ( $self, $c, $id_documento, $xsdDocumento, $invalidacao ) = @_;
+sub visualizar : Chained('base') : PathPart('visualizar') : Args(4){
+    my ( $self, $c, $id_documento, $xsdDocumento, $invalidacao, $representaDocumentoFisico ) = @_;
     $c->stash->{id_documento} = $id_documento;
     $c->stash->{invalidacao} = $invalidacao;
-    $c->stash->{xsdDocumento} = 'http://schemas.fortaleza.ce.gov.br/acao/'.$xsdDocumento
+    $c->stash->{xsdDocumento} = 'http://schemas.fortaleza.ce.gov.br/acao/'.$xsdDocumento;
+    $c->stash->{representaDocumentoFisico} = $representaDocumentoFisico
         or $c->detach('/public/default');
 }
 

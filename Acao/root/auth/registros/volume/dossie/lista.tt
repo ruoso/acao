@@ -21,6 +21,18 @@
 [% INCLUDE 'auth/registros/volume/dossie/header.tt' %]
 [% INCLUDE 'errosucesso.tt' %]
 
+
+
+
+[% SET num_por_pagina = 40 %]
+
+[% SET interval_ini = c.req.param('interval_ini') %]
+[% IF !interval_ini %]
+  [% SET interval_ini = 0 %]
+[% END %]
+
+
+
 [%# definição da variavel schema para este template %]
 [% CALL c.model('Sedna').begin %]
 [% SET schema = c.model('Sedna').get_collection('volume') %]
@@ -71,6 +83,15 @@
 </TBODY>
 </table>
 
-
+[% IF interval_ini > 0 %]
+  [% SET args = { } %]
+  [% args.import(c.req.params()) %]
+  [% args.import({ interval_ini => interval_ini - 1 }) %]
+  <a href="[% c.uri_for('/auth/registros/volume/' _ id_volume , args) %]">Anterior</a>
+[% END %]
+  [% SET args = { } %]
+  [% args.import(c.req.params()) %]
+  [% args.import({ interval_ini => interval_ini + 1 }) %]
+  <a href="[% c.uri_for('/auth/registros/volume/' _ id_volume , args) %]">Pr&oacute;ximo</a>
 
 [% INCLUDE 'footer.tt' %]

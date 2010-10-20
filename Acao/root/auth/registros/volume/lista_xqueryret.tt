@@ -31,7 +31,7 @@
         </td>
            { if ( $x/ns:volume/ns:estado/text() eq 'fechado') then (
         <td>
-	       <a href="[% c.uri_for('/auth/registros/volume/alterar_estado/')%]{$x/ns:volume/ns:collection/text()}/aberto" class="aprovar" title="abrir" > Abrir </a>
+	       <a href="[% c.uri_for('/auth/registros/volume/alterar_estado/')%]{$x/ns:volume/ns:collection/text()}/aberto" class="aprovar" title="Abrir" > Abrir </a>
         </td>
            ) else ( )}
            { if ( $x/ns:volume/ns:estado/text() eq 'aberto' or $x/ns:volume/ns:estado/text() eq 'arquivado') then (
