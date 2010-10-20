@@ -51,7 +51,7 @@
 	  </div>
     </dd>
     <dt> 
-        <input type="checkbox" id="representaDocumentoFisico" name="representaDocumentoFisico" evt="representaDocumentoFisico" [% representaDocumentoFisico %]> 
+        <input type="checkbox" id="representaDocumentoFisico" name="representaDocumentoFisico" evt="representaDocumentoFisico" [% IF representaDocumentoFisico == 'true' %] checked [% END %]> 
         <label for="representaDocumentoFisico"> Representa Documento Físico </label>
     </dt>
   </dl>
