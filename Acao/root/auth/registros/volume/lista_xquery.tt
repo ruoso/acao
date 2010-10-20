@@ -1,2 +1,2 @@
 declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd"; 
-for $x in collection("volume") return ($x/ns:volume/ns:collection/text(), [% xqueryret %])
+for $x in collection("volume")/ns:volume return ($x/ns:collection/text(), [% xqueryret %])
