@@ -400,11 +400,6 @@ sub transform_nucleo {
     $data->{nucleo} = $dbi->resultset('DNucleo')->find_or_create({ nucleo => $data->{nucleo},})->id_nucleo;
 }
 
-sub transform_uso_drogas {
-    my $data = shift;
-    $data->{uso_drogas} = $dbi->resultset('DUsoDrogas')->find_or_create({ uso_drogas => $data->{uso_drogas},})->id_uso_drogas;
-}
-
 sub transform_acompanhamento_uso_drogas {
     my $data = shift;
     $data->{acompanhamento_uso_drogas} = $dbi->resultset('DAcompanhamentoUsoDrogas')->find_or_create(
@@ -723,14 +718,14 @@ sub transform_frequencia_violencia_comunitaria{
     my $value = $data->{violenciaNoAmbitoComunitario}{frequencia}{frequentemente} + 
                  $data->{violenciaNoAmbitoComunitario}{frequencia}{raramente}      +  
                  $data->{violenciaNoAmbitoComunitario}{frequencia}{asVezes};
-    if ($value == 0 or $value > 1){
-        $value = 'Não informado'; 
-    }
-    else
-    {
+    if ($value == 1){
         my $hash = ();
         %{$hash} = reverse %{$data->{violenciaNoAmbitoComunitario}{frequencia}};
         $value = $hash->{1};
+    }
+    else
+    {
+        $value = 'Não informado'; 
     }
 
     $data->{violenciaNoAmbitoIntrafamiliar}{casoTenhaSofridoViolenciaEspecifique}{frequencia} = 
@@ -777,16 +772,96 @@ sub transform_sofreu_violencia_institucional{
 sub transform_uso_drogas{
     my $data = shift;
     my $value =  'Não informado';
-    my ($maconha, $inalantes, $cigarro, $cocaina, $comprimidos, $cola, $mesclado, $alcool, $crack);
+    my @drogas = ('maconha', 'inalantes', 'cigarro', 'cocaina', 'comprimidos', 'cola', 'mesclado', 'alcool', 'crack');
 
    if($data->{saudeSubstanciaPsicoativa}{algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas}
                                                                                         {parentescoOuSocioeducandoFazUsoDeSubstanciasPsicoativas} ){
         if($data->{saudeSubstanciaPsicoativa}{algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas}
                                                     {parentescoOuSocioeducandoFazUsoDeSubstanciasPsicoativas} eq 'Sócioeducando' ){
-            $data->{saudeSubstanciaPsicoativa}{algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas}{fezUso}{alcool}
-            
+               for (my $valor=0; $valor < scalar(@drogas); $valor++){
+                   $value = $data->{saudeSubstanciaPsicoativa}{algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas}
+                                                                                                            {fezUso}{$drogas[$valor]} +
+                            $data->{saudeSubstanciaPsicoativa}{algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas}
+                                                                                                            {jaExperimentou}{$drogas[$valor]} +
+                            $data->{saudeSubstanciaPsicoativa}{algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas}
+                                                                                                            {nuncaUsou}{$drogas[$valor]} +
+                            $data->{saudeSubstanciaPsicoativa}{algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas}
+                                                                                                            {costumaDeVezEmQuando}{$drogas[$valor]};
+                    if($value == 1){
+                              $value = $data->{saudeSubstanciaPsicoativa}
+                                         {algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas}
+                                                                               {fezUso}{$drogas[$valor]} == 1 ? 'fez uso' : $value;
+                              $value = $data->{saudeSubstanciaPsicoativa}
+                                         {algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas}
+                                                                              {jaExperimentou}{$drogas[$valor]} == 1 ? 'Já experimentou' : $value;
+                              $value = $data->{saudeSubstanciaPsicoativa}
+                                         {algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas}
+                                                                              {nuncaUsou}{$drogas[$valor]} == 1 ? 'Nunca usou' : $value;
+                              $value = $data->{saudeSubstanciaPsicoativa}
+                                         {algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas}
+                                                                 {costumaDeVezEmQuando}{$drogas[$valor]} == 1 ? 'Costuma de vez em quando' : $value;
+                              $drogas[$valor] = $value;
+                    } else{ $drogas[$valor] = 'Não Informado'; }
+               }         
+        }
+        else{
+          foreach my $item (@drogas){
+            $item = 'Não Informado'; 
+          }
         }
     }
+    else{
+      foreach my $item (@drogas){
+        $item = 'Não Informado'; 
+      }
+    }
+
+warn @drogas;
+
+    $data->{saudeSubstanciaPsicoativa}{algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas}{fezUso}{maconha} = 
+                                                                                 $dbi->resultset('DUsaMaconha')
+                                                                                    ->find_or_create({usa_maconha => $drogas[0],
+                                                                                                     })->id_usa_maconha;
+
+    $data->{saudeSubstanciaPsicoativa}{algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas}{fezUso}{inalantes} = 
+                                                                                 $dbi->resultset('DUsaInalante')
+                                                                                    ->find_or_create({usa_inalantes => $drogas[1],
+                                                                                                     })->id_usa_inalantes;
+
+    $data->{saudeSubstanciaPsicoativa}{algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas}{fezUso}{cigarro} = 
+                                                                                 $dbi->resultset('DUsaCigarro')
+                                                                                    ->find_or_create({usa_cigarro => $drogas[2],
+                                                                                                     })->id_usa_cigarro;
+
+    $data->{saudeSubstanciaPsicoativa}{algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas}{fezUso}{cocaina} = 
+                                                                                 $dbi->resultset('DUsaCocaina')
+                                                                                    ->find_or_create({usa_cocaina => $drogas[3],
+                                                                                                     })->id_usa_cocaina;
+
+    $data->{saudeSubstanciaPsicoativa}{algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas}{fezUso}{comprimidos} = 
+                                                                                 $dbi->resultset('DUsaComprimido')
+                                                                                    ->find_or_create({usa_comprimidos => $drogas[4],
+                                                                                                     })->id_usa_comprimidos;
+
+    $data->{saudeSubstanciaPsicoativa}{algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas}{fezUso}{cola} = 
+                                                                                 $dbi->resultset('DUsaCola')
+                                                                                    ->find_or_create({usa_cola => $drogas[5],
+                                                                                                     })->id_usa_cola;
+
+    $data->{saudeSubstanciaPsicoativa}{algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas}{fezUso}{mesclado} = 
+                                                                                 $dbi->resultset('DUsaMesclado')
+                                                                                    ->find_or_create({usa_mesclado => $drogas[6],
+                                                                                                     })->id_usa_mesclado;
+
+    $data->{saudeSubstanciaPsicoativa}{algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas}{fezUso}{alcool} = 
+                                                                                 $dbi->resultset('DUsaAlcool')
+                                                                                    ->find_or_create({usa_alcool => $drogas[7],
+                                                                                                     })->id_usa_alcool;
+
+    $data->{saudeSubstanciaPsicoativa}{algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas}{fezUso}{crack} = 
+                                                                                 $dbi->resultset('DUsaCrack')
+                                                                                    ->find_or_create({usa_crack => $drogas[8],
+                                                                                                     })->id_usa_crack;
 }
 
 sub transform_frequencia_violencia_institucional{
