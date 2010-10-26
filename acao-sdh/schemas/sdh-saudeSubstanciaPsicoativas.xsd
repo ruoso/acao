@@ -46,7 +46,7 @@
 											<xs:appinfo>
 												<xhtml:label>Parentesco de quem faz uso de
 													substâncias
-													psicoativas ou proprio sócioeducando</xhtml:label>
+													psicoativas ou próprio socioeducando</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 
@@ -65,10 +65,19 @@
 												<xs:enumeration value="Avó Materna" />
 												<xs:enumeration value="Avô Paterno" />
 												<xs:enumeration value="Avó Paterna" />
-												<xs:enumeration value="Sócioeducando" />
+												<xs:enumeration value="Socioeducando" />
 												<xs:enumeration value="Outros" />
 											</xs:restriction>
 										</xs:simpleType>
+									</xs:element>
+
+									<xs:element name="especifiqueOutros" type="xs:string"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Especifique outros</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
 									</xs:element>
 
 									<xs:element name="nuncaUsou" minOccurs="0">
@@ -79,11 +88,13 @@
 										</xs:annotation>
 										<xs:complexType>
 											<xs:sequence>
-												
-												<xs:element name="nuncaUsouNenhumTipoDeSubstancia" type="xs:boolean">
+
+												<xs:element name="nuncaUsouNenhumTipoDeSubstancia"
+													type="xs:boolean">
 													<xs:annotation>
 														<xs:appinfo>
-															<xhtml:label>Nunca usou nenhum tipo de substância</xhtml:label>
+															<xhtml:label>Nenhum tipo de substância
+															</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
@@ -156,6 +167,23 @@
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label>Inalantes</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="outros" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Outros</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="especifiqueOutros" type="xs:string"
+													minOccurs="0">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Especifique outros</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
@@ -245,6 +273,23 @@
 													</xs:annotation>
 												</xs:element>
 
+												<xs:element name="outros" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Outros</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="especifiqueOutros" type="xs:string"
+													minOccurs="0">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Especifique outros</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
 											</xs:sequence>
 										</xs:complexType>
 									</xs:element>
@@ -330,6 +375,23 @@
 													</xs:annotation>
 												</xs:element>
 
+												<xs:element name="outros" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Outros</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="especifiqueOutros" type="xs:string"
+													minOccurs="0">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Especifique outros</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
 											</xs:sequence>
 										</xs:complexType>
 									</xs:element>
@@ -337,7 +399,7 @@
 									<xs:element name="costumaDeVezEmQuando" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Costuma de vez em quando</xhtml:label>
+												<xhtml:label>Consume de vez em quando</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:complexType>
@@ -411,6 +473,23 @@
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label>Inalantes</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="outros" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Outros</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="especifiqueOutros" type="xs:string"
+													minOccurs="0">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Especifique outros</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
@@ -500,6 +579,23 @@
 													</xs:annotation>
 												</xs:element>
 
+												<xs:element name="outros" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Outros</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+												<xs:element name="especifiqueOutros" type="xs:string"
+													minOccurs="0">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Especifique outros</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
 											</xs:sequence>
 										</xs:complexType>
 									</xs:element>
@@ -507,7 +603,7 @@
 									<xs:element name="naoQuisInformar" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Não quis informar</xhtml:label>
+												<xhtml:label>Sem informação</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:complexType>
@@ -551,7 +647,7 @@
 													minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
-															<xhtml:label> Onde faz acompanhamento</xhtml:label>
+															<xhtml:label>Onde faz acompanhamento?</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 													<xs:complexType>
@@ -580,6 +676,15 @@
 																	</xs:appinfo>
 																</xs:annotation>
 															</xs:element>
+
+															<xs:element name="outros" type="xs:boolean">
+																<xs:annotation>
+																	<xs:appinfo>
+																		<xhtml:label>Outros</xhtml:label>
+																	</xs:appinfo>
+																</xs:annotation>
+															</xs:element>
+
 														</xs:sequence>
 													</xs:complexType>
 												</xs:element>
@@ -588,7 +693,7 @@
 													type="xs:string" minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
-															<xhtml:label>Especifique onde faz acompanhamento
+															<xhtml:label>Especifique outros
 															</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
@@ -608,7 +713,7 @@
 													minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
-															<xhtml:label> Onde fez acompanhamento</xhtml:label>
+															<xhtml:label>Onde fez acompanhamento?</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 													<xs:complexType>
@@ -637,6 +742,13 @@
 																	</xs:appinfo>
 																</xs:annotation>
 															</xs:element>
+															<xs:element name="outros" type="xs:boolean">
+																<xs:annotation>
+																	<xs:appinfo>
+																		<xhtml:label>Outros</xhtml:label>
+																	</xs:appinfo>
+																</xs:annotation>
+															</xs:element>
 
 														</xs:sequence>
 													</xs:complexType>
@@ -646,7 +758,7 @@
 													type="xs:string" minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
-															<xhtml:label>Especifique onde fez acompanhamento
+															<xhtml:label>Especifique outros
 															</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
@@ -671,7 +783,7 @@
 										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Já internado em alguma comunidade terapêutica
+												<xhtml:label>Já internado em alguma comunidade terapêutica?
 												</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
@@ -697,7 +809,7 @@
 									<xs:element name="desejaTratamento" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Deseja tratamento</xhtml:label>
+												<xhtml:label>Deseja tratamento?</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:simpleType>
@@ -706,6 +818,14 @@
 												<xs:enumeration value="Não" />
 											</xs:restriction>
 										</xs:simpleType>
+									</xs:element>
+
+									<xs:element name="observacoes" type="xs:string" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Observações</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
 									</xs:element>
 
 								</xs:sequence>

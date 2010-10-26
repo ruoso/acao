@@ -20,7 +20,7 @@
 				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Participa ou participou de algum grupo social
+						<xhtml:label>Participa ou participou de algum grupo social?
 						</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
@@ -38,8 +38,7 @@
 				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Teve ou esta tendo algum tipo de atendimento?
-						</xhtml:label>
+						<xhtml:label>Em caso afirmativo, qual?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 
@@ -153,7 +152,7 @@
 						<xs:element name="organizacoesLgbtt" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Organizacoes LGBTT</xhtml:label>
+									<xhtml:label>Organizações LGBTT</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -216,7 +215,7 @@
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Em caso negativo, desenvolve alguma atividade
-							comunitaria</xhtml:label>
+							comunitária?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -230,7 +229,7 @@
 			<xs:element name="seSimEspecifique" type="xs:string" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Se sim especifique</xhtml:label>
+						<xhtml:label>Se sim, especifique</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
