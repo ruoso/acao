@@ -248,6 +248,7 @@ fieldset dl dt
   position: relative;
 }
 
+fieldset dl dd textarea,
 fieldset dl dd input,
 fieldset dl dd select
 {
@@ -281,6 +282,7 @@ legend {
 
 .dtsemdd {
   width: 30em;
+  height: 25px;
 }
 
 .textoPequeno
@@ -307,7 +309,7 @@ legend {
     color:#CC0000;
 }
 
-input[type=submit], input[type=button], input[type=reset], input[type=password], button 
+input[type=submit], input[type=button], input[type=reset], input[type=password], button, 
 {
     border-style: solid;
     border-width: 1px;
@@ -461,6 +463,15 @@ input[type=text]
     color: #CC0000;
     background: #FFFFAF;
     height: 18px;
+}
+
+textarea
+{
+    border:1px solid #E6B800;
+    background-position: #FFFFFF;
+    font: normal 1.0em Sans-Serif;
+    color: #CC0000;
+    background: #FFFFAF;
 }
 
 select

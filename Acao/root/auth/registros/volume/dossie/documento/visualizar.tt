@@ -29,7 +29,7 @@
  <input type="hidden" name="xsdDocumento" value="[% xsdDocumento %]">
  <input type="hidden" name="id_documento" value="[% id_documento %]">
 
-[% representaDocumentoFisico %]
+
  <fieldset>
   <legend>Dados do Volume</legend>
   <dl>
@@ -50,10 +50,12 @@
 		<div name="requiredField" style="display: none;">true</div>
 	  </div>
     </dd>
+[% IF invalidacao == '1970-01-01T00:00:00Z' %]
     <dt> 
         <input type="checkbox" id="representaDocumentoFisico" name="representaDocumentoFisico" evt="representaDocumentoFisico" [% IF representaDocumentoFisico == 'true' %] checked [% END %]> 
         <label for="representaDocumentoFisico"> Representa Documento Físico </label>
     </dt>
+[% END %]
   </dl>
  </fieldset>
 
