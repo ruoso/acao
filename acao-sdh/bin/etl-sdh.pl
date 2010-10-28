@@ -54,6 +54,7 @@ use constant SCHEMA_EVOLUCAO                       => catfile(HOME_SCHEMAS, 'sdh
 use constant SCHEMA_SAUDESUBSTANCIAPSICOATIVA      => catfile(HOME_SCHEMAS, 'sdh-saudeSubstanciaPsicoativas.xsd');
 use constant SCHEMA_DOCUMENTACAOFAMILIAR           => catfile(HOME_SCHEMAS, 'sdh-documentacaoFamiliar.xsd');
 use constant SCHEMA_COMPOSICAOFAMILIAR             => catfile(HOME_SCHEMAS, 'sdh-composicaoFamiliar.xsd');
+use constant SCHEMA_SAUDEFAMILIAR                  => catfile(HOME_SCHEMAS, 'sdh-saudeFamiliar.xsd');
 
 use constant DOSSIE_NS    => 'http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd';
 use constant DOCUMENTO_NS => 'http://schemas.fortaleza.ce.gov.br/acao/documento.xsd';
@@ -86,7 +87,7 @@ my $schema_form = {
                'formSaudeSubstanciaPsicoativa'      => XML::Compile::Schema->new(SCHEMA_SAUDESUBSTANCIAPSICOATIVA),
                'formDocumentacaoFamiliar'           => XML::Compile::Schema->new(SCHEMA_DOCUMENTACAOFAMILIAR),
                'formComposicaoFamiliar'             => XML::Compile::Schema->new(SCHEMA_COMPOSICAOFAMILIAR),
-
+               'formSaudeFamiliar'                  => XML::Compile::Schema->new(SCHEMA_SAUDEFAMILIAR),
                   };
 
 my $schema = XML::Compile::Schema->new([SCHEMA_DOCUMENTO, SCHEMA_AUDITORIA]);
@@ -126,9 +127,9 @@ if($namespace[1] eq 'formProtecaoEspecial')
        my $data_doc = $read_doc->($data->{documento}[0]{conteudo}{pack_type(substr($namespace[0],1) ,  $namespace[1])}[0]);
 
        push @result, { $namespace[1] => $data_doc};
-if($namespace[1] eq 'formProtecaoEspecial')
+if($namespace[1] eq 'formSaude')
 {
-#warn Dumper($data_doc);
+warn Dumper($data_doc);
 }
 
        $nr++;
@@ -187,6 +188,7 @@ sub transform {
                                                         transform_endereco($data[$i]->{formIdentificacaoPessoal});
                                                         transform_sexualidade($data[$i]->{formIdentificacaoPessoal});
                                                         transform_data_nascimento($data[$i]->{formIdentificacaoPessoal});
+                                                        transform_nucleo($data[$i]->{formIdentificacaoPessoal});
                                                       }
             case 'formJuridico'                       {}
             case 'formOrigemEncaminhamento'           {}
@@ -202,7 +204,13 @@ sub transform {
                                                        }
             case 'formPsicologia'                     {}
             case 'formRelatoriosEncaminhados'         {}
-            case 'formSaude'                          {}
+            case 'formSaude'                          {
+                                                       transform_frequenta_ginecologista_regularmente($data[$i]->{formSaude});
+                                                       transform_frequenta_urologista_regularmente($data[$i]->{formSaude});
+                                                       transform_avaliacao_condicao_saude_familia($data[$i]->{formSaude});
+                                                       transform_avaliacao_servico_saude($data[$i]->{formSaude});
+                                                       transform_avaliacao_acesso_medicacao($data[$i]->{formSaude});
+                                                       }
             case 'formServicoSocial'                  {}
             case 'formVinculacaoNaCCA'                {
                                                        transform_status_vinculacao_cca($data[$i]->{formVinculoReligioso});
@@ -215,10 +223,18 @@ sub transform {
                                                         transform_frequencia_violencia_intra_familiar($data[$i]->{formProtecaoEspecial});
                                                         transform_sofre_violencia_intra_familiar($data[$i]->{formProtecaoEspecial});
                                                         transform_sofreu_violencia_intra_familiar($data[$i]->{formProtecaoEspecial});
+                                                        transform_frequencia_violencia_comunitaria($data[$i]->{formProtecaoEspecial});
+                                                        transform_sofre_violencia_comunitaria($data[$i]->{formProtecaoEspecial});
+                                                        transform_sofreu_violencia_comunitaria($data[$i]->{formProtecaoEspecial});
+                                                        transform_frequencia_violencia_institucional($data[$i]->{formProtecaoEspecial});
+                                                        transform_sofre_violencia_institucional($data[$i]->{formProtecaoEspecial});
+                                                        transform_sofreu_violencia_institucional($data[$i]->{formProtecaoEspecial});
                                                       }
             case 'formIndividualFamilia'              {}
             case 'formEvolucao'                       {}
-            case 'formSaudeSubstanciaPsicoativa'      {}
+            case 'formSaudeSubstanciaPsicoativa'      {
+                                                        transform_uso_drogas($data[$i]->{formSaudeSubstanciaPsicoativa});
+                                                       }
             case 'formDocumentacaoFamiliar'           {}
             case 'formComposicaoFamiliar'             {}
         }
@@ -389,45 +405,14 @@ sub transform_possui_banheiro{
 
 sub transform_nucleo {
     my $data = shift;
-    $data->{nucleo} = $dbi->resultset('DNucleo')->find_or_create({ nucleo => $data->{nucleo},})->id_nucleo;
+    my $value =  'Não informado';
+    if($data->{nucleo}){
+        $value = $data->{nucleo};
+    }
+    $data->{nucleo} = $dbi->resultset('DNucleo')->find_or_create({ nucleo => $value,})->id_nucleo;
 }
 
-sub transform_uso_drogas {
-    my $data = shift;
-    $data->{uso_drogas} = $dbi->resultset('DUsoDrogas')->find_or_create({ uso_drogas => $data->{uso_drogas},})->id_uso_drogas;
-}
 
-sub transform_acompanhamento_uso_drogas {
-    my $data = shift;
-    $data->{acompanhamento_uso_drogas} = $dbi->resultset('DAcompanhamentoUsoDrogas')->find_or_create(
-                                                                        { acompanhamento_uso_drogas => $data->{acompanhamento_uso_drogas},
-                                                                        })->id_acompanhamento_uso_drogas;
-}
-
-sub transform_contraceptivo {
-    my $data = shift;
-    $data->{contraceptivo} = $dbi->resultset('DContraceptivo')->find_or_create({ contraceptivo => $data->{contraceptivo},})->id_contraceptivo;
-}
-
-sub transform_avaliacao_servico_saude {
-    my $data = shift;
-    $data->{avaliacao_servico_saude} = $dbi->resultset('DAvaliacaoServicoSaude')->find_or_create(
-                                                                                      { avaliacao_servico_saude => $data->{avaliacao_servico_saude},
-                                                                                      })->id_avaliacao_servico_saude;
-}
-
-sub transform_acesso_medicacao {
-    my $data = shift;
-    $data->{acesso_medicacao} = $dbi->resultset('DAcessoMedicacao')->find_or_create({ acesso_medicacao => $data->{acesso_medicacao},
-                                                                                    })->id_acesso_medicacao;
-}
-
-sub transform_avaliacao_condicao_saude_familia {
-    my $data = shift;
-    $data->{avaliacao_condicao_saude_familia} = $dbi->resultset('DAvaliacaoCondicaoSaudeFamilia')->find_or_create(
-                                                            { avaliacao_condicao_saude_familia => $data->{avaliacao_condicao_saude_familia},
-                                                            })->id_avaliacao_condicao_saude_familia;
-}
 
 sub transform_participacao_grupo_social {
     my $data = shift;
@@ -656,7 +641,6 @@ sub transform_sofreu_violencia_intra_familiar{
 
 sub transform_frequencia_violencia_intra_familiar{
     my $data = shift;
-
     my $value = $data->{violenciaNoAmbitoIntrafamiliar}{casoTenhaSofridoViolenciaEspecifique}{frequencia}{frequentemente} + 
                  $data->{violenciaNoAmbitoIntrafamiliar}{casoTenhaSofridoViolenciaEspecifique}{frequencia}{raramente}      +  
                  $data->{violenciaNoAmbitoIntrafamiliar}{casoTenhaSofridoViolenciaEspecifique}{frequencia}{asVezes};
@@ -680,214 +664,509 @@ sub transform_frequencia_violencia_intra_familiar{
 sub transform_sofre_violencia_comunitaria{
     my $data = shift;
     my $value =  'Não informado';
-    if($data->{violenciaNoAmbitoIntrafamiliar}{nuncaSofreNenhumTipoDeViolenciaIntrafamiliar} ){
-        $value = $data->{violenciaNoAmbitoIntrafamiliar}{nuncaSofreNenhumTipoDeViolenciaIntrafamiliar} == 1 ? 'Nunca Sofreu' : 'Sim Sofreu';
+    if($data->{violenciaNoAmbitoComunitario}{nuncaSofreuNenhumTipoDeViolenciaComunitaria} ){
+        $value = $data->{violenciaNoAmbitoComunitario}{nuncaSofreuNenhumTipoDeViolenciaComunitaria} == 1 ? 'Nunca Sofreu' : 'Sim Sofreu';
     }
      else {
-        if($data->{violenciaNoAmbitoIntrafamiliar}{sofreAlgumTipoDeViolenciaIntrafamiliar}){
-             $value = $data->{violenciaNoAmbitoIntrafamiliar}{sofreAlgumTipoDeViolenciaIntrafamiliar};
+        if($data->{violenciaNoAmbitoComunitario}{sofreAlgumTipoDeViolenciaComunitaria}){
+             $value = $data->{violenciaNoAmbitoComunitario}{sofreAlgumTipoDeViolenciaComunitaria};
          }
     }
-    $data->{violenciaNoAmbitoIntrafamiliar}{sofreAlgumTipoDeViolenciaIntrafamiliar} = 
-                                                                                 $dbi->resultset('DSofreViolenciaIntrafamiliar')
-                                                                                    ->find_or_create({sofre_violencia_intrafamiliar => $value,
-                                                                                                     })->id_sofre_violencia_intrafamiliar;
+    $data->{violenciaNoAmbitoComunitario}{sofreAlgumTipoDeViolenciaComunitaria} = 
+                                                                                 $dbi->resultset('DSofreViolenciaAmbienteComunitario')
+                                                                                    ->find_or_create({sofre_violencia_ambiente_comunitario => $value,
+                                                                                                     })->id_sofre_violencia_ambiente_comunitario;
 }
 
 sub transform_sofreu_violencia_comunitaria{
     my $data = shift;
     my $value =  'Não informado';
-    if($data->{violenciaNoAmbitoIntrafamiliar}{nuncaSofreNenhumTipoDeViolenciaIntrafamiliar} ){
-        $value = $data->{violenciaNoAmbitoIntrafamiliar}{nuncaSofreNenhumTipoDeViolenciaIntrafamiliar} == 1 ? 'Nunca Sofreu' : 'Sim Sofreu';
+    if($data->{violenciaNoAmbitoComunitario}{nuncaSofreuNenhumTipoDeViolenciaComunitaria} ){
+        $value = $data->{violenciaNoAmbitoComunitario}{nuncaSofreuNenhumTipoDeViolenciaComunitaria} == 1 ? 'Nunca sofreu' : 'Sim sofreu';
     }
      else {
-        if($data->{violenciaNoAmbitoIntrafamiliar}{sofreuAlgumTipoDeViolenciaIntrafamiliar}){
-             $value = $data->{violenciaNoAmbitoIntrafamiliar}{sofreuAlgumTipoDeViolenciaIntrafamiliar};
+        if($data->{violenciaNoAmbitoComunitario}{sofreuAlgumTipoDeViolenciaComunitaria}){
+             $value = $data->{violenciaNoAmbitoComunitario}{sofreuAlgumTipoDeViolenciaComunitaria};
          }
     }
-    $data->{violenciaNoAmbitoIntrafamiliar}{sofreuAlgumTipoDeViolenciaIntrafamiliar} = 
-                                                                                 $dbi->resultset('DSofreuViolenciaIntrafamiliar')
-                                                                                    ->find_or_create({sofreu_violencia_intrafamiliar => $value,
-                                                                                                     })->id_sofreu_violencia_intrafamiliar;
+    $data->{violenciaNoAmbitoComunitario}{sofreuAlgumTipoDeViolenciaComunitaria} = 
+                                                                                 $dbi->resultset('DSofreuViolenciaAmbienteComunitario')
+                                                                                    ->find_or_create({sofreu_violencia_ambiente_comunitario => $value,
+                                                                                                     })->id_sofreu_violencia_ambiente_comunitario;
 }
 
 sub transform_frequencia_violencia_comunitaria{
     my $data = shift;
-
-    my $value = $data->{violenciaNoAmbitoIntrafamiliar}{casoTenhaSofridoViolenciaEspecifique}{frequencia}{frequentemente} + 
-                 $data->{violenciaNoAmbitoIntrafamiliar}{casoTenhaSofridoViolenciaEspecifique}{frequencia}{raramente}      +  
-                 $data->{violenciaNoAmbitoIntrafamiliar}{casoTenhaSofridoViolenciaEspecifique}{frequencia}{asVezes};
-
-    if ($value == 0 or $value > 1){
-        $value = 'Não informado'; 
+    my $value = $data->{violenciaNoAmbitoComunitario}{frequencia}{frequentemente} + 
+                 $data->{violenciaNoAmbitoComunitario}{frequencia}{raramente}      +  
+                 $data->{violenciaNoAmbitoComunitario}{frequencia}{asVezes};
+    if ($value == 1){
+        my $hash = ();
+        %{$hash} = reverse %{$data->{violenciaNoAmbitoComunitario}{frequencia}};
+        $value = $hash->{1};
     }
     else
     {
-        my $hash = ();
-        %{$hash} = reverse %{$data->{violenciaNoAmbitoIntrafamiliar}{casoTenhaSofridoViolenciaEspecifique}{frequencia}};
-        $value = $hash->{1};
+        $value = 'Não informado'; 
     }
 
     $data->{violenciaNoAmbitoIntrafamiliar}{casoTenhaSofridoViolenciaEspecifique}{frequencia} = 
-                                                                                 $dbi->resultset('DFrequenciaViolenciaIntrafamiliar')
-                                                                                    ->find_or_create({frequencia_violencia_intrafamiliar => $value,
-                                                                                                     })->id_frequencia_violencia_intrafamiliar;
+                                                                                 $dbi->resultset('DFrequenciaViolenciaAmbitoComunitario')
+                                                                                    ->find_or_create({frequencia_violencia_ambito_comunitario => $value,
+                                                                                                     })->id_frequencia_violencia_ambito_comunitario;
 
 }
+
+sub transform_sofre_violencia_institucional{
+    my $data = shift;
+    my $value =  'Não informado';
+    if($data->{violenciaNoAmbitoInstitucional}{nuncaSofreuNenhumTipoDeViolenciaInstitucional} ){
+        $value = $data->{violenciaNoAmbitoInstitucional}{nuncaSofreuNenhumTipoDeViolenciaInstitucional} == 1 ? 'Nunca Sofreu' : 'Sim Sofreu';
+    }
+     else {
+        if($data->{violenciaNoAmbitoInstitucional}{sofreAlgumTipoDeViolenciaInstitucional}){
+             $value = $data->{violenciaNoAmbitoInstitucional}{sofreAlgumTipoDeViolenciaInstitucional};
+         }
+    }
+    $data->{violenciaNoAmbitoInstitucional}{sofreAlgumTipoDeViolenciaInstitucional} = 
+                                                                                 $dbi->resultset('DSofreViolenciaInstitucional')
+                                                                                    ->find_or_create({sofre_violencia_institucional => $value,
+                                                                                                     })->id_sofre_violencia_institucional;
+}
+
+sub transform_sofreu_violencia_institucional{
+    my $data = shift;
+    my $value =  'Não informado';
+    if($data->{violenciaNoAmbitoInstitucional}{nuncaSofreuNenhumTipoDeViolenciaInstitucional} ){
+        $value = $data->{violenciaNoAmbitoInstitucional}{nuncaSofreuNenhumTipoDeViolenciaInstitucional} == 1 ? 'Nunca sofreu' : 'Sim sofreu';
+    }
+     else {
+        if($data->{violenciaNoAmbitoInstitucional}{sofreuAlgumTipoDeViolenciaInstitucional}){
+             $value = $data->{violenciaNoAmbitoInstitucional}{sofreuAlgumTipoDeViolenciaInstitucional};
+         }
+    }
+    $data->{violenciaNoAmbitoInstitucional}{sofreuAlgumTipoDeViolenciaInstitucional} = 
+                                                                                 $dbi->resultset('DSofreuViolenciaInstitucional')
+                                                                                    ->find_or_create({sofreu_violencia_institucional => $value,
+                                                                                                     })->id_sofreu_violencia_institucional;
+}
+
+sub transform_uso_drogas{
+    my $data = shift;
+    my $value =  'Não informado';
+    my @drogas = ('maconha', 'inalantes', 'cigarro', 'cocaina', 'comprimidos', 'cola', 'mesclado', 'alcool', 'crack');
+   if($data->{saudeSubstanciaPsicoativa}{algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas}{naoQuisInformar}
+                                                                                        {naoQuisInformarUsoSubstanciaPisicoativa} == 0){
+   if($data->{saudeSubstanciaPsicoativa}{algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas}
+                                                                                        {parentescoOuSocioeducandoFazUsoDeSubstanciasPsicoativas} ){
+        if($data->{saudeSubstanciaPsicoativa}{algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas}
+                                                    {parentescoOuSocioeducandoFazUsoDeSubstanciasPsicoativas} eq 'Socioeducando' ){
+               for (my $valor=0; $valor < scalar(@drogas); $valor++){
+                   $value = $data->{saudeSubstanciaPsicoativa}{algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas}
+                                                                                                            {fezUso}{$drogas[$valor]} +
+                            $data->{saudeSubstanciaPsicoativa}{algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas}
+                                                                                                            {jaExperimentou}{$drogas[$valor]} +
+                            $data->{saudeSubstanciaPsicoativa}{algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas}
+                                                                                                            {nuncaUsou}{$drogas[$valor]} +
+                            $data->{saudeSubstanciaPsicoativa}{algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas}
+                                                                                                            {costumaDeVezEmQuando}{$drogas[$valor]};
+                    if($value == 1){
+                              $value = $data->{saudeSubstanciaPsicoativa}
+                                         {algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas}
+                                                                               {fezUso}{$drogas[$valor]} == 1 ? 'fez uso' : $value;
+                              $value = $data->{saudeSubstanciaPsicoativa}
+                                         {algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas}
+                                                                              {jaExperimentou}{$drogas[$valor]} == 1 ? 'Já experimentou' : $value;
+                              $value = $data->{saudeSubstanciaPsicoativa}
+                                         {algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas}
+                                                                              {nuncaUsou}{$drogas[$valor]} == 1 ? 'Nunca usou' : $value;
+                              $value = $data->{saudeSubstanciaPsicoativa}
+                                         {algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas}
+                                                                 {costumaDeVezEmQuando}{$drogas[$valor]} == 1 ? 'Costuma de vez em quando' : $value;
+                               $value = $data->{saudeSubstanciaPsicoativa}
+                                         {algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas}
+                                                                 {costumeFrequentemente}{$drogas[$valor]} == 1 ? 'Costuma frequentemente' : $value;
+                              $drogas[$valor] = $value;
+                    } else{ $drogas[$valor] = 'Não Informado'; }
+               }         
+        }
+        else{
+          foreach my $item (@drogas){
+            $item = 'Não Informado'; 
+          }
+        }
+    }
+    else{
+      foreach my $item (@drogas){
+        $item = 'Não Informado'; 
+      }
+    }
+    }
+    else{
+    foreach my $item (@drogas){
+        $item = 'Não quis informar'; 
+      }
+    }
+
+    $data->{saudeSubstanciaPsicoativa}{algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas}{fezUso}{maconha} = 
+                                                                                 $dbi->resultset('DUsaMaconha')
+                                                                                    ->find_or_create({usa_maconha => $drogas[0],
+                                                                                                     })->id_usa_maconha;
+
+    $data->{saudeSubstanciaPsicoativa}{algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas}{fezUso}{inalantes} = 
+                                                                                 $dbi->resultset('DUsaInalante')
+                                                                                    ->find_or_create({usa_inalantes => $drogas[1],
+                                                                                                     })->id_usa_inalantes;
+
+    $data->{saudeSubstanciaPsicoativa}{algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas}{fezUso}{cigarro} = 
+                                                                                 $dbi->resultset('DUsaCigarro')
+                                                                                    ->find_or_create({usa_cigarro => $drogas[2],
+                                                                                                     })->id_usa_cigarro;
+
+    $data->{saudeSubstanciaPsicoativa}{algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas}{fezUso}{cocaina} = 
+                                                                                 $dbi->resultset('DUsaCocaina')
+                                                                                    ->find_or_create({usa_cocaina => $drogas[3],
+                                                                                                     })->id_usa_cocaina;
+
+    $data->{saudeSubstanciaPsicoativa}{algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas}{fezUso}{comprimidos} = 
+                                                                                 $dbi->resultset('DUsaComprimido')
+                                                                                    ->find_or_create({usa_comprimidos => $drogas[4],
+                                                                                                     })->id_usa_comprimidos;
+
+    $data->{saudeSubstanciaPsicoativa}{algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas}{fezUso}{cola} = 
+                                                                                 $dbi->resultset('DUsaCola')
+                                                                                    ->find_or_create({usa_cola => $drogas[5],
+                                                                                                     })->id_usa_cola;
+
+    $data->{saudeSubstanciaPsicoativa}{algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas}{fezUso}{mesclado} = 
+                                                                                 $dbi->resultset('DUsaMesclado')
+                                                                                    ->find_or_create({usa_mesclado => $drogas[6],
+                                                                                                     })->id_usa_mesclado;
+
+    $data->{saudeSubstanciaPsicoativa}{algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas}{fezUso}{alcool} = 
+                                                                                 $dbi->resultset('DUsaAlcool')
+                                                                                    ->find_or_create({usa_alcool => $drogas[7],
+                                                                                                     })->id_usa_alcool;
+
+    $data->{saudeSubstanciaPsicoativa}{algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas}{fezUso}{crack} = 
+                                                                                 $dbi->resultset('DUsaCrack')
+                                                                                    ->find_or_create({usa_crack => $drogas[8],
+                                                                                                     })->id_usa_crack;
+}
+
+sub transform_frequenta_ginecologista_regularmente{
+    my $data  = shift;
+    my $value = 'Não informado';
+    if($data->{saude}{aPartirDe12Anos}{frequentaGinecologistaRegularmente}){
+        $value = $data->{saude}{aPartirDe12Anos}{frequentaGinecologistaRegularmente};
+    }
+   $data->{saude}{aPartirDe12Anos}{frequentaGinecologistaRegularmente} = $dbi->resultset('DFrequentaGinecologistaRegularmente')
+                                                                ->find_or_create({frequenta_ginecologista_regularmente 
+                                                                 => $value,})->id_frequenta_ginecologista_regularmente;
+}
+
+sub transform_frequenta_urologista_regularmente{
+    my $data  = shift;
+    my $value = 'Não informado';
+    if($data->{saude}{aPartirDe12Anos}{frequentaUrologistaRegularmente}){
+        $value = $data->{saude}{aPartirDe12Anos}{frequentaUrologistaRegularmente};
+    }
+   $data->{saude}{aPartirDe12Anos}{frequentaGinecologistaRegularmente} = $dbi->resultset('DFrequentaUrologistaRegularmente')
+                                                                ->find_or_create({frequenta_urologista_regularmente 
+                                                                 => $value,})->id_frequenta_urologista_regularmente;
+}
+
+sub transform_avaliacao_acesso_medicacao{
+    my $data  = shift;
+    my $value = 'Não informado';
+    if($data->{saude}{avaliacaoDoAcessoAosServicosDeSaude}{acessoAmedicacao}){
+        $value = $data->{saude}{avaliacaoDoAcessoAosServicosDeSaude}{acessoAmedicacao};
+    }
+   $data->{saude}{avaliacaoDoAcessoAosServicosDeSaude}{acessoAmedicacao} = $dbi->resultset('DAvaliacaoAcessoMedicacao')
+                                                                ->find_or_create({avaliacao_acesso_medicacao 
+                                                                 => $value,})->id_avaliacao_acesso_medicacao;
+}
+
+sub transform_avaliacao_servico_saude{
+    my $data  = shift;
+    my $value = 'Não informado';
+    if($data->{saude}{avaliacaoDoAcessoAosServicosDeSaude}{acessoDaFamiliaAoServicoDeSaude}){
+        $value = $data->{saude}{avaliacaoDoAcessoAosServicosDeSaude}{acessoDaFamiliaAoServicoDeSaude};
+    }
+   $data->{saude}{avaliacaoDoAcessoAosServicosDeSaude}{acessoDaFamiliaAoServicoDeSaude} = $dbi->resultset('DAvaliacaoServicoSaude')
+                                                                ->find_or_create({avaliacao_servico_saude 
+                                                                 => $value,})->id_avaliacao_servico_saude;
+}
+
+sub transform_avaliacao_condicao_saude_familia{
+    my $data  = shift;
+    my $value = 'Não informado';
+    if($data->{saude}{avaliacaoDoAcessoAosServicosDeSaude}{condicoesDeSaudeDaFamilia}){
+        $value = $data->{saude}{avaliacaoDoAcessoAosServicosDeSaude}{condicoesDeSaudeDaFamilia};
+    }
+   $data->{saude}{avaliacaoDoAcessoAosServicosDeSaude}{condicoesDeSaudeDaFamilia} = $dbi->resultset('DAvaliacaoCondicaoSaudeFamilia')
+                                                                ->find_or_create({avaliacao_condicao_saude_familia 
+                                                                 => $value,})->id_avaliacao_condicao_saude_familia;
+}
+
+sub transform_idade{
+    my $data  = shift;
+    my $value = 'Não informado';
+    if($data->{idade}){
+        $value = $data->{idade};
+    }
+    $data->{idade} = $dbi->resultset('DIdade')->find_or_create({idade => $value,})->id_idade;
+}
+
+
+
 
 sub load{
     my ($data) = @_;
      $dbi->resultset('FAtendimento')
       ->create({
-            id_endereco => $data->{endereco},
-            id_estado_civil => $data->{estado_civil},
-            id_raca_etnia => $data->{raca_etnia},
-            id_sexo => $data->{sexo},
-            id_sexualidade => $data->{sexualidade},
-            id_data => $data->{data},
-            id_idade => $data->{idade},
-            id_endereco => $data->{endereco},
-            deficiencia_sensorial_surdo => $data->{deficiencia_sensorial_surd},
-            deficiencia_sensorial_cego => $data->{deficiencia_sensorial_cego},
-            deficiencia_fisico_motor => $data->{deficiencia_fisico_motor},
-            deficiencia_mobilidade_reduzida => $data->{deficiencia_mobilidade_reduzida},
-            deficiencia_intelectual => $data->{deficiencia_intelectual},
-            id_registro_nascimento => $data->{id_registro_nascimento},
-            data_nascimento => $data->{data_nascimento},
-            id_identidade => $data->{id_identidade},
-            id_cpf => $data->{id_cpf},
-            id_ctps => $data->{id_ctps},
-            id_titulo_eleitor => $data->{id_titulo_eleitor},
-            id_reservista => $data->{id_reservista},
-            id_nis => $data->{id_nis},
-            ja_estagiou => $data->{ja_estagiou},
-            ja_trabalhou_formalmente => $data->{ja_trabalhou_formalmente},
-            ja_trabalhou_informalmente => $data->{ja_trabalhou_informalmente},
-            esta_trabalhando_formalmente => $data->{esta_trabalhando_formalmente},
-            esta_trabalhando_informalmente => $data->{esta_trabalhando_informalmente},
-            id_nocoes_informatica => $data->{id_nocoes_informatica},
-            fez_curso_profissionalizante => $data->{fez_curso_profissionalizante},
-            tem_interesse_curso_profissionalizante => $data->{tem_interesse_curso_profissionalizante},
-            habilidade_desenho => $data->{habilidade_desenho},
-            habilidade_artesanato => $data->{habilidade_artesanato},
-            habilidade_grafite => $data->{habilidade_grafite},
-            habilidade_costura => $data->{habilidade_costura},
-            habilidade_musica => $data->{habilidade_musica},
-            habilidade_literatura => $data->{habilidade_literatura},
-            habilidade_teatro => $data->{habilidade_teatro},
-            habilidade_culinaria => $data->{habilidade_culinaria},
-            habilidade_danca => $data->{habilidade_danca},
-            habilidade_pintura => $data->{habilidade_pintura},
-            id_vinculo_religioso => $data->{id_vinculo_religioso},
-            situacao_moradia => $data->{situacao_moradia},
-            id_tempo_moradia => $data->{id_tempo_moradia},
-            possui_banheiro => $data->{possui_banheiro},
-            id_tipo_abastecimento_agua => $data->{id_tipo_abastecimento_agua},
-            id_tratamento_agua => $data->{id_tratamento_agua},
-            id_tipo_iluminacao => $data->{id_tipo_iluminacao},
-            id_escoamento_sanitario => $data->{id_escoamento_sanitario},
-            id_destino_lixo => $data->{id_destino_lixo},
-            id_tipo_construcao_moradia => $data->{id_tipo_construcao_moradia},
-            id_origem_encaminhamento => $data->{id_origem_encaminhamento},
-            id_vinculacao_cca => $data->{id_vinculacao_cca},
-            id_nucleo => $data->{id_nucleo},
-            id_status_vinculacao => $data->{id_status_vinculacao},
-            id_violencia_intrafamiliar => $data->{id_violencia_intrafamiliar},
-            violencia_intrafamiliar_discurssao_verbal => $data->{violencia_intrafamiliar_discurssao_verbal},
-            violencia_intrafamiliar_agressao_fisica => $data->{violencia_intrafamiliar_agressao_fisica},
-            violencia_intrafamiliar_domestica => $data->{violencia_intrafamiliar_domestica},
-            violencia_intrafamiliar_abuso_sexual => $data->{violencia_intrafamiliar_abuso_sexual},
-            violencia_intrafamiliar_exploracao_sexual => $data->{violencia_intrafamiliar_exploracao_sexual},
-            violencia_intrafamiliar_agressao_psicologica => $data->{violencia_intrafamiliar_agressao_psicologica},
-            violencia_intrafamiliar_ameaca_morte => $data->{violencia_intrafamiliar_ameaca_morte},
-            id_providencia_contra_violencia_intrafamiliar => $data->{id_providencia_contra_violencia_intrafamiliar},
-            id_violencia_institucional => $data->{id_violencia_institucional},
-            violencia_instituicao_policial => $data->{violencia_instituicao_policial},
-            violencia_instituicao_guarda_municipal => $data->{violencia_instituicao_guarda_municipal},
-            violencia_instituicao_escola => $data->{violencia_instituicao_escola},
-            violencia_instituicao_posto_saude => $data->{violencia_instituicao_posto_saude},
-            violencia_institucional_discurssao_verbal => $data->{violencia_institucional_discurssao_verbal},
-            violencia_institucional_agressao_fisica => $data->{violencia_institucional_agressao_fisica},
-            violencia_institucional_abuso_sexual => $data->{violencia_institucional_abuso_sexual},
-            violencia_institucional_exploracao_sexual => $data->{violencia_institucional_exploracao_sexual},
-            violencia_institucional_agressao_psicologica => $data->{violencia_institucional_agressao_psicologica},
-            violencia_institucional_ameassa_morte => $data->{violencia_institucional_ameassa_morte},
-            id_providencia_contra_violencia_institucional => $data->{id_providencia_contra_violencia_institucional},
-            id_atendimento_contra_violencia_institucional => $data->{id_atendimento_contra_violencia_institucional},
-            id_frequencia_violencia_intrafamiliar => $data->{id_frequencia_violencia_intrafamiliar},
-            id_frequencia_violencia_institucional => $data->{id_frequencia_violencia_institucional},
-            id_violencia_ambiente_comunitario => $data->{id_violencia_ambiente_comunitario},
-            violencia_ambito_comunitario_discurssao_verbal => $data->{violencia_ambito_comunitario_discurssao_verbal},
-            violencia_ambito_comunitario_agressao_fisica => $data->{violencia_ambito_comunitario_agressao_fisica},
-            violencia_ambito_comunitario_abuso_sexual => $data->{violencia_ambito_comunitario_abuso_sexual},
-            violencia_ambito_comunitario_exploracao_sexual => $data->{violencia_ambito_comunitario_exploracao_sexual},
-            violencia_ambito_comunitario_agressao_psicologica => $data->{violencia_ambito_comunitario_agressao_psicologica},
-            violencia_ambito_comunitario_ameaca_morte => $data->{violencia_ambito_comunitario_ameaca_morte},
-            id_frequencia_violencia_ambito_comunitario => $data->{id_frequencia_violencia_ambito_comunitario},
-            id_providencia_contra_violencia_ambito_comunitario => $data->{id_providencia_contra_violencia_ambito_comunitario},
-            exploracao_qualquer_tipo_trabalho_infantil => $data->{exploracao_qualquer_tipo_trabalho_infantil},
-            exploracao_trabalho_infantil_domestico => $data->{exploracao_trabalho_infantil_domestico},
-            exploracao_trabalho_infantil_catador => $data->{exploracao_trabalho_infantil_catador},
-            exploracao_trabalho_infantil_pedinte => $data->{exploracao_trabalho_infantil_pedinte},
-            exploracao_trabalho_infantil_malabarista => $data->{exploracao_trabalho_infantil_malabarista},
-            exploracao_trabalho_infantil_engraxate => $data->{exploracao_trabalho_infantil_engraxate},
-            exploracao_trabalho_infantil_flanelinha => $data->{exploracao_trabalho_infantil_flanelinha},
-            exploracao_trabalho_infantil_jornaleiro => $data->{exploracao_trabalho_infantil_jornaleiro},
-            exploracao_trabalho_infantil_ajudante_pedreiro => $data->{exploracao_trabalho_infantil_ajudante_pedreiro},
-            exploracao_trabalho_infantil_comercio_drogras => $data->{exploracao_trabalho_infantil_comercio_drogras},
-            exploracao_trabalho_infantil_pesca => $data->{exploracao_trabalho_infantil_pesca},
-            exploracao_trabalho_carvoaria => $data->{exploracao_trabalho_carvoaria},
-            inscrito_peti => $data->{inscrito_peti},
-            vivencia_rua => $data->{vivencia_rua},
-            id_uso_drogas => $data->{id_uso_drogas},
-            id_acompanhamento_uso_drogas => $data->{id_acompanhamento_uso_drogas},
-            internado_comunidade_teraupeutica_uso_drogas => $data->{internado_comunidade_teraupeutica_uso_drogas},
-            deseja_tratamento_uso_drogas => $data->{deseja_tratamento_uso_drogas},
-            usa_metodo_contraceptivo => $data->{usa_metodo_contraceptivo},
-            usa_contraceptivo_preservativo_masculino => $data->{usa_contraceptivo_preservativo_masculino},
-            usa_contraceptivo_preservativo_feminino => $data->{usa_contraceptivo_preservativo_feminino},
-            usa_contraceptivo_pilula_anticoncepcional => $data->{usa_contraceptivo_pilula_anticoncepcional},
-            usa_contraceptivo_diu => $data->{usa_contraceptivo_diu},
-            usa_contraceptivo_tabela => $data->{usa_contraceptivo_tabela},
-            usa_contraceptivo_temperatura_basal => $data->{usa_contraceptivo_temperatura_basal},
-            usa_contraceptivo_metodo_biliing => $data->{usa_contraceptivo_metodo_biliing},
-            usa_contraceptivo_coito_interrompido => $data->{usa_contraceptivo_coito_interrompido},
-            id_contraceptivo => $data->{id_contraceptivo},
-            frequenta_genecologista => $data->{frequenta_genecologista},
-            frequenta_urologista => $data->{frequenta_urologista},
-            id_participacao_grupo_social => $data->{id_participacao_grupo_social},
-            participacao_grupo_religioso => $data->{participacao_grupo_religioso},
-            participacao_movimento_estudantil => $data->{participacao_movimento_estudantil},
-            participacao_associacao_bairro => $data->{participacao_associacao_bairro},
-            participacao_movimento_politico => $data->{participacao_movimento_politico},
-            participacao_grupo_musical => $data->{participacao_grupo_musical},
-            participacao_grupo_esportivo => $data->{participacao_grupo_esportivo},
-            participacao_grupo_teatro => $data->{participacao_grupo_teatro},
-            participacao_grupo_danca => $data->{participacao_grupo_danca},
-            participacao_grupo_defesa_meio_ambiente => $data->{participacao_grupo_defesa_meio_ambiente},
-            participacao_cooperativa => $data->{participacao_cooperativa},
-            participacao_ong => $data->{participacao_ong},
-            participacao_grupos_produtivos => $data->{participacao_grupos_produtivos},
-            participacao_movimento_cultural => $data->{participacao_movimento_cultural},
-            participacao_organizacoes_lgbtt => $data->{participacao_organizacoes_lgbtt},
-            participacao_movimento_mulheres => $data->{participacao_movimento_mulheres},
-            participacao_movimento_negro => $data->{participacao_movimento_negro},
-            participacao_grupo_rpg => $data->{participacao_grupo_rpg},
-            participacao_grupos_rivais => $data->{participacao_grupos_rivais},
-            participacao_atividade_comunitaria => $data->{participacao_atividade_comunitaria},
-            id_tipo_escola_matriculado => $data->{id_tipo_escola_matriculado},
-            frequentando_escola => $data->{frequentando_escola},
-            escola_matriculado_proximo_residencia => $data->{escola_matriculado_proximo_residencia},
-            id_escolaridade => $data->{id_escolaridade},
-            id_avaliacao_frequencia_escolar => $data->{id_avaliacao_frequencia_escolar},
-            id_avaliacao_preparacao_atividades_escolares => $data->{id_avaliacao_preparacao_atividades_escolares},
-            id_avaliacao_rendimento_escolar => $data->{id_avaliacao_rendimento_escolar},
-            id_avaliacao_familia_vida_escolar => $data->{id_avaliacao_familia_vida_escolar},
-            id_acesso_medicacao => $data->{id_acesso_medicacao},
-            id_avaliacao_servico_saude => $data->{id_avaliacao_servico_saude},
-            id_avaliacao_condicao_saude_familia => $data->{id_avaliacao_condicao_saude_familia},
-            id_atendimento_contra_violencia_intrafamiliar => $data->{id_atendimento_contra_violencia_intrafamiliar},
-            id_atendimento_contra_violencia_comunitario => $data->{id_atendimento_contra_violencia_comunitario},
+              id_sexo => $data->{sexo};
+              id_sexualidade => $data->{aPartirDe14Anos}{orientacaoSexual};
+              id_data =>  $data->{data};
+              id_idade => $data->{idade};
+              id_endereco => $data->{endereco};
+              id_raca_etnia => $data->{raca_etnia}
+              id_estado_civil => $data->{estado_civil}
+              deficiencia_sensorial_surdo => $data->{deficiencia_sensorial_surd},
+              deficiencia_sensorial_cego => $data->{deficiencia_sensorial_cego},
+              deficiencia_fisico_motor => $data->{deficiencia_fisico_motor},
+              deficiencia_mobilidade_reduzida => $data->{deficiencia_mobilidade_reduzida},
+              deficiencia_intelectual => $data->{deficiencia_intelectual},
+              id_registro_nascimento => $data->{id_registro_nascimento},
+              id_identidade => $data->{id_identidade},
+              id_cpf => $data->{id_cpf},
+              id_ctps => $data->{id_ctps},
+              id_titulo_eleitor => $data->{id_titulo_eleitor},
+              id_reservista => $data->{id_reservista},
+              id_nis => $data->{id_nis},
+              id_nocoes_informatica => $data->{id_nocoes_informatica},
+              habilidade_desenho => $data->{habilidade_desenho},
+              habilidade_artesanato => $data->{habilidade_artesanato},
+              habilidade_grafite => $data->{habilidade_grafite},
+              habilidade_costura => $data->{habilidade_costura},
+              habilidade_musica => $data->{habilidade_musica},
+              habilidade_literatura => $data->{habilidade_literatura},
+              habilidade_teatro => $data->{habilidade_teatro},
+              habilidade_culinaria => $data->{habilidade_culinaria},
+              habilidade_danca => $data->{habilidade_danca},
+              habilidade_pintura => $data->{habilidade_pintura},
+              id_vinculo_religioso => $data->{qualSeuVinculoReligiao},
+              situacao_moradia =>  $data->{situacaoMoradia},
+              id_tempo_moradia => $data->{tempoMoradia},
+              possui_banheiro =>  $data->{possuiBanheiro},
+              id_tipo_iluminacao =>  $data->{tipoIluminacao},
+              id_nucleo =>  $data->{nucleo},
+              id_status_vinculacao_cca => $data->{status},
+              id_sofre_violencia_intrafamiliar => $data->{violenciaNoAmbitoIntrafamiliar}{sofreAlgumTipoDeViolenciaIntrafamiliar},
+              id_sofreu_violencia_intrafamiliar => $data->{violenciaNoAmbitoIntrafamiliar}{sofreuAlgumTipoDeViolenciaIntrafamiliar},
+              violencia_intrafamiliar_discussao_verbal =>
+              violencia_intrafamiliar_agressao_fisica =>
+              violencia_intrafamiliar_domestica =>
+              violencia_intrafamiliar_abuso_sexual =>
+              violencia_intrafamiliar_exploracao_sexual =>
+              violencia_intrafamiliar_agressao_psicologica =>
+              violencia_intrafamiliar_ameaca_morte =>
+              id_sofre_violencia_institucional => $data->{violenciaNoAmbitoInstitucional}{sofreAlgumTipoDeViolenciaInstitucional},
+              sofre_violencia_instituicao_policial =>
+              sofre_violencia_instituicao_guarda_municipal =>
+              sofre_violencia_instituicao_escola =>
+              sofre_violencia_instituicao_posto_saude =>
+              sofre_violencia_institucional_discussao_verbal =>
+              sofre_violencia_institucional_agressao_fisica =>
+              sofre_violencia_institucional_abuso_sexual =>
+              sofre_violencia_institucional_exploracao_sexual =>
+              sofre_violencia_institucional_agressao_psicologica =>
+              sofre_violencia_institucional_ameassa_morte =>
+              sofreu_violencia_instituicao_policial =>
+              sofreu_violencia_instituicao_guarda_municipal =>
+              sofreu_violencia_instituicao_escola =>
+              sofreu_violencia_instituicao_posto_saude =>
+              sofreu_violencia_institucional_discussao_verbal =>
+              sofreu_violencia_institucional_agressao_fisica =>
+              sofreu_violencia_institucional_abuso_sexual =>
+              sofreu_violencia_institucional_exploracao_sexual =>
+              sofreu_violencia_institucional_agressao_psicologica =>
+              sofreu_violencia_institucional_ameassa_morte =>
+              id_frequencia_violencia_intrafamiliar => $data->{violenciaNoAmbitoIntrafamiliar}{casoTenhaSofridoViolenciaEspecifique}{frequencia},
+    #          id_frequencia_violencia_institucional => falta resolver
+              violencia_ambito_comunitario_discussao_verbal =>
+              violencia_ambito_comunitario_agressao_fisica =>
+              violencia_ambito_comunitario_abuso_sexual =>
+              violencia_ambito_comunitario_exploracao_sexual =>
+              violencia_ambito_comunitario_agressao_psicologica =>
+              violencia_ambito_comunitario_ameaca_morte =>
+              id_frequencia_violencia_ambito_comunitario => $data->{violenciaNoAmbitoIntrafamiliar}{casoTenhaSofridoViolenciaEspecifique}{frequencia},
+              exploracao_qualquer_tipo_trabalho_infantil =>
+              exploracao_trabalho_infantil_domestico =>
+              exploracao_trabalho_infantil_catador =>
+              exploracao_trabalho_infantil_pedinte =>
+              exploracao_trabalho_infantil_malabarista =>
+              exploracao_trabalho_infantil_engraxate =>
+              exploracao_trabalho_infantil_flanelinha =>
+              exploracao_trabalho_infantil_jornaleiro =>
+              exploracao_trabalho_infantil_ajudante_pedreiro =>
+              exploracao_trabalho_infantil_comercio_drogas =>
+              exploracao_trabalho_infantil_pesca =>
+              exploracao_trabalho_carvoaria =>
+              inscrito_peti =>
+              vivencia_rua =>
+              internado_comunidade_teraupeutica_uso_drogas =>
+              deseja_tratamento_uso_drogas =>
+              usa_metodo_contraceptivo =>
+              usa_contraceptivo_preservativo_masculino =>
+              usa_contraceptivo_preservativo_feminino =>
+              usa_contraceptivo_pilula_anticoncepcional =>
+              usa_contraceptivo_diu =>
+              usa_contraceptivo_tabela =>
+              usa_contraceptivo_temperatura_basal =>
+              usa_contraceptivo_metodo_biliing =>
+              usa_contraceptivo_coito_interrompido =>
+ #             id_contraceptivo => verificar...
+              frequenta_genecologista =>
+              frequenta_urologista =>
+              id_participacao_grupo_social => $data->{participacao_grupo_social},
+              participacao_grupo_religioso =>
+              participacao_movimento_estudantil =>
+              participacao_associacao_bairro =>
+              participacao_movimento_politico =>
+              participacao_grupo_musical =>
+              participacao_grupo_esportivo =>
+              participacao_grupo_teatro =>
+              participacao_grupo_danca =>
+              participacao_grupo_defesa_meio_ambiente =>
+              participacao_cooperativa =>
+              participacao_ong =>
+              participacao_grupos_produtivos =>
+              participacao_movimento_cultural =>
+              participacao_organizacoes_lgbtt =>
+              participacao_movimento_mulheres =>
+              participacao_movimento_negro =>
+              participacao_grupo_rpg =>
+              participacao_grupos_rivais =>
+              participacao_atividade_comunitaria =>
+              id_tipo_escola_matriculado =>  $data->{tipo_escola_matriculado},
+              id_escolaridade => $data->{emCasoAfirmativo}{escolaridade},
+              id_auto_avaliacao_frequencia_escolar => $data->{avaliacaoDaVidaEscolar}{suaFrequenciaEscolar},
+  #            id_auto_avaliacao_rendimento_escolar =>  verificar ..
+              id_avaliacao_acesso_medicacao => $data->{saude}{avaliacaoDoAcessoAosServicosDeSaude}{acessoAmedicacao},
+  #            id_avaliacao_servico_saude =>  verificar ..
+              id_avaliacao_condicao_saude_familia => $data->{saude}{avaliacaoDoAcessoAosServicosDeSaude}{condicoesDeSaudeDaFamilia},
+              data_nascimento =>
+              id_possui_banheiro => $data->{possuiBanheiro},
+              tipo_construcao_moradia_taipa_nao_resvestida =>
+              tipo_construcao_moradia_madeira =>
+              tipo_construcao_moradia_taipa_revestida =>
+              tipo_construcao_moradia_material_aproveitado =>
+              tipo_construcao_moradia_tijolo_alvenaria =>
+              tipo_abastecimento_agua_rede_publica =>
+              tipo_abastecimento_agua_poco_profundo =>
+              tipo_abastecimento_agua_cacimba =>
+              tipo_abastecimento_agua_carro_pipa =>
+              tipo_abastecimento_agua_rio_lagoa =>
+              tratamento_agua_filtracao =>
+              tratamento_agua_fervura =>
+              tratamento_agua_cloracao =>
+              tratamento_agua_sem_tratamento =>
+              escoamento_sanitario_rede_publica =>
+              escoamento_sanitario_fossa_rudimentar =>
+              escoamento_sanitario_fossa_septica =>
+              escoamento_sanitario_ceu_aberto =>
+              destino_lixo_coleta =>
+              destino_lixo_queima =>
+              destino_lixo_queima_enterramento =>
+              destino_lixo_ceu_aberto =>
+              id_esta_frequentando_escola => $data->{tipo_escola_matriculado},
+              id_escola_matriculado_proximo_residencia => $data->{escolaEmQueEstaMatriculadoSituaseProximoAResidencia},
+              id_criancas_familia_todas_matriculadas => $data->{naSuaFamiliaTodasAsCriancasAdolescentesIdadeEscolarEstaoMatriculadasNaEscola},
+              id_auto_avaliacao_participacao_atividade_escolar => $data->{avaliacaoDaVidaEscolar}{participacaoNasAtividadesEscolares},
+              id_auto_avaliacao_participacao_familia_escola => $data->{avaliacaoDaVidaEscolar}{participacaoDaFamiliaNaSuaVidaEscolar},
+              id_ja_estagiou => $data->{jaEstagiouAlgumaVez},
+              id_ja_trabalhou => $data->{jaTrabalhouAlgumaVez},
+              id_esta_trabalhando => $data->{estaTrabalhandoAtualmente},
+              id_fez_curso_profissionalizante => $data->{cursosProficionalizantes},
+              id_interesse_curso_profissionalizante => $data->{casoNaoTenhacursosProficionalizantes},
+              origem_encaminhamento_associacoes character varying NOT NULL,
+              origem_encaminhamento_conselho_tutelar =>
+              origem_encaminhamento_demanda_espontanea =>
+              origem_encaminhamento_judiciario =>
+              origem_encaminhamento_programas_projetos_funci =>
+              vinculacao_cca_adolescente_cidadao =>
+              vinculacao_cca_aquarela =>
+              vinculacao_cca_bromelia =>
+              vinculacao_cca_casa_meninas =>
+              vinculacao_cca_casa_meninos =>
+              vinculacao_cca_cozinha_experimental =>
+              vinculacao_cca_crescer_arte_cidadania =>
+              vinculacao_cca_ddca =>
+              vinculacao_cca_erradicacao_trabalho_infantil =>
+              vinculacao_cca_estilo_solitario =>
+              vinculacao_cca_ponte_encontro =>
+              vinculacao_cca_se_garanta_liberdade_assitida =>
+              vinculacao_cca_se_garanta_prestacao_servico_comunidade =>
+              contra_violencia_intrafamiliar_procurou_instituicao =>
+              contra_violencia_intrafamiliar_resolveu_conta_propia =>
+              contra_violencia_intrafamiliar_procurou_amigos =>
+              contra_violencia_intrafamiliar_nao_tomou_atitude =>
+              teve_atendimento_especializado_contra_violencia_intrafamiliar =>
+              esta_tendo_atendimento_especializado_contra_violencia_intrafami =>
+              nao_tem_gostaria_atendimento_especializado_contra_violencia_int =>
+              nao_quer_interesse_atendimento_especializado_contra_violencia_i =>
+              id_sofre_violencia_ambiente_comunitario => $data->{violenciaNoAmbitoComunitario}{sofreAlgumTipoDeViolenciaComunitaria},
+              id_sofreu_violencia_ambiente_comunitario => $data->{violenciaNoAmbitoComunitario}{sofreuAlgumTipoDeViolenciaComunitaria},
+              contra_violencia_comunitaria_procurou_instituicao =>
+              contra_violencia_comunitaria_resolveu_conta_propria =>
+              contra_violencia_comunitaria_procurou_amigos =>
+              contra_violencia_comunitaria_nao_tomou_atitude =>
+              teve_atendimento_especializado_contra_violencia_comunitaria =>
+              esta_tendo_atendimento_especializado_contra_violencia_comunitar =>
+              nao_tem_gostaria_atendimento_especializado_contra_violencia_com =>
+              nao_quer_atendimento_especializado_contra_violencia_comunitaria =>
+              id_sofreu_violencia_institucional => $data->{violenciaNoAmbitoInstitucional}{sofreuAlgumTipoDeViolenciaInstitucional},
+              contra_violencia_institucional_procurou_instituicao =>
+              contra_violencia_institucional_resolveu_conta_propia =>
+              contra_violencia_institucional_procurou_amigos =>
+              contra_violencia_institucional_nao_tomou_atitude =>
+              teve_atendimento_especializado_contra_violencia_institucional =>
+              esta_tendo_atendimento_especializado_contra_violencia_instituci =>
+              nao_tem_gostaria_atendimento_especializado_contra_violencia_ins =>
+              nao_quer_atendimento_especializado_contra_violencia_institucion =>
+              id_usa_alcool => $data->{saudeSubstanciaPsicoativa}{algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas}{fezUso}{alcool},
+              id_usa_cigarro => $data->{saudeSubstanciaPsicoativa}{algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas}{fezUso}{cigarro},
+              id_usa_maconha => $data->{saudeSubstanciaPsicoativa}{algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas}{fezUso}{maconha},
+              id_usa_cocaina => $data->{saudeSubstanciaPsicoativa}{algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas}{fezUso}{cocaina},
+              id_usa_mesclado => $data->{saudeSubstanciaPsicoativa}{algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas}
+                                                                                                                                {fezUso}{mesclado},
+              id_usa_crack => $data->{saudeSubstanciaPsicoativa}{algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas}
+                                                                                                                                {fezUso}{crack},
+              id_usa_comprimidos => $data->{saudeSubstanciaPsicoativa}{algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas}
+                                                                                                                                {fezUso}{comprimidos},
+              id_usa_cola => $data->{saudeSubstanciaPsicoativa}{algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas}{fezUso}{cola},
+              id_usa_inalantes => $data->{saudeSubstanciaPsicoativa}{algumMembroDaFamiliaOuSocioeducandoFazUsoDeSubstanciasPsicoativas}
+                                                                                                                                {fezUso}{inalantes},
+              nunca_fez_acompanhamento_contra_drogas =>
+              fez_acompanhamento_contra_drogas_capsad =>
+              fez_acompanhamento_contra_drogas_hospital_mental =>
+              faz_acompanhamento_contra_drogas_hospital_mental =>
+              faz_acompanhamento_contra_drogas_capsad =>
+              ja_foi_internado_comunidade_terapeutica_contra_drogas =>
+              deseja_tratamento_contra_drogas =>
+              utiliza_contraceptivo_aids_dst =>
+              utiliza_contraceptivo_preservativo_masculino =>
+              utiliza_contraceptivo_preservativo_femenino =>
+              utiliza_contraceptivo_pilula_anticoncepcional =>
+              utiliza_contraceptivo_diu =>
+              utiliza_contraceptivo_tabela =>
+              utiliza_contraceptivo_temperatura_basal =>
+              utiliza_contraceptivo_metodo_biling =>
+              utiliza_contraceptivo_coito_interrompido =>
+              id_frequenta_ginecologista_regularmente => $data->{saude}{aPartirDe12Anos}{frequentaGinecologistaRegularmente},
+              id_frequenta_urologista_regularmente => $data->{saude}{aPartirDe12Anos}{frequentaUrologistaRegularmente},
+              recebe_medicamento_quando_necessario =>
      })
 }
 

@@ -48,7 +48,7 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Há Quanto Tempo</xhtml:label>
+									<xhtml:label>Há quanto tempo</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -297,16 +297,16 @@
 										type="xs:string" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Especifique outros</xhtml:label>
+												<xhtml:label>Especifique Outros</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
 
-									<xs:element name="frequenciaSofreOutros" minOccurs="0">
+									<xs:element name="frequenciaSofreOutros"
+										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Frequência com que sofre outros tipos de
-													violência
+												<xhtml:label>Frequência com que sofre outros tipos de violência
 												</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
@@ -599,15 +599,6 @@
 										</xs:annotation>
 									</xs:element>
 
-									<xs:element name="outros" type="xs:boolean"
-										minOccurs="0">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Outros</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-
 									<xs:element name="outros" type="xs:string"
 										minOccurs="0">
 										<xs:annotation>
@@ -787,7 +778,7 @@
 										</xs:simpleType>
 									</xs:element>
 
-									<xs:element name="outros" type="xs:boolean"
+									<xs:element name="outros" type="xs:string"
 										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
@@ -795,34 +786,6 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-
-									<xs:element name="especifiqueOutros" type="xs:string"
-										minOccurs="0">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Especifique outros</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-
-									<xs:element name="frequenciaSofreOutros" minOccurs="0">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Frequência com que sofre outros tipos de
-													violência
-												</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-
-										<xs:simpleType>
-											<xs:restriction base="xs:string">
-												<xs:enumeration value="Frequentemente" />
-												<xs:enumeration value="Às Vezes" />
-												<xs:enumeration value="Raramente" />
-											</xs:restriction>
-										</xs:simpleType>
-									</xs:element>
-
 								</xs:sequence>
 							</xs:complexType>
 						</xs:element>
@@ -871,20 +834,11 @@
 										</xs:annotation>
 									</xs:element>
 
-									<xs:element name="outros" type="xs:boolean"
+									<xs:element name="outros" type="xs:string"
 										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Outros</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-
-									<xs:element name="especifiqueOutros" type="xs:string"
-										minOccurs="0">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Especifique outros</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -915,7 +869,7 @@
 										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Frequência com que sofre discussão verbal
+												<xhtml:label>Frequência com que sofre discussão verbal 
 												</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
@@ -1059,7 +1013,7 @@
 										</xs:simpleType>
 									</xs:element>
 
-									<xs:element name="outros" type="xs:boolean"
+									<xs:element name="outros" type="xs:string"
 										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
@@ -1067,34 +1021,6 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-
-									<xs:element name="outros" type="xs:string"
-										minOccurs="0">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Especifique outros</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-
-									<xs:element name="frequenciaSofreOutros" minOccurs="0">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Frequência com que sofre outros tipos de
-													violência
-												</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-
-										<xs:simpleType>
-											<xs:restriction base="xs:string">
-												<xs:enumeration value="Frequentemente" />
-												<xs:enumeration value="Às Vezes" />
-												<xs:enumeration value="Raramente" />
-											</xs:restriction>
-										</xs:simpleType>
-									</xs:element>
-
 								</xs:sequence>
 							</xs:complexType>
 						</xs:element>
@@ -1286,7 +1212,7 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Há Quanto Tempo</xhtml:label>
+									<xhtml:label>Há quanto tempo</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -1345,48 +1271,12 @@
 										</xs:annotation>
 									</xs:element>
 
-									<xs:element name="frequenciaSofreDiscussaoVerbal"
-										minOccurs="0">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Frequência com que sofre discussão verbal
-												</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-
-										<xs:simpleType>
-											<xs:restriction base="xs:string">
-												<xs:enumeration value="Frequentemente" />
-												<xs:enumeration value="Às Vezes" />
-												<xs:enumeration value="Raramente" />
-											</xs:restriction>
-										</xs:simpleType>
-									</xs:element>
-
 									<xs:element name="agressaoFisica" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Agressão Física</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
-									</xs:element>
-
-									<xs:element name="frequenciaSofreAgressaoFisica"
-										minOccurs="0">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Frequência com que sofre agressão física
-												</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-
-										<xs:simpleType>
-											<xs:restriction base="xs:string">
-												<xs:enumeration value="Frequentemente" />
-												<xs:enumeration value="Às Vezes" />
-												<xs:enumeration value="Raramente" />
-											</xs:restriction>
-										</xs:simpleType>
 									</xs:element>
 
 									<xs:element name="abusoSexual" type="xs:boolean">
@@ -1397,48 +1287,12 @@
 										</xs:annotation>
 									</xs:element>
 
-									<xs:element name="frequenciaSofreAbusoSexual"
-										minOccurs="0">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Frequência com que sofre abuso sexual
-												</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-
-										<xs:simpleType>
-											<xs:restriction base="xs:string">
-												<xs:enumeration value="Frequentemente" />
-												<xs:enumeration value="Às Vezes" />
-												<xs:enumeration value="Raramente" />
-											</xs:restriction>
-										</xs:simpleType>
-									</xs:element>
-
 									<xs:element name="exploracaoSexual" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Exploracao Sexual</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
-									</xs:element>
-
-									<xs:element name="frequenciaSofreExploracaoSexual"
-										minOccurs="0">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Frequência com que sofre exploração sexual
-												</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-
-										<xs:simpleType>
-											<xs:restriction base="xs:string">
-												<xs:enumeration value="Frequentemente" />
-												<xs:enumeration value="Às Vezes" />
-												<xs:enumeration value="Raramente" />
-											</xs:restriction>
-										</xs:simpleType>
 									</xs:element>
 
 									<xs:element name="agressaoPsicologica" type="xs:boolean">
@@ -1449,24 +1303,6 @@
 										</xs:annotation>
 									</xs:element>
 
-									<xs:element name="frequenciaSofreAgressaoPsicologica"
-										minOccurs="0">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Frequência com que sofre agressão psicológica
-												</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-
-										<xs:simpleType>
-											<xs:restriction base="xs:string">
-												<xs:enumeration value="Frequentemente" />
-												<xs:enumeration value="Às Vezes" />
-												<xs:enumeration value="Raramente" />
-											</xs:restriction>
-										</xs:simpleType>
-									</xs:element>
-
 									<xs:element name="ameacaDeMorte" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
@@ -1475,33 +1311,6 @@
 										</xs:annotation>
 									</xs:element>
 
-									<xs:element name="frequenciaSofreAmeacaDeMorte"
-										minOccurs="0">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Frequência com que sofre ameaça de morte
-												</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-
-										<xs:simpleType>
-											<xs:restriction base="xs:string">
-												<xs:enumeration value="Frequentemente" />
-												<xs:enumeration value="Às Vezes" />
-												<xs:enumeration value="Raramente" />
-											</xs:restriction>
-										</xs:simpleType>
-									</xs:element>
-
-									<xs:element name="outros" type="xs:boolean"
-										minOccurs="0">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Outros</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									
 									<xs:element name="outros" type="xs:string"
 										minOccurs="0">
 										<xs:annotation>
@@ -1510,25 +1319,6 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-
-									<xs:element name="frequenciaSofreOutros" minOccurs="0">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Frequência com que sofre outros tipos de
-													violência
-												</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-
-										<xs:simpleType>
-											<xs:restriction base="xs:string">
-												<xs:enumeration value="Frequentemente" />
-												<xs:enumeration value="Às Vezes" />
-												<xs:enumeration value="Raramente" />
-											</xs:restriction>
-										</xs:simpleType>
-									</xs:element>
-
 								</xs:sequence>
 							</xs:complexType>
 						</xs:element>
@@ -1815,14 +1605,6 @@
 									</xs:element>
 								</xs:sequence>
 							</xs:complexType>
-						</xs:element>
-
-						<xs:element name="outros" type="xs:boolean" minOccurs="0">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Outros</xhtml:label>
-								</xs:appinfo>
-							</xs:annotation>
 						</xs:element>
 
 						<xs:element name="outros" type="xs:string" minOccurs="0">
