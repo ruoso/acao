@@ -19,13 +19,14 @@
 %]
 [% INCLUDE 'auth/registros/volume/dossie/documento/header.tt' %]
 [% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume) ) %]
+[% SET dos = ( c.model('Documento').getDadosDossie(id_volume, controle) ) %]
 
 <script SRC="[% c.uri_for('/static/js/xsdForm.js') %]" language="Javascript" ></script>
 
 <form action="[% c.uri_for('/auth/registros/volume/') _ id_volume _ '/' _ controle _ '/store' %]" method="post"
     onsubmit="return generateXml('[% c.uri_for_action('/auth/registros/xsd/raw', [ c.req.param('xsdDocumento') ] ) %]', this.processed_xml);">
  <input type="hidden" name="processed_xml">
- <input type="hidden" name="id_volume" value="[%id_volume%]">
+ <input type="hidden" name="id_volume" value="[% id_volume %]">
  <input type="hidden" name="xsdDocumento" value="[% c.req.param('xsdDocumento') %]">
 
  <fieldset>
@@ -48,14 +49,25 @@
 		<div name="requiredField" style="display: none;">true</div>
 	  </div>
     </dd>
-    <dt>
+  </dl>
+  </fieldset>
+
+  <fieldset>
+  <legend>Dados do Prontuário</legend>
+  <dl>
+    <dt>Prontuário:</dt>
+    <dd>[% dos.nome %]</dd>
+    <br>
+    <dt>Controle:</dt>
+    <dd>[% controle %]</dd>
+    <br/>
+    <div>
         <input type="checkbox" id="representaDocumentoFisico" name="representaDocumentoFisico" evt="representaDocumentoFisico" checked="checked"> 
         <label for="representaDocumentoFisico"> Representa Documento Físico </label>
-    </dt>
-  </dl>
- </fieldset>
- 
- 
+    </div>
+  </dl>  
+ </fieldset> 
+
  <div id="form_container"></div>
 
  <input type="submit" name="Submeter">

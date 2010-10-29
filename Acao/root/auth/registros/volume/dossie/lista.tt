@@ -21,9 +21,6 @@
 [% INCLUDE 'auth/registros/volume/dossie/header.tt' %]
 [% INCLUDE 'errosucesso.tt' %]
 
-
-
-
 [% SET num_por_pagina = 30 %]
 
 [% SET interval_ini = c.req.param('interval_ini') %]
@@ -31,16 +28,14 @@
   [% SET interval_ini = 0 %]
 [% END %]
 
-
-
-[%# definição da variavel schema para este template %]
-[% CALL c.model('Sedna').begin %]
-[% SET schema = c.model('Sedna').get_collection('volume') %]
-[% CALL c.model('Sedna').commit %]
-[% SET controles = '' %]
-
 [% xqueryret = PROCESS 'auth/registros/volume/dossie/lista_xqueryret.tt' %]
 [% xquery = PROCESS 'auth/registros/volume/dossie/lista_xquery.tt' %]
+[% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume) ) %]
+<table>
+  <tr>
+    <td><strong>Volume: </strong>[% vol.nome %]</td>
+  </tr>
+</table>
 
 <table>
 <thead>

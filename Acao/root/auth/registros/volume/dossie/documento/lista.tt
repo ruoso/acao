@@ -21,14 +21,18 @@
 [% INCLUDE 'auth/registros/volume/dossie/documento/header.tt' %]
 [% INCLUDE 'errosucesso.tt' %]
 
-[%# definição da variavel schema para este template %]
-[% CALL c.model('Sedna').begin %]
-[% SET schema = c.model('Sedna').get_collection('volume') %]
-[% CALL c.model('Sedna').commit %]
-[% SET documentos = '' %]
-
 [% xqueryret = PROCESS 'auth/registros/volume/dossie/documento/lista_xqueryret.tt' %]
 [% xquery = PROCESS 'auth/registros/volume/dossie/documento/lista_xquery.tt' %]
+
+[% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume) ) %]
+[% SET dos = ( c.model('Documento').getDadosDossie(id_volume, controle) ) %]
+
+<div>
+  <div><strong>VOLUME: </strong>[% vol.nome %]</div>
+  <br/>
+  <div><strong>PRONTUÁRIO: </strong>[% dos.nome %]</div>
+  <br/>
+</div>
 
 <table>
 <thead>

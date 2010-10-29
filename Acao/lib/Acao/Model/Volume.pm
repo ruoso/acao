@@ -211,6 +211,7 @@ txn_method 'getDadosVolumeId' => authorized $role_listar => sub {
     my $xq = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";
                     for $x in collection("volume")/ns:volume[ns:collection="'.$id_volume.'"] 
                     return ($x/ns:nome/text(), $x/ns:classificacao/text(), $x/ns:localizacao/text())';
+
    $self->sedna->execute($xq);
 
     my $vol = {};

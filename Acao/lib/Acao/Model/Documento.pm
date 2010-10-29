@@ -226,7 +226,8 @@ txn_method 'auditoria_listar' => authorized $role_listar => sub {
 
    my $xq_audit = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; 
                    declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";  
-                   update insert ('.$audit->toString.') into collection("'.$id_volume.'")/ns:dossie[ns:controle="'.$controle.'"]/ns:doc/*[1=1 '. $where.']/dc:audit';
+                   update insert ('.$audit->toString.') into collection("'.$id_volume.'")/ns:dossie
+                   [ns:controle="'.$controle.'"]/ns:doc/*[1=1 '. $where.']/dc:audit';
 
     $self->sedna->execute($xq_audit);
 };
@@ -250,6 +251,30 @@ txn_method 'invalidar_documento' => authorized $role_listar => sub {
                                                /ns:doc/dc:documento[dc:id = "'.$id_documento.'"]/dc:motivoInvalidacao
                                                with <dc:motivoInvalidacao>erro</dc:motivoInvalidacao>';
   $self->sedna->execute($xq_motivo_invalidacao);
+};
+
+txn_method 'getDadosDossie' => authorized $role_listar => sub {
+    my $self = shift;
+    my ($id_volume, $controle) = @_;
+
+    my $xq  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
+               declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";
+               for $x in collection("'.$id_volume.'")/ns:dossie
+               where $x/ns:controle="'.$controle.'" 
+               return $x/ns:nome/text()';
+
+   $self->sedna->execute($xq);
+
+    my $vol = {};
+    while(my $nome = $self->sedna->get_item){
+        $vol = {
+                    nome => $nome, 
+                    classificacao => $self->sedna->get_item, 
+                    localizacao  => $self->sedna->get_item,
+                  };
+    };
+
+   return $vol;
 };
 
 =head1 COPYRIGHT AND LICENSING
