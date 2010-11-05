@@ -28,15 +28,32 @@
    <dt> 
     <label> Classificação: &nbsp; </label> 
     <select name="classificacao" id="classificacao">
-     [% # FOREACH memberof IN c.user.memberof %]
-      <option value="[% c.config.default.classificacao %]"> [% c.config.default.classificacao %] </option>
+      <option value=""> Ragional I </option>
+      <option value=""> Ragional II </option>
+      <option value=""> Ragional III </option>
+      <option value=""> Ragional IV </option>
+      <option value=""> Ragional V </option>
+      <option value=""> Ragional VI </option>
+      [% # FOREACH do LDAP (descomentar e aplicar o caminho correto) %]
+      [% # FOREACH memberof IN c.user.memberof %]
+       <!--<option value="[% c.config.default.localizacao %]"> [% memberof %] </option>-->
+      [% # END %]
     </select>
    </dt>
    <br/>
    <dt> 
     <label> Localização: &nbsp; &nbsp;</label> 
     <select name="localizacao" id="localizacao">
-      <option value="[% c.config.default.localizacao %]"> [% c.config.default.localizacao %] </option>
+      <option value=""> Núcleo I </option>
+      <option value=""> Núcleo II </option>
+      <option value=""> Núcleo III </option>
+      <option value=""> Núcleo IV </option>
+      <option value=""> Núcleo V </option>
+      <option value=""> Núcleo VI </option>
+      [% # FOREACH do LDAP (descomentar e aplicar o caminho correto) %]
+      [% # FOREACH memberof IN c.user.memberof %]
+      <!--<option value="[% c.config.default.localizacao %]"> [% memberof %] </option>-->
+      [% # END %]
     </select>
    <br/>
    <dt> <input type="checkbox" id="representaVolumeFisico" name="representaVolumeFisico" evt="representaVolumeFisico" checked="checked"> <label for="representaVolumeFisico"> Representa Volume Físico </label> </dt>

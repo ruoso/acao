@@ -3,8 +3,11 @@ declare namespace dc = "http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";
 declare namespace adt = "http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd";
 declare namespace xhtml="http://www.w3.org/1999/xhtml";
 declare namespace xss="http://www.w3.org/2001/XMLSchema";
-for $x at $i in collection("[% id_volume %]")/ns:dossie[ns:controle = "[% controle %]" ]/ns:doc/* ,
-    $y in collection("acao-schemas")/xss:schema/xss:element/xss:annotation/xss:appinfo/xhtml:label/text()
-    where $y/../../../../../@targetNamespace = namespace-uri($x/dc:documento/*/*)
-order by $x/dc:criacao descending
-return ($i, [% xqueryret %])
+
+subsequence(
+    for $x at $i in collection("[% id_volume %]")/ns:dossie[ns:controle = "[% controle %]" ]/ns:doc/* ,
+        $y in collection("acao-schemas")/xss:schema/xss:element/xss:annotation/xss:appinfo/xhtml:label/text()
+        where $y/../../../../../@targetNamespace = namespace-uri($x/dc:documento/*/*)
+    order by $x/dc:criacao descending
+    return ($i, [% xqueryret %]), [% ((interval_ini * num_por_pagina) + 1) %], [% num_por_pagina %]
+)

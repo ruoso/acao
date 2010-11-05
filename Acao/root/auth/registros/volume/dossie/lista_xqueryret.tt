@@ -21,10 +21,10 @@
 	        {$x/ns:estado/text()}
         </td>
         <td>
-        <span title="{$x/ns:classificacao/text()}">{substring($x/ns:classificacao/text(),0, 15)}...</span>
+        <span title="{$x/ns:classificacao/text()}">{substring($x/ns:classificacao/text(),0, 12)}...</span>
         </td>
         <td>
-        <span title="{$x/ns:localizacao/text()}">{substring($x/ns:localizacao/text(),0, 15)}...</span>
+        <span title="{$x/ns:localizacao/text()}">{substring($x/ns:localizacao/text(),0, 12)}...</span>
         </td>
         <td>
 	       { if ( $x/ns:representaDossieFisico/text() = 1 ) then ("Sim") else ("Não") }

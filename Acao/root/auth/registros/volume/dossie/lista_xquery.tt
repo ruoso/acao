@@ -2,5 +2,5 @@ declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
 
 subsequence(
       for $x in collection("[% id_volume %]")/ns:dossie return ($x/ns:controle/text(), [% xqueryret %]),
-      [% (interval_ini * num_por_pagina) + 1 %], [% num_por_pagina %]
+      [% ((interval_ini * num_por_pagina) + 1) %], [% num_por_pagina %]
 )

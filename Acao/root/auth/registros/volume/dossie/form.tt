@@ -50,8 +50,16 @@
       <label> Classificação: &nbsp; </label>
       <dd>  
         <select name="classificacao" id="classificacao">
+          <option value=""> Ragional I </option>
+          <option value=""> Ragional II </option>
+          <option value=""> Ragional III </option>
+          <option value=""> Ragional IV </option>
+          <option value=""> Ragional V </option>
+          <option value=""> Ragional VI </option>
+          [% # FOREACH do LDAP (descomentar e aplicar o caminho correto) %]
           [% # FOREACH memberof IN c.user.memberof %]
-            <option value="[% c.config.default.classificacao %]"> [% c.config.default.classificacao %] </option>
+           <!--<option value="[% c.config.default.localizacao %]"> [% memberof %] </option>-->
+          [% # END %]
         </select>
       </dd>
     </dt>
@@ -60,8 +68,16 @@
       <label> Localização: &nbsp; </label>
       <dd>
         <select name="localizacao" id="localizacao">
+            <option value=""> Ragional I </option>
+            <option value=""> Ragional II </option>
+            <option value=""> Ragional III </option>
+            <option value=""> Ragional IV </option>
+            <option value=""> Ragional V </option>
+            <option value=""> Ragional VI </option>
+          [% # FOREACH do LDAP (descomentar e aplicar o caminho correto) %]
           [% # FOREACH memberof IN c.user.memberof %]
-            <option value="[% c.config.default.localizacao %]"> [% c.config.default.localizacao %] </option>
+            <!--<option value="[% c.config.default.localizacao %]"> [% memberof %] </option>-->
+          [% # END %]
         </select>
       </dd>
     </dt>

@@ -15,8 +15,8 @@
 #
 # Você deve ter recebido uma cópia da Licença Pública Geral GNU, sob o
 # título "LICENCA.txt", junto com este programa, se não, escreva para a
-# Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
-%]
+# Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor, %]
+
 [% META title = 'Lista de Leituras para o Digitador'%]
 [% INCLUDE 'auth/registros/volume/dossie/header.tt' %]
 [% INCLUDE 'errosucesso.tt' %]
@@ -28,20 +28,33 @@
   [% SET interval_ini = 0 %]
 [% END %]
 
+[% SET quantidade_paginas = 0 %]
+[% SET estado_controle_paginacao = 0 %]
+[% SET amplitude_paginacao = 3 %]
+
+[% IF interval_ini <= amplitude_paginacao %]
+    [% SET controle_paginacao = amplitude_paginacao %]
+[% ELSE %]
+    [% SET controle_paginacao = interval_ini %]
+[% END %]
+
 [% xqueryret = PROCESS 'auth/registros/volume/dossie/lista_xqueryret.tt' %]
 [% xquery = PROCESS 'auth/registros/volume/dossie/lista_xquery.tt' %]
+[% xquerycount = PROCESS 'auth/registros/volume/dossie/count_xquery.tt' %]
+
 [% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume) ) %]
 <table>
-  <tr>
-    <td><strong>Volume: </strong>[% vol.nome %]</td>
-  </tr>
+  <div>
+    <div><strong>Volume: </strong>[% vol.nome %]</div>
+    <br/>
+  </div>
 </table>
 
 <table>
 <thead>
  <tr>
   <th>Controle</th>
-  <th>Prontuário</th>
+  <th width="350px">Prontuário</th>
   <th>Criação</th>
   <th>Fechamento</th>
   <th>Arquivamento</th>
@@ -49,13 +62,13 @@
   <th>Classificação</th>
   <th>Localização</th>
   <th>Prontuário Físico</th>
-  <th colspan="3">Ação</th>
+  <th colspan="3" >Ação</th>
  </tr>
 </thead>
 <TBODY>
 
-  [% # O foreach abaixo vai buscar diretamente no model por estar livre de contexto %] 
-  [% # (nao recebe argumento pela url) %]
+ [% # O foreach abaixo vai buscar diretamente no model por estar livre de contexto %] 
+ [% # (nao recebe argumento pela url) %]
 
  [% TRY %]
  [% c.model('Sedna').begin %]
@@ -65,28 +78,166 @@
     [% html %]
  [% controles = control _ '___' _ controles %]
  [% END %]
+    
+ [%# Executa a contagem dos registros para fazer a paginação  %]
+ [% c.model('Sedna').execute( xquerycount )%]
+ [% WHILE (contador = c.model('Sedna').get_item) %]
+   [% count = contador %]
+ [% END %]
+
  [% c.model('Sedna').commit %]
 [% CATCH %]
  <div class="erro">ERRO AO PROCESSAR CONSULTA:
   <PRE>[% error.info %]</PRE>
  </div>
 [% END %]
+
 [%# c.model('Dossie').auditoria_listar(c.req.address, controles, id_volume) %]
-<tr>
-    <td><a href="[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/criardossie') %]">Criar Prontuário</a></td>
-</tr>
 </TBODY>
 </table>
 
-[% IF interval_ini > 0 %]
-  [% SET args = { } %]
-  [% args.import(c.req.params()) %]
-  [% args.import({ interval_ini => interval_ini - 1 }) %]
-  <a href="[% c.uri_for('/auth/registros/volume/' _ id_volume , args) %]">Anterior</a>
-[% END %]
-  [% SET args = { } %]
-  [% args.import(c.req.params()) %]
-  [% args.import({ interval_ini => interval_ini + 1 }) %]
-  <a href="[% c.uri_for('/auth/registros/volume/' _ id_volume , args) %]">Pr&oacute;ximo</a>
+<table>
+  <tr>
+    <td>
+      <a href="[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/criardossie') %]">Criar Prontuário</a>
+    </td>
 
+    [% quantidade_paginas = count / num_por_pagina * 2 + 1 %]
+    [% SET args = { } %]
+    [% args.import(c.req.params()) %]
+
+    <td width="100px">
+      [% args.import({ interval_ini => 0}) %]
+      <a href="[% c.uri_for('/auth/registros/volume/' _ id_volume , args) %]"> Primeiro </a>
+    </td>
+
+    <td width="20px">
+    [% IF interval_ini > 0 %]
+      [% SET args = { } %]
+      [% args.import(c.req.params()) %]
+      [% args.import({ interval_ini => interval_ini - 1 }) %]
+      <a href="[% c.uri_for('/auth/registros/volume/' _ id_volume , args) %]"> < < </a>
+    [% END %]
+    </td>
+
+    <td>
+      [% args.import({ interval_ini => controle_paginacao - 3}) %]
+      <a href="[% c.uri_for('/auth/registros/volume/' _ id_volume , args) %]">
+        [% IF controle_paginacao - 3 == interval_ini %]
+          [% estado_controle_paginacao = controle_paginacao - 3 %]
+          <strong style="font-size: medium">[% controle_paginacao - 2 %]</strong>
+        [% ELSE %]
+          [% controle_paginacao - 2 %]
+        [% END%]
+      </a>
+    </td>
+    [% IF controle_paginacao - 2 < count / num_por_pagina * 2 %]
+    <td>
+      [% args.import({ interval_ini => controle_paginacao - 2}) %]
+      <a href="[% c.uri_for('/auth/registros/volume/' _ id_volume , args) %]"> 
+        [% IF controle_paginacao - 2 == interval_ini %]
+        [% estado_controle_paginacao = controle_paginacao - 2 %]
+          <strong style="font-size: medium">[% controle_paginacao - 1 %]</strong>
+        [% ELSE %]
+          [% controle_paginacao - 1 %]
+        [% END%]
+      </a>
+    </td>
+    [% END %]
+    [% IF controle_paginacao - 1 < count / num_por_pagina * 2 %]
+    <td width="15px">
+      [% args.import({ interval_ini => controle_paginacao - 1}) %]
+      <a href="[% c.uri_for('/auth/registros/volume/' _ id_volume , args) %]"> 
+        [% IF controle_paginacao - 1 == interval_ini %]
+        [% estado_controle_paginacao = controle_paginacao - 1 %]
+          <strong style="font-size: medium">[% controle_paginacao %]</strong>
+        [% ELSE %]
+          [% controle_paginacao %]
+        [% END%] 
+      </a>
+    </td>
+    [% END %]
+    [% IF controle_paginacao < quantidade_paginas && controle_paginacao <= count / num_por_pagina * 2 %]
+    <td width="15px">
+      [% args.import({ interval_ini => controle_paginacao}) %]
+      <a href="[% c.uri_for('/auth/registros/volume/' _ id_volume , args) %]">
+        [% IF controle_paginacao == interval_ini %]
+        [% estado_controle_paginacao = controle_paginacao %]
+          <strong style="font-size: medium">[% controle_paginacao + 1 %]</strong>
+        [% ELSE %]
+          [% controle_paginacao + 1 %]
+        [% END%]
+      </a>
+    </td>
+    [% END %]
+    [% IF controle_paginacao + 1 < count / num_por_pagina * 2 %]
+    <td width="15px">
+      [% args.import({ interval_ini => controle_paginacao + 1}) %]
+      <a href="[% c.uri_for('/auth/registros/volume/' _ id_volume , args) %]"> 
+        [% IF controle_paginacao + 1 == interval_ini %]
+        [% estado_controle_paginacao = controle_paginacao + 1 %]
+          <strong style="font-size: medium">[% controle_paginacao + 2 %]</strong>
+        [% ELSE %]
+          [% controle_paginacao + 2 %]
+        [% END%]
+      </a>
+    </td>
+    [% END %]
+    [% IF controle_paginacao + 2 < count / num_por_pagina * 2 %]
+    <td width="15px">
+      [% args.import({ interval_ini => controle_paginacao + 2}) %]
+      <a href="[% c.uri_for('/auth/registros/volume/' _ id_volume , args) %]"> 
+        [% IF controle_paginacao + 2 == interval_ini %]
+        [% estado_controle_paginacao = controle_paginacao + 2 %]
+          <strong style="font-size: medium">[% controle_paginacao + 3 %]</strong>
+        [% ELSE %]
+          [% controle_paginacao + 3 %]
+        [% END%] 
+      </a>
+    </td>
+    [% END %]
+    [% IF controle_paginacao + 3 < count / num_por_pagina * 2 %]
+    <td width="15px">
+      [% args.import({ interval_ini => controle_paginacao + 3}) %]
+      <a href="[% c.uri_for('/auth/registros/volume/' _ id_volume , args) %]"> 
+        [% IF controle_paginacao + 3 == interval_ini %]
+        [% estado_controle_paginacao = controle_paginacao + 3 %]
+          <strong style="font-size: medium">[% controle_paginacao + 4 %]</strong>
+        [% ELSE %]
+          [% controle_paginacao + 4 %]
+        [% END%] 
+      </a>
+    </td>
+    [% END %]
+    </td>
+
+    <!--[% # WHILE quantidade_paginas <= ( num_por_pagina / 2 ) %]
+    <td>
+      [% # SET args = { } %]
+      [% # args.import(c.req.params()) %]
+      [% # args.import({ interval_ini => quantidade_paginas}) %]
+      <a href="[% c.uri_for('/auth/registros/volume/' _ id_volume , args) %]">[% quantidade_paginas + 1 %]</a>
+      [% # quantidade_paginas = quantidade_paginas + 1 %]
+    </td>
+    [% # END %]-->
+
+    <td width="20px">
+      [% IF estado_controle_paginacao < count / num_por_pagina * 2 - 1 %]
+        [% SET args = { } %]
+        [% args.import(c.req.params()) %]
+        [% args.import({ interval_ini => interval_ini + 1 }) %]
+        <a href="[% c.uri_for('/auth/registros/volume/' _ id_volume , args) %]"> > > </a>
+      [% END %]
+    </td>
+
+    <td width="100px">
+    [% IF count < 2 %]
+      [% args.import({ interval_ini => 0 }) %]      
+    [% ELSE %]
+      [% args.import({ interval_ini => count / num_por_pagina * 2 }) %]
+    [% END %]
+      <a href="[% c.uri_for('/auth/registros/volume/' _ id_volume , args) %]"> Último </a>
+    </td>
+  </tr>
+</table>
 [% INCLUDE 'footer.tt' %]
