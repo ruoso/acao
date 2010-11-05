@@ -1,0 +1,5 @@
+declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
+
+count(
+    collection("[% id_volume %]")/ns:dossie/ns:controle
+)
