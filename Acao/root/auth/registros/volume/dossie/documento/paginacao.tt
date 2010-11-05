@@ -1,8 +1,5 @@
 <table>
   <tr>
-    <td>
-      <a href="[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/criardossie') %]">Criar Prontuário</a>
-    </td>
 
     [% quantidade_paginas = count / num_por_pagina * 2 + 1 %]
     [% SET args = { } %]
@@ -133,12 +130,12 @@
     </td>
 
     <td width="100px">
-    [% IF count <  %]
+    [% IF count < 2 %]
       [% args.import({ interval_ini => 0 }) %]      
     [% ELSE %]
       [% args.import({ interval_ini => count div num_por_pagina * 2 - 1 }) %]
     [% END %]
-      <a href="[% c.uri_for('/auth/registros/volume/' _ id_volume , args) %]"> Último </a>
+      <a href="[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/' _ controle, args) %]"> Último </a>
     </td>
 
   </tr>
