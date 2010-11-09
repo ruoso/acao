@@ -28,17 +28,28 @@
   [% SET interval_ini = 0 %]
 [% END %]
 
+[% SET where_membro = '' %]
+[% SET where_mae = '' %]
+
+[% SET nome_membro = c.req.param('nome_membro') %]
+[% SET nome_mae = c.req.param('nome_mae') %]
+
 [% xqueryret = PROCESS 'auth/registros/volume/dossie/lista_xqueryret.tt' %]
 [% xquery = PROCESS 'auth/registros/volume/dossie/lista_xquery.tt' %]
 [% xquerycount = PROCESS 'auth/registros/volume/dossie/count_xquery.tt' %]
 
 [% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume) ) %]
+
+<form action="[% '/auth/registros/volume/' _ id_volume %]">
 <table>
   <div>
-    <div><strong>Volume: </strong>[% vol.nome %]</div>
-    <br/>
+    <div><strong>Volume: </strong>[% vol.nome %]</div><br/>
+    <strong>Membro: </strong><input type="text" name="nome_membro" id="nome_membro" value="[% nome_membro %]">
+    <strong>Mãe:    </strong><input type="text" name="nome_mae" id="nome_mae" value="[% nome_mae %]">
+    <input type="submit" name="submit_form" id="submit_form" value="Pesquisar">
   </div>
 </table>
+</form>
 
 <table>
 <thead>
@@ -69,7 +80,7 @@
  [% controles = control _ '___' _ controles %]
  [% END %]
     
- [%# Executa a contagem dos registros para fazer a paginação  %]
+ [% # Executa a contagem dos registros para fazer a paginação  %]
  [% c.model('Sedna').execute( xquerycount )%]
  [% WHILE (contador = c.model('Sedna').get_item) %]
    [% count = contador %]
