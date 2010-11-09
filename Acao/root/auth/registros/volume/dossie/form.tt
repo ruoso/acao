@@ -50,12 +50,12 @@
       <label> Classificação: &nbsp; </label>
       <dd>  
         <select name="classificacao" id="classificacao">
-          <option value=""> Ragional I </option>
-          <option value=""> Ragional II </option>
-          <option value=""> Ragional III </option>
-          <option value=""> Ragional IV </option>
-          <option value=""> Ragional V </option>
-          <option value=""> Ragional VI </option>
+          <option value="Regional I"> Regional I </option>
+          <option value="Regional II"> Regional II </option>
+          <option value="Regional III"> Regional III </option>
+          <option value="Regional IV"> Regional IV </option>
+          <option value="Regional V"> Regional V </option>
+          <option value="Regional VI"> Regional VI </option>
           [% # FOREACH do LDAP (descomentar e aplicar o caminho correto) %]
           [% # FOREACH memberof IN c.user.memberof %]
            <!--<option value="[% c.config.default.localizacao %]"> [% memberof %] </option>-->
@@ -68,12 +68,12 @@
       <label> Localização: &nbsp; </label>
       <dd>
         <select name="localizacao" id="localizacao">
-            <option value=""> Ragional I </option>
-            <option value=""> Ragional II </option>
-            <option value=""> Ragional III </option>
-            <option value=""> Ragional IV </option>
-            <option value=""> Ragional V </option>
-            <option value=""> Ragional VI </option>
+          <option value="Núcleo I"> Núcleo I </option>
+          <option value="Núcleo II"> Núcleo II </option>
+          <option value="Núcleo III"> Núcleo III </option>
+          <option value="Núcleo IV"> Núcleo IV </option>
+          <option value="Núcleo V"> Núcleo V </option>
+          <option value="Núcleo VI"> Núcleo VI </option>
           [% # FOREACH do LDAP (descomentar e aplicar o caminho correto) %]
           [% # FOREACH memberof IN c.user.memberof %]
             <!--<option value="[% c.config.default.localizacao %]"> [% memberof %] </option>-->
