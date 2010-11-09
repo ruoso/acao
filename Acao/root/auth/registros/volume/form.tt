@@ -28,12 +28,12 @@
    <dt> 
     <label> Classificação: &nbsp; </label> 
     <select name="classificacao" id="classificacao">
-      <option value="Ragional I"> Ragional I </option>
-      <option value="Ragional II"> Ragional II </option>
-      <option value="Ragional III"> Ragional III </option>
-      <option value="Ragional IV"> Ragional IV </option>
-      <option value="Ragional V"> Ragional V </option>
-      <option value="Ragional VI"> Ragional VI </option>
+      <option value="Regional I"> Regional I </option>
+      <option value="Regional II"> Regional II </option>
+      <option value="Regional III"> Regional III </option>
+      <option value="Regional IV"> Regional IV </option>
+      <option value="Regional V"> Regional V </option>
+      <option value="Regional VI"> Regional VI </option>
       [% # FOREACH do LDAP (descomentar e aplicar o caminho correto) %]
       [% # FOREACH memberof IN c.user.memberof %]
        <!--<option value="[% c.config.default.localizacao %]"> [% memberof %] </option>-->
