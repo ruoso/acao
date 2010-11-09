@@ -26,6 +26,12 @@ __PACKAGE__->table("d_idade");
   is_nullable: 0
   sequence: 'd_idade_id_idade_seq'
 
+=head2 idade
+
+  data_type: 'text'
+  is_nullable: 0
+  original: {data_type => "varchar"}
+
 =cut
 
 __PACKAGE__->add_columns(
@@ -35,6 +41,12 @@ __PACKAGE__->add_columns(
     is_auto_increment => 1,
     is_nullable       => 0,
     sequence          => "d_idade_id_idade_seq",
+  },
+  "idade",
+  {
+    data_type   => "text",
+    is_nullable => 0,
+    original    => { data_type => "varchar" },
   },
 );
 __PACKAGE__->set_primary_key("id_idade");
@@ -57,8 +69,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-21 11:36:06
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:XWcH8UJx504yTeAcQONt/Q
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-11-09 15:44:12
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:KGYxgvAxHhwQtkn574r1rg
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration
