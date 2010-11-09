@@ -1,4 +1,4 @@
-package Acao::Plugins::SDH::DimSchema::Result::DAcessoMedicacao;
+package Acao::Plugins::SDH::DimSchema::Result::DUsaCigarro;
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
@@ -11,22 +11,22 @@ use base 'DBIx::Class::Core';
 
 =head1 NAME
 
-Acao::Plugins::SDH::DimSchema::Result::DAcessoMedicacao
+Acao::Plugins::SDH::DimSchema::Result::DUsaCigarro
 
 =cut
 
-__PACKAGE__->table("d_acesso_medicacao");
+__PACKAGE__->table("d_usa_cigarro");
 
 =head1 ACCESSORS
 
-=head2 id_acesso_medicacao
+=head2 id_usa_cigarro
 
   data_type: 'integer'
   is_auto_increment: 1
   is_nullable: 0
-  sequence: 'd_acesso_medicacao_id_acesso_medicacao_seq'
+  sequence: 'd_usa_cigarro_id_usa_cigarro_seq'
 
-=head2 acesso_medicacao
+=head2 usa_cigarro
 
   data_type: 'text'
   is_nullable: 0
@@ -35,21 +35,21 @@ __PACKAGE__->table("d_acesso_medicacao");
 =cut
 
 __PACKAGE__->add_columns(
-  "id_acesso_medicacao",
+  "id_usa_cigarro",
   {
     data_type         => "integer",
     is_auto_increment => 1,
     is_nullable       => 0,
-    sequence          => "d_acesso_medicacao_id_acesso_medicacao_seq",
+    sequence          => "d_usa_cigarro_id_usa_cigarro_seq",
   },
-  "acesso_medicacao",
+  "usa_cigarro",
   {
     data_type   => "text",
     is_nullable => 0,
     original    => { data_type => "varchar" },
   },
 );
-__PACKAGE__->set_primary_key("id_acesso_medicacao");
+__PACKAGE__->set_primary_key("id_usa_cigarro");
 
 =head1 RELATIONS
 
@@ -64,13 +64,13 @@ Related object: L<Acao::Plugins::SDH::DimSchema::Result::FAtendimento>
 __PACKAGE__->has_many(
   "f_atendimentoes",
   "Acao::Plugins::SDH::DimSchema::Result::FAtendimento",
-  { "foreign.id_acesso_medicacao" => "self.id_acesso_medicacao" },
+  { "foreign.id_usa_cigarro" => "self.id_usa_cigarro" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-21 11:36:06
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:LnFrAyNfohL+o/iYvoas0A
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-11-09 15:44:12
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:12mnXUDDieJ8PK3S+o+QRg
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

@@ -61,31 +61,6 @@ __PACKAGE__->table("f_atendimento");
   is_foreign_key: 1
   is_nullable: 0
 
-=head2 deficiencia_sensorial_surdo
-
-  data_type: 'integer'
-  is_nullable: 0
-
-=head2 deficiencia_sensorial_cego
-
-  data_type: 'integer'
-  is_nullable: 0
-
-=head2 deficiencia_fisico_motor
-
-  data_type: 'integer'
-  is_nullable: 0
-
-=head2 deficiencia_mobilidade_reduzida
-
-  data_type: 'integer'
-  is_nullable: 0
-
-=head2 deficiencia_intelectual
-
-  data_type: 'integer'
-  is_nullable: 0
-
 =head2 id_registro_nascimento
 
   data_type: 'integer'
@@ -132,6 +107,505 @@ __PACKAGE__->table("f_atendimento");
 
   data_type: 'integer'
   is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_vinculo_religioso
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 situacao_moradia
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_tempo_moradia
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_tipo_iluminacao
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_nucleo
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_status_vinculacao_cca
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_sofre_violencia_intrafamiliar
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_sofreu_violencia_intrafamiliar
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_sofre_violencia_institucional
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_usa_contraceptivo
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_participacao_grupo_social
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_tipo_escola_matriculado
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_escolaridade
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_auto_avaliacao_frequencia_escolar
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_auto_avaliacao_rendimento_escolar
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_avaliacao_acesso_medicacao
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_avaliacao_servico_saude
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_avaliacao_condicao_saude_familia
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_esta_frequentando_escola
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_escola_matriculado_proximo_residencia
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_criancas_familia_todas_matriculadas
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_auto_avaliacao_participacao_atividade_escolar
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_auto_avaliacao_participacao_familia_escola
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_ja_estagiou
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_ja_trabalhou
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_esta_trabalhando
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_fez_curso_profissionalizante
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_interesse_curso_profissionalizante
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_sofre_violencia_ambiente_comunitario
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_sofreu_violencia_ambiente_comunitario
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_sofreu_violencia_institucional
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_usa_alcool
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_usa_cigarro
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_usa_maconha
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_usa_cocaina
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_usa_mesclado
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_usa_crack
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_usa_comprimidos
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_usa_cola
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_usa_inalantes
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_frequenta_ginecologista_regularmente
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_frequenta_urologista_regularmente
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_sofreu_violencia_ambito_comunitario_ameaca_morte
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_sofreu_violencia_ambito_comunitario_agressao_psicologica
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_sofreu_violencia_ambito_comunitario_exploracao_sexual
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_sofreu_violencia_ambito_comunitario_abuso_sexual
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_sofreu_violencia_ambito_comunitario_agressao_fisica
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_sofreu_violencia_ambito_comunitario_discussao_verbal
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_sofre_violencia_ambito_comunitario_ameaca_morte
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_sofre_violencia_ambito_comunitario_agressao_psicologica
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_sofre_violencia_ambito_comunitario_exploracao_sexual
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_sofre_violencia_ambito_comunitario_abuso_sexual
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_sofre_violencia_ambito_comunitario_agressao_fisica
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_sofre_violencia_ambito_comunitario_discussao_verbal
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_sofreu_violencia_institucional_ameaca_morte
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_sofreu_violencia_institucional_agressao_psicologica
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_sofreu_violencia_institucional_exploracao_sexual
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_sofreu_violencia_institucional_abuso_sexual
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_sofreu_violencia_institucional_agressao_fisica
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_sofreu_violencia_institucional_discussao_verbal
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_sofre_violencia_institucional_ameaca_morte
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_sofre_violencia_institucional_agressao_psicologica
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_sofre_violencia_institucional_exploracao_sexual
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_sofre_violencia_institucional_abuso_sexual
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_sofre_violencia_institucional_agressao_fisica
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_sofre_violencia_institucional_discussao_verbal
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_sofre_violencia_intrafamiliar_ameaca_morte
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_sofre_violencia_intrafamiliar_agressao_psicologica
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_sofre_violencia_intrafamiliar_exploracao_sexual
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_sofre_violencia_intrafamiliar_abuso_sexual
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_sofre_violencia_intrafamiliar_agressao_fisica
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_sofre_violencia_intrafamiliar_discussao_verbal
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_sofre_violencia_intrafamiliar_domestica
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_turno_estuda
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_possui_banheiro
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_exploracao_trabalho_infantil
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_vivencia_rua
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_inscrito_peti
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_deseja_tratamento_uso_drogas
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 deficiencia_sensorial_surdo
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 deficiencia_sensorial_cego
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 deficiencia_fisico_motor
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 deficiencia_mobilidade_reduzida
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 deficiencia_intelectual
+
+  data_type: 'integer'
   is_nullable: 0
 
 =head2 habilidade_desenho
@@ -184,100 +658,6 @@ __PACKAGE__->table("f_atendimento");
   data_type: 'integer'
   is_nullable: 0
 
-=head2 id_vinculo_religioso
-
-  data_type: 'integer'
-  is_foreign_key: 1
-  is_nullable: 0
-
-=head2 situacao_moradia
-
-  data_type: 'integer'
-  is_foreign_key: 1
-  is_nullable: 0
-
-=head2 id_tempo_moradia
-
-  data_type: 'integer'
-  is_foreign_key: 1
-  is_nullable: 0
-
-=head2 possui_banheiro
-
-  data_type: 'integer'
-  is_nullable: 0
-
-=head2 id_tipo_iluminacao
-
-  data_type: 'integer'
-  is_foreign_key: 1
-  is_nullable: 0
-
-=head2 id_nucleo
-
-  data_type: 'integer'
-  is_foreign_key: 1
-  is_nullable: 0
-
-=head2 id_status_vinculacao_cca
-
-  data_type: 'integer'
-  is_foreign_key: 1
-  is_nullable: 0
-
-=head2 id_sofre_violencia_intrafamiliar
-
-  data_type: 'integer'
-  is_foreign_key: 1
-  is_nullable: 0
-
-=head2 id_sofreu_violencia_intrafamiliar
-
-  data_type: 'integer'
-  is_foreign_key: 1
-  is_nullable: 0
-
-=head2 violencia_intrafamiliar_discussao_verbal
-
-  data_type: 'integer'
-  is_nullable: 0
-
-=head2 violencia_intrafamiliar_agressao_fisica
-
-  data_type: 'integer'
-  is_nullable: 0
-
-=head2 violencia_intrafamiliar_domestica
-
-  data_type: 'integer'
-  is_nullable: 0
-
-=head2 violencia_intrafamiliar_abuso_sexual
-
-  data_type: 'integer'
-  is_nullable: 0
-
-=head2 violencia_intrafamiliar_exploracao_sexual
-
-  data_type: 'integer'
-  is_nullable: 0
-
-=head2 violencia_intrafamiliar_agressao_psicologica
-
-  data_type: 'integer'
-  is_nullable: 0
-
-=head2 violencia_intrafamiliar_ameaca_morte
-
-  data_type: 'integer'
-  is_nullable: 0
-
-=head2 id_sofre_violencia_institucional
-
-  data_type: 'integer'
-  is_foreign_key: 1
-  is_nullable: 0
-
 =head2 sofre_violencia_instituicao_policial
 
   data_type: 'integer'
@@ -298,36 +678,6 @@ __PACKAGE__->table("f_atendimento");
   data_type: 'integer'
   is_nullable: 0
 
-=head2 sofre_violencia_institucional_discussao_verbal
-
-  data_type: 'integer'
-  is_nullable: 0
-
-=head2 sofre_violencia_institucional_agressao_fisica
-
-  data_type: 'integer'
-  is_nullable: 0
-
-=head2 sofre_violencia_institucional_abuso_sexual
-
-  data_type: 'integer'
-  is_nullable: 0
-
-=head2 sofre_violencia_institucional_exploracao_sexual
-
-  data_type: 'integer'
-  is_nullable: 0
-
-=head2 sofre_violencia_institucional_agressao_psicologica
-
-  data_type: 'integer'
-  is_nullable: 0
-
-=head2 sofre_violencia_institucional_ameassa_morte
-
-  data_type: 'integer'
-  is_nullable: 0
-
 =head2 sofreu_violencia_instituicao_policial
 
   data_type: 'integer'
@@ -344,89 +694,6 @@ __PACKAGE__->table("f_atendimento");
   is_nullable: 0
 
 =head2 sofreu_violencia_instituicao_posto_saude
-
-  data_type: 'integer'
-  is_nullable: 0
-
-=head2 sofreu_violencia_institucional_discussao_verbal
-
-  data_type: 'integer'
-  is_nullable: 0
-
-=head2 sofreu_violencia_institucional_agressao_fisica
-
-  data_type: 'integer'
-  is_nullable: 0
-
-=head2 sofreu_violencia_institucional_abuso_sexual
-
-  data_type: 'integer'
-  is_nullable: 0
-
-=head2 sofreu_violencia_institucional_exploracao_sexual
-
-  data_type: 'integer'
-  is_nullable: 0
-
-=head2 sofreu_violencia_institucional_agressao_psicologica
-
-  data_type: 'integer'
-  is_nullable: 0
-
-=head2 sofreu_violencia_institucional_ameassa_morte
-
-  data_type: 'integer'
-  is_nullable: 0
-
-=head2 id_frequencia_violencia_intrafamiliar
-
-  data_type: 'integer'
-  is_foreign_key: 1
-  is_nullable: 0
-
-=head2 id_frequencia_violencia_institucional
-
-  data_type: 'integer'
-  is_foreign_key: 1
-  is_nullable: 0
-
-=head2 violencia_ambito_comunitario_discussao_verbal
-
-  data_type: 'integer'
-  is_nullable: 0
-
-=head2 violencia_ambito_comunitario_agressao_fisica
-
-  data_type: 'integer'
-  is_nullable: 0
-
-=head2 violencia_ambito_comunitario_abuso_sexual
-
-  data_type: 'integer'
-  is_nullable: 0
-
-=head2 violencia_ambito_comunitario_exploracao_sexual
-
-  data_type: 'integer'
-  is_nullable: 0
-
-=head2 violencia_ambito_comunitario_agressao_psicologica
-
-  data_type: 'integer'
-  is_nullable: 0
-
-=head2 violencia_ambito_comunitario_ameaca_morte
-
-  data_type: 'integer'
-  is_nullable: 0
-
-=head2 id_frequencia_violencia_ambito_comunitario
-
-  data_type: 'integer'
-  is_foreign_key: 1
-  is_nullable: 0
-
-=head2 exploracao_qualquer_tipo_trabalho_infantil
 
   data_type: 'integer'
   is_nullable: 0
@@ -486,39 +753,12 @@ __PACKAGE__->table("f_atendimento");
   data_type: 'integer'
   is_nullable: 0
 
-=head2 inscrito_peti
-
-  data_type: 'integer'
-  is_nullable: 0
-
-=head2 vivencia_rua
-
-  data_type: 'integer'
-  is_nullable: 0
-
-=head2 id_uso_drogas
-
-  data_type: 'integer'
-  is_foreign_key: 1
-  is_nullable: 0
-
-=head2 id_acompanhamento_uso_drogas
-
-  data_type: 'integer'
-  is_foreign_key: 1
-  is_nullable: 0
-
 =head2 internado_comunidade_teraupeutica_uso_drogas
 
   data_type: 'integer'
   is_nullable: 0
 
 =head2 deseja_tratamento_uso_drogas
-
-  data_type: 'integer'
-  is_nullable: 0
-
-=head2 usa_metodo_contraceptivo
 
   data_type: 'integer'
   is_nullable: 0
@@ -558,15 +798,14 @@ __PACKAGE__->table("f_atendimento");
   data_type: 'integer'
   is_nullable: 0
 
-=head2 usa_contraceptivo_coito_interrompido
+=head2 data_nascimento
 
   data_type: 'integer'
   is_nullable: 0
 
-=head2 id_contraceptivo
+=head2 usa_contraceptivo_coito_interrompido
 
   data_type: 'integer'
-  is_foreign_key: 1
   is_nullable: 0
 
 =head2 frequenta_genecologista
@@ -577,12 +816,6 @@ __PACKAGE__->table("f_atendimento");
 =head2 frequenta_urologista
 
   data_type: 'integer'
-  is_nullable: 0
-
-=head2 id_participacao_grupo_social
-
-  data_type: 'integer'
-  is_foreign_key: 1
   is_nullable: 0
 
 =head2 participacao_grupo_religioso
@@ -678,59 +911,6 @@ __PACKAGE__->table("f_atendimento");
 =head2 participacao_atividade_comunitaria
 
   data_type: 'integer'
-  is_nullable: 0
-
-=head2 id_tipo_escola_matriculado
-
-  data_type: 'integer'
-  is_foreign_key: 1
-  is_nullable: 0
-
-=head2 id_escolaridade
-
-  data_type: 'integer'
-  is_foreign_key: 1
-  is_nullable: 0
-
-=head2 id_auto_avaliacao_frequencia_escolar
-
-  data_type: 'integer'
-  is_foreign_key: 1
-  is_nullable: 0
-
-=head2 id_auto_avaliacao_rendimento_escolar
-
-  data_type: 'integer'
-  is_foreign_key: 1
-  is_nullable: 0
-
-=head2 id_acesso_medicacao
-
-  data_type: 'integer'
-  is_foreign_key: 1
-  is_nullable: 0
-
-=head2 id_avaliacao_servico_saude
-
-  data_type: 'integer'
-  is_foreign_key: 1
-  is_nullable: 0
-
-=head2 id_avaliacao_condicao_saude_familia
-
-  data_type: 'integer'
-  is_foreign_key: 1
-  is_nullable: 0
-
-=head2 data_nascimento
-
-  data_type: 'integer'
-  is_nullable: 0
-
-=head2 id_possui_banheiro
-
-  data_type: 'integer'
-  is_foreign_key: 1
   is_nullable: 0
 
 =head2 tipo_construcao_moradia_taipa_nao_resvestida
@@ -833,7 +1013,7 @@ __PACKAGE__->table("f_atendimento");
   data_type: 'integer'
   is_nullable: 0
 
-=head2 destino_lixo_queima_enterramento
+=head2 destino_lixo_enterramento
 
   data_type: 'integer'
   is_nullable: 0
@@ -843,71 +1023,10 @@ __PACKAGE__->table("f_atendimento");
   data_type: 'integer'
   is_nullable: 0
 
-=head2 id_esta_frequentando_escola
-
-  data_type: 'integer'
-  is_foreign_key: 1
-  is_nullable: 0
-
-=head2 id_escola_matriculado_proximo_residencia
-
-  data_type: 'integer'
-  is_foreign_key: 1
-  is_nullable: 0
-
-=head2 id_criancas_familia_todas_matriculadas
-
-  data_type: 'integer'
-  is_foreign_key: 1
-  is_nullable: 0
-
-=head2 id_auto_avaliacao_participacao_atividade_escolar
-
-  data_type: 'integer'
-  is_foreign_key: 1
-  is_nullable: 0
-
-=head2 id_auto_avaliacao_participacao_familia_escola
-
-  data_type: 'integer'
-  is_foreign_key: 1
-  is_nullable: 0
-
-=head2 id_ja_estagiou
-
-  data_type: 'integer'
-  is_foreign_key: 1
-  is_nullable: 0
-
-=head2 id_ja_trabalhou
-
-  data_type: 'integer'
-  is_foreign_key: 1
-  is_nullable: 0
-
-=head2 id_esta_trabalhando
-
-  data_type: 'integer'
-  is_foreign_key: 1
-  is_nullable: 0
-
-=head2 id_fez_curso_profissionalizante
-
-  data_type: 'integer'
-  is_foreign_key: 1
-  is_nullable: 0
-
-=head2 id_interesse_curso_profissionalizante
-
-  data_type: 'integer'
-  is_foreign_key: 1
-  is_nullable: 0
-
 =head2 origem_encaminhamento_associacoes
 
-  data_type: 'text'
+  data_type: 'integer'
   is_nullable: 0
-  original: {data_type => "varchar"}
 
 =head2 origem_encaminhamento_conselho_tutelar
 
@@ -1019,31 +1138,19 @@ __PACKAGE__->table("f_atendimento");
   data_type: 'integer'
   is_nullable: 0
 
-=head2 esta_tendo_atendimento_especializado_contra_violencia_intrafami
+=head2 esta_tendo_atend_especializado_contra_violencia_intrafamiliar
 
   data_type: 'integer'
   is_nullable: 0
 
-=head2 nao_tem_gostaria_atendimento_especializado_contra_violencia_int
+=head2 nao_tem_gostaria_atend_especial_contra_violencia_intrafamiliar
 
   data_type: 'integer'
   is_nullable: 0
 
-=head2 nao_quer_interesse_atendimento_especializado_contra_violencia_i
+=head2 nao_quer_atend_especializado_contra_violencia_intrafamiliar
 
   data_type: 'integer'
-  is_nullable: 0
-
-=head2 id_sofre_violencia_ambiente_comunitario
-
-  data_type: 'integer'
-  is_foreign_key: 1
-  is_nullable: 0
-
-=head2 id_sofreu_violencia_ambiente_comunitario
-
-  data_type: 'integer'
-  is_foreign_key: 1
   is_nullable: 0
 
 =head2 contra_violencia_comunitaria_procurou_instituicao
@@ -1071,25 +1178,19 @@ __PACKAGE__->table("f_atendimento");
   data_type: 'integer'
   is_nullable: 0
 
-=head2 esta_tendo_atendimento_especializado_contra_violencia_comunitar
+=head2 esta_tendo_atend_especializado_contra_violencia_comunitaria
 
   data_type: 'integer'
   is_nullable: 0
 
-=head2 nao_tem_gostaria_atendimento_especializado_contra_violencia_com
+=head2 nao_tem_gostaria_atend_especial_contra_violencia_comunitaria
 
   data_type: 'integer'
   is_nullable: 0
 
-=head2 nao_quer_atendimento_especializado_contra_violencia_comunitaria
+=head2 nao_quer_atend_especializado_contra_violencia_comunitaria
 
   data_type: 'integer'
-  is_nullable: 0
-
-=head2 id_sofreu_violencia_institucional
-
-  data_type: 'integer'
-  is_foreign_key: 1
   is_nullable: 0
 
 =head2 contra_violencia_institucional_procurou_instituicao
@@ -1117,17 +1218,57 @@ __PACKAGE__->table("f_atendimento");
   data_type: 'integer'
   is_nullable: 0
 
-=head2 esta_tendo_atendimento_especializado_contra_violencia_instituci
+=head2 esta_tendo_atend_especializado_contra_violencia_institucional
 
   data_type: 'integer'
   is_nullable: 0
 
-=head2 nao_tem_gostaria_atendimento_especializado_contra_violencia_ins
+=head2 nao_tem_gostaria_atend_especializado_contra_violencia_instituci
 
   data_type: 'integer'
   is_nullable: 0
 
-=head2 nao_quer_atendimento_especializado_contra_violencia_institucion
+=head2 nao_quer_atend_especializado_contra_violencia_institucional
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 nunca_fez_acompanhamento_contra_drogas
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 fez_acompanhamento_contra_drogas_capsad
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 fez_acompanhamento_contra_drogas_capsi
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 fez_acompanhamento_contra_drogas_hospital_mental
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 faz_acompanhamento_contra_drogas_hospital_mental
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 faz_acompanhamento_contra_drogas_capsad
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 faz_acompanhamento_contra_drogas_capsi
+
+  data_type: 'integer'
+  is_nullable: 0
+
+=head2 recebe_medicamento_quando_necessario
 
   data_type: 'integer'
   is_nullable: 0
@@ -1149,16 +1290,6 @@ __PACKAGE__->add_columns(
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
   "id_estado_civil",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "deficiencia_sensorial_surdo",
-  { data_type => "integer", is_nullable => 0 },
-  "deficiencia_sensorial_cego",
-  { data_type => "integer", is_nullable => 0 },
-  "deficiencia_fisico_motor",
-  { data_type => "integer", is_nullable => 0 },
-  "deficiencia_mobilidade_reduzida",
-  { data_type => "integer", is_nullable => 0 },
-  "deficiencia_intelectual",
-  { data_type => "integer", is_nullable => 0 },
   "id_registro_nascimento",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
   "id_identidade",
@@ -1175,6 +1306,174 @@ __PACKAGE__->add_columns(
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
   "id_nocoes_informatica",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_vinculo_religioso",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "situacao_moradia",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_tempo_moradia",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_tipo_iluminacao",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_nucleo",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_status_vinculacao_cca",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_sofre_violencia_intrafamiliar",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_sofreu_violencia_intrafamiliar",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_sofre_violencia_institucional",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_usa_contraceptivo",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_participacao_grupo_social",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_tipo_escola_matriculado",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_escolaridade",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_auto_avaliacao_frequencia_escolar",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_auto_avaliacao_rendimento_escolar",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_avaliacao_acesso_medicacao",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_avaliacao_servico_saude",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_avaliacao_condicao_saude_familia",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_esta_frequentando_escola",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_escola_matriculado_proximo_residencia",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_criancas_familia_todas_matriculadas",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_auto_avaliacao_participacao_atividade_escolar",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_auto_avaliacao_participacao_familia_escola",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_ja_estagiou",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_ja_trabalhou",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_esta_trabalhando",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_fez_curso_profissionalizante",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_interesse_curso_profissionalizante",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_sofre_violencia_ambiente_comunitario",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_sofreu_violencia_ambiente_comunitario",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_sofreu_violencia_institucional",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_usa_alcool",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_usa_cigarro",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_usa_maconha",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_usa_cocaina",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_usa_mesclado",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_usa_crack",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_usa_comprimidos",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_usa_cola",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_usa_inalantes",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_frequenta_ginecologista_regularmente",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_frequenta_urologista_regularmente",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_sofreu_violencia_ambito_comunitario_ameaca_morte",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_sofreu_violencia_ambito_comunitario_agressao_psicologica",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_sofreu_violencia_ambito_comunitario_exploracao_sexual",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_sofreu_violencia_ambito_comunitario_abuso_sexual",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_sofreu_violencia_ambito_comunitario_agressao_fisica",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_sofreu_violencia_ambito_comunitario_discussao_verbal",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_sofre_violencia_ambito_comunitario_ameaca_morte",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_sofre_violencia_ambito_comunitario_agressao_psicologica",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_sofre_violencia_ambito_comunitario_exploracao_sexual",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_sofre_violencia_ambito_comunitario_abuso_sexual",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_sofre_violencia_ambito_comunitario_agressao_fisica",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_sofre_violencia_ambito_comunitario_discussao_verbal",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_sofreu_violencia_institucional_ameaca_morte",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_sofreu_violencia_institucional_agressao_psicologica",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_sofreu_violencia_institucional_exploracao_sexual",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_sofreu_violencia_institucional_abuso_sexual",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_sofreu_violencia_institucional_agressao_fisica",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_sofreu_violencia_institucional_discussao_verbal",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_sofre_violencia_institucional_ameaca_morte",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_sofre_violencia_institucional_agressao_psicologica",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_sofre_violencia_institucional_exploracao_sexual",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_sofre_violencia_institucional_abuso_sexual",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_sofre_violencia_institucional_agressao_fisica",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_sofre_violencia_institucional_discussao_verbal",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_sofre_violencia_intrafamiliar_ameaca_morte",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_sofre_violencia_intrafamiliar_agressao_psicologica",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_sofre_violencia_intrafamiliar_exploracao_sexual",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_sofre_violencia_intrafamiliar_abuso_sexual",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_sofre_violencia_intrafamiliar_agressao_fisica",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_sofre_violencia_intrafamiliar_discussao_verbal",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_sofre_violencia_intrafamiliar_domestica",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_turno_estuda",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_possui_banheiro",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_exploracao_trabalho_infantil",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_vivencia_rua",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_inscrito_peti",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "id_deseja_tratamento_uso_drogas",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  "deficiencia_sensorial_surdo",
+  { data_type => "integer", is_nullable => 0 },
+  "deficiencia_sensorial_cego",
+  { data_type => "integer", is_nullable => 0 },
+  "deficiencia_fisico_motor",
+  { data_type => "integer", is_nullable => 0 },
+  "deficiencia_mobilidade_reduzida",
+  { data_type => "integer", is_nullable => 0 },
+  "deficiencia_intelectual",
+  { data_type => "integer", is_nullable => 0 },
   "habilidade_desenho",
   { data_type => "integer", is_nullable => 0 },
   "habilidade_artesanato",
@@ -1195,40 +1494,6 @@ __PACKAGE__->add_columns(
   { data_type => "integer", is_nullable => 0 },
   "habilidade_pintura",
   { data_type => "integer", is_nullable => 0 },
-  "id_vinculo_religioso",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "situacao_moradia",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "id_tempo_moradia",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "possui_banheiro",
-  { data_type => "integer", is_nullable => 0 },
-  "id_tipo_iluminacao",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "id_nucleo",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "id_status_vinculacao_cca",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "id_sofre_violencia_intrafamiliar",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "id_sofreu_violencia_intrafamiliar",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "violencia_intrafamiliar_discussao_verbal",
-  { data_type => "integer", is_nullable => 0 },
-  "violencia_intrafamiliar_agressao_fisica",
-  { data_type => "integer", is_nullable => 0 },
-  "violencia_intrafamiliar_domestica",
-  { data_type => "integer", is_nullable => 0 },
-  "violencia_intrafamiliar_abuso_sexual",
-  { data_type => "integer", is_nullable => 0 },
-  "violencia_intrafamiliar_exploracao_sexual",
-  { data_type => "integer", is_nullable => 0 },
-  "violencia_intrafamiliar_agressao_psicologica",
-  { data_type => "integer", is_nullable => 0 },
-  "violencia_intrafamiliar_ameaca_morte",
-  { data_type => "integer", is_nullable => 0 },
-  "id_sofre_violencia_institucional",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
   "sofre_violencia_instituicao_policial",
   { data_type => "integer", is_nullable => 0 },
   "sofre_violencia_instituicao_guarda_municipal",
@@ -1237,18 +1502,6 @@ __PACKAGE__->add_columns(
   { data_type => "integer", is_nullable => 0 },
   "sofre_violencia_instituicao_posto_saude",
   { data_type => "integer", is_nullable => 0 },
-  "sofre_violencia_institucional_discussao_verbal",
-  { data_type => "integer", is_nullable => 0 },
-  "sofre_violencia_institucional_agressao_fisica",
-  { data_type => "integer", is_nullable => 0 },
-  "sofre_violencia_institucional_abuso_sexual",
-  { data_type => "integer", is_nullable => 0 },
-  "sofre_violencia_institucional_exploracao_sexual",
-  { data_type => "integer", is_nullable => 0 },
-  "sofre_violencia_institucional_agressao_psicologica",
-  { data_type => "integer", is_nullable => 0 },
-  "sofre_violencia_institucional_ameassa_morte",
-  { data_type => "integer", is_nullable => 0 },
   "sofreu_violencia_instituicao_policial",
   { data_type => "integer", is_nullable => 0 },
   "sofreu_violencia_instituicao_guarda_municipal",
@@ -1256,38 +1509,6 @@ __PACKAGE__->add_columns(
   "sofreu_violencia_instituicao_escola",
   { data_type => "integer", is_nullable => 0 },
   "sofreu_violencia_instituicao_posto_saude",
-  { data_type => "integer", is_nullable => 0 },
-  "sofreu_violencia_institucional_discussao_verbal",
-  { data_type => "integer", is_nullable => 0 },
-  "sofreu_violencia_institucional_agressao_fisica",
-  { data_type => "integer", is_nullable => 0 },
-  "sofreu_violencia_institucional_abuso_sexual",
-  { data_type => "integer", is_nullable => 0 },
-  "sofreu_violencia_institucional_exploracao_sexual",
-  { data_type => "integer", is_nullable => 0 },
-  "sofreu_violencia_institucional_agressao_psicologica",
-  { data_type => "integer", is_nullable => 0 },
-  "sofreu_violencia_institucional_ameassa_morte",
-  { data_type => "integer", is_nullable => 0 },
-  "id_frequencia_violencia_intrafamiliar",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "id_frequencia_violencia_institucional",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "violencia_ambito_comunitario_discussao_verbal",
-  { data_type => "integer", is_nullable => 0 },
-  "violencia_ambito_comunitario_agressao_fisica",
-  { data_type => "integer", is_nullable => 0 },
-  "violencia_ambito_comunitario_abuso_sexual",
-  { data_type => "integer", is_nullable => 0 },
-  "violencia_ambito_comunitario_exploracao_sexual",
-  { data_type => "integer", is_nullable => 0 },
-  "violencia_ambito_comunitario_agressao_psicologica",
-  { data_type => "integer", is_nullable => 0 },
-  "violencia_ambito_comunitario_ameaca_morte",
-  { data_type => "integer", is_nullable => 0 },
-  "id_frequencia_violencia_ambito_comunitario",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "exploracao_qualquer_tipo_trabalho_infantil",
   { data_type => "integer", is_nullable => 0 },
   "exploracao_trabalho_infantil_domestico",
   { data_type => "integer", is_nullable => 0 },
@@ -1311,19 +1532,9 @@ __PACKAGE__->add_columns(
   { data_type => "integer", is_nullable => 0 },
   "exploracao_trabalho_carvoaria",
   { data_type => "integer", is_nullable => 0 },
-  "inscrito_peti",
-  { data_type => "integer", is_nullable => 0 },
-  "vivencia_rua",
-  { data_type => "integer", is_nullable => 0 },
-  "id_uso_drogas",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "id_acompanhamento_uso_drogas",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
   "internado_comunidade_teraupeutica_uso_drogas",
   { data_type => "integer", is_nullable => 0 },
   "deseja_tratamento_uso_drogas",
-  { data_type => "integer", is_nullable => 0 },
-  "usa_metodo_contraceptivo",
   { data_type => "integer", is_nullable => 0 },
   "usa_contraceptivo_preservativo_masculino",
   { data_type => "integer", is_nullable => 0 },
@@ -1339,16 +1550,14 @@ __PACKAGE__->add_columns(
   { data_type => "integer", is_nullable => 0 },
   "usa_contraceptivo_metodo_biliing",
   { data_type => "integer", is_nullable => 0 },
+  "data_nascimento",
+  { data_type => "integer", is_nullable => 0 },
   "usa_contraceptivo_coito_interrompido",
   { data_type => "integer", is_nullable => 0 },
-  "id_contraceptivo",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
   "frequenta_genecologista",
   { data_type => "integer", is_nullable => 0 },
   "frequenta_urologista",
   { data_type => "integer", is_nullable => 0 },
-  "id_participacao_grupo_social",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
   "participacao_grupo_religioso",
   { data_type => "integer", is_nullable => 0 },
   "participacao_movimento_estudantil",
@@ -1387,24 +1596,6 @@ __PACKAGE__->add_columns(
   { data_type => "integer", is_nullable => 0 },
   "participacao_atividade_comunitaria",
   { data_type => "integer", is_nullable => 0 },
-  "id_tipo_escola_matriculado",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "id_escolaridade",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "id_auto_avaliacao_frequencia_escolar",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "id_auto_avaliacao_rendimento_escolar",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "id_acesso_medicacao",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "id_avaliacao_servico_saude",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "id_avaliacao_condicao_saude_familia",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "data_nascimento",
-  { data_type => "integer", is_nullable => 0 },
-  "id_possui_banheiro",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
   "tipo_construcao_moradia_taipa_nao_resvestida",
   { data_type => "integer", is_nullable => 0 },
   "tipo_construcao_moradia_madeira",
@@ -1445,36 +1636,12 @@ __PACKAGE__->add_columns(
   { data_type => "integer", is_nullable => 0 },
   "destino_lixo_queima",
   { data_type => "integer", is_nullable => 0 },
-  "destino_lixo_queima_enterramento",
+  "destino_lixo_enterramento",
   { data_type => "integer", is_nullable => 0 },
   "destino_lixo_ceu_aberto",
   { data_type => "integer", is_nullable => 0 },
-  "id_esta_frequentando_escola",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "id_escola_matriculado_proximo_residencia",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "id_criancas_familia_todas_matriculadas",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "id_auto_avaliacao_participacao_atividade_escolar",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "id_auto_avaliacao_participacao_familia_escola",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "id_ja_estagiou",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "id_ja_trabalhou",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "id_esta_trabalhando",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "id_fez_curso_profissionalizante",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "id_interesse_curso_profissionalizante",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
   "origem_encaminhamento_associacoes",
-  {
-    data_type   => "text",
-    is_nullable => 0,
-    original    => { data_type => "varchar" },
-  },
+  { data_type => "integer", is_nullable => 0 },
   "origem_encaminhamento_conselho_tutelar",
   { data_type => "integer", is_nullable => 0 },
   "origem_encaminhamento_demanda_espontanea",
@@ -1519,16 +1686,12 @@ __PACKAGE__->add_columns(
   { data_type => "integer", is_nullable => 0 },
   "teve_atendimento_especializado_contra_violencia_intrafamiliar",
   { data_type => "integer", is_nullable => 0 },
-  "esta_tendo_atendimento_especializado_contra_violencia_intrafami",
+  "esta_tendo_atend_especializado_contra_violencia_intrafamiliar",
   { data_type => "integer", is_nullable => 0 },
-  "nao_tem_gostaria_atendimento_especializado_contra_violencia_int",
+  "nao_tem_gostaria_atend_especial_contra_violencia_intrafamiliar",
   { data_type => "integer", is_nullable => 0 },
-  "nao_quer_interesse_atendimento_especializado_contra_violencia_i",
+  "nao_quer_atend_especializado_contra_violencia_intrafamiliar",
   { data_type => "integer", is_nullable => 0 },
-  "id_sofre_violencia_ambiente_comunitario",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "id_sofreu_violencia_ambiente_comunitario",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
   "contra_violencia_comunitaria_procurou_instituicao",
   { data_type => "integer", is_nullable => 0 },
   "contra_violencia_comunitaria_resolveu_conta_propria",
@@ -1539,14 +1702,12 @@ __PACKAGE__->add_columns(
   { data_type => "integer", is_nullable => 0 },
   "teve_atendimento_especializado_contra_violencia_comunitaria",
   { data_type => "integer", is_nullable => 0 },
-  "esta_tendo_atendimento_especializado_contra_violencia_comunitar",
+  "esta_tendo_atend_especializado_contra_violencia_comunitaria",
   { data_type => "integer", is_nullable => 0 },
-  "nao_tem_gostaria_atendimento_especializado_contra_violencia_com",
+  "nao_tem_gostaria_atend_especial_contra_violencia_comunitaria",
   { data_type => "integer", is_nullable => 0 },
-  "nao_quer_atendimento_especializado_contra_violencia_comunitaria",
+  "nao_quer_atend_especializado_contra_violencia_comunitaria",
   { data_type => "integer", is_nullable => 0 },
-  "id_sofreu_violencia_institucional",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
   "contra_violencia_institucional_procurou_instituicao",
   { data_type => "integer", is_nullable => 0 },
   "contra_violencia_institucional_resolveu_conta_propia",
@@ -1557,64 +1718,31 @@ __PACKAGE__->add_columns(
   { data_type => "integer", is_nullable => 0 },
   "teve_atendimento_especializado_contra_violencia_institucional",
   { data_type => "integer", is_nullable => 0 },
-  "esta_tendo_atendimento_especializado_contra_violencia_instituci",
+  "esta_tendo_atend_especializado_contra_violencia_institucional",
   { data_type => "integer", is_nullable => 0 },
-  "nao_tem_gostaria_atendimento_especializado_contra_violencia_ins",
+  "nao_tem_gostaria_atend_especializado_contra_violencia_instituci",
   { data_type => "integer", is_nullable => 0 },
-  "nao_quer_atendimento_especializado_contra_violencia_institucion",
+  "nao_quer_atend_especializado_contra_violencia_institucional",
+  { data_type => "integer", is_nullable => 0 },
+  "nunca_fez_acompanhamento_contra_drogas",
+  { data_type => "integer", is_nullable => 0 },
+  "fez_acompanhamento_contra_drogas_capsad",
+  { data_type => "integer", is_nullable => 0 },
+  "fez_acompanhamento_contra_drogas_capsi",
+  { data_type => "integer", is_nullable => 0 },
+  "fez_acompanhamento_contra_drogas_hospital_mental",
+  { data_type => "integer", is_nullable => 0 },
+  "faz_acompanhamento_contra_drogas_hospital_mental",
+  { data_type => "integer", is_nullable => 0 },
+  "faz_acompanhamento_contra_drogas_capsad",
+  { data_type => "integer", is_nullable => 0 },
+  "faz_acompanhamento_contra_drogas_capsi",
+  { data_type => "integer", is_nullable => 0 },
+  "recebe_medicamento_quando_necessario",
   { data_type => "integer", is_nullable => 0 },
 );
 
 =head1 RELATIONS
-
-=head2 id_sofreu_violencia_intrafamiliar
-
-Type: belongs_to
-
-Related object: L<Acao::Plugins::SDH::DimSchema::Result::DSofreuViolenciaIntrafamiliar>
-
-=cut
-
-__PACKAGE__->belongs_to(
-  "id_sofreu_violencia_intrafamiliar",
-  "Acao::Plugins::SDH::DimSchema::Result::DSofreuViolenciaIntrafamiliar",
-  {
-    id_sofreu_violencia_intrafamiliar => "id_sofreu_violencia_intrafamiliar",
-  },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
-
-=head2 id_frequencia_violencia_intrafamiliar
-
-Type: belongs_to
-
-Related object: L<Acao::Plugins::SDH::DimSchema::Result::DFrequenciaViolenciaIntrafamiliar>
-
-=cut
-
-__PACKAGE__->belongs_to(
-  "id_frequencia_violencia_intrafamiliar",
-  "Acao::Plugins::SDH::DimSchema::Result::DFrequenciaViolenciaIntrafamiliar",
-  {
-    id_frequencia_violencia_intrafamiliar => "id_frequencia_violencia_intrafamiliar",
-  },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
-
-=head2 id_estado_civil
-
-Type: belongs_to
-
-Related object: L<Acao::Plugins::SDH::DimSchema::Result::DEstadoCivil>
-
-=cut
-
-__PACKAGE__->belongs_to(
-  "id_estado_civil",
-  "Acao::Plugins::SDH::DimSchema::Result::DEstadoCivil",
-  { id_estado_civil => "id_estado_civil" },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
 
 =head2 id_cpf
 
@@ -1628,6 +1756,38 @@ __PACKAGE__->belongs_to(
   "id_cpf",
   "Acao::Plugins::SDH::DimSchema::Result::DCpf",
   { id_cpf => "id_cpf" },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_usa_comprimido
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DUsaComprimido>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_usa_comprimido",
+  "Acao::Plugins::SDH::DimSchema::Result::DUsaComprimido",
+  { id_usa_comprimidos => "id_usa_comprimidos" },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_sofre_violencia_ambito_comunitario_agressao_psicologica
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DSofreViolenciaAmbitoComunitarioAgressaoPsicologica>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_sofre_violencia_ambito_comunitario_agressao_psicologica",
+  "Acao::Plugins::SDH::DimSchema::Result::DSofreViolenciaAmbitoComunitarioAgressaoPsicologica",
+  {
+    id_sofre_violencia_ambito_comunitario_agressao_psicologica => "id_sofre_violencia_ambito_comunitario_agressao_psicologica",
+  },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
@@ -1770,23 +1930,6 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
-=head2 id_frequencia_violencia_institucional
-
-Type: belongs_to
-
-Related object: L<Acao::Plugins::SDH::DimSchema::Result::DFrequenciaViolenciaInstitucional>
-
-=cut
-
-__PACKAGE__->belongs_to(
-  "id_frequencia_violencia_institucional",
-  "Acao::Plugins::SDH::DimSchema::Result::DFrequenciaViolenciaInstitucional",
-  {
-    id_frequencia_violencia_institucional => "id_frequencia_violencia_institucional",
-  },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
-
 =head2 id_sofreu_violencia_ambiente_comunitario
 
 Type: belongs_to
@@ -1800,6 +1943,40 @@ __PACKAGE__->belongs_to(
   "Acao::Plugins::SDH::DimSchema::Result::DSofreuViolenciaAmbienteComunitario",
   {
     id_sofreu_violencia_ambiente_comunitario => "id_sofreu_violencia_ambiente_comunitario",
+  },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_sofre_violencia_institucional_agressao_psicologica
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DSofreViolenciaInstitucionalAgressaoPsicologica>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_sofre_violencia_institucional_agressao_psicologica",
+  "Acao::Plugins::SDH::DimSchema::Result::DSofreViolenciaInstitucionalAgressaoPsicologica",
+  {
+    id_sofre_violencia_institucional_agressao_psicologica => "id_sofre_violencia_institucional_agressao_psicologica",
+  },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_sofre_violencia_intrafamiliar_ameaca_morte
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DSofreViolenciaIntrafamiliarAmeacaMorte>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_sofre_violencia_intrafamiliar_ameaca_morte",
+  "Acao::Plugins::SDH::DimSchema::Result::DSofreViolenciaIntrafamiliarAmeacaMorte",
+  {
+    id_sofre_violencia_intrafamiliar_ameaca_morte => "id_sofre_violencia_intrafamiliar_ameaca_morte",
   },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
@@ -1821,18 +1998,613 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
-=head2 id_acesso_medicacao
+=head2 id_sofre_violencia_intrafamiliar_agressao_psicologica
 
 Type: belongs_to
 
-Related object: L<Acao::Plugins::SDH::DimSchema::Result::DAcessoMedicacao>
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DSofreViolenciaIntrafamiliarAgressaoPsicologica>
 
 =cut
 
 __PACKAGE__->belongs_to(
-  "id_acesso_medicacao",
-  "Acao::Plugins::SDH::DimSchema::Result::DAcessoMedicacao",
-  { id_acesso_medicacao => "id_acesso_medicacao" },
+  "id_sofre_violencia_intrafamiliar_agressao_psicologica",
+  "Acao::Plugins::SDH::DimSchema::Result::DSofreViolenciaIntrafamiliarAgressaoPsicologica",
+  {
+    id_sofre_violencia_intrafamiliar_agressao_psicologica => "id_sofre_violencia_intrafamiliar_agressao_psicologica",
+  },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_ni
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DNi>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_ni",
+  "Acao::Plugins::SDH::DimSchema::Result::DNi",
+  { id_nis => "id_nis" },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_esta_trabalhando
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DEstaTrabalhando>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_esta_trabalhando",
+  "Acao::Plugins::SDH::DimSchema::Result::DEstaTrabalhando",
+  { id_esta_trabalhando => "id_esta_trabalhando" },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_usa_cola
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DUsaCola>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_usa_cola",
+  "Acao::Plugins::SDH::DimSchema::Result::DUsaCola",
+  { id_usa_cola => "id_usa_cola" },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_identidade
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DIdentidade>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_identidade",
+  "Acao::Plugins::SDH::DimSchema::Result::DIdentidade",
+  { id_identidade => "id_identidade" },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_sofre_violencia_intrafamiliar_discussao_verbal
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DSofreViolenciaIntrafamiliarDiscussaoVerbal>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_sofre_violencia_intrafamiliar_discussao_verbal",
+  "Acao::Plugins::SDH::DimSchema::Result::DSofreViolenciaIntrafamiliarDiscussaoVerbal",
+  {
+    id_sofre_violencia_intrafamiliar_discussao_verbal => "id_sofre_violencia_intrafamiliar_discussao_verbal",
+  },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_sofre_violencia_ambito_comunitario_ameaca_morte
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DSofreViolenciaAmbitoComunitarioAmeacaMorte>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_sofre_violencia_ambito_comunitario_ameaca_morte",
+  "Acao::Plugins::SDH::DimSchema::Result::DSofreViolenciaAmbitoComunitarioAmeacaMorte",
+  {
+    id_sofre_violencia_ambito_comunitario_ameaca_morte => "id_sofre_violencia_ambito_comunitario_ameaca_morte",
+  },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_nocoes_informatica
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DNocoesInformatica>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_nocoes_informatica",
+  "Acao::Plugins::SDH::DimSchema::Result::DNocoesInformatica",
+  { id_nocoes_informatica => "id_nocoes_informatica" },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_usa_contraceptivo
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DUsaContraceptivo>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_usa_contraceptivo",
+  "Acao::Plugins::SDH::DimSchema::Result::DUsaContraceptivo",
+  { id_usa_contraceptivo => "id_usa_contraceptivo" },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_esta_frequentando_escola
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DEstaFrequentandoEscola>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_esta_frequentando_escola",
+  "Acao::Plugins::SDH::DimSchema::Result::DEstaFrequentandoEscola",
+  { id_esta_frequentando_escola => "id_esta_frequentando_escola" },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_ctp
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DCtp>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_ctp",
+  "Acao::Plugins::SDH::DimSchema::Result::DCtp",
+  { id_ctps => "id_ctps" },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_vivencia_rua
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DVivenciaRua>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_vivencia_rua",
+  "Acao::Plugins::SDH::DimSchema::Result::DVivenciaRua",
+  { id_vivencia_rua => "id_vivencia_rua" },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_sofreu_violencia_ambito_comunitario_discussao_verbal
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DSofreuViolenciaAmbitoComunitarioDiscussaoVerbal>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_sofreu_violencia_ambito_comunitario_discussao_verbal",
+  "Acao::Plugins::SDH::DimSchema::Result::DSofreuViolenciaAmbitoComunitarioDiscussaoVerbal",
+  {
+    id_sofreu_violencia_ambito_comunitario_discussao_verbal => "id_sofreu_violencia_ambito_comunitario_discussao_verbal",
+  },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_sofreu_violencia_ambito_comunitario_exploracao_sexual
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DSofreuViolenciaAmbitoComunitarioExploracaoSexual>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_sofreu_violencia_ambito_comunitario_exploracao_sexual",
+  "Acao::Plugins::SDH::DimSchema::Result::DSofreuViolenciaAmbitoComunitarioExploracaoSexual",
+  {
+    id_sofreu_violencia_ambito_comunitario_exploracao_sexual => "id_sofreu_violencia_ambito_comunitario_exploracao_sexual",
+  },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_frequenta_ginecologista_regularmente
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DFrequentaGinecologistaRegularmente>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_frequenta_ginecologista_regularmente",
+  "Acao::Plugins::SDH::DimSchema::Result::DFrequentaGinecologistaRegularmente",
+  {
+    id_frequenta_ginecologista_regularmente => "id_frequenta_ginecologista_regularmente",
+  },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_avaliacao_servico_saude
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DAvaliacaoServicoSaude>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_avaliacao_servico_saude",
+  "Acao::Plugins::SDH::DimSchema::Result::DAvaliacaoServicoSaude",
+  { id_avaliacao_servico_saude => "id_avaliacao_servico_saude" },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_sofreu_violencia_institucional_ameaca_morte
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DSofreuViolenciaInstitucionalAmeacaMorte>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_sofreu_violencia_institucional_ameaca_morte",
+  "Acao::Plugins::SDH::DimSchema::Result::DSofreuViolenciaInstitucionalAmeacaMorte",
+  {
+    id_sofreu_violencia_institucional_ameaca_morte => "id_sofreu_violencia_institucional_ameaca_morte",
+  },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_sofre_violencia_intrafamiliar_agressao_fisica
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DSofreViolenciaIntrafamiliarAgressaoFisica>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_sofre_violencia_intrafamiliar_agressao_fisica",
+  "Acao::Plugins::SDH::DimSchema::Result::DSofreViolenciaIntrafamiliarAgressaoFisica",
+  {
+    id_sofre_violencia_intrafamiliar_agressao_fisica => "id_sofre_violencia_intrafamiliar_agressao_fisica",
+  },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_sofre_violencia_ambito_comunitario_exploracao_sexual
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DSofreViolenciaAmbitoComunitarioExploracaoSexual>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_sofre_violencia_ambito_comunitario_exploracao_sexual",
+  "Acao::Plugins::SDH::DimSchema::Result::DSofreViolenciaAmbitoComunitarioExploracaoSexual",
+  {
+    id_sofre_violencia_ambito_comunitario_exploracao_sexual => "id_sofre_violencia_ambito_comunitario_exploracao_sexual",
+  },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_tempo_moradia
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DTempoMoradia>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_tempo_moradia",
+  "Acao::Plugins::SDH::DimSchema::Result::DTempoMoradia",
+  { id_tempo_moradia => "id_tempo_moradia" },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_sofre_violencia_ambito_comunitario_abuso_sexual
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DSofreViolenciaAmbitoComunitarioAbusoSexual>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_sofre_violencia_ambito_comunitario_abuso_sexual",
+  "Acao::Plugins::SDH::DimSchema::Result::DSofreViolenciaAmbitoComunitarioAbusoSexual",
+  {
+    id_sofre_violencia_ambito_comunitario_abuso_sexual => "id_sofre_violencia_ambito_comunitario_abuso_sexual",
+  },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_possui_banheiro
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DPossuiBanheiro>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_possui_banheiro",
+  "Acao::Plugins::SDH::DimSchema::Result::DPossuiBanheiro",
+  { id_possui_banheiro => "id_possui_banheiro" },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_usa_inalante
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DUsaInalante>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_usa_inalante",
+  "Acao::Plugins::SDH::DimSchema::Result::DUsaInalante",
+  { id_usa_inalantes => "id_usa_inalantes" },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_ja_estagiou
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DJaEstagiou>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_ja_estagiou",
+  "Acao::Plugins::SDH::DimSchema::Result::DJaEstagiou",
+  { id_ja_estagiou => "id_ja_estagiou" },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_sofre_violencia_institucional_exploracao_sexual
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DSofreViolenciaInstitucionalExploracaoSexual>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_sofre_violencia_institucional_exploracao_sexual",
+  "Acao::Plugins::SDH::DimSchema::Result::DSofreViolenciaInstitucionalExploracaoSexual",
+  {
+    id_sofre_violencia_institucional_exploracao_sexual => "id_sofre_violencia_institucional_exploracao_sexual",
+  },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_sofreu_violencia_ambito_comunitario_ameaca_morte
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DSofreuViolenciaAmbitoComunitarioAmeacaMorte>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_sofreu_violencia_ambito_comunitario_ameaca_morte",
+  "Acao::Plugins::SDH::DimSchema::Result::DSofreuViolenciaAmbitoComunitarioAmeacaMorte",
+  {
+    id_sofreu_violencia_ambito_comunitario_ameaca_morte => "id_sofreu_violencia_ambito_comunitario_ameaca_morte",
+  },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_escola_matriculado_proximo_residencia
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DEscolaMatriculadoProximoResidencia>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_escola_matriculado_proximo_residencia",
+  "Acao::Plugins::SDH::DimSchema::Result::DEscolaMatriculadoProximoResidencia",
+  {
+    id_escola_matriculado_proximo_residencia => "id_escola_matriculado_proximo_residencia",
+  },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_sofre_violencia_institucional_agressao_fisica
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DSofreViolenciaInstitucionalAgressaoFisica>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_sofre_violencia_institucional_agressao_fisica",
+  "Acao::Plugins::SDH::DimSchema::Result::DSofreViolenciaInstitucionalAgressaoFisica",
+  {
+    id_sofre_violencia_institucional_agressao_fisica => "id_sofre_violencia_institucional_agressao_fisica",
+  },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_usa_maconha
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DUsaMaconha>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_usa_maconha",
+  "Acao::Plugins::SDH::DimSchema::Result::DUsaMaconha",
+  { id_usa_maconha => "id_usa_maconha" },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_status_vinculacao_cca
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DStatusVinculacaoCca>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_status_vinculacao_cca",
+  "Acao::Plugins::SDH::DimSchema::Result::DStatusVinculacaoCca",
+  { id_status_vinculacao_cca => "id_status_vinculacao_cca" },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_sofre_violencia_institucional_abuso_sexual
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DSofreViolenciaInstitucionalAbusoSexual>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_sofre_violencia_institucional_abuso_sexual",
+  "Acao::Plugins::SDH::DimSchema::Result::DSofreViolenciaInstitucionalAbusoSexual",
+  {
+    id_sofre_violencia_institucional_abuso_sexual => "id_sofre_violencia_institucional_abuso_sexual",
+  },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_ja_trabalhou
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DJaTrabalhou>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_ja_trabalhou",
+  "Acao::Plugins::SDH::DimSchema::Result::DJaTrabalhou",
+  { id_ja_trabalhou => "id_ja_trabalhou" },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_sofreu_violencia_institucional_discussao_verbal
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DSofreuViolenciaInstitucionalDiscussaoVerbal>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_sofreu_violencia_institucional_discussao_verbal",
+  "Acao::Plugins::SDH::DimSchema::Result::DSofreuViolenciaInstitucionalDiscussaoVerbal",
+  {
+    id_sofreu_violencia_institucional_discussao_verbal => "id_sofreu_violencia_institucional_discussao_verbal",
+  },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_sofreu_violencia_intrafamiliar
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DSofreuViolenciaIntrafamiliar>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_sofreu_violencia_intrafamiliar",
+  "Acao::Plugins::SDH::DimSchema::Result::DSofreuViolenciaIntrafamiliar",
+  {
+    id_sofreu_violencia_intrafamiliar => "id_sofreu_violencia_intrafamiliar",
+  },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_estado_civil
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DEstadoCivil>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_estado_civil",
+  "Acao::Plugins::SDH::DimSchema::Result::DEstadoCivil",
+  { id_estado_civil => "id_estado_civil" },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_sofreu_violencia_institucional_abuso_sexual
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DSofreuViolenciaInstitucionalAbusoSexual>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_sofreu_violencia_institucional_abuso_sexual",
+  "Acao::Plugins::SDH::DimSchema::Result::DSofreuViolenciaInstitucionalAbusoSexual",
+  {
+    id_sofreu_violencia_institucional_abuso_sexual => "id_sofreu_violencia_institucional_abuso_sexual",
+  },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_sofre_violencia_institucional_discussao_verbal
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DSofreViolenciaInstitucionalDiscussaoVerbal>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_sofre_violencia_institucional_discussao_verbal",
+  "Acao::Plugins::SDH::DimSchema::Result::DSofreViolenciaInstitucionalDiscussaoVerbal",
+  {
+    id_sofre_violencia_institucional_discussao_verbal => "id_sofre_violencia_institucional_discussao_verbal",
+  },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_avaliacao_acesso_medicacao
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DAvaliacaoAcessoMedicacao>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_avaliacao_acesso_medicacao",
+  "Acao::Plugins::SDH::DimSchema::Result::DAvaliacaoAcessoMedicacao",
+  {
+    id_avaliacao_acesso_medicacao => "id_avaliacao_acesso_medicacao",
+  },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
@@ -1883,33 +2655,20 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
-=head2 id_ni
+=head2 id_sofreu_violencia_ambito_comunitario_agressao_psicologica
 
 Type: belongs_to
 
-Related object: L<Acao::Plugins::SDH::DimSchema::Result::DNi>
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DSofreuViolenciaAmbitoComunitarioAgressaoPsicologica>
 
 =cut
 
 __PACKAGE__->belongs_to(
-  "id_ni",
-  "Acao::Plugins::SDH::DimSchema::Result::DNi",
-  { id_nis => "id_nis" },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
-
-=head2 id_esta_trabalhando
-
-Type: belongs_to
-
-Related object: L<Acao::Plugins::SDH::DimSchema::Result::DEstaTrabalhando>
-
-=cut
-
-__PACKAGE__->belongs_to(
-  "id_esta_trabalhando",
-  "Acao::Plugins::SDH::DimSchema::Result::DEstaTrabalhando",
-  { id_esta_trabalhando => "id_esta_trabalhando" },
+  "id_sofreu_violencia_ambito_comunitario_agressao_psicologica",
+  "Acao::Plugins::SDH::DimSchema::Result::DSofreuViolenciaAmbitoComunitarioAgressaoPsicologica",
+  {
+    id_sofreu_violencia_ambito_comunitario_agressao_psicologica => "id_sofreu_violencia_ambito_comunitario_agressao_psicologica",
+  },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
@@ -1945,21 +2704,6 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
-=head2 id_identidade
-
-Type: belongs_to
-
-Related object: L<Acao::Plugins::SDH::DimSchema::Result::DIdentidade>
-
-=cut
-
-__PACKAGE__->belongs_to(
-  "id_identidade",
-  "Acao::Plugins::SDH::DimSchema::Result::DIdentidade",
-  { id_identidade => "id_identidade" },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
-
 =head2 id_idade
 
 Type: belongs_to
@@ -1992,18 +2736,52 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
-=head2 id_nocoes_informatica
+=head2 id_sofre_violencia_intrafamiliar_domestica
 
 Type: belongs_to
 
-Related object: L<Acao::Plugins::SDH::DimSchema::Result::DNocoesInformatica>
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DSofreViolenciaIntrafamiliarDomestica>
 
 =cut
 
 __PACKAGE__->belongs_to(
-  "id_nocoes_informatica",
-  "Acao::Plugins::SDH::DimSchema::Result::DNocoesInformatica",
-  { id_nocoes_informatica => "id_nocoes_informatica" },
+  "id_sofre_violencia_intrafamiliar_domestica",
+  "Acao::Plugins::SDH::DimSchema::Result::DSofreViolenciaIntrafamiliarDomestica",
+  {
+    id_sofre_violencia_intrafamiliar_domestica => "id_sofre_violencia_intrafamiliar_domestica",
+  },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_usa_alcool
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DUsaAlcool>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_usa_alcool",
+  "Acao::Plugins::SDH::DimSchema::Result::DUsaAlcool",
+  { id_usa_alcool => "id_usa_alcool" },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_sofre_violencia_intrafamiliar_exploracao_sexual
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DSofreViolenciaIntrafamiliarExploracaoSexual>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_sofre_violencia_intrafamiliar_exploracao_sexual",
+  "Acao::Plugins::SDH::DimSchema::Result::DSofreViolenciaIntrafamiliarExploracaoSexual",
+  {
+    id_sofre_violencia_intrafamiliar_exploracao_sexual => "id_sofre_violencia_intrafamiliar_exploracao_sexual",
+  },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
@@ -2024,36 +2802,6 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
-=head2 id_contraceptivo
-
-Type: belongs_to
-
-Related object: L<Acao::Plugins::SDH::DimSchema::Result::DContraceptivo>
-
-=cut
-
-__PACKAGE__->belongs_to(
-  "id_contraceptivo",
-  "Acao::Plugins::SDH::DimSchema::Result::DContraceptivo",
-  { id_contraceptivo => "id_contraceptivo" },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
-
-=head2 id_esta_frequentando_escola
-
-Type: belongs_to
-
-Related object: L<Acao::Plugins::SDH::DimSchema::Result::DEstaFrequentandoEscola>
-
-=cut
-
-__PACKAGE__->belongs_to(
-  "id_esta_frequentando_escola",
-  "Acao::Plugins::SDH::DimSchema::Result::DEstaFrequentandoEscola",
-  { id_esta_frequentando_escola => "id_esta_frequentando_escola" },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
-
 =head2 id_auto_avaliacao_rendimento_escolar
 
 Type: belongs_to
@@ -2071,18 +2819,54 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
-=head2 id_ctp
+=head2 id_exploracao_trabalho_infantil
 
 Type: belongs_to
 
-Related object: L<Acao::Plugins::SDH::DimSchema::Result::DCtp>
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DExploracaoTrabalhoInfantil>
 
 =cut
 
 __PACKAGE__->belongs_to(
-  "id_ctp",
-  "Acao::Plugins::SDH::DimSchema::Result::DCtp",
-  { id_ctps => "id_ctps" },
+  "id_exploracao_trabalho_infantil",
+  "Acao::Plugins::SDH::DimSchema::Result::DExploracaoTrabalhoInfantil",
+  {
+    id_exploracao_trabalho_infantil => "id_exploracao_trabalho_infantil",
+  },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_sofre_violencia_ambito_comunitario_discussao_verbal
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DSofreViolenciaAmbitoComunitarioDiscussaoVerbal>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_sofre_violencia_ambito_comunitario_discussao_verbal",
+  "Acao::Plugins::SDH::DimSchema::Result::DSofreViolenciaAmbitoComunitarioDiscussaoVerbal",
+  {
+    id_sofre_violencia_ambito_comunitario_discussao_verbal => "id_sofre_violencia_ambito_comunitario_discussao_verbal",
+  },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_sofre_violencia_ambito_comunitario_agressao_fisica
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DSofreViolenciaAmbitoComunitarioAgressaoFisica>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_sofre_violencia_ambito_comunitario_agressao_fisica",
+  "Acao::Plugins::SDH::DimSchema::Result::DSofreViolenciaAmbitoComunitarioAgressaoFisica",
+  {
+    id_sofre_violencia_ambito_comunitario_agressao_fisica => "id_sofre_violencia_ambito_comunitario_agressao_fisica",
+  },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
@@ -2103,21 +2887,6 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
-=head2 id_uso_droga
-
-Type: belongs_to
-
-Related object: L<Acao::Plugins::SDH::DimSchema::Result::DUsoDroga>
-
-=cut
-
-__PACKAGE__->belongs_to(
-  "id_uso_droga",
-  "Acao::Plugins::SDH::DimSchema::Result::DUsoDroga",
-  { id_uso_drogas => "id_uso_drogas" },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
-
 =head2 id_participacao_grupo_social
 
 Type: belongs_to
@@ -2133,48 +2902,97 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
-=head2 id_avaliacao_servico_saude
+=head2 id_turno_estuda
 
 Type: belongs_to
 
-Related object: L<Acao::Plugins::SDH::DimSchema::Result::DAvaliacaoServicoSaude>
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DTurnoEstuda>
 
 =cut
 
 __PACKAGE__->belongs_to(
-  "id_avaliacao_servico_saude",
-  "Acao::Plugins::SDH::DimSchema::Result::DAvaliacaoServicoSaude",
-  { id_avaliacao_servico_saude => "id_avaliacao_servico_saude" },
+  "id_turno_estuda",
+  "Acao::Plugins::SDH::DimSchema::Result::DTurnoEstuda",
+  { id_turno_estuda => "id_turno_estuda" },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
-=head2 id_acompanhamento_uso_droga
+=head2 id_usa_mesclado
 
 Type: belongs_to
 
-Related object: L<Acao::Plugins::SDH::DimSchema::Result::DAcompanhamentoUsoDroga>
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DUsaMesclado>
 
 =cut
 
 __PACKAGE__->belongs_to(
-  "id_acompanhamento_uso_droga",
-  "Acao::Plugins::SDH::DimSchema::Result::DAcompanhamentoUsoDroga",
-  { id_acompanhamento_uso_drogas => "id_acompanhamento_uso_drogas" },
+  "id_usa_mesclado",
+  "Acao::Plugins::SDH::DimSchema::Result::DUsaMesclado",
+  { id_usa_mesclado => "id_usa_mesclado" },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
-=head2 id_tempo_moradia
+=head2 id_usa_cocaina
 
 Type: belongs_to
 
-Related object: L<Acao::Plugins::SDH::DimSchema::Result::DTempoMoradia>
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DUsaCocaina>
 
 =cut
 
 __PACKAGE__->belongs_to(
-  "id_tempo_moradia",
-  "Acao::Plugins::SDH::DimSchema::Result::DTempoMoradia",
-  { id_tempo_moradia => "id_tempo_moradia" },
+  "id_usa_cocaina",
+  "Acao::Plugins::SDH::DimSchema::Result::DUsaCocaina",
+  { id_usa_cocaina => "id_usa_cocaina" },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_sofreu_violencia_institucional_agressao_fisica
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DSofreuViolenciaInstitucionalAgressaoFisica>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_sofreu_violencia_institucional_agressao_fisica",
+  "Acao::Plugins::SDH::DimSchema::Result::DSofreuViolenciaInstitucionalAgressaoFisica",
+  {
+    id_sofreu_violencia_institucional_agressao_fisica => "id_sofreu_violencia_institucional_agressao_fisica",
+  },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_inscrito_peti
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DInscritoPeti>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_inscrito_peti",
+  "Acao::Plugins::SDH::DimSchema::Result::DInscritoPeti",
+  { id_inscrito_peti => "id_inscrito_peti" },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_sofre_violencia_institucional_ameaca_morte
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DSofreViolenciaInstitucionalAmeacaMorte>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_sofre_violencia_institucional_ameaca_morte",
+  "Acao::Plugins::SDH::DimSchema::Result::DSofreViolenciaInstitucionalAmeacaMorte",
+  {
+    id_sofre_violencia_institucional_ameaca_morte => "id_sofre_violencia_institucional_ameaca_morte",
+  },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
@@ -2195,49 +3013,36 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
-=head2 id_possui_banheiro
+=head2 id_frequenta_urologista_regularmente
 
 Type: belongs_to
 
-Related object: L<Acao::Plugins::SDH::DimSchema::Result::DPossuiBanheiro>
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DFrequentaUrologistaRegularmente>
 
 =cut
 
 __PACKAGE__->belongs_to(
-  "id_possui_banheiro",
-  "Acao::Plugins::SDH::DimSchema::Result::DPossuiBanheiro",
-  { id_possui_banheiro => "id_possui_banheiro" },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
-
-=head2 id_ja_estagiou
-
-Type: belongs_to
-
-Related object: L<Acao::Plugins::SDH::DimSchema::Result::DJaEstagiou>
-
-=cut
-
-__PACKAGE__->belongs_to(
-  "id_ja_estagiou",
-  "Acao::Plugins::SDH::DimSchema::Result::DJaEstagiou",
-  { id_ja_estagiou => "id_ja_estagiou" },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
-
-=head2 id_frequencia_violencia_ambito_comunitario
-
-Type: belongs_to
-
-Related object: L<Acao::Plugins::SDH::DimSchema::Result::DFrequenciaViolenciaAmbitoComunitario>
-
-=cut
-
-__PACKAGE__->belongs_to(
-  "id_frequencia_violencia_ambito_comunitario",
-  "Acao::Plugins::SDH::DimSchema::Result::DFrequenciaViolenciaAmbitoComunitario",
+  "id_frequenta_urologista_regularmente",
+  "Acao::Plugins::SDH::DimSchema::Result::DFrequentaUrologistaRegularmente",
   {
-    id_frequencia_violencia_ambito_comunitario => "id_frequencia_violencia_ambito_comunitario",
+    id_frequenta_urologista_regularmente => "id_frequenta_urologista_regularmente",
+  },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_sofreu_violencia_institucional_exploracao_sexual
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DSofreuViolenciaInstitucionalExploracaoSexual>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_sofreu_violencia_institucional_exploracao_sexual",
+  "Acao::Plugins::SDH::DimSchema::Result::DSofreuViolenciaInstitucionalExploracaoSexual",
+  {
+    id_sofreu_violencia_institucional_exploracao_sexual => "id_sofreu_violencia_institucional_exploracao_sexual",
   },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
@@ -2257,6 +3062,40 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
+=head2 id_sofreu_violencia_ambito_comunitario_agressao_fisica
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DSofreuViolenciaAmbitoComunitarioAgressaoFisica>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_sofreu_violencia_ambito_comunitario_agressao_fisica",
+  "Acao::Plugins::SDH::DimSchema::Result::DSofreuViolenciaAmbitoComunitarioAgressaoFisica",
+  {
+    id_sofreu_violencia_ambito_comunitario_agressao_fisica => "id_sofreu_violencia_ambito_comunitario_agressao_fisica",
+  },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_sofre_violencia_intrafamiliar_abuso_sexual
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DSofreViolenciaIntrafamiliarAbusoSexual>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_sofre_violencia_intrafamiliar_abuso_sexual",
+  "Acao::Plugins::SDH::DimSchema::Result::DSofreViolenciaIntrafamiliarAbusoSexual",
+  {
+    id_sofre_violencia_intrafamiliar_abuso_sexual => "id_sofre_violencia_intrafamiliar_abuso_sexual",
+  },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
 =head2 id_data
 
 Type: belongs_to
@@ -2272,19 +3111,51 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
-=head2 id_escola_matriculado_proximo_residencia
+=head2 id_sofreu_violencia_institucional_agressao_psicologica
 
 Type: belongs_to
 
-Related object: L<Acao::Plugins::SDH::DimSchema::Result::DEscolaMatriculadoProximoResidencia>
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DSofreuViolenciaInstitucionalAgressaoPsicologica>
 
 =cut
 
 __PACKAGE__->belongs_to(
-  "id_escola_matriculado_proximo_residencia",
-  "Acao::Plugins::SDH::DimSchema::Result::DEscolaMatriculadoProximoResidencia",
+  "id_sofreu_violencia_institucional_agressao_psicologica",
+  "Acao::Plugins::SDH::DimSchema::Result::DSofreuViolenciaInstitucionalAgressaoPsicologica",
   {
-    id_escola_matriculado_proximo_residencia => "id_escola_matriculado_proximo_residencia",
+    id_sofreu_violencia_institucional_agressao_psicologica => "id_sofreu_violencia_institucional_agressao_psicologica",
+  },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_usa_crack
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DUsaCrack>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_usa_crack",
+  "Acao::Plugins::SDH::DimSchema::Result::DUsaCrack",
+  { id_usa_crack => "id_usa_crack" },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_sofreu_violencia_ambito_comunitario_abuso_sexual
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DSofreuViolenciaAmbitoComunitarioAbusoSexual>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_sofreu_violencia_ambito_comunitario_abuso_sexual",
+  "Acao::Plugins::SDH::DimSchema::Result::DSofreuViolenciaAmbitoComunitarioAbusoSexual",
+  {
+    id_sofreu_violencia_ambito_comunitario_abuso_sexual => "id_sofreu_violencia_ambito_comunitario_abuso_sexual",
   },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
@@ -2306,6 +3177,21 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
+=head2 id_usa_cigarro
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DUsaCigarro>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_usa_cigarro",
+  "Acao::Plugins::SDH::DimSchema::Result::DUsaCigarro",
+  { id_usa_cigarro => "id_usa_cigarro" },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
 =head2 id_registro_nascimento
 
 Type: belongs_to
@@ -2318,21 +3204,6 @@ __PACKAGE__->belongs_to(
   "id_registro_nascimento",
   "Acao::Plugins::SDH::DimSchema::Result::DRegistroNascimento",
   { id_registro_nascimento => "id_registro_nascimento" },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
-
-=head2 id_status_vinculacao_cca
-
-Type: belongs_to
-
-Related object: L<Acao::Plugins::SDH::DimSchema::Result::DStatusVinculacaoCca>
-
-=cut
-
-__PACKAGE__->belongs_to(
-  "id_status_vinculacao_cca",
-  "Acao::Plugins::SDH::DimSchema::Result::DStatusVinculacaoCca",
-  { id_status_vinculacao_cca => "id_status_vinculacao_cca" },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
@@ -2353,21 +3224,6 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
-=head2 id_ja_trabalhou
-
-Type: belongs_to
-
-Related object: L<Acao::Plugins::SDH::DimSchema::Result::DJaTrabalhou>
-
-=cut
-
-__PACKAGE__->belongs_to(
-  "id_ja_trabalhou",
-  "Acao::Plugins::SDH::DimSchema::Result::DJaTrabalhou",
-  { id_ja_trabalhou => "id_ja_trabalhou" },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
-
 =head2 id_escolaridade
 
 Type: belongs_to
@@ -2383,9 +3239,26 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
+=head2 id_deseja_tratamento_uso_droga
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-21 11:36:06
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:8Y+S7bUh90hbEDnVe+5fGw
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DDesejaTratamentoUsoDroga>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_deseja_tratamento_uso_droga",
+  "Acao::Plugins::SDH::DimSchema::Result::DDesejaTratamentoUsoDroga",
+  {
+    id_deseja_tratamento_uso_drogas => "id_deseja_tratamento_uso_drogas",
+  },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-11-09 15:44:12
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:eaoaLMS36CQzJpKt8pSrJQ
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

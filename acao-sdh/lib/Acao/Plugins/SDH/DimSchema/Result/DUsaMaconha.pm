@@ -1,4 +1,4 @@
-package Acao::Plugins::SDH::DimSchema::Result::DUsoDroga;
+package Acao::Plugins::SDH::DimSchema::Result::DUsaMaconha;
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
@@ -11,22 +11,22 @@ use base 'DBIx::Class::Core';
 
 =head1 NAME
 
-Acao::Plugins::SDH::DimSchema::Result::DUsoDroga
+Acao::Plugins::SDH::DimSchema::Result::DUsaMaconha
 
 =cut
 
-__PACKAGE__->table("d_uso_drogas");
+__PACKAGE__->table("d_usa_maconha");
 
 =head1 ACCESSORS
 
-=head2 id_uso_drogas
+=head2 id_usa_maconha
 
   data_type: 'integer'
   is_auto_increment: 1
   is_nullable: 0
-  sequence: 'd_uso_drogas_id_uso_drogas_seq'
+  sequence: 'd_usa_maconha_id_usa_maconha_seq'
 
-=head2 uso_drogas
+=head2 usa_maconha
 
   data_type: 'text'
   is_nullable: 0
@@ -35,21 +35,21 @@ __PACKAGE__->table("d_uso_drogas");
 =cut
 
 __PACKAGE__->add_columns(
-  "id_uso_drogas",
+  "id_usa_maconha",
   {
     data_type         => "integer",
     is_auto_increment => 1,
     is_nullable       => 0,
-    sequence          => "d_uso_drogas_id_uso_drogas_seq",
+    sequence          => "d_usa_maconha_id_usa_maconha_seq",
   },
-  "uso_drogas",
+  "usa_maconha",
   {
     data_type   => "text",
     is_nullable => 0,
     original    => { data_type => "varchar" },
   },
 );
-__PACKAGE__->set_primary_key("id_uso_drogas");
+__PACKAGE__->set_primary_key("id_usa_maconha");
 
 =head1 RELATIONS
 
@@ -64,13 +64,13 @@ Related object: L<Acao::Plugins::SDH::DimSchema::Result::FAtendimento>
 __PACKAGE__->has_many(
   "f_atendimentoes",
   "Acao::Plugins::SDH::DimSchema::Result::FAtendimento",
-  { "foreign.id_uso_drogas" => "self.id_uso_drogas" },
+  { "foreign.id_usa_maconha" => "self.id_usa_maconha" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-21 11:36:06
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:fq8YQb5CEuFh+SJyMsBGrQ
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-11-09 15:44:12
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:nBgFfYfWHDLzAKnvVNP+dA
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration
