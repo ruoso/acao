@@ -28,16 +28,6 @@
   [% SET interval_ini = 0 %]
 [% END %]
 
-[% SET quantidade_paginas = 0 %]
-[% SET estado_controle_paginacao = 0 %]
-[% SET amplitude_paginacao = 3 %]
-
-[% IF interval_ini <= amplitude_paginacao %]
-    [% SET controle_paginacao = amplitude_paginacao %]
-[% ELSE %]
-    [% SET controle_paginacao = interval_ini %]
-[% END %]
-
 [% xqueryret = PROCESS 'auth/registros/volume/dossie/documento/lista_xqueryret.tt' %]
 [% xquery = PROCESS 'auth/registros/volume/dossie/documento/lista_xquery.tt' %]
 [% xquerycount = PROCESS 'auth/registros/volume/dossie/documento/count_xquery.tt' %]
@@ -112,7 +102,7 @@
 
 </form>
 
-[% paginacao = PROCESS 'auth/registros/volume/dossie/paginacao.tt' %]
+[% paginacao = PROCESS 'auth/registros/volume/dossie/documento/paginacao.tt' %]
 [% paginacao %]
 
 <script language="javascript" type="text/javascript">
