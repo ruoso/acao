@@ -28,6 +28,23 @@
   [% SET interval_ini = 0 %]
 [% END %]
 
+
+[% SET documentos_validos = c.req.param('documentos_validos') %]
+[% IF documentos_validos %]
+    [% where_documentos_validos = '1 = 1'  %]
+[% ELSE %]
+    [% where_documentos_validos = '$x/dc:invalidacao/text() = \'1970-01-01T00:00:00Z\'' %]
+[% END %]
+
+[% SET tipo_documento = c.req.param('tipo_documento') %]
+[% IF tipo_documento %]
+    [% where_tipo_documento = '$y/../../../../../@targetNamespace = "' _ tipo_documento _ '"' %]
+[% ELSE %]
+    [% where_tipo_documento = '1 = 1'  %]
+[% END %]
+
+[% SET tipo_documento = c.req.param('tipo_documento') %]
+
 [% xqueryret = PROCESS 'auth/registros/volume/dossie/documento/lista_xqueryret.tt' %]
 [% xquery = PROCESS 'auth/registros/volume/dossie/documento/lista_xquery.tt' %]
 [% xquerycount = PROCESS 'auth/registros/volume/dossie/documento/count_xquery.tt' %]
@@ -35,12 +52,26 @@
 [% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume) ) %]
 [% SET dos = ( c.model('Documento').getDadosDossie(id_volume, controle) ) %]
 
-<div>
-  <div><strong>VOLUME: </strong>[% vol.nome %]</div>
-  <br/>
-  <div><strong>PRONTUÁRIO: </strong>[% dos.nome %]</div>
-  <br/>
-</div>
+<form>
+  <div>
+    <div><strong>VOLUME: </strong>[% vol.nome %]</div>
+    <br/>
+    <div><strong>PRONTUÁRIO: </strong>[% dos.nome %]</div>
+    <br/>
+    <strong>Incluir Documentos Inativos: </strong>
+    <input type="checkbox" name="documentos_validos" id="documentos_validos">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <strong>Tipo de Documento: </strong>
+    <select name="tipo_documento" id="tipo_documento">
+      <option value="">Escolha uma opção</option>
+      [% c.model('XSD').options_xsd %]
+    </select>
+    &nbsp;&nbsp;&nbsp;
+    <input type="submit" name="submit_form" id="submit_form" value="Pesquisar">
+  </div>
+</form>
+
+<br/>
 
 <table>
 <thead>
@@ -55,8 +86,8 @@
 </thead>
 <TBODY>
 
-  [% # O foreach abaixo vai buscar diretamente no model por estar livre de contexto %] 
-  [% # (nao recebe argumento pela url) %]
+ [% # O foreach abaixo vai buscar diretamente no model por estar livre de contexto %] 
+ [% # (nao recebe argumento pela url) %]
 
  [% TRY %]
  [% c.model('Sedna').begin %]

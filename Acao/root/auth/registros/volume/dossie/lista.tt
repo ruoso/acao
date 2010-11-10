@@ -28,9 +28,6 @@
   [% SET interval_ini = 0 %]
 [% END %]
 
-[% SET where_membro = '' %]
-[% SET where_mae = '' %]
-
 [% SET nome_membro = c.req.param('nome_membro') %]
 [% SET nome_mae = c.req.param('nome_mae') %]
 
@@ -41,15 +38,19 @@
 [% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume) ) %]
 
 <form action="[% '/auth/registros/volume/' _ id_volume %]">
-<table>
   <div>
     <div><strong>Volume: </strong>[% vol.nome %]</div><br/>
-    <strong>Membro: </strong><input type="text" name="nome_membro" id="nome_membro" value="[% nome_membro %]">
-    <strong>Mãe:    </strong><input type="text" name="nome_mae" id="nome_mae" value="[% nome_mae %]">
+    <strong>Membro: </strong>
+    <input type="text" name="nome_membro" id="nome_membro" value="[% nome_membro %]" style="width: 300px;">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <strong>Mãe:    </strong>
+    <input type="text" name="nome_mae" id="nome_mae" value="[% nome_mae %]" style="width: 300px;">
+    &nbsp;&nbsp;&nbsp;
     <input type="submit" name="submit_form" id="submit_form" value="Pesquisar">
   </div>
-</table>
 </form>
+
+<br/>
 
 <table>
 <thead>
