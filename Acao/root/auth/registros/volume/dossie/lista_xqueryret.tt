@@ -1,7 +1,7 @@
 (
     <tr>
         <td>
-	       <a href="[% c.uri_for('/auth/registros/volume/') _ id_volume %]/{$x/ns:controle/text()}" > 
+	       <a href="[% c.uri_for('/auth/registros/volume/') _ id_volume %]/{$x/ns:controle/text()}" >
                <span title="{$x/ns:controle/text()}">{substring($x/ns:controle/text(),0, 10)}... </span>
            </a>
         </td>

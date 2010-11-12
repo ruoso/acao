@@ -19,7 +19,7 @@
 			<xs:element name="situacaoEscolar">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Situacao escolar</xhtml:label>
+						<xhtml:label>Situação escolar</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -45,7 +45,7 @@
 						<xs:element name="repetiuAlgumAno" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Repetiu algum ano</xhtml:label>
+									<xhtml:label>Repetiu algum ano?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -124,8 +124,7 @@
 							type="xs:string" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Em relação a dificuldade o que fez ou faz para
-										superá-la?</xhtml:label>
+									<xhtml:label>Em relação à dificuldade, o que fez ou faz para superá-la?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -200,7 +199,7 @@
 							type="xs:string" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Se não frequentou a Escola, cite os motivos:
+									<xhtml:label>Se não frequentou a Escola, cite os motivos
 									</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
@@ -240,7 +239,7 @@
 						<xs:element name="aEscolaOfereceCondicoesDePesquisaTaisComo" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>A Escola oferece condições de pesquisa tais como:</xhtml:label>
+									<xhtml:label>A Escola oferece condições de pesquisa, tais como:</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
@@ -269,6 +268,14 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
+									
+									<xs:element name="naoferece" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Não oferece</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>									
 
 								</xs:sequence>
 							</xs:complexType>
@@ -303,7 +310,7 @@
 						<xs:element name="qual" type="xs:string" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Qual?</xhtml:label>
+									<xhtml:label>Quais?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -311,7 +318,7 @@
 						<xs:element name="temInteresseEmPratica" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Tem interesse em praticá-las (esportiva,
+									<xhtml:label>Se negativo, tem interesse em praticá-las (esportiva,
 										artística ou recreativa)?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>

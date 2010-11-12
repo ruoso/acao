@@ -25,11 +25,12 @@
 				<xs:complexType>
 					<xs:sequence>
 
-						<xs:element name="historicoDoSeuEnvolvimentoComAtoInfracionalMotivacao" minOccurs="0"
-							type="xs:string">
+						<xs:element name="historicoDoSeuEnvolvimentoComAtoInfracionalMotivacao"
+							minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Histórico do seu envolvimento com ato infracional (Motivação)</xhtml:label>
+									<xhtml:label>Histórico do seu envolvimento com ato infracional
+										(Motivação)</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -38,11 +39,9 @@
 							type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Histórico familiar(verificar existência de
-										conflitos,
-										configurações de relações afetivas,
-										responsãveis pelo
-										adolescente ao longo de sua vida)
+									<xhtml:label>Histórico familiar (verificar existência de
+										conflitos, configurações de relações afetivas, responsáveis
+										pelo adolescente ao longo de sua vida)
 																		</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
@@ -60,6 +59,7 @@
 									<xs:enumeration value="Casados" />
 									<xs:enumeration value="Vivem juntos" />
 									<xs:enumeration value="Separados" />
+									<xs:enumeration value="Viúvo(a)" />
 									<xs:enumeration value="Nunca viveram juntos" />
 								</xs:restriction>
 							</xs:simpleType>
@@ -68,7 +68,7 @@
 						<xs:element name="responsaveisAtualmentePeloAdolescente">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Responsáveis atualmente pelo adolescente
+									<xhtml:label>Responsáveis atualmente pelo adolescente:
 									</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
@@ -185,7 +185,7 @@
 								<xs:appinfo>
 									<xhtml:label>Se a família ou algum membro da família é
 										favorecido por
-										algum benefício, quais 
+										algum benefício, quais são?
 																		</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
@@ -209,12 +209,50 @@
 										</xs:annotation>
 									</xs:element>
 
+									<xs:element
+										name="situacaoAtualDoBeneficioMunicipalRecebidoPelaFamilia"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Situação atual do benefício municipal
+												</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="Ativo" />
+												<xs:enumeration value="Bloqueado" />
+												<xs:enumeration value="Suspenso" />
+												<xs:enumeration value="Cancelado" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
 									<xs:element name="estadual" minOccurs="0" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label> Estadual</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
+									</xs:element>
+
+									<xs:element
+										name="situacaoAtualDoBeneficioEstadualRecebidoPelaFamilia"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Situação atual do benefício estadual
+												</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="Ativo" />
+												<xs:enumeration value="Bloqueado" />
+												<xs:enumeration value="Suspenso" />
+												<xs:enumeration value="Cancelado" />
+											</xs:restriction>
+										</xs:simpleType>
 									</xs:element>
 
 									<xs:element name="federal" minOccurs="0" type="xs:boolean">
@@ -232,7 +270,7 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Situação atual do benefício
+									<xhtml:label>Situação atual do benefício federal
 																		</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
@@ -245,7 +283,6 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-
 
 					</xs:sequence>
 				</xs:complexType>
@@ -263,15 +300,10 @@
 							minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Histórico de convivência comunitária(analisar
-										período de
-										residẽncia no endereço, informando,
-										composição de
-										circulo de
-										amizades, apresentação de
-										relações afetivas - namoro,
-										noivado,
-										casamento)
+									<xhtml:label>Histórico de convivência comunitária (analisar
+										período de residência no endereço, informando, composição de
+										círculo de amizades, apresentação de relações afetivas -
+										namoro, noivado, casamento)
 																		</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
@@ -300,7 +332,7 @@
 										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>No seu bairro ha conflitos de grupos rivais
+												<xhtml:label>No seu bairro ha conflitos de grupos rivais?
 												</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
@@ -316,7 +348,7 @@
 										minOccurs="0" type="xs:string">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Qual rivalidade há no seu bairro	</xhtml:label>
+												<xhtml:label>Qual a rivalidade?</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -356,7 +388,7 @@
 						<xs:element name="comoESeuDia">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Como é seu dia</xhtml:label>
+									<xhtml:label>Como é seu dia?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
@@ -365,7 +397,7 @@
 										type="xs:string">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Manha</xhtml:label>
+												<xhtml:label>Manhã</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -396,7 +428,7 @@
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Quais atividades socioculturais e esportivas você
-										pratica(público ou privado)</xhtml:label>
+										pratica (público ou privado)?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
@@ -445,8 +477,8 @@
 							type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Quais suas expectativas em relação a medida
-										socioeducativa </xhtml:label>
+									<xhtml:label>Quais suas expectativas em relação à medida
+										socioeducativa?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
