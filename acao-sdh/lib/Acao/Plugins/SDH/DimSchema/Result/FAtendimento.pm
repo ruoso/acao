@@ -22,562 +22,634 @@ __PACKAGE__->table("f_atendimento");
 =head2 id_sexo
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_sexualidade
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_data
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_idade
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_endereco
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_raca_etnia
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_estado_civil
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_registro_nascimento
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_identidade
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_cpf
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_ctps
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_titulo_eleitor
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_reservista
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_nis
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_nocoes_informatica
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_vinculo_religioso
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 situacao_moradia
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_tempo_moradia
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_tipo_iluminacao
 
   data_type: 'integer'
-  is_foreign_key: 1
-  is_nullable: 0
-
-=head2 id_nucleo
-
-  data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_status_vinculacao_cca
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_sofre_violencia_intrafamiliar
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_sofreu_violencia_intrafamiliar
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_sofre_violencia_institucional
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_usa_contraceptivo
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_participacao_grupo_social
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_tipo_escola_matriculado
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_escolaridade
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_auto_avaliacao_frequencia_escolar
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_auto_avaliacao_rendimento_escolar
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_avaliacao_acesso_medicacao
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_avaliacao_servico_saude
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_avaliacao_condicao_saude_familia
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_esta_frequentando_escola
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_escola_matriculado_proximo_residencia
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_criancas_familia_todas_matriculadas
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_auto_avaliacao_participacao_atividade_escolar
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_auto_avaliacao_participacao_familia_escola
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_ja_estagiou
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_ja_trabalhou
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_esta_trabalhando
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_fez_curso_profissionalizante
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_interesse_curso_profissionalizante
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_sofre_violencia_ambiente_comunitario
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_sofreu_violencia_ambiente_comunitario
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_sofreu_violencia_institucional
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_usa_alcool
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_usa_cigarro
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_usa_maconha
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_usa_cocaina
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_usa_mesclado
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_usa_crack
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_usa_comprimidos
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_usa_cola
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_usa_inalantes
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_frequenta_ginecologista_regularmente
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_frequenta_urologista_regularmente
 
   data_type: 'integer'
-  is_foreign_key: 1
-  is_nullable: 0
-
-=head2 id_sofreu_violencia_ambito_comunitario_ameaca_morte
-
-  data_type: 'integer'
-  is_foreign_key: 1
-  is_nullable: 0
-
-=head2 id_sofreu_violencia_ambito_comunitario_agressao_psicologica
-
-  data_type: 'integer'
-  is_foreign_key: 1
-  is_nullable: 0
-
-=head2 id_sofreu_violencia_ambito_comunitario_exploracao_sexual
-
-  data_type: 'integer'
-  is_foreign_key: 1
-  is_nullable: 0
-
-=head2 id_sofreu_violencia_ambito_comunitario_abuso_sexual
-
-  data_type: 'integer'
-  is_foreign_key: 1
-  is_nullable: 0
-
-=head2 id_sofreu_violencia_ambito_comunitario_agressao_fisica
-
-  data_type: 'integer'
-  is_foreign_key: 1
-  is_nullable: 0
-
-=head2 id_sofreu_violencia_ambito_comunitario_discussao_verbal
-
-  data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_sofre_violencia_ambito_comunitario_ameaca_morte
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_sofre_violencia_ambito_comunitario_agressao_psicologica
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_sofre_violencia_ambito_comunitario_exploracao_sexual
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_sofre_violencia_ambito_comunitario_abuso_sexual
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_sofre_violencia_ambito_comunitario_agressao_fisica
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_sofre_violencia_ambito_comunitario_discussao_verbal
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_sofreu_violencia_institucional_ameaca_morte
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_sofreu_violencia_institucional_agressao_psicologica
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_sofreu_violencia_institucional_exploracao_sexual
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_sofreu_violencia_institucional_abuso_sexual
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_sofreu_violencia_institucional_agressao_fisica
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_sofreu_violencia_institucional_discussao_verbal
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_sofre_violencia_institucional_ameaca_morte
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_sofre_violencia_institucional_agressao_psicologica
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_sofre_violencia_institucional_exploracao_sexual
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_sofre_violencia_institucional_abuso_sexual
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_sofre_violencia_institucional_agressao_fisica
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_sofre_violencia_institucional_discussao_verbal
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_sofre_violencia_intrafamiliar_ameaca_morte
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_sofre_violencia_intrafamiliar_agressao_psicologica
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_sofre_violencia_intrafamiliar_exploracao_sexual
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_sofre_violencia_intrafamiliar_abuso_sexual
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_sofre_violencia_intrafamiliar_agressao_fisica
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_sofre_violencia_intrafamiliar_discussao_verbal
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_sofre_violencia_intrafamiliar_domestica
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_turno_estuda
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_possui_banheiro
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_exploracao_trabalho_infantil
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_vivencia_rua
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_inscrito_peti
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 id_deseja_tratamento_uso_drogas
+
+  data_type: 'integer'
+  default_value: 0
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_recebe_medicamento_quando_necessario
+
+  data_type: 'integer'
+  default_value: 0
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_foi_internado_comunidade_terapeutica_uso_droga
+
+  data_type: 'integer'
+  default_value: 0
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_participacao_atividade_comunitaria
+
+  data_type: 'integer'
+  default_value: 0
+  is_foreign_key: 1
+  is_nullable: 0
+
+=head2 id_regional
 
   data_type: 'integer'
   is_foreign_key: 1
@@ -753,16 +825,6 @@ __PACKAGE__->table("f_atendimento");
   data_type: 'integer'
   is_nullable: 0
 
-=head2 internado_comunidade_teraupeutica_uso_drogas
-
-  data_type: 'integer'
-  is_nullable: 0
-
-=head2 deseja_tratamento_uso_drogas
-
-  data_type: 'integer'
-  is_nullable: 0
-
 =head2 usa_contraceptivo_preservativo_masculino
 
   data_type: 'integer'
@@ -798,22 +860,12 @@ __PACKAGE__->table("f_atendimento");
   data_type: 'integer'
   is_nullable: 0
 
-=head2 data_nascimento
-
-  data_type: 'integer'
-  is_nullable: 0
-
 =head2 usa_contraceptivo_coito_interrompido
 
   data_type: 'integer'
   is_nullable: 0
 
-=head2 frequenta_genecologista
-
-  data_type: 'integer'
-  is_nullable: 0
-
-=head2 frequenta_urologista
+=head2 data_nascimento
 
   data_type: 'integer'
   is_nullable: 0
@@ -904,11 +956,6 @@ __PACKAGE__->table("f_atendimento");
   is_nullable: 0
 
 =head2 participacao_grupos_rivais
-
-  data_type: 'integer'
-  is_nullable: 0
-
-=head2 participacao_atividade_comunitaria
 
   data_type: 'integer'
   is_nullable: 0
@@ -1268,201 +1315,640 @@ __PACKAGE__->table("f_atendimento");
   data_type: 'integer'
   is_nullable: 0
 
-=head2 recebe_medicamento_quando_necessario
-
-  data_type: 'integer'
-  is_nullable: 0
-
 =cut
 
 __PACKAGE__->add_columns(
   "id_sexo",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_sexualidade",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_data",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_idade",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_endereco",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_raca_etnia",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_estado_civil",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_registro_nascimento",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_identidade",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_cpf",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_ctps",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_titulo_eleitor",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_reservista",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_nis",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_nocoes_informatica",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_vinculo_religioso",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "situacao_moradia",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_tempo_moradia",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_tipo_iluminacao",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "id_nucleo",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_status_vinculacao_cca",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_sofre_violencia_intrafamiliar",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_sofreu_violencia_intrafamiliar",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_sofre_violencia_institucional",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_usa_contraceptivo",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_participacao_grupo_social",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_tipo_escola_matriculado",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_escolaridade",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_auto_avaliacao_frequencia_escolar",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_auto_avaliacao_rendimento_escolar",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_avaliacao_acesso_medicacao",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_avaliacao_servico_saude",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_avaliacao_condicao_saude_familia",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_esta_frequentando_escola",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_escola_matriculado_proximo_residencia",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_criancas_familia_todas_matriculadas",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_auto_avaliacao_participacao_atividade_escolar",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_auto_avaliacao_participacao_familia_escola",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_ja_estagiou",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_ja_trabalhou",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_esta_trabalhando",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_fez_curso_profissionalizante",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_interesse_curso_profissionalizante",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_sofre_violencia_ambiente_comunitario",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_sofreu_violencia_ambiente_comunitario",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_sofreu_violencia_institucional",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_usa_alcool",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_usa_cigarro",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_usa_maconha",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_usa_cocaina",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_usa_mesclado",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_usa_crack",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_usa_comprimidos",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_usa_cola",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_usa_inalantes",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_frequenta_ginecologista_regularmente",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_frequenta_urologista_regularmente",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "id_sofreu_violencia_ambito_comunitario_ameaca_morte",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "id_sofreu_violencia_ambito_comunitario_agressao_psicologica",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "id_sofreu_violencia_ambito_comunitario_exploracao_sexual",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "id_sofreu_violencia_ambito_comunitario_abuso_sexual",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "id_sofreu_violencia_ambito_comunitario_agressao_fisica",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "id_sofreu_violencia_ambito_comunitario_discussao_verbal",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_sofre_violencia_ambito_comunitario_ameaca_morte",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_sofre_violencia_ambito_comunitario_agressao_psicologica",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_sofre_violencia_ambito_comunitario_exploracao_sexual",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_sofre_violencia_ambito_comunitario_abuso_sexual",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_sofre_violencia_ambito_comunitario_agressao_fisica",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_sofre_violencia_ambito_comunitario_discussao_verbal",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_sofreu_violencia_institucional_ameaca_morte",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_sofreu_violencia_institucional_agressao_psicologica",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_sofreu_violencia_institucional_exploracao_sexual",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_sofreu_violencia_institucional_abuso_sexual",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_sofreu_violencia_institucional_agressao_fisica",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_sofreu_violencia_institucional_discussao_verbal",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_sofre_violencia_institucional_ameaca_morte",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_sofre_violencia_institucional_agressao_psicologica",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_sofre_violencia_institucional_exploracao_sexual",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_sofre_violencia_institucional_abuso_sexual",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_sofre_violencia_institucional_agressao_fisica",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_sofre_violencia_institucional_discussao_verbal",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_sofre_violencia_intrafamiliar_ameaca_morte",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_sofre_violencia_intrafamiliar_agressao_psicologica",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_sofre_violencia_intrafamiliar_exploracao_sexual",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_sofre_violencia_intrafamiliar_abuso_sexual",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_sofre_violencia_intrafamiliar_agressao_fisica",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_sofre_violencia_intrafamiliar_discussao_verbal",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_sofre_violencia_intrafamiliar_domestica",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_turno_estuda",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_possui_banheiro",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_exploracao_trabalho_infantil",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_vivencia_rua",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_inscrito_peti",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "id_deseja_tratamento_uso_drogas",
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
+  "id_recebe_medicamento_quando_necessario",
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
+  "id_foi_internado_comunidade_terapeutica_uso_droga",
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
+  "id_participacao_atividade_comunitaria",
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
+  "id_regional",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
   "deficiencia_sensorial_surdo",
   { data_type => "integer", is_nullable => 0 },
@@ -1532,10 +2018,6 @@ __PACKAGE__->add_columns(
   { data_type => "integer", is_nullable => 0 },
   "exploracao_trabalho_carvoaria",
   { data_type => "integer", is_nullable => 0 },
-  "internado_comunidade_teraupeutica_uso_drogas",
-  { data_type => "integer", is_nullable => 0 },
-  "deseja_tratamento_uso_drogas",
-  { data_type => "integer", is_nullable => 0 },
   "usa_contraceptivo_preservativo_masculino",
   { data_type => "integer", is_nullable => 0 },
   "usa_contraceptivo_preservativo_feminino",
@@ -1550,13 +2032,9 @@ __PACKAGE__->add_columns(
   { data_type => "integer", is_nullable => 0 },
   "usa_contraceptivo_metodo_biliing",
   { data_type => "integer", is_nullable => 0 },
-  "data_nascimento",
-  { data_type => "integer", is_nullable => 0 },
   "usa_contraceptivo_coito_interrompido",
   { data_type => "integer", is_nullable => 0 },
-  "frequenta_genecologista",
-  { data_type => "integer", is_nullable => 0 },
-  "frequenta_urologista",
+  "data_nascimento",
   { data_type => "integer", is_nullable => 0 },
   "participacao_grupo_religioso",
   { data_type => "integer", is_nullable => 0 },
@@ -1593,8 +2071,6 @@ __PACKAGE__->add_columns(
   "participacao_grupo_rpg",
   { data_type => "integer", is_nullable => 0 },
   "participacao_grupos_rivais",
-  { data_type => "integer", is_nullable => 0 },
-  "participacao_atividade_comunitaria",
   { data_type => "integer", is_nullable => 0 },
   "tipo_construcao_moradia_taipa_nao_resvestida",
   { data_type => "integer", is_nullable => 0 },
@@ -1738,11 +2214,26 @@ __PACKAGE__->add_columns(
   { data_type => "integer", is_nullable => 0 },
   "faz_acompanhamento_contra_drogas_capsi",
   { data_type => "integer", is_nullable => 0 },
-  "recebe_medicamento_quando_necessario",
-  { data_type => "integer", is_nullable => 0 },
 );
 
 =head1 RELATIONS
+
+=head2 id_participacao_atividade_comunitaria
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DParticipacaoAtividadeComunitaria>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_participacao_atividade_comunitaria",
+  "Acao::Plugins::SDH::DimSchema::Result::DParticipacaoAtividadeComunitaria",
+  {
+    id_participacao_atividade_comunitaria => "id_participacao_atividade_comunitaria",
+  },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
 
 =head2 id_cpf
 
@@ -1788,21 +2279,6 @@ __PACKAGE__->belongs_to(
   {
     id_sofre_violencia_ambito_comunitario_agressao_psicologica => "id_sofre_violencia_ambito_comunitario_agressao_psicologica",
   },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
-
-=head2 id_nucleo
-
-Type: belongs_to
-
-Related object: L<Acao::Plugins::SDH::DimSchema::Result::DNucleo>
-
-=cut
-
-__PACKAGE__->belongs_to(
-  "id_nucleo",
-  "Acao::Plugins::SDH::DimSchema::Result::DNucleo",
-  { id_nucleo => "id_nucleo" },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
@@ -2184,37 +2660,18 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
-=head2 id_sofreu_violencia_ambito_comunitario_discussao_verbal
+=head2 id_regional
 
 Type: belongs_to
 
-Related object: L<Acao::Plugins::SDH::DimSchema::Result::DSofreuViolenciaAmbitoComunitarioDiscussaoVerbal>
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DRegional>
 
 =cut
 
 __PACKAGE__->belongs_to(
-  "id_sofreu_violencia_ambito_comunitario_discussao_verbal",
-  "Acao::Plugins::SDH::DimSchema::Result::DSofreuViolenciaAmbitoComunitarioDiscussaoVerbal",
-  {
-    id_sofreu_violencia_ambito_comunitario_discussao_verbal => "id_sofreu_violencia_ambito_comunitario_discussao_verbal",
-  },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
-
-=head2 id_sofreu_violencia_ambito_comunitario_exploracao_sexual
-
-Type: belongs_to
-
-Related object: L<Acao::Plugins::SDH::DimSchema::Result::DSofreuViolenciaAmbitoComunitarioExploracaoSexual>
-
-=cut
-
-__PACKAGE__->belongs_to(
-  "id_sofreu_violencia_ambito_comunitario_exploracao_sexual",
-  "Acao::Plugins::SDH::DimSchema::Result::DSofreuViolenciaAmbitoComunitarioExploracaoSexual",
-  {
-    id_sofreu_violencia_ambito_comunitario_exploracao_sexual => "id_sofreu_violencia_ambito_comunitario_exploracao_sexual",
-  },
+  "id_regional",
+  "Acao::Plugins::SDH::DimSchema::Result::DRegional",
+  { id_regional => "id_regional" },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
@@ -2280,6 +2737,23 @@ __PACKAGE__->belongs_to(
   "Acao::Plugins::SDH::DimSchema::Result::DSofreViolenciaIntrafamiliarAgressaoFisica",
   {
     id_sofre_violencia_intrafamiliar_agressao_fisica => "id_sofre_violencia_intrafamiliar_agressao_fisica",
+  },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+=head2 id_recebe_medicamento_quando_necessario
+
+Type: belongs_to
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DRecebeMedicamentoQuandoNecessario>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "id_recebe_medicamento_quando_necessario",
+  "Acao::Plugins::SDH::DimSchema::Result::DRecebeMedicamentoQuandoNecessario",
+  {
+    id_recebe_medicamento_quando_necessario => "id_recebe_medicamento_quando_necessario",
   },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
@@ -2395,19 +2869,19 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
-=head2 id_sofreu_violencia_ambito_comunitario_ameaca_morte
+=head2 id_foi_internado_comunidade_terapeutica_uso_droga
 
 Type: belongs_to
 
-Related object: L<Acao::Plugins::SDH::DimSchema::Result::DSofreuViolenciaAmbitoComunitarioAmeacaMorte>
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::DFoiInternadoComunidadeTerapeuticaUsoDroga>
 
 =cut
 
 __PACKAGE__->belongs_to(
-  "id_sofreu_violencia_ambito_comunitario_ameaca_morte",
-  "Acao::Plugins::SDH::DimSchema::Result::DSofreuViolenciaAmbitoComunitarioAmeacaMorte",
+  "id_foi_internado_comunidade_terapeutica_uso_droga",
+  "Acao::Plugins::SDH::DimSchema::Result::DFoiInternadoComunidadeTerapeuticaUsoDroga",
   {
-    id_sofreu_violencia_ambito_comunitario_ameaca_morte => "id_sofreu_violencia_ambito_comunitario_ameaca_morte",
+    id_foi_internado_comunidade_terapeutica_uso_droga => "id_foi_internado_comunidade_terapeutica_uso_droga",
   },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
@@ -2651,23 +3125,6 @@ __PACKAGE__->belongs_to(
   "Acao::Plugins::SDH::DimSchema::Result::DAutoAvaliacaoFrequenciaEscolar",
   {
     id_auto_avaliacao_frequencia_escolar => "id_auto_avaliacao_frequencia_escolar",
-  },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
-
-=head2 id_sofreu_violencia_ambito_comunitario_agressao_psicologica
-
-Type: belongs_to
-
-Related object: L<Acao::Plugins::SDH::DimSchema::Result::DSofreuViolenciaAmbitoComunitarioAgressaoPsicologica>
-
-=cut
-
-__PACKAGE__->belongs_to(
-  "id_sofreu_violencia_ambito_comunitario_agressao_psicologica",
-  "Acao::Plugins::SDH::DimSchema::Result::DSofreuViolenciaAmbitoComunitarioAgressaoPsicologica",
-  {
-    id_sofreu_violencia_ambito_comunitario_agressao_psicologica => "id_sofreu_violencia_ambito_comunitario_agressao_psicologica",
   },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
@@ -3062,23 +3519,6 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
-=head2 id_sofreu_violencia_ambito_comunitario_agressao_fisica
-
-Type: belongs_to
-
-Related object: L<Acao::Plugins::SDH::DimSchema::Result::DSofreuViolenciaAmbitoComunitarioAgressaoFisica>
-
-=cut
-
-__PACKAGE__->belongs_to(
-  "id_sofreu_violencia_ambito_comunitario_agressao_fisica",
-  "Acao::Plugins::SDH::DimSchema::Result::DSofreuViolenciaAmbitoComunitarioAgressaoFisica",
-  {
-    id_sofreu_violencia_ambito_comunitario_agressao_fisica => "id_sofreu_violencia_ambito_comunitario_agressao_fisica",
-  },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
-
 =head2 id_sofre_violencia_intrafamiliar_abuso_sexual
 
 Type: belongs_to
@@ -3140,23 +3580,6 @@ __PACKAGE__->belongs_to(
   "id_usa_crack",
   "Acao::Plugins::SDH::DimSchema::Result::DUsaCrack",
   { id_usa_crack => "id_usa_crack" },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
-
-=head2 id_sofreu_violencia_ambito_comunitario_abuso_sexual
-
-Type: belongs_to
-
-Related object: L<Acao::Plugins::SDH::DimSchema::Result::DSofreuViolenciaAmbitoComunitarioAbusoSexual>
-
-=cut
-
-__PACKAGE__->belongs_to(
-  "id_sofreu_violencia_ambito_comunitario_abuso_sexual",
-  "Acao::Plugins::SDH::DimSchema::Result::DSofreuViolenciaAmbitoComunitarioAbusoSexual",
-  {
-    id_sofreu_violencia_ambito_comunitario_abuso_sexual => "id_sofreu_violencia_ambito_comunitario_abuso_sexual",
-  },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
@@ -3257,8 +3680,8 @@ __PACKAGE__->belongs_to(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-11-09 15:44:12
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:eaoaLMS36CQzJpKt8pSrJQ
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-11-12 15:49:29
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:sZ+A6RG181s37aSIwJF4kA
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

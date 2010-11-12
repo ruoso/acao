@@ -1,44 +1,12 @@
 <Schema name="New Schema1">
   <Cube name="atendimento" cache="true" enabled="true">
-    <Table name="f_atendimento" schema="public" alias="">
+    <Table name="f_atendimento" schema="public">
     </Table>
-    <Dimension type="StandardDimension" foreignKey="id_acesso_medicacao" name="acesso_medicacao">
-      <Hierarchy name="acesso_medicacao" hasAll="true" primaryKey="id_acesso_medicacao">
-        <Table name="d_acesso_medicacao" schema="public">
+    <Dimension type="StandardDimension" foreignKey="id_avaliacao_acesso_medicacao" name="acesso_medicacao">
+      <Hierarchy name="acesso_medicacao" hasAll="true" primaryKey="id_avaliacao_acesso_medicacao">
+        <Table name="d_avaliacao_acesso_medicacao" schema="public">
         </Table>
-        <Level name="acesso_medicacao" column="acesso_medicacao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-        </Level>
-      </Hierarchy>
-    </Dimension>
-    <Dimension type="StandardDimension" foreignKey="id_acompanhamento_uso_drogas" name="acompanhamento_uso_drogas">
-      <Hierarchy name="New Hierarchy 0" hasAll="true" primaryKey="id_acompanhamento_uso_drogas">
-        <Table name="d_acompanhamento_uso_drogas" schema="public">
-        </Table>
-        <Level name="acompanhamento_uso_drogas" column="acompanhamento_uso_drogas" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-        </Level>
-      </Hierarchy>
-    </Dimension>
-    <Dimension type="StandardDimension" foreignKey="id_atendimento_contra_violencia_comunitario" name="atendimento_contra_violencia_comunitario">
-      <Hierarchy name="atendimento_contra_violencia_comunitario" hasAll="true" primaryKey="id_atendimento_contra_violencia_comunitario">
-        <Table name="d_atendimento_contra_violencia_comunitario" schema="public">
-        </Table>
-        <Level name="atendimento_contra_violencia_comunitario" column="atendimento_contra_violencia_comunitario" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-        </Level>
-      </Hierarchy>
-    </Dimension>
-    <Dimension type="StandardDimension" foreignKey="id_atendimento_contra_violencia_institucional" name="atendimento_contra_violencia_institucional">
-      <Hierarchy name="atendimento_contra_violencia_institucional" hasAll="true" primaryKey="id_atendimento_contra_violencia_institucional">
-        <Table name="d_atendimento_contra_violencia_institucional" schema="public">
-        </Table>
-        <Level name="atendimento_contra_violencia_institucional" column="atendimento_contra_violencia_institucional" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-        </Level>
-      </Hierarchy>
-    </Dimension>
-    <Dimension type="StandardDimension" foreignKey="id_atendimento_contra_violencia_intrafamiliar" name="atendimento_contra_violencia_intrafamiliar">
-      <Hierarchy name="atendimento_contra_violencia_intrafamiliar" hasAll="true" primaryKey="id_atendimento_contra_violencia_intrafamiliar">
-        <Table name="d_atendimento_contra_violencia_intrafamiliar" schema="public">
-        </Table>
-        <Level name="atendimento_contra_violencia_intrafamiliar" column="atendimento_contra_violencia_intrafamiliar" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        <Level name="acesso_medicacao" column="avaliacao_acesso_medicacao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
@@ -50,35 +18,35 @@
         </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="StandardDimension" foreignKey="id_avaliacao_familia_vida_escolar" name="avaliacao_familia_vida_escolar">
-      <Hierarchy name="avaliacao_familia_vida_escolar" hasAll="true" primaryKey="id_avaliacao_familia_vida_escolar">
-        <Table name="d_avaliacao_familia_vida_escolar" schema="public">
+    <Dimension type="StandardDimension" foreignKey="id_auto_avaliacao_participacao_familia_escola" name="avaliacao_familia_vida_escolar">
+      <Hierarchy name="avaliacao_familia_vida_escolar" hasAll="true" primaryKey="id_auto_avaliacao_participacao_familia_escola">
+        <Table name="d_auto_avaliacao_participacao_familia_escola" schema="public">
         </Table>
-        <Level name="avaliacao_familia_vida_escolar" column="avaliacao_familia_vida_escolar" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        <Level name="avaliacao_familia_vida_escolar" column="auto_avaliacao_participacao_familia_escola" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="StandardDimension" foreignKey="id_avaliacao_frequencia_escolar" name="avaliacao_frequencia_escolar">
-      <Hierarchy name="avaliacao_frequencia_escolar" hasAll="true" primaryKey="id_avaliacao_frequencia_escolar">
-        <Table name="d_avaliacao_frequencia_escolar" schema="public">
+    <Dimension type="StandardDimension" foreignKey="id_auto_avaliacao_frequencia_escolar" name="avaliacao_frequencia_escolar">
+      <Hierarchy name="avaliacao_frequencia_escolar" hasAll="true" primaryKey="id_auto_avaliacao_frequencia_escolar">
+        <Table name="d_auto_avaliacao_frequencia_escolar" schema="public">
         </Table>
-        <Level name="avaliacao_frequencia_escolar" column="avaliacao_frequencia_escolar" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        <Level name="avaliacao_frequencia_escolar" column="auto_avaliacao_frequencia_escolar" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="StandardDimension" foreignKey="id_avaliacao_preparacao_atividades_escolares" name="avaliacao_preparacao_atividades_escolares">
-      <Hierarchy name="avaliacao_preparacao_atividades_escolares" hasAll="true" primaryKey="id_avaliacao_preparacao_atividades_escolares">
-        <Table name="d_avaliacao_preparacao_atividades_escolares" schema="public">
+    <Dimension type="StandardDimension" foreignKey="id_auto_avaliacao_participacao_atividade_escolar" name="avaliacao_preparacao_atividades_escolares">
+      <Hierarchy name="avaliacao_preparacao_atividades_escolares" hasAll="true" primaryKey="auto_avaliacao_participacao_atividade_escolar">
+        <Table name="d_auto_avaliacao_participacao_atividade_escolar" schema="public">
         </Table>
-        <Level name="avaliacao_preparacao_atividades_escolares" column="avaliacao_preparacao_atividades_escolares" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        <Level name="avaliacao_preparacao_atividades_escolares" column="auto_avaliacao_participacao_atividade_escolar" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="StandardDimension" foreignKey="id_avaliacao_rendimento_escolar" name="avaliacao_rendimento_escolar">
-      <Hierarchy name="avaliacao_rendimento_escolar" hasAll="true" primaryKey="id_avaliacao_rendimento_escolar">
-        <Table name="d_avaliacao_rendimento_escolar" schema="public">
+    <Dimension type="StandardDimension" foreignKey="id_auto_avaliacao_rendimento_escolar" name="avaliacao_rendimento_escolar">
+      <Hierarchy name="avaliacao_rendimento_escolar" hasAll="true" primaryKey="id_auto_avaliacao_rendimento_escolar">
+        <Table name="d_auto_avaliacao_rendimento_escolar" schema="public">
         </Table>
-        <Level name="avaliacao_rendimento_escolar" column="avaliacao_rendimento_escolar" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        <Level name="avaliacao_rendimento_escolar" column="auto_avaliacao_rendimento_escolar" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
@@ -90,11 +58,11 @@
         </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="StandardDimension" foreignKey="id_contraceptivo" name="contraceptivo">
-      <Hierarchy name="contraceptivo" hasAll="true" primaryKey="id_contraceptivo">
-        <Table name="d_contraceptivo" schema="public">
+    <Dimension type="StandardDimension" foreignKey="id_usa_contraceptivo" name="contraceptivo">
+      <Hierarchy name="contraceptivo" hasAll="true" primaryKey="id_usa_contraceptivo">
+        <Table name="d_usa_contraceptivo" schema="public">
         </Table>
-        <Level name="contraceptivo" column="uso_contraceptivo" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        <Level name="contraceptivo" column="usa_contraceptivo" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
@@ -126,31 +94,15 @@
         </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="StandardDimension" foreignKey="id_destino_lixo" name="destino_lixo">
-      <Hierarchy name="destino_lixo" hasAll="true" primaryKey="id_destino_lixo">
-        <Table name="d_destino_lixo" schema="public" alias="">
-        </Table>
-        <Level name="destino_lixo" column="destino_lixo" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-        </Level>
-      </Hierarchy>
-    </Dimension>
     <Dimension type="StandardDimension" foreignKey="id_endereco" name="endereco">
       <Hierarchy name="endereco" hasAll="true" primaryKey="id_endereco">
-        <Table name="d_endereco" schema="public" alias="">
+        <Table name="d_endereco" schema="public">
         </Table>
         <Level name="cidade" column="cidade" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
         <Level name="bairro" column="bairro" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
         <Level name="endereco" column="endereco" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-        </Level>
-      </Hierarchy>
-    </Dimension>
-    <Dimension type="StandardDimension" foreignKey="id_escoamento_sanitario" name="escoamento_sanitario">
-      <Hierarchy name="escoamento_sanitario" hasAll="true" primaryKey="id_escoamento_sanitario">
-        <Table name="d_escoamento_sanitario" schema="public" alias="">
-        </Table>
-        <Level name="escoamento_sanitario" column="escoamento_sanitario" type="String" uniqueMembers="false" levelType="Regular">
         </Level>
       </Hierarchy>
     </Dimension>
@@ -164,39 +116,39 @@
     </Dimension>
     <Dimension type="StandardDimension" foreignKey="id_estado_civil" name="estado_civil">
       <Hierarchy name="estado_civil" hasAll="true" primaryKey="id_estado_civil">
-        <Table name="d_estado_civil" schema="public" alias="">
+        <Table name="d_estado_civil" schema="public">
         </Table>
         <Level name="estado_civil" column="estado_civil" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="StandardDimension" foreignKey="id_frequencia_violencia_ambito_comunitario" name="frequencia_violencia_ambito_comunitario">
-      <Hierarchy name="frequencia_violencia_ambito_comunitario" hasAll="true" primaryKey="id_frequencia_violencia_ambito_comunitario">
-        <Table name="d_frequencia_violencia_ambito_comunitario" schema="public" alias="">
+    <Dimension type="StandardDimension" foreignKey="id_sofre_violencia_ambiente_comunitario" name="frequencia_violencia_ambito_comunitario">
+      <Hierarchy name="frequencia_violencia_ambito_comunitario" hasAll="true" primaryKey="id_sofre_violencia_ambiente_comunitario">
+        <Table name="d_sofre_violencia_ambiente_comunitario" schema="public">
         </Table>
-        <Level name="frequencia_violencia_ambito_comunitario" column="frequencia_violencia_ambito_comunitario" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        <Level name="frequencia_violencia_ambito_comunitario" column="sofre_violencia_ambiente_comunitario" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="StandardDimension" foreignKey="id_frequencia_violencia_institucional" name="frequencia_violencia_institucional">
-      <Hierarchy name="frequencia_violencia_institucional" hasAll="true" primaryKey="id_frequencia_violencia_institucional">
-        <Table name="d_frequencia_violencia_institucional" schema="public">
+    <Dimension type="StandardDimension" foreignKey="id_sofre_violencia_institucional" name="frequencia_violencia_institucional">
+      <Hierarchy name="frequencia_violencia_institucional" hasAll="true" primaryKey="sofre_violencia_institucional">
+        <Table name="d_sofre_violencia_institucional" schema="public">
         </Table>
-        <Level name="frequencia_violencia_institucional" column="frequencia_violencia_institucional" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        <Level name="frequencia_violencia_institucional" column="sofre_violencia_institucional" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="StandardDimension" foreignKey="id_frequencia_violencia_intrafamiliar" name="frequencia_violencia_intrafamiliar">
-      <Hierarchy name="frequencia_violencia_intrafamiliar" hasAll="true" primaryKey="id_frequencia_violencia_intrafamiliar">
-        <Table name="d_frequencia_violencia_intrafamiliar" schema="public" alias="">
+    <Dimension type="StandardDimension" foreignKey="id_sofre_violencia_intrafamiliar" name="frequencia_violencia_intrafamiliar">
+      <Hierarchy name="frequencia_violencia_intrafamiliar" hasAll="true" primaryKey="id_sofre_violencia_intrafamiliar">
+        <Table name="d_sofre_violencia_intrafamiliar" schema="public">
         </Table>
-        <Level name="frequencia_violencia_intrafamiliar" column="frequencia_violencia_intrafamiliar" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        <Level name="frequencia_violencia_intrafamiliar" column="sofre_violencia_intrafamiliar" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
     <Dimension type="StandardDimension" foreignKey="id_idade" name="idade">
       <Hierarchy name="idade" hasAll="true" primaryKey="id_idade">
-        <Table name="d_idade" schema="public" alias="">
+        <Table name="d_idade" schema="public">
         </Table>
         <Level name="idade" column="id_idade" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
@@ -204,7 +156,7 @@
     </Dimension>
     <Dimension type="StandardDimension" foreignKey="id_identidade" name="identidade">
       <Hierarchy name="identidade" hasAll="true" primaryKey="id_identidade">
-        <Table name="d_identidade" schema="public" alias="">
+        <Table name="d_identidade" schema="public">
         </Table>
         <Level name="identidade" column="situacao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
@@ -212,7 +164,7 @@
     </Dimension>
     <Dimension type="StandardDimension" foreignKey="id_nis" name="nis">
       <Hierarchy name="nis" hasAll="true" primaryKey="id_nis">
-        <Table name="d_nis" schema="public" alias="">
+        <Table name="d_nis" schema="public">
         </Table>
         <Level name="nis" column="situacao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
@@ -220,7 +172,7 @@
     </Dimension>
     <Dimension type="StandardDimension" foreignKey="id_nocoes_informatica" name="nocoes_informatica">
       <Hierarchy name="nocoes_informatica" hasAll="true" primaryKey="id_nocoes_informatica">
-        <Table name="d_nocoes_informatica" schema="public" alias="">
+        <Table name="d_nocoes_informatica" schema="public">
         </Table>
         <Level name="nocoes_informatica" column="nocoes_informatica" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
@@ -228,49 +180,17 @@
     </Dimension>
     <Dimension type="StandardDimension" foreignKey="id_nucleo" name="nucleo">
       <Hierarchy name="nucleo" hasAll="true" primaryKey="id_nucleo">
-        <Table name="d_nucleo" schema="public" alias="">
+        <Table name="d_nucleo" schema="public">
         </Table>
         <Level name="nucleo" column="nucleo" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="StandardDimension" foreignKey="id_origem_encaminhamento" name="origem_encaminhamento">
-      <Hierarchy name="origem_encaminhamento" hasAll="true" primaryKey="id_origem_encaminhamento">
-        <Table name="d_origem_encaminhamento" schema="public" alias="">
-        </Table>
-        <Level name="origem_encaminhamento" column="origem_encaminhamento" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-        </Level>
-      </Hierarchy>
-    </Dimension>
     <Dimension type="StandardDimension" foreignKey="id_participacao_grupo_social" name="participacao_grupo_social">
       <Hierarchy name="participacao_grupo_social" hasAll="true" primaryKey="id_participacao_grupo_social">
-        <Table name="d_participacao_grupo_social" schema="public" alias="">
+        <Table name="d_participacao_grupo_social" schema="public">
         </Table>
         <Level name="participacao_grupo_social" column="participacao_grupo_social" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-        </Level>
-      </Hierarchy>
-    </Dimension>
-    <Dimension type="StandardDimension" foreignKey="id_providencia_contra_violencia_ambito_comunitario" name="providencia_contra_violencia_ambito_comunitario">
-      <Hierarchy name="providencia_contra_violencia_ambito_comunitario" hasAll="true" primaryKey="id_providencia_contra_violencia_ambito_comunitario">
-        <Table name="d_providencia_contra_violencia_ambito_comunitario" schema="public" alias="">
-        </Table>
-        <Level name="providencia_contra_violencia_ambito_comunitario" column="providencia_contra_violencia_ambito_comunitario" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-        </Level>
-      </Hierarchy>
-    </Dimension>
-    <Dimension type="StandardDimension" foreignKey="id_providencia_contra_violencia_institucional" name="providencia_contra_violencia_institucional">
-      <Hierarchy name="providencia_contra_violencia_institucional" hasAll="true" primaryKey="id_providencia_contra_violencia_institucional">
-        <Table name="d_providencia_contra_violencia_institucional" schema="public" alias="">
-        </Table>
-        <Level name="providencia_contra_violencia_institucional" column="providencia_contra_violencia_institucional" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-        </Level>
-      </Hierarchy>
-    </Dimension>
-    <Dimension type="StandardDimension" foreignKey="id_providencia_contra_violencia_intrafamiliar" name="providencia_contra_violencia_intrafamiliar">
-      <Hierarchy name="providencia_contra_violencia_intrafamiliar" hasAll="true" primaryKey="id_providencia_contra_violencia_intrafamiliar">
-        <Table name="d_providencia_contra_violencia_intrafamiliar" schema="public" alias="">
-        </Table>
-        <Level name="providencia_contra_violencia_intrafamiliar" column="providencia_contra_violencia_intrafamiliar" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
@@ -284,7 +204,7 @@
     </Dimension>
     <Dimension type="StandardDimension" foreignKey="id_registro_nascimento" name="registro_nascimento">
       <Hierarchy name="registro_nascimento" hasAll="true" primaryKey="id_registro_nascimento">
-        <Table name="d_registro_nascimento" schema="public" alias="">
+        <Table name="d_registro_nascimento" schema="public">
         </Table>
         <Level name="registro_nascimento" column="situacao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
@@ -292,7 +212,7 @@
     </Dimension>
     <Dimension type="StandardDimension" foreignKey="id_reservista" name="reservista">
       <Hierarchy name="reservista" hasAll="true" primaryKey="id_reservista">
-        <Table name="d_reservista" schema="public" alias="">
+        <Table name="d_reservista" schema="public">
         </Table>
         <Level name="reservista" column="situacao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
@@ -300,7 +220,7 @@
     </Dimension>
     <Dimension type="StandardDimension" foreignKey="id_sexo" name="sexo">
       <Hierarchy name="sexo" hasAll="true" primaryKey="id_sexo">
-        <Table name="d_sexo" schema="public" alias="">
+        <Table name="d_sexo" schema="public">
         </Table>
         <Level name="sexo" column="sexo" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
@@ -308,47 +228,31 @@
     </Dimension>
     <Dimension type="StandardDimension" foreignKey="id_sexualidade" name="sexualidade">
       <Hierarchy name="sexualidade" hasAll="true" primaryKey="id_sexualidade">
-        <Table name="d_sexualidade" schema="public" alias="">
+        <Table name="d_sexualidade" schema="public">
         </Table>
         <Level name="sexualidade" column="sexualidade" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="StandardDimension" foreignKey="id_status_vinculacao" name="status_vinculacao">
-      <Hierarchy name="status_vinculacao" hasAll="true" primaryKey="id_status_vinculacao">
-        <Table name="d_status_vinculacao" schema="public" alias="">
+    <Dimension type="StandardDimension" foreignKey="id_status_vinculacao_cca" name="status_vinculacao">
+      <Hierarchy name="status_vinculacao" hasAll="true" primaryKey="id_status_vinculacao_cca">
+        <Table name="d_status_vinculacao_cca" schema="public">
         </Table>
-        <Level name="status_vinculacao" column="status_vinculacao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        <Level name="status_vinculacao" column="status_vinculacao_cca" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
     <Dimension type="StandardDimension" foreignKey="id_tempo_moradia" name="tempo_moradia">
       <Hierarchy name="tempo_moradia" hasAll="true" primaryKey="id_tempo_moradia">
-        <Table name="d_tempo_moradia" schema="public" alias="">
+        <Table name="d_tempo_moradia" schema="public">
         </Table>
         <Level name="tempo_moradia" column="tempo_moradia" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="StandardDimension" foreignKey="id_tipo_abastecimento_agua" name="tipo_abastecimento_agua">
-      <Hierarchy name="tipo_abastecimento_agua" hasAll="true" primaryKey="id_tipo_abastecimento_agua">
-        <Table name="d_tipo_abastecimento_agua" schema="public" alias="">
-        </Table>
-        <Level name="tipo_abastecimento_agua" column="tipo_abastecimento_agua" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-        </Level>
-      </Hierarchy>
-    </Dimension>
-    <Dimension type="StandardDimension" foreignKey="id_tipo_construcao_moradia" name="tipo_construcao_moradia">
-      <Hierarchy name="tipo_construcao_moradia" hasAll="true" primaryKey="id_tipo_construcao_moradia">
-        <Table name="d_tipo_construcao_moradia" schema="public" alias="">
-        </Table>
-        <Level name="tipo_construcao_moradia" column="tipo_construcao_moradia" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-        </Level>
-      </Hierarchy>
-    </Dimension>
     <Dimension type="StandardDimension" foreignKey="id_tipo_escola_matriculado" name="tipo_escola_matriculado">
       <Hierarchy name="tipo_escola_matriculado" hasAll="true" primaryKey="id_tipo_escola_matriculado">
-        <Table name="d_tipo_escola_matriculado" schema="public" alias="">
+        <Table name="d_tipo_escola_matriculado" schema="public">
         </Table>
         <Level name="tipo_escola_matriculado" column="tipo_escola_matriculado" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
@@ -356,7 +260,7 @@
     </Dimension>
     <Dimension type="StandardDimension" foreignKey="id_tipo_iluminacao" name="tipo_iluminacao">
       <Hierarchy name="tipo_iluminacao" hasAll="true" primaryKey="id_tipo_iluminacao">
-        <Table name="d_tipo_iluminacao" schema="public" alias="">
+        <Table name="d_tipo_iluminacao" schema="public">
         </Table>
         <Level name="tipo_iluminacao" column="tipo_iluminacao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
@@ -364,71 +268,23 @@
     </Dimension>
     <Dimension type="StandardDimension" foreignKey="id_titulo_eleitor" name="titulo_eleitor">
       <Hierarchy name="titulo_eleitor" hasAll="true" primaryKey="id_titulo_eleitor">
-        <Table name="d_titulo_eleitor" schema="public" alias="">
+        <Table name="d_titulo_eleitor" schema="public">
         </Table>
         <Level name="titulo_eleitor" column="situacao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="StandardDimension" foreignKey="id_tratamento_agua" name="tratamento_agua">
-      <Hierarchy name="tratamento_agua" hasAll="true" primaryKey="id_tratamento_agua">
-        <Table name="d_tratamento_agua" schema="public" alias="">
-        </Table>
-        <Level name="tratamento_agua" column="tratamento_agua" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-        </Level>
-      </Hierarchy>
-    </Dimension>
-    <Dimension type="StandardDimension" foreignKey="id_uso_drogas" name="uso_drogas">
-      <Hierarchy name="uso_drogas" hasAll="true" primaryKey="id_uso_drogas">
-        <Table name="d_uso_drogas" schema="public" alias="">
-        </Table>
-        <Level name="uso_drogas" column="uso_drogas" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-        </Level>
-      </Hierarchy>
-    </Dimension>
-    <Dimension type="StandardDimension" foreignKey="id_uso_drogas" name="vinculacao_cca">
-      <Hierarchy name="vinculacao_cca" hasAll="true" primaryKey="id_vinculacao_cca">
-        <Table name="d_vinculacao_cca" schema="public" alias="">
-        </Table>
-        <Level name="vinculacao_cca" column="vinculacao_cca" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-        </Level>
-      </Hierarchy>
-    </Dimension>
     <Dimension type="StandardDimension" foreignKey="id_vinculo_religioso" name="vinculo_religioso">
       <Hierarchy name="vinculo_religioso" hasAll="true" primaryKey="id_vinculo_religioso">
-        <Table name="d_vinculo_religioso" schema="public" alias="">
+        <Table name="d_vinculo_religioso" schema="public">
         </Table>
         <Level name="vinculo_religioso" column="vinculo_religioso" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="StandardDimension" foreignKey="id_violencia_ambiente_comunitario" name="violencia_ambiente_comunitario">
-      <Hierarchy name="violencia_ambiente_comunitario" hasAll="true" primaryKey="id_violencia_ambiente_comunitario">
-        <Table name="d_violencia_ambiente_comunitario" schema="public" alias="">
-        </Table>
-        <Level name="violencia_ambiente_comunitario" column="violencia_ambiente_comunitario" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-        </Level>
-      </Hierarchy>
-    </Dimension>
-    <Dimension type="StandardDimension" foreignKey="id_violencia_institucional" name="violencia_institucional">
-      <Hierarchy name="violencia_institucional" hasAll="true" primaryKey="id_violencia_institucional">
-        <Table name="d_violencia_institucional" schema="public" alias="">
-        </Table>
-        <Level name="violencia_institucional" column="violencia_institucional" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-        </Level>
-      </Hierarchy>
-    </Dimension>
-    <Dimension type="StandardDimension" foreignKey="id_violencia_intrafamiliar" name="violencia_intrafamiliar">
-      <Hierarchy name="violencia_intrafamiliar" hasAll="true" primaryKey="id_violencia_intrafamiliar">
-        <Table name="d_violencia_intrafamiliar" schema="public" alias="">
-        </Table>
-        <Level name="violencia_intrafamiliar" column="violencia_intrafamiliar" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-        </Level>
-      </Hierarchy>
-    </Dimension>
     <Dimension type="StandardDimension" foreignKey="situacao_moradia" name="situacao_moradia">
       <Hierarchy name="situacao_moradia" hasAll="true" primaryKey="id_situacao_moradia">
-        <Table name="d_situacao_moradia" schema="public" alias="">
+        <Table name="d_situacao_moradia" schema="public">
         </Table>
         <Level name="situacao_moradia" column="situacao_moradia" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>

@@ -34,8 +34,9 @@ __PACKAGE__->table("d_sofre_violencia_institucional_abuso_sexual");
 
 =head2 frequencia
 
-  data_type: 'integer'
+  data_type: 'text'
   is_nullable: 0
+  original: {data_type => "varchar"}
 
 =cut
 
@@ -54,7 +55,11 @@ __PACKAGE__->add_columns(
     original    => { data_type => "varchar" },
   },
   "frequencia",
-  { data_type => "integer", is_nullable => 0 },
+  {
+    data_type   => "text",
+    is_nullable => 0,
+    original    => { data_type => "varchar" },
+  },
 );
 __PACKAGE__->set_primary_key("id_sofre_violencia_institucional_abuso_sexual");
 
@@ -78,8 +83,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-11-09 15:44:12
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:eBYI0SOy7Um8FFrSiIc6/A
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-11-12 15:49:29
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:m6yyUaxidVd8HYvmSr6k7A
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

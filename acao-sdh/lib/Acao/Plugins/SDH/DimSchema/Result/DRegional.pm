@@ -1,4 +1,4 @@
-package Acao::Plugins::SDH::DimSchema::Result::DNucleo;
+package Acao::Plugins::SDH::DimSchema::Result::DRegional;
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
@@ -11,22 +11,22 @@ use base 'DBIx::Class::Core';
 
 =head1 NAME
 
-Acao::Plugins::SDH::DimSchema::Result::DNucleo
+Acao::Plugins::SDH::DimSchema::Result::DRegional
 
 =cut
 
-__PACKAGE__->table("d_nucleo");
+__PACKAGE__->table("d_regional");
 
 =head1 ACCESSORS
 
-=head2 id_nucleo
+=head2 id_regional
 
   data_type: 'integer'
   is_auto_increment: 1
   is_nullable: 0
-  sequence: 'd_nucleo_id_nucleo_seq'
+  sequence: 'd_regional_id_regional_seq'
 
-=head2 nucleo
+=head2 regional
 
   data_type: 'text'
   is_nullable: 0
@@ -35,21 +35,21 @@ __PACKAGE__->table("d_nucleo");
 =cut
 
 __PACKAGE__->add_columns(
-  "id_nucleo",
+  "id_regional",
   {
     data_type         => "integer",
     is_auto_increment => 1,
     is_nullable       => 0,
-    sequence          => "d_nucleo_id_nucleo_seq",
+    sequence          => "d_regional_id_regional_seq",
   },
-  "nucleo",
+  "regional",
   {
     data_type   => "text",
     is_nullable => 0,
     original    => { data_type => "varchar" },
   },
 );
-__PACKAGE__->set_primary_key("id_nucleo");
+__PACKAGE__->set_primary_key("id_regional");
 
 =head1 RELATIONS
 
@@ -64,13 +64,13 @@ Related object: L<Acao::Plugins::SDH::DimSchema::Result::FAtendimento>
 __PACKAGE__->has_many(
   "f_atendimentoes",
   "Acao::Plugins::SDH::DimSchema::Result::FAtendimento",
-  { "foreign.id_nucleo" => "self.id_nucleo" },
+  { "foreign.id_regional" => "self.id_regional" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-11-09 15:44:12
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:7uHyvbz47epZJq0Q19JdhA
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-11-12 15:49:29
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:LlxhQKwgAZ497RIRkQdAPg
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

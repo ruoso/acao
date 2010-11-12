@@ -26,7 +26,7 @@ __PACKAGE__->table("d_sofre_violencia_intrafamiliar_discussao_verbal");
   is_nullable: 0
   sequence: 'd_sofre_violencia_intrafamiliar_discussao_verbal_id_sofre_vi516'
 
-=head2 isofre_violencia_intrafamiliar_discussao_verbal
+=head2 sofre_violencia_intrafamiliar_discussao_verbal
 
   data_type: 'text'
   is_nullable: 0
@@ -48,7 +48,7 @@ __PACKAGE__->add_columns(
     is_nullable       => 0,
     sequence          => "d_sofre_violencia_intrafamiliar_discussao_verbal_id_sofre_vi516",
   },
-  "isofre_violencia_intrafamiliar_discussao_verbal",
+  "sofre_violencia_intrafamiliar_discussao_verbal",
   {
     data_type   => "text",
     is_nullable => 0,
@@ -83,8 +83,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-11-09 15:44:12
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:DL8IPRVhiz+FX7kf8mnrhg
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-11-12 15:49:29
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:Qu0b+qtcWZeElhFiC6fSzg
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

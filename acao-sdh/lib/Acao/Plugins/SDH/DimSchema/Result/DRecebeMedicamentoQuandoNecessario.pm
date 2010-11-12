@@ -1,4 +1,4 @@
-package Acao::Plugins::SDH::DimSchema::Result::DUsaInalante;
+package Acao::Plugins::SDH::DimSchema::Result::DRecebeMedicamentoQuandoNecessario;
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
@@ -11,22 +11,22 @@ use base 'DBIx::Class::Core';
 
 =head1 NAME
 
-Acao::Plugins::SDH::DimSchema::Result::DUsaInalante
+Acao::Plugins::SDH::DimSchema::Result::DRecebeMedicamentoQuandoNecessario
 
 =cut
 
-__PACKAGE__->table("d_usa_inalantes");
+__PACKAGE__->table("d_recebe_medicamento_quando_necessario");
 
 =head1 ACCESSORS
 
-=head2 id_usa_inalantes
+=head2 id_recebe_medicamento_quando_necessario
 
   data_type: 'integer'
   is_auto_increment: 1
   is_nullable: 0
-  sequence: 'd_usa_inalantes_id_usa_inalantes_seq'
+  sequence: 'd_recebe_medicamento_quando_necessario_id_recebe_medicamento998'
 
-=head2 usa_inalantes
+=head2 recebe_medicamento_quando_necessario
 
   data_type: 'text'
   is_nullable: 0
@@ -35,21 +35,21 @@ __PACKAGE__->table("d_usa_inalantes");
 =cut
 
 __PACKAGE__->add_columns(
-  "id_usa_inalantes",
+  "id_recebe_medicamento_quando_necessario",
   {
     data_type         => "integer",
     is_auto_increment => 1,
     is_nullable       => 0,
-    sequence          => "d_usa_inalantes_id_usa_inalantes_seq",
+    sequence          => "d_recebe_medicamento_quando_necessario_id_recebe_medicamento998",
   },
-  "usa_inalantes",
+  "recebe_medicamento_quando_necessario",
   {
     data_type   => "text",
     is_nullable => 0,
     original    => { data_type => "varchar" },
   },
 );
-__PACKAGE__->set_primary_key("id_usa_inalantes");
+__PACKAGE__->set_primary_key("id_recebe_medicamento_quando_necessario");
 
 =head1 RELATIONS
 
@@ -64,13 +64,15 @@ Related object: L<Acao::Plugins::SDH::DimSchema::Result::FAtendimento>
 __PACKAGE__->has_many(
   "f_atendimentoes",
   "Acao::Plugins::SDH::DimSchema::Result::FAtendimento",
-  { "foreign.id_usa_inalantes" => "self.id_usa_inalantes" },
+  {
+    "foreign.id_recebe_medicamento_quando_necessario" => "self.id_recebe_medicamento_quando_necessario",
+  },
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
 
 # Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-11-12 15:49:29
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:s1so9Dtz/kfiuvO3eFjf8A
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:ygPavs90rHAA+UsfZnJPgw
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration
