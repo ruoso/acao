@@ -5,6 +5,10 @@ declare namespace pes = "http://schemas.fortaleza.ce.gov.br/acao/sdh-identificac
 subsequence(
       for $x in collection("[% id_volume %]")/ns:dossie
 
+      where [% where_nome_membro %]
+
+      and [% where_nome_mae %]
+
       order by $x/ns:criacao descending      
   
       return ($x/ns:controle/text(), [% xqueryret %]),
