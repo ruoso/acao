@@ -127,9 +127,9 @@ if($namespace[1] eq 'formProtecaoEspecial')
        my $data_doc = $read_doc->($data->{documento}[0]{conteudo}{pack_type(substr($namespace[0],1) ,  $namespace[1])}[0]);
 
        push @result, { $namespace[1] => $data_doc};
-if($namespace[1] eq 'formProtecaoEspecial')
+if($namespace[1] eq 'formIdentificacaoPessoal')
 {
-#warn Dumper($data_doc);
+warn Dumper($data_doc);
 }
 
        $nr++;
@@ -1861,8 +1861,6 @@ my @tables = (
 "DVivenciaRua", "DVivenciaRua", "DVivenciaRua"
             );
 
-  for (my $i=0; $i < scalar(@data); $i++){
-        
-  }
+
 }
 
