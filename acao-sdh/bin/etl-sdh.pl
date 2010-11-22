@@ -134,7 +134,7 @@ sub getDossies{
     }
 
     for (my $i=0; $i < scalar(@dossies); $i+= 2){
-#warn 'Faltando ' . (scalar(@dossies) - ($i + 2)) . ' ...';
+warn 'Faltando ' . (scalar(@dossies) - ($i + 2)) . ' ...';
 $dossies[$i+1]=~ s/^\s+//;
 extract($dossies[$i], $dossies[$i + 1]);
     }
@@ -179,7 +179,7 @@ if($namespace[1] eq 'formIdentificacaoPessoal')
        
 if($namespace[1] eq 'formProfissionalizacaoHabilidades')
 {
-warn Dumper($data_doc);
+#warn Dumper($data_doc);
 }
 
        $nr++;
@@ -359,7 +359,6 @@ sub transform_sexo {
         $value = $data->{sexo};
     }
     $data->{sexo} = $dbi->resultset('DSexo')->find_or_create({ sexo => $value, })->id_sexo;
-warn $value;
 }
 
 sub transform_sexualidade {
@@ -1917,16 +1916,12 @@ my @tables = (
 "DSexualidade", "sexualidade", "id_sexualidade"
             );
 
-<<<<<<< HEAD
   $dbi->resultset('DData')->find_or_create({id_data => 0});
   for (my $a=0; $a < scalar(@tables); $a+= 3){
 
     $dbi->resultset($tables[$a])->find_or_create({$tables[$a+1] => 'Não Informado', $tables[$a+2] => 0,});
         
   }
-=======
-
->>>>>>> 6ecb50a54f945d24d4ac95b0e0bf29ade9e4a595
 }
 
 normalizaTabelas();
