@@ -26,7 +26,7 @@ __PACKAGE__->table("d_raca_etnia");
   is_nullable: 0
   sequence: 'd_raca_etnia_id_raca_etnia_etnia_seq'
 
-=head2 raca
+=head2 raca_etnia
 
   data_type: 'text'
   is_nullable: 0
@@ -42,7 +42,7 @@ __PACKAGE__->add_columns(
     is_nullable       => 0,
     sequence          => "d_raca_etnia_id_raca_etnia_etnia_seq",
   },
-  "raca",
+  "raca_etnia",
   {
     data_type   => "text",
     is_nullable => 0,
@@ -69,8 +69,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-11-12 15:49:29
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:gcvRBhlSBEAHxVa8zEQiPA
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-11-22 14:32:56
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:a7FBaWBsW7favILE6aXEng
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

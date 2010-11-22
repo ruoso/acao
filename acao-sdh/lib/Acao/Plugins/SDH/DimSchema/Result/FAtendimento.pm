@@ -38,7 +38,7 @@ __PACKAGE__->table("f_atendimento");
   data_type: 'integer'
   default_value: 0
   is_foreign_key: 1
-  is_nullable: 0
+  is_nullable: 1
 
 =head2 id_idade
 
@@ -652,667 +652,800 @@ __PACKAGE__->table("f_atendimento");
 =head2 id_regional
 
   data_type: 'integer'
+  default_value: 0
   is_foreign_key: 1
   is_nullable: 0
 
 =head2 deficiencia_sensorial_surdo
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 deficiencia_sensorial_cego
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 deficiencia_fisico_motor
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 deficiencia_mobilidade_reduzida
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 deficiencia_intelectual
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 habilidade_desenho
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 habilidade_artesanato
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 habilidade_grafite
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 habilidade_costura
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 habilidade_musica
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 habilidade_literatura
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 habilidade_teatro
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 habilidade_culinaria
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 habilidade_danca
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 habilidade_pintura
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 sofre_violencia_instituicao_policial
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 sofre_violencia_instituicao_guarda_municipal
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 sofre_violencia_instituicao_escola
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 sofre_violencia_instituicao_posto_saude
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 sofreu_violencia_instituicao_policial
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 sofreu_violencia_instituicao_guarda_municipal
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 sofreu_violencia_instituicao_escola
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 sofreu_violencia_instituicao_posto_saude
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 exploracao_trabalho_infantil_domestico
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 exploracao_trabalho_infantil_catador
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 exploracao_trabalho_infantil_pedinte
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 exploracao_trabalho_infantil_malabarista
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 exploracao_trabalho_infantil_engraxate
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 exploracao_trabalho_infantil_flanelinha
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 exploracao_trabalho_infantil_jornaleiro
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 exploracao_trabalho_infantil_ajudante_pedreiro
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 exploracao_trabalho_infantil_comercio_drogas
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 exploracao_trabalho_infantil_pesca
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 exploracao_trabalho_carvoaria
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 usa_contraceptivo_preservativo_masculino
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 usa_contraceptivo_preservativo_feminino
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 usa_contraceptivo_pilula_anticoncepcional
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 usa_contraceptivo_diu
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 usa_contraceptivo_tabela
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 usa_contraceptivo_temperatura_basal
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 usa_contraceptivo_metodo_biliing
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 usa_contraceptivo_coito_interrompido
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 data_nascimento
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 participacao_grupo_religioso
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 participacao_movimento_estudantil
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 participacao_associacao_bairro
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 participacao_movimento_politico
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 participacao_grupo_musical
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 participacao_grupo_esportivo
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 participacao_grupo_teatro
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 participacao_grupo_danca
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 participacao_grupo_defesa_meio_ambiente
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 participacao_cooperativa
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 participacao_ong
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 participacao_grupos_produtivos
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 participacao_movimento_cultural
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 participacao_organizacoes_lgbtt
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 participacao_movimento_mulheres
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 participacao_movimento_negro
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 participacao_grupo_rpg
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 participacao_grupos_rivais
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 tipo_construcao_moradia_taipa_nao_resvestida
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 tipo_construcao_moradia_madeira
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 tipo_construcao_moradia_taipa_revestida
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 tipo_construcao_moradia_material_aproveitado
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 tipo_construcao_moradia_tijolo_alvenaria
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 tipo_abastecimento_agua_rede_publica
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 tipo_abastecimento_agua_poco_profundo
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 tipo_abastecimento_agua_cacimba
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 tipo_abastecimento_agua_carro_pipa
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 tipo_abastecimento_agua_rio_lagoa
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 tratamento_agua_filtracao
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 tratamento_agua_fervura
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 tratamento_agua_cloracao
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 tratamento_agua_sem_tratamento
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 escoamento_sanitario_rede_publica
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 escoamento_sanitario_fossa_rudimentar
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 escoamento_sanitario_fossa_septica
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 escoamento_sanitario_ceu_aberto
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 destino_lixo_coleta
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 destino_lixo_queima
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 destino_lixo_enterramento
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 destino_lixo_ceu_aberto
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 origem_encaminhamento_associacoes
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 origem_encaminhamento_conselho_tutelar
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 origem_encaminhamento_demanda_espontanea
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 origem_encaminhamento_judiciario
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 origem_encaminhamento_programas_projetos_funci
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 vinculacao_cca_adolescente_cidadao
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 vinculacao_cca_aquarela
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 vinculacao_cca_bromelia
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 vinculacao_cca_casa_meninas
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 vinculacao_cca_casa_meninos
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 vinculacao_cca_cozinha_experimental
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 vinculacao_cca_crescer_arte_cidadania
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 vinculacao_cca_ddca
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 vinculacao_cca_erradicacao_trabalho_infantil
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 vinculacao_cca_estilo_solitario
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 vinculacao_cca_ponte_encontro
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 vinculacao_cca_se_garanta_liberdade_assitida
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 vinculacao_cca_se_garanta_prestacao_servico_comunidade
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 contra_violencia_intrafamiliar_procurou_instituicao
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 contra_violencia_intrafamiliar_resolveu_conta_propia
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 contra_violencia_intrafamiliar_procurou_amigos
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 contra_violencia_intrafamiliar_nao_tomou_atitude
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 teve_atendimento_especializado_contra_violencia_intrafamiliar
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 esta_tendo_atend_especializado_contra_violencia_intrafamiliar
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 nao_tem_gostaria_atend_especial_contra_violencia_intrafamiliar
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 nao_quer_atend_especializado_contra_violencia_intrafamiliar
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 contra_violencia_comunitaria_procurou_instituicao
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 contra_violencia_comunitaria_resolveu_conta_propria
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 contra_violencia_comunitaria_procurou_amigos
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 contra_violencia_comunitaria_nao_tomou_atitude
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 teve_atendimento_especializado_contra_violencia_comunitaria
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 esta_tendo_atend_especializado_contra_violencia_comunitaria
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 nao_tem_gostaria_atend_especial_contra_violencia_comunitaria
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 nao_quer_atend_especializado_contra_violencia_comunitaria
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 contra_violencia_institucional_procurou_instituicao
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 contra_violencia_institucional_resolveu_conta_propia
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 contra_violencia_institucional_procurou_amigos
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 contra_violencia_institucional_nao_tomou_atitude
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 teve_atendimento_especializado_contra_violencia_institucional
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 esta_tendo_atend_especializado_contra_violencia_institucional
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 nao_tem_gostaria_atend_especializado_contra_violencia_instituci
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 nao_quer_atend_especializado_contra_violencia_institucional
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 nunca_fez_acompanhamento_contra_drogas
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 fez_acompanhamento_contra_drogas_capsad
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 fez_acompanhamento_contra_drogas_capsi
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 fez_acompanhamento_contra_drogas_hospital_mental
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 faz_acompanhamento_contra_drogas_hospital_mental
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 faz_acompanhamento_contra_drogas_capsad
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =head2 faz_acompanhamento_contra_drogas_capsi
 
   data_type: 'integer'
+  default_value: 0
   is_nullable: 0
 
 =cut
@@ -1337,7 +1470,7 @@ __PACKAGE__->add_columns(
     data_type      => "integer",
     default_value  => 0,
     is_foreign_key => 1,
-    is_nullable    => 0,
+    is_nullable    => 1,
   },
   "id_idade",
   {
@@ -1949,271 +2082,276 @@ __PACKAGE__->add_columns(
     is_nullable    => 0,
   },
   "id_regional",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  {
+    data_type      => "integer",
+    default_value  => 0,
+    is_foreign_key => 1,
+    is_nullable    => 0,
+  },
   "deficiencia_sensorial_surdo",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "deficiencia_sensorial_cego",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "deficiencia_fisico_motor",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "deficiencia_mobilidade_reduzida",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "deficiencia_intelectual",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "habilidade_desenho",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "habilidade_artesanato",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "habilidade_grafite",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "habilidade_costura",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "habilidade_musica",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "habilidade_literatura",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "habilidade_teatro",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "habilidade_culinaria",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "habilidade_danca",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "habilidade_pintura",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "sofre_violencia_instituicao_policial",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "sofre_violencia_instituicao_guarda_municipal",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "sofre_violencia_instituicao_escola",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "sofre_violencia_instituicao_posto_saude",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "sofreu_violencia_instituicao_policial",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "sofreu_violencia_instituicao_guarda_municipal",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "sofreu_violencia_instituicao_escola",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "sofreu_violencia_instituicao_posto_saude",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "exploracao_trabalho_infantil_domestico",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "exploracao_trabalho_infantil_catador",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "exploracao_trabalho_infantil_pedinte",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "exploracao_trabalho_infantil_malabarista",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "exploracao_trabalho_infantil_engraxate",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "exploracao_trabalho_infantil_flanelinha",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "exploracao_trabalho_infantil_jornaleiro",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "exploracao_trabalho_infantil_ajudante_pedreiro",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "exploracao_trabalho_infantil_comercio_drogas",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "exploracao_trabalho_infantil_pesca",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "exploracao_trabalho_carvoaria",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "usa_contraceptivo_preservativo_masculino",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "usa_contraceptivo_preservativo_feminino",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "usa_contraceptivo_pilula_anticoncepcional",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "usa_contraceptivo_diu",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "usa_contraceptivo_tabela",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "usa_contraceptivo_temperatura_basal",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "usa_contraceptivo_metodo_biliing",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "usa_contraceptivo_coito_interrompido",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "data_nascimento",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "participacao_grupo_religioso",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "participacao_movimento_estudantil",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "participacao_associacao_bairro",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "participacao_movimento_politico",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "participacao_grupo_musical",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "participacao_grupo_esportivo",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "participacao_grupo_teatro",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "participacao_grupo_danca",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "participacao_grupo_defesa_meio_ambiente",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "participacao_cooperativa",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "participacao_ong",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "participacao_grupos_produtivos",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "participacao_movimento_cultural",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "participacao_organizacoes_lgbtt",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "participacao_movimento_mulheres",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "participacao_movimento_negro",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "participacao_grupo_rpg",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "participacao_grupos_rivais",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "tipo_construcao_moradia_taipa_nao_resvestida",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "tipo_construcao_moradia_madeira",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "tipo_construcao_moradia_taipa_revestida",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "tipo_construcao_moradia_material_aproveitado",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "tipo_construcao_moradia_tijolo_alvenaria",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "tipo_abastecimento_agua_rede_publica",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "tipo_abastecimento_agua_poco_profundo",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "tipo_abastecimento_agua_cacimba",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "tipo_abastecimento_agua_carro_pipa",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "tipo_abastecimento_agua_rio_lagoa",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "tratamento_agua_filtracao",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "tratamento_agua_fervura",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "tratamento_agua_cloracao",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "tratamento_agua_sem_tratamento",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "escoamento_sanitario_rede_publica",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "escoamento_sanitario_fossa_rudimentar",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "escoamento_sanitario_fossa_septica",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "escoamento_sanitario_ceu_aberto",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "destino_lixo_coleta",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "destino_lixo_queima",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "destino_lixo_enterramento",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "destino_lixo_ceu_aberto",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "origem_encaminhamento_associacoes",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "origem_encaminhamento_conselho_tutelar",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "origem_encaminhamento_demanda_espontanea",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "origem_encaminhamento_judiciario",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "origem_encaminhamento_programas_projetos_funci",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "vinculacao_cca_adolescente_cidadao",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "vinculacao_cca_aquarela",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "vinculacao_cca_bromelia",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "vinculacao_cca_casa_meninas",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "vinculacao_cca_casa_meninos",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "vinculacao_cca_cozinha_experimental",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "vinculacao_cca_crescer_arte_cidadania",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "vinculacao_cca_ddca",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "vinculacao_cca_erradicacao_trabalho_infantil",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "vinculacao_cca_estilo_solitario",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "vinculacao_cca_ponte_encontro",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "vinculacao_cca_se_garanta_liberdade_assitida",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "vinculacao_cca_se_garanta_prestacao_servico_comunidade",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "contra_violencia_intrafamiliar_procurou_instituicao",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "contra_violencia_intrafamiliar_resolveu_conta_propia",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "contra_violencia_intrafamiliar_procurou_amigos",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "contra_violencia_intrafamiliar_nao_tomou_atitude",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "teve_atendimento_especializado_contra_violencia_intrafamiliar",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "esta_tendo_atend_especializado_contra_violencia_intrafamiliar",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "nao_tem_gostaria_atend_especial_contra_violencia_intrafamiliar",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "nao_quer_atend_especializado_contra_violencia_intrafamiliar",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "contra_violencia_comunitaria_procurou_instituicao",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "contra_violencia_comunitaria_resolveu_conta_propria",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "contra_violencia_comunitaria_procurou_amigos",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "contra_violencia_comunitaria_nao_tomou_atitude",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "teve_atendimento_especializado_contra_violencia_comunitaria",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "esta_tendo_atend_especializado_contra_violencia_comunitaria",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "nao_tem_gostaria_atend_especial_contra_violencia_comunitaria",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "nao_quer_atend_especializado_contra_violencia_comunitaria",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "contra_violencia_institucional_procurou_instituicao",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "contra_violencia_institucional_resolveu_conta_propia",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "contra_violencia_institucional_procurou_amigos",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "contra_violencia_institucional_nao_tomou_atitude",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "teve_atendimento_especializado_contra_violencia_institucional",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "esta_tendo_atend_especializado_contra_violencia_institucional",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "nao_tem_gostaria_atend_especializado_contra_violencia_instituci",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "nao_quer_atend_especializado_contra_violencia_institucional",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "nunca_fez_acompanhamento_contra_drogas",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "fez_acompanhamento_contra_drogas_capsad",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "fez_acompanhamento_contra_drogas_capsi",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "fez_acompanhamento_contra_drogas_hospital_mental",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "faz_acompanhamento_contra_drogas_hospital_mental",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "faz_acompanhamento_contra_drogas_capsad",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "faz_acompanhamento_contra_drogas_capsi",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
 );
 
 =head1 RELATIONS
@@ -3548,7 +3686,12 @@ __PACKAGE__->belongs_to(
   "id_data",
   "Acao::Plugins::SDH::DimSchema::Result::DData",
   { id_data => "id_data" },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+  {
+    is_deferrable => 1,
+    join_type     => "LEFT",
+    on_delete     => "CASCADE",
+    on_update     => "CASCADE",
+  },
 );
 
 =head2 id_sofreu_violencia_institucional_agressao_psicologica
@@ -3680,8 +3823,8 @@ __PACKAGE__->belongs_to(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-11-12 15:49:29
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:sZ+A6RG181s37aSIwJF4kA
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-11-22 14:32:56
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:II2Gc0bzVNZ/xsybxchELg
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

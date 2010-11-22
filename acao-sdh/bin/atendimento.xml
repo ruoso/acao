@@ -1,4 +1,4 @@
-<Schema name="New Schema1">
+<Schema name="SDH">
   <Cube name="atendimento" cache="true" enabled="true">
     <Table name="f_atendimento" schema="public">
     </Table>
@@ -178,11 +178,11 @@
         </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="StandardDimension" foreignKey="id_nucleo" name="nucleo">
-      <Hierarchy name="nucleo" hasAll="true" primaryKey="id_nucleo">
-        <Table name="d_nucleo" schema="public">
+    <Dimension type="StandardDimension" foreignKey="id_regional" name="regional">
+      <Hierarchy name="regional" hasAll="true" primaryKey="id_regional">
+        <Table name="d_regional" schema="public">
         </Table>
-        <Level name="nucleo" column="nucleo" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        <Level name="regional" column="regional" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
@@ -198,7 +198,7 @@
       <Hierarchy name="raca_etinia" hasAll="true" primaryKey="id_raca_etnia">
         <Table name="d_raca_etnia" schema="public">
         </Table>
-        <Level name="raca_etinia" column="raca" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        <Level name="raca_etinia" column="raca_etnia" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
@@ -290,5 +290,365 @@
         </Level>
       </Hierarchy>
     </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_usa_alcool" name="Usa alcool">
+      <Hierarchy name="usa alcool" hasAll="true" primaryKey="id_usa_alcool">
+        <Table name="d_usa_alcool" schema="public">
+        </Table>
+        <Level name="usa alcool" column="usa_alcool" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_usa_cigarro" name="usa cigarro">
+      <Hierarchy name="usa cigarro" hasAll="true" primaryKey="id_usa_cigarro">
+        <Table name="d_usa_cigarro" schema="public">
+        </Table>
+        <Level name="usa cigarro" column="usa_cigarro" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_usa_cocaina" name="usa cocaina">
+      <Hierarchy name="usa cocaina" hasAll="true" primaryKey="id_usa_cocaina">
+        <Table name="d_usa_cocaina" schema="public">
+        </Table>
+        <Level name="usa cocaina" column="usa_cocaina" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_usa_cola" name="usa cola">
+      <Hierarchy name="usa cola" hasAll="true" primaryKey="id_usa_cola">
+        <Table name="d_usa_cola" schema="public">
+        </Table>
+        <Level name="usa cola" column="usa_cola" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_usa_comprimidos" name="usa compimidos">
+      <Hierarchy name="usa compimidos" hasAll="true" primaryKey="id_usa_comprimidos">
+        <Table name="d_usa_comprimidos" schema="public">
+        </Table>
+        <Level name="usa compimidos" column="usa_comprimidos" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_usa_crack" name="usa crack">
+      <Hierarchy name="usa crack" hasAll="true" primaryKey="id_usa_crack">
+        <Table name="d_usa_crack" schema="public">
+        </Table>
+        <Level name="usa crack" column="usa_crack" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_usa_inalantes" name="usa inalantes">
+      <Hierarchy name="usa inalantes" hasAll="true" primaryKey="id_usa_inalantes">
+        <Table name="d_usa_inalantes" schema="public">
+        </Table>
+        <Level name="usa inalantes" column="usa_inalantes" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_usa_maconha" name="usa maconha">
+      <Hierarchy name="usa maconha" hasAll="true" primaryKey="id_usa_maconha">
+        <Table name="d_usa_maconha" schema="public">
+        </Table>
+        <Level name="usa maconha" column="usa_maconha" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_usa_mesclado" name="usa mesclado">
+      <Hierarchy name="usa mesclado" hasAll="true" primaryKey="id_usa_mesclado">
+        <Table name="d_usa_mesclado" schema="public">
+        </Table>
+        <Level name="usa mesclado" column="usa_mesclado" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_vivencia_rua" name="vivencia rua">
+      <Hierarchy name="vivencia rua" hasAll="true" primaryKey="id_vivencia_rua">
+        <Table name="d_vivencia_rua" schema="public">
+        </Table>
+        <Level name="vivencia rua" column="vivencia_rua" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_esta_frequentando_escola" name="esta frequenrando escola">
+      <Hierarchy name="esta frequenrando escola" hasAll="true" primaryKey="id_esta_frequentando_escola">
+        <Table name="d_esta_frequentando_escola" schema="public">
+        </Table>
+        <Level name="esta frequenrando escola" column="esta_frequentando_escola" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_esta_trabalhando" name="New Dimension 46">
+      <Hierarchy name="esta trabalhando" hasAll="true" primaryKey="id_esta_trabalhando">
+        <Table name="d_esta_trabalhando" schema="public" alias="">
+        </Table>
+        <Level name="esta trabalhando" column="esta_trabalhando" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="tipo trabalho" column="tipo_trabalho" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Measure name="deficiencia_sensorial_surdo" column="deficiencia_sensorial_surdo" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="deficiencia_sensorial_cego" column="deficiencia_sensorial_cego" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="deficiencia_fisico_motor" column="deficiencia_fisico_motor" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="deficiencia_mobilidade_reduzida" column="deficiencia_mobilidade_reduzida" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="deficiencia_intelectual" column="deficiencia_intelectual" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="habilidade_desenho" column="habilidade_desenho" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="habilidade_artesanato" column="habilidade_artesanato" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="habilidade_grafite" column="habilidade_grafite" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="habilidade_costura" column="habilidade_costura" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="habilidade_musica" column="habilidade_musica" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="habilidade_literatura" column="habilidade_literatura" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="habilidade_teatro" column="habilidade_teatro" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="habilidade_culinaria" column="habilidade_culinaria" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="habilidade_danca" column="habilidade_danca" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="habilidade_pintura" column="habilidade_pintura" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="sofre_violencia_instituicao_policial" column="sofre_violencia_instituicao_policial" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="sofre_violencia_instituicao_guarda_municipal" column="sofreu_violencia_instituicao_guarda_municipal" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="sofre_violencia_instituicao_escola" column="sofre_violencia_instituicao_escola" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="sofre_violencia_instituicao_posto_saude" column="sofre_violencia_instituicao_posto_saude" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="sofreu_violencia_instituicao_policial" column="sofreu_violencia_instituicao_policial" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="sofreu_violencia_instituicao_guarda_municipal" column="sofreu_violencia_instituicao_guarda_municipal" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="sofreu_violencia_instituicao_escola" column="sofreu_violencia_instituicao_escola" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="sofreu_violencia_instituicao_posto_saude" column="sofreu_violencia_instituicao_posto_saude" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="exploracao_trabalho_infantil_domestico" column="exploracao_trabalho_infantil_domestico" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="exploracao_trabalho_infantil_catador" column="exploracao_trabalho_infantil_catador" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="exploracao_trabalho_infantil_pedinte" column="exploracao_trabalho_infantil_pedinte" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="exploracao_trabalho_infantil_malabarista" column="exploracao_trabalho_infantil_malabarista" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="exploracao_trabalho_infantil_engraxate" column="exploracao_trabalho_infantil_engraxate" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="exploracao_trabalho_infantil_flanelinha" column="exploracao_trabalho_infantil_flanelinha" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="exploracao_trabalho_infantil_jornaleiro" column="exploracao_trabalho_infantil_jornaleiro" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="exploracao_trabalho_infantil_ajudante_pedreiro" column="exploracao_trabalho_infantil_ajudante_pedreiro" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="exploracao_trabalho_infantil_comercio_drogas" column="exploracao_trabalho_infantil_comercio_drogas" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="exploracao_trabalho_infantil_pesca" column="exploracao_trabalho_infantil_pesca" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="exploracao_trabalho_carvoaria" column="exploracao_trabalho_carvoaria" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="usa_contraceptivo_preservativo_masculino" column="usa_contraceptivo_preservativo_masculino" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="usa_contraceptivo_preservativo_feminino" column="usa_contraceptivo_preservativo_feminino" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="usa_contraceptivo_pilula_anticoncepcional" column="usa_contraceptivo_pilula_anticoncepcional" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="usa_contraceptivo_diu" column="usa_contraceptivo_diu" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="usa_contraceptivo_tabela" column="usa_contraceptivo_tabela" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="usa_contraceptivo_temperatura_basal" column="usa_contraceptivo_temperatura_basal" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="usa_contraceptivo_metodo_biliing" column="usa_contraceptivo_metodo_biliing" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="usa_contraceptivo_coito_interrompido" column="usa_contraceptivo_coito_interrompido" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="participacao_grupo_religioso" column="participacao_grupo_religioso" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="participacao_movimento_estudantil" column="participacao_movimento_estudantil" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="participacao_associacao_bairro" column="participacao_associacao_bairro" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="participacao_movimento_politico" column="participacao_movimento_politico" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="participacao_grupo_musical" column="participacao_grupo_musical" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="participacao_grupo_esportivo" column="participacao_grupo_esportivo" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="participacao_grupo_teatro" column="participacao_grupo_teatro" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="participacao_grupo_danca" column="participacao_grupo_danca" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="participacao_grupo_defesa_meio_ambiente" column="participacao_grupo_defesa_meio_ambiente" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="participacao_cooperativa" column="participacao_cooperativa" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="participacao_ong" column="participacao_ong" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="participacao_grupos_produtivos" column="participacao_grupos_produtivos" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="participacao_movimento_cultural" column="participacao_movimento_cultural" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="participacao_organizacoes_lgbtt" column="participacao_organizacoes_lgbtt" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="participacao_movimento_mulheres" column="participacao_movimento_mulheres" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="participacao_movimento_negro" column="participacao_movimento_negro" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="participacao_grupo_rpg" column="participacao_grupo_rpg" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="participacao_grupos_rivais" column="participacao_grupos_rivais" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="tipo_construcao_moradia_taipa_nao_resvestida" column="tipo_construcao_moradia_taipa_nao_resvestida" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="tipo_construcao_moradia_madeira" column="tipo_construcao_moradia_madeira" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="tipo_construcao_moradia_taipa_revestida" column="tipo_construcao_moradia_taipa_revestida" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="tipo_construcao_moradia_material_aproveitado" column="tipo_construcao_moradia_material_aproveitado" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="tipo_construcao_moradia_tijolo_alvenaria" column="tipo_construcao_moradia_tijolo_alvenaria" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="tipo_abastecimento_agua_rede_publica" column="tipo_abastecimento_agua_rede_publica" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="tipo_abastecimento_agua_poco_profundo" column="tipo_abastecimento_agua_poco_profundo" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="tipo_abastecimento_agua_cacimba" column="tipo_abastecimento_agua_cacimba" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="tipo_abastecimento_agua_carro_pipa" column="tipo_abastecimento_agua_carro_pipa" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="tipo_abastecimento_agua_rio_lagoa" column="tipo_abastecimento_agua_rio_lagoa" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="tratamento_agua_filtracao" column="tratamento_agua_filtracao" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="tratamento_agua_fervura" column="tratamento_agua_fervura" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="tratamento_agua_cloracao" column="tratamento_agua_cloracao" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="tratamento_agua_sem_tratamento" column="tratamento_agua_sem_tratamento" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="escoamento_sanitario_rede_publica" column="escoamento_sanitario_rede_publica" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="escoamento_sanitario_fossa_rudimentar" column="escoamento_sanitario_fossa_rudimentar" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="escoamento_sanitario_fossa_septica" column="escoamento_sanitario_fossa_septica" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="escoamento_sanitario_ceu_aberto" column="escoamento_sanitario_ceu_aberto" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="destino_lixo_coleta" column="destino_lixo_coleta" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="destino_lixo_queima" column="destino_lixo_queima" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="destino_lixo_enterramento" column="destino_lixo_enterramento" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="destino_lixo_ceu_aberto" column="destino_lixo_ceu_aberto" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="origem_encaminhamento_associacoes" column="origem_encaminhamento_associacoes" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="origem_encaminhamento_conselho_tutelar" column="origem_encaminhamento_conselho_tutelar" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="origem_encaminhamento_demanda_espontanea" column="origem_encaminhamento_demanda_espontanea" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="origem_encaminhamento_judiciario" column="origem_encaminhamento_judiciario" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="origem_encaminhamento_programas_projetos_funci" column="origem_encaminhamento_programas_projetos_funci" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="vinculacao_cca_adolescente_cidadao" column="vinculacao_cca_adolescente_cidadao" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="vinculacao_cca_aquarela" column="vinculacao_cca_aquarela" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="vinculacao_cca_bromelia" column="vinculacao_cca_bromelia" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="vinculacao_cca_casa_meninas" column="vinculacao_cca_casa_meninas" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="vinculacao_cca_casa_meninos" column="vinculacao_cca_casa_meninos" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="vinculacao_cca_cozinha_experimental" column="vinculacao_cca_cozinha_experimental" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="vinculacao_cca_crescer_arte_cidadania" column="vinculacao_cca_crescer_arte_cidadania" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="vinculacao_cca_ddca" column="vinculacao_cca_ddca" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="vinculacao_cca_erradicacao_trabalho_infantil" column="vinculacao_cca_erradicacao_trabalho_infantil" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="vinculacao_cca_estilo_solitario" column="vinculacao_cca_estilo_solitario" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="vinculacao_cca_ponte_encontro" column="vinculacao_cca_ponte_encontro" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="vinculacao_cca_se_garanta_liberdade_assitida" column="vinculacao_cca_se_garanta_liberdade_assitida" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="vinculacao_cca_se_garanta_prestacao_servico_comunidade" column="vinculacao_cca_se_garanta_prestacao_servico_comunidade" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="contra_violencia_intrafamiliar_procurou_instituicao" column="contra_violencia_intrafamiliar_procurou_instituicao" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="contra_violencia_intrafamiliar_resolveu_conta_propia" column="contra_violencia_intrafamiliar_resolveu_conta_propia" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="contra_violencia_intrafamiliar_procurou_amigos" column="contra_violencia_intrafamiliar_procurou_amigos" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="contra_violencia_intrafamiliar_nao_tomou_atitude" column="contra_violencia_intrafamiliar_nao_tomou_atitude" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="teve_atendimento_especializado_contra_violencia_intrafamiliar" column="teve_atendimento_especializado_contra_violencia_intrafamiliar" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="esta_tendo_atend_especializado_contra_violencia_intrafamiliar" column="esta_tendo_atend_especializado_contra_violencia_intrafamiliar" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="nao_tem_gostaria_atend_especial_contra_violencia_intrafamiliar" column="nao_tem_gostaria_atend_especial_contra_violencia_intrafamiliar" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="nao_quer_atend_especializado_contra_violencia_intrafamiliar" column="nao_quer_atend_especializado_contra_violencia_intrafamiliar" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="contra_violencia_comunitaria_procurou_instituicao" column="contra_violencia_comunitaria_procurou_instituicao" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="contra_violencia_comunitaria_resolveu_conta_propria" column="contra_violencia_comunitaria_resolveu_conta_propria" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="contra_violencia_comunitaria_procurou_amigos" column="contra_violencia_comunitaria_procurou_amigos" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="contra_violencia_comunitaria_nao_tomou_atitude" column="contra_violencia_comunitaria_nao_tomou_atitude" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="teve_atendimento_especializado_contra_violencia_comunitaria" column="teve_atendimento_especializado_contra_violencia_comunitaria" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="esta_tendo_atend_especializado_contra_violencia_comunitaria" column="esta_tendo_atend_especializado_contra_violencia_comunitaria" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="nao_tem_gostaria_atend_especial_contra_violencia_comunitaria" column="nao_tem_gostaria_atend_especial_contra_violencia_comunitaria" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="nao_quer_atend_especializado_contra_violencia_comunitaria" column="nao_quer_atend_especializado_contra_violencia_comunitaria" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="contra_violencia_institucional_procurou_instituicao" column="contra_violencia_institucional_procurou_instituicao" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="contra_violencia_institucional_resolveu_conta_propia" column="contra_violencia_institucional_resolveu_conta_propia" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="contra_violencia_institucional_procurou_amigos" column="contra_violencia_institucional_procurou_amigos" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="contra_violencia_institucional_nao_tomou_atitude" column="contra_violencia_institucional_nao_tomou_atitude" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="teve_atendimento_especializado_contra_violencia_institucional" column="teve_atendimento_especializado_contra_violencia_institucional" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="esta_tendo_atend_especializado_contra_violencia_institucional" column="esta_tendo_atend_especializado_contra_violencia_institucional" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="nao_tem_gostaria_atend_especializado_contra_violencia_institucional" column="nao_tem_gostaria_atend_especializado_contra_violencia_institucional" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="nao_quer_atend_especializado_contra_violencia_institucional" column="nao_quer_atend_especializado_contra_violencia_institucional" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="nunca_fez_acompanhamento_contra_drogas" column="nunca_fez_acompanhamento_contra_drogas" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="fez_acompanhamento_contra_drogas_capsad" column="fez_acompanhamento_contra_drogas_capsad" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="fez_acompanhamento_contra_drogas_capsi" column="fez_acompanhamento_contra_drogas_capsi" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="fez_acompanhamento_contra_drogas_hospital_mental" column="fez_acompanhamento_contra_drogas_hospital_mental" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="faz_acompanhamento_contra_drogas_hospital_mental" column="faz_acompanhamento_contra_drogas_hospital_mental" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="faz_acompanhamento_contra_drogas_capsad" column="faz_acompanhamento_contra_drogas_capsad" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="faz_acompanhamento_contra_drogas_capsi" column="faz_acompanhamento_contra_drogas_capsi" aggregator="sum" visible="true">
+    </Measure>
   </Cube>
 </Schema>
