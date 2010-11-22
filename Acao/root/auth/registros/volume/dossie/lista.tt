@@ -103,7 +103,7 @@
  [% END %]
 
  [% c.model('Sedna').commit %]
-[% CATCH %]
+ [% CATCH %]
  <div class="erro">ERRO AO PROCESSAR CONSULTA:
   <PRE>[% error.info %]</PRE>
  </div>
