@@ -24,13 +24,17 @@
 				</xs:annotation>
 			</xs:element>
 
-			<xs:element name="instituicaoProgramaProjeto" minOccurs="0"
-				type="xs:string">
+			<xs:element name="instituicaoProgramaProjeto" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Instituição/Programa/Projeto</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
 			</xs:element>
 
 			<xs:element name="Motivo" minOccurs="0" type="xs:string">
@@ -49,13 +53,17 @@
 				</xs:annotation>
 			</xs:element>
 
-			<xs:element name="tecnicoResponsavel" minOccurs="0"
-				type="xs:string">
+			<xs:element name="tecnicoResponsavel" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Técnico responsável</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
 			</xs:element>
 
 			<xs:element name="data" minOccurs="0" type="xs:date">
@@ -66,12 +74,17 @@
 				</xs:annotation>
 			</xs:element>
 
-			<xs:element name="Retorno" minOccurs="0" type="xs:string">
+			<xs:element name="Retorno" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Retorno</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
 			</xs:element>
 
 			<xs:element name="observacoes" minOccurs="0" type="xs:string">

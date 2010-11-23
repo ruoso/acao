@@ -71,13 +71,17 @@
 										</xs:simpleType>
 									</xs:element>
 
-									<xs:element name="especifiqueOutros" type="xs:string"
-										minOccurs="0">
+									<xs:element name="especifiqueOutros" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Especifique outros</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
 									</xs:element>
 
 									<xs:element name="nuncaUsou" minOccurs="0">
@@ -171,7 +175,8 @@
 													</xs:annotation>
 												</xs:element>
 
-												<xs:element name="outros" type="xs:boolean" minOccurs="0">
+												<xs:element name="outros" type="xs:boolean"
+													minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label>Outros</xhtml:label>
@@ -179,13 +184,17 @@
 													</xs:annotation>
 												</xs:element>
 
-												<xs:element name="especifiqueOutros" type="xs:string"
-													minOccurs="0">
+												<xs:element name="especifiqueOutros" minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label>Especifique outros</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="255" />
+														</xs:restriction>
+													</xs:simpleType>
 												</xs:element>
 
 											</xs:sequence>
@@ -273,7 +282,8 @@
 													</xs:annotation>
 												</xs:element>
 
-												<xs:element name="outros" type="xs:boolean" minOccurs="0">
+												<xs:element name="outros" type="xs:boolean"
+													minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label>Outros</xhtml:label>
@@ -281,13 +291,17 @@
 													</xs:annotation>
 												</xs:element>
 
-												<xs:element name="especifiqueOutros" type="xs:string"
-													minOccurs="0">
+												<xs:element name="especifiqueOutros" minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label>Especifique outros</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="255" />
+														</xs:restriction>
+													</xs:simpleType>
 												</xs:element>
 
 											</xs:sequence>
@@ -375,7 +389,8 @@
 													</xs:annotation>
 												</xs:element>
 
-												<xs:element name="outros" type="xs:boolean" minOccurs="0">
+												<xs:element name="outros" type="xs:boolean"
+													minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label>Outros</xhtml:label>
@@ -383,13 +398,17 @@
 													</xs:annotation>
 												</xs:element>
 
-												<xs:element name="especifiqueOutros" type="xs:string"
-													minOccurs="0">
+												<xs:element name="especifiqueOutros" minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label>Especifique outros</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="255" />
+														</xs:restriction>
+													</xs:simpleType>
 												</xs:element>
 
 											</xs:sequence>
@@ -477,7 +496,8 @@
 													</xs:annotation>
 												</xs:element>
 
-												<xs:element name="outros" type="xs:boolean" minOccurs="0">
+												<xs:element name="outros" type="xs:boolean"
+													minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label>Outros</xhtml:label>
@@ -485,13 +505,17 @@
 													</xs:annotation>
 												</xs:element>
 
-												<xs:element name="especifiqueOutros" type="xs:string"
-													minOccurs="0">
+												<xs:element name="especifiqueOutros" minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label>Especifique outros</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="255" />
+														</xs:restriction>
+													</xs:simpleType>
 												</xs:element>
 
 											</xs:sequence>
@@ -579,7 +603,8 @@
 													</xs:annotation>
 												</xs:element>
 
-												<xs:element name="outros" type="xs:boolean" minOccurs="0">
+												<xs:element name="outros" type="xs:boolean"
+													minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label>Outros</xhtml:label>
@@ -587,13 +612,17 @@
 													</xs:annotation>
 												</xs:element>
 
-												<xs:element name="especifiqueOutros" type="xs:string"
-													minOccurs="0">
+												<xs:element name="especifiqueOutros" minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label>Especifique outros</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="255" />
+														</xs:restriction>
+													</xs:simpleType>
 												</xs:element>
 
 											</xs:sequence>
@@ -677,7 +706,8 @@
 																</xs:annotation>
 															</xs:element>
 
-															<xs:element name="outros" type="xs:boolean" minOccurs="0">
+															<xs:element name="outros" type="xs:boolean"
+																minOccurs="0">
 																<xs:annotation>
 																	<xs:appinfo>
 																		<xhtml:label>Outros</xhtml:label>
@@ -690,16 +720,21 @@
 												</xs:element>
 
 												<xs:element name="especifiqueOutrosLocaisQueFazAcompanhamento"
-													type="xs:string" minOccurs="0">
+													minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label>Especifique outros
 															</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="255" />
+														</xs:restriction>
+													</xs:simpleType>
 												</xs:element>
 												<xs:element name="especifiqueAQuantoTempoFazAcompanhamento"
-													type="xs:string" minOccurs="0">
+													minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label>Especifique a quanto tempo faz
@@ -707,6 +742,11 @@
 												</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="255" />
+														</xs:restriction>
+													</xs:simpleType>
 												</xs:element>
 
 												<xs:element name="ondeFezAcompanhamento"
@@ -742,7 +782,8 @@
 																	</xs:appinfo>
 																</xs:annotation>
 															</xs:element>
-															<xs:element name="outros" type="xs:boolean" minOccurs="0">
+															<xs:element name="outros" type="xs:boolean"
+																minOccurs="0">
 																<xs:annotation>
 																	<xs:appinfo>
 																		<xhtml:label>Outros</xhtml:label>
@@ -755,17 +796,22 @@
 												</xs:element>
 
 												<xs:element name="especifiqueOutrosLocaisQueFezAcompanhamento"
-													type="xs:string" minOccurs="0">
+													minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label>Especifique outros
 															</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="255" />
+														</xs:restriction>
+													</xs:simpleType>
 												</xs:element>
 
 												<xs:element name="especifiqueAQuantoTempoFezAcompanhamento"
-													type="xs:string" minOccurs="0">
+													minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label>Especifique a quanto tempo fez
@@ -773,6 +819,11 @@
 												</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="255" />
+														</xs:restriction>
+													</xs:simpleType>
 												</xs:element>
 
 											</xs:sequence>
@@ -796,7 +847,7 @@
 									</xs:element>
 
 									<xs:element name="especifiqueUnidadeterapeuticaQueficouInternado"
-										type="xs:string" minOccurs="0">
+										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Especifique unidade terapêutica que ficou
@@ -804,6 +855,11 @@
 									</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
 									</xs:element>
 
 									<xs:element name="desejaTratamento" minOccurs="0">
@@ -820,7 +876,8 @@
 										</xs:simpleType>
 									</xs:element>
 
-									<xs:element name="observacoes" type="xs:string" minOccurs="0">
+									<xs:element name="observacoes" type="xs:string"
+										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Observações</xhtml:label>

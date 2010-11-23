@@ -96,13 +96,17 @@
 				<xs:complexType>
 					<xs:sequence>
 
-						<xs:element name="numeroDoProcesso" minOccurs="1"
-							type="xs:string">
+						<xs:element name="numeroDoProcesso" minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Número(s) do(s) processo(s)</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
 						<xs:element name="tipoAtoInfracional" minOccurs="1">
@@ -195,12 +199,17 @@
 						</xs:element>
 
 						<xs:element name="especifiqueOutrosTipoAtoInfracional"
-							minOccurs="0" type="xs:string">
+							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Especifique outros</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
 					</xs:sequence>
@@ -277,7 +286,8 @@
 					<xs:restriction base="xs:string">
 						<xs:enumeration value="Ainda não desligado" />
 						<xs:enumeration value="Liberação compulsória" />
-						<xs:enumeration	value="Liberação por cumprimento da medida - Órdem Judicial" />
+						<xs:enumeration
+							value="Liberação por cumprimento da medida - Órdem Judicial" />
 						<xs:enumeration value="Liberação por imputabilidade penal - 21 anos" />
 						<xs:enumeration value="Mortalidade por acidente de trânsito" />
 						<xs:enumeration value="Mortalidade por afogamento" />
@@ -291,25 +301,32 @@
 						<xs:enumeration value="Mudança de comarca" />
 						<xs:enumeration value="Perca de sentido da medida - Órdem Judicial" />
 						<xs:enumeration value="Respondendo em vara criminal (preso ou resp.)" />
-						<xs:enumeration value="Sentenciado com medida socioeducativa privativa de liberdade" />
-						<xs:enumeration	value="Sentenciado com medida socioeducativa de liberdade assistida" />
-						<xs:enumeration	value="Sentenciado com medida socioeducativa privativa de semiliberdade" />
+						<xs:enumeration
+							value="Sentenciado com medida socioeducativa privativa de liberdade" />
+						<xs:enumeration
+							value="Sentenciado com medida socioeducativa de liberdade assistida" />
+						<xs:enumeration
+							value="Sentenciado com medida socioeducativa privativa de semiliberdade" />
 						<xs:enumeration value="Outros" />
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
 
 			<xs:element name="especifiqueOutrosCausaDesligamento"
-				minOccurs="0" type="xs:string">
+				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Especifique outros</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
 			</xs:element>
 
-			<xs:element name="observacoes"
-				minOccurs="0" type="xs:string">
+			<xs:element name="observacoes" minOccurs="0" type="xs:string">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Observações</xhtml:label>

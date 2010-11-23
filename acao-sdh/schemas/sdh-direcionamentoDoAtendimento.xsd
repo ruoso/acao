@@ -288,13 +288,18 @@
 			</xs:element>
 
 			<xs:element name="especifiqueOutroEncaminhamentoInterno"
-				type="xs:string" minOccurs="0">
+				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Especifique outros:
 						</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
 			</xs:element>
 
 			<xs:element name="encaminhamentoExterno">
@@ -608,13 +613,18 @@
 			</xs:element>
 
 			<xs:element name="especifiqueOutroEncaminhamentoExterno"
-				type="xs:string" minOccurs="0">
+				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Especifique outros:
 						</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
 			</xs:element>
 
 			<xs:element name="observacoesDoDirecionamento" type="xs:string"
@@ -627,13 +637,18 @@
 			</xs:element>
 
 			<xs:element name="profissionalResponsavelPeloDirecionamento"
-				type="xs:string" minOccurs="1">
+				minOccurs="1">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Profissional responsável pelo direcionamento
 						</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
 			</xs:element>
 
 			<xs:element name="dataDoDirecionamento" type="xs:date"

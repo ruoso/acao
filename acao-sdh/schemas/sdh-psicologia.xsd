@@ -237,13 +237,17 @@
 							</xs:complexType>
 						</xs:element>
 
-						<xs:element name="técnicoResponsavel" type="xs:string"
-							minOccurs="0">
+						<xs:element name="técnicoResponsavel" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Técnico responsável:</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
 						<xs:element name="data" minOccurs="0" type="xs:date">

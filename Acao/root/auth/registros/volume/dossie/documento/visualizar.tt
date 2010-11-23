@@ -62,13 +62,13 @@
     <dt>Controle:</dt>
     <dd>[% controle %]</dd>
     <!--[% # IF invalidacao == '1970-01-01T00:00:00Z' %]
-    <div> 
-        <input type="checkbox" id="representaDocumentoFisico" name="representaDocumentoFisico" evt="representaDocumentoFisico" [% IF representaDocumentoFisico == 'true' %] checked [% END %]> 
+    <div>
+        <input type="checkbox" id="representaDocumentoFisico" name="representaDocumentoFisico" evt="representaDocumentoFisico" [% IF representaDocumentoFisico == 'true' %] checked [% END %]>
         <label for="representaDocumentoFisico"> Representa Documento Físico </label>
     </div>
    [% # END %]-->
   </dl>
- </fieldset> 
+ </fieldset>
 
  <fieldset> 
    <a href="[% c.uri_for('/auth/registros/volume/') _ id_volume _ '/' _ controle _ '/visualizarportipo/' _ id_documento _ '/' _ xsdDocumento.substr(40) %]"> Visualizar todos deste tipo </a>

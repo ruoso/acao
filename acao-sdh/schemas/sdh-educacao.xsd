@@ -40,7 +40,8 @@
 				</xs:annotation>
 			</xs:element>
 
-			<xs:element name="parouEmQueSerieModalidadeEspecificamente" minOccurs="0">
+			<xs:element name="parouEmQueSerieModalidadeEspecificamente"
+				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Parou em que série/modalidade?</xhtml:label>
@@ -64,13 +65,17 @@
 				</xs:simpleType>
 			</xs:element>
 
-			<xs:element name="parouEmQueSerieModalidade" type="xs:string"
-				minOccurs="0">
+			<xs:element name="parouEmQueSerieModalidade" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Especifique ourtos</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
 			</xs:element>
 
 			<xs:element name="emQueAno" type="xs:integer" minOccurs="0">
@@ -87,7 +92,8 @@
 					<xs:appinfo>
 						<xhtml:label>Caso esteja matriculado(a), está
 							frenquentando
-							a escola?</xhtml:label>
+							a
+							escola?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 
@@ -108,13 +114,17 @@
 				</xs:annotation>
 			</xs:element>
 
-			<xs:element name="haQuantoTempoNaoFrequenta" type="xs:string"
-				minOccurs="0">
+			<xs:element name="haQuantoTempoNaoFrequenta" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Há quanto tempo não frequenta?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
 			</xs:element>
 
 			<xs:element name="emCasoAfirmativo">
@@ -127,22 +137,31 @@
 				<xs:complexType>
 					<xs:sequence>
 
-						<xs:element name="escola" type="xs:string" minOccurs="0">
+						<xs:element name="escola" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Escola</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
 
-						<xs:element name="serieModalidades" type="xs:string"
-							minOccurs="0">
+						<xs:element name="serieModalidades" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Série/Modalidade</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
 						<xs:element name="turno" minOccurs="0">
@@ -162,12 +181,17 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="outros" type="xs:string" minOccurs="0">
+						<xs:element name="outros" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Especifique Outros</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
 						<xs:element name="escolaridade" minOccurs="0">
@@ -201,7 +225,8 @@
 				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>A escola em que está matriculado(a) situa-se próximo a
+						<xhtml:label>A escola em que está matriculado(a) situa-se próximo
+							a
 							sua
 							residência?</xhtml:label>
 					</xs:appinfo>
@@ -234,12 +259,17 @@
 				</xs:simpleType>
 			</xs:element>
 
-			<xs:element name="quantos" type="xs:string" minOccurs="0">
+			<xs:element name="quantos" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Quantos(as)?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
 			</xs:element>
 
 			<xs:element name="avaliacaoDaVidaEscolar">

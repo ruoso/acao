@@ -24,24 +24,31 @@
 				</xs:annotation>
 				<xs:complexType>
 					<xs:sequence>
-						<xs:element name="nomeEntrevistado" minOccurs="0"
-							type="xs:string">
+						<xs:element name="nomeEntrevistado" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Nome entrevistado
-																		</xhtml:label>
+									<xhtml:label>Nome entrevistado</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="parentescoComAdolescente" minOccurs="0"
-							type="xs:string">
+						<xs:element name="parentescoComAdolescente" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Parentesco com o adolescente
 																		</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
 						<xs:element name="idadeEntrevistado" minOccurs="0"
@@ -262,14 +269,18 @@
 							</xs:complexType>
 						</xs:element>
 
-						<xs:element name="especifiqueOutrosGrupos" minOccurs="0"
-							type="xs:string">
+						<xs:element name="especifiqueOutrosGrupos" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Especifique outros
 									</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
 						<xs:element name="alguemDaFamiliaDesenvolveAtividadeComunitaria"
@@ -399,22 +410,32 @@
 									</xs:element>
 
 									<xs:element name="especifiqueOutrosRecursoscomunitarios"
-										minOccurs="0" type="xs:string">
+										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Especifique outros recursos comunitarios
 												</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
 									</xs:element>
 
 									<xs:element name="frequenciaDosRecursosComunitarios"
-										minOccurs="0" type="xs:string">
+										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Com que frequência</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
 									</xs:element>
 
 								</xs:sequence>
@@ -492,13 +513,17 @@
 				</xs:annotation>
 			</xs:element>
 
-			<xs:element name="tecnicoResponsavel" minOccurs="0"
-				type="xs:string">
+			<xs:element name="tecnicoResponsavel" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Técnico responsável</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
 			</xs:element>
 
 			<xs:element name="dataDocumento" minOccurs="0" type="xs:date">

@@ -34,12 +34,17 @@
 				</xs:simpleType>
 			</xs:element>
 			<xs:element name="especifiqueOutrosVinculosReligiosos"
-				type="xs:string" minOccurs="0">
+				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Especifique outros vínculos religiosos</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
 			</xs:element>
 
 		</xs:sequence>

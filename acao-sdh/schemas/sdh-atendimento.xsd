@@ -47,12 +47,17 @@
 				</xs:simpleType>
 			</xs:element>
 
-			<xs:element name="especifiqueOutros" type="xs:string" minOccurs="0">
+			<xs:element name="especifiqueOutros" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Especifique outros</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
 			</xs:element>
 
 			<xs:element name="data" type="xs:date" minOccurs="0">
@@ -72,13 +77,17 @@
 				</xs:annotation>
 			</xs:element>
 
-			<xs:element name="tecnicoResponsavel" type="xs:string"
-				minOccurs="1">
+			<xs:element name="tecnicoResponsavel" minOccurs="1">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Técnico responsável</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
 			</xs:element>
 
 		</xs:sequence>

@@ -1,8 +1,7 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-pedagogia.xsd"
-	xmlns:xhtml="http://www.w3.org/1999/xhtml" 
-	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-pedagogia.xsd"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml" targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-pedagogia.xsd"
 	elementFormDefault="qualified">
 
 	<xs:element name="formPedagogia" type="formPedagogia">
@@ -103,12 +102,17 @@
 							</xs:complexType>
 						</xs:element>
 
-						<xs:element name="outros" type="xs:string" minOccurs="0">
+						<xs:element name="outros" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Outros</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
 						<xs:element name="observacao" type="xs:string"
@@ -124,7 +128,8 @@
 							type="xs:string" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Em relação à dificuldade, o que fez ou faz para superá-la?</xhtml:label>
+									<xhtml:label>Em relação à dificuldade, o que fez ou faz para
+										superá-la?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -157,31 +162,44 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="quemOrientavaNasSuasTarefas" type="xs:string"
+						<xs:element name="quemOrientavaNasSuasTarefas"
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Quem o orientava nas suas tarefas?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="voceGostaDeEstudar" type="xs:string"
-							minOccurs="0">
+						<xs:element name="voceGostaDeEstudar" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Você gosta de estudar?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="temOHabitoDeEstudar" type="xs:string"
-							minOccurs="0">
+						<xs:element name="temOHabitoDeEstudar" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Tem o hábito de estudar?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
 						<xs:element name="quaisOsConteudosEDisciplinasQueVoceMaisSeInteressa"
@@ -236,10 +254,12 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="aEscolaOfereceCondicoesDePesquisaTaisComo" minOccurs="0">
+						<xs:element name="aEscolaOfereceCondicoesDePesquisaTaisComo"
+							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>A Escola oferece condições de pesquisa, tais como:</xhtml:label>
+									<xhtml:label>A Escola oferece condições de pesquisa, tais como:
+									</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
@@ -268,14 +288,15 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									
-									<xs:element name="naoferece" type="xs:boolean" minOccurs="0">
+
+									<xs:element name="naoferece" type="xs:boolean"
+										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Não oferece</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
-									</xs:element>									
+									</xs:element>
 
 								</xs:sequence>
 							</xs:complexType>
@@ -318,7 +339,8 @@
 						<xs:element name="temInteresseEmPratica" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Se negativo, tem interesse em praticá-las (esportiva,
+									<xhtml:label>Se negativo, tem interesse em praticá-las
+										(esportiva,
 										artística ou recreativa)?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
@@ -329,9 +351,9 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						
-						<xs:element name="qualEsporteTemInteresseEmPratica" type="xs:string"
-							minOccurs="0">
+
+						<xs:element name="qualEsporteTemInteresseEmPratica"
+							type="xs:string" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Quais?</xhtml:label>
@@ -368,12 +390,17 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="quem" type="xs:string" minOccurs="0">
+						<xs:element name="quem" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Quem?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
 					</xs:sequence>
@@ -389,13 +416,17 @@
 				</xs:annotation>
 			</xs:element>
 
-			<xs:element name="tecnicoResponsavel" type="xs:string"
-				minOccurs="0">
+			<xs:element name="tecnicoResponsavel" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Técnico responsável:</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
 			</xs:element>
 
 			<xs:element name="data" minOccurs="0" type="xs:date">
