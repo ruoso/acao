@@ -60,6 +60,37 @@ Retorna os volumes os quais o usuário autenticado tem acesso.
 
 =cut
 
+txn_method 'listar_volumes' => authorized $role_listar => sub {
+    my ($self, $args) = @_;
+
+    my $for = 'collection("volume")/ns:volume';
+
+        my $dados  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";' ;
+       $dados .=  'for $x in '.$for.' return ($x/ns:collection/text(), '.$args->{xqueryret}.')';
+
+    $self->auditoria({ ip => $args->{ip}, operacao => 'list', for => $for });
+
+    return $dados;
+};
+
+sub auditoria  {
+    my ($self, $args) = @_;
+    my $doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
+    my $audit = $controle_audit_w->($doc,
+                                    {
+                                      data => DateTime->now(),
+                                      usuario => $self->user->id,
+                                      acao => $args->{operacao},
+                                      ip => $args->{ip},
+                                      dados => $args->{dados} || '',
+                                    },
+                               );
+    my $xq_audit = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";
+                update insert ('.$audit->toString.') into '.$args->{for}.'/ns:audit';
+    $self->sedna->execute($xq_audit);
+}
+
+
 =item criar_volume($nome, $representaVolumeFisico, $classificacao, $localizacao ,$ip)
 
 =cut
@@ -175,34 +206,6 @@ txn_method 'alterar_estado' => authorized $role_alterar => sub {
                     update insert ('.$audit->toString.') into collection("volume")/ns:volume[ns:collection="'.$id_volume.'"]/ns:audit';
     $self->sedna->execute($xq_audit);
 
-};
-
-txn_method 'auditoria_listar' => authorized $role_listar => sub {
-    my $self = shift;
-    my ($ip, $string_volumes) = @_;
-    my (@volumes, $where);
-    my $dados  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";';
-       $dados .= 'for $x in collection("volume") return $x';
-
-    my $doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
-
-    my $audit = $controle_audit_w->($doc,
-                                        {
-                                          data => DateTime->now(),
-                                          usuario => $self->user->id,
-                                          acao => 'list',
-                                          ip => $ip,
-                                          dados => $dados,
-                                        },
-                                   );
-    @volumes = split(/___/,$string_volumes);
-
-    foreach (@volumes){
-        $where .= ' or ns:collection = '. $_;
-    }
-    my $xq_audit = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";
-                    update insert ('.$audit->toString.') into collection("volume")/ns:volume[1=1 '.$where.']/ns:audit';
-    $self->sedna->execute($xq_audit);
 };
 
 txn_method 'getDadosVolumeId' => authorized $role_listar => sub {
