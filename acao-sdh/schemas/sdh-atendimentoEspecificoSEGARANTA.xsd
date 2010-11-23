@@ -19,7 +19,7 @@
 			<xs:element name="encaminhamentoDoJudiciario">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Encaminhamento do Judiciário</xhtml:label>
+						<xhtml:label>Encaminhamento do judiciario</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 
@@ -50,16 +50,16 @@
 							</xs:annotation>
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
-									<xs:enumeration value="Advertência - Progressão de medida" />
-									<xs:enumeration value="LA - Progressão de medida" />
-									<xs:enumeration value="LA - Regressão de medida " />
+									<xs:enumeration value="Progressão de medida Advertência" />
 									<xs:enumeration
-										value="Obrigação de reparar dano - Progressão de medida" />
-									<xs:enumeration value="PL - Progressão de medida" />
-									<xs:enumeration value="PL - Regressão de medida" />
+										value="Progressão de medida Obrigação de reparar dano" />
 									<xs:enumeration value="PSC - Progressão de medida" />
+									<xs:enumeration value="LA - Progressão de medida" />
 									<xs:enumeration value="Semiliberdade - Progressão de medida" />
+									<xs:enumeration value="PL - Progressão de medida" />
+									<xs:enumeration value="LA - Regressão de medida " />
 									<xs:enumeration value="Semiliberdade - Regressão de medida" />
+									<xs:enumeration value="PL - Regressão de medida" />
 									<xs:enumeration value="Sentença" />
 								</xs:restriction>
 							</xs:simpleType>
@@ -99,7 +99,7 @@
 						<xs:element name="numeroDoProcesso" minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Número(s) do(s) processo(s)</xhtml:label>
+									<xhtml:label>Numero do processo</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -112,92 +112,90 @@
 						<xs:element name="tipoAtoInfracional" minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Tipo de ato infracional </xhtml:label>
+									<xhtml:label>Tipo de Ato Infracional </xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
 									<xs:enumeration value="Ameaça" />
-									<xs:enumeration value="Apropriação indébita" />
+									<xs:enumeration value="Apropriação Indébita" />
 									<xs:enumeration value="Arremesso (Modalidade do art.37)" />
-									<xs:enumeration value="Atentado violento ao pudor" />
+									<xs:enumeration value="Atentado Violento ao Pudor" />
 									<xs:enumeration value="Comunicação falsa" />
-									<xs:enumeration value="Contravenção penal" />
-									<xs:enumeration value="Corrupção ativa" />
-									<xs:enumeration value="Crime ambiental" />
-									<xs:enumeration value="Crime contra a administração pública" />
-									<xs:enumeration value="Crime contra a família" />
-									<xs:enumeration value="Crime contra a fé pública" />
-									<xs:enumeration value="Crime contra a páz pública" />
+									<xs:enumeration value="Contravenção Penal" />
+									<xs:enumeration value="Corrupção Ativa" />
+									<xs:enumeration value="Crime Ambiental" />
+									<xs:enumeration value="Crime contra administração Publica" />
+									<xs:enumeration value="Crime contra Família" />
+									<xs:enumeration value="Crime contra Fé Pública" />
+									<xs:enumeration value="Crime contra a Paz Publica" />
 									<xs:enumeration value="Crime contra a propriedade imaterial" />
 									<xs:enumeration value="Crime de trânsito" />
 									<xs:enumeration value="Dano" />
-									<xs:enumeration value="Dano qualificado" />
-									<xs:enumeration value="Dano ao patrimônio público" />
+									<xs:enumeration value="Dano Qualificado" />
+									<xs:enumeration value="Dano ao Patrimônio Público" />
 									<xs:enumeration value="Desacato" />
 									<xs:enumeration value="Desobediência" />
-									<xs:enumeration value="Direção perigosa" />
-									<xs:enumeration value="Dirigir sem habilitação" />
-									<xs:enumeration value="Disparo com arma de fogo" />
-									<xs:enumeration value="Disparo em via pública" />
+									<xs:enumeration value="Direção Perigosa" />
+									<xs:enumeration value="Dirigir sem Habilitação" />
+									<xs:enumeration value="Disparo com Arma de Fogo" />
+									<xs:enumeration value="Disparo em Via Pública" />
 									<xs:enumeration value="Estelionato" />
 									<xs:enumeration value="Estupro" />
 									<xs:enumeration value="Extorsão" />
-									<xs:enumeration value="Extorsão mediante sequestro" />
-									<xs:enumeration value="Extorsão qualificada" />
-									<xs:enumeration value="Falsa identidade" />
+									<xs:enumeration value="Extorsão Mediante Sequestro" />
+									<xs:enumeration value="Extorsão Qualificada" />
+									<xs:enumeration value="Falsa Identidade" />
 									<xs:enumeration value="Falsificação de documentos" />
-									<xs:enumeration value="Favorecimento real" />
-									<xs:enumeration value="Formação de quadrilha" />
+									<xs:enumeration value="Favorecimento Real" />
+									<xs:enumeration value="Formação de Quadrilha" />
 									<xs:enumeration value="Furto" />
-									<xs:enumeration value="Furto de veículo" />
-									<xs:enumeration value="Furto qualificado" />
+									<xs:enumeration value="Furto de Veiculo" />
+									<xs:enumeration value="Furto Qualificado" />
 									<xs:enumeration value="Homicídio" />
-									<xs:enumeration value="Homicídio culposo" />
-									<xs:enumeration value="Homicídio doloso" />
-									<xs:enumeration value="Homicídio qualificado" />
+									<xs:enumeration value="Homicídio Culposo" />
+									<xs:enumeration value="Homicídio Doloso" />
+									<xs:enumeration value="Homicídio Qualificado" />
 									<xs:enumeration value="Injúria" />
-									<xs:enumeration value="Invasão de domicílio" />
+									<xs:enumeration value="Invasão de Domicilio" />
 									<xs:enumeration value="Latrocínio" />
-									<xs:enumeration value="Lesão corporal" />
-									<xs:enumeration value="Lesão corporal culposa" />
+									<xs:enumeration value="Lesão Corporal" />
+									<xs:enumeration value="Lesão Corporal Culposa" />
 									<xs:enumeration value="Lesão corporal dolosa" />
-									<xs:enumeration value="Moeda falsa" />
+									<xs:enumeration value="Moeda Falsa" />
 									<xs:enumeration value="Motim" />
-									<xs:enumeration value="Ocultação de cadáver" />
-									<xs:enumeration value="Perturbação da tranquilidade" />
+									<xs:enumeration value="ocultação de cadáver" />
+									<xs:enumeration value="Perturbação da Tranquilidade" />
 									<xs:enumeration value="Pichação" />
-									<xs:enumeration value="Porte de drogas" />
-									<xs:enumeration value="Porte ilegal de arma branca" />
-									<xs:enumeration value="Porte ilegal de arma de fogo" />
-									<xs:enumeration value="Porte ilegal de munição" />
-									<xs:enumeration value="Posse de arma de fogo" />
+									<xs:enumeration value="Porte de Drogas" />
+									<xs:enumeration value="Porte Ilegal de Arma Branca" />
+									<xs:enumeration value="Porte Ilegal de Arma de Fogo" />
+									<xs:enumeration value="Porte Ilegal de Munição" />
+									<xs:enumeration value="Posse de Arma de Fogo" />
 									<xs:enumeration value="Receptação" />
-									<xs:enumeration value="Resistência à prisão" />
+									<xs:enumeration value="Resistência à Prisão" />
 									<xs:enumeration value="Roubo" />
-									<xs:enumeration value="Roubo de veículos" />
-									<xs:enumeration value="Roubo qualificado" />
+									<xs:enumeration value="Roubo de Veículos" />
+									<xs:enumeration value="Roubo Qualificado" />
 									<xs:enumeration value="Sequestro" />
-									<xs:enumeration value="Tentativa de estupro" />
-									<xs:enumeration value="Tentativa de fuga mediante violência" />
-									<xs:enumeration value="Tentativa de furto" />
-									<xs:enumeration value="Tentativa de furto qualificado" />
-									<xs:enumeration value="Tentativa de homicídio" />
-									<xs:enumeration value="Tentativa de homicídio doloso" />
-									<xs:enumeration value="Tentativa de invasão de domicílio" />
-									<xs:enumeration value="Tentativa de latrocínio" />
-									<xs:enumeration value="Tentativa de lesão corporal" />
-									<xs:enumeration value="Tentativa de roubo" />
-									<xs:enumeration value="Tentativa de roubo qualificado" />
-									<xs:enumeration value="Tráfico de drogas" />
-									<xs:enumeration value="Uso de drogas" />
-									<xs:enumeration value="Vias de fato" />
-									<xs:enumeration value="Violação de domicílio" />
-									<xs:enumeration value="Outros" />
+									<xs:enumeration value="Tentativa de Estupro" />
+									<xs:enumeration value="Tentativa de Fuga Mediante Violência" />
+									<xs:enumeration value="Tentativa de Furto" />
+									<xs:enumeration value="Tentativa de Furto Qualificado" />
+									<xs:enumeration value="Tentativa de Homicídio" />
+									<xs:enumeration value="Tentativa de Homicídio Doloso" />
+									<xs:enumeration value="Tentativa de invasão de domicilio" />
+									<xs:enumeration value="Tentativa de Latrocínio" />
+									<xs:enumeration value="Tentativa de Lesão Corporal" />
+									<xs:enumeration value="Tentativa de Roubo" />
+									<xs:enumeration value="Tentativa de Roubo Qualificado" />
+									<xs:enumeration value="Tráfico de Drogas" />
+									<xs:enumeration value="Uso de Drogas" />
+									<xs:enumeration value="Vias de Fato" />
+									<xs:enumeration value="Violação de Domicilio" />
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-
 						<xs:element name="especifiqueOutrosTipoAtoInfracional"
 							minOccurs="0">
 							<xs:annotation>
@@ -211,7 +209,6 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
@@ -231,8 +228,7 @@
 						<xs:enumeration value="Em atendimento" />
 						<xs:enumeration value="Interno" />
 						<xs:enumeration value="Preso(acima de 18 anos)" />
-						<xs:enumeration value="Internação-sanção" />
-						<xs:enumeration value="Transferido" />
+						<xs:enumeration value="Internação provisória" />
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
@@ -265,7 +261,7 @@
 							type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Declaração de matrícula e frequência escolar
+									<xhtml:label>Declaração de matricula e frequência escolar
 									</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
@@ -286,13 +282,15 @@
 					<xs:restriction base="xs:string">
 						<xs:enumeration value="Ainda não desligado" />
 						<xs:enumeration value="Liberação compulsória" />
-						<xs:enumeration
-							value="Liberação por cumprimento da medida - Órdem Judicial" />
+						<xs:enumeration value="Liberação por cumprimento da medida - Órdem Judicial" />
 						<xs:enumeration value="Liberação por imputabilidade penal - 21 anos" />
-						<xs:enumeration value="Mortalidade por acidente de trânsito" />
-						<xs:enumeration value="Mortalidade por afogamento" />
-						<xs:enumeration value="Mortalidade por causa natural" />
-						<xs:enumeration value="Mortalidade por choque elétrico" />
+						<xs:enumeration value="Sentenciado com Medida Socioeducativa Privativa de Liberdade" />
+						<xs:enumeration value="Sentenciado com Medida Socioeducativa de Liberdade Assistida" />
+						<xs:enumeration value="Sentenciado com Medida Socioeducativa Privativa de Semiliberdade" />
+						<xs:enumeration value="Mortalidade por Causa Natural" />
+						<xs:enumeration value="Mortalidade por Suicídio" />
+						<xs:enumeration value="Mortalidade por Queimadura" />
+						<xs:enumeration value="Mortalidade por Afogamento" />
 						<xs:enumeration value="Mortalidade por DST" />
 						<xs:enumeration value="Mortalidade por homicídio por arma de fogo" />
 						<xs:enumeration value="Mortalidade por homicídio por arma branca" />
@@ -301,17 +299,13 @@
 						<xs:enumeration value="Mudança de comarca" />
 						<xs:enumeration value="Perca de sentido da medida - Órdem Judicial" />
 						<xs:enumeration value="Respondendo em vara criminal (preso ou resp.)" />
-						<xs:enumeration
-							value="Sentenciado com medida socioeducativa privativa de liberdade" />
-						<xs:enumeration
-							value="Sentenciado com medida socioeducativa de liberdade assistida" />
-						<xs:enumeration
-							value="Sentenciado com medida socioeducativa privativa de semiliberdade" />
+						<xs:enumeration	value="Sentenciado com medida socioeducativa privativa de liberdade" />
+						<xs:enumeration	value="Sentenciado com medida socioeducativa de liberdade assistida" />
+						<xs:enumeration	value="Sentenciado com medida socioeducativa privativa de semiliberdade" />
 						<xs:enumeration value="Outros" />
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
-
 			<xs:element name="especifiqueOutrosCausaDesligamento"
 				minOccurs="0">
 				<xs:annotation>

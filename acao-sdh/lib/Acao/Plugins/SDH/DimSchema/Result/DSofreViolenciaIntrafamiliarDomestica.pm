@@ -35,7 +35,7 @@ __PACKAGE__->table("d_sofre_violencia_intrafamiliar_domestica");
 =head2 frequencia
 
   data_type: 'text'
-  is_nullable: 0
+  is_nullable: 1
   original: {data_type => "varchar"}
 
 =cut
@@ -57,7 +57,7 @@ __PACKAGE__->add_columns(
   "frequencia",
   {
     data_type   => "text",
-    is_nullable => 0,
+    is_nullable => 1,
     original    => { data_type => "varchar" },
   },
 );
@@ -83,8 +83,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-11-12 15:49:29
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:HGMhiom0e8SVj3O4Q0dQJA
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-11-22 14:32:56
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:Ats88ZSsSplB1LX/T3K0kA
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration
