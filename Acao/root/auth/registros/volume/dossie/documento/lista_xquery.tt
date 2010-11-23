@@ -8,6 +8,8 @@ subsequence(
     for $x at $i in collection("[% id_volume %]")/ns:dossie[ns:controle = "[% controle %]" ]/ns:doc/* ,
         $y in collection("acao-schemas")/xss:schema/xss:element/xss:annotation/xss:appinfo/xhtml:label/text()
         where $y/../../../../../@targetNamespace = namespace-uri($x/dc:documento/*/*)
+        and [% where_documentos_validos %]
+        and [% where_tipo_documento %]
     order by $x/dc:criacao descending
     return ($i, [% xqueryret %]), [% ((interval_ini * num_por_pagina) + 1) %], [% num_por_pagina %]
 )

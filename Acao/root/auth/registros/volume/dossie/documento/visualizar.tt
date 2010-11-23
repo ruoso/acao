@@ -30,7 +30,6 @@
  <input type="hidden" name="xsdDocumento" value="[% xsdDocumento %]">
  <input type="hidden" name="id_documento" value="[% id_documento %]">
 
-
  <fieldset>
   <legend>Dados do Volume</legend>
   <dl>
@@ -47,7 +46,7 @@
     <dd>
 	  <div name="xsdFormValidation">
 		<input type="hidden" name="controle" value = "[% controle %]"/>
-        [% controle %]
+        [% id_volume %]
 		<div name="requiredField" style="display: none;">true</div>
 	  </div>
     </dd>
@@ -62,17 +61,19 @@
     <br>
     <dt>Controle:</dt>
     <dd>[% controle %]</dd>
-    <br/>
-    [% IF invalidacao == '1970-01-01T00:00:00Z' %]
+    <!--[% # IF invalidacao == '1970-01-01T00:00:00Z' %]
     <div> 
         <input type="checkbox" id="representaDocumentoFisico" name="representaDocumentoFisico" evt="representaDocumentoFisico" [% IF representaDocumentoFisico == 'true' %] checked [% END %]> 
         <label for="representaDocumentoFisico"> Representa Documento Físico </label>
     </div>
-   [% END %]
+   [% # END %]-->
   </dl>
  </fieldset> 
 
-
+ <fieldset> 
+   <a href="[% c.uri_for('/auth/registros/volume/') _ id_volume _ '/' _ controle _ '/visualizarportipo/' _ id_documento _ '/' _ xsdDocumento.substr(40) %]"> Visualizar todos deste tipo </a>
+ </fieldset> 
+ <br/>
  <div id="form_container"></div>
 
 [% # IF c.user.roles.grep('digitador') %]
@@ -85,10 +86,7 @@
  </form>
 
  <script language="javascript" type="text/javascript">
-   generateForm("[% c.uri_for_action('/auth/registros/xsd/raw', 
-                                     [ xsdDocumento
-                                     ],{}) %]", 
-                "form_container");
+   generateForm("[% c.uri_for_action('/auth/registros/xsd/raw', [ xsdDocumento ],{}) %]", "form_container");
 
    fillValues  ("[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/' _ controle _ '/xml/' _ id_documento) %]");
  </script>

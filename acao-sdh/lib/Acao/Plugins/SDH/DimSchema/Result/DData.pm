@@ -27,42 +27,42 @@ __PACKAGE__->table("d_data");
 =head2 dia
 
   data_type: 'integer'
-  is_nullable: 0
+  is_nullable: 1
 
 =head2 mes
 
   data_type: 'integer'
-  is_nullable: 0
+  is_nullable: 1
 
 =head2 ano
 
   data_type: 'integer'
-  is_nullable: 0
+  is_nullable: 1
 
 =head2 data
 
   data_type: 'date'
-  is_nullable: 0
+  is_nullable: 1
 
 =head2 bimestre
 
   data_type: 'integer'
-  is_nullable: 0
+  is_nullable: 1
 
 =head2 trimestre
 
   data_type: 'integer'
-  is_nullable: 0
+  is_nullable: 1
 
 =head2 semestre
 
   data_type: 'integer'
-  is_nullable: 0
+  is_nullable: 1
 
 =head2 dia_semana
 
   data_type: 'text'
-  is_nullable: 0
+  is_nullable: 1
   original: {data_type => "varchar"}
 
 =cut
@@ -71,23 +71,23 @@ __PACKAGE__->add_columns(
   "id_data",
   { data_type => "integer", is_nullable => 0 },
   "dia",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", is_nullable => 1 },
   "mes",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", is_nullable => 1 },
   "ano",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", is_nullable => 1 },
   "data",
-  { data_type => "date", is_nullable => 0 },
+  { data_type => "date", is_nullable => 1 },
   "bimestre",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", is_nullable => 1 },
   "trimestre",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", is_nullable => 1 },
   "semestre",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", is_nullable => 1 },
   "dia_semana",
   {
     data_type   => "text",
-    is_nullable => 0,
+    is_nullable => 1,
     original    => { data_type => "varchar" },
   },
 );
@@ -111,8 +111,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-21 11:36:06
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:u1Je6pPkBhnbp/vUb41xmA
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-11-22 14:32:56
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:QBAnObypX6FSGRPfeQ4iNQ
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

@@ -258,7 +258,7 @@
 										</xs:simpleType>
 									</xs:element>
 
-									<xs:element name="ameacadeMorte" type="xs:boolean">
+									<xs:element name="ameacaDeMorte" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Ameaça de Morte</xhtml:label>
@@ -1821,7 +1821,7 @@
 							</xs:complexType>
 						</xs:element>
 
-						<xs:element name="outros" type="xs:boolean">
+						<xs:element name="outros" type="xs:boolean"  minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Outros</xhtml:label>
@@ -1829,7 +1829,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="especifiqueOutros" type="xs:string">
+						<xs:element name="especifiqueOutros" type="xs:string" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Especifique outros</xhtml:label>

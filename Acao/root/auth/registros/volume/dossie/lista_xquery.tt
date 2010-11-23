@@ -1,6 +1,16 @@
 declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
+declare namespace dc = "http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";
+declare namespace pes = "http://schemas.fortaleza.ce.gov.br/acao/sdh-identificacaoPessoal.xsd";
 
 subsequence(
-      for $x in collection("[% id_volume %]")/ns:dossie return ($x/ns:controle/text(), [% xqueryret %]),
+      for $x in collection("[% id_volume %]")/ns:dossie
+
+      where [% where_nome_membro %]
+
+      and [% where_nome_mae %]
+
+      order by $x/ns:criacao descending      
+  
+      return ($x/ns:controle/text(), [% xqueryret %]),
       [% ((interval_ini * num_por_pagina) + 1) %], [% num_por_pagina %]
 )

@@ -1,8 +1,7 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-juridico.xsd"
-	xmlns:xhtml="http://www.w3.org/1999/xhtml" 
-	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-juridico.xsd"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml" targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-juridico.xsd"
 	elementFormDefault="qualified">
 
 	<xs:element name="formJuridico" type="formJuridico">
@@ -47,8 +46,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="prestacaoDeServicosAComunidade"
-							type="xs:boolean">
+						<xs:element name="prestacaoDeServicosAComunidade" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Prestação de Serviços à Comunidade</xhtml:label>
@@ -76,6 +74,14 @@
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Privação de Liberdade</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="advertencia" type="xs:boolean" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Advertência</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -188,7 +194,7 @@
 									<xs:element name="quaisAgressoes">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Quais Agressões?</xhtml:label>
+												<xhtml:label>Quais agressões?</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:complexType>
@@ -311,7 +317,7 @@
 										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Os policiais que realizaram sua apreenção
+												<xhtml:label>Os policiais que realizaram sua apreensão
 													são
 													os
 													mesmos que o conduziu para o IML?
@@ -355,8 +361,8 @@
 										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Houve presenca de advogado ou defensor
-													publico
+												<xhtml:label>Houve presença de advogado ou defensor
+													público
 													no ato da apreensão em flagrante?</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
@@ -376,7 +382,7 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Da delegacia da crianca e do adolescente
+									<xhtml:label>Da Delegacia da Criança e do Adolescente
 									</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
@@ -400,7 +406,7 @@
 						<xs:element name="daUnidadeDeRecepcao" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Da unidade de recepção</xhtml:label>
+									<xhtml:label>Da Unidade de Recepção</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
@@ -423,7 +429,7 @@
 						<xs:element name="daApresentacao" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Da apresentação</xhtml:label>
+									<xhtml:label>Da Apresentação</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
@@ -433,11 +439,8 @@
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Contato do adolescente com o Membro do
-													Ministério Publico, a Representante da Defensoria
-													Publica e
-													Juiz e a adequada observância dos
-													direitos
-													e garantias
+													Ministério Público, a Representante da Defensoria Pública e
+													Juiz e a adequada observância dos direitos e garantias
 													fundamentais</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
@@ -545,7 +548,8 @@
 										type="xs:string" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Saber se o adolescente já esteve em abrigo, qual abrigo e o motivo de permanência</xhtml:label>
+												<xhtml:label>Saber se o adolescente já esteve em abrigo,
+													qual abrigo e o motivo de permanência</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -574,7 +578,7 @@
 						<xs:element name="data" minOccurs="0" type="xs:date">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Data</xhtml:label>
+									<xhtml:label>Data:</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>

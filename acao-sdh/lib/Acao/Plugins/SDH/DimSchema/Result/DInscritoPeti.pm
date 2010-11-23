@@ -1,4 +1,4 @@
-package Acao::Plugins::SDH::DimSchema::Result::DFrequenciaViolenciaIntrafamiliar;
+package Acao::Plugins::SDH::DimSchema::Result::DInscritoPeti;
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
@@ -11,22 +11,22 @@ use base 'DBIx::Class::Core';
 
 =head1 NAME
 
-Acao::Plugins::SDH::DimSchema::Result::DFrequenciaViolenciaIntrafamiliar
+Acao::Plugins::SDH::DimSchema::Result::DInscritoPeti
 
 =cut
 
-__PACKAGE__->table("d_frequencia_violencia_intrafamiliar");
+__PACKAGE__->table("d_inscrito_peti");
 
 =head1 ACCESSORS
 
-=head2 id_frequencia_violencia_intrafamiliar
+=head2 id_inscrito_peti
 
   data_type: 'integer'
   is_auto_increment: 1
   is_nullable: 0
-  sequence: 'd_frequencia_violencia_intrafamiliar_id_frequencia_violencia624'
+  sequence: 'd_inscrito_peti_id_inscrito_peti_seq'
 
-=head2 frequencia_violencia_intrafamiliar
+=head2 inscrito_peti
 
   data_type: 'text'
   is_nullable: 0
@@ -35,21 +35,21 @@ __PACKAGE__->table("d_frequencia_violencia_intrafamiliar");
 =cut
 
 __PACKAGE__->add_columns(
-  "id_frequencia_violencia_intrafamiliar",
+  "id_inscrito_peti",
   {
     data_type         => "integer",
     is_auto_increment => 1,
     is_nullable       => 0,
-    sequence          => "d_frequencia_violencia_intrafamiliar_id_frequencia_violencia624",
+    sequence          => "d_inscrito_peti_id_inscrito_peti_seq",
   },
-  "frequencia_violencia_intrafamiliar",
+  "inscrito_peti",
   {
     data_type   => "text",
     is_nullable => 0,
     original    => { data_type => "varchar" },
   },
 );
-__PACKAGE__->set_primary_key("id_frequencia_violencia_intrafamiliar");
+__PACKAGE__->set_primary_key("id_inscrito_peti");
 
 =head1 RELATIONS
 
@@ -64,15 +64,13 @@ Related object: L<Acao::Plugins::SDH::DimSchema::Result::FAtendimento>
 __PACKAGE__->has_many(
   "f_atendimentoes",
   "Acao::Plugins::SDH::DimSchema::Result::FAtendimento",
-  {
-    "foreign.id_frequencia_violencia_intrafamiliar" => "self.id_frequencia_violencia_intrafamiliar",
-  },
+  { "foreign.id_inscrito_peti" => "self.id_inscrito_peti" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-21 11:36:06
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:A+R+4U92Ed5A710eHo6JDQ
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-11-22 14:32:56
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:6anqxgdLtT3mda0scfuoUw
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

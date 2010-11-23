@@ -51,9 +51,26 @@ __PACKAGE__->add_columns(
 );
 __PACKAGE__->set_primary_key("id_turno_estuda");
 
+=head1 RELATIONS
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-21 11:36:06
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:6On92a8Uw8wyGNIIGKlEAA
+=head2 f_atendimentoes
+
+Type: has_many
+
+Related object: L<Acao::Plugins::SDH::DimSchema::Result::FAtendimento>
+
+=cut
+
+__PACKAGE__->has_many(
+  "f_atendimentoes",
+  "Acao::Plugins::SDH::DimSchema::Result::FAtendimento",
+  { "foreign.id_turno_estuda" => "self.id_turno_estuda" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-11-22 14:32:56
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:6lOv6MlSqN6n0XwSaLETzg
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

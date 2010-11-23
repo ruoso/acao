@@ -32,6 +32,12 @@ __PACKAGE__->table("d_esta_trabalhando");
   is_nullable: 0
   original: {data_type => "varchar"}
 
+=head2 tipo_trabalho
+
+  data_type: 'text'
+  is_nullable: 1
+  original: {data_type => "varchar"}
+
 =cut
 
 __PACKAGE__->add_columns(
@@ -46,6 +52,12 @@ __PACKAGE__->add_columns(
   {
     data_type   => "text",
     is_nullable => 0,
+    original    => { data_type => "varchar" },
+  },
+  "tipo_trabalho",
+  {
+    data_type   => "text",
+    is_nullable => 1,
     original    => { data_type => "varchar" },
   },
 );
@@ -69,8 +81,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-21 11:36:06
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:FHHMc+kJKUwwJt9u0xqGgA
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-11-22 14:32:56
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:SznvWrAP3SOu1pGj+fdX0g
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

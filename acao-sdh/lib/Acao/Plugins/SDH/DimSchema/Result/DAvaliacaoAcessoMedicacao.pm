@@ -1,4 +1,4 @@
-package Acao::Plugins::SDH::DimSchema::Result::DAcessoMedicacao;
+package Acao::Plugins::SDH::DimSchema::Result::DAvaliacaoAcessoMedicacao;
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
@@ -11,22 +11,22 @@ use base 'DBIx::Class::Core';
 
 =head1 NAME
 
-Acao::Plugins::SDH::DimSchema::Result::DAcessoMedicacao
+Acao::Plugins::SDH::DimSchema::Result::DAvaliacaoAcessoMedicacao
 
 =cut
 
-__PACKAGE__->table("d_acesso_medicacao");
+__PACKAGE__->table("d_avaliacao_acesso_medicacao");
 
 =head1 ACCESSORS
 
-=head2 id_acesso_medicacao
+=head2 id_avaliacao_acesso_medicacao
 
   data_type: 'integer'
   is_auto_increment: 1
   is_nullable: 0
-  sequence: 'd_acesso_medicacao_id_acesso_medicacao_seq'
+  sequence: 'd_avaliacao_acesso_medicacao_id_avaliacao_acesso_medicacao_seq'
 
-=head2 acesso_medicacao
+=head2 avaliacao_acesso_medicacao
 
   data_type: 'text'
   is_nullable: 0
@@ -35,21 +35,21 @@ __PACKAGE__->table("d_acesso_medicacao");
 =cut
 
 __PACKAGE__->add_columns(
-  "id_acesso_medicacao",
+  "id_avaliacao_acesso_medicacao",
   {
     data_type         => "integer",
     is_auto_increment => 1,
     is_nullable       => 0,
-    sequence          => "d_acesso_medicacao_id_acesso_medicacao_seq",
+    sequence          => "d_avaliacao_acesso_medicacao_id_avaliacao_acesso_medicacao_seq",
   },
-  "acesso_medicacao",
+  "avaliacao_acesso_medicacao",
   {
     data_type   => "text",
     is_nullable => 0,
     original    => { data_type => "varchar" },
   },
 );
-__PACKAGE__->set_primary_key("id_acesso_medicacao");
+__PACKAGE__->set_primary_key("id_avaliacao_acesso_medicacao");
 
 =head1 RELATIONS
 
@@ -64,13 +64,15 @@ Related object: L<Acao::Plugins::SDH::DimSchema::Result::FAtendimento>
 __PACKAGE__->has_many(
   "f_atendimentoes",
   "Acao::Plugins::SDH::DimSchema::Result::FAtendimento",
-  { "foreign.id_acesso_medicacao" => "self.id_acesso_medicacao" },
+  {
+    "foreign.id_avaliacao_acesso_medicacao" => "self.id_avaliacao_acesso_medicacao",
+  },
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-21 11:36:06
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:LnFrAyNfohL+o/iYvoas0A
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-11-22 14:32:56
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:cB0cVqgkdMDoeCq4UHwx2g
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

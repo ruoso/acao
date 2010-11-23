@@ -194,6 +194,39 @@ txn_method 'visualizar' => authorized $role_visualizar => sub {
     return $xml;
 };
 
+
+txn_method 'visualizar_por_tipo' => authorized $role_visualizar => sub {
+    my ( $self, $id_volume, $controle, $xsdDocumento ) = @_;
+
+    my $xq   = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
+                declare namespace dc = "http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";
+                declare namespace adt = "http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd";
+                declare namespace xhtml="http://www.w3.org/1999/xhtml";
+                declare namespace xss="http://www.w3.org/2001/XMLSchema";
+                for $x at $i in collection("'.$id_volume.'")
+                /ns:dossie[ns:controle = "'.$controle.'" ]/ns:doc/* ,
+                $y in collection("acao-schemas")/xss:schema/xss:element/xss:annotation/xss:appinfo/xhtml:label/text()
+                where $y/../../../../../@targetNamespace = namespace-uri($x/dc:documento/*/*)
+                and namespace-uri($x/dc:documento/*/*) = "'.$xsdDocumento.'"
+                order by $x/dc:criacao descending
+                return $x/dc:id/text()';
+
+
+   $self->sedna->execute($xq);
+
+   #my $xml = $self->sedna->get_item;
+
+    my $controles;
+
+    while(my $controle = $self->sedna->get_item){
+        $controles.= $controle.',';
+    };
+
+   return $controles;
+
+};
+
+
 # Incluir o cabecalho de auditoria ao efetuar uma listagem nos documentos
 txn_method 'auditoria_listar' => authorized $role_listar => sub {
     my $self = shift;
