@@ -134,9 +134,9 @@ sub getDossies{
     }
 
     for (my $i=0; $i < scalar(@dossies); $i+= 2){
-warn 'Faltando ' . (scalar(@dossies) - ($i + 2)) . ' ...';
-$dossies[$i+1]=~ s/^\s+//;
-extract($dossies[$i], $dossies[$i + 1]);
+        warn 'Faltando ' . ((scalar(@dossies)) - ($i)) . ' .....................................';
+        $dossies[$i+1]=~ s/^\s+//;
+        extract($dossies[$i], $dossies[$i + 1]);
     }
 
 }
@@ -436,20 +436,36 @@ sub transform_nis {
 
 sub transform_data_nascimento {
     my $data = shift;
-    my $dt = DateTime::Format::XSD->parse_datetime( $data->{dataNascimento} );
-    my $dt_int =  $data->{dataNascimento};
-    $dt_int=~s/[\-]//gis;
-    $data->{data} = $dbi->resultset('DData')->find_or_create({ id_data => $dt_int,
-                                                               data => $data->{dataNascimento},
-                                                               dia  => $dt->day,
-                                                               mes  => $dt->month,
-                                                              ano  => $dt->year,
-                                                              bimestre => int(($dt->month-1)/2)+1,
-                                                              trimestre => int(($dt->month-1)/3)+1,
-                                                              semestre => $dt->month < 6 ? 1 : 2,
-                                                              dia_semana => $dt->day_of_week,
-                                                            })->id_data;
- $data->{dataNascimento} = $dt_int;
+    my ($dt,$dt_int);
+    if($data->{dataNascimento}){
+        $dt = DateTime::Format::XSD->parse_datetime( $data->{dataNascimento} );
+        $dt_int =  $data->{dataNascimento};
+        $dt_int=~s/[\-]//gis;
+        $data->{data} = $dbi->resultset('DData')->find_or_create({ id_data => $dt_int,
+                                                                   data => $data->{dataNascimento},
+                                                                   dia  => $dt->day,
+                                                                   mes  => $dt->month,
+                                                                  ano  => $dt->year,
+                                                                  bimestre => int(($dt->month-1)/2)+1,
+                                                                  trimestre => int(($dt->month-1)/3)+1,
+                                                                  semestre => $dt->month < 6 ? 1 : 2,
+                                                                  dia_semana => $dt->day_of_week,
+                                                                })->id_data;
+         $data->{dataNascimento} = $dt_int;
+    }
+    else{
+        $data->{dataNascimento} = "1970-01-01";
+        $data->{dataNascimento} = $dbi->resultset('DData')->find_or_create({ id_data => 0,
+                                                                   data => $data->{dataEncaminhamento},
+                                                                   dia  => 0,
+                                                                   mes  => 0,
+                                                                   ano  => 0,
+                                                                   bimestre => 0,
+                                                                   trimestre => 0,
+                                                                   semestre => 0,
+                                                                   dia_semana => 0,
+                                                                  })->id_data;
+    }
 }
 
 sub transform_tipo_iluminacao {
@@ -492,7 +508,7 @@ sub transform_regional {
     my $data = shift;
     my $value =  'Não Informado';
     if($data->{filiacao}{regional}){
-        $value = $data->{filiacao}{regional};
+        $value = 'Regional ' . $data->{filiacao}{regional};
     }
     $data->{filiacao}{regional} = $dbi->resultset('DRegional')->find_or_create({ regional => $value,})->id_regional;
 }
@@ -710,10 +726,12 @@ sub transform_status_vinculacao_cca{
 
 sub transform_data{
     my $data = shift;
-    my $dt = DateTime::Format::XSD->parse_datetime( $data->{dataEncaminhamento} );
-    my $dt_int =  $data->{dataEncaminhamento};
-    $dt_int=~s/[\-]//gis;
-    $data->{dataEncaminhamento} = $dbi->resultset('DData')->find_or_create({ id_data => $dt_int,
+    my ($dt, $dt_int);
+    if($data->{dataEncaminhamento}){
+        $dt = DateTime::Format::XSD->parse_datetime( $data->{dataEncaminhamento} );
+        $dt_int =  $data->{dataEncaminhamento};
+        $dt_int=~s/[\-]//gis;
+        $data->{dataEncaminhamento} = $dbi->resultset('DData')->find_or_create({ id_data => $dt_int,
                                                                data => $data->{dataEncaminhamento},
                                                                dia  => $dt->day,
                                                                mes  => $dt->month,
@@ -723,6 +741,20 @@ sub transform_data{
                                                                semestre => $dt->month < 6 ? 1 : 2,
                                                                dia_semana => $dt->day_of_week,
                                                               })->id_data;
+    }
+    else{
+        $data->{dataEncaminhamento} = "1970-01-01";
+        $data->{dataEncaminhamento} = $dbi->resultset('DData')->find_or_create({ id_data => 0,
+                                                                   data => $data->{dataEncaminhamento},
+                                                                   dia  => 0,
+                                                                   mes  => 0,
+                                                                   ano  => 0,
+                                                                   bimestre => 0,
+                                                                   trimestre => 0,
+                                                                   semestre => 0,
+                                                                   dia_semana => 0,
+                                                                  })->id_data;
+    }
 }
 
 sub transform_sofre_violencia_intra_familiar{
