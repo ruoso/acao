@@ -44,13 +44,17 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="haQuantoTempo" type="xs:string"
-							minOccurs="0">
+						<xs:element name="haQuantoTempo" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Há quanto tempo?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
 						<xs:element name="sofreuAlgumTipoDeViolenciaIntrafamiliar"
@@ -70,13 +74,17 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="duranteQuantoTempo" type="xs:string"
-							minOccurs="0">
+						<xs:element name="duranteQuantoTempo" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Durante quanto tempo?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
 						<xs:element name="nuncaSofreuNenhumTipoDeViolenciaIntrafamiliar"
@@ -294,12 +302,17 @@
 
 									<xs:element
 										name="especifiqueOutroCasoTenhaSofridoViolenciaEspecifique"
-										type="xs:string" minOccurs="0">
+										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Especifique Outros</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
 									</xs:element>
 
 									<xs:element name="frequenciaSofreOutros" minOccurs="0">
@@ -342,13 +355,17 @@
 													</xs:annotation>
 												</xs:element>
 
-												<xs:element name="qual" type="xs:string"
-													minOccurs="0">
+												<xs:element name="qual" minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label>Qual?</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="255" />
+														</xs:restriction>
+													</xs:simpleType>
 												</xs:element>
 
 												<xs:element name="resouveuASituacaoPorContaPropria"
@@ -442,13 +459,17 @@
 													</xs:annotation>
 												</xs:element>
 
-												<xs:element name="onde" type="xs:string"
-													minOccurs="0">
+												<xs:element name="onde" minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label>Onde?</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="255" />
+														</xs:restriction>
+													</xs:simpleType>
 												</xs:element>
 
 												<xs:element
@@ -510,13 +531,17 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="haQuantoTempo" type="xs:string"
-							minOccurs="0">
+						<xs:element name="haQuantoTempo" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Há quanto tempo?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
 						<xs:element name="sofreuAlgumTipoDeViolenciaInstitucional"
@@ -536,13 +561,17 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="duranteQuantoTempo" type="xs:string"
-							minOccurs="0">
+						<xs:element name="duranteQuantoTempo" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Durante quanto tempo?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
 						<xs:element name="nuncaSofreuNenhumTipoDeViolenciaInstitucional"
@@ -608,13 +637,17 @@
 										</xs:annotation>
 									</xs:element>
 
-									<xs:element name="especifiqueOutros" type="xs:string"
-										minOccurs="0">
+									<xs:element name="especifiqueOutros" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Especifique Outros</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
 									</xs:element>
 
 								</xs:sequence>
@@ -798,12 +831,17 @@
 
 									<xs:element
 										name="especifiqueOutroCasoTenhaSofridoViolenciaEspecifique"
-										type="xs:string" minOccurs="0">
+										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Especifique Outros</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
 									</xs:element>
 
 									<xs:element name="frequenciaSofreOutros" minOccurs="0">
@@ -883,12 +921,17 @@
 
 									<xs:element
 										name="especifiqueOutroCasoTenhaSofridoViolenciaEspecifique"
-										type="xs:string" minOccurs="0">
+										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Especifique Outros</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
 									</xs:element>
 
 								</xs:sequence>
@@ -1072,12 +1115,17 @@
 
 									<xs:element
 										name="especifiqueOutroCasoTenhaSofridoViolenciaEspecifique"
-										type="xs:string" minOccurs="0">
+										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Especifique Outros</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
 									</xs:element>
 
 									<xs:element name="frequenciaSofreOutros" minOccurs="0">
@@ -1124,12 +1172,17 @@
 										</xs:annotation>
 									</xs:element>
 
-									<xs:element name="qual" type="xs:string" minOccurs="0">
+									<xs:element name="qual" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Qual?</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
 									</xs:element>
 
 									<xs:element name="resouveuASituacaoPorContaPropria"
@@ -1222,12 +1275,17 @@
 										</xs:annotation>
 									</xs:element>
 
-									<xs:element name="onde" type="xs:string" minOccurs="0">
+									<xs:element name="onde" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Onde?</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
 									</xs:element>
 
 									<xs:element
@@ -1285,13 +1343,17 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="haQuantoTempo" type="xs:string"
-							minOccurs="0">
+						<xs:element name="haQuantoTempo" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Há quanto tempo?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
 						<xs:element name="sofreuAlgumTipoDeViolenciaComunitaria"
@@ -1311,13 +1373,17 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="duranteQuantoTempo" type="xs:string"
-							minOccurs="0">
+						<xs:element name="duranteQuantoTempo" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Durante quanto tempo?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
 						<xs:element name="nuncaSofreuNenhumTipoDeViolenciaComunitaria"
@@ -1507,12 +1573,17 @@
 
 									<xs:element
 										name="especifiqueOutroCasoTenhaSofridoViolenciaEspecifique"
-										type="xs:string" minOccurs="0">
+										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Especifique Outros</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
 									</xs:element>
 
 									<xs:element name="frequenciaSofreOutros" minOccurs="0">
@@ -1559,12 +1630,17 @@
 										</xs:annotation>
 									</xs:element>
 
-									<xs:element name="qual" type="xs:string" minOccurs="0">
+									<xs:element name="qual" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Qual?</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
 									</xs:element>
 
 									<xs:element name="resouveuASituacaoPorContaPropria"
@@ -1656,12 +1732,17 @@
 										</xs:annotation>
 									</xs:element>
 
-									<xs:element name="onde" type="xs:string" minOccurs="0">
+									<xs:element name="onde" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Onde?</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
 									</xs:element>
 
 									<xs:element
@@ -1821,7 +1902,7 @@
 							</xs:complexType>
 						</xs:element>
 
-						<xs:element name="outros" type="xs:boolean"  minOccurs="0">
+						<xs:element name="outros" type="xs:boolean" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Outros</xhtml:label>
@@ -1829,21 +1910,30 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="especifiqueOutros" type="xs:string" minOccurs="0">
+						<xs:element name="especifiqueOutros" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Especifique outros</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="cargaHorariaMensal" type="xs:string"
-							minOccurs="0">
+						<xs:element name="cargaHorariaMensal" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Carga Horária Mensal</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
 					</xs:sequence>
@@ -1929,13 +2019,17 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="duranteQuantoTempo" type="xs:string"
-							minOccurs="0">
+						<xs:element name="duranteQuantoTempo" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Durante quanto tempo?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
 						<xs:element name="estaEmVivenciaDeRua" type="xs:boolean"
@@ -1947,22 +2041,30 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="haQuantoTempo" type="xs:string"
-							minOccurs="0">
+						<xs:element name="haQuantoTempo" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Há quanto tempo?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="motivacao" type="xs:string"
-							minOccurs="0">
+						<xs:element name="motivacao" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Motivação</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 					</xs:sequence>
 				</xs:complexType>
@@ -2000,12 +2102,17 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="onde" type="xs:string" minOccurs="0">
+						<xs:element name="onde" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Onde</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
 						<xs:element

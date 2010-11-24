@@ -41,13 +41,17 @@
 				</xs:annotation>
 			</xs:element>
 
-			<xs:element name="motivoEncaminhamento" minOccurs="0"
-				type="xs:string">
+			<xs:element name="motivoEncaminhamento" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Motivo:</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
 			</xs:element>
 
 			<xs:element name="retornoJudiciario" minOccurs="0" type="xs:string">

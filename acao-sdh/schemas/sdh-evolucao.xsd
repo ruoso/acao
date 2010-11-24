@@ -1,8 +1,7 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-evolucao.xsd"
-	xmlns:xhtml="http://www.w3.org/1999/xhtml"
-	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-evolucao.xsd"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml" targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-evolucao.xsd"
 	elementFormDefault="qualified">
 
 	<xs:element name="formEvolucao" type="formEvolucao">
@@ -33,13 +32,17 @@
 				</xs:annotation>
 			</xs:element>
 
-			<xs:element name="tecnicoResponsavel" type="xs:string"
-				minOccurs="1">
+			<xs:element name="tecnicoResponsavel" minOccurs="1">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Técnico responsável</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
 			</xs:element>
 
 		</xs:sequence>

@@ -31,22 +31,30 @@
 				</xs:simpleType>
 			</xs:element>
 
-			<xs:element name="tipoAtividadeEstagio" type="xs:string"
-				minOccurs="0">
+			<xs:element name="tipoAtividadeEstagio" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Tipo de Atividade</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
 			</xs:element>
 
-			<xs:element name="quantoTempoEstagio" type="xs:string"
-				minOccurs="0">
+			<xs:element name="quantoTempoEstagio" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Durante quanto tempo</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
 			</xs:element>
 
 			<xs:element name="jaTrabalhouAlgumaVez" minOccurs="0">
@@ -63,13 +71,17 @@
 				</xs:simpleType>
 			</xs:element>
 
-			<xs:element name="tipoAtividadeTrabalhou" type="xs:string"
-				minOccurs="0">
+			<xs:element name="tipoAtividadeTrabalhou" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Tipo de Atividade que trabalhou</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
 			</xs:element>
 
 			<xs:element name="seJaTabalhou">
@@ -101,13 +113,17 @@
 				</xs:complexType>
 			</xs:element>
 
-			<xs:element name="quantoTempoTrabalhou" type="xs:string"
-				minOccurs="0">
+			<xs:element name="quantoTempoTrabalhou" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Durante quanto tempo trabalhou</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
 			</xs:element>
 
 
@@ -154,31 +170,43 @@
 				</xs:complexType>
 			</xs:element>
 
-			<xs:element name="tipoAtividadeTrabalho" type="xs:string"
-				minOccurs="0">
+			<xs:element name="tipoAtividadeTrabalho" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Tipo de Atividade que está trabalhando</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
 			</xs:element>
 
-			<xs:element name="desdeQuandoTrabalha" type="xs:string"
-				minOccurs="0">
+			<xs:element name="desdeQuandoTrabalha" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Desde quando está trabalhando</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
 			</xs:element>
 
-			<xs:element name="cargaHorariaTrabalho" type="xs:string"
-				minOccurs="0">
+			<xs:element name="cargaHorariaTrabalho" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Carga horária que está Trabalhando</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
 			</xs:element>
 
 			<xs:element name="valorRendaMensal" minOccurs="0">
@@ -295,16 +323,21 @@
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
-						
-						<xs:element name="especifiqueEsporte" type="xs:string"
+
+						<xs:element name="especifiqueEsporte"
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Especifique esporte</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
-						
+
 						<xs:element name="outras" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
@@ -313,13 +346,18 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="especifiqueOutrasHabilidades" type="xs:string"
+						<xs:element name="especifiqueOutrasHabilidades"
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Especifique outras habilidades</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
 					</xs:sequence>

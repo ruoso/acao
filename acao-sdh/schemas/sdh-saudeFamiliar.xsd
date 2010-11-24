@@ -1,7 +1,8 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-saudeFamiliar.xsd"
-	xmlns:xhtml="http://www.w3.org/1999/xhtml" targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-saudeFamiliar.xsd"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-saudeFamiliar.xsd"
 	elementFormDefault="qualified">
 
 	<xs:element name="formSaudeFamiliar" type="formSaudeFamiliar">
@@ -24,12 +25,17 @@
 				<xs:complexType>
 					<xs:sequence>
 
-						<xs:element name="nome" type="xs:string" minOccurs="0">
+						<xs:element name="nome" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Nome</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
 						<xs:element name="parentesco" minOccurs="0">
@@ -59,29 +65,43 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="idade" type="xs:string" minOccurs="0">
+						<xs:element name="idade" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Especifique outros</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="idade" type="xs:string" minOccurs="0">
+						<xs:element name="idade" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Idade</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="tipoDeDoenca" type="xs:string"
-							minOccurs="0">
+						<xs:element name="tipoDeDoenca" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Tipo de doença</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
 						<xs:element name="situacaoDetratamento" minOccurs="0">
@@ -103,22 +123,31 @@
 						</xs:element>
 
 						<xs:element name="especifiqueOutrosSituacaoDeTratamento"
-							type="xs:string" minOccurs="0">
+							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Especifique outras situações de tratamento
 									</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="localDeTratamento" type="xs:string"
-							minOccurs="0">
+						<xs:element name="localDeTratamento" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Local de tratamento</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
 						<xs:element name="observacoes" type="xs:string"
@@ -133,7 +162,7 @@
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
-			
+
 		</xs:sequence>
 	</xs:complexType>
 </xs:schema>

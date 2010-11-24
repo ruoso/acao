@@ -176,22 +176,31 @@
 			</xs:element>
 
 			<xs:element name="numeroDePessoasQueJaPassaramPorPenaMSE"
-				minOccurs="0" type="xs:string">
+				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Número de pessoas que já passaram por pena ou MSE
 						</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
 			</xs:element>
 
-			<xs:element name="faixaEtariaPessoaEnvolvida"
-				minOccurs="0" type="xs:string">
+			<xs:element name="faixaEtariaPessoaEnvolvida" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Faixa etária da pessoa envolvida</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
 			</xs:element>
 
 			<xs:element name="InfracoesCometidas" minOccurs="0">

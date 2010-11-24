@@ -34,13 +34,17 @@
 				</xs:simpleType>
 			</xs:element>
 
-			<xs:element name="especifiqueOutros" type="xs:string"
-				minOccurs="0">
+			<xs:element name="especifiqueOutros" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Especifique outros</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
 			</xs:element>
 
 			<xs:element name="tempoMoradia" minOccurs="0">
@@ -122,22 +126,31 @@
 				</xs:complexType>
 			</xs:element>
 
-			<xs:element name="especifiqueOutrosTiposConstrucao" type="xs:string"
+			<xs:element name="especifiqueOutrosTiposConstrucao"
 				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Especifique Outros</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
 			</xs:element>
 
-			<xs:element name="quantidadeComodos" type="xs:string"
-				minOccurs="0">
+			<xs:element name="quantidadeComodos" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Quantidade de Cômodos</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
 			</xs:element>
 
 			<xs:element name="possuiBanheiro" minOccurs="0">
@@ -216,12 +229,17 @@
 			</xs:element>
 
 			<xs:element name="especifiqueOutrosTiposAbastecimentoAgua"
-				type="xs:string" minOccurs="0">
+				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Especifique Outros</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
 			</xs:element>
 
 			<xs:element name="tratamentoAgua">
@@ -276,13 +294,18 @@
 				</xs:complexType>
 			</xs:element>
 
-			<xs:element name="especifiqueOutrosTratamentoAgua" type="xs:string"
+			<xs:element name="especifiqueOutrosTratamentoAgua"
 				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Especifique Outros</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
 			</xs:element>
 
 			<xs:element name="tipoIluminacao" minOccurs="0">
@@ -353,12 +376,17 @@
 			</xs:element>
 
 			<xs:element name="especifiqueOutrosEscoamentoSanitario"
-				type="xs:string" minOccurs="0">
+				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Especifique Outros</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
 			</xs:element>
 
 			<xs:element name="destinoLixo">
