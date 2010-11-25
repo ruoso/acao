@@ -49,7 +49,7 @@ lista das sub-áreas da área de registros.
 
 sub principal : Chained('base') : PathPart('') : Args(0) {
     my ( $self, $c ) = @_;
-    my @roles = $c->user->roles;
+    my @roles = @{$c->user->memberof};
 
     if ( ( grep { /^revisor$/ } @roles )
         && !( grep { /^digitador$/ } @roles ) )
@@ -61,7 +61,8 @@ sub principal : Chained('base') : PathPart('') : Args(0) {
     {
         $c->res->redirect( $c->uri_for('/auth/registros/digitador') );
     }
-    if ($role_listar)
+    elsif ((! grep { /^revisor$/   } @roles ) &&
+           (! grep { /^digitador$/ } @roles ) )
     {
         $c->res->redirect( $c->uri_for('/auth/registros/volume') );
     }
