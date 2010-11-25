@@ -2,11 +2,11 @@
   <Cube name="atendimento" cache="true" enabled="true">
     <Table name="f_atendimento" schema="public">
     </Table>
-    <Dimension type="StandardDimension" foreignKey="id_avaliacao_acesso_medicacao" name="acesso_medicacao">
-      <Hierarchy name="acesso_medicacao" hasAll="true" primaryKey="id_avaliacao_acesso_medicacao">
+    <Dimension type="StandardDimension" foreignKey="id_avaliacao_acesso_medicacao" name="avaliacao acesso_medicacao">
+      <Hierarchy name="avaliacao  acesso_medicacao" hasAll="true" primaryKey="id_avaliacao_acesso_medicacao">
         <Table name="d_avaliacao_acesso_medicacao" schema="public">
         </Table>
-        <Level name="acesso_medicacao" column="avaliacao_acesso_medicacao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        <Level name="avaliacao acesso_medicacao" column="avaliacao_acesso_medicacao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
@@ -657,6 +657,110 @@
         <Table name="d_tipo_iluminacao" schema="public">
         </Table>
         <Level name="tipo iluminacao" column="tipo_iluminacao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_deseja_tratamento_uso_drogas" name="deseja tratamento uso drogas">
+      <Hierarchy name="deseja tratamento uso drogas" hasAll="true" primaryKey="id_deseja_tratamento_uso_drogas">
+        <Table name="d_deseja_tratamento_uso_drogas" schema="public">
+        </Table>
+        <Level name="deseja tratamento uso drogas" column="deseja_tratamento_uso_drogas" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_escola_matriculado_proximo_residencia" name="matricula escola proximo residencia">
+      <Hierarchy name="matricula escola proximo residencia" hasAll="true">
+        <Table name="d_escola_matriculado_proximo_residencia" schema="public">
+        </Table>
+        <Level name="matricula escola proximo residencia" column="escola_matriculado_proximo_residencia" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_exploracao_trabalho_infantil" name="exploracao trabalho infantil">
+      <Hierarchy name="exploracao trabalho infantil" hasAll="true" primaryKey="id_exploracao_trabalho_infantil">
+        <Table name="d_exploracao_trabalho_infantil" schema="public">
+        </Table>
+        <Level name="exploracao trabalho infantil" column="exploracao_trabalho_infantil" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_fez_curso_profissionalizante" name="fez curso profissionalizante">
+      <Hierarchy name="fez curso profissionalizante" hasAll="true" primaryKey="id_fez_curso_profissionalizante">
+        <Table name="d_fez_curso_profissionalizante" schema="public">
+        </Table>
+        <Level name="fez curso profissionalizante" column="fez_curso_profissionalizante" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_foi_internado_comunidade_terapeutica_uso_droga" name="foi internado comunidade terapeutica uso drogras">
+      <Hierarchy name="foi internado comunidade terapeutica uso drogras" hasAll="true" primaryKey="id_foi_internado_comunidade_terapeutica_uso_droga">
+        <Table name="d_foi_internado_comunidade_terapeutica_uso_droga" schema="public">
+        </Table>
+        <Level name="foi internado comunidade terapeutica uso drogras" column="foi_internado_comunidade_terapeutica_uso_droga" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_frequenta_ginecologista_regularmente" name="frequenta ginecologista">
+      <Hierarchy name="frequenta ginecologista" hasAll="true" primaryKey="id_frequenta_ginecologista_regularmente">
+        <Table name="d_frequenta_ginecologista_regularmente" schema="public">
+        </Table>
+        <Level name="frequenta ginecologista" column="frequenta_ginecologista_regularmente" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_frequenta_urologista_regularmente" name="frequenta urologista">
+      <Hierarchy name="frequenta urologista" hasAll="true" primaryKey="id_frequenta_urologista_regularmente">
+        <Table name="d_frequenta_urologista_regularmente" schema="public">
+        </Table>
+        <Level name="frequenta urologista" column="frequenta_urologista_regularmente" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_interesse_curso_profissionalizante" name="interesse_curso_profissionalizante">
+      <Hierarchy name="interesse_curso_profissionalizante" hasAll="true" primaryKey="id_interesse_curso_profissionalizante">
+        <Table name="d_interesse_curso_profissionalizante" schema="public">
+        </Table>
+        <Level name="interesse_curso_profissionalizante" column="interesse_curso_profissionalizante" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_inscrito_peti" name="inscrito peti">
+      <Hierarchy name="inscrito peti" hasAll="true" primaryKey="id_inscrito_peti">
+        <Table name="d_inscrito_peti" schema="public">
+        </Table>
+        <Level name="inscrito peti" column="inscrito_peti" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_ja_estagiou" name="ja estagiou">
+      <Hierarchy name="ja estagiou" hasAll="true" primaryKey="id_ja_estagiou">
+        <Table name="d_ja_estagiou" schema="public">
+        </Table>
+        <Level name="ja estagiou" column="ja_estagiou" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_ja_trabalhou" name="ja trabalhou">
+      <Hierarchy name="ja trabalhou" hasAll="true" primaryKey="id_ja_trabalhou">
+        <Table name="d_ja_trabalhou" schema="public">
+        </Table>
+        <Level name="ja trabalhou" column="ja_trabalhou" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_possui_banheiro" name="possui banheiro">
+      <Hierarchy name="possui banheiro" hasAll="true" primaryKey="id_possui_banheiro">
+        <Table name="d_possui_banheiro" schema="public">
+        </Table>
+        <Level name="possui banheiro" column="possui_banheiro" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_recebe_medicamento_quando_necessario" name="recebe medicamento quando necessario">
+      <Hierarchy name="recebe medicamento quando necessario" hasAll="true" primaryKey="id_recebe_medicamento_quando_necessario">
+        <Table name="d_recebe_medicamento_quando_necessario" schema="public" alias="">
+        </Table>
+        <Level name="recebe medicamento quando necessario" column="recebe_medicamento_quando_necessario" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
