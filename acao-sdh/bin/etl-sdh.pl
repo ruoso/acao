@@ -166,7 +166,7 @@ sub extract {
 
        my @array_keys = keys( %{ $data->{documento}[0]{conteudo}} );
        my @namespace = split(/}/, $array_keys[0]);
-if($namespace[1] eq 'formIdentificacaoPessoal')
+if($namespace[1] eq 'formProtecaoEspecial')
 {
 #warn $xml_string;
 }
