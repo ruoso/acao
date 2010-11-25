@@ -66,22 +66,6 @@
         </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="StandardDimension" foreignKey="id_cpf" name="cpf">
-      <Hierarchy name="cpf" hasAll="true" primaryKey="id_cpf">
-        <Table name="d_cpf" schema="public">
-        </Table>
-        <Level name="cpf" column="situacao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-        </Level>
-      </Hierarchy>
-    </Dimension>
-    <Dimension type="StandardDimension" foreignKey="id_ctps" name="ctps">
-      <Hierarchy name="ctps" hasAll="true" primaryKey="id_ctps">
-        <Table name="d_ctps" schema="public">
-        </Table>
-        <Level name="ctps" column="situacao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-        </Level>
-      </Hierarchy>
-    </Dimension>
     <Dimension type="StandardDimension" foreignKey="id_data" name="data">
       <Hierarchy name="data" hasAll="true" primaryKey="id_data">
         <Table name="d_data" schema="public">
@@ -122,27 +106,27 @@
         </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="StandardDimension" foreignKey="id_sofre_violencia_ambiente_comunitario" name="frequencia_violencia_ambito_comunitario">
-      <Hierarchy name="frequencia_violencia_ambito_comunitario" hasAll="true" primaryKey="id_sofre_violencia_ambiente_comunitario">
+    <Dimension type="StandardDimension" foreignKey="id_sofre_violencia_ambiente_comunitario" name="sofre_violencia_ambito_comunitario">
+      <Hierarchy name="sofre_violencia_ambito_comunitario" hasAll="true" primaryKey="id_sofre_violencia_ambiente_comunitario">
         <Table name="d_sofre_violencia_ambiente_comunitario" schema="public">
         </Table>
-        <Level name="frequencia_violencia_ambito_comunitario" column="sofre_violencia_ambiente_comunitario" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        <Level name="sofre_violencia_ambito_comunitario" column="sofre_violencia_ambiente_comunitario" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="StandardDimension" foreignKey="id_sofre_violencia_institucional" name="frequencia_violencia_institucional">
-      <Hierarchy name="frequencia_violencia_institucional" hasAll="true" primaryKey="sofre_violencia_institucional">
+    <Dimension type="StandardDimension" foreignKey="id_sofre_violencia_institucional" name="sofre_violencia_institucional">
+      <Hierarchy name="sofre_violencia_institucional" hasAll="true" primaryKey="sofre_violencia_institucional">
         <Table name="d_sofre_violencia_institucional" schema="public">
         </Table>
-        <Level name="frequencia_violencia_institucional" column="sofre_violencia_institucional" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        <Level name="sofre_violencia_institucional" column="sofre_violencia_institucional" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="StandardDimension" foreignKey="id_sofre_violencia_intrafamiliar" name="frequencia_violencia_intrafamiliar">
-      <Hierarchy name="frequencia_violencia_intrafamiliar" hasAll="true" primaryKey="id_sofre_violencia_intrafamiliar">
+    <Dimension type="StandardDimension" foreignKey="id_sofre_violencia_intrafamiliar" name="sofre_violencia_intrafamiliar">
+      <Hierarchy name="sofre_violencia_intrafamiliar" hasAll="true" primaryKey="id_sofre_violencia_intrafamiliar">
         <Table name="d_sofre_violencia_intrafamiliar" schema="public">
         </Table>
-        <Level name="frequencia_violencia_intrafamiliar" column="sofre_violencia_intrafamiliar" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        <Level name="sofre_violencia_intrafamiliar" column="sofre_violencia_intrafamiliar" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
@@ -151,22 +135,6 @@
         <Table name="d_idade" schema="public">
         </Table>
         <Level name="idade" column="id_idade" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-        </Level>
-      </Hierarchy>
-    </Dimension>
-    <Dimension type="StandardDimension" foreignKey="id_identidade" name="identidade">
-      <Hierarchy name="identidade" hasAll="true" primaryKey="id_identidade">
-        <Table name="d_identidade" schema="public">
-        </Table>
-        <Level name="identidade" column="situacao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-        </Level>
-      </Hierarchy>
-    </Dimension>
-    <Dimension type="StandardDimension" foreignKey="id_nis" name="nis">
-      <Hierarchy name="nis" hasAll="true" primaryKey="id_nis">
-        <Table name="d_nis" schema="public">
-        </Table>
-        <Level name="nis" column="situacao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
@@ -207,14 +175,6 @@
         <Table name="d_registro_nascimento" schema="public">
         </Table>
         <Level name="registro_nascimento" column="situacao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-        </Level>
-      </Hierarchy>
-    </Dimension>
-    <Dimension type="StandardDimension" foreignKey="id_reservista" name="reservista">
-      <Hierarchy name="reservista" hasAll="true" primaryKey="id_reservista">
-        <Table name="d_reservista" schema="public">
-        </Table>
-        <Level name="reservista" column="situacao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
@@ -263,14 +223,6 @@
         <Table name="d_tipo_iluminacao" schema="public">
         </Table>
         <Level name="tipo_iluminacao" column="tipo_iluminacao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-        </Level>
-      </Hierarchy>
-    </Dimension>
-    <Dimension type="StandardDimension" foreignKey="id_titulo_eleitor" name="titulo_eleitor">
-      <Hierarchy name="titulo_eleitor" hasAll="true" primaryKey="id_titulo_eleitor">
-        <Table name="d_titulo_eleitor" schema="public">
-        </Table>
-        <Level name="titulo_eleitor" column="situacao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
@@ -378,13 +330,333 @@
         </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="StandardDimension" foreignKey="id_esta_trabalhando" name="New Dimension 46">
+    <Dimension type="StandardDimension" foreignKey="id_esta_trabalhando" name="esta trabalhando">
       <Hierarchy name="esta trabalhando" hasAll="true" primaryKey="id_esta_trabalhando">
-        <Table name="d_esta_trabalhando" schema="public" alias="">
+        <Table name="d_esta_trabalhando" schema="public">
         </Table>
         <Level name="esta trabalhando" column="esta_trabalhando" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
         <Level name="tipo trabalho" column="tipo_trabalho" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_identidade" name="situacao identidade">
+      <Hierarchy name="situacao identidade" hasAll="true" primaryKey="id_identidade">
+        <Table name="d_identidade" schema="public">
+        </Table>
+        <Level name="situacao identidade" column="situacao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_cpf" name="situacao cpf">
+      <Hierarchy name="situacao cpf" hasAll="true" primaryKey="id_cpf">
+        <Table name="d_cpf" schema="public">
+        </Table>
+        <Level name="situacao cpf" column="situacao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_ctps" name="situacao ctps">
+      <Hierarchy name="situacao ctps" hasAll="true" primaryKey="id_ctps">
+        <Table name="d_ctps" schema="public">
+        </Table>
+        <Level name="situacao ctps" column="situacao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_nis" name="situacao nis">
+      <Hierarchy name="situacao nis" hasAll="true" primaryKey="id_nis">
+        <Table name="d_nis" schema="public">
+        </Table>
+        <Level name="situacao nis" column="situacao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_registro_nascimento" name="situacao rg">
+      <Hierarchy name="situacao rg" hasAll="true" primaryKey="id_registro_nascimento">
+        <Table name="d_registro_nascimento" schema="public">
+        </Table>
+        <Level name="situacao rg" column="situacao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_reservista" name="situacao reservista">
+      <Hierarchy name="situacao reservista" hasAll="true" primaryKey="id_reservista">
+        <Table name="d_reservista" schema="public">
+        </Table>
+        <Level name="situacao reservista" column="situacao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_titulo_eleitor" name="situacao titulo eleitor">
+      <Hierarchy name="situacao titulo eleitor" hasAll="true" primaryKey="id_titulo_eleitor">
+        <Table name="d_titulo_eleitor" schema="public">
+        </Table>
+        <Level name="situacao titulo eleitor" column="situacao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_sofre_violencia_ambito_comunitario_abuso_sexual" name="sofre violencia ambito comunitario abuso sexual">
+      <Hierarchy name="sofre violencia ambito comunitario abuso sexual" hasAll="true" primaryKey="id_sofre_violencia_ambito_comunitario_abuso_sexual">
+        <Table name="d_sofre_violencia_ambito_comunitario_abuso_sexual" schema="public">
+        </Table>
+        <Level name="sofre violencia ambito comunitario abuso sexual" column="sofre_violencia_ambito_comunitario_abuso_sexual" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="frequencia" column="frequencia" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_sofre_violencia_ambito_comunitario_agressao_fisica" name="sofre violencia ambito comunitario agressao fisica">
+      <Hierarchy name="sofre violencia ambito comunitario agressao fisica" hasAll="true" primaryKey="id_sofre_violencia_ambito_comunitario_agressao_fisica">
+        <Table name="d_sofre_violencia_ambito_comunitario_agressao_fisica" schema="public">
+        </Table>
+        <Level name="sofre violencia ambito comunitario agressao fisica" column="sofre_violencia_ambito_comunitario_agressao_fisica" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="frequencia" column="frequencia" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_sofre_violencia_ambito_comunitario_agressao_psicologica" name="sofre violencia ambito comunitario agressao psicologica">
+      <Hierarchy name="sofre violencia ambito comunitario agressao psicologica" hasAll="true" primaryKey="id_sofre_violencia_ambito_comunitario_agressao_psicologica">
+        <Table name="d_sofre_violencia_ambito_comunitario_agressao_psicologica" schema="public">
+        </Table>
+        <Level name="sofre violencia ambito comunitario agressao psicologica" column="sofre_violencia_ambito_comunitario_agressao_psicologica" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="frequencia" column="frequencia" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_sofre_violencia_ambito_comunitario_ameaca_morte" name="sofre violencia ambito comunitario ameaca morte">
+      <Hierarchy name="sofre violencia ambito comunitario ameaca morte" hasAll="true" primaryKey="id_sofre_violencia_ambito_comunitario_ameaca_morte">
+        <Table name="d_sofre_violencia_ambito_comunitario_ameaca_morte" schema="public">
+        </Table>
+        <Level name="sofre violencia ambito comunitario ameaca morte" column="sofre_violencia_ambito_comunitario_ameaca_morte" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="frequencia" column="frequencia" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_sofre_violencia_ambito_comunitario_discussao_verbal" name="sofre violencia ambito comunitario discursao verbal">
+      <Hierarchy name="sofre violencia ambito comunitario discursao verbal" hasAll="true" primaryKey="id_sofre_violencia_ambito_comunitario_discussao_verbal">
+        <Table name="d_sofre_violencia_ambito_comunitario_discussao_verbal" schema="public">
+        </Table>
+        <Level name="sofre violencia ambito comunitario discursao verbal" column="sofre_violencia_ambito_comunitario_discussao_verbal" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="frequencia" column="frequencia" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_sofre_violencia_ambito_comunitario_exploracao_sexual" name="sofre violencia ambito comunitario exploracao sexual">
+      <Hierarchy name="sofre violencia ambito comunitario exploracao sexual" hasAll="true" primaryKey="id_sofre_violencia_ambito_comunitario_exploracao_sexual">
+        <Table name="d_sofre_violencia_ambito_comunitario_exploracao_sexual" schema="public">
+        </Table>
+        <Level name="sofre violencia ambito comunitario exploracao sexual" column="sofre_violencia_ambito_comunitario_exploracao_sexual" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="frequencia" column="frequencia" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_sofre_violencia_institucional_abuso_sexual" name="sofre violencia institucional abuso sexual">
+      <Hierarchy name="sofre violencia institucional abuso sexual" hasAll="true" primaryKey="id_sofre_violencia_institucional_abuso_sexual">
+        <Table name="d_sofre_violencia_institucional_abuso_sexual" schema="public">
+        </Table>
+        <Level name="sofre violencia institucional abuso sexual" column="sofre_violencia_institucional_abuso_sexual" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="frequencia" column="frequencia" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_sofre_violencia_ambito_comunitario_agressao_fisica" name="sofre violencia institucional agressao fisica">
+      <Hierarchy name="sofre violencia institucional agressao fisica" hasAll="true" primaryKey="id_sofre_violencia_institucional_agressao_fisica">
+        <Table name="d_sofre_violencia_institucional_agressao_fisica" schema="public">
+        </Table>
+        <Level name="sofre violencia institucional agressao fisica" column="sofre_violencia_institucional_agressao_fisica" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="frequencia" column="frequencia" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_sofre_violencia_institucional_agressao_psicologica" name="sofre violencia institucional agressao psicologica">
+      <Hierarchy name="sofre violencia institucional agressao psicologica" hasAll="true" primaryKey="id_sofre_violencia_institucional_agressao_psicologica">
+        <Table name="d_sofre_violencia_institucional_agressao_psicologica" schema="public">
+        </Table>
+        <Level name="sofre violencia institucional agressao psicologica" column="sofre_violencia_institucional_agressao_psicologica" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="frequencia" column="frequencia" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_sofre_violencia_institucional_ameaca_morte" name="sofre violencia institucional ameaca morte">
+      <Hierarchy name="sofre violencia institucional ameaca morte" hasAll="true" primaryKey="id_sofre_violencia_institucional_ameaca_morte">
+        <Table name="d_sofre_violencia_institucional_ameaca_morte" schema="public">
+        </Table>
+        <Level name="sofre violencia institucional ameaca morte" column="sofre_violencia_institucional_ameaca_morte" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="frequencia" column="frequencia" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_sofre_violencia_institucional_discussao_verbal" name="sofre violencia institucional discurssao verbal">
+      <Hierarchy name="sofre violencia institucional discurssao verbal" hasAll="true" primaryKey="id_sofre_violencia_institucional_discussao_verbal">
+        <Table name="d_sofre_violencia_institucional_discussao_verbal" schema="public">
+        </Table>
+        <Level name="sofre violencia institucional discurssao verbal" column="sofre_violencia_institucional_discussao_verbal" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="frequencia" column="frequencia" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_sofre_violencia_institucional_exploracao_sexual" name="sofre violencia institucional exploracao sexual">
+      <Hierarchy name="sofre violencia institucional exploracao sexual" hasAll="true" primaryKey="id_sofre_violencia_institucional_exploracao_sexual">
+        <Table name="d_sofre_violencia_institucional_exploracao_sexual" schema="public">
+        </Table>
+        <Level name="sofre violencia institucional exploracao sexual" column="sofre_violencia_institucional_exploracao_sexual" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="frequencia" column="frequencia" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_sofre_violencia_intrafamiliar_abuso_sexual" name="sofre violencia intrafamiliar abuso sexual">
+      <Hierarchy name="sofre violencia intrafamiliar abuso sexual" hasAll="true" primaryKey="id_sofre_violencia_intrafamiliar_abuso_sexual">
+        <Table name="d_sofre_violencia_intrafamiliar_abuso_sexual" schema="public">
+        </Table>
+        <Level name="sofre violencia intrafamiliar abuso sexual" column="sofre_violencia_intrafamiliar_abuso_sexual" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="frequencia" column="frequencia" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_sofre_violencia_intrafamiliar_agressao_fisica" name="sofre violencia intrafamiliar agressao fisica">
+      <Hierarchy name="sofre violencia intrafamiliar agressao fisica" hasAll="true" primaryKey="id_sofre_violencia_intrafamiliar_agressao_fisica">
+        <Table name="d_sofre_violencia_intrafamiliar_agressao_fisica" schema="public">
+        </Table>
+        <Level name="sofre violencia intrafamiliar agressao fisica" column="sofre_violencia_intrafamiliar_agressao_fisica" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="frequencia" column="frequencia" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_sofre_violencia_intrafamiliar_agressao_psicologica" name="sofre violencia intrafamiliar agressao psicologica">
+      <Hierarchy name="sofre violencia intrafamiliar agressao psicologica" hasAll="true" primaryKey="id_sofre_violencia_intrafamiliar_agressao_psicologica">
+        <Table name="d_sofre_violencia_intrafamiliar_agressao_psicologica" schema="public">
+        </Table>
+        <Level name="sofre violencia intrafamiliar agressao psicologica" column="sofre_violencia_intrafamiliar_agressao_psicologica" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="frequencia" column="frequencia" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_sofre_violencia_intrafamiliar_ameaca_morte" name="sofre violencia intrafamiliar ameaca morte">
+      <Hierarchy name="sofre violencia intrafamiliar ameaca morte" hasAll="true" primaryKey="id_sofre_violencia_intrafamiliar_ameaca_morte">
+        <Table name="d_sofre_violencia_intrafamiliar_ameaca_morte" schema="public">
+        </Table>
+        <Level name="sofre violencia intrafamiliar ameaca morte" column="sofre_violencia_intrafamiliar_ameaca_morte" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="frequencia" column="frequencia" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_sofre_violencia_intrafamiliar_discussao_verbal" name="sofre violencia intrafamiliar discursao verbal">
+      <Hierarchy name="sofre violencia intrafamiliar discursao verbal" hasAll="true" primaryKey="id_sofre_violencia_intrafamiliar_discussao_verbal">
+        <Table name="d_sofre_violencia_intrafamiliar_discussao_verbal" schema="public">
+        </Table>
+        <Level name="sofre violencia intrafamiliar discursao verbal" column="sofre_violencia_intrafamiliar_discussao_verbal" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="frequencia" column="frequencia" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_sofre_violencia_intrafamiliar_exploracao_sexual" name="sofre violencia intrafamiliar exploracao sexual">
+      <Hierarchy name="sofre violencia intrafamiliar exploracao sexual" hasAll="true" primaryKey="id_sofre_violencia_intrafamiliar_exploracao_sexual">
+        <Table name="d_sofre_violencia_intrafamiliar_exploracao_sexual" schema="public">
+        </Table>
+        <Level name="sofre violencia intrafamiliar exploracao sexual" column="sofre_violencia_intrafamiliar_exploracao_sexual" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="frequencia" column="frequencia" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_sofre_violencia_intrafamiliar_domestica" name="sofre violencia intrafamiliar violencia domestica">
+      <Hierarchy name="sofre violencia intrafamiliar violencia domestica" hasAll="true" primaryKey="id_sofre_violencia_intrafamiliar_domestica">
+        <Table name="d_sofre_violencia_intrafamiliar_domestica" schema="public">
+        </Table>
+        <Level name="sofre violencia intrafamiliar violencia domestica" column="sofre_violencia_intrafamiliar_domestica" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="frequencia" column="frequencia" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_sofreu_violencia_institucional" name="sofreu violencia institucional">
+      <Hierarchy name="sofreu violencia institucional" hasAll="true" primaryKey="id_sofreu_violencia_institucional">
+        <Table name="d_sofreu_violencia_institucional" schema="public">
+        </Table>
+        <Level name="sofreu violencia institucional" column="sofreu_violencia_institucional" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_sofreu_violencia_institucional_abuso_sexual" name="sofreu violencia institucional abuso sexual">
+      <Hierarchy name="sofreu violencia institucional abuso sexual" hasAll="true" primaryKey="id_sofreu_violencia_institucional_abuso_sexual">
+        <Table name="d_sofreu_violencia_institucional_abuso_sexual" schema="public">
+        </Table>
+        <Level name="sofreu violencia institucional abuso sexual" column="sofreu_violencia_institucional_abuso_sexual" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="frequencia" column="frequencia" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_sofre_violencia_intrafamiliar_agressao_fisica" name="sofreu violencia institucional agressao fisica">
+      <Hierarchy name="sofreu violencia institucional agressao fisica" hasAll="true" primaryKey="id_sofreu_violencia_institucional_agressao_fisica">
+        <Table name="d_sofreu_violencia_institucional_agressao_fisica" schema="public">
+        </Table>
+        <Level name="sofreu violencia institucional agressao fisica" column="sofreu_violencia_institucional_agressao_fisica" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="frequencia" column="frequencia" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_sofre_violencia_intrafamiliar_agressao_psicologica" name="sofreu violencia institucional agressao psicologica">
+      <Hierarchy name="sofreu violencia institucional agressao psicologica" hasAll="true" primaryKey="id_sofreu_violencia_institucional_agressao_psicologica">
+        <Table name="d_sofreu_violencia_institucional_agressao_psicologica" schema="public">
+        </Table>
+        <Level name="sofreu violencia institucional agressao psicologica" column="sofreu_violencia_institucional_agressao_psicologica" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="frequencia" column="frequencia" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_sofreu_violencia_institucional_discussao_verbal" name="sofreu violencia institucional discussao verbal">
+      <Hierarchy name="sofreu violencia institucional discussao verbal" hasAll="true" primaryKey="id_sofreu_violencia_institucional_discussao_verbal">
+        <Table name="d_sofreu_violencia_institucional_discussao_verbal" schema="public">
+        </Table>
+        <Level name="sofreu violencia institucional discussao verbal" column="sofreu_violencia_institucional_discussao_verbal" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="frequencia" column="frequencia" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_sofreu_violencia_institucional_exploracao_sexual" name="sofreu violencia institucional exploracao sexual">
+      <Hierarchy name="sofreu violencia institucional exploracao sexual" hasAll="true" primaryKey="id_sofreu_violencia_institucional_exploracao_sexual">
+        <Table name="d_sofreu_violencia_institucional_exploracao_sexual" schema="public">
+        </Table>
+        <Level name="sofreu violencia institucional exploracao sexual" column="sofreu_violencia_institucional_exploracao_sexual" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="frequencia" column="frequencia" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_tempo_moradia" name="tempo moradia">
+      <Hierarchy name="tempo moradia" hasAll="true" primaryKey="id_tempo_moradia">
+        <Table name="d_tempo_moradia" schema="public">
+        </Table>
+        <Level name="tempo moradia" column="tempo_moradia" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_tipo_iluminacao" name="tipo iluminacao">
+      <Hierarchy name="tipo iluminacao" hasAll="true" primaryKey="id_tipo_iluminacao">
+        <Table name="d_tipo_iluminacao" schema="public">
+        </Table>
+        <Level name="tipo iluminacao" column="tipo_iluminacao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
@@ -649,6 +921,8 @@
     <Measure name="faz_acompanhamento_contra_drogas_capsad" column="faz_acompanhamento_contra_drogas_capsad" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
     <Measure name="faz_acompanhamento_contra_drogas_capsi" column="faz_acompanhamento_contra_drogas_capsi" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="quantidade" column="quantidade" datatype="Integer" aggregator="count" visible="true">
     </Measure>
   </Cube>
 </Schema>
