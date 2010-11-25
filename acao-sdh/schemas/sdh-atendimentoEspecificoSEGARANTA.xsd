@@ -19,7 +19,7 @@
 			<xs:element name="encaminhamentoDoJudiciario">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Encaminhamento do judiciario</xhtml:label>
+						<xhtml:label>Encaminhacausadesligamentento do judiciario</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 
@@ -197,7 +197,7 @@
 							</xs:simpleType>
 						</xs:element>
 						<xs:element name="especifiqueOutrosTipoAtoInfracional"
-							minOccurs="0">
+							minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Especifique outros</xhtml:label>
@@ -303,18 +303,12 @@
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
-			<xs:element name="especifiqueOutrosCausaDesligamento"
-				minOccurs="0">
+			<xs:element name="especifiqueOutrosCausaDesligamento" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Especifique outros</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:maxLength value="255" />
-					</xs:restriction>
-				</xs:simpleType>
 			</xs:element>
 
 			<xs:element name="observacoes" minOccurs="0" type="xs:string">
