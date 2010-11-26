@@ -230,6 +230,18 @@ txn_method 'getDadosVolumeId' => authorized $role_listar => sub {
    return $vol;
 };
 
+txn_method 'options_volumes' => authorized $role_alterar => sub {
+    my ( $self, $namespace ) = @_;
+    my $xq = 'declare namespace vol = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";
+              for $x in collection("volume")/vol:volume return <option value="{$x/vol:collection/text()}"> {$x/vol:nome/text()} </option> ';
+    $self->sedna->execute($xq);
+    my $ret;
+    while (my $item = $self->sedna->get_item()) {
+       $ret .= $item;
+    }
+   return $ret;
+};
+
 =cut
 
 =item 

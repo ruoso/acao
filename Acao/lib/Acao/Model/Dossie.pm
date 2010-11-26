@@ -211,6 +211,24 @@ txn_method 'gerar_uuid' => authorized $role_criar => sub {
    return $str;
 };
 
+txn_method 'transferir' => authorized $role_alterar => sub {
+    my $self = shift;
+    my ( $id_volume, $controle, $volume_destino, $ip ) = @_;
+
+    my $xq_select = 'declare namespace vol = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";
+                  declare namespace dos = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
+                  for $x in collection("'.$id_volume.'")/dos:dossie[dos:controle/text() eq "'.$controle.'"] return $x';
+
+    $self->sedna->execute($xq_select);
+    my $xml = $self->sedna->get_item;
+
+    my $xq_insert = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; 
+                     update insert ('.$xml.') into collection("'.$volume_destino.'")';
+warn $xq_insert;
+    $self->sedna->execute($xq_insert);
+
+};
+
 =head1 COPYRIGHT AND LICENSING
 
 Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado

@@ -116,9 +116,11 @@ sub getVolumes{
 
 sub getDossies{
 
-    my @volume = shift;
+    my @volume = @_;
     my @dossies;
+
     for (my $i=0; $i < scalar(@volume); $i++){
+        $volume[$i]=~ s/^\s+//;
         my $xq = ' declare namespace vol = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";
                    declare namespace dos = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
                    for $x in collection("'.$volume[$i].'")/dos:dossie/dos:controle/text() return $x';
