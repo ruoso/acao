@@ -1,0 +1,81 @@
+[% IF count / num_por_pagina <= count div num_por_pagina + 0.5 && count / num_por_pagina != count div num_por_pagina %]
+    [% numero_paginas = count div num_por_pagina * 2 %]
+[% ELSIF count / num_por_pagina >= count div num_por_pagina + 0.5 %]
+    [% numero_paginas = count div num_por_pagina * 2 + 1 %]
+[% ELSE %]
+    [% numero_paginas = count div num_por_pagina * 2 - 1 %]
+[% END %]
+
+[% estado_controle_paginacao = '' %]
+[% raio = 7 %]
+[% ajuste_esquerda = interval_ini - raio %]
+[% ajuste_direita  = interval_ini + raio - numero_paginas %]
+[% estado_controle_paginacao = '' %]
+
+[% IF ajuste_esquerda <= 0 %]
+  [% IF ajuste_direita > 0 %]
+    [% ini = ini - ajuste_direita %]
+  [% ELSE %]
+    [% ini = 0 %]
+  [% END %]
+  [% fim = interval_ini - ajuste_esquerda + raio %]
+[% ELSE %]
+  [% IF ajuste_direita > 0 %]
+    [% ini = interval_ini - raio - ajuste_direita %]
+  [% ELSE %]
+    [% ini = interval_ini - raio %]
+  [% END %]
+  [% fim = interval_ini + raio %]
+[% END %]
+
+<table>
+  <tr>
+    <td>
+      <a href="[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/criardossie') %]">Criar Prontuário</a>
+    </td>
+
+    [% SET args = { } %]
+    [% args.import(c.req.params()) %]
+
+    <td width="100px">
+      [% args.import({ interval_ini => 0}) %]
+      <a href="[% c.uri_for('/auth/registros/volume/' _ id_volume , args) %]"> Primeiro </a>
+    </td>
+
+    <td width="20px">
+    [% IF interval_ini > 0 %]
+      [% args.import({ interval_ini => interval_ini - 1 }) %]
+      <a href="[% c.uri_for('/auth/registros/volume/' _ id_volume , args) %]" title="Anterior"> < < </a>
+    [% END %]
+    </td>
+
+    [% WHILE ini <= fim %]
+      [% IF ini < count / num_por_pagina * 2 && ini >= 0 %]
+        <td width="15px">
+          [% args.import({ interval_ini => ini }) %]
+          <a href="[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/' _ controle , args) %]"> 
+          [% IF ini == interval_ini %]
+            <font size="3"><strong>[% ini + 1 %]</strong></font>
+            [% estado_controle_paginacao = ini %]
+          [% ELSE %]
+            [% ini + 1 %]
+          [% END %]
+          </a>
+      </td>
+      [% END %]
+      [% ini = ini + 1 %]
+    [% END %]
+
+    <td width="20px">
+      [% IF estado_controle_paginacao < numero_paginas && estado_controle_paginacao != '' %]
+        [% args.import({ interval_ini => interval_ini + 1 }) %]
+        <a href="[% c.uri_for('/auth/registros/volume/' _ id_volume , args) %]" title="Próximo"> > > </a>
+      [% END %]
+    </td>
+
+    <td width="100px">
+      [% args.import({ interval_ini => numero_paginas }) %]
+      <a href="[% c.uri_for('/auth/registros/volume/' _ id_volume , args) %]"> Último </a>
+    </td>
+  </tr>
+</table>
