@@ -55,6 +55,12 @@ sub lista : Chained('base') : PathPart('') : Args(0) {
 sub form : Chained('base') : PathPart('criardossie') : Args(0) {
 }
 
+sub transferir_lista : Chained('base') : PathPart('transferir_lista') : Args(2) {
+    my ( $self, $c, $id_volume, $controle ) = @_;
+    $c->stash->{id_volume} = $id_volume;
+    $c->stash->{controle}  = $controle;
+}
+
 sub store : Chained('base') : PathPart('store') : Args(0) {
     my ( $self, $c ) = @_;
 
@@ -97,6 +103,21 @@ sub alterar_estado : Chained('base') : PathPart('alterar_estado') : Args(3) {
     }
     $c->res->redirect( $c->uri_for('/auth/registros/volume/' . $id_volume) );
 }
+
+sub transferir : Chained('base') : PathPart('transferir') : Args(2) {
+     my ( $self, $c, $id_volume, $controle ) = @_;
+     eval {
+             $c->model('Dossie')->transferir($id_volume, $controle,  $c->req->param('volume_destino'), $c->req->address ); 
+          };
+    if ($@) {
+        $c->flash->{erro} = $@;
+    }
+    else {
+        $c->flash->{sucesso} = 'Alterado com sucesso!';
+    }
+    $c->res->redirect( $c->uri_for('/auth/registros/volume/' . $id_volume) );
+}
+
 =head1 COPYRIGHT AND LICENSING
 
 Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
