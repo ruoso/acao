@@ -17,6 +17,7 @@
 # título "LICENCA.txt", junto com este programa, se não, escreva para a
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
 %]
+
 [% META title = 'Lista de Leituras para o Digitador'%]
 [% INCLUDE 'auth/registros/volume/header.tt' %]
 [% INCLUDE 'errosucesso.tt' %]
@@ -75,13 +76,10 @@
 	  </div>
 [% END %]
 
-<tr>
-    <td><a href="[% c.uri_for('/auth/registros/volume/criarvolume') %]">Criar Volume</a></td>
-</tr>
 </TBODY>
 </table>
 
-[% paginacao = PROCESS 'auth/registros/volume/dossie/paginacao.tt' %]
+[% paginacao = PROCESS 'auth/registros/volume/paginacao.tt' %]
 [% paginacao %]
 
 [% INCLUDE 'footer.tt' %]
