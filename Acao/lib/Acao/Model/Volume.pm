@@ -66,7 +66,8 @@ txn_method 'listar_volumes' => authorized $role_listar => sub {
     my $for = 'collection("volume")/ns:volume';
 
         my $dados  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";' ;
-       $dados .=  'for $x in '.$for.' return ($x/ns:collection/text(), '.$args->{xqueryret}.')';
+           $dados .= 'subsequence(for $x in '.$for.' return ($x/ns:collection/text(), '.$args->{xqueryret}.'),';
+           $dados .= '(' . $args->{interval_ini} * $args->{num_por_pagina} . ') + 1 ,' . $args->{num_por_pagina} . ')';
 
     $self->auditoria({ ip => $args->{ip}, operacao => 'list', for => $for });
 

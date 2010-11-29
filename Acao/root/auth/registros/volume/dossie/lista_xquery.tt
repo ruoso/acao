@@ -12,5 +12,5 @@ subsequence(
       order by $x/ns:criacao descending      
   
       return ($x/ns:controle/text(), [% xqueryret %]),
-      [% ((interval_ini * num_por_pagina) + 1) %], [% num_por_pagina %]
+      [% (interval_ini * num_por_pagina) + 1 %], [% num_por_pagina %]
 )

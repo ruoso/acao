@@ -1,0 +1,2 @@
+declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";
+count (for $x in collection("volume")/ns:volume return '')

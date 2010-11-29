@@ -21,11 +21,20 @@
 [% INCLUDE 'auth/registros/volume/header.tt' %]
 [% INCLUDE 'errosucesso.tt' %]
 
+[% SET num_por_pagina = 30 %]
+
+[% SET interval_ini = c.req.param('interval_ini') %]
+[% IF !interval_ini %]
+  [% SET interval_ini = 0 %]
+[% END %]
+
 [%# definição da variavel schema para este template %]
 [% CALL c.model('Sedna').begin %]
 [% SET schema = c.model('Sedna').get_collection('volume') %]
 [% CALL c.model('Sedna').commit %]
 [% SET volumes = '' %]
+
+[% xquerycount = PROCESS 'auth/registros/volume/count_xquery.tt' %]
 
 <table>
 <thead>
@@ -44,8 +53,8 @@
 <TBODY>
  
 [% TRY %]
-	 [% xqueryret = PROCESS 'auth/registros/volume/lista_xqueryret.tt';
-        xquery = c.model('Volume').listar_volumes({ 'xqueryret' => xqueryret, 'ip' => c.req.address });
+	 [% xqueryret = PROCESS 'auth/registros/volume/lista_xqueryret.tt'; 
+        xquery = c.model('Volume').listar_volumes({ 'xqueryret' => xqueryret, 'ip' => c.req.address, 'interval_ini' => interval_ini, 'num_por_pagina' => num_por_pagina });
         c.model('Sedna').begin;
 	    c.model('Sedna').execute( xquery );
 
@@ -53,6 +62,11 @@
 	      SET html = c.model('Sedna').get_item;
 	      html;
 	    END;
+
+        c.model('Sedna').execute( xquerycount );
+        WHILE (contador = c.model('Sedna').get_item);
+          count = contador;
+        END;
 
 	    c.model('Sedna').commit %]
 [% CATCH %]
@@ -66,5 +80,8 @@
 </tr>
 </TBODY>
 </table>
+
+[% paginacao = PROCESS 'auth/registros/volume/dossie/paginacao.tt' %]
+[% paginacao %]
 
 [% INCLUDE 'footer.tt' %]
