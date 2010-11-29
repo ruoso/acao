@@ -26,7 +26,7 @@
     <b> Selecione o volume de destino: </b> &nbsp&nbsp
     <select name="volume_destino" id="volume_destino">
           <option value="">Escolha uma opção</option>
-          [% c.model('Volume').options_volumes %]
+          [% c.model('Volume').options_volumes(id_volume) %]
     </select>
 
     <input type="submit" name="Submeter">

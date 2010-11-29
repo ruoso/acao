@@ -222,10 +222,11 @@ txn_method 'transferir' => authorized $role_alterar => sub {
     $self->sedna->execute($xq_select);
     my $xml = $self->sedna->get_item;
 
-    my $xq_insert = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; 
-                     update insert ('.$xml.') into collection("'.$volume_destino.'")';
-warn $xq_insert;
-    $self->sedna->execute($xq_insert);
+    $self->sedna->conn->loadData( $xml, $controle, $volume_destino );
+    $self->sedna->conn->endLoadData();
+
+    my $xq_delete = 'drop document "'.$controle.'" in collection "'.$id_volume.'" ';
+    $self->sedna->execute($xq_delete);
 
 };
 
