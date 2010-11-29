@@ -118,7 +118,7 @@
 
 <br/>
 
-<form action="[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/' _ controle _ '/inserirdocumento') %]" id="form" name="form" method="post" onsubmit="return validaDropDonw()">
+<form action="[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/' _ controle _ '/inserirdocumento') %]" id="form" name="form" method="post" onSubmit="return validaDropDonw()">
 
     <fildset>
         <dt>
@@ -127,7 +127,7 @@
                 [% c.model('XSD').options_xsd %]
             </select>
 
-            <input type="submit"  value="Inserir Documento">
+            <input type="submit" value="Inserir Documento">
         </dt>
     </fildset>
 
@@ -137,16 +137,19 @@
 [% paginacao %]
 
 <script language="javascript" type="text/javascript">
+
     function validaDropDonw(){
         if (document.getElementById('xsdDocumento').value == '') {
             alert('Selecine um tipo de documento');
             document.getElementById('xsdDocumento').focus();
             return false;
         }
+    }
+
     function confirmaInvalidacao(){
         if (!confirm('Deseja invalidar este documento?')){
-             return false;        
-        }   
+             return false;
+        }
      }
 </script>
 [% INCLUDE 'footer.tt' %]

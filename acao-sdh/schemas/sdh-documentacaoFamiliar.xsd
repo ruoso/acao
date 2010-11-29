@@ -54,12 +54,17 @@
 							</xs:simpleType>
 						</xs:element>
 
- 						<xs:element name="especifiqueOutros" type="xs:string" minOccurs="0">
+						<xs:element name="especifiqueOutros" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Especifique outros</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
 						<xs:element name="registroDeNascimento" minOccurs="0">
@@ -78,7 +83,7 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="registroDeNascimentoNumero" type="xs:string"
+						<xs:element name="registroDeNascimentoNumero"
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
@@ -86,6 +91,11 @@
 						</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
 						<xs:element name="identidade" minOccurs="0">
@@ -104,14 +114,18 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="identidadeNumero" type="xs:string"
-							minOccurs="0">
+						<xs:element name="identidadeNumero" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Identidade/RG (numeração) / Orgão Emissor 
-						</xhtml:label>
+									<xhtml:label>Identidade/RG (numeração) / Orgão Emissor
+									</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
 						<xs:element name="cpf" minOccurs="0">
@@ -130,7 +144,7 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="cpfNumero" type="xs:string"
+						<xs:element name="cpfNumero"
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
@@ -138,6 +152,11 @@
 						</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
 						<xs:element name="ctps" minOccurs="0">
@@ -156,14 +175,18 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="ctpsNumero" type="xs:string"
-							minOccurs="0">
+						<xs:element name="ctpsNumero" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>CTPS (numeração)
 						</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
 						<xs:element name="tituloDeEleitor" minOccurs="0">
@@ -182,14 +205,18 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="tituloDeEleitorNumero" type="xs:string"
-							minOccurs="0">
+						<xs:element name="tituloDeEleitorNumero" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Título de Eleitor (numeração)
 						</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
 						<xs:element name="reservista" minOccurs="0">
@@ -208,14 +235,18 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="reservistaNumero" type="xs:string"
-							minOccurs="0">
+						<xs:element name="reservistaNumero" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Reservista (numeração)
 						</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
 						<xs:element name="nis" minOccurs="0">
@@ -234,14 +265,18 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="nisNumero" type="xs:string"
-							minOccurs="0">
+						<xs:element name="nisNumero" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>NIS (numeração)
 						</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
 					</xs:sequence>

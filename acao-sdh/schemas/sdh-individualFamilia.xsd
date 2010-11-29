@@ -89,20 +89,30 @@
 										</xs:annotation>
 									</xs:element>
 									<xs:element name="haQuantoTempoSofreViolenciaIntraFamiliar"
-										minOccurs="0" type="xs:string">
+										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Durante quanto tempo?</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
 									</xs:element>
 									<xs:element name="quemPraticaViolenciaIntrafamiliar"
-										minOccurs="0" type="xs:string">
+										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Quem?</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
 									</xs:element>
 									<xs:element name="sofreuViolenciaIntrafamiliar"
 										type="xs:boolean">
@@ -115,20 +125,30 @@
 										</xs:annotation>
 									</xs:element>
 									<xs:element name="haQuantoTempoSofreuViolenciaIntraFamiliar"
-										minOccurs="0" type="xs:string">
+										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Durante quanto tempo?</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
 									</xs:element>
 									<xs:element name="quemPraticouViolenciaIntrafamiliar"
-										minOccurs="0" type="xs:string">
+										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Quem?</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
 									</xs:element>
 									<xs:element name="nuncaSofreViolenciaIntrafamiliar"
 										type="xs:boolean">
@@ -363,7 +383,8 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Frequência com que sofras violências?</xhtml:label>
+									<xhtml:label>Frequência com que sofras violências?
+									</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -396,19 +417,25 @@
 									</xs:element>
 									<xs:element
 										name="InstituicaoContraViolenciaQueProcurouAjudaEmAlguma"
-										minOccurs="0" type="xs:string">
+										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Qual?</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
 									</xs:element>
 
 									<xs:element name="resolveuPorContraPropriaAViolencia"
 										minOccurs="0" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Resolveu a situação por conta própria</xhtml:label>
+												<xhtml:label>Resolveu a situação por conta própria
+												</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -492,7 +519,7 @@
 									</xs:element>
 
 									<xs:element name="ondeEstaTendoAtendimentoEspecializado"
-										minOccurs="0" type="xs:string">
+										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Onde está tendo atendimento
@@ -500,6 +527,11 @@
 												</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
 									</xs:element>
 
 									<xs:element name="naoTemAtendimentoMasQuer"
@@ -545,7 +577,8 @@
 							minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>De que forma o ato infracional afetou a relação familiar?
+									<xhtml:label>De que forma o ato infracional afetou a relação
+										familiar?
 									</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
@@ -587,13 +620,17 @@
 				</xs:annotation>
 			</xs:element>
 
-			<xs:element name="tecnicoResponsavel" minOccurs="0"
-				type="xs:string">
+			<xs:element name="tecnicoResponsavel" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Técnico responsável</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
 			</xs:element>
 
 			<xs:element name="dataDocumento" minOccurs="0" type="xs:date">

@@ -66,7 +66,8 @@ txn_method 'listar_volumes' => authorized $role_listar => sub {
     my $for = 'collection("volume")/ns:volume';
 
         my $dados  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";' ;
-       $dados .=  'for $x in '.$for.' return ($x/ns:collection/text(), '.$args->{xqueryret}.')';
+           $dados .= 'subsequence(for $x in '.$for.' return ($x/ns:collection/text(), '.$args->{xqueryret}.'),';
+           $dados .= '(' . $args->{interval_ini} * $args->{num_por_pagina} . ') + 1 ,' . $args->{num_por_pagina} . ')';
 
     $self->auditoria({ ip => $args->{ip}, operacao => 'list', for => $for });
 
@@ -227,6 +228,20 @@ txn_method 'getDadosVolumeId' => authorized $role_listar => sub {
     };
 
    return $vol;
+};
+
+txn_method 'options_volumes' => authorized $role_alterar => sub {
+    my ( $self, $volume_origem ) = @_;
+    my $xq = 'declare namespace vol = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";
+              for $x in collection("volume")/vol:volume[vol:collection/text() ne "'.$volume_origem.'"] 
+                     return <option value="{$x/vol:collection/text()}">{$x/vol:nome/text()}</option>';
+
+    $self->sedna->execute($xq);
+    my $ret;
+    while (my $item = $self->sedna->get_item()) {
+       $ret .= $item;
+    }
+   return $ret;
 };
 
 =cut
