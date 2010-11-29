@@ -29,7 +29,7 @@
           [% c.model('Volume').options_volumes(id_volume) %]
     </select>
 
-    <input name="bt_enviar" type="submit" name="Submeter">
+    <input type="submit" id="Submeter" name="Submeter">
 
 </form>
 
@@ -45,7 +45,7 @@
     }
     else
     {
-        document.getElementById('bt_enviar').disabled="disabled";
+        document.getElementById('Submeter').disabled="disabled";
     }
   }
  </script>
