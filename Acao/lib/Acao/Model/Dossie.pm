@@ -64,6 +64,63 @@ txn_method 'obter_xsd_dossie' => authorized $role_listar => sub {
     return $self->sedna->get_document( $dossie );
 };
 
+
+
+=item listar_dossies()
+
+Retorna os dossies os quais o usuário autenticado tem acesso.
+
+=cut
+
+txn_method 'listar_dossies' => authorized $role_listar => sub {
+    my ($self, $args) = @_;
+
+    my $for = 'collection("'.$args->{id_volume}.'")/ns:dossie';
+
+    my $declare_namespace  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";';
+       $declare_namespace .= 'declare namespace dc = "http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";';
+       $declare_namespace .= 'declare namespace pes = "http://schemas.fortaleza.ce.gov.br/acao/sdh-identificacaoPessoal.xsd";';
+
+    my $xquery_for = 'for $x in '.$for;
+
+    my $xquery_where  = ' where '.$args->{where_nome_membro};
+       $xquery_where .= ' and '.$args->{where_nome_mae};
+
+    my $list  = $declare_namespace.' subsequence('.$xquery_for.$xquery_where;
+       $list .=                    ' order by $x/ns:criacao descending';      
+       $list .=                    ' return ($x/ns:controle/text() , '.$args->{xqueryret}.'), ';
+       $list .=                    '(('.$args->{interval_ini}.' * '.$args->{num_por_pagina}.') + 1), '.$args->{num_por_pagina}.')';
+
+ #    print Dumper($list);
+    my $count = $declare_namespace.'count('.$xquery_for.$xquery_where.' return "")';
+
+
+    $self->auditoria({ ip => $args->{ip}, operacao => 'list', for => $for, dados => $for   });
+
+    return
+        {
+          list       => $list,
+          count      => $count
+        };
+};
+
+sub auditoria  {
+    my ($self, $args) = @_;
+    my $doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
+    my $audit = $controle_audit_w->($doc,
+                                    {
+                                      data => DateTime->now(),
+                                      usuario => $self->user->id,
+                                      acao => $args->{operacao},
+                                      ip => $args->{ip},
+                                      dados => $args->{dados} || '',
+                                    },
+                               );
+    my $xq_audit = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
+                update insert ('.$audit->toString.') into '.$args->{for}.'/ns:audit';
+    $self->sedna->execute($xq_audit);
+}
+
 =item criar_dossie()
 
 =cut

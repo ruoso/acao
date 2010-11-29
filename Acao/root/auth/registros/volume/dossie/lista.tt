@@ -46,9 +46,6 @@
             [contains(upper-case(pes:mae/text()),upper-case(' _  '"' _ nome_mae _ '"' _ '))]' %]
 [% END %]
 
-[% xqueryret = PROCESS 'auth/registros/volume/dossie/lista_xqueryret.tt' %]
-[% xquery = PROCESS 'auth/registros/volume/dossie/lista_xquery.tt' %]
-[% xquerycount = PROCESS 'auth/registros/volume/dossie/count_xquery.tt' %]
 
 [% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume) ) %]
 
@@ -88,28 +85,42 @@
  [% # (nao recebe argumento pela url) %]
 
  [% TRY %]
- [% c.model('Sedna').begin %]
- [% c.model('Sedna').execute( xquery )%]
- [% WHILE (control = c.model('Sedna').get_item) %]
- [% SET html = c.model('Sedna').get_item %]
-    [% html %]
- [% controles = control _ '___' _ controles %]
- [% END %]
+ [% 
+    xqueryret = PROCESS 'auth/registros/volume/dossie/lista_xqueryret.tt';
+    #    Listando dossies, pasando parametros para auditoria, construção da query e paginação .
+    xquery = c.model('Dossie').listar_dossies({ 
+                                                xqueryret         => xqueryret,
+                                                ip                => c.req.address,
+                                                id_volume         => id_volume,
+                                                where_nome_membro => where_nome_membro,
+                                                where_nome_mae    => where_nome_mae,
+                                                interval_ini      => interval_ini,
+                                                num_por_pagina    => num_por_pagina 
+                                        });    
+    c.model('Sedna').begin ;
+    c.model('Sedna').execute( xquery.list );
+
+   WHILE (control = c.model('Sedna').get_item) ;
+     SET html = c.model('Sedna').get_item ;
+     html ;
+   END
+ %]
     
  [% # Executa a contagem dos registros para fazer a paginação  %]
- [% c.model('Sedna').execute( xquerycount )%]
- [% WHILE (contador = c.model('Sedna').get_item) %]
-   [% count = contador %]
- [% END %]
+ [% 
+    c.model('Sedna').execute( xquery.count );
+   
+ WHILE (contador = c.model('Sedna').get_item); 
+       count = contador; 
+    END; 
 
- [% c.model('Sedna').commit %]
+   c.model('Sedna').commit; %]
  [% CATCH %]
  <div class="erro">ERRO AO PROCESSAR CONSULTA:
   <PRE>[% error.info %]</PRE>
  </div>
 [% END %]
 
-[%# c.model('Dossie').auditoria_listar(c.req.address, controles, id_volume) %]
 </TBODY>
 </table>
 
