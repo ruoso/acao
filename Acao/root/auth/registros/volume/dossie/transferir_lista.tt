@@ -21,7 +21,7 @@
 [% INCLUDE 'auth/registros/volume/dossie/header.tt' %]
 [% INCLUDE 'errosucesso.tt' %]
 
-<form action="[% c.uri_for('/auth/registros/volume/dossie/transferir/') _ id_volume _ '/' _ controle %]" method="post" onsubmit="return">
+<form action="[% c.uri_for('/auth/registros/volume/dossie/transferir/') _ id_volume _ '/' _ controle %]" method="post" onsubmit="return validaForm();">
 
     <b> Selecione o volume de destino: </b> &nbsp&nbsp
     <select name="volume_destino" id="volume_destino">
@@ -29,9 +29,23 @@
           [% c.model('Volume').options_volumes(id_volume) %]
     </select>
 
-    <input type="submit" name="Submeter">
+    <input name="bt_enviar" type="submit" name="Submeter">
 
 </form>
 
 
 [% INCLUDE 'footer.tt' %]
+
+ <script language="javascript">
+  function validaForm(){
+    if(document.getElementById('volume_destino').value == ''){
+      alert('Informe o volume de destino');
+      document.getElementById('volume_destino').focus();
+      return false;
+    }
+    else
+    {
+        document.getElementById('bt_enviar').disabled="disabled";
+    }
+  }
+ </script>
