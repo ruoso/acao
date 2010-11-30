@@ -228,6 +228,22 @@ txn_method 'transferir' => authorized $role_alterar => sub {
     my $xq_delete = 'drop document "'.$controle.'" in collection "'.$id_volume.'" ';
     $self->sedna->execute($xq_delete);
 
+    my $doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
+    my $audit = $controle_audit_w->($doc,
+                                        {
+                                          data => DateTime->now(),
+                                          usuario => $self->user->id,
+                                          acao => 'Transfer',
+                                          ip => $ip,
+                                          dados => '$self->sedna->conn->loadData('.$xq_select.','.$controle.','. $volume_destino.');',
+                                        },
+                                   );
+
+    my $xq_audit = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; 
+                    update insert ('.$audit->toString.') into collection("'.$volume_destino.'")/ns:dossie[ns:controle="'.$controle.'"]/ns:audit';
+
+    $self->sedna->execute($xq_audit);
+
 };
 
 =head1 COPYRIGHT AND LICENSING
