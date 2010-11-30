@@ -50,20 +50,40 @@
 [% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume) ) %]
 
 <form action="[% '/auth/registros/volume/' _ id_volume %]">
-  <div>
-    <div><strong>Volume: </strong>[% vol.nome %]</div><br/>
-    <strong>Membro: </strong>
+<fieldset>
+	<legend>Dados do volume</legend>	
+	  <dl>
+	   <dt> <label> Volume: </label> </dt>
+	   <dd> <span>[% vol.nome %]</span>	</dd>
+       
+       <dt>Classificação:</dt>
+       <dd><span>[% vol.classificacao %]</span></dd>
+
+       <dt>Localização:</dt>
+       <dd><span>[% vol.localizacao %]</span></dd>
+	  </dl>
+</fieldset>
+
+<fieldset>
+	<legend>Buscar Prontuários</legend>	
+
+    <div>
+
+    <label> Membro: </label>
     <input type="text" name="nome_membro" id="nome_membro" value="[% nome_membro %]" style="width: 300px;">
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <strong>Mãe:    </strong>
+    
+    <label> Mãe:    </label>
     <input type="text" name="nome_mae" id="nome_mae" value="[% nome_mae %]" style="width: 300px;">
-    &nbsp;&nbsp;&nbsp;
+    
     <input type="submit" name="submit_form" id="submit_form" value="Pesquisar">
   </div>
+
 </form>
 
 <br/>
-
+<div id="commands">
+<a href="[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/criardossie') %]">Criar Prontuário</a>
+</div>
 <table>
 <thead>
  <tr>
@@ -126,5 +146,7 @@
 
 [% paginacao = PROCESS 'auth/registros/volume/dossie/paginacao.tt' %]
 [% paginacao %]
+
+</fieldset>
 
 [% INCLUDE 'footer.tt' %]

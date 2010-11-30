@@ -31,21 +31,23 @@
   <legend>Dados do Volume</legend>
   <dl>
     <dt>Volume:</dt>
-    <dd>[% vol.nome %]</dd>
-    <br>
+    <dd><span>[% vol.nome %]</span></dd>
+
     <dt>Classificação:</dt>
-    <dd>[% vol.classificacao %]</dd>
-    <br>
+    <dd><span>[% vol.classificacao %]</span></dd>
+
     <dt>Localização:</dt>
-    <dd>[% vol.localizacao %]</dd>
-    <br>
-    <dd>&nbsp;</dd>
+    <dd><span>[% vol.localizacao %]</span></dd>
   </dl>
+
+ </fieldset>
+
+ <fieldset>
   <legend>Dados do Prontuário</legend>
   <dl>
     <dt> <label> Nome Prontuário: </label> </dt>
     <dd> <input type="text" id="nome" name="nome"> </dd>
-    <br/>
+
     <dt>
       <label> Classificação: &nbsp; </label>
       <dd>  
@@ -63,7 +65,7 @@
         </select>
       </dd>
     </dt>
-    <br/>
+
     <dt> 
       <label> Localização: &nbsp; </label>
       <dd>
@@ -82,16 +84,17 @@
       </dd>
     </dt>
 
-    <br/>
     <dt>Controle:</dt>
     <dd>
      <input type="text" name="controle" id="controle" value="[% c.model('Dossie').gerar_uuid %]" readonly="readonly"/>
     </dd>
     <br/>
-    <dt> <input type="checkbox" id="representaDossieFisico" name="representaDossieFisico" evt="representaDossieFisico" checked="checked">
-           <label for="representaDossieFisico"> Representa Prontuário Físico </label> </dt>
+    <br/>
+	<dd> <input type="checkbox" id="representaDossieFisico" name="representaDossieFisico" evt="representaDossieFisico" checked="checked">
+           <label for="representaDossieFisico"> Representa Prontuário Físico </label> 
+	</dd>
   </dl>
- </fildset>
+ </fieldset>
  
  <div id="form_container"></div>
 

@@ -6,7 +6,9 @@
            </a>
         </td>
         <td>
-	        {$x/ns:nome/text()}
+			<span title="{$x/ns:nome/text()}">
+			 	{if (string-length($x/ns:nome/text()) > 30) then (substring($x/ns:nome/text(),0,30)) else ()}
+			</span>
         </td>
         <td>
 	        {$x/ns:criacao/text()}

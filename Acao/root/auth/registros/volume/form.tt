@@ -19,14 +19,21 @@
 %]
 [% INCLUDE 'auth/registros/volume/header.tt' %]
 
+<h1 class="titulo-form">Criar Volume</h1>
+
  <form action="[% c.uri_for('/auth/registros/volume/store') %]" method="post" onsubmit="return validaForm();">
 
- <fildset>
-  <dl>
-   <dt> <label> Nome Volume: </label> <input type="text" id="nome" name="nome"></dt>
-   <br/>
+ <fieldset>
+
+  <dl  class="form10">
+   <dt> <label> Nome Volume: </label> </dt>
+	<dd>
+		<input type="text" id="nome" name="nome"
+	</dd>
    <dt> 
-    <label> Classificação: &nbsp; </label> 
+    <label> Classificação:  </label> 
+   </dt>
+	<dd>
     <select name="classificacao" id="classificacao">
       <option value="Regional I"> Regional I </option>
       <option value="Regional II"> Regional II </option>
@@ -39,10 +46,12 @@
        <!--<option value="[% c.config.default.localizacao %]"> [% memberof %] </option>-->
       [% # END %]
     </select>
-   </dt>
-   <br/>
+	</dd>
+
    <dt> 
-    <label> Localização: &nbsp; &nbsp;</label> 
+    <label> Localização: </label> 
+	</dt>
+	<dd>
     <select name="localizacao" id="localizacao">
       <option value="Núcleo I"> Núcleo I </option>
       <option value="Núcleo II"> Núcleo II </option>
@@ -55,20 +64,22 @@
       <!--<option value="[% c.config.default.localizacao %]"> [% memberof %] </option>-->
       [% # END %]
     </select>
+   </dd>
    <br/>
-   <dt> <input type="checkbox" id="representaVolumeFisico" name="representaVolumeFisico" evt="representaVolumeFisico" checked="checked"> <label for="representaVolumeFisico"> Representa Volume Físico </label> </dt>
+ 	<dd> <input type="checkbox" id="representaVolumeFisico" name="representaVolumeFisico" evt="representaVolumeFisico" checked="checked"> <label for="representaVolumeFisico"> Representa Volume Físico </label> 
+	</dd>
   </dl>
- <fildset>
- <tr>
+ </fieldset>
+
   <input type="submit" name="Submeter">
- </tr>
+
  </form>
 
  <script language="javascript">
    generateForm("[% c.uri_for('/auth/registros/digitador/') _ leitura.id_leitura _ '/xsd' %]",
                 "form_container");
   function validaForm(){
-
+	//Valida Nome do volume	
     if(document.getElementById('nome').value == ''){
       alert('Informe o nome do volume');
       document.getElementById('nome').focus();
