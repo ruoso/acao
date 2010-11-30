@@ -87,11 +87,11 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
        $xquery_where .= ' and '.$args->{where_nome_mae};
 
     my $list  = $declare_namespace.' subsequence('.$xquery_for.$xquery_where;
-       $list .=                    ' order by $x/ns:criacao descending';      
+       $list .=                    ' order by $x/ns:criacao descending';
        $list .=                    ' return ($x/ns:controle/text() , '.$args->{xqueryret}.'), ';
        $list .=                    '(('.$args->{interval_ini}.' * '.$args->{num_por_pagina}.') + 1), '.$args->{num_por_pagina}.')';
 
- #    print Dumper($list);
+
     my $count = $declare_namespace.'count('.$xquery_for.$xquery_where.' return "")';
 
 
@@ -169,7 +169,7 @@ txn_method 'criar_dossie' => authorized $role_criar => sub {
                                             },
                                    );
 
-   my $xq_audit = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; 
+   my $xq_audit = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
                     update insert ('.$audit->toString.') into collection("'.$id_volume.'")/ns:dossie[ns:controle="'.$controle.'"]/ns:audit';
     $self->sedna->execute($xq_audit);
 
@@ -181,14 +181,14 @@ txn_method 'alterar_estado' => authorized $role_alterar => sub {
 
     my $xq  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";';
        $xq .= 'update replace $x in collection("'.$id_volume.'")/ns:dossie[ns:controle="'.$controle.'"]';
-       $xq .= '/ns:estado with <ns:estado>'.$estado.'</ns:estado> '; 
+       $xq .= '/ns:estado with <ns:estado>'.$estado.'</ns:estado> ';
     $self->sedna->execute($xq);
 
     if($estado eq 'fechado')
     {
             my $xq  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";';
                $xq .= 'update replace $x in collection("'.$id_volume.'")/ns:dossie[ns:controle="'.$controle.'"]';
-               $xq .= '/ns:fechamento with <ns:fechamento>'.DateTime->now().'</ns:fechamento>'; 
+               $xq .= '/ns:fechamento with <ns:fechamento>'.DateTime->now().'</ns:fechamento>';
             $self->sedna->execute($xq);
     }
 
@@ -196,7 +196,7 @@ txn_method 'alterar_estado' => authorized $role_alterar => sub {
     {
             my $xq  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";';
                $xq .= 'update replace $x in collection("'.$id_volume.'")/ns:dossie[ns:controle="'.$controle.'"]';
-               $xq .= '/ns:arquivamento with <ns:arquivamento>'.DateTime->now().'</ns:arquivamento>'; 
+               $xq .= '/ns:arquivamento with <ns:arquivamento>'.DateTime->now().'</ns:arquivamento>';
             $self->sedna->execute($xq);
     }
 
@@ -204,12 +204,12 @@ txn_method 'alterar_estado' => authorized $role_alterar => sub {
     {
             my $xq  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";';
                $xq .= 'update replace $x in collection("'.$id_volume.'")/ns:dossie[ns:controle="'.$controle.'"]';
-               $xq .= '/ns:arquivamento with <ns:arquivamento></ns:arquivamento>'; 
+               $xq .= '/ns:arquivamento with <ns:arquivamento></ns:arquivamento>';
             $self->sedna->execute($xq);
 
                $xq  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";';
                $xq .= 'update replace $x in collection("'.$id_volume.'")/ns:dossie[ns:controle="'.$controle.'"]';
-               $xq .= '/ns:fechamento with <ns:fechamento></ns:fechamento>'; 
+               $xq .= '/ns:fechamento with <ns:fechamento></ns:fechamento>';
             $self->sedna->execute($xq);
     }
 
@@ -224,7 +224,7 @@ txn_method 'alterar_estado' => authorized $role_alterar => sub {
                                         },
                                    );
 
-    my $xq_audit = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; 
+    my $xq_audit = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
                     update insert ('.$audit->toString.') into collection("'.$id_volume.'")/ns:dossie[ns:controle="'.$controle.'"]/ns:audit';
 
     $self->sedna->execute($xq_audit);
@@ -255,7 +255,7 @@ txn_method 'auditoria_listar' => authorized $role_listar => sub {
         $where .= ' or ns:controle = "'. $_ .'"';
     }
 
-   my $xq_audit = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; 
+   my $xq_audit = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
                     update insert ('.$audit->toString.') into collection("'.$id_volume.'")/ns:dossie[1=1 '.$where.']/ns:audit';
 
     $self->sedna->execute($xq_audit);

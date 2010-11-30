@@ -45,9 +45,8 @@
 
 [% SET tipo_documento = c.req.param('tipo_documento') %]
 
-[% xqueryret = PROCESS 'auth/registros/volume/dossie/documento/lista_xqueryret.tt' %]
-[% xquery = PROCESS 'auth/registros/volume/dossie/documento/lista_xquery.tt' %]
-[% xquerycount = PROCESS 'auth/registros/volume/dossie/documento/count_xquery.tt' %]
+
+
 
 [% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume) ) %]
 [% SET dos = ( c.model('Documento').getDadosDossie(id_volume, controle) ) %]
@@ -76,7 +75,7 @@
 <table>
 <thead>
  <tr>
-  <th>Tipo Documento</th> 
+  <th>Tipo Documento</th>
   <th>Criação</th>
   <th>Invalidação / Motivo</th>
   <th>Doc. Físico</th>
@@ -86,23 +85,36 @@
 </thead>
 <TBODY>
 
- [% # O foreach abaixo vai buscar diretamente no model por estar livre de contexto %] 
+ [% # O foreach abaixo vai buscar diretamente no model por estar livre de contexto %]
  [% # (nao recebe argumento pela url) %]
 
  [% TRY %]
- [% c.model('Sedna').begin %]
- [% c.model('Sedna').execute( xquery )%]
- [% WHILE (doc = c.model('Sedna').get_item) %]
- [% SET html = c.model('Sedna').get_item %]
-    [% html %]
- [% documentos = doc _ '___' _ documentos %]
- [% END %]
+ [%
+     xqueryret = PROCESS 'auth/registros/volume/dossie/documento/lista_xqueryret.tt';
+     xquery = c.model('Documento').listar_documentos({
+                                                xqueryret       		  => xqueryret,
+                                                ip              		  => c.req.address,
+                                                id_volume        		  => id_volume,
+                                                controle	      	      => controle,
+                                                where_documentos_validos  => where_documentos_validos,
+                                                where_tipo_documento      => where_tipo_documento,
+                                                interval_ini      		  => interval_ini,
+                                                num_por_pagina            => num_por_pagina
+                                        });
+ 	 c.model('Sedna').begin;
+	 c.model('Sedna').execute( xquery.list );
+
+	 WHILE (doc = c.model('Sedna').get_item);
+		 SET html = c.model('Sedna').get_item;
+	 html;
+
+	 END; %]
 
  [%# Executa a contagem dos registros para fazer a paginação  %]
- [% c.model('Sedna').execute( xquerycount )%]
- [% WHILE (contador = c.model('Sedna').get_item) %]
-   [% count = contador %]
- [% END %]
+ [% c.model('Sedna').execute( xquery.count );
+    WHILE (contador = c.model('Sedna').get_item);
+      count = contador;
+    END; %]
 
  [% c.model('Sedna').commit %]
 [% CATCH %]
@@ -110,8 +122,6 @@
   <PRE>[% error.info %]</PRE>
  </div>
 [% END %]
-
-[% c.model('Documento').auditoria_listar(c.req.address, documentos, id_volume, controle) %]
 
 </TBODY>
 </table>

@@ -62,9 +62,75 @@ txn_method 'obter_xsd_dossie' => authorized $role_visualizar => sub {
     return $self->sedna->get_document( $dossie );
 };
 
+=item listar_documentos()
+
+Retorna os dossies os quais o usuário autenticado tem acesso.
+
+=cut
+
+txn_method 'listar_documentos' => authorized $role_listar => sub {
+    my ($self, $args) = @_;
+
+    my $declare_namespace  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";';
+       $declare_namespace .= 'declare namespace dc = "http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";';
+       $declare_namespace .= 'declare namespace adt = "http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd";';
+       $declare_namespace .= 'declare namespace xhtml = "http://www.w3.org/1999/xhtml";';
+	   $declare_namespace .= 'declare namespace xss = "http://www.w3.org/2001/XMLSchema";';
+
+	my $for = 'collection("'.$args->{id_volume}.'")/ns:dossie[ns:controle = "'.$args->{controle}.'" ]';
+
+    my $xquery_for = 'for $x at $i in '.$for.'/ns:doc/*, ';
+       $xquery_for .= ' $y in collection("acao-schemas")/xss:schema/xss:element/xss:annotation/xss:appinfo/xhtml:label/text() ';
+
+    my $xquery_where  = 'where $y/../../../../../@targetNamespace = namespace-uri($x/dc:documento/*/*) ';
+       $xquery_where .= 'and '.$args->{where_documentos_validos}.' ';
+       $xquery_where .= 'and '.$args->{where_tipo_documento}.' ';
+
+    my $list  = $declare_namespace.' subsequence('.$xquery_for.$xquery_where.' ';
+       $list .=                    ' order by $x/dc:criacao descending';
+       $list .=                    ' return ($i , '.$args->{xqueryret}.'), ';
+       $list .=                    '(('.$args->{interval_ini}.' * '.$args->{num_por_pagina}.') + 1), '.$args->{num_por_pagina}.')';
+
+	#print Dumper($list);
+    my $count = $declare_namespace.'count('.$xquery_for.$xquery_where.' return "")';
+
+
+    $self->auditoria({ ip => $args->{ip}, operacao => 'list', for => $for, dados => $for } );
+
+    return
+        {
+          list       => $list,
+          count      => $count
+        };
+};
+# realiza de auditoria ao efetuar operações nos documentos
+sub auditoria  {
+    my ($self, $args) = @_;
+    my $doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
+    my $audit = $controle_audit_w->($doc,
+                                    {
+                                      data => DateTime->now(),
+                                      usuario => $self->user->id,
+                                      acao => $args->{operacao},
+                                      ip => $args->{ip},
+                                      dados => $args->{dados} || '',
+                                    },
+                               );
+
+    my $xq_audit = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
+                   declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";
+                   update insert ('.$audit->toString.') into '.$args->{for}.'/dc:audit';
+
+
+    $self->sedna->execute($xq_audit);
+}
+
+
+
 =item inserir_documento()
 
 =cut
+
 
 txn_method 'inserir_documento' => authorized $role_criar => sub {
     my $self = shift;
@@ -118,7 +184,7 @@ txn_method 'inserir_documento' => authorized $role_criar => sub {
                                 }
                                );
 
-    my $xq  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";'; 
+    my $xq  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";';
        $xq .= 'update insert ('.$res_xml->toString.') into collection("'.$id_volume.'")/ns:dossie[ns:controle="'.$controle.'"]/ns:doc';
 
     $self->sedna->execute($xq);
@@ -137,23 +203,23 @@ txn_method 'inserir_documento' => authorized $role_criar => sub {
                                    );
 
    my $xq_audit = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
-                   declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";  
+                   declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";
                    update insert ('.$audit->toString.') into collection("'.$id_volume.'")/ns:dossie[ns:controle="'.$controle.'"]/ns:doc/dc:documento[dc:id = "'.$uuid_str.'"]/dc:audit';
    $self->sedna->execute($xq_audit);
 
     if ($id_documento ne '')
     {
-            my $xq_invalidacao  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; 
-                                   declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd"; 
-                                   declare namespace audt="http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd"; 
+            my $xq_invalidacao  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
+                                   declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";
+                                   declare namespace audt="http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd";
                                    update replace $x in collection("'.$id_volume.'")/ns:dossie[ns:controle="'.$controle.'"]
-                                                  /ns:doc/dc:documento[dc:id = "'.$id_documento.'"]/dc:invalidacao 
+                                                  /ns:doc/dc:documento[dc:id = "'.$id_documento.'"]/dc:invalidacao
                                                   with <dc:invalidacao>'.DateTime->now().'</dc:invalidacao>';
             $self->sedna->execute($xq_invalidacao);
-    
-            my $xq_motivo_invalidacao  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; 
-                                          declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd"; 
-                                          declare namespace audt="http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd"; 
+
+            my $xq_motivo_invalidacao  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
+                                          declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";
+                                          declare namespace audt="http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd";
                                           update replace $x in collection("'.$id_volume.'")/ns:dossie[ns:controle="'.$controle.'"]
                                                          /ns:doc/dc:documento[dc:id = "'.$id_documento.'"]/dc:motivoInvalidacao
                                                          with <dc:motivoInvalidacao>replace</dc:motivoInvalidacao>';
@@ -185,8 +251,8 @@ txn_method 'visualizar' => authorized $role_visualizar => sub {
                                         },
                                    );
 
-   my $xq_audit = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; 
-                   declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";  
+   my $xq_audit = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
+                   declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";
                    update insert ('.$audit->toString.') into collection("'.$id_volume.'")/ns:dossie[ns:controle="'.$controle.'"]/ns:doc[dc:id="'. $id_documento.'"]/*/dc:audit';
 
     $self->sedna->execute($xq_audit);
@@ -227,59 +293,24 @@ txn_method 'visualizar_por_tipo' => authorized $role_visualizar => sub {
 };
 
 
-# Incluir o cabecalho de auditoria ao efetuar uma listagem nos documentos
-txn_method 'auditoria_listar' => authorized $role_listar => sub {
-    my $self = shift;
-    my ($ip, $documentos, $id_volume, $controle ) = @_;
-
-    my (@doc, $where);
-
-    my $dados  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";';
-       $dados .= 'declare namespace dc = "http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";';
-       $dados .= 'for $x at $i in collection("'.$id_volume.'")/ns:dossie[ns:controle = "'.$controle.'"]';
-       $dados .= '/ns:doc/* return $x';
-
-    my $doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
-
-    my $audit = $controle_audit_w->($doc,
-                                        {
-                                          data => DateTime->now(),
-                                          usuario => $self->user->id,
-                                          acao => 'list',
-                                          ip => $ip,
-                                          dados => $dados,
-                                        },
-                                   );
-    @doc = split(/___/,$documentos);
-
-    foreach (@doc){
-        $where .= ' or '. $_;
-    }
 
 
-   my $xq_audit = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; 
-                   declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";  
-                   update insert ('.$audit->toString.') into collection("'.$id_volume.'")/ns:dossie
-                   [ns:controle="'.$controle.'"]/ns:doc/*[1=1 '. $where.']/dc:audit';
-
-    $self->sedna->execute($xq_audit);
-};
 
 txn_method 'invalidar_documento' => authorized $role_listar => sub {
   my $self = shift;
   my ( $id_volume, $controle, $id_documento) = @_;
-  my $xq_invalidacao  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; 
-                         declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd"; 
-                         declare namespace audt="http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd"; 
+  my $xq_invalidacao  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
+                         declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";
+                         declare namespace audt="http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd";
                          update replace $x in collection("'.$id_volume.'")/ns:dossie[ns:controle="'.$controle.'"]
                                         /ns:doc/dc:documento[dc:id = "'.$id_documento.'"]/dc:invalidacao
                                         with <dc:invalidacao>'.DateTime->now().'</dc:invalidacao>';
 
   $self->sedna->execute($xq_invalidacao);
 
-  my $xq_motivo_invalidacao  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; 
-                                declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd"; 
-                                declare namespace audt="http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd"; 
+  my $xq_motivo_invalidacao  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
+                                declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";
+                                declare namespace audt="http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd";
                                 update replace $x in collection("'.$id_volume.'")/ns:dossie[ns:controle="'.$controle.'"]
                                                /ns:doc/dc:documento[dc:id = "'.$id_documento.'"]/dc:motivoInvalidacao
                                                with <dc:motivoInvalidacao>erro</dc:motivoInvalidacao>';
@@ -293,7 +324,7 @@ txn_method 'getDadosDossie' => authorized $role_listar => sub {
     my $xq  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
                declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";
                for $x in collection("'.$id_volume.'")/ns:dossie
-               where $x/ns:controle="'.$controle.'" 
+               where $x/ns:controle="'.$controle.'"
                return $x/ns:nome/text()';
 
    $self->sedna->execute($xq);
@@ -301,8 +332,8 @@ txn_method 'getDadosDossie' => authorized $role_listar => sub {
     my $vol = {};
     while(my $nome = $self->sedna->get_item){
         $vol = {
-                    nome => $nome, 
-                    classificacao => $self->sedna->get_item, 
+                    nome => $nome,
+                    classificacao => $self->sedna->get_item,
                     localizacao  => $self->sedna->get_item,
                   };
     };
