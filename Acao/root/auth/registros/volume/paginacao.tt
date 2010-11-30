@@ -30,7 +30,6 @@
 
 <table>
   <tr>
-    <td><a href="[% c.uri_for('/auth/registros/volume/criarvolume') %]">Criar Volume</a></td>
 
     [% SET args = { } %]
     [% args.import(c.req.params()) %]
