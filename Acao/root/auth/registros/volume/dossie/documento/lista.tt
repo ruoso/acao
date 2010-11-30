@@ -51,12 +51,20 @@
 [% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume) ) %]
 [% SET dos = ( c.model('Documento').getDadosDossie(id_volume, controle) ) %]
 
-<form>
-  <div>
-    <div><strong>VOLUME: </strong>[% vol.nome %]</div>
-    
-    <div><strong>PRONTUÁRIO: </strong>[% dos.nome %]</div>
-   
+
+<fieldset>
+  <legend>Dados do volume</legend>
+  <dl>
+    <dt> <label> VOLUME: </label> </dt>
+    <dd> <span> [% vol.nome %] </span> </dd>
+    <dt> <label> PRONTUÁRIO: </label> </dt>
+    <dd> <span> [% dos.nome %] </span> </dd>
+  <dl>
+</fieldset>
+
+<fieldset>
+  <legend>Filtrar Documentos</legend>	
+  <form>   
     <strong>Incluir Documentos Inativos: </strong>
     <input type="checkbox" name="documentos_validos" id="documentos_validos">
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -67,23 +75,22 @@
     </select>
     &nbsp;&nbsp;&nbsp;
     <input type="submit" name="submit_form" id="submit_form" value="Pesquisar">
-  </div>
-</form>
+  </form>
 
-<br/>
+  <br/>
 
-<table>
-<thead>
- <tr>
-  <th>Tipo Documento</th>
-  <th>Criação</th>
-  <th>Invalidação / Motivo</th>
-  <th>Doc. Físico</th>
-  <th>Original</th>
-  <th>Ação</th>
- </tr>
-</thead>
-<TBODY>
+  <table>
+  <thead>
+   <tr>
+    <th>Tipo Documento</th>
+    <th>Criação</th>
+    <th>Invalidação / Motivo</th>
+    <th>Doc. Físico</th>
+    <th>Original</th>
+    <th>Ação</th>
+   </tr>
+  </thead>
+  <TBODY>
 
  [% # O foreach abaixo vai buscar diretamente no model por estar livre de contexto %]
  [% # (nao recebe argumento pela url) %]
@@ -145,6 +152,8 @@
 
 [% paginacao = PROCESS 'auth/registros/volume/dossie/documento/paginacao.tt' %]
 [% paginacao %]
+
+</fieldset>
 
 <script language="javascript" type="text/javascript">
 
