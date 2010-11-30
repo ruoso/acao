@@ -37,6 +37,12 @@
 
 [% xquerycount = PROCESS 'auth/registros/volume/count_xquery.tt' %]
 
+<div id="commands">
+	<a class="criar" href="[% c.uri_for('/auth/registros/volume/criarvolume') %]">
+		Criar Volume
+	</a>
+</div>
+
 <table>
 <thead>
  <tr>
@@ -47,8 +53,8 @@
   <th>Estado</th>
   <th>Classificação</th>
   <th>Localização</th>
-  <th>Representa Volume Físico</th>
-  <th colspan="4">Ação</th>
+  <th>Vol. Físico</th>
+  <th colspan="4" align="center">Ação</th>
  </tr>
 </thead>
 <TBODY>
@@ -76,6 +82,7 @@
 	  </div>
 [% END %]
 
+[% c.model('Volume').auditoria_listar(c.req.address,volumes) %]
 </TBODY>
 </table>
 
