@@ -7,7 +7,7 @@
         </td>
         <td>
 			<span title="{$x/ns:nome/text()}">
-			 	{if (string-length($x/ns:nome/text()) > 30) then (substring($x/ns:nome/text(),0,30)) else ()}
+			 	{if (string-length($x/ns:nome/text()) > 30) then (substring($x/ns:nome/text(),0,30)) else ($x/ns:nome/text())}
 			</span>
         </td>
         <td>
