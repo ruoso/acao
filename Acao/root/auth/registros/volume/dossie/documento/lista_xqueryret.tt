@@ -8,11 +8,14 @@
              $y )}
         </a>
     </td>
-    <td>
+    <td class="longDateFormat">
       {$x/dc:criacao/text()}
     </td>
-    <td>
-      {replace ($x/dc:invalidacao/text(), '1970-01-01T00:00:00Z', '-')} {replace(replace ($x/dc:motivoInvalidacao/text(),'erro',' / ERRO'),'replace',' / ALTERAÇÃO')}
+    <td class="longDateFormat">
+      {replace ($x/dc:invalidacao/text(), '1970-01-01T00:00:00Z', '-')} 
+            <td>
+                {replace(replace ($x/dc:motivoInvalidacao/text(),'erro',' / ERRO'),'replace',' / ALTERAÇÃO')}
+            </td>
     </td>
     <td>
 	  { if ( $x/dc:representaDocumentoFisico/text() eq '1' ) then ("Sim") else ("Não") }
