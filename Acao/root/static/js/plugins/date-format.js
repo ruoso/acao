@@ -109,7 +109,7 @@ dateFormat.masks = {
     isoTime: "HH:MM:ss",
     isoDateTime: "yyyy-mm-dd'T'HH:MM:ss",
     isoUtcDateTime: "UTC:yyyy-mm-dd'T'HH:MM:ss'Z'",
-    sdhFormat: "dd/mm/yyyy - HH:MM:ss"
+    sdhFormat: "dd/mm/yyyy-HH:MM:ss"
 };
 
 
