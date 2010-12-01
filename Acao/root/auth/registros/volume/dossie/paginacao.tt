@@ -28,18 +28,18 @@
   [% fim = interval_ini + raio %]
 [% END %]
 
-<table>
-  <tr>
+<table alaing="center" width="100">
+  <div>
 
     [% SET args = { } %]
     [% args.import(c.req.params()) %]
 
-    <td width="100px">
+    <td>
       [% args.import({ interval_ini => 0}) %]
       <a href="[% c.uri_for('/auth/registros/volume/' _ id_volume , args) %]"> Primeiro </a>
     </td>
 
-    <td width="20px">
+    <td>
     [% IF interval_ini > 0 %]
       [% args.import({ interval_ini => interval_ini - 1 }) %]
       <a href="[% c.uri_for('/auth/registros/volume/' _ id_volume , args) %]" title="Anterior"> < < </a>
@@ -48,7 +48,7 @@
 
     [% WHILE ini <= fim %]
       [% IF ini < count / num_por_pagina * 2 && ini >= 0 %]
-        <td width="15px">
+        <td>
           [% args.import({ interval_ini => ini }) %]
           <a href="[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/' _ controle , args) %]"> 
           [% IF ini == interval_ini %]
@@ -63,16 +63,16 @@
       [% ini = ini + 1 %]
     [% END %]
 
-    <td width="20px">
+    <td>
       [% IF estado_controle_paginacao < numero_paginas && estado_controle_paginacao != '' %]
         [% args.import({ interval_ini => interval_ini + 1 }) %]
         <a href="[% c.uri_for('/auth/registros/volume/' _ id_volume , args) %]" title="Próximo"> > > </a>
       [% END %]
     </td>
 
-    <td width="100px">
+    <td>
       [% args.import({ interval_ini => numero_paginas }) %]
       <a href="[% c.uri_for('/auth/registros/volume/' _ id_volume , args) %]"> Último </a>
     </td>
-  </tr>
+  </div>
 </table>
