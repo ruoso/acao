@@ -142,11 +142,10 @@
 [% END %]
 
 </TBODY>
+
 </table>
 
+</fieldset>
 [% paginacao = PROCESS 'auth/registros/volume/dossie/paginacao.tt' %]
 [% paginacao %]
-
-</fieldset>
-
 [% INCLUDE 'footer.tt' %]
