@@ -78,7 +78,21 @@
   </form>
 
   <br/>
+<form action="[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/' _ controle _ '/inserirdocumento') %]" id="form" name="form" method="post" onSubmit="return validaDropDonw()">
 
+    <fildset>
+        <dt>
+            <select id="xsdDocumento" name="xsdDocumento">
+                <option value="">Escolha uma opção</option>
+                [% c.model('XSD').options_xsd %]
+            </select>
+
+            <input type="submit" value="Inserir Documento">
+        </dt>
+    </fildset>
+<br>
+
+</form>
   <table>
   <thead>
    <tr>
@@ -135,20 +149,7 @@
 
 <br/>
 
-<form action="[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/' _ controle _ '/inserirdocumento') %]" id="form" name="form" method="post" onSubmit="return validaDropDonw()">
 
-    <fildset>
-        <dt>
-            <select id="xsdDocumento" name="xsdDocumento">
-                <option value="">Escolha uma opção</option>
-                [% c.model('XSD').options_xsd %]
-            </select>
-
-            <input type="submit" value="Inserir Documento">
-        </dt>
-    </fildset>
-
-</form>
 
 [% paginacao = PROCESS 'auth/registros/volume/dossie/documento/paginacao.tt' %]
 [% paginacao %]
