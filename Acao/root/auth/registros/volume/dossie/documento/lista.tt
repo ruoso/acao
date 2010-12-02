@@ -151,7 +151,7 @@
 </form>
 
 <div>
-  [% c.model('XSD').link_xsd(id_volume, controle) %]
+  [% c.model('XSD').link_xsd(controle) %]
 </div>
 
 [% paginacao = PROCESS 'auth/registros/volume/dossie/documento/paginacao.tt' %]
