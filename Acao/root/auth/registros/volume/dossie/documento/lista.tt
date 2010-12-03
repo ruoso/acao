@@ -45,7 +45,8 @@
 
 [% SET tipo_documento = c.req.param('tipo_documento') %]
 
-
+<br>
+<h1 class="titulo-form">Gerenciar Documentos</h1>
 
 
 [% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume) ) %]

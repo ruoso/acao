@@ -49,6 +49,9 @@
 
 [% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume) ) %]
 
+<br>
+<h1 class="titulo-form">Gerenciar Prontuários</h1>
+
 <form action="[% '/auth/registros/volume/' _ id_volume %]">
 <fieldset>
 	<legend>Dados do volume</legend>	

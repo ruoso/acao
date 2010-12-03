@@ -21,6 +21,9 @@
 
 [% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume) ) %]
 
+<br>
+<h1 class="titulo-form">Criar Prontuários</h1>
+
 <script SRC="[% c.uri_for('/static/js/xsdForm.js') %]" language="Javascript" ></script>
 
 <form action="[% c.uri_for('/auth/registros/volume/') _ id_volume _ '/store' %]" method="post" onsubmit="return validaForm();">

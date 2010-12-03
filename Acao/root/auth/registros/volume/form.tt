@@ -18,7 +18,7 @@
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
 %]
 [% INCLUDE 'auth/registros/volume/header.tt' %]
-
+<br>
 <h1 class="titulo-form">Criar Volume</h1>
 
  <form action="[% c.uri_for('/auth/registros/volume/store') %]" method="post" onsubmit="return validaForm();">
