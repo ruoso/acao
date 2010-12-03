@@ -75,8 +75,9 @@
 	  </dl>
 </fieldset>
 
-<form action="[% '/auth/registros/volume/' _ id_volume %]">
+
 <fieldset>
+  <form action="[% '/auth/registros/volume/' _ id_volume %]">
 	<legend>Buscar Prontuários</legend>	
 
     <div>
@@ -88,9 +89,9 @@
     <input type="text" name="nome_mae" id="nome_mae" value="[% nome_mae %]" style="width: 300px;">
     
     <input type="submit" name="submit_form" id="submit_form" value="Pesquisar">
-  </div>
+    </div>
 
-</form>
+  </form>
 
 <br/>
 <div id="commands">
