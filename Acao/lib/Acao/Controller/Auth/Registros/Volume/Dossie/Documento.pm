@@ -93,11 +93,13 @@ sub visualizar : Chained('base') : PathPart('visualizar') : Args(4){
         or $c->detach('/public/default');
 }
 
-sub visualizar_por_tipo : Chained('base') : PathPart('visualizarportipo') : Args(2){
-    my ( $self, $c, $id_documento, $xsdDocumento ) = @_;
+sub visualizar_por_tipo : Chained('base') : PathPart('visualizarportipo') : Args(4){
+    my ( $self, $c, $id_documento, $xsdDocumento, $invalidacao, $representaDocumentoFisico ) = @_;
     $c->stash->{id_documento} = $id_documento;
-    $c->stash->{xsdDocumento} = 'http://schemas.fortaleza.ce.gov.br/acao/'.$xsdDocumento
-        or $c->detach('/public/default');
+    $c->stash->{xsdDocumento} = 'http://schemas.fortaleza.ce.gov.br/acao/'.$xsdDocumento;
+    $c->stash->{invalidacao} = $invalidacao;
+    $c->stash->{representaDocumentoFisico} = $representaDocumentoFisico
+         or $c->detach('/public/default');
 }
 
 sub invalidar_documento : Chained('base') : PathPart('invalidar_documento') : Args(1){

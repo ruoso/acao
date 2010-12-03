@@ -48,7 +48,7 @@
     <dd>
 	  <div name="xsdFormValidation">
 		<input type="hidden" name="controle" value = "[% controle %]"/>
-        [% controle %]
+        [% id_volume %]
 		<div name="requiredField" style="display: none;">true</div>
 	  </div>
     </dd>
@@ -73,7 +73,11 @@
   </dl>
  </fieldset> 
 
- <div id="form_container"></div>
+ <fieldset> 
+    <a href="[% c.uri_for('/auth/registros/volume/') _ id_volume _ '/' _ controle _ '/visualizar/' _ id_documento _ '/' _ xsdDocumento.substr(40) _ '/' _ $invalidacao _ '/' _ representaDocumentoFisico %]"> Voltar ao Documento Selecionado </a>
+ </fieldset> 
+
+<div id="form_container"></div>
   [% SET controles = c.model('Documento').visualizar_por_tipo(id_volume, controle, xsdDocumento) %]
 <br>
 
