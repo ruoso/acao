@@ -214,7 +214,8 @@ txn_method 'getDadosVolumeId' => authorized $role_listar => sub {
     my ($id_volume) = @_;
     my $xq = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";
                     for $x in collection("volume")/ns:volume[ns:collection="'.$id_volume.'"] 
-                    return ($x/ns:nome/text(), $x/ns:classificacao/text(), $x/ns:localizacao/text())';
+                    return ($x/ns:nome/text(), $x/ns:classificacao/text(), $x/ns:localizacao/text(), $x/ns:estado/text(), 
+                            $x/ns:criacao/text(), $x/ns:representaVolumeFisico/text())';
 
    $self->sedna->execute($xq);
 
@@ -223,7 +224,10 @@ txn_method 'getDadosVolumeId' => authorized $role_listar => sub {
         $vol = {
                     nome => $nome, 
                     classificacao => $self->sedna->get_item, 
-                    localizacao  => $self->sedna->get_item,
+                    localizacao   => $self->sedna->get_item,
+                    estado        => $self->sedna->get_item,
+                    criacao       =>$self->sedna->get_item,
+                    volume_fisico => $self->sedna->get_item > 0 ? 'Sim' : 'Não',
                   };
     };
 

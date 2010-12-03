@@ -32,7 +32,7 @@
 
  <fieldset>
   <legend>Dados do Volume</legend>
-  <dl>
+  <dl class="form15">
     <dt>Volume:</dt>
     <dd><span>[% vol.nome %]</span></dd>
 
@@ -41,13 +41,22 @@
 
     <dt>Localização:</dt>
     <dd><span>[% vol.localizacao %]</span></dd>
+
+    <dt>Estado:</dt>
+    <dd><span>[% vol.estado %]</span></dd>
+
+    <dt>Data Criação:</dt>
+    <dd><span>[% vol.criacao %]</span></dd>
+
+    <dt>Vol. Físico:</dt>
+    <dd><span>[% vol.volume_fisico %]</span></dd>
   </dl>
 
  </fieldset>
 
  <fieldset>
   <legend>Dados do Prontuário</legend>
-  <dl>
+  <dl class="form15">
     <dt> <label> Nome Prontuário: </label> </dt>
     <dd> <input type="text" id="nome" name="nome"> </dd>
 
