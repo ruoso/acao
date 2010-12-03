@@ -25,8 +25,7 @@
 
 <script SRC="[% c.uri_for('/static/js/forms/' ) _ c.req.param('xsdDocumento') _ '.js' %]" language="Javascript" ></script>
 
-<form action="[% c.uri_for('/auth/registros/volume/') _ id_volume _ '/' _ controle _ '/store' %]" method="post"
-    onsubmit="return generateXml('[% c.uri_for_action('/auth/registros/xsd/raw', [ c.req.param('xsdDocumento') ] ) %]', this.processed_xml);">
+<form action="" id="form" name="form" method="post" onsubmit="return generateXml('[% c.uri_for_action('/auth/registros/xsd/raw', [ c.req.param('xsdDocumento') ] ) %]', this.processed_xml);">
  <input type="hidden" name="processed_xml">
  <input type="hidden" name="id_volume" value="[% id_volume %]">
  <input type="hidden" name="xsdDocumento" value="[% c.req.param('xsdDocumento') %]">
@@ -72,7 +71,9 @@
 
  <div id="form_container"></div>
 
- <input type="submit" name="Submeter">
+ <input type="submit" name="Submeter" onClick="javascript:document.getElementById('form').action='[% c.uri_for('/auth/registros/volume/') _ id_volume _ '/' _ controle _ '/store' %]';">
+
+ <input type="submit" name="Cancelar" onClick="javascript:document.getElementById('form').action='[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/' _ controle ) %]'" value="Cancelar">
 
  </form>
 

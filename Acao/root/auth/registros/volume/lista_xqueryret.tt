@@ -32,10 +32,16 @@
 	        {$x/ns:estado/text()}
         </td>
         <td>
-	        <span title="{$x/ns:classificacao/text()}">{$x/ns:classificacao/text()}</span>
+	        <span title="{$x/ns:classificacao/text()}">
+                <!--{$x/ns:classificacao/text()}-->
+                {substring($x/ns:classificacao/text(),0, 12)}
+            </span>
         </td>
         <td>
-	         <span title="{$x/ns:localizacao/text()}">{$x/ns:localizacao/text()}</span>
+	        <span title="{$x/ns:localizacao/text()}">
+                <!--{$x/ns:localizacao/text()}-->
+                {substring($x/ns:localizacao/text(),0, 12)}
+            </span>
         </td>
         <td>
 	       { if ( $x/ns:representaVolumeFisico/text() eq '1' ) then ("Sim") else ("Não") }

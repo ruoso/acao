@@ -26,7 +26,7 @@
 
 <script SRC="[% c.uri_for('/static/js/xsdForm.js') %]" language="Javascript" ></script>
 
-<form action="[% c.uri_for('/auth/registros/volume/') _ id_volume _ '/store' %]" method="post" onsubmit="return validaForm();">
+<form id="form" name="form" action="" method="post">
  <input type="hidden" name="id_volume" value="[% id_volume %]">
 
 
@@ -101,8 +101,9 @@
  
  <div id="form_container"></div>
 
- <input type="submit" name="Submeter">
+ <input type="submit" name="Submeter" onClick="javascript:document.getElementById('form').action='[% c.uri_for('/auth/registros/volume/') _ id_volume _ '/store' %]'; javascript:return validaForm();">
 
+ <input type="submit" name="Cancelar" onClick="javascript:document.getElementById('form').action='[% c.uri_for('/auth/registros/volume/' _ id_volume) %]'" value="Cancelar">
  </form>
 
  <script language="javascript">

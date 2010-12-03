@@ -32,14 +32,14 @@
         </td>
         <td>
             <span title="{$x/ns:classificacao/text()}">
-                <!--{substring($x/ns:classificacao/text(),0, 12)}...-->
-                {$x/ns:classificacao/text()}
+                {substring($x/ns:classificacao/text(),0, 12)}
+                <!--{$x/ns:classificacao/text()}-->
             </span>
         </td>
         <td>
             <span title="{$x/ns:localizacao/text()}">
-                <!--{substring($x/ns:localizacao/text(),0, 12)}...-->
-                {$x/ns:localizacao/text()}
+                {substring($x/ns:localizacao/text(),0, 12)}
+                <!--{$x/ns:localizacao/text()}-->
             </span>
         </td>
         <td>
