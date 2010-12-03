@@ -35,20 +35,28 @@
  <fieldset>
   <legend>Dados do Volume</legend>
   <dl>
-    <dt>Volume:</dt>
-    <dd>[% vol.nome %]</dd>
-    <br>
+      <dt>Volume:</dt>
+    <dd><span>[% vol.nome %]</span></dd>
+
     <dt>Classificação:</dt>
-    <dd>[% vol.classificacao %]</dd>
-    <br>
+    <dd><span>[% vol.classificacao %]</span></dd>
+
     <dt>Localização:</dt>
-    <dd>[% vol.localizacao %]</dd>
-    <br>
-    <dt>Controle:</dt>
+    <dd><span>[% vol.localizacao %]</span></dd>
+
+    <dt>Estado:</dt>
+    <dd><span>[% vol.estado %]</span></dd>
+
+    <dt>Data Criação:</dt>
+    <dd><span>[% vol.criacao %]</span></dd>
+
+    <dt>Vol. Físico:</dt>
+    <dd><span>[% vol.volume_fisico %]</span></dd>
+
     <dd>
 	  <div name="xsdFormValidation">
 		<input type="hidden" name="controle" value = "[% controle %]"/>
-        [% id_volume %]
+        
 		<div name="requiredField" style="display: none;">true</div>
 	  </div>
     </dd>
@@ -58,24 +66,36 @@
  <fieldset>
   <legend>Dados do Prontuário</legend>
   <dl>
-    <dt>Prontuário:</dt>
-    <dd>[% dos.nome %]</dd>
-    <br>
-    <dt>Controle:</dt>
-    <dd>[% controle %]</dd>
-    <div></div>
-    <!--[% # IF invalidacao == '1970-01-01T00:00:00Z' %]
-        <input type="checkbox" id="representaDocumentoFisico" name="representaDocumentoFisico" evt="representaDocumentoFisico" [% IF representaDocumentoFisico == 'true' %] checked [% END %]>
-        <label for="representaDocumentoFisico"> Representa Documento Físico </label>
-    </div>
-   [% # END %]-->
+    <dt> <label> Prontuário: </label> </dt>
+    <dd> <span> [% dos.nome %] </span> </dd>
+
+    <dt>Classificação:</dt>
+    <dd><span>[% dos.classificacao %]</span></dd>
+
+    <dt>Localização:</dt>
+    <dd><span>[% dos.localizacao %]</span></dd>
+
+    <dt>Estado:</dt>
+    <dd><span>[% dos.estado %]</span></dd>
+
+    <dt>Data Criação:</dt>
+    <dd><span>[% dos.criacao %]</span></dd>
+
+    <dt>Pront. Físico:</dt>
+    <dd><span>[% dos.dossie_fisico %]</span></dd>
+
   </dl>
  </fieldset>
-
+ 
  <fieldset> 
    <a href="[% c.uri_for('/auth/registros/volume/') _ id_volume _ '/' _ controle _ '/visualizarportipo/' _ id_documento _ '/' _ xsdDocumento.substr(40) _ '/' _ invalidacao _ '/' _ representaDocumentoFisico %]"> Visualizar Todos Deste Tipo </a>
  </fieldset> 
- <br/>
+ 
+[% IF invalidacao == '1970-01-01T00:00:00Z' %]
+        <input type="checkbox" id="representaDocumentoFisico" name="representaDocumentoFisico" evt="representaDocumentoFisico" [% IF representaDocumentoFisico == 'true' %] checked [% END %] >
+        <label for="representaDocumentoFisico"> Representa Documento Físico </label>
+   [%  END %]
+<br><br>
  <div id="form_container"></div>
 
 [% # IF c.user.roles.grep('digitador') %]
