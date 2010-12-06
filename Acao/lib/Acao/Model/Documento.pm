@@ -79,7 +79,7 @@ txn_method 'listar_documentos' => authorized $role_listar => sub {
 
 	my $for = 'collection("'.$args->{id_volume}.'")/ns:dossie[ns:controle = "'.$args->{controle}.'" ]';
 
-    my $xquery_for = 'for $x at $i in '.$for.'/ns:doc/*, ';
+    my $xquery_for  = 'for $x at $i in '.$for.'/ns:doc/*, ';
        $xquery_for .= ' $y in collection("acao-schemas")/xss:schema/xss:element/xss:annotation/xss:appinfo/xhtml:label/text() ';
 
     my $xquery_where  = 'where $y/../../../../../@targetNamespace = namespace-uri($x/dc:documento/*/*) ';
@@ -93,7 +93,6 @@ txn_method 'listar_documentos' => authorized $role_listar => sub {
 
 	#print Dumper($list);
     my $count = $declare_namespace.'count('.$xquery_for.$xquery_where.' return "")';
-
 
     $self->auditoria({ ip => $args->{ip}, operacao => 'list', for => $for, dados => $for } );
 
@@ -325,7 +324,8 @@ txn_method 'getDadosDossie' => authorized $role_listar => sub {
                declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";
                for $x in collection("'.$id_volume.'")/ns:dossie
                where $x/ns:controle="'.$controle.'"
-               return $x/ns:nome/text()';
+               return ($x/ns:nome/text(), $x/ns:classificacao/text(), $x/ns:localizacao/text(), $x/ns:estado/text(), 
+                      $x/ns:criacao/text(), $x/ns:representaDossieFisico/text())';
 
    $self->sedna->execute($xq);
 
@@ -334,7 +334,10 @@ txn_method 'getDadosDossie' => authorized $role_listar => sub {
         $vol = {
                     nome => $nome,
                     classificacao => $self->sedna->get_item,
-                    localizacao  => $self->sedna->get_item,
+                    localizacao   => $self->sedna->get_item,
+                    estado        => $self->sedna->get_item,
+                    criacao       =>$self->sedna->get_item,
+                    dossie_fisico => $self->sedna->get_item > 0 ? 'Sim' : 'Não',
                   };
     };
 

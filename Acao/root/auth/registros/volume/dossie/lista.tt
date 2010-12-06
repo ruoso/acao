@@ -49,10 +49,12 @@
 
 [% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume) ) %]
 
-<form action="[% '/auth/registros/volume/' _ id_volume %]">
+<br>
+<h1 class="titulo-form">Gerenciar Prontuários</h1>
+
 <fieldset>
-	<legend>Dados do volume</legend>	
-	  <dl>
+	<legend>Dados do Volume</legend>	
+	  <dl class="form15">
 	   <dt> <label> Volume: </label> </dt>
 	   <dd> <span>[% vol.nome %]</span>	</dd>
        
@@ -61,12 +63,23 @@
 
        <dt>Localização:</dt>
        <dd><span>[% vol.localizacao %]</span></dd>
+
+       <dt>Estado:</dt>
+       <dd><span>[% vol.estado %]</span></dd>
+
+       <dt>Data Criação:</dt>
+       <dd><span>[% vol.criacao %]</span></dd>
+
+       <dt>Vol. Físico:</dt>
+       <dd><span>[% vol.volume_fisico %]</span></dd>
 	  </dl>
 </fieldset>
 
-<fieldset>
-	<legend>Buscar Prontuários</legend>	
 
+<fieldset>
+  
+	<legend>Buscar Prontuários</legend>	
+<form action="[% '/auth/registros/volume/' _ id_volume %]">
     <div>
 
     <label> Adolescente: </label>
@@ -76,9 +89,9 @@
     <input type="text" name="nome_mae" id="nome_mae" value="[% nome_mae %]" style="width: 300px;">
     
     <input type="submit" name="submit_form" id="submit_form" value="Pesquisar">
-  </div>
+    </div>
 
-</form>
+  </form>
 
 <br/>
 <div id="commands">
@@ -95,7 +108,7 @@
   <th>Estado</th>
   <th>Classificação</th>
   <th>Localização</th>
-  <th>Prontuário Físico</th>
+  <th>Pront. Físico</th>
   <th colspan="4" >Ação</th>
  </tr>
 </thead>
@@ -142,11 +155,12 @@
 [% END %]
 
 </TBODY>
+
 </table>
+
 
 [% paginacao = PROCESS 'auth/registros/volume/dossie/paginacao.tt' %]
 [% paginacao %]
-
 </fieldset>
-
 [% INCLUDE 'footer.tt' %]
+
