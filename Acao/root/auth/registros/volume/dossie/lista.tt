@@ -50,7 +50,8 @@
 [% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume) ) %]
 
 <br>
-<h1 class="titulo-form">Gerenciar Prontuários</h1>
+<h1 class="titulo-form">Gerenciar Prontuários | <span style="font-size:13px; font-weight:normal;"><a class="criar" href="[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/criardossie') %]">Criar Prontuário</a></span></h1>
+
 
 <fieldset>
 	<legend>Dados do Volume</legend>	
@@ -95,21 +96,21 @@
 
 <br/>
 <div id="commands">
-<a class="criar" href="[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/criardossie') %]">Criar Prontuário</a>
+
 </div>
 <table>
 <thead>
  <tr>
-  <th>Controle</th>
+  <th width="70px">Controle</th>
   <th width="350px">Prontuário</th>
-  <th>Criação</th>
-  <th>Fechamento</th>
-  <th>Arquivamento</th>
-  <th>Estado</th>
+  <th width="110px">Criação</th>
+  <th width="110px">Fechamento</th>
+  <th width="110px">Arquivamento</th>
+  <th width="40px">Estado</th>
   <th>Classificação</th>
   <th>Localização</th>
-  <th>Pront. Físico</th>
-  <th colspan="4" >Ação</th>
+  <th width="80px">Pront. Físico</th>
+  <th width="120px" align="center" colspan="4">Ação</th>
  </tr>
 </thead>
 <TBODY>
