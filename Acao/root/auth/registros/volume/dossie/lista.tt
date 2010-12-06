@@ -78,9 +78,9 @@
 
 
 <fieldset>
-  <form action="[% '/auth/registros/volume/' _ id_volume %]">
+  
 	<legend>Buscar Prontuários</legend>	
-
+<form action="[% '/auth/registros/volume/' _ id_volume %]">
     <div>
 
     <label> Adolescente: </label>
@@ -159,7 +159,9 @@
 
 </table>
 
-</fieldset>
+
 [% paginacao = PROCESS 'auth/registros/volume/dossie/paginacao.tt' %]
 [% paginacao %]
+</fieldset>
 [% INCLUDE 'footer.tt' %]
+

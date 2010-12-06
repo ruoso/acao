@@ -46,7 +46,7 @@
 	       { if ( $x/ns:representaDossieFisico/text() = 1 ) then ("Sim") else ("Não") }
         </td>
         <td>
-             <a href="[% c.uri_for('/auth/registros/volume/dossie/transferir_lista/') _ id_volume %]/{$x/ns:controle/text()}" class="fechar" title="transferir"> transferir </a>
+             <a href="[% c.uri_for('/auth/registros/volume/dossie/transferir_lista/') _ id_volume %]/{$x/ns:controle/text()}" class="transferir" title="transferir"> transferir </a>
         </td>
            { if ( $x/ns:estado/text() eq 'fechado') then (
         <td>
