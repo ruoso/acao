@@ -46,15 +46,70 @@
 [% SET tipo_documento = c.req.param('tipo_documento') %]
 
 <br>
-<h1 class="titulo-form">Gerenciar Documentos</h1>
+<h1 class="titulo-form">Gerenciar Documentos | <span style="font-size:13px; font-weight:normal;">
+<a id="addDocument" href="#" class="criar">Inserir Documento</a>
+</span></h1>
 
 
 [% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume) ) %]
 [% SET dos = ( c.model('Documento').getDadosDossie(id_volume, controle) ) %]
 
+<div id="accordion">
+	<h3><a href="#">Dados do Volume: [% vol.nome %]</a></h3>
+	<div>		
+		<fieldset class="fieldsetBorderNone">
+			  <dl class="form15">
+				<dt>Volume:</dt>
+				<dd><span>[% vol.nome %]</span></dd>
 
-<fieldset>
-  <legend>Dados do Volume</legend>
+				<dt>Classificação:</dt>
+				<dd><span>[% vol.classificacao %]</span></dd>
+
+				<dt>Localização:</dt>
+				<dd><span>[% vol.localizacao %]</span></dd>
+
+				<dt>Estado:</dt>
+				<dd><span>[% vol.estado %]</span></dd>
+
+				<dt>Data Criação:</dt>
+				<dd><span class="longDateFormat">[% vol.criacao %]</span></dd>
+
+				<dt>Vol. Físico:</dt>
+				<dd><span>[% vol.volume_fisico %]</span></dd>
+			  </dl>
+		 </fieldset>
+
+	</div>
+	<h3><a href="#">Dados do Prontuário: [% dos.nome %]</a></h3>
+		<div>		
+			<fieldset class="fieldsetBorderNone">
+			  <dl class="form15">
+				<dt> <label> Prontuário: </label> </dt>
+				<dd> <span> [% dos.nome %] </span> </dd>
+
+				<dt>Classificação:</dt>
+				<dd><span>[% dos.classificacao %]</span></dd>
+
+				<dt>Localização:</dt>
+				<dd><span>[% dos.localizacao %]</span></dd>
+
+				<dt>Estado:</dt>
+				<dd><span>[% dos.estado %]</span></dd>
+
+				<dt>Data Criação:</dt>
+				<dd><span class="longDateFormat">[% dos.criacao %]</span></dd>
+
+				<dt>Pront. Físico:</dt>
+				<dd><span>[% dos.dossie_fisico %]</span></dd>
+			  <dl>
+			</fieldset>
+
+		</div>
+</div>
+<br>
+<!--
+<fieldset class="collapsibleClosed">
+  <legend>Dados do Volume: <span>[% vol.nome %]</span></legend>
   <dl class="form15">
     <dt>Volume:</dt>
     <dd><span>[% vol.nome %]</span></dd>
@@ -69,7 +124,7 @@
     <dd><span>[% vol.estado %]</span></dd>
 
     <dt>Data Criação:</dt>
-    <dd><span>[% vol.criacao %]</span></dd>
+    <dd><span class="longDateFormat">[% vol.criacao %]</span></dd>
 
     <dt>Vol. Físico:</dt>
     <dd><span>[% vol.volume_fisico %]</span></dd>
@@ -77,8 +132,8 @@
 
  </fieldset>
 
- <fieldset>
-  <legend>Dados do Prontuário</legend>
+ <fieldset class="collapsibleClosed">
+  <legend>Dados do Prontuário: <span> [% dos.nome %] </span></legend>
   <dl class="form15">
     <dt> <label> Prontuário: </label> </dt>
     <dd> <span> [% dos.nome %] </span> </dd>
@@ -93,12 +148,13 @@
     <dd><span>[% dos.estado %]</span></dd>
 
     <dt>Data Criação:</dt>
-    <dd><span>[% dos.criacao %]</span></dd>
+    <dd><span class="longDateFormat">[% dos.criacao %]</span></dd>
 
     <dt>Pront. Físico:</dt>
     <dd><span>[% dos.dossie_fisico %]</span></dd>
   <dl>
 </fieldset>
+-->
 
 <fieldset>
   <legend>Filtrar Documentos</legend>	
@@ -188,10 +244,38 @@
 <br/>
 
 
-
-<div>
-  [% c.model('XSD').link_xsd(controle) %]
+<div id="lstDocumentos" class="hidden">
+	<div class="text">
+  		[% c.model('XSD').link_xsd(controle) %]
+	</div>
 </div>
+
+<style rel="stylesheet" type="text/css">
+	.text {
+		padding:10px 10px 10px 10px;
+	}
+
+	.panel {
+		position:absolute;
+		top:220px;
+		left:290px;
+		background:#FFFFAF;
+		border:3px solid #E6B800;
+		line-height: 200%;	
+
+		/*height: 300px;*/
+		width: 500px;
+		overflow: auto;
+	
+	}
+	
+
+	.hidden {
+		display:none;
+		visibility:hidden;
+	}
+</style>
+
 
 [% paginacao = PROCESS 'auth/registros/volume/dossie/documento/paginacao.tt' %]
 [% paginacao %]
@@ -199,6 +283,18 @@
 </fieldset>
 
 <script language="javascript" type="text/javascript">
+
+	$(function(){
+		//Adicionando evento de click no botão addDocumento
+		$("#addDocument").click(addDocumentClick);
+		
+		$( "#accordion" ).accordion({ 
+		    collapsible: true, 
+		    autoHeight: false, 
+		    active: false
+		});
+
+	});
 
     function validaDropDonw(){
         if (document.getElementById('xsdDocumento').value == '') {
@@ -213,5 +309,13 @@
              return false;
         }
      }
+
+	function addDocumentClick(){
+		$("#lstDocumentos").removeClass("hidden").addClass("panel");
+
+	}
+
 </script>
+
+
 [% INCLUDE 'footer.tt' %]
