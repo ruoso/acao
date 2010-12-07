@@ -28,27 +28,21 @@
   [% fim = interval_ini + raio %]
 [% END %]
 
-<table>
-  <tr>
+<div class="paginacao-grid">
 
     [% SET args = { } %]
     [% args.import(c.req.params()) %]
 
-    <td width="100px">
       [% args.import({ interval_ini => 0}) %]
-      <a href="[% c.uri_for('/auth/registros/volume', args) %]"> Primeiro </a>
-    </td>
+      <a class="paginacao-grid-primeiro" href="[% c.uri_for('/auth/registros/volume', args) %]"> << Primeiro </a>
 
-    <td width="20px">
     [% IF interval_ini > 0 %]
       [% args.import({ interval_ini => interval_ini - 1 }) %]
-      <a href="[% c.uri_for('/auth/registros/volume', args) %]" title="Anterior"> < < </a>
+      <a href="[% c.uri_for('/auth/registros/volume', args) %]" title="Anterior"> < Anterior </a>
     [% END %]
-    </td>
 
     [% WHILE ini <= fim %]
       [% IF ini < count / num_por_pagina * 2 && ini >= 0 %]
-        <td width="15px">
           [% args.import({ interval_ini => ini }) %]
           <a href="[% c.uri_for('/auth/registros/volume', args) %]"> 
           [% IF ini == interval_ini %]
@@ -58,21 +52,16 @@
             [% ini + 1 %]
           [% END %]
           </a>
-      </td>
       [% END %]
       [% ini = ini + 1 %]
     [% END %]
 
-    <td width="20px">
       [% IF estado_controle_paginacao < numero_paginas && estado_controle_paginacao != '' %]
         [% args.import({ interval_ini => interval_ini + 1 }) %]
-        <a href="[% c.uri_for('/auth/registros/volume', args) %]" title="Próximo"> > > </a>
+        <a href="[% c.uri_for('/auth/registros/volume', args) %]" title="Próximo"> Próximo > </a>
       [% END %]
-    </td>
 
-    <td width="100px">
       [% args.import({ interval_ini => numero_paginas }) %]
-      <a href="[% c.uri_for('/auth/registros/volume', args) %]"> Último </a>
-    </td>
-  </tr>
-</table>
+      <a href="[% c.uri_for('/auth/registros/volume', args) %]"> Último >> </a>
+
+</div>
