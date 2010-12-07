@@ -1,4 +1,4 @@
-[%#
+s[%#
 # Copyright 2010 - Prefeitura Municipal de Fortaleza
 #
 # Este arquivo é parte do programa Ação - Sistema de Acompanhamento de
@@ -52,9 +52,37 @@
 <br>
 <h1 class="titulo-form">Gerenciar Prontuários | <span style="font-size:13px; font-weight:normal;"><a class="criar" href="[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/criardossie') %]">Criar Prontuário</a></span></h1>
 
+<div id="accordion">
+	<h3><a href="#">Dados do Volume: [% vol.nome %]</a></h3>
+	<div>		
+		<fieldset class="fieldsetBorderNone">
+			  <dl class="form15">
+				   <dt> <label> Volume: </label> </dt>
+				   <dd> <span>[% vol.nome %]</span>	</dd>
+				   
+				   <dt>Classificação:</dt>
+				   <dd><span>[% vol.classificacao %]</span></dd>
 
-<fieldset>
-	<legend>Dados do Volume</legend>	
+				   <dt>Localização:</dt>
+				   <dd><span>[% vol.localizacao %]</span></dd>
+
+				   <dt>Estado:</dt>
+				   <dd><span>[% vol.estado %]</span></dd>
+
+				   <dt>Data Criação:</dt>
+				   <dd><span class="longDateFormat">[% vol.criacao %]</span></dd>
+
+				   <dt>Vol. Físico:</dt>
+				   <dd><span>[% vol.volume_fisico %]</span></dd>
+			  </dl>
+		</fieldset>
+	</div>
+</div>
+<br>
+
+<!--
+<fieldset class="collapsibleClosed fieldsetBorderNone">
+	<legend>Dados do Volume: <span>[% vol.nome %]</span></legend>	
 	  <dl class="form15">
 	   <dt> <label> Volume: </label> </dt>
 	   <dd> <span>[% vol.nome %]</span>	</dd>
@@ -69,35 +97,43 @@
        <dd><span>[% vol.estado %]</span></dd>
 
        <dt>Data Criação:</dt>
-       <dd><span>[% vol.criacao %]</span></dd>
+       <dd><span class="longDateFormat">[% vol.criacao %]</span></dd>
 
        <dt>Vol. Físico:</dt>
        <dd><span>[% vol.volume_fisico %]</span></dd>
 	  </dl>
 </fieldset>
+-->
+
+
+<script language="javascript" type="text/javascript">
+	$(function(){
+			$( "#accordion" ).accordion({ 
+			    collapsible: true, 
+			    autoHeight: false, 
+			    active: false 
+			});
+	});
+</script>
 
 
 <fieldset>
   
 	<legend>Buscar Prontuários</legend>	
-<form action="[% '/auth/registros/volume/' _ id_volume %]">
-    <div>
+	<form action="[% '/auth/registros/volume/' _ id_volume %]">
+		<div>
 
-    <label> Adolescente: </label>
-    <input type="text" name="nome_membro" id="nome_membro" value="[% nome_membro %]" style="width: 300px;">
-    
-    <label> Mãe:    </label>
-    <input type="text" name="nome_mae" id="nome_mae" value="[% nome_mae %]" style="width: 300px;">
-    
-    <input type="submit" name="submit_form" id="submit_form" value="Pesquisar">
-    </div>
-
+		<label> Adolescente: </label>
+		<input type="text" name="nome_membro" id="nome_membro" value="[% nome_membro %]" style="width: 300px;">
+		
+		<label> Mãe:    </label>
+		<input type="text" name="nome_mae" id="nome_mae" value="[% nome_mae %]" style="width: 300px;">
+		
+		<input type="submit" name="submit_form" id="submit_form" value="Pesquisar">
+		</div>
   </form>
-
 <br/>
-<div id="commands">
 
-</div>
 <table>
 <thead>
  <tr>
@@ -163,5 +199,6 @@
 [% paginacao = PROCESS 'auth/registros/volume/dossie/paginacao.tt' %]
 [% paginacao %]
 </fieldset>
+
 [% INCLUDE 'footer.tt' %]
 
