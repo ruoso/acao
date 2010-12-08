@@ -1,16 +1,37 @@
 (
     <tr>
+
         <td>
 	       <a href="[% c.uri_for('/auth/registros/volume/') _ id_volume %]/{$x/ns:controle/text()}" >
                <span title="{$x/ns:controle/text()}">{substring($x/ns:controle/text(),0, 10)}... </span>
            </a>
         </td>
+
         <td>
 			<span title="{$x/ns:nome/text()}">
 			 	<!--{if (string-length($x/ns:nome/text()) > 30) then (substring($x/ns:nome/text(),0,30)) else ($x/ns:nome/text())}-->
                 {$x/ns:nome/text()}
 			</span>
         </td>
+
+        <td>
+            <span title="{$x/ns:classificacao/text()}">
+                {substring($x/ns:classificacao/text(),0, 12)}
+                <!--{$x/ns:classificacao/text()}-->
+            </span>
+        </td>
+
+        <td>
+            <span title="{$x/ns:localizacao/text()}">
+                {substring($x/ns:localizacao/text(),0, 12)}
+                <!--{$x/ns:localizacao/text()}-->
+            </span>
+        </td>
+
+        <td>
+	       { if ( $x/ns:representaDossieFisico/text() = 1 ) then ("Sim") else ("Não") }
+        </td>
+
         <td class="longDateFormat">
 	        {$x/ns:criacao/text()}
         </td>
@@ -30,21 +51,7 @@
         <td>
 	        {$x/ns:estado/text()}
         </td>
-        <td>
-            <span title="{$x/ns:classificacao/text()}">
-                {substring($x/ns:classificacao/text(),0, 12)}
-                <!--{$x/ns:classificacao/text()}-->
-            </span>
-        </td>
-        <td>
-            <span title="{$x/ns:localizacao/text()}">
-                {substring($x/ns:localizacao/text(),0, 12)}
-                <!--{$x/ns:localizacao/text()}-->
-            </span>
-        </td>
-        <td>
-	       { if ( $x/ns:representaDossieFisico/text() = 1 ) then ("Sim") else ("Não") }
-        </td>
+
         <td>
              <a href="[% c.uri_for('/auth/registros/volume/dossie/transferir_lista/') _ id_volume %]/{$x/ns:controle/text()}" class="transferir" title="transferir"> transferir </a>
         </td>
@@ -70,5 +77,4 @@
          ) else ( )}
         <input type="hidden" id="id_dossie" nome="id_dossie" value="{$x/ns:collection/text()}"/>
     </tr>
-
 )
