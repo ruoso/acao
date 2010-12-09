@@ -126,9 +126,8 @@
   <br/>
 <form action="[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/' _ controle _ '/inserirdocumento') %]" id="form" name="form" method="post" onSubmit="return validaDropDonw()">
 
-<br>
-
 </form>
+<br>
   <table>
   <thead>
    <tr>
@@ -186,6 +185,11 @@
 <br/>
 
 
+[% paginacao = PROCESS 'auth/registros/volume/dossie/documento/paginacao.tt' %]
+[% paginacao %]
+
+</fieldset>
+
 <div id="lstDocumentos" class="hidden panel">
 	<div class="text">
   		[% c.model('XSD').link_xsd(controle) %]
@@ -218,30 +222,11 @@
 	
 </style>
 
-
-[% paginacao = PROCESS 'auth/registros/volume/dossie/documento/paginacao.tt' %]
-[% paginacao %]
-
-</fieldset>
-
 <script language="javascript" type="text/javascript">
 
 	$(function(){
 		//Adicionando evento de click no botão addDocumento
 		$("#addDocument").click(swap);
-
-/*
-		$("#addDocument").toggle(
-			function(event){
-				enableAddDocument();
-				event.stopPropagation();
-			},
-			function(event){
-				disableAddDocument();
-				event.stopPropagation();
-			}
-		);*/
-
 		$('body').click(disableAddDocument);
 
 	});
