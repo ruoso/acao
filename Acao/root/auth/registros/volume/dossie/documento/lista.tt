@@ -47,7 +47,7 @@
 
 <br>
 <h1 class="titulo-form">Gerenciar Documentos | <span style="font-size:13px; font-weight:normal;">
-<a id="addDocument" href="#" class="criar">Inserir Documento</a>
+<a id="addDocument"  class="criar">Inserir Documento</a>
 </span></h1>
 
 
@@ -83,7 +83,7 @@
 	<h3><a href="#">Dados do Prontuário: [% dos.nome %]</a></h3>
 		<div>		
 			<fieldset class="fieldsetBorderNone">
-			  <dl class="form15">
+			   <dl class="form15">
 				<dt> <label> Prontuário: </label> </dt>
 				<dd> <span> [% dos.nome %] </span> </dd>
 
@@ -107,54 +107,6 @@
 		</div>
 </div>
 <br>
-<!--
-<fieldset class="collapsibleClosed">
-  <legend>Dados do Volume: <span>[% vol.nome %]</span></legend>
-  <dl class="form15">
-    <dt>Volume:</dt>
-    <dd><span>[% vol.nome %]</span></dd>
-
-    <dt>Classificação:</dt>
-    <dd><span>[% vol.classificacao %]</span></dd>
-
-    <dt>Localização:</dt>
-    <dd><span>[% vol.localizacao %]</span></dd>
-
-    <dt>Estado:</dt>
-    <dd><span>[% vol.estado %]</span></dd>
-
-    <dt>Data Criação:</dt>
-    <dd><span class="longDateFormat">[% vol.criacao %]</span></dd>
-
-    <dt>Vol. Físico:</dt>
-    <dd><span>[% vol.volume_fisico %]</span></dd>
-  </dl>
-
- </fieldset>
-
- <fieldset class="collapsibleClosed">
-  <legend>Dados do Prontuário: <span> [% dos.nome %] </span></legend>
-  <dl class="form15">
-    <dt> <label> Prontuário: </label> </dt>
-    <dd> <span> [% dos.nome %] </span> </dd>
-
-    <dt>Classificação:</dt>
-    <dd><span>[% dos.classificacao %]</span></dd>
-
-    <dt>Localização:</dt>
-    <dd><span>[% dos.localizacao %]</span></dd>
-
-    <dt>Estado:</dt>
-    <dd><span>[% dos.estado %]</span></dd>
-
-    <dt>Data Criação:</dt>
-    <dd><span class="longDateFormat">[% dos.criacao %]</span></dd>
-
-    <dt>Pront. Físico:</dt>
-    <dd><span>[% dos.dossie_fisico %]</span></dd>
-  <dl>
-</fieldset>
--->
 
 <fieldset>
   <legend>Filtrar Documentos</legend>	
@@ -174,16 +126,6 @@
   <br/>
 <form action="[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/' _ controle _ '/inserirdocumento') %]" id="form" name="form" method="post" onSubmit="return validaDropDonw()">
 
-    <fildset>
-        <dt>
-            <select id="xsdDocumento" name="xsdDocumento">
-                <option value="">Escolha uma opção</option>
-                [% c.model('XSD').options_xsd %]
-            </select>
-
-            <input type="submit" value="Inserir Documento">
-        </dt>
-    </fildset>
 <br>
 
 </form>
@@ -244,7 +186,7 @@
 <br/>
 
 
-<div id="lstDocumentos" class="hidden">
+<div id="lstDocumentos" class="hidden panel">
 	<div class="text">
   		[% c.model('XSD').link_xsd(controle) %]
 	</div>
@@ -257,23 +199,23 @@
 
 	.panel {
 		position:absolute;
-		top:220px;
-		left:290px;
+		top:218px;
+		left:291px;
 		background:#FFFFAF;
 		border:3px solid #E6B800;
-		line-height: 200%;	
+		line-height: 1.6em;	
+		height: 300px;
+		width: 300px;
+		overflow: auto;	
+	}
 
-		/*height: 300px;*/
-		width: 500px;
-		overflow: auto;
-	
+	.selected-option-panel {
+		background-color: #E6B800 !important;
+		border:4px solid #E6B800 !important;
+		color:black !important;
+		text-decoration:none !important;
 	}
 	
-
-	.hidden {
-		display:none;
-		visibility:hidden;
-	}
 </style>
 
 
@@ -286,15 +228,44 @@
 
 	$(function(){
 		//Adicionando evento de click no botão addDocumento
-		$("#addDocument").click(addDocumentClick);
-		
-		$( "#accordion" ).accordion({ 
-		    collapsible: true, 
-		    autoHeight: false, 
-		    active: false
-		});
+		$("#addDocument").click(swap);
+
+/*
+		$("#addDocument").toggle(
+			function(event){
+				enableAddDocument();
+				event.stopPropagation();
+			},
+			function(event){
+				disableAddDocument();
+				event.stopPropagation();
+			}
+		);*/
+
+		$('body').click(disableAddDocument);
 
 	});
+
+	function swap(event){
+		if($("#lstDocumentos:hidden").length > 0){
+				enableAddDocument();
+				event.stopPropagation();
+			}
+		else{
+				disableAddDocument();
+				event.stopPropagation();
+			}	
+	}
+
+	function enableAddDocument(){
+		$("#addDocument").addClass("selected-option-panel");
+		$("#lstDocumentos").removeClass("hidden");
+	}
+	
+	function disableAddDocument(){
+		$("#addDocument").removeClass("selected-option-panel");
+		$("#lstDocumentos").addClass("hidden");
+	}
 
     function validaDropDonw(){
         if (document.getElementById('xsdDocumento').value == '') {
@@ -309,11 +280,6 @@
              return false;
         }
      }
-
-	function addDocumentClick(){
-		$("#lstDocumentos").removeClass("hidden").addClass("panel");
-
-	}
 
 </script>
 

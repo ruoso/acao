@@ -2,12 +2,15 @@ jQuery(document).ready(function() {
 	//Format dateTimes with class longDateFormat
 	formatDateTimeBySelectClass(".longDateFormat");
 
-	$(".collapsible").collapse();
+	//Cria accordions (usando Id)
+	$( "#accordion" ).accordion({ 
+			    collapsible: true, 
+			    autoHeight: false, 
+			    active: false 
+	});
 
-	$("fieldset.collapsibleClosed").collapse( { closed : true } );
+	//Jquery: FieldSet com collapsed
+	//$(".collapsible").collapse();
+	//$("fieldset.collapsibleClosed").collapse( { closed : true } );
 
 });
-
-
-
-

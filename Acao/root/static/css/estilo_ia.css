@@ -20,7 +20,10 @@
 
 }
 
+/* Navegação */
 
+
+#E6B800
 
 /* Tabela de listagem (grid) */
 
@@ -70,6 +73,7 @@ a.fechar {
 	border: 1px solid #d0d0d0;
 	padding: 1em 1.9em ;
 	margin-bottom:10px;
+
 }
 
 .fieldsetBorderNone {
@@ -130,6 +134,12 @@ a.fechar {
 
 #conteudo fieldset .form15 dd {
 	left:15em;
+}
+
+.ui-state-default, 
+.ui-widget-content .ui-state-default, 
+.ui-widget-header .ui-state-default {
+	background:none !important;
 }
 
 
@@ -207,3 +217,6 @@ a.transferir
 	visibility:hidden;
 }
 
+.upper{
+	text-transform:uppercase;
+}

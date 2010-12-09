@@ -29,36 +29,40 @@
 <form id="form" name="form" action="" method="post">
  <input type="hidden" name="id_volume" value="[% id_volume %]">
 
+<div id="accordion">
+	<h3><a href="#">Dados do Volume: [% vol.nome %]</a></h3>
+	<div>		
+		<fieldset class="fieldsetBorderNone">
+			  <dl class="form15">
+				<dt>Volume:</dt>
+				<dd><span>[% vol.nome %]</span></dd>
 
- <fieldset>
-  <legend>Dados do Volume</legend>
-  <dl class="form15">
-    <dt>Volume:</dt>
-    <dd><span>[% vol.nome %]</span></dd>
+				<dt>Classificação:</dt>
+				<dd><span>[% vol.classificacao %]</span></dd>
 
-    <dt>Classificação:</dt>
-    <dd><span>[% vol.classificacao %]</span></dd>
+				<dt>Localização:</dt>
+				<dd><span>[% vol.localizacao %]</span></dd>
 
-    <dt>Localização:</dt>
-    <dd><span>[% vol.localizacao %]</span></dd>
+				<dt>Estado:</dt>
+				<dd><span>[% vol.estado %]</span></dd>
 
-    <dt>Estado:</dt>
-    <dd><span>[% vol.estado %]</span></dd>
+				<dt>Data Criação:</dt>
+				<dd><span>[% vol.criacao %]</span></dd>
 
-    <dt>Data Criação:</dt>
-    <dd><span>[% vol.criacao %]</span></dd>
+				<dt>Vol. Físico:</dt>
+				<dd><span>[% vol.volume_fisico %]</span></dd>
+			  </dl>
+	 	</fieldset>
 
-    <dt>Vol. Físico:</dt>
-    <dd><span>[% vol.volume_fisico %]</span></dd>
-  </dl>
-
- </fieldset>
+	</div>
+</div>
+<br>
 
  <fieldset>
   <legend>Dados do Prontuário</legend>
   <dl class="form15">
     <dt> <label> Nome Prontuário: </label> </dt>
-    <dd> <input type="text" id="nome" name="nome"> </dd>
+    <dd> <input type="text" id="nome" name="nome" class="upper"> </dd>
 
     <dt>
       <label> Classificação: &nbsp; </label>
