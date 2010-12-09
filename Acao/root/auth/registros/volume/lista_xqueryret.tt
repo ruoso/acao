@@ -12,6 +12,24 @@
             )}
         </td>
 
+        <td>
+	        <span title="{$x/ns:classificacao/text()}">
+                <!--{$x/ns:classificacao/text()}-->
+                {substring($x/ns:classificacao/text(),0, 12)}
+            </span>
+        </td>
+
+        <td>
+	        <span title="{$x/ns:localizacao/text()}">
+                <!--{$x/ns:localizacao/text()}-->
+                {substring($x/ns:localizacao/text(),0, 12)}
+            </span>
+        </td>
+
+        <td>
+	       { if ( $x/ns:representaVolumeFisico/text() eq '1' ) then ("Sim") else ("Não") }
+        </td>
+
         <td class="longDateFormat">
 	        {$x/ns:criacao/text()}
         </td>
@@ -31,21 +49,7 @@
         <td>
 	        {$x/ns:estado/text()}
         </td>
-        <td>
-	        <span title="{$x/ns:classificacao/text()}">
-                <!--{$x/ns:classificacao/text()}-->
-                {substring($x/ns:classificacao/text(),0, 12)}
-            </span>
-        </td>
-        <td>
-	        <span title="{$x/ns:localizacao/text()}">
-                <!--{$x/ns:localizacao/text()}-->
-                {substring($x/ns:localizacao/text(),0, 12)}
-            </span>
-        </td>
-        <td>
-	       { if ( $x/ns:representaVolumeFisico/text() eq '1' ) then ("Sim") else ("Não") }
-        </td>
+
 		<td width="10%" colspan="4">
            { if ( $x/ns:estado/text() eq 'fechado') then (
 	       <a href="[% c.uri_for('/auth/registros/volume/alterar_estado/')%]{$x/ns:collection/text()}/aberto" class="abrir" title="Abrir" > Abrir </a>
