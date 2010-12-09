@@ -101,7 +101,7 @@
 
  <input type="submit" name="Submeter" onClick="javascript:document.getElementById('form').action='[% c.uri_for('/auth/registros/volume/') _ id_volume _ '/' _ controle _ '/store' %]';">
 
- <input type="submit" name="Cancelar" onClick="javascript:document.getElementById('form').action='[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/' _ controle ) %]'" value="Cancelar">
+ <input type="button" name="Cancelar" onClick="javascript:history.go(-1);" value="Cancelar">
 
  </form>
 

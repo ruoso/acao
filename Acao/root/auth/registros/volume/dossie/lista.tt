@@ -52,6 +52,7 @@ s[%#
 <br>
 <h1 class="titulo-form">Gerenciar Prontuários | <span style="font-size:13px; font-weight:normal;"><a class="criar" href="[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/criardossie') %]">Criar Prontuário</a></span></h1>
 
+<<<<<<< HEAD
 <div id="accordion">
 	<h3><a href="#">Dados do Volume: [% vol.nome %]</a></h3>
 	<div>		
@@ -79,10 +80,35 @@ s[%#
 	</div>
 </div>
 <br>
+=======
 
 <fieldset>
-  
+	<legend>Dados do Volume</legend>	
+	  <dl class="form15">
+	   <dt> <label> Volume: </label> </dt>
+	   <dd> <span>[% vol.nome %]</span>	</dd>
+       
+       <dt>Classificação:</dt>
+       <dd><span>[% vol.classificacao %]</span></dd>
+
+       <dt>Localização:</dt>
+       <dd><span>[% vol.localizacao %]</span></dd>
+
+       <dt>Estado:</dt>
+       <dd><span>[% vol.estado %]</span></dd>
+
+       <dt>Data Criação:</dt>
+       <dd><span class="longDateFormat">[% vol.criacao %]</span></dd>
+
+       <dt>Vol. Físico:</dt>
+       <dd><span>[% vol.volume_fisico %]</span></dd>
+	  </dl>
+</fieldset>
+>>>>>>> 1c8b73ebfdae3a3379ae222aac25421076df05e7
+
+<fieldset>
 	<legend>Buscar Prontuários</legend>	
+<<<<<<< HEAD
 	<form action="[% '/auth/registros/volume/' _ id_volume %]">
 		<div>
 
@@ -95,6 +121,19 @@ s[%#
 		<input type="submit" name="submit_form" id="submit_form" value="Pesquisar">
 		</div>
   </form>
+=======
+    <form action="[% '/auth/registros/volume/' _ id_volume %]">
+        <div>
+            <label> Adolescente: </label>
+            <input type="text" name="nome_membro" id="nome_membro" value="[% nome_membro %]" style="width: 300px;">
+            
+            <label> Mãe:    </label>
+            <input type="text" name="nome_mae" id="nome_mae" value="[% nome_mae %]" style="width: 300px;">
+            
+            <input type="submit" name="submit_form" id="submit_form" value="Pesquisar">
+        </div>
+    </form>
+>>>>>>> 1c8b73ebfdae3a3379ae222aac25421076df05e7
 <br/>
 
 <table>
