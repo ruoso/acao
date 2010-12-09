@@ -33,49 +33,6 @@
     [% SET args = { } %]
     [% args.import(c.req.params()) %]
 
-<<<<<<< HEAD:Acao/root/auth/registros/volume/dossie/paginacao.tt
-
-      [% args.import({ interval_ini => 0}) %]
-      <a class="paginacao-grid-primeiro" href="[% c.uri_for('/auth/registros/volume/' _ id_volume , args) %]"><< Primeiro </a>
-
-
-
-    [% IF interval_ini > 0 %]
-      [% args.import({ interval_ini => interval_ini - 1 }) %]
-      <a href="[% c.uri_for('/auth/registros/volume/' _ id_volume , args) %]" title="Anterior">< Anterior </a>
-    [% END %]
-
-
-    [% WHILE ini <= fim %]
-      [% IF ini < count / num_por_pagina * 2 && ini >= 0 %]
-
-          [% args.import({ interval_ini => ini }) %]
-          <a href="[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/' _ controle , args) %]"> 
-          [% IF ini == interval_ini %]
-            <strong>[% ini + 1 %]</strong>
-            [% estado_controle_paginacao = ini %]
-          [% ELSE %]
-            [% ini + 1 %]
-          [% END %]
-          </a>
-
-      [% END %]
-      [% ini = ini + 1 %]
-    [% END %]
-
-
-      [% IF estado_controle_paginacao < numero_paginas && estado_controle_paginacao != '' %]
-        [% args.import({ interval_ini => interval_ini + 1 }) %]
-        <a href="[% c.uri_for('/auth/registros/volume/' _ id_volume , args) %]" title="Próximo">Próximo></a>
-      [% END %]
-
-
-
-      [% args.import({ interval_ini => numero_paginas }) %]
-      <a href="[% c.uri_for('/auth/registros/volume/' _ id_volume , args) %]"> Último>> </a>
-
-  </div>
-=======
     [% args.import({ interval_ini => 0}) %]
     <a class="paginacao-grid-primeiro" href="[% c.uri_for('/auth/registros/volume/' _ id_volume , args) %]"> << Primeiro </a>
 
@@ -108,4 +65,3 @@
     <a href="[% c.uri_for('/auth/registros/volume/' _ id_volume , args) %]"> Último >> </a>
 
 </div>
->>>>>>> 6a989c3c5ebe243418d6a503868b3528cac426e0:Acao/root/auth/registros/volume/dossie/paginacao.tt
