@@ -25,54 +25,83 @@
 
 <script SRC="[% c.uri_for('/static/js/forms/' ) _ c.req.param('xsdDocumento') _ '.js' %]" language="Javascript" ></script>
 
-<form action="[% c.uri_for('/auth/registros/volume/') _ id_volume _ '/' _ controle _ '/store' %]" method="post"
-    onsubmit="return generateXml('[% c.uri_for_action('/auth/registros/xsd/raw', [ c.req.param('xsdDocumento') ] ) %]', this.processed_xml);">
+<form action="" id="form" name="form" method="post" onsubmit="return generateXml('[% c.uri_for_action('/auth/registros/xsd/raw', [ c.req.param('xsdDocumento') ] ) %]', this.processed_xml);">
  <input type="hidden" name="processed_xml">
  <input type="hidden" name="id_volume" value="[% id_volume %]">
  <input type="hidden" name="xsdDocumento" value="[% c.req.param('xsdDocumento') %]">
 
- <fieldset>
-  <legend>Dados do Volume</legend>
-  <dl>
-    <dt>Volume:</dt>
-    <dd>[% vol.nome %]</dd>
-    <br>
-    <dt>Classificação:</dt>
-    <dd>[% vol.classificacao %]</dd>
-    <br>
-    <dt>Localização:</dt>
-    <dd>[% vol.localizacao %]</dd>
-    <br>
-    <dt>Controle:</dt>
-    <dd>
-	  <div name="xsdFormValidation">
-		<input type="hidden" name="controle" value = "[% controle %]"/>
-        [% id_volume %]
-		<div name="requiredField" style="display: none;">true</div>
-	  </div>
-    </dd>
-  </dl>
-  </fieldset>
+<div id="accordion">
+	<h3><a href="#">Dados do Volume: [% vol.nome %]</a></h3>
+	<div>		
+		<fieldset class="fieldsetBorderNone">
+			 <dl class="form15">
+			<dt>Volume:</dt>
+			<dd><span>[% vol.nome %]</span></dd>
 
-  <fieldset>
-  <legend>Dados do Prontuário</legend>
-  <dl>
-    <dt>Prontuário:</dt>
-    <dd>[% dos.nome %]</dd>
-    <br>
-    <dt>Controle:</dt>
-    <dd>[% controle %]</dd>
-    <br/>
+			<dt>Classificação:</dt>
+			<dd><span>[% vol.classificacao %]</span></dd>
+
+			<dt>Localização:</dt>
+			<dd><span>[% vol.localizacao %]</span></dd>
+
+			<dt>Estado:</dt>
+			<dd><span>[% vol.estado %]</span></dd>
+
+			<dt>Data Criação:</dt>
+			<dd><span class="longDateFormat">[% vol.criacao %]</span></dd>
+
+			<dt>Vol. Físico:</dt>
+			<dd><span>[% vol.volume_fisico %]</span></dd>
+			<dd>
+			  <div name="xsdFormValidation">
+				<input type="hidden" name="controle" value = "[% controle %]"/>
+		 
+				<div name="requiredField" style="display: none;">true</div>
+			  </div>
+			</dd>
+		  </dl>
+		 </fieldset>
+
+	</div>
+	<h3><a href="#">Dados do Prontuário: [% dos.nome %]</a></h3>
+		<div>		
+			<fieldset class="fieldsetBorderNone">
+			 	 <dl class="form15">
+				 <dt> <label> Prontuário: </label> </dt>
+				<dd> <span> [% dos.nome %] </span> </dd>
+
+				<dt>Classificação:</dt>
+				<dd><span>[% dos.classificacao %]</span></dd>
+
+				<dt>Localização:</dt>
+				<dd><span>[% dos.localizacao %]</span></dd>
+
+				<dt>Estado:</dt>
+				<dd><span>[% dos.estado %]</span></dd>
+
+				<dt>Data Criação:</dt>
+				<dd><span>[% dos.criacao %]</span></dd>
+
+				<dt>Pront. Físico:</dt>
+				<dd><span>[% dos.dossie_fisico %]</span></dd>
+				<br/>
+		
+			  </dl>  
+			</fieldset>
+		</div>
+</div>
+<br>
+
     <div>
         <input type="checkbox" id="representaDocumentoFisico" name="representaDocumentoFisico" evt="representaDocumentoFisico" checked="checked"> 
         <label for="representaDocumentoFisico"> Representa Documento Físico </label>
     </div>
-  </dl>  
- </fieldset> 
-
+<br>
  <div id="form_container"></div>
 
- <input type="submit" name="Submeter">
+ <input type="submit" name="Submeter" onClick="javascript:document.getElementById('form').action='[% c.uri_for('/auth/registros/volume/') _ id_volume _ '/' _ controle _ '/store' %]';">
+
+ <input type="button" name="Cancelar" onClick="javascript:history.go(-1);" value="Cancelar">
 
  </form>
 

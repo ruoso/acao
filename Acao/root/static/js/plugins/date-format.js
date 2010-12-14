@@ -12,20 +12,6 @@
 * The mask defaults to dateFormat.masks.default.
 */
 
-//Todo:Remove this code
-$(document).ready(function () {
-    $(".longDateFormat").each(function (idx, elem) {
-        if ($(elem).is(":input")) {
-            $(elem).val(dateFormat($(elem).val(), "sdhFormat"));
-            //$(elem).val(dateFormat($(elem).val(), 'dd/mm/yyyy h:MM:ss'));
-            //$(elem).val(dateFormat($(elem).val(), 'dd/mm/yyyy h:MM:ss TT'));
-        } else {
-            var textTd = $(elem).text();
-            var formatado = dateFormat(textTd, "dd/mm/yyyy HH:MM:ss");
-            $(elem).text(dateFormat($(elem).text(), "dd/mm/yyyy HH:MM:ss"));
-        }
-    });
-});
 
 var dateFormat = function () {
     var token = /d{1,4}|m{1,4}|yy(?:yy)?|([HhMsTt])\1?|[LloSZ]|"[^"]*"|'[^']*'/g,
@@ -123,8 +109,10 @@ dateFormat.masks = {
     isoTime: "HH:MM:ss",
     isoDateTime: "yyyy-mm-dd'T'HH:MM:ss",
     isoUtcDateTime: "UTC:yyyy-mm-dd'T'HH:MM:ss'Z'",
-    sdhFormat: "dd/mm/yyyy HH:MM:ss"
+    sdhFormat: "dd/mm/yyyy-HH:MM:ss"
 };
+
+
 
 // Internationalization strings
 dateFormat.i18n = {
@@ -142,3 +130,20 @@ dateFormat.i18n = {
 Date.prototype.format = function (mask, utc) {
     return dateFormat(this, mask, utc);
 };
+
+
+//Este script formata todos as datas contidas em elementos com determinado className
+function formatDateTimeBySelectClass(formatClassName){
+
+	//Get elements by className and 
+    $(formatClassName).each(function (idx, elem) {
+		try{		
+		    if ($(elem).is(":input")) {
+		        $(elem).val(dateFormat($(elem).val(), "sdhFormat"));
+		    } else {
+		        $(elem).text(dateFormat($(elem).text(), "sdhFormat"));
+		    }
+		}catch(e){}
+    });
+}
+

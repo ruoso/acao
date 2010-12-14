@@ -1,6 +1,6 @@
 (
     <tr>
-        <td>
+        <td style="width:1000">
 	        { if ( $x/ns:estado/text() eq 'aberto') then (
                 <a title="{$x/ns:nome/text()}" href="[% c.uri_for('/auth/registros/volume') %]/{$x/ns:collection/text()}" > 
 					{$x/ns:nome/text()}
@@ -12,27 +12,44 @@
             )}
         </td>
 
-        <td class="longDateFormat">
-	        {$x/ns:criacao/text()}
-        </td>
-        <td class="longDateFormat">
-	        {replace ($x/ns:fechamento/text(), '1970-01-01T00:00:00Z', '-')}
-        </td>
-        <td class="longDateFormat">
-	        {replace ($x/ns:arquivamento/text(), '1970-01-01T00:00:00Z', '-')}
-        </td>
         <td>
-	        {$x/ns:estado/text()}
+	        <span title="{$x/ns:classificacao/text()}">
+                <!--{$x/ns:classificacao/text()}-->
+                {substring($x/ns:classificacao/text(),0, 12)}
+            </span>
         </td>
+
         <td>
-	        <span title="{$x/ns:classificacao/text()}">{$x/ns:classificacao/text()}</span>
+	        <span title="{$x/ns:localizacao/text()}">
+                <!--{$x/ns:localizacao/text()}-->
+                {substring($x/ns:localizacao/text(),0, 12)}
+            </span>
         </td>
-        <td>
-	         <span title="{$x/ns:localizacao/text()}">{$x/ns:localizacao/text()}</span>
-        </td>
+
         <td>
 	       { if ( $x/ns:representaVolumeFisico/text() eq '1' ) then ("Sim") else ("Não") }
         </td>
+
+        <td class="longDateFormat">
+	        {$x/ns:criacao/text()}
+        </td>
+
+        {if ( $x/ns:fechamento/text() eq '1970-01-01T00:00:00Z' ) then (
+            <td style="text-align: center;" class="longDateFormat"> - </td>
+         ) else (
+            <td class="longDateFormat"> { $x/ns:fechamento/text() } </td>
+         ) }
+
+        {if ( $x/ns:arquivamento/text() eq '1970-01-01T00:00:00Z' ) then (
+            <td style="text-align: center;" class="longDateFormat"> - </td>
+         ) else (
+            <td class="longDateFormat"> { $x/ns:arquivamento/text() } </td>
+         ) }
+
+        <td>
+	        {$x/ns:estado/text()}
+        </td>
+
 		<td width="10%" colspan="4">
            { if ( $x/ns:estado/text() eq 'fechado') then (
 	       <a href="[% c.uri_for('/auth/registros/volume/alterar_estado/')%]{$x/ns:collection/text()}/aberto" class="abrir" title="Abrir" > Abrir </a>

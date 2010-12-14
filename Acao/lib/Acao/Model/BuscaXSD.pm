@@ -60,30 +60,30 @@ sub produce_expr {
     given ($oper) {
         when ('igual') {
             $operador = 'eq';
-            $tipo_operador = 'infix';           
+            $tipo_operador = 'infix';
         }
         when ('diferente') {
             $operador = 'ne';
-            $tipo_operador = 'infix';           
+            $tipo_operador = 'infix';
         }
         when ('maior') {
             $operador = 'gt';
-            $tipo_operador = 'infix';           
+            $tipo_operador = 'infix';
         }
         when ('menor') {
             $operador = 'lt';
-            $tipo_operador = 'infix';           
+            $tipo_operador = 'infix';
         }
         when ('contem') {
-            $operador = 'contains'; 
+            $operador = 'contains';
             $tipo_operador = 'function';
         }
         when ('inicia') {
-            $operador = 'starts-with'; 
+            $operador = 'starts-with';
             $tipo_operador = 'function';
         }
         when ('termina') {
-            $operador = 'ends-with'; 
+            $operador = 'ends-with';
             $tipo_operador = 'function';
         }
         default {
@@ -96,8 +96,8 @@ sub produce_expr {
                 $operador, 'upper-case('.$self->quote_valor($valor).')';
         }
         when ('function') {
-            return join ' ', $operador , '(' , 
-                'upper-case('.$self->produce_xpath($nsprefix, $path_form).'),',  
+            return join ' ', $operador , '(' ,
+                'upper-case('.$self->produce_xpath($nsprefix, $path_form).'),',
                 'upper-case('.$self->quote_valor($valor).'))';
         }    }
 }

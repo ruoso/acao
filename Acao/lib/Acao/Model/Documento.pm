@@ -79,8 +79,8 @@ txn_method 'listar_documentos' => authorized $role_listar => sub {
 
 	my $for = 'collection("'.$args->{id_volume}.'")/ns:dossie[ns:controle = "'.$args->{controle}.'" ]';
 
-    my $xquery_for = 'for $x at $i in '.$for.'/ns:doc/*, ';
-       $xquery_for .= ' $y in collection("acao-schemas")/xss:schema/xss:element/xss:annotation/xss:appinfo/xhtml:label/text() ';
+    my $xquery_for  = 'for $x at $i in '.$for.'/ns:doc/*, ';
+       $xquery_for .= '$y in collection("acao-schemas")/xss:schema/xss:element/xss:annotation/xss:appinfo/xhtml:label/text() ';
 
     my $xquery_where  = 'where $y/../../../../../@targetNamespace = namespace-uri($x/dc:documento/*/*) ';
        $xquery_where .= 'and '.$args->{where_documentos_validos}.' ';
@@ -93,7 +93,6 @@ txn_method 'listar_documentos' => authorized $role_listar => sub {
 
 	#print Dumper($list);
     my $count = $declare_namespace.'count('.$xquery_for.$xquery_where.' return "")';
-
 
     $self->auditoria({ ip => $args->{ip}, operacao => 'list', for => $for, dados => $for } );
 
@@ -229,6 +228,7 @@ txn_method 'inserir_documento' => authorized $role_criar => sub {
 
 };
 
+
 txn_method 'visualizar' => authorized $role_visualizar => sub {
     my ( $self, $id_volume, $controle, $id_documento, $ip ) = @_;
 
@@ -274,9 +274,9 @@ txn_method 'visualizar_por_tipo' => authorized $role_visualizar => sub {
                 $y in collection("acao-schemas")/xss:schema/xss:element/xss:annotation/xss:appinfo/xhtml:label/text()
                 where $y/../../../../../@targetNamespace = namespace-uri($x/dc:documento/*/*)
                 and namespace-uri($x/dc:documento/*/*) = "'.$xsdDocumento.'"
+                and $x/dc:invalidacao/text() = \'1970-01-01T00:00:00Z\'
                 order by $x/dc:criacao descending
                 return $x/dc:id/text()';
-
 
    $self->sedna->execute($xq);
 
@@ -291,9 +291,6 @@ txn_method 'visualizar_por_tipo' => authorized $role_visualizar => sub {
    return $controles;
 
 };
-
-
-
 
 
 txn_method 'invalidar_documento' => authorized $role_listar => sub {
@@ -325,7 +322,8 @@ txn_method 'getDadosDossie' => authorized $role_listar => sub {
                declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";
                for $x in collection("'.$id_volume.'")/ns:dossie
                where $x/ns:controle="'.$controle.'"
-               return $x/ns:nome/text()';
+               return ($x/ns:nome/text(), $x/ns:classificacao/text(), $x/ns:localizacao/text(), $x/ns:estado/text(), 
+                      $x/ns:criacao/text(), $x/ns:representaDossieFisico/text())';
 
    $self->sedna->execute($xq);
 
@@ -334,7 +332,10 @@ txn_method 'getDadosDossie' => authorized $role_listar => sub {
         $vol = {
                     nome => $nome,
                     classificacao => $self->sedna->get_item,
-                    localizacao  => $self->sedna->get_item,
+                    localizacao   => $self->sedna->get_item,
+                    estado        => $self->sedna->get_item,
+                    criacao       =>$self->sedna->get_item,
+                    dossie_fisico => $self->sedna->get_item > 0 ? 'Sim' : 'Não',
                   };
     };
 

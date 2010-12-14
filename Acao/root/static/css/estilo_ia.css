@@ -20,9 +20,16 @@
 
 }
 
+/* Navegação */
+
+
+#E6B800
 
 
 /* Tabela de listagem (grid) */
+
+
+table.wide-table { width:100%; } 
 
 #conteudo table {
 	border:1px solid #e5e5e5;
@@ -70,6 +77,20 @@ a.fechar {
 	border: 1px solid #d0d0d0;
 	padding: 1em 1.9em ;
 	margin-bottom:10px;
+
+}
+
+.fieldsetBorderNone {
+	border:none !important;
+	padding: 0em 0em !important;
+	margin-top:-15px !important;
+	margin-bottom:10px;
+}
+
+#conteudo fieldset fieldset fieldset {
+	border: none;
+	padding: 10px 0 8px 0; 
+	margin-bottom:0px;
 }
 
 #conteudo legend {
@@ -117,6 +138,12 @@ a.fechar {
 
 #conteudo fieldset .form15 dd {
 	left:15em;
+}
+
+.ui-state-default, 
+.ui-widget-content .ui-state-default, 
+.ui-widget-header .ui-state-default {
+	background:none !important;
 }
 
 
@@ -189,5 +216,11 @@ a.transferir
 }
 
 
+.hidden{
+	display:none;
+	visibility:hidden;
+}
 
-
+.upper{
+	text-transform:uppercase;
+}

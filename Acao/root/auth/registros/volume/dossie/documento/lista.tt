@@ -45,18 +45,72 @@
 
 [% SET tipo_documento = c.req.param('tipo_documento') %]
 
-
+<br>
+<h1 class="titulo-form">Gerenciar Documentos | <span style="font-size:13px; font-weight:normal;">
+<a id="addDocument"  class="criar">Inserir Documento</a>
+</span></h1>
 
 
 [% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume) ) %]
 [% SET dos = ( c.model('Documento').getDadosDossie(id_volume, controle) ) %]
 
-<form>
-  <div>
-    <div><strong>VOLUME: </strong>[% vol.nome %]</div>
-    
-    <div><strong>PRONTUÁRIO: </strong>[% dos.nome %]</div>
-   
+<div id="accordion">
+	<h3><a href="#">Dados do Volume: [% vol.nome %]</a></h3>
+	<div>		
+		<fieldset class="fieldsetBorderNone">
+			  <dl class="form15">
+				<dt>Volume:</dt>
+				<dd><span>[% vol.nome %]</span></dd>
+
+				<dt>Classificação:</dt>
+				<dd><span>[% vol.classificacao %]</span></dd>
+
+				<dt>Localização:</dt>
+				<dd><span>[% vol.localizacao %]</span></dd>
+
+				<dt>Estado:</dt>
+				<dd><span>[% vol.estado %]</span></dd>
+
+				<dt>Data Criação:</dt>
+				<dd><span class="longDateFormat">[% vol.criacao %]</span></dd>
+
+				<dt>Vol. Físico:</dt>
+				<dd><span>[% vol.volume_fisico %]</span></dd>
+			  </dl>
+		 </fieldset>
+
+	</div>
+	<h3><a href="#">Dados do Prontuário: [% dos.nome %]</a></h3>
+		<div>		
+			<fieldset class="fieldsetBorderNone">
+			   <dl class="form15">
+				<dt> <label> Prontuário: </label> </dt>
+				<dd> <span> [% dos.nome %] </span> </dd>
+
+				<dt>Classificação:</dt>
+				<dd><span>[% dos.classificacao %]</span></dd>
+
+				<dt>Localização:</dt>
+				<dd><span>[% dos.localizacao %]</span></dd>
+
+				<dt>Estado:</dt>
+				<dd><span>[% dos.estado %]</span></dd>
+
+				<dt>Data Criação:</dt>
+				<dd><span class="longDateFormat">[% dos.criacao %]</span></dd>
+
+				<dt>Pront. Físico:</dt>
+				<dd><span>[% dos.dossie_fisico %]</span></dd>
+			  <dl>
+			</fieldset>
+
+		</div>
+</div>
+<br>
+
+<fieldset>
+  <legend>Filtrar Documentos</legend>	
+  <form>   
     <strong>Incluir Documentos Inativos: </strong>
     <input type="checkbox" name="documentos_validos" id="documentos_validos">
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -67,23 +121,25 @@
     </select>
     &nbsp;&nbsp;&nbsp;
     <input type="submit" name="submit_form" id="submit_form" value="Pesquisar">
-  </div>
+  </form>
+
+  <br/>
+<form action="[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/' _ controle _ '/inserirdocumento') %]" id="form" name="form" method="post" onSubmit="return validaDropDonw()">
+
 </form>
-
-<br/>
-
-<table>
-<thead>
- <tr>
-  <th>Tipo Documento</th>
-  <th>Criação</th>
-  <th>Invalidação / Motivo</th>
-  <th>Doc. Físico</th>
-  <th>Original</th>
-  <th>Ação</th>
- </tr>
-</thead>
-<TBODY>
+<br>
+  <table class="wide-table">
+  <thead>
+   <tr>
+    <th>Tipo Documento</th>
+    <th width="110px">Criação</th>
+    <th>Invalidação / Motivo</th>
+    <th>Doc. Físico</th>
+    <th>Original</th>
+    <th width="120px">Ação</th>
+   </tr>
+  </thead>
+  <TBODY>
 
  [% # O foreach abaixo vai buscar diretamente no model por estar livre de contexto %]
  [% # (nao recebe argumento pela url) %]
@@ -128,25 +184,73 @@
 
 <br/>
 
-<form action="[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/' _ controle _ '/inserirdocumento') %]" id="form" name="form" method="post" onSubmit="return validaDropDonw()">
-
-    <fildset>
-        <dt>
-            <select id="xsdDocumento" name="xsdDocumento">
-                <option value="">Escolha uma opção</option>
-                [% c.model('XSD').options_xsd %]
-            </select>
-
-            <input type="submit" value="Inserir Documento">
-        </dt>
-    </fildset>
-
-</form>
 
 [% paginacao = PROCESS 'auth/registros/volume/dossie/documento/paginacao.tt' %]
 [% paginacao %]
 
+</fieldset>
+
+<div id="lstDocumentos" class="hidden panel">
+	<div class="text">
+  		[% c.model('XSD').link_xsd(controle) %]
+	</div>
+</div>
+
+<style rel="stylesheet" type="text/css">
+	.text {
+		padding:10px 10px 10px 10px;
+	}
+
+	.panel {
+		position:absolute;
+		top:218px;
+		left:291px;
+		background:#FFFFAF;
+		border:3px solid #E6B800;
+		line-height: 1.6em;	
+		height: 300px;
+		width: 300px;
+		overflow: auto;	
+	}
+
+	.selected-option-panel {
+		background-color: #E6B800 !important;
+		border:4px solid #E6B800 !important;
+		color:black !important;
+		text-decoration:none !important;
+	}
+	
+</style>
+
 <script language="javascript" type="text/javascript">
+
+	$(function(){
+		//Adicionando evento de click no botão addDocumento
+		$("#addDocument").click(swap);
+		$('body').click(disableAddDocument);
+
+	});
+
+	function swap(event){
+		if($("#lstDocumentos:hidden").length > 0){
+				enableAddDocument();
+				event.stopPropagation();
+			}
+		else{
+				disableAddDocument();
+				event.stopPropagation();
+			}	
+	}
+
+	function enableAddDocument(){
+		$("#addDocument").addClass("selected-option-panel");
+		$("#lstDocumentos").removeClass("hidden");
+	}
+	
+	function disableAddDocument(){
+		$("#addDocument").removeClass("selected-option-panel");
+		$("#lstDocumentos").addClass("hidden");
+	}
 
     function validaDropDonw(){
         if (document.getElementById('xsdDocumento').value == '') {
@@ -161,5 +265,8 @@
              return false;
         }
      }
+
 </script>
+
+
 [% INCLUDE 'footer.tt' %]

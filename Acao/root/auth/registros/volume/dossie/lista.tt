@@ -34,55 +34,70 @@
 
 
 [% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume) ) %]
+<br>
+<h1 class="titulo-form">Gerenciar Prontuários | <span style="font-size:13px; font-weight:normal;"><a class="criar" href="[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/criardossie') %]">Criar Prontuário</a></span></h1>
 
-<form action="[% '/auth/registros/volume/' _ id_volume %]">
-<fieldset>
-	<legend>Dados do volume</legend>
-	  <dl>
-	   <dt> <label> Volume: </label> </dt>
-	   <dd> <span>[% vol.nome %]</span>	</dd>
+<div id="accordion">
+	<h3><a href="#">Dados do Volume: [% vol.nome %]</a></h3>
+	<div>
+		<fieldset class="fieldsetBorderNone">
+			  <dl class="form15">
+				   <dt> <label> Volume: </label> </dt>
+				   <dd> <span>[% vol.nome %]</span>	</dd>
 
-       <dt>Classificação:</dt>
-       <dd><span>[% vol.classificacao %]</span></dd>
+				   <dt>Classificação:</dt>
+				   <dd><span>[% vol.classificacao %]</span></dd>
 
-       <dt>Localização:</dt>
-       <dd><span>[% vol.localizacao %]</span></dd>
-	  </dl>
-</fieldset>
+				   <dt>Localização:</dt>
+				   <dd><span>[% vol.localizacao %]</span></dd>
+
+				   <dt>Estado:</dt>
+				   <dd><span>[% vol.estado %]</span></dd>
+
+				   <dt>Data Criação:</dt>
+				   <dd><span class="longDateFormat">[% vol.criacao %]</span></dd>
+
+				   <dt>Vol. Físico:</dt>
+				   <dd><span>[% vol.volume_fisico %]</span></dd>
+			  </dl>
+		</fieldset>
+	</div>
+</div>
+<br>
 
 <fieldset>
 	<legend>Buscar Prontuários</legend>
 
-    <div>
 
-    <label> Membro: </label>
-    <input type="text" name="nome_membro" id="nome_membro" value="[% nome_membro %]" style="width: 300px;">
+	<form action="[% '/auth/registros/volume/' _ id_volume %]">
+		<div>
 
-    <label> Mãe:    </label>
-    <input type="text" name="nome_mae" id="nome_mae" value="[% nome_mae %]" style="width: 300px;">
 
-    <input type="submit" name="submit_form" id="submit_form" value="Pesquisar">
-  </div>
+		<label> Adolescente: </label>
+		<input type="text" name="nome_membro" id="nome_membro" value="[% nome_membro %]" style="width: 300px;">
 
-</form>
+		<label> Mãe:    </label>
+		<input type="text" name="nome_mae" id="nome_mae" value="[% nome_mae %]" style="width: 300px;">
+
+		<input type="submit" name="submit_form" id="submit_form" value="Pesquisar">
+		</div>
+  </form>
 
 <br/>
-<div id="commands">
-<a href="[% c.uri_for_action('/auth/registros/volume/dossie/form', [ id_volume ]) %]">Criar Prontuário</a>
-</div>
+
 <table>
 <thead>
  <tr>
-  <th>Controle</th>
+  <th width="70px">Controle</th>
   <th width="350px">Prontuário</th>
-  <th>Criação</th>
-  <th>Fechamento</th>
-  <th>Arquivamento</th>
-  <th>Estado</th>
   <th>Classificação</th>
   <th>Localização</th>
-  <th>Prontuário Físico</th>
-  <th colspan="4" >Ação</th>
+  <th width="80px">Pront. Físico</th>
+  <th width="110px">Criação</th>
+  <th width="110px">Fechamento</th>
+  <th width="110px">Arquivamento</th>
+  <th width="40px">Estado</th>
+  <th width="120px" align="center" colspan="4">Ação</th>
  </tr>
 </thead>
 <TBODY>
@@ -129,11 +144,13 @@
 [% END %]
 
 </TBODY>
+
 </table>
+
 
 [% paginacao = PROCESS 'auth/registros/volume/dossie/paginacao.tt' %]
 [% paginacao %]
-
 </fieldset>
 
 [% INCLUDE 'footer.tt' %]
+

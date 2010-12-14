@@ -51,11 +51,31 @@ txn_method 'obter_xsd' => authorized $role_listar => sub {
 };
 
 txn_method 'options_xsd' => authorized $role_listar => sub {
-    my ( $self, $namespace ) = @_;
+    my ( $self ) = @_;
     my $xq = 'declare namespace xhtml="http://www.w3.org/1999/xhtml"; declare namespace xs="http://www.w3.org/2001/XMLSchema"; 
               for $x in collection("acao-schemas")
               order by $x/xs:schema/xs:element/xs:annotation/xs:appinfo/xhtml:label/text()
               return <option value="{ $x/xs:schema/@targetNamespace }">{ $x/xs:schema/xs:element/xs:annotation/xs:appinfo/xhtml:label/text() }</option> [starts-with($x/xs:schema/@targetNamespace, "http://schemas.fortaleza.ce.gov.br/acao/sdh")]';
+    $self->sedna->execute($xq);
+    my $ret;
+    while (my $item = $self->sedna->get_item()) {
+       $ret .= $item;
+    }
+   return $ret;
+};
+
+txn_method 'link_xsd' => authorized $role_listar => sub {
+    my ( $self, $controle ) = @_;
+    my $xq = 'declare namespace xhtml="http://www.w3.org/1999/xhtml"; declare namespace xs="http://www.w3.org/2001/XMLSchema"; 
+              for $x in collection("acao-schemas")
+              order by $x/xs:schema/xs:element/xs:annotation/xs:appinfo/xhtml:label/text()
+              return <div>
+                        <a href="' . $controle . '/inserirdocumento?xsdDocumento={ $x/xs:schema/@targetNamespace }">
+                            { $x/xs:schema/xs:element/xs:annotation/xs:appinfo/xhtml:label/text() }
+                        </a>
+                     </div>
+              [starts-with($x/xs:schema/@targetNamespace, "http://schemas.fortaleza.ce.gov.br/acao/sdh")]';
+    warn $xq;
     $self->sedna->execute($xq);
     my $ret;
     while (my $item = $self->sedna->get_item()) {

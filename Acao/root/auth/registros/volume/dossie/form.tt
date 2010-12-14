@@ -21,32 +21,48 @@
 
 [% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume) ) %]
 
+<br>
+<h1 class="titulo-form">Criar Prontuários</h1>
+
 <script SRC="[% c.uri_for('/static/js/xsdForm.js') %]" language="Javascript" ></script>
 
-<form action="[% c.uri_for('/auth/registros/volume/') _ id_volume _ '/store' %]" method="post" onsubmit="return validaForm();">
+<form id="form" name="form" action="" method="post">
  <input type="hidden" name="id_volume" value="[% id_volume %]">
 
+<div id="accordion">
+	<h3><a href="#">Dados do Volume: [% vol.nome %]</a></h3>
+	<div>		
+		<fieldset class="fieldsetBorderNone">
+			  <dl class="form15">
+				<dt>Volume:</dt>
+				<dd><span>[% vol.nome %]</span></dd>
 
- <fieldset>
-  <legend>Dados do Volume</legend>
-  <dl>
-    <dt>Volume:</dt>
-    <dd><span>[% vol.nome %]</span></dd>
+				<dt>Classificação:</dt>
+				<dd><span>[% vol.classificacao %]</span></dd>
 
-    <dt>Classificação:</dt>
-    <dd><span>[% vol.classificacao %]</span></dd>
+				<dt>Localização:</dt>
+				<dd><span>[% vol.localizacao %]</span></dd>
 
-    <dt>Localização:</dt>
-    <dd><span>[% vol.localizacao %]</span></dd>
-  </dl>
+				<dt>Estado:</dt>
+				<dd><span>[% vol.estado %]</span></dd>
 
- </fieldset>
+				<dt>Data Criação:</dt>
+				<dd><span>[% vol.criacao %]</span></dd>
+
+				<dt>Vol. Físico:</dt>
+				<dd><span>[% vol.volume_fisico %]</span></dd>
+			  </dl>
+	 	</fieldset>
+
+	</div>
+</div>
+<br>
 
  <fieldset>
   <legend>Dados do Prontuário</legend>
-  <dl>
+  <dl class="form15">
     <dt> <label> Nome Prontuário: </label> </dt>
-    <dd> <input type="text" id="nome" name="nome"> </dd>
+    <dd> <input type="text" id="nome" name="nome" class="upper"> </dd>
 
     <dt>
       <label> Classificação: &nbsp; </label>
@@ -98,7 +114,9 @@
  
  <div id="form_container"></div>
 
- <input type="submit" name="Submeter">
+ <input type="submit" name="Submeter" onClick="javascript:document.getElementById('form').action='[% c.uri_for('/auth/registros/volume/') _ id_volume _ '/store' %]'; javascript:return validaForm();">
+
+ <input type="button" name="Cancelar" onClick="javascript:history.go(-1);" value="Cancelar">
 
  </form>
 

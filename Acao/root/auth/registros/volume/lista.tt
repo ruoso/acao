@@ -36,25 +36,23 @@
 [% SET volumes = '' %]
 
 [% xquerycount = PROCESS 'auth/registros/volume/count_xquery.tt' %]
-
-<div id="commands">
-	<a class="criar" href="[% c.uri_for('/auth/registros/volume/criarvolume') %]">
-		Criar Volume
-	</a>
-</div>
+<br>
+<h1 class="titulo-form">Gerenciar Volume | <span style="font-size:13px; font-weight:normal;">
+<a class="criar" href="[% c.uri_for('/auth/registros/volume/criarvolume') %]">Criar Volume</a>
+</span></h1>
 
 <table>
 <thead>
  <tr>
-  <th>Volume</th>
-  <th>Criação</th>
-  <th>Fechamento</th>
-  <th>Arquivamento</th>
-  <th>Estado</th>
+  <th width="20%">Volume</th>
   <th>Classificação</th>
   <th>Localização</th>
-  <th>Vol. Físico</th>
-  <th colspan="4" align="center">Ação</th>
+  <th width="80px">Vol. Físico</th>
+  <th width="110px">Criação</th>
+  <th width="110px">Fechamento</th>
+  <th width="110px">Arquivamento</th>
+  <th width="40px">Estado</th>
+  <th width="120px" colspan="4" align="center">Ação</th>
  </tr>
 </thead>
 <TBODY>
