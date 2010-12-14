@@ -7,7 +7,7 @@
         </td>
         <td>
 			<span title="{$x/ns:nome/text()}">
-			 	{if (string-length($x/ns:nome/text()) > 30) then (substring($x/ns:nome/text(),0,30)) else ()}
+			 	{if (string-length($x/ns:nome/text()) > 30) then (substring($x/ns:nome/text(),0,30)) else ($x/ns:nome/text())}
 			</span>
         </td>
         <td>
@@ -44,7 +44,7 @@
            <a href="[% c.uri_for('/auth/registros/volume/dossie/alterar_estado/') _ id_volume %]/{$x/ns:controle/text()}/fechado" class="fechar" title="Fechar" > Fechar </a>
         </td>
            ) else ( )}
-           { if ( $x/ns:estado/text() eq 'fechado' ) then (    
+           { if ( $x/ns:estado/text() eq 'fechado' ) then (
         <td>
            <a href="[% c.uri_for('/auth/registros/volume/dossie/alterar_estado/') _ id_volume %]/{$x/ns:controle/text()}/arquivado" class="fechar" title="Arquivar" > Arquivar </a>
         </td>
