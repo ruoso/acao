@@ -1,4 +1,4 @@
-s[%#
+[%#
 # Copyright 2010 - Prefeitura Municipal de Fortaleza
 #
 # Este arquivo é parte do programa Ação - Sistema de Acompanhamento de
@@ -102,7 +102,7 @@ s[%#
 <thead>
  <tr>
   <th width="70px">Controle</th>
-  <th width="350px">Prontuário</th>
+  <th>Prontuário</th>
   <th>Classificação</th>
   <th>Localização</th>
   <th width="80px">Pront. Físico</th>
@@ -110,7 +110,7 @@ s[%#
   <th width="110px">Fechamento</th>
   <th width="110px">Arquivamento</th>
   <th width="40px">Estado</th>
-  <th width="120px" align="center" colspan="4">Ação</th>
+  <th colspan="5" align="center">Ação</th>
  </tr>
 </thead>
 <TBODY>
@@ -159,6 +159,21 @@ s[%#
 
 </table>
 
+<script language="javascript" type="text/javascript">
+
+    function confirmaFechamento(){
+        if (!confirm('Deseja realmente fechar este prontuário?')){
+             return false;
+        }
+     }
+
+    function confirmaArquivamento(){
+        if (!confirm('Deseja realmente arquivar este prontuário?')){
+             return false;
+        }
+     }
+
+</script>
 
 [% paginacao = PROCESS 'auth/registros/volume/dossie/paginacao.tt' %]
 [% paginacao %]
