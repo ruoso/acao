@@ -31,35 +31,20 @@
 [% SET nome_membro = c.req.param('nome_membro') %]
 [% SET nome_mae = c.req.param('nome_mae') %]
 
-[% IF nome_membro == '' %]
-    [% where_nome_membro = '1 = 1' %]
-[% ELSE %]
-    [% where_nome_membro = '($x/ns:doc/dc:documento/dc:documento/dc:conteudo/pes:formIdentificacaoPessoal
-                            [contains(upper-case(pes:nomeCompleto/text()),upper-case(' _ '"' _ nome_membro _ '"' _ '))] 
-                            or $x[contains(upper-case(ns:nome/text()),upper-case(' _ '"' _ nome_membro _ '"' _ '))])' %]
-[% END %]
-
-[% IF nome_mae == '' %]
-    [% where_nome_mae = '1 = 1' %]
-[% ELSE %]
-    [% where_nome_mae = '$x/ns:doc/dc:documento/dc:documento/dc:conteudo/pes:formIdentificacaoPessoal/pes:filiacao
-            [contains(upper-case(pes:mae/text()),upper-case(' _  '"' _ nome_mae _ '"' _ '))]' %]
-[% END %]
 
 
 [% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume) ) %]
-
 <br>
 <h1 class="titulo-form">Gerenciar Prontuários | <span style="font-size:13px; font-weight:normal;"><a class="criar" href="[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/criardossie') %]">Criar Prontuário</a></span></h1>
 
 <div id="accordion">
 	<h3><a href="#">Dados do Volume: [% vol.nome %]</a></h3>
-	<div>		
+	<div>
 		<fieldset class="fieldsetBorderNone">
 			  <dl class="form15">
 				   <dt> <label> Volume: </label> </dt>
 				   <dd> <span>[% vol.nome %]</span>	</dd>
-				   
+
 				   <dt>Classificação:</dt>
 				   <dd><span>[% vol.classificacao %]</span></dd>
 
@@ -81,17 +66,19 @@
 <br>
 
 <fieldset>
-	<legend>Buscar Prontuários</legend>	
+	<legend>Buscar Prontuários</legend>
+
 
 	<form action="[% '/auth/registros/volume/' _ id_volume %]">
 		<div>
 
+
 		<label> Adolescente: </label>
 		<input type="text" name="nome_membro" id="nome_membro" value="[% nome_membro %]" style="width: 300px;">
-		
+
 		<label> Mãe:    </label>
 		<input type="text" name="nome_mae" id="nome_mae" value="[% nome_mae %]" style="width: 300px;">
-		
+
 		<input type="submit" name="submit_form" id="submit_form" value="Pesquisar">
 		</div>
   </form>
@@ -115,22 +102,23 @@
 </thead>
 <TBODY>
 
- [% # O foreach abaixo vai buscar diretamente no model por estar livre de contexto %] 
+ [% # O foreach abaixo vai buscar diretamente no model por estar livre de contexto %]
  [% # (nao recebe argumento pela url) %]
 
  [% TRY %]
- [% 
+ [%
     xqueryret = PROCESS 'auth/registros/volume/dossie/lista_xqueryret.tt';
     #    Listando dossies, pasando parametros para auditoria, construção da query e paginação .
-    xquery = c.model('Dossie').listar_dossies({ 
+    xquery = c.model('Dossie').listar_dossies({
                                                 xqueryret         => xqueryret,
                                                 ip                => c.req.address,
                                                 id_volume         => id_volume,
-                                                where_nome_membro => where_nome_membro,
-                                                where_nome_mae    => where_nome_mae,
                                                 interval_ini      => interval_ini,
-                                                num_por_pagina    => num_por_pagina 
-                                        });    
+                                                num_por_pagina    => num_por_pagina,
+                                                nome_mae  	      => nome_mae,
+                                                nome_membro		  => nome_membro,
+
+                                        });
     c.model('Sedna').begin ;
     c.model('Sedna').execute( xquery.list );
 
@@ -139,14 +127,14 @@
      html ;
    END
  %]
-    
+
  [% # Executa a contagem dos registros para fazer a paginação  %]
- [% 
+ [%
     c.model('Sedna').execute( xquery.count );
-   
- WHILE (contador = c.model('Sedna').get_item); 
-       count = contador; 
-    END; 
+
+ WHILE (contador = c.model('Sedna').get_item);
+       count = contador;
+    END;
 
    c.model('Sedna').commit; %]
  [% CATCH %]

@@ -74,6 +74,23 @@ Retorna os dossies os quais o usuário autenticado tem acesso.
 
 txn_method 'listar_dossies' => authorized $role_listar => sub {
     my ($self, $args) = @_;
+    my $where_nome_membro = $args->{nome_membro};
+    my $where_nome_mae =  $args->{nome_mae};
+
+	 if ( $where_nome_membro eq '') {
+	 	   $where_nome_membro = '1 = 1';
+	 } else {
+	 	   $where_nome_membro  =  '($x/ns:doc/dc:documento/dc:documento/dc:conteudo/pes:formIdentificacaoPessoal';
+	       $where_nome_membro .=  '[contains(upper-case(pes:nomeCompleto/text()),upper-case("' . $args->{nome_membro} . '"))]';
+	       $where_nome_membro .=  'or $x[contains(upper-case(ns:nome/text()),upper-case("' . $args->{nome_membro} . '"))])' ;
+	 }
+
+	 if ($where_nome_mae eq '') {
+	 	   $where_nome_mae = '1 = 1';
+	 } else {
+	 	   $where_nome_mae  = '$x/ns:doc/dc:documento/dc:documento/dc:conteudo/pes:formIdentificacaoPessoal/pes:filiacao';
+           $where_nome_mae .= '[contains(upper-case(pes:mae/text()),upper-case("'. $args->{nome_mae} .'"))]';
+	 }
 
     my $for = 'collection("'.$args->{id_volume}.'")/ns:dossie';
 
@@ -83,8 +100,8 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
 
     my $xquery_for = 'for $x in '.$for;
 
-    my $xquery_where  = ' where '.$args->{where_nome_membro};
-       $xquery_where .= ' and '.$args->{where_nome_mae};
+    my $xquery_where  = ' where '.$where_nome_membro;
+       $xquery_where .= ' and '. $where_nome_mae;
 
     my $list  = $declare_namespace.' subsequence('.$xquery_for.$xquery_where;
        $list .=                    ' order by $x/ns:criacao descending';
@@ -296,10 +313,11 @@ txn_method 'transferir' => authorized $role_alterar => sub {
                                         },
                                    );
 
-    my $xq_audit = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; 
+    my $xq_audit = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
                     update insert ('.$audit->toString.') into collection("'.$volume_destino.'")/ns:dossie[ns:controle="'.$controle.'"]/ns:audit';
 
     $self->sedna->execute($xq_audit);
+
 
 };
 
@@ -310,4 +328,4 @@ sob a GPL versão 2.
 
 =cut
 
-42;
+1;
