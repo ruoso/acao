@@ -98,6 +98,12 @@
         }
      }
 
+    function confirmaResgate(){
+        if (!confirm('Deseja realmente resgatar este volume?')){
+             return false;
+        }
+     }
+
 </script>
 
 [% paginacao = PROCESS 'auth/registros/volume/paginacao.tt' %]

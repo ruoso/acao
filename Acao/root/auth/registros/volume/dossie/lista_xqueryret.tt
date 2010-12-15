@@ -59,8 +59,11 @@
            { if ( $x/ns:estado/text() eq 'fechado') then (
 	       <a href="[% c.uri_for('/auth/registros/volume/dossie/alterar_estado/') _ id_volume %]/{$x/ns:controle/text()}/aberto" class="abrir" title="abrir" > Abrir </a>
            ) else ( )}
-           { if ( $x/ns:estado/text() eq 'aberto' or $x/ns:estado/text() eq 'arquivado') then (
+           { if ( $x/ns:estado/text() eq 'aberto') then (
            <a href="[% c.uri_for('/auth/registros/volume/dossie/alterar_estado/') _ id_volume %]/{$x/ns:controle/text()}/fechado" class="fechar" title="Fechar" onClick="return confirmaFechamento()"> Fechar </a>
+           ) else ( )}
+           { if ( $x/ns:estado/text() eq 'arquivado') then (
+           <a href="[% c.uri_for('/auth/registros/volume/dossie/alterar_estado/') _ id_volume %]/{$x/ns:controle/text()}/fechado" class="fechar" title="Resgatar" onClick="return confirmaResgate()"> Fechar </a>
            ) else ( )}
            { if ( $x/ns:estado/text() eq 'fechado' ) then (    
            <a href="[% c.uri_for('/auth/registros/volume/dossie/alterar_estado/') _ id_volume %]/{$x/ns:controle/text()}/arquivado" class="arquivar" title="Arquivar" onClick="return confirmaArquivamento()"> Arquivar </a>
