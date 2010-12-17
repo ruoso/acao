@@ -148,7 +148,7 @@ txn_method 'criar_volume' => authorized $role_criar => sub {
                                             },
                                    );
 
-    my $xq_audit = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd"; 
+    my $xq_audit = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";
                     update insert ('.$audit->toString.') into collection("volume")/ns:volume[ns:collection="'.$doc_name.'"]/ns:audit';
     $self->sedna->execute($xq_audit);
 
@@ -166,7 +166,7 @@ txn_method 'alterar_estado' => authorized $role_alterar => sub {
     {
             my $xq  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";';
                $xq .= 'update replace $x in collection("volume")/ns:volume[ns:collection="'.$id_volume.'"]';
-               $xq .= '/ns:fechamento with <ns:fechamento>'.DateTime->now().'</ns:fechamento>'; 
+               $xq .= '/ns:fechamento with <ns:fechamento>'.DateTime->now().'</ns:fechamento>';
             $self->sedna->execute($xq);
     }
 
@@ -174,7 +174,7 @@ txn_method 'alterar_estado' => authorized $role_alterar => sub {
     {
             my $xq  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";';
                $xq .= 'update replace $x in collection("volume")/ns:volume[ns:collection="'.$id_volume.'"]';
-               $xq .= '/ns:arquivamento with <ns:arquivamento>'.DateTime->now().'</ns:arquivamento>'; 
+               $xq .= '/ns:arquivamento with <ns:arquivamento>'.DateTime->now().'</ns:arquivamento>';
             $self->sedna->execute($xq);
     }
 
@@ -182,12 +182,12 @@ txn_method 'alterar_estado' => authorized $role_alterar => sub {
     {
             my $xq  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";';
                $xq .= 'update replace $x in collection("volume")/ns:volume[ns:collection="'.$id_volume.'"]';
-               $xq .= '/ns:arquivamento with <ns:arquivamento></ns:arquivamento>'; 
+               $xq .= '/ns:arquivamento with <ns:arquivamento></ns:arquivamento>';
             $self->sedna->execute($xq);
 
                $xq  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";';
                $xq .= 'update replace $x in collection("volume")/ns:volume[ns:collection="'.$id_volume.'"]';
-               $xq .= '/ns:fechamento with <ns:fechamento></ns:fechamento>'; 
+               $xq .= '/ns:fechamento with <ns:fechamento></ns:fechamento>';
             $self->sedna->execute($xq);
     }
 
@@ -203,7 +203,7 @@ txn_method 'alterar_estado' => authorized $role_alterar => sub {
                                         },
                                    );
 
-    my $xq_audit = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd"; 
+    my $xq_audit = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";
                     update insert ('.$audit->toString.') into collection("volume")/ns:volume[ns:collection="'.$id_volume.'"]/ns:audit';
     $self->sedna->execute($xq_audit);
 
@@ -213,8 +213,8 @@ txn_method 'getDadosVolumeId' => authorized $role_listar => sub {
     my $self = shift;
     my ($id_volume) = @_;
     my $xq = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";
-                    for $x in collection("volume")/ns:volume[ns:collection="'.$id_volume.'"] 
-                    return ($x/ns:nome/text(), $x/ns:classificacao/text(), $x/ns:localizacao/text(), $x/ns:estado/text(), 
+                    for $x in collection("volume")/ns:volume[ns:collection="'.$id_volume.'"]
+                    return ($x/ns:nome/text(), $x/ns:classificacao/text(), $x/ns:localizacao/text(), $x/ns:estado/text(),
                             $x/ns:criacao/text(), $x/ns:representaVolumeFisico/text())';
 
    $self->sedna->execute($xq);
@@ -222,8 +222,8 @@ txn_method 'getDadosVolumeId' => authorized $role_listar => sub {
     my $vol = {};
     while(my $nome = $self->sedna->get_item){
         $vol = {
-                    nome => $nome, 
-                    classificacao => $self->sedna->get_item, 
+                    nome => $nome,
+                    classificacao => $self->sedna->get_item,
                     localizacao   => $self->sedna->get_item,
                     estado        => $self->sedna->get_item,
                     criacao       =>$self->sedna->get_item,
@@ -237,7 +237,7 @@ txn_method 'getDadosVolumeId' => authorized $role_listar => sub {
 txn_method 'options_volumes' => authorized $role_alterar => sub {
     my ( $self, $volume_origem ) = @_;
     my $xq = 'declare namespace vol = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";
-              for $x in collection("volume")/vol:volume[vol:collection/text() ne "'.$volume_origem.'"] 
+              for $x in collection("volume")/vol:volume[vol:collection/text() ne "'.$volume_origem.'"]
                      return <option value="{$x/vol:collection/text()}">{$x/vol:nome/text()}</option>';
 
     $self->sedna->execute($xq);
@@ -250,7 +250,7 @@ txn_method 'options_volumes' => authorized $role_alterar => sub {
 
 =cut
 
-=item 
+=item
 
 =cut
 
