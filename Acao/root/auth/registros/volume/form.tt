@@ -71,7 +71,7 @@
   </dl>
  </fieldset>
 
-  <input type="submit" name="Submeter" onClick="javascript:document.getElementById('form').action='[% c.uri_for('/auth/registros/volume/store') %]'; javascript:return validaForm();">
+  <input type="submit" name="Submeter" onClick="javascript:document.getElementById('form').action='[% c.uri_for('/auth/registros/volume/store') %]'; javascript:return validaForm();" value="Criar">
 
   <input type="button" name="Cancelar" onClick="javascript:history.go(-1);" value="Cancelar">
 

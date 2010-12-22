@@ -25,6 +25,14 @@
   <DL>
    <DT>Usuário:</DT>
    <DD><input type="text" id="user" name="user" /></DD>
+   <DT>Domínio:</DT>
+   <DD>
+     <select name="dominio" id="dominio">
+[% FOREACH dom IN c.model('LDAP').buscar_dominios_auth -%]
+       <option value="[% dom.dn %]">[% dom.get_value('o') %]</option>
+[% END -%]
+     </select>
+   </DD>
    <DT>Senha:</DT>
    <DD><input type="password" id="name" name="password" /></DD>
    <input type="submit" name="submit" value="Entrar" />

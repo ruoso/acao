@@ -89,7 +89,7 @@
 <thead>
  <tr>
   <th width="70px">Controle</th>
-  <th width="350px">Prontuário</th>
+  <th>Prontuário</th>
   <th>Classificação</th>
   <th>Localização</th>
   <th width="80px">Pront. Físico</th>
@@ -97,7 +97,7 @@
   <th width="110px">Fechamento</th>
   <th width="110px">Arquivamento</th>
   <th width="40px">Estado</th>
-  <th width="120px" align="center" colspan="4">Ação</th>
+  <th colspan="5" align="center">Ação</th>
  </tr>
 </thead>
 <TBODY>
@@ -147,6 +147,27 @@
 
 </table>
 
+<script language="javascript" type="text/javascript">
+
+    function confirmaFechamento(){
+        if (!confirm('Deseja realmente fechar este prontuário?')){
+             return false;
+        }
+     }
+
+    function confirmaArquivamento(){
+        if (!confirm('Deseja realmente arquivar este prontuário?')){
+             return false;
+        }
+    }
+
+    function confirmaResgate(){
+        if (!confirm('Deseja realmente resgatar este prontuário?')){
+             return false;
+        }
+     }
+
+</script>
 
 [% paginacao = PROCESS 'auth/registros/volume/dossie/paginacao.tt' %]
 [% paginacao %]

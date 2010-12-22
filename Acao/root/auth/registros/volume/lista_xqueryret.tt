@@ -54,15 +54,14 @@
            { if ( $x/ns:estado/text() eq 'fechado') then (
 	       <a href="[% c.uri_for('/auth/registros/volume/alterar_estado/')%]{$x/ns:collection/text()}/aberto" class="abrir" title="Abrir" > Abrir </a>
            ) else ( )}
-
-           { if ( $x/ns:estado/text() eq 'aberto' or $x/ns:estado/text() eq 'arquivado') then (
-           <a href="[% c.uri_for('/auth/registros/volume/alterar_estado/')%]{$x/ns:collection/text()}/fechado" class="fechar" title="Fechar" > Fechar </a>
+           { if ( $x/ns:estado/text() eq 'aberto') then (
+           <a href="[% c.uri_for('/auth/registros/volume/alterar_estado/')%]{$x/ns:collection/text()}/fechado" class="fechar" title="Fechar" onClick="return confirmaFechamento()"> Fechar </a>
+           ) else ( )}
+           { if ($x/ns:estado/text() eq 'arquivado') then (
+           <a href="[% c.uri_for('/auth/registros/volume/alterar_estado/')%]{$x/ns:collection/text()}/fechado" class="fechar" title="Resgatar" onClick="return confirmaResgate()"> Fechar </a>
            ) else ( )}
            { if ( $x/ns:estado/text() eq 'fechado' ) then (    
-           <a href="[% c.uri_for('/auth/registros/volume/alterar_estado/')%]{$x/ns:collection/text()}/arquivado" class="arquivar" title="Arquivar" > Arquivar </a>
-         ) else ( )}
-         { if ( $x/ns:estado/text() eq 'arquivado') then (
-           <a href="[% c.uri_for('/auth/registros/volume/alterar_estado/')%]{$x/ns:collection/text()}/descartar" class="descartar" title="Descartar" > Descartar </a>
+           <a href="[% c.uri_for('/auth/registros/volume/alterar_estado/')%]{$x/ns:collection/text()}/arquivado" class="arquivar" title="Arquivar" onClick="return confirmaArquivamento()"> Arquivar </a>
          ) else ( )}
 	</td>
 	<input type="hidden" id="id_volume" nome="id_volume" value="{$x/ns:collection/text()}"/>	

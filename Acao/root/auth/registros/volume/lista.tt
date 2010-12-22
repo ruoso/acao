@@ -84,6 +84,28 @@
 </TBODY>
 </table>
 
+<script language="javascript" type="text/javascript">
+
+    function confirmaFechamento(){
+        if (!confirm('Deseja realmente fechar este volume?')){
+             return false;
+        }
+     }
+
+    function confirmaArquivamento(){
+        if (!confirm('Deseja realmente arquivar este volume?')){
+             return false;
+        }
+     }
+
+    function confirmaResgate(){
+        if (!confirm('Deseja realmente resgatar este volume?')){
+             return false;
+        }
+     }
+
+</script>
+
 [% paginacao = PROCESS 'auth/registros/volume/paginacao.tt' %]
 [% paginacao %]
 
