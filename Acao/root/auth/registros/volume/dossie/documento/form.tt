@@ -25,7 +25,7 @@
 
 <script SRC="[% c.uri_for('/static/js/forms/' ) _ c.req.param('xsdDocumento') _ '.js' %]" language="Javascript" ></script>
 
-<form action="" id="form" name="form" method="post" onsubmit="return generateXml('[% c.uri_for_action('/auth/registros/xsd/raw', [ c.req.param('xsdDocumento') ] ) %]', this.processed_xml);">
+<form action="" id="form" name="form" method="post" onsubmit="return generateXml('[% c.uri_for_action('/auth/registros/xsd/raw', { ns => c.req.param('xsdDocumento') } ) %]', this.processed_xml);">
  <input type="hidden" name="processed_xml">
  <input type="hidden" name="id_volume" value="[% id_volume %]">
  <input type="hidden" name="xsdDocumento" value="[% c.req.param('xsdDocumento') %]">
@@ -106,7 +106,7 @@
  </form>
 
  <script language="javascript">
-   generateForm("[% c.uri_for_action('/auth/registros/xsd/raw', [ c.req.param('xsdDocumento') ] ) %]", "form_container");
+   generateForm("[% c.uri_for_action('/auth/registros/xsd/raw', { ns => c.req.param('xsdDocumento') } ) %]", "form_container");
  </script>
 
 [% INCLUDE 'footer.tt' %]
