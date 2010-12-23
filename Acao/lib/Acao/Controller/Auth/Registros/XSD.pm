@@ -40,9 +40,9 @@ sub base : Chained('/auth/registros/base') : PathPart('xsd') :
     my ( $self, $c ) = @_;
 }
 
-sub dados :Chained('base') :PathPart('') :CaptureArgs(1) {
-    my ( $self, $c, $ns ) = @_;
-    $c->stash->{namespace} = $ns;
+sub dados :Chained('base') :PathPart('') :CaptureArgs(0) {
+    my ( $self, $c ) = @_;
+    $c->stash->{namespace} = $c->req->param('ns');
 }
 
 sub raw : Chained('dados') : PathPart('raw') : Args(0) {
