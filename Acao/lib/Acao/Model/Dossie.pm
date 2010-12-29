@@ -79,7 +79,6 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
     my $where_nome_membro = $args->{nome_membro};
     my $where_nome_mae =  $args->{nome_mae};
 
-
    if ( $where_nome_membro eq '') {
         $where_nome_membro = '1 = 1';
    } else {

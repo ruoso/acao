@@ -1,7 +1,21 @@
 (
   <tr>
     <td>
-        <a title="{$x/dc:id/text()}" href="[% c.uri_for('/auth/registros/volume/') _ id_volume _ '/' _ controle %]/visualizar/{$x/dc:id/text()}/{substring(namespace-uri($x/dc:documento/*/*),41)}/{$x/dc:invalidacao/text()}/{if ($x/dc:representaDocumentoFisico/text() eq '1') then ('true') else ('false')}">
+	<a title="{$x/dc:id/text()}" href="[% 
+            c.uri_for_action
+		(
+		 '/auth/registros/volume/dossie/documento/visualizar',
+		 [ id_volume, controle ],
+		 '__replace__doc__id___',
+		 '__replace__invalidacao___',
+		 '___replace__docfisico___',
+		 { ns => '___replace__xsd__ns__' }
+                )
+		.replace('___replace__xsd__ns__','{ namespace-uri($x/dc:documento/*/*)}')
+		.replace('__replace__doc__id___','{$x/dc:id/text()}')
+		.replace('__replace__invalidacao___','{$x/dc:invalidacao/text()}')
+		.replace('___replace__docfisico___','{if ($x/dc:representaDocumentoFisico/text() eq "1") then ("true") else ("false")}')
+	   %]">
           {if ($x/dc:invalidacao/text() ne '1970-01-01T00:00:00Z') then (
              <strike> {$y} </strike>
           ) else (
