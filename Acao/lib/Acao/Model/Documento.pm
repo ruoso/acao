@@ -16,6 +16,7 @@ package Acao::Model::Documento;
 # Você deve ter recebido uma cópia da Licença Pública Geral GNU, sob o
 # título "LICENCA.txt", junto com este programa, se não, escreva para a
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
+
 use Moose;
 extends 'Acao::Model';
 use Acao::ModelUtil;

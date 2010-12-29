@@ -44,7 +44,7 @@
 [% END %]
 
 [% SET tipo_documento = c.req.param('tipo_documento') %]
-
+[% SET xsd = c.req.param('c') %]
 <br>
 <h1 class="titulo-form">Gerenciar Documentos | <span style="font-size:13px; font-weight:normal;">
 <a id="addDocument"  class="criar">Inserir Documento</a>
@@ -183,7 +183,6 @@
 </table>
 
 <br/>
-
 
 [% paginacao = PROCESS 'auth/registros/volume/dossie/documento/paginacao.tt' %]
 [% paginacao %]

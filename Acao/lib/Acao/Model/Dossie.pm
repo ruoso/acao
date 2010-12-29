@@ -81,15 +81,15 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
 	 	   $where_nome_membro = '1 = 1';
 	 } else {
 	 	   $where_nome_membro  =  '($x/ns:doc/dc:documento/dc:documento/dc:conteudo/pes:formIdentificacaoPessoal';
-	       $where_nome_membro .=  '[contains(upper-case(pes:nomeCompleto/text()),upper-case("' . $args->{nome_membro} . '"))]';
-	       $where_nome_membro .=  'or $x[contains(upper-case(ns:nome/text()),upper-case("' . $args->{nome_membro} . '"))])' ;
+	           $where_nome_membro .=  '[contains(upper-case(pes:nomeCompleto/text()),upper-case("' . $args->{nome_membro} . '"))]';
+	           $where_nome_membro .=  'or $x[contains(upper-case(ns:nome/text()),upper-case("' . $args->{nome_membro} . '"))])' ;
 	 }
 
 	 if ($where_nome_mae eq '') {
 	 	   $where_nome_mae = '1 = 1';
 	 } else {
 	 	   $where_nome_mae  = '$x/ns:doc/dc:documento/dc:documento/dc:conteudo/pes:formIdentificacaoPessoal/pes:filiacao';
-           $where_nome_mae .= '[contains(upper-case(pes:mae/text()),upper-case("'. $args->{nome_mae} .'"))]';
+                   $where_nome_mae .= '[contains(upper-case(pes:mae/text()),upper-case("'. $args->{nome_mae} .'"))]';
 	 }
 
     my $for = 'collection("'.$args->{id_volume}.'")/ns:dossie';
