@@ -278,3 +278,8 @@ ack-grep 'STRING'
 #busca strings em vários documentos e substitui a string buscada.
 grep -lr -e 'OLDSTRING' * | xargs sed -i 's/OLDSTRING/NEWSTRING/g'
 
+#testes automatizados
+/devel/acao/Acao$ perl -I lib t/"documento.t"
+
+#executando testes em paralelo
+for I in `seq 1 60`; do sh -c 'echo "instancia $$"; perl -Ilib t/05_stress_sedna.t &' ; done
