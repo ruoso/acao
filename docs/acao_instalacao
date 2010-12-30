@@ -90,11 +90,13 @@ Instalando/Configurando
         8.9.4 - Cole os comando acima no cosole do SEDNA e cetifique do sucesso da persistencia de TODOS os arquivos.
 
 9 - Para criar o Usuario e Data Base acao no SGBD Postgre SQL digite no terminal
-    9.1 - sudo -u createuser -P acao
-    9.2 - createdb -Uacao -h127.0.0.1 acao
-    9.3 - Para recriar a estrutura do banco em acordo com o model do sistema
-        9.3.1 - Pelo terminal abra o diretorio onde está o projeto ação (Ex: devel/acao/Acao)
-        9.3.2 - Digite o comando: perl -Ilib -MAcao -e 'Acao->model("DB")->schema->deploy'
+    9.1 - digite sudo su e digite a sua senha
+    9.2 - mude para o usuário postgres, para isto, utilize o comando: su postgres
+    9.3 - createuser -P acao
+    9.4 - createdb -Uacao -h127.0.0.1 acao
+    9.5 - Para recriar a estrutura do banco em acordo com o model do sistema
+        9.5.1 - Pelo terminal abra o diretorio onde está o projeto ação (Ex: devel/acao/Acao)
+        9.5.2 - Digite o comando: perl -Ilib -MAcao -e 'Acao->model("DB")->schema->deploy'
 
 10 - Instalando o LibXML no Linux
     10.1 Para baixar e instalar o LibXML digite no console: sudo apt-get install libxml2-dev
