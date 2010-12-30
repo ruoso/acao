@@ -72,6 +72,7 @@ Retorna os dossies os quais o usuário autenticado tem acesso.
 
 =cut
 
+
 txn_method 'listar_dossies' => authorized $role_listar => sub {
     my ($self, $args) = @_;
     my $where_nome_membro = $args->{nome_membro};
@@ -103,16 +104,19 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
     my $xquery_where  = ' where '.$where_nome_membro;
        $xquery_where .= ' and '. $where_nome_mae;
 
-    my $list  = $declare_namespace.' subsequence('.$xquery_for.$xquery_where;
-       $list .=                    ' order by $x/ns:criacao descending';
-       $list .=                    ' return ($x/ns:controle/text() , '.$args->{xqueryret}.'), ';
-       $list .=                    '(('.$args->{interval_ini}.' * '.$args->{num_por_pagina}.') + 1), '.$args->{num_por_pagina}.')';
+    my $list  = $declare_namespace.' subsequence('.$xquery_for.$xquery_where
+             .                     ' order by $x/ns:criacao descending'
+             .                     ' return ($x/ns:controle/text() , '.$args->{xqueryret}.'), '
+             .                     '(('.$args->{interval_ini}.' * '.$args->{num_por_pagina}.') + 1), '.$args->{num_por_pagina}.')';
 
+
+	my $audit = ' subsequence(('.$xquery_for.$xquery_where.' return $x),'
+             .  ' (('.$args->{interval_ini}.' * '.$args->{num_por_pagina}.') + 1), '.$args->{num_por_pagina}.')';
 
     my $count = $declare_namespace.'count('.$xquery_for.$xquery_where.' return "")';
 
 
-    $self->auditoria({ ip => $args->{ip}, operacao => 'list', for => $for, dados => $for   });
+    $self->auditoria({ ip => $args->{ip}, operacao => 'list', for => $audit, dados => $for   });
 
     return
         {
@@ -120,6 +124,8 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
           count      => $count
         };
 };
+
+
 
 sub auditoria  {
     my ($self, $args) = @_;

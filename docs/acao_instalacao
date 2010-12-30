@@ -31,15 +31,20 @@ Instalando/Configurando
         5.5.2 - make
         5.5.3 - sudo make install
 
-6 - Baixando o Catalyst-Model-Sedna pelo github
-    6.1 - Pelo terminal abra o mesmo diretorio aberto no passo 4.1
-    6.2 - Abra seu WebBrowser e digite a url: http://github.com/ruoso/Catalyst-Model-Sedna
-    6.3 - Copie o endereço localizado no campo Read-Only | HTTP Read-Only
-    6.4 - Para baixar o Catalyst-Model-Sedna digite no terminal: git clone "cole o endereço copiado no passo 6.3"
-    6.5 - Pelo console acesse o diretorio Catalyst-Model-Sedna que foi baixado, digite e execute:
-        6.5.1 - perl Makefile.PL
-        6.5.2 - make
-        6.5.3 - sudo make install
+6 - Instalando o Framework Catalyst e demais pacotes necessarios para a aplicação
+    6.1 - Pelo terminal do linux abra o terminal do CPAN digitando: sudo cpan
+    6.2 - install Catalyst::Runtime
+    6.3 - install Catalyst::Devel
+    6.4 - install Task::Catalyst
+    6.5 - install Catalyst::Plugin::Unicode
+    6.6 - install Catalyst::Model::LDAP
+    6.7 - install Catalyst::Authentication::Store::LDAP
+    6.8 - install DBD::Pg (caso 7.8 nao funcione tente: force install DBD::Pg)
+    6.9 - install Catalyst::Plugin::Session::Store::FastMmap
+    6.10 - install DateTime
+    6.11 - install DateTime::Format::XSD
+    6.12 - force install Sedna
+    6.13 - install Catalyst::Model::Sedna
 
 7 - Instalando o Framework Catalyst e demais pacotes necessarios para a aplicação
     7.1 - Pelo terminal do linux abra o terminal do CPAN digitando: sudo cpan
@@ -125,13 +130,8 @@ Instalando/Configurando
     13.1 svn commit (subir os arquivos locais para o subversion )
     13.1 svn update (atualizar os arquivos locais a partir do subversion)
 
-14 - Instalando pacotes necessarios 
-    14.1 - sudo apt-get install libpq-dev
-    14.2 - sudo cpan
-        14.2.1 - install DBD::Pg [force install DBD::Pg]
 
-
-Comandos para manipulacao do sedina
+Comandos para manipulacao do sedna
 ===================================
 
 # Iniciar sedna
