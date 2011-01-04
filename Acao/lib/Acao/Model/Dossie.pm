@@ -103,16 +103,19 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
     my $xquery_where  = ' where '.$where_nome_membro;
        $xquery_where .= ' and '. $where_nome_mae;
 
-    my $list  = $declare_namespace.' subsequence('.$xquery_for.$xquery_where;
-       $list .=                    ' order by $x/ns:criacao descending';
-       $list .=                    ' return ($x/ns:controle/text() , '.$args->{xqueryret}.'), ';
-       $list .=                    '(('.$args->{interval_ini}.' * '.$args->{num_por_pagina}.') + 1), '.$args->{num_por_pagina}.')';
+    my $list  = $declare_namespace.' subsequence('.$xquery_for.$xquery_where
+             .                     ' order by $x/ns:criacao descending'
+             .                     ' return ($x/ns:controle/text() , '.$args->{xqueryret}.'), '
+             .                     '(('.$args->{interval_ini}.' * '.$args->{num_por_pagina}.') + 1), '.$args->{num_por_pagina}.')';
 
+
+	my $audit = ' subsequence(('.$xquery_for.$xquery_where.' return $x),'
+             .  ' (('.$args->{interval_ini}.' * '.$args->{num_por_pagina}.') + 1), '.$args->{num_por_pagina}.')';
 
     my $count = $declare_namespace.'count('.$xquery_for.$xquery_where.' return "")';
 
 
-    $self->auditoria({ ip => $args->{ip}, operacao => 'list', for => $for, dados => $for   });
+    $self->auditoria({ ip => $args->{ip}, operacao => 'list', for => $audit, dados => $for   });
 
     return
         {
@@ -135,6 +138,8 @@ sub auditoria  {
                                );
     my $xq_audit = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
                 update insert ('.$audit->toString.') into '.$args->{for}.'/ns:audit';
+
+    warn $xq_audit;
     $self->sedna->execute($xq_audit);
 }
 

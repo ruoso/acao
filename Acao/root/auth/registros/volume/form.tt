@@ -21,17 +21,17 @@
 <br>
 <h1 class="titulo-form">Criar Volume</h1>
 
- <form id="form" name="form" action="" method="post" onsubmit="">
+ <form id="form" name="form" action="[% c.uri_for('/auth/registros/volume/store') %]" method="post" onsubmit="">
 
  <fieldset>
 
   <dl  class="form10">
    <dt> <label> Nome Volume: </label> </dt>
 	<dd>
-		<input type="text" id="nome" name="nome" class="upper">
+		<input type="text" id="nome" name="nome" class="upper" value="[% nome %]">
 	</dd>
-   <dt> 
-    <label> Classificação:  </label> 
+   <dt>
+    <label> Classificação:  </label>
    </dt>
 	<dd>
     <select name="classificacao" id="classificacao">
@@ -48,8 +48,8 @@
     </select>
 	</dd>
 
-   <dt> 
-    <label> Localização: </label> 
+   <dt>
+    <label> Localização: </label>
 	</dt>
 	<dd>
     <select name="localizacao" id="localizacao">
@@ -66,20 +66,80 @@
     </select>
    </dd>
    <br/>
- 	<dd> <input type="checkbox" id="representaVolumeFisico" name="representaVolumeFisico" evt="representaVolumeFisico" checked="checked"> <label for="representaVolumeFisico"> Representa Volume Físico </label> 
+ 	<dd> <input type="checkbox" id="representaVolumeFisico" name="representaVolumeFisico" evt="representaVolumeFisico" checked="checked"> <label for="representaVolumeFisico"> Representa Volume Físico </label>
 	</dd>
+  </dl>
+
+
+
+    <br/>
+
+ <fieldset id="grupos">
+    <label> Autorizações: </label>
+     <input type="hidden" name="autorizacoes" value="[% autorizacoes | html %]" />
+     <input type="hidden" name="basedn" value="[% basedn %]" />
+
+     <table>
+      <thead>
+        <th>Grupo</th>
+        <th>Permissão</th>
+        <th><input type="submit" name="opcao" value="Remover"></th>
+      </thead>
+      <tbody>
+        [% SET count = 0 %]
+        [% FOREACH a IN c.model('Volume').desserialize_autorizacoes(autorizacoes).autorizacao %]
+        <tr>
+          <td>[% c.model('LDAP').decompose_dn(a.principal).reverse.join(' - ') %]</td>
+          <td>[% a.role %]</td>
+          <td><input type="checkbox" name="remover_autorizacao_[% count %]" /></td>
+        </tr>
+        [% SET count = count + 1 %]
+        [% END %]
+      </tbody>
+     </table>
+     <dl>
+          <dt class="grp"> Grupo de Usuário e Ações</dt>
+
+            <dt>
+
+                <select multiple name="grupos" id="grupos"  style="height:100px;min-width:150px">
+                   [% IF basedn.size > 1; basedn = basedn.shift; END %]
+                   [% IF basedn != c.model('LDAP').grupos_dn %]
+                   <option  value="[%  c.view('LDAPUtil').voltar_grupos(basedn) %]"> ../</option>
+                   [% END %]
+                   [%  FOREACH group IN c.model('LDAP').buscar_dn_adm(basedn) %]
+                   <option value="[% group.dn %]"> [% group.get_value('o') || group.get_value('ou') %] </option>
+                   [%  END %]
+                </select>
+
+
+            <select multiple name="acoes" id="acoes" style="height:100px;min-width:150px">
+                    <option  value="alterar"> Alterar </option>
+                    <option  value="criar">Criar </option>
+                    <option  value="listar">Listar </option>
+                    <option  value="visualizar">Visualizar </option>
+                </select>
+            </dt>
+
+        <input type="submit" name="opcao" value="Adicionar">
+        <input type="submit" name="opcao" value="Navegar"><br/>
+
+
+    </dl>
+
+ </fieldset>
+
   </dl>
  </fieldset>
 
-  <input type="submit" name="Submeter" onClick="javascript:document.getElementById('form').action='[% c.uri_for('/auth/registros/volume/store') %]'; javascript:return validaForm();" value="Criar">
+  <input type="submit" name="opcao" onClick="javascript:return validaForm();" value="Criar">
 
   <input type="button" name="Cancelar" onClick="javascript:history.go(-1);" value="Cancelar">
-
  </form>
 
  <script language="javascript">
   function validaForm(){
-	//Valida Nome do volume	
+	//Valida Nome do volume
     if(document.getElementById('nome').value == ''){
       alert('Informe o nome do volume');
       document.getElementById('nome').focus();
@@ -99,5 +159,6 @@
     }
   }
  </script>
+
 
 [% INCLUDE 'footer.tt' %]
