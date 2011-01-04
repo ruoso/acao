@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:audt="http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd"
+	xmlns:author="http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd"
 	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd"
 	elementFormDefault="qualified">
 	<xs:element name="volume">
@@ -23,16 +24,10 @@
 				<xs:element name="representaVolumeFisico" type="xs:boolean" />
 				<xs:element name="classificacao" type="xs:string" maxnOccurs="unbounded" />
 				<xs:element name="localizacao" type="xs:string" />
-				<xs:element name="autorizacao">
-					<xs:complexType>
-						<xs:attribute name="principal" type="xs:string" use="required" />
-						<xs:attribute name="role" type="xs:string" use="required" />
-						<xs:attribute name="dataIni" type="xs:string" use="required" />
-						<xs:attribute name="dataFim" type="xs:string" use="optional" />
-					</xs:complexType>
-				</xs:element>
+                <xs:element name="autorizacoes" minOccurs="0" type="author:autorizacoes"/>
                 <xs:element name="audit" minOccurs="0" type="audt:audit"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
+    <xs:element name="autorizacoes" type="author:autorizacoes"/>
 </xs:schema>
