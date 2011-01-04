@@ -40,6 +40,10 @@ sub base : Chained('/auth/registros/volume/base') :PathPart('') :CaptureArgs(1) 
     my ( $self, $c, $id_volume ) = @_;
     $c->stash->{id_volume} = $id_volume
       or $c->detach('/public/default');
+
+   $c->model('Volume')->pode_ver_volume($id_volume)
+	or $c->detach('/public/default');
+
 }
 
 =item form
@@ -93,7 +97,7 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
 sub alterar_estado : Chained('base') : PathPart('alterar_estado') : Args(3) {
      my ( $self, $c, $id_volume, $controle, $estado ) = @_;
      eval {
-             $c->model('Dossie')->alterar_estado($id_volume, $controle, $estado, $c->req->address ); 
+             $c->model('Dossie')->alterar_estado($id_volume, $controle, $estado, $c->req->address );
           };
     if ($@) {
         $c->flash->{erro} = $@;
@@ -107,7 +111,7 @@ sub alterar_estado : Chained('base') : PathPart('alterar_estado') : Args(3) {
 sub transferir : Chained('base') : PathPart('transferir') : Args(2) {
      my ( $self, $c, $id_volume, $controle ) = @_;
      eval {
-             $c->model('Dossie')->transferir($id_volume, $controle,  $c->req->param('volume_destino'), $c->req->address ); 
+             $c->model('Dossie')->transferir($id_volume, $controle,  $c->req->param('volume_destino'), $c->req->address );
           };
     if ($@) {
         $c->flash->{erro} = $@;
