@@ -71,17 +71,39 @@ txn_method 'listar_volumes' => authorized $role_listar => sub {
 
 
 	my $grupos = join ' or ', map { '@principal = "'.$_.'"' } @{$self->user->memberof};
-    my $for = 'collection("volume")/ns:volume[ns:autorizacoes/author:autorizacao[('.$grupos.') and @role="listar"]]';
 
 
-        my $dados  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";'
-        		   . 'declare namespace author = "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";'
-            	   . 'subsequence(for $x in '.$for.' return ($x/ns:collection/text(), '.$args->{xqueryret}.'),'
-                   . '(' . $args->{interval_ini} * $args->{num_por_pagina} . ') + 1 ,' . $args->{num_por_pagina} . ')';
+	my $declare_namespace = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";'
+						  . 'declare namespace author = "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";';
 
-    $self->auditoria({ ip => $args->{ip}, operacao => 'list', for => $for });
+	my $for				  = 'collection("volume")/ns:volume[ns:autorizacoes/author:autorizacao[('.$grupos.') and @role="listar"]]';
+	my $xquery_for        = 'for $x in '.$for;
+	my $xquery_where      = '';
 
-    return $dados;
+
+
+	# Contrução da query para listagem
+    my $list  =  $declare_namespace
+           	   . 'subsequence('.$xquery_for.' return ($x/ns:collection/text(), '.$args->{xqueryret}.'),'
+               . '(' . $args->{interval_ini} * $args->{num_por_pagina} . ') + 1 ,' . $args->{num_por_pagina} . ')';
+
+
+	# Contrução do for para auditoria dos somente listados
+	my $audit = ' subsequence(('.$xquery_for.$xquery_where.' return $x),'
+              . ' (('.$args->{interval_ini}.' * '.$args->{num_por_pagina}.') + 1), '.$args->{num_por_pagina}.')';
+
+
+	# Contrução da query de contagem para contrução da paginação
+	my $count = $declare_namespace.'count('.$xquery_for.$xquery_where.' return "")';
+
+
+
+    $self->auditoria({ ip => $args->{ip}, operacao => 'list', for => $audit });
+
+    return {
+    	  list       => $list,
+          count      => $count
+    };
 
 };
 
@@ -314,6 +336,13 @@ sub pode_ver_volume {
     $self->sedna->commit;
 	return $res;
 }
+
+sub pode_criar_volume {
+	my($self) = @_;
+	return $role_criar ~~ @{$self->user->memberof};
+}
+
+
 
 =cut
 

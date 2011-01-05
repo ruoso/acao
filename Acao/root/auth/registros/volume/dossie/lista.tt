@@ -35,7 +35,14 @@
 
 [% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume) ) %]
 <br>
-<h1 class="titulo-form">Gerenciar Prontuários | <span style="font-size:13px; font-weight:normal;"><a class="criar" href="[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/criardossie') %]">Criar Prontuário</a></span></h1>
+<h1 class="titulo-form">Gerenciar Prontuários |
+	<span style="font-size:13px; font-weight:normal;">
+
+		[% IF c.model('Dossie').pode_criar_dossie %]
+		    <a class="criar" href="[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/criardossie') %]">Criar Prontuário</a>
+		[% END %]
+	</span>
+</h1>
 
 <div id="accordion">
 	<h3><a href="#">Dados do Volume: [% vol.nome %]</a></h3>

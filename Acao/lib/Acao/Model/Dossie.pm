@@ -80,38 +80,41 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
 	 if ( $where_nome_membro eq '') {
 	 	   $where_nome_membro = '1 = 1';
 	 } else {
-	 	   $where_nome_membro  =  '($x/ns:doc/dc:documento/dc:documento/dc:conteudo/pes:formIdentificacaoPessoal';
-	       $where_nome_membro .=  '[contains(upper-case(pes:nomeCompleto/text()),upper-case("' . $args->{nome_membro} . '"))]';
-	       $where_nome_membro .=  'or $x[contains(upper-case(ns:nome/text()),upper-case("' . $args->{nome_membro} . '"))])' ;
+	 	   $where_nome_membro  =  '($x/ns:doc/dc:documento/dc:documento/dc:conteudo/pes:formIdentificacaoPessoal'
+	       					   .  '[contains(upper-case(pes:nomeCompleto/text()),upper-case("' . $args->{nome_membro} . '"))]'
+	        				   .  'or $x[contains(upper-case(ns:nome/text()),upper-case("' . $args->{nome_membro} . '"))])';
 	 }
 
 	 if ($where_nome_mae eq '') {
 	 	   $where_nome_mae = '1 = 1';
 	 } else {
-	 	   $where_nome_mae  = '$x/ns:doc/dc:documento/dc:documento/dc:conteudo/pes:formIdentificacaoPessoal/pes:filiacao';
-           $where_nome_mae .= '[contains(upper-case(pes:mae/text()),upper-case("'. $args->{nome_mae} .'"))]';
+	 	   $where_nome_mae  = '$x/ns:doc/dc:documento/dc:documento/dc:conteudo/pes:formIdentificacaoPessoal/pes:filiacao'
+                            . '[contains(upper-case(pes:mae/text()),upper-case("'. $args->{nome_mae} .'"))]';
 	 }
 
-    my $for = 'collection("'.$args->{id_volume}.'")/ns:dossie';
 
-    my $declare_namespace  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";';
-       $declare_namespace .= 'declare namespace dc = "http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";';
-       $declare_namespace .= 'declare namespace pes = "http://schemas.fortaleza.ce.gov.br/acao/sdh-identificacaoPessoal.xsd";';
 
-    my $xquery_for = 'for $x in '.$for;
+    my $declare_namespace  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";'
+       					   . 'declare namespace dc = "http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";'
+       					   . 'declare namespace pes = "http://schemas.fortaleza.ce.gov.br/acao/sdh-identificacaoPessoal.xsd";';
 
-    my $xquery_where  = ' where '.$where_nome_membro;
-       $xquery_where .= ' and '. $where_nome_mae;
+	my $for			  	   = 'collection("'.$args->{id_volume}.'")/ns:dossie';
+    my $xquery_for         = 'for $x in '.$for;
+    my $xquery_where       = ' where '.$where_nome_membro. ' and '. $where_nome_mae;
 
-    my $list  = $declare_namespace.' subsequence('.$xquery_for.$xquery_where
+
+	# Contrução da query para listagem
+    my $list  = $declare_namespace
+    		 .  ' subsequence('.$xquery_for.$xquery_where
              .                     ' order by $x/ns:criacao descending'
              .                     ' return ($x/ns:controle/text() , '.$args->{xqueryret}.'), '
              .                     '(('.$args->{interval_ini}.' * '.$args->{num_por_pagina}.') + 1), '.$args->{num_por_pagina}.')';
 
-
+	# Contrução do for para auditoria dos somente listados
 	my $audit = ' subsequence(('.$xquery_for.$xquery_where.' return $x),'
-             .  ' (('.$args->{interval_ini}.' * '.$args->{num_por_pagina}.') + 1), '.$args->{num_por_pagina}.')';
+           	   .' (('.$args->{interval_ini}.' * '.$args->{num_por_pagina}.') + 1), '.$args->{num_por_pagina}.')';
 
+	# Contrução da query de contagem para contrução da paginação
     my $count = $declare_namespace.'count('.$xquery_for.$xquery_where.' return "")';
 
 
@@ -325,6 +328,16 @@ txn_method 'transferir' => authorized $role_alterar => sub {
 
 
 };
+
+sub pode_criar_dossie {
+	my($self) = @_;
+	return $role_criar ~~ @{$self->user->memberof};
+}
+
+sub pode_listar_dossie {
+	my($self) = @_;
+	return $role_listar ~~ @{$self->user->memberof};
+}
 
 =head1 COPYRIGHT AND LICENSING
 
