@@ -118,7 +118,7 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
     my $count = $declare_namespace.'count('.$xquery_for.$xquery_where.' return "")';
 
 
-    $self->auditoria({ ip => $args->{ip}, operacao => 'list', for => $audit, dados => $for   });
+    #$self->auditoria({ ip => $args->{ip}, operacao => 'list', for => $audit, dados => $for   });
 
     return
         {
