@@ -20,6 +20,7 @@ package Acao::Controller::Auth::Registros::Volume::Dossie;
 use strict;
 use warnings;
 use parent 'Catalyst::Controller';
+use Data::Dumper;
 
 =head1 NAME
 
@@ -36,13 +37,7 @@ Carrega para o stash os dados do dossiê.
 
 =cut
 
-sub base : Chained('/auth/registros/volume/base') :PathPart('') :CaptureArgs(1) {
-    my ( $self, $c, $id_volume ) = @_;
-    $c->stash->{id_volume} = $id_volume
-      or $c->detach('/public/default');
-
-   $c->model('Volume')->pode_ver_volume($id_volume)
-	or $c->detach('/public/default');
+sub base : Chained('/auth/registros/volume/get_volume') :PathPart('') :CaptureArgs(0) {
 
 }
 
@@ -59,10 +54,10 @@ sub lista : Chained('base') : PathPart('') : Args(0) {
 sub form : Chained('base') : PathPart('criardossie') : Args(0) {
 }
 
-sub transferir_lista : Chained('base') : PathPart('transferir_lista') : Args(2) {
-    my ( $self, $c, $id_volume, $controle ) = @_;
-    $c->stash->{id_volume} = $id_volume;
+sub transferir_lista : Chained('base') : PathPart('transferir_lista') : Args(1) {
+    my ( $self, $c, $controle ) = @_;
     $c->stash->{controle}  = $controle;
+
 }
 
 sub store : Chained('base') : PathPart('store') : Args(0) {
@@ -94,10 +89,10 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
     $c->res->redirect( $c->uri_for('/auth/registros/volume/' . $c->req->param('id_volume') ) );
 }
 
-sub alterar_estado : Chained('base') : PathPart('alterar_estado') : Args(3) {
-     my ( $self, $c, $id_volume, $controle, $estado ) = @_;
+sub alterar_estado : Chained('base') : PathPart('alterar_estado') : Args(2) {
+     my ( $self, $c, $controle, $estado ) = @_;
      eval {
-             $c->model('Dossie')->alterar_estado($id_volume, $controle, $estado, $c->req->address );
+             $c->model('Dossie')->alterar_estado($c->stash->{id_volume}, $controle, $estado, $c->req->address );
           };
     if ($@) {
         $c->flash->{erro} = $@;
@@ -105,13 +100,14 @@ sub alterar_estado : Chained('base') : PathPart('alterar_estado') : Args(3) {
     else {
         $c->flash->{sucesso} = 'Estado alterado com sucesso!';
     }
-    $c->res->redirect( $c->uri_for('/auth/registros/volume/' . $id_volume) );
+    $c->res->redirect( $c->uri_for('/auth/registros/volume/' . $c->stash->{id_volume}) );
 }
 
-sub transferir : Chained('base') : PathPart('transferir') : Args(2) {
-     my ( $self, $c, $id_volume, $controle ) = @_;
+sub transferir : Chained('base') : PathPart('transferir') : Args(1) {
+     my ( $self, $c, $controle ) = @_;
+
      eval {
-             $c->model('Dossie')->transferir($id_volume, $controle,  $c->req->param('volume_destino'), $c->req->address );
+             $c->model('Dossie')->transferir($c->stash->{id_volume}, $controle,  $c->req->param('volume_destino'), $c->req->address );
           };
     if ($@) {
         $c->flash->{erro} = $@;
@@ -119,7 +115,7 @@ sub transferir : Chained('base') : PathPart('transferir') : Args(2) {
     else {
         $c->flash->{sucesso} = 'Alterado com sucesso!';
     }
-    $c->res->redirect( $c->uri_for('/auth/registros/volume/' . $id_volume) );
+    $c->res->redirect( $c->uri_for('/auth/registros/volume/' . $c->stash->{id_volume}) );
 }
 
 =head1 COPYRIGHT AND LICENSING

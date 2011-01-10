@@ -39,8 +39,10 @@ Carrega para o stash os dados do dossiê.
 
 sub base : Chained('/auth/registros/volume/dossie/base') :PathPart('') :CaptureArgs(1) {
     my ( $self, $c, $controle ) = @_;
+
     $c->stash->{controle} = $controle
       or $c->detach('/public/default');
+
 }
 
 =item form
@@ -70,8 +72,8 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
         $c->model('Documento')->inserir_documento(
 		                                  $c->req->address,
 		                                  $c->request->param('processed_xml'),
-					                      $c->req->param('id_volume'),
-					                      $c->req->param('controle'),
+					                      $c->stash->{'id_volume'},
+					                      $c->stash->{'controle'},
                                           $c->req->param('xsdDocumento'),
                                           $representaDocumentoFisico,
                                           $c->req->param('id_documento'),
@@ -81,7 +83,7 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
 
     if ($@) { $c->flash->{erro} = $@ . "";  }
     else { $c->flash->{sucesso} = 'Documento criado com sucesso'; }
-    $c->res->redirect( $c->uri_for('/auth/registros/volume/' . $c->req->param('id_volume') . '/' . $c->req->param('controle') ) );
+    $c->res->redirect( $c->uri_for('/auth/registros/volume/' . $c->stash->{id_volume} . '/' . $c->stash->{controle}) );
 }
 
 sub visualizar : Chained('base') : PathPart('visualizar') : Args(4){
@@ -120,9 +122,9 @@ sub invalidar_documento : Chained('base') : PathPart('invalidar_documento') : Ar
 sub xml : Chained('base') : PathPart : Args(1) {
     my ( $self, $c, $id_documento ) = @_;
     $c->stash->{id_documento} = $id_documento;
-    $c->stash->{document} = $c->model('Documento')->visualizar( $c->stash->{id_volume},  
-                                                                $c->stash->{controle},  
-                                                                $c->stash->{id_documento}, 
+    $c->stash->{document} = $c->model('Documento')->visualizar( $c->stash->{id_volume},
+                                                                $c->stash->{controle},
+                                                                $c->stash->{id_documento},
                                                                 $c->req->address,
                                                               );
     $c->forward( $c->view('XML') );

@@ -41,6 +41,10 @@
 		[% IF c.model('Dossie').pode_criar_dossie %]
 		    <a class="criar" href="[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/criardossie') %]">Criar Prontuário</a>
 		[% END %]
+		|
+		[% IF c.model('Volume').pode_alterar_volume %]
+		    <a class="alterar" href="[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/alterar') %]">Alterar Volume</a>
+		[% END %]
 	</span>
 </h1>
 

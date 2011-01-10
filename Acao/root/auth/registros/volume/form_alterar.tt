@@ -1,0 +1,60 @@
+[%#
+# Copyright 2010 - Prefeitura Municipal de Fortaleza
+#
+# Este arquivo é parte do programa Ação - Sistema de Acompanhamento de
+# Projetos Sociais
+#
+# O Ação é um software livre; você pode redistribui-lo e/ou modifica-lo
+# dentro dos termos da Licença Pública Geral GNU como publicada pela
+# Fundação do Software Livre (FSF); na versão 2 da Licença.
+#
+# Este programa é distribuido na esperança que possa ser util, mas SEM
+# NENHUMA GARANTIA; sem uma garantia implicita de ADEQUAÇÂO a qualquer
+# MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a Licença Pública Geral GNU
+# para maiores detalhes.
+#
+# Você deve ter recebido uma cópia da Licença Pública Geral GNU, sob o
+# título "LICENCA.txt", junto com este programa, se não, escreva para a
+# Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
+%]
+[% INCLUDE 'auth/registros/volume/header.tt' %]
+<br>
+<h1 class="titulo-form">Alterar Volume:</h1>
+
+ <form id="form" name="form" action="[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/store_alterar') %]" method="post" onsubmit="">
+
+	[% INCLUDE 'auth/registros/volume/_formVolume.tt' %]
+
+	[% INCLUDE 'auth/registros/volume/_formPermissoes.tt' %]
+
+
+  <input type="submit" name="opcao" onClick="javascript:return validaForm();" value="Salvar">
+
+  <input type="button" name="Cancelar" onClick="javascript:history.go(-1);" value="Cancelar">
+ </form>
+
+ <script language="javascript">
+  function validaForm(){
+	//Valida Nome do volume
+    if(document.getElementById('nome').value == ''){
+      alert('Informe o nome do volume');
+      document.getElementById('nome').focus();
+      return false;
+    }
+
+    if(document.getElementById('classificacao').value == ''){
+      alert('Informe o nome do classificação');
+      document.getElementById('classificacao').focus();
+      return false;
+    }
+
+    if(document.getElementById('localizacao').value == ''){
+      alert('Informe o nome da localização');
+      document.getElementById('localizacao').focus();
+      return false;
+    }
+  }
+ </script>
+
+
+[% INCLUDE 'footer.tt' %]

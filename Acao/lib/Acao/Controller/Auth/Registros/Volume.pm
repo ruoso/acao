@@ -44,6 +44,15 @@ sub base : Chained('/auth/registros/base') : PathPart('volume') : CaptureArgs(0)
 	my ( $self, $c ) = @_;
 }
 
+sub get_volume :Chained('base') : PathPart('') : CaptureArgs(1) {
+    my ( $self, $c, $id_volume ) = @_;
+    $c->stash->{id_volume} = $id_volume
+      or $c->detach('/public/default');
+
+    $c->model('Volume')->pode_ver_volume($id_volume)
+	  or $c->detach('/public/default');
+}
+
 =item lista
 
 Delega à view a renderização da lista de leituras que esse gestorvolume
@@ -53,6 +62,7 @@ tem acesso.
 
 sub lista : Chained('base') : PathPart('') : Args(0) {
 	my ( $self, $c ) = @_;
+
 }
 
 sub form : Chained('base') : PathPart('criarvolume') : Args(0) {
@@ -67,7 +77,6 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
 	my $representaVolumeFisico;
 	$c->stash->{basedn} = $c->req->param('basedn') ||
 						  $c->model("LDAP")->grupos_dn;
-  	$c->stash->{nome} = $c->req->param('nome');
 
 
 # remove autorizações
@@ -134,8 +143,9 @@ sub xsd : Chained('base') : PathPart('xsd') : Args(1) {
 	$c->forward( $c->view('XML') );
 }
 
-sub alterar_estado : Chained('base') : PathPart('alterar_estado') : Args(2) {
-	my ( $self, $c, $id_volume, $estado ) = @_;
+sub alterar_estado : Chained('base') : PathPart('alterar_estado') : Args(1) {
+	my ( $self, $c, $estado ) = @_;
+	my $id_volume = $c->stash->{id_volume};
 	eval {
 		$c->model('Volume')
 		  ->alterar_estado( $id_volume, $estado, $c->req->address );
@@ -149,6 +159,88 @@ sub alterar_estado : Chained('base') : PathPart('alterar_estado') : Args(2) {
 	$c->res->redirect( $c->uri_for('/auth/registros/volume') );
 }
 
+sub alterar_volume :Chained('get_volume') : PathPart('alterar') : Args(0) {
+    my ($self, $c) = @_;
+   $c->model('Volume')->pode_alterar_volume() or $c->detach('/public/default');
+
+    my $initial_principals = $c->model('LDAP')->memberof_grupos_dn();
+
+	$c->stash->{autorizacoes} = $c->model('Volume')->autorizacoes_do_volume($c->stash->{id_volume});
+	$c->stash->{basedn} = $c->model("LDAP")->grupos_dn;
+	$c->stash->{template} = 'auth/registros/volume/form_alterar.tt';
+
+}
+
+
+sub store_alterar : Chained('get_volume') : PathPart('store_alterar') : Args(0) {
+	my ( $self, $c ) = @_;
+	my $representaVolumeFisico;
+	$c->stash->{basedn} = $c->req->param('basedn') ||
+						  $c->model("LDAP")->grupos_dn;
+
+    $c->stash->{template} = 'auth/registros/volume/form_alterar.tt';
+# remove autorizações
+	my (@pos) = grep { s/^remover_autorizacao_// } keys %{$c->req->params};
+	if ( $c->req->param('opcao') eq 'Remover') {
+		if (@pos) {
+			$c->stash->{autorizacoes} = $c->model('Volume')->remove_autorizacoes($c->req->param('autorizacoes'),@pos);
+		} else {
+			$c->stash->{autorizacoes} = $c->req->param('autorizacoes');
+		}
+
+		return;
+	}
+#	Navega nos grupos do LDAP
+	if ( $c->req->param('opcao') eq 'Navegar' ) {
+		$c->stash->{basedn} = $c->req->param('grupos');
+
+		$c->stash->{autorizacoes} = $c->req->param('autorizacoes');
+
+		return;
+	}
+
+#	Adiciona os grupos do LDAP
+	if ( $c->req->param('opcao') eq 'Adicionar' ) {
+
+		my @principal = $c->req->param('grupos');
+		my @role      = $c->req->param('acoes');
+
+		my $permissoes = $c->model('Volume')->build_autorizacao_AoH(\@principal, \@role);
+
+		$c->stash->{autorizacoes} = $c->model('Volume')->add_autorizacoes($c->req->param('autorizacoes'),$permissoes);
+
+		return;
+
+	}
+
+
+    if ( $c->req->param('representaVolumeFisico') eq 'on' ) {
+		$representaVolumeFisico = '1';
+	}
+	else {
+		$representaVolumeFisico = '0';
+	}
+
+
+	eval {
+	   $c->model('Volume')->alterar_volume({
+		    id_volume => $c->stash->{id_volume},
+			autorizacoes => $c->req->param('autorizacoes'),
+		    nome => $c->req->param('nome'),
+			volume_fisico => $representaVolumeFisico,
+			classificacao => $c->req->param('classificacao'),
+			localizacao => $c->req->param('localizacao'),
+			ip => $c->req->address,
+	   }
+		);
+
+
+	};
+
+	if ($@) { $c->flash->{erro} = $@ . ""; }
+	else { $c->flash->{sucesso} = 'Alteraçoes realizada com sucesso'; }
+	$c->res->redirect( $c->uri_for('/auth/registros/volume/'.$c->stash->{id_volume}) );
+}
 
 =back
 
