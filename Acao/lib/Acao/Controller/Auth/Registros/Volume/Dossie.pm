@@ -52,16 +52,23 @@ sub lista : Chained('base') : PathPart('') : Args(0) {
 }
 
 sub form : Chained('base') : PathPart('criardossie') : Args(0) {
+    my ( $self, $c ) = @_;
+#   Checa se user logado tem autorização para executar a ação 'Criar'
+    $c->model('Dossie')->pode_criar_dossie($c->stash->{id_volume}) or $c->detach('/public/default');
 }
 
 sub transferir_lista : Chained('base') : PathPart('transferir_lista') : Args(1) {
     my ( $self, $c, $controle ) = @_;
     $c->stash->{controle}  = $controle;
+#   Checa se user logado tem autorização para executar a ação 'Transferir'
+    $c->model('Dossie')->pode_transferir_dossie($c->stash->{id_volume}) or $c->detach('/public/default');
 
 }
 
 sub store : Chained('base') : PathPart('store') : Args(0) {
     my ( $self, $c ) = @_;
+    #   Checa se user logado tem autorização para executar a ação 'Criar'
+    $c->model('Dossie')->pode_criar_dossie($c->stash->{id_volume}) or $c->detach('/public/default');
 
     my $representaDossieFisico;
 
@@ -73,14 +80,14 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
     }
     eval {
         $c->model('Dossie')->criar_dossie(
-		                                  $c->req->address,
-		                                  $c->req->param('nome'),
-					                      $c->req->param('id_volume'),
-					                      $c->req->param('controle'),
+                                      $c->req->address,
+                                      $c->req->param('nome'),
+                                $c->req->param('id_volume'),
+                                $c->req->param('controle'),
                                           $representaDossieFisico,
-					                      $c->req->param('classificacao'),
-					                      $c->req->param('localizacao'),
-					                     );
+                                $c->req->param('classificacao'),
+                                $c->req->param('localizacao'),
+                               );
 
     };
 
@@ -105,6 +112,10 @@ sub alterar_estado : Chained('base') : PathPart('alterar_estado') : Args(2) {
 
 sub transferir : Chained('base') : PathPart('transferir') : Args(1) {
      my ( $self, $c, $controle ) = @_;
+#   Checa se user logado tem autorização para executar a ação 'Transferir'
+    $c->model('Dossie')->pode_transferir_dossie($c->stash->{id_volume}) &&
+       $c->model('Dossie')->pode_criar_dossie($c->req->param('volume_destino'))
+          or $c->detach('/public/default');
 
      eval {
              $c->model('Dossie')->transferir($c->stash->{id_volume}, $controle,  $c->req->param('volume_destino'), $c->req->address );

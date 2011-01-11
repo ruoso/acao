@@ -38,11 +38,11 @@
 
 <br>
 <h1 class="titulo-form">Gerenciar Volume |
-	<span style="font-size:13px; font-weight:normal;">
-		[% IF c.model('Volume').pode_criar_volume %]
-			<a class="criar" href="[% c.uri_for('/auth/registros/volume/criarvolume') %]">Criar Volume</a>
-		[% END %]
-	</span>
+  <span style="font-size:13px; font-weight:normal;">
+    [% IF c.model('Volume').pode_criar_volume %]
+      <a class="criar" href="[% c.uri_for('/auth/registros/volume/criarvolume') %]">Criar Volume</a>
+  [% END %]
+  </span>
 </h1>
 
 <table>
@@ -62,31 +62,31 @@
 <TBODY>
 
 [% TRY %]
-	 [% xqueryret = PROCESS 'auth/registros/volume/lista_xqueryret.tt';
+   [% xqueryret = PROCESS 'auth/registros/volume/lista_xqueryret.tt';
         xquery = c.model('Volume').listar_volumes({
-        											'xqueryret' => xqueryret,
-   													'ip' => c.req.address,
-   													'interval_ini' => interval_ini,
-   													'num_por_pagina' => num_por_pagina
- 												   });
+                              'xqueryret' => xqueryret,
+                             'ip' => c.req.address,
+                             'interval_ini' => interval_ini,
+                             'num_por_pagina' => num_por_pagina
+                            });
         c.model('Sedna').begin;
-	    c.model('Sedna').execute( xquery.list );
+      c.model('Sedna').execute( xquery.list );
 
-	    WHILE (volumeid = c.model('Sedna').get_item);
-	      SET html = c.model('Sedna').get_item;
-	      html;
-	    END;
+      WHILE (volumeid = c.model('Sedna').get_item);
+        SET html = c.model('Sedna').get_item;
+        html;
+      END;
 
         c.model('Sedna').execute( xquery.count );
         WHILE (contador = c.model('Sedna').get_item);
           count = contador;
         END;
 
-	    c.model('Sedna').commit %]
+      c.model('Sedna').commit %]
 [% CATCH %]
-	  <div class="erro">ERRO AO PROCESSAR CONSULTA:
-	   <PRE>[% error.info %]</PRE>
-	  </div>
+    <div class="erro">ERRO AO PROCESSAR CONSULTA:
+     <PRE>[% error.info %]</PRE>
+    </div>
 [% END %]
 
 

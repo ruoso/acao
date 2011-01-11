@@ -36,62 +36,62 @@
 [% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume) ) %]
 <br>
 <h1 class="titulo-form">Gerenciar Prontuários |
-	<span style="font-size:13px; font-weight:normal;">
+  <span style="font-size:13px; font-weight:normal;">
 
-		[% IF c.model('Dossie').pode_criar_dossie %]
-		    <a class="criar" href="[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/criardossie') %]">Criar Prontuário</a>
-		[% END %]
-		|
-		[% IF c.model('Volume').pode_alterar_volume %]
-		    <a class="alterar" href="[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/alterar') %]">Alterar Volume</a>
-		[% END %]
-	</span>
+    [% IF c.model('Dossie').pode_criar_dossie(id_volume) %]
+        <a class="criar" href="[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/criardossie') %]">Criar Prontuário</a>
+    [% END %]
+    |
+    [% IF c.model('Volume').pode_alterar_volume(id_volume) %]
+        <a class="alterar" href="[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/alterar') %]">Alterar Volume</a>
+    [% END %]
+  </span>
 </h1>
 
 <div id="accordion">
-	<h3><a href="#">Dados do Volume: [% vol.nome %]</a></h3>
-	<div>
-		<fieldset class="fieldsetBorderNone">
-			  <dl class="form15">
-				   <dt> <label> Volume: </label> </dt>
-				   <dd> <span>[% vol.nome %]</span>	</dd>
+  <h3><a href="#">Dados do Volume: [% vol.nome %]</a></h3>
+  <div>
+    <fieldset class="fieldsetBorderNone">
+        <dl class="form15">
+           <dt> <label> Volume: </label> </dt>
+           <dd> <span>[% vol.nome %]</span>	</dd>
 
-				   <dt>Classificação:</dt>
-				   <dd><span>[% vol.classificacao %]</span></dd>
+           <dt>Classificação:</dt>
+           <dd><span>[% vol.classificacao %]</span></dd>
 
-				   <dt>Localização:</dt>
-				   <dd><span>[% vol.localizacao %]</span></dd>
+           <dt>Localização:</dt>
+           <dd><span>[% vol.localizacao %]</span></dd>
 
-				   <dt>Estado:</dt>
-				   <dd><span>[% vol.estado %]</span></dd>
+           <dt>Estado:</dt>
+           <dd><span>[% vol.estado %]</span></dd>
 
-				   <dt>Data Criação:</dt>
-				   <dd><span class="longDateFormat">[% vol.criacao %]</span></dd>
+           <dt>Data Criação:</dt>
+           <dd><span class="longDateFormat">[% vol.criacao %]</span></dd>
 
-				   <dt>Vol. Físico:</dt>
-				   <dd><span>[% vol.volume_fisico %]</span></dd>
-			  </dl>
-		</fieldset>
-	</div>
+           <dt>Vol. Físico:</dt>
+           <dd><span>[% vol.volume_fisico %]</span></dd>
+        </dl>
+    </fieldset>
+  </div>
 </div>
 <br>
 
 <fieldset>
-	<legend>Buscar Prontuários</legend>
+  <legend>Buscar Prontuários</legend>
 
 
-	<form action="[% '/auth/registros/volume/' _ id_volume %]">
-		<div>
+  <form action="[% '/auth/registros/volume/' _ id_volume %]">
+    <div>
 
 
-		<label> Adolescente: </label>
-		<input type="text" name="nome_membro" id="nome_membro" value="[% nome_membro %]" style="width: 300px;">
+    <label> Adolescente: </label>
+    <input type="text" name="nome_membro" id="nome_membro" value="[% nome_membro %]" style="width: 300px;">
 
-		<label> Mãe:    </label>
-		<input type="text" name="nome_mae" id="nome_mae" value="[% nome_mae %]" style="width: 300px;">
+    <label> Mãe:    </label>
+    <input type="text" name="nome_mae" id="nome_mae" value="[% nome_mae %]" style="width: 300px;">
 
-		<input type="submit" name="submit_form" id="submit_form" value="Pesquisar">
-		</div>
+    <input type="submit" name="submit_form" id="submit_form" value="Pesquisar">
+    </div>
   </form>
 
 <br/>

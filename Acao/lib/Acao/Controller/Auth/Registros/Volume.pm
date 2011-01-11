@@ -41,7 +41,7 @@ Ação raiz para as ações de digitador.
 
 sub base : Chained('/auth/registros/base') : PathPart('volume') : CaptureArgs(0)
 {
-	my ( $self, $c ) = @_;
+  my ( $self, $c ) = @_;
 }
 
 sub get_volume :Chained('base') : PathPart('') : CaptureArgs(1) {
@@ -50,7 +50,7 @@ sub get_volume :Chained('base') : PathPart('') : CaptureArgs(1) {
       or $c->detach('/public/default');
 
     $c->model('Volume')->pode_ver_volume($id_volume)
-	  or $c->detach('/public/default');
+    or $c->detach('/public/default');
 }
 
 =item lista
@@ -61,185 +61,193 @@ tem acesso.
 =cut
 
 sub lista : Chained('base') : PathPart('') : Args(0) {
-	my ( $self, $c ) = @_;
+  my ( $self, $c ) = @_;
 
 }
 
 sub form : Chained('base') : PathPart('criarvolume') : Args(0) {
-	my ( $self, $c ) = @_;
-	my $initial_principals = $c->model('LDAP')->memberof_grupos_dn();
-	$c->stash->{autorizacoes} = $c->model("Volume")->new_autorizacao($initial_principals);
-	$c->stash->{basedn} = $c->model("LDAP")->grupos_dn;
+  my ( $self, $c ) = @_;
+  my $initial_principals = $c->model('LDAP')->memberof_grupos_dn();
+  $c->stash->{autorizacoes} = $c->model("Volume")->new_autorizacao($initial_principals);
+  $c->stash->{basedn} = $c->model("LDAP")->grupos_dn;
+# Checa se user logado tem autorização para executar a ação 'Criar'
+  $c->model('Volume')->pode_criar_volume() or $c->detach('/public/default');
 }
 
 sub store : Chained('base') : PathPart('store') : Args(0) {
-	my ( $self, $c ) = @_;
-	my $representaVolumeFisico;
-	$c->stash->{basedn} = $c->req->param('basedn') ||
-						  $c->model("LDAP")->grupos_dn;
+  my ( $self, $c ) = @_;
+  #	Checa se user logado tem autorização para executar a ação 'Criar'
+  $c->model('Volume')->pode_criar_volume() or $c->detach('/public/default');
+  my $representaVolumeFisico;
+  $c->stash->{basedn} = $c->req->param('basedn') ||
+              $c->model("LDAP")->grupos_dn;
 
 
 # remove autorizações
-	my (@pos) = grep { s/^remover_autorizacao_// } keys %{$c->req->params};
-	if ( $c->req->param('opcao') eq 'Remover') {
-		if (@pos) {
-			$c->stash->{autorizacoes} = $c->model('Volume')->remove_autorizacoes($c->req->param('autorizacoes'),@pos);
-		} else {
-			$c->stash->{autorizacoes} = $c->req->param('autorizacoes');
-		}
-		$c->stash->{template} = 'auth/registros/volume/form.tt';
-		return;
-	}
+  my (@pos) = grep { s/^remover_autorizacao_// } keys %{$c->req->params};
+  if ( $c->req->param('opcao') eq 'Remover') {
+    if (@pos) {
+      $c->stash->{autorizacoes} = $c->model('Volume')->remove_autorizacoes($c->req->param('autorizacoes'),@pos);
+    } else {
+      $c->stash->{autorizacoes} = $c->req->param('autorizacoes');
+    }
+    $c->stash->{template} = 'auth/registros/volume/form.tt';
+    return;
+  }
 #	Navega nos grupos do LDAP
-	if ( $c->req->param('opcao') eq 'Navegar' ) {
-		$c->stash->{basedn} = $c->req->param('grupos');
+  if ( $c->req->param('opcao') eq 'Navegar' ) {
+    $c->stash->{basedn} = $c->req->param('grupos');
 
-		$c->stash->{autorizacoes} = $c->req->param('autorizacoes');
-		$c->stash->{template} = 'auth/registros/volume/form.tt';
-		return;
-	}
+    $c->stash->{autorizacoes} = $c->req->param('autorizacoes');
+    $c->stash->{template} = 'auth/registros/volume/form.tt';
+    return;
+  }
 
 #	Adiciona os grupos do LDAP
-	if ( $c->req->param('opcao') eq 'Adicionar' ) {
+  if ( $c->req->param('opcao') eq 'Adicionar' ) {
 
-		my @principal = $c->req->param('grupos');
-		my @role      = $c->req->param('acoes');
+    my @principal = $c->req->param('grupos');
+    my @role      = $c->req->param('acoes');
 
-		my $permissoes = $c->model('Volume')->build_autorizacao_AoH(\@principal, \@role);
+    my $permissoes = $c->model('Volume')->build_autorizacao_AoH(\@principal, \@role);
 
-		$c->stash->{autorizacoes} = $c->model('Volume')->add_autorizacoes($c->req->param('autorizacoes'),$permissoes);
-		$c->stash->{template} = 'auth/registros/volume/form.tt';
-		return;
+    $c->stash->{autorizacoes} = $c->model('Volume')->add_autorizacoes($c->req->param('autorizacoes'),$permissoes);
+    $c->stash->{template} = 'auth/registros/volume/form.tt';
+    return;
 
-	}
+  }
 
-	if ( $c->req->param('representaVolumeFisico') eq 'on' ) {
-		$representaVolumeFisico = '1';
-	}
-	else {
-		$representaVolumeFisico = '0';
-	}
+  if ( $c->req->param('representaVolumeFisico') eq 'on' ) {
+    $representaVolumeFisico = '1';
+  }
+  else {
+    $representaVolumeFisico = '0';
+  }
 
-	eval {
-		$c->model('Volume')->criar_volume(
-			$c->req->param('nome'),
-			$representaVolumeFisico,
-			$c->req->param('classificacao'),
-			$c->req->param('localizacao'),
-			$c->model('Volume')->desserialize_autorizacoes($c->req->param('autorizacoes')),
-			$c->req->address,
-		);
+  eval {
+    $c->model('Volume')->criar_volume(
+      $c->req->param('nome'),
+      $representaVolumeFisico,
+      $c->req->param('classificacao'),
+      $c->req->param('localizacao'),
+      $c->model('Volume')->desserialize_autorizacoes($c->req->param('autorizacoes')),
+      $c->req->address,
+    );
 
-	};
+  };
 
-	if ($@) { $c->flash->{erro} = $@ . ""; }
-	else { $c->flash->{sucesso} = 'Volume criado com sucesso'; }
-	$c->res->redirect( $c->uri_for('/auth/registros/volume') );
+  if ($@) { $c->flash->{erro} = $@ . ""; }
+  else { $c->flash->{sucesso} = 'Volume criado com sucesso'; }
+  $c->res->redirect( $c->uri_for('/auth/registros/volume') );
 }
 
 sub xsd : Chained('base') : PathPart('xsd') : Args(1) {
-	my ( $self, $c, $xsd ) = @_;
-	$c->stash->{document} = $c->model('XSD')->obter_xsd($xsd);
-	$c->forward( $c->view('XML') );
+  my ( $self, $c, $xsd ) = @_;
+  $c->stash->{document} = $c->model('XSD')->obter_xsd($xsd);
+  $c->forward( $c->view('XML') );
 }
 
 sub alterar_estado : Chained('base') : PathPart('alterar_estado') : Args(1) {
-	my ( $self, $c, $estado ) = @_;
-	my $id_volume = $c->stash->{id_volume};
-	eval {
-		$c->model('Volume')
-		  ->alterar_estado( $id_volume, $estado, $c->req->address );
-	};
-	if ($@) {
-		$c->flash->{erro} = $@;
-	}
-	else {
-		$c->flash->{sucesso} = 'Estado alterado com sucesso!';
-	}
-	$c->res->redirect( $c->uri_for('/auth/registros/volume') );
+  my ( $self, $c, $estado ) = @_;
+  my $id_volume = $c->stash->{id_volume};
+  eval {
+    $c->model('Volume')
+      ->alterar_estado( $id_volume, $estado, $c->req->address );
+  };
+  if ($@) {
+    $c->flash->{erro} = $@;
+  }
+  else {
+    $c->flash->{sucesso} = 'Estado alterado com sucesso!';
+  }
+  $c->res->redirect( $c->uri_for('/auth/registros/volume') );
 }
 
 sub alterar_volume :Chained('get_volume') : PathPart('alterar') : Args(0) {
     my ($self, $c) = @_;
-   $c->model('Volume')->pode_alterar_volume() or $c->detach('/public/default');
+#   Checa se user logado tem autorização para executar a ação 'Alterar'
+   $c->model('Volume')->pode_alterar_volume($c->stash->{id_volume}) or $c->detach('/public/default');
 
     my $initial_principals = $c->model('LDAP')->memberof_grupos_dn();
 
-	$c->stash->{autorizacoes} = $c->model('Volume')->autorizacoes_do_volume($c->stash->{id_volume});
-	$c->stash->{basedn} = $c->model("LDAP")->grupos_dn;
-	$c->stash->{template} = 'auth/registros/volume/form_alterar.tt';
+  $c->stash->{autorizacoes} = $c->model('Volume')->autorizacoes_do_volume($c->stash->{id_volume});
+  $c->stash->{basedn} = $c->model("LDAP")->grupos_dn;
+  $c->stash->{template} = 'auth/registros/volume/form_alterar.tt';
 
 }
 
 
 sub store_alterar : Chained('get_volume') : PathPart('store_alterar') : Args(0) {
-	my ( $self, $c ) = @_;
-	my $representaVolumeFisico;
-	$c->stash->{basedn} = $c->req->param('basedn') ||
-						  $c->model("LDAP")->grupos_dn;
+  my ( $self, $c ) = @_;
+#	Checa se user logado tem autorização para executar a ação 'Alterar'
+   $c->model('Volume')->pode_alterar_volume($c->stash->{id_volume}) or $c->detach('/public/default');
+
+  my $representaVolumeFisico;
+  $c->stash->{basedn} = $c->req->param('basedn') ||
+              $c->model("LDAP")->grupos_dn;
 
     $c->stash->{template} = 'auth/registros/volume/form_alterar.tt';
 # remove autorizações
-	my (@pos) = grep { s/^remover_autorizacao_// } keys %{$c->req->params};
-	if ( $c->req->param('opcao') eq 'Remover') {
-		if (@pos) {
-			$c->stash->{autorizacoes} = $c->model('Volume')->remove_autorizacoes($c->req->param('autorizacoes'),@pos);
-		} else {
-			$c->stash->{autorizacoes} = $c->req->param('autorizacoes');
-		}
+  my (@pos) = grep { s/^remover_autorizacao_// } keys %{$c->req->params};
+  if ( $c->req->param('opcao') eq 'Remover') {
+    if (@pos) {
+      $c->stash->{autorizacoes} = $c->model('Volume')->remove_autorizacoes($c->req->param('autorizacoes'),@pos);
+    } else {
+      $c->stash->{autorizacoes} = $c->req->param('autorizacoes');
+    }
 
-		return;
-	}
+    return;
+  }
 #	Navega nos grupos do LDAP
-	if ( $c->req->param('opcao') eq 'Navegar' ) {
-		$c->stash->{basedn} = $c->req->param('grupos');
+  if ( $c->req->param('opcao') eq 'Navegar' ) {
+    $c->stash->{basedn} = $c->req->param('grupos');
 
-		$c->stash->{autorizacoes} = $c->req->param('autorizacoes');
+    $c->stash->{autorizacoes} = $c->req->param('autorizacoes');
 
-		return;
-	}
+    return;
+  }
 
 #	Adiciona os grupos do LDAP
-	if ( $c->req->param('opcao') eq 'Adicionar' ) {
+  if ( $c->req->param('opcao') eq 'Adicionar' ) {
 
-		my @principal = $c->req->param('grupos');
-		my @role      = $c->req->param('acoes');
+    my @principal = $c->req->param('grupos');
+    my @role      = $c->req->param('acoes');
 
-		my $permissoes = $c->model('Volume')->build_autorizacao_AoH(\@principal, \@role);
+    my $permissoes = $c->model('Volume')->build_autorizacao_AoH(\@principal, \@role);
 
-		$c->stash->{autorizacoes} = $c->model('Volume')->add_autorizacoes($c->req->param('autorizacoes'),$permissoes);
+    $c->stash->{autorizacoes} = $c->model('Volume')->add_autorizacoes($c->req->param('autorizacoes'),$permissoes);
 
-		return;
+    return;
 
-	}
+  }
 
 
     if ( $c->req->param('representaVolumeFisico') eq 'on' ) {
-		$representaVolumeFisico = '1';
-	}
-	else {
-		$representaVolumeFisico = '0';
-	}
+    $representaVolumeFisico = '1';
+  }
+  else {
+    $representaVolumeFisico = '0';
+  }
 
 
-	eval {
-	   $c->model('Volume')->alterar_volume({
-		    id_volume => $c->stash->{id_volume},
-			autorizacoes => $c->req->param('autorizacoes'),
-		    nome => $c->req->param('nome'),
-			volume_fisico => $representaVolumeFisico,
-			classificacao => $c->req->param('classificacao'),
-			localizacao => $c->req->param('localizacao'),
-			ip => $c->req->address,
-	   }
-		);
+  eval {
+     $c->model('Volume')->store_altera_volume({
+          id_volume     => $c->stash->{id_volume},
+          autorizacoes  => $c->req->param('autorizacoes'),
+          nome          => $c->req->param('nome'),
+          volume_fisico => $representaVolumeFisico,
+          classificacao => $c->req->param('classificacao'),
+          localizacao   => $c->req->param('localizacao'),
+          ip            => $c->req->address,
+     }
+    );
 
 
-	};
+  };
 
-	if ($@) { $c->flash->{erro} = $@ . ""; }
-	else { $c->flash->{sucesso} = 'Alteraçoes realizada com sucesso'; }
-	$c->res->redirect( $c->uri_for('/auth/registros/volume/'.$c->stash->{id_volume}) );
+  if ($@) { $c->flash->{erro} = $@ . ""; }
+  else { $c->flash->{sucesso} = 'Alteraçoes realizada com sucesso'; }
+  $c->res->redirect( $c->uri_for('/auth/registros/volume/'.$c->stash->{id_volume}) );
 }
 
 =back
