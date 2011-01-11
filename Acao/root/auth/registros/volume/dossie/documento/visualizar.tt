@@ -19,7 +19,7 @@
 %]
 [% INCLUDE 'auth/registros/volume/dossie/documento/header.tt' %]
 [% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume) ) %]
-[% SET dos = ( c.model('Documento').getDadosDossie(id_volume, controle) ) %]
+[% SET dos = ( c.model('Dossie').getDadosDossie(id_volume, controle) ) %]
 
 <script SRC="[% c.uri_for('/static/js/xsdForm.js') %]" language="Javascript" ></script>
 
@@ -43,7 +43,7 @@
 			<dd><span>[% vol.nome %]</span></dd>
 
 			<dt>Classificação:</dt>
-			<dd><span>[% vol.classificacao %]</span></dd>
+			<dd><span>[% vol.classificacoes %]</span></dd>
 
 			<dt>Localização:</dt>
 			<dd><span>[% vol.localizacao %]</span></dd>
@@ -76,7 +76,7 @@
 				<dd> <span> [% dos.nome %] </span> </dd>
 
 				<dt>Classificação:</dt>
-				<dd><span>[% dos.classificacao %]</span></dd>
+				<dd><span>[% dos.classificacoes %]</span></dd>
 
 				<dt>Localização:</dt>
 				<dd><span>[% dos.localizacao %]</span></dd>

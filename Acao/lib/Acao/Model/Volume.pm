@@ -32,6 +32,7 @@ use constant VOLUME_NS =>'http://schemas.fortaleza.ce.gov.br/acao/volume.xsd';
 my $controle = XML::Compile::Schema->new( Acao->path_to('schemas/volume.xsd') );
 $controle->importDefinitions( Acao->path_to('schemas/auditoria.xsd') );
 $controle->importDefinitions( Acao->path_to('schemas/autorizacoes.xsd') );
+$controle->importDefinitions( Acao->path_to('schemas/classificacao.xsd') );
 my $controle_w = $controle->compile( WRITER => pack_type( VOLUME_NS, 'volume' ), use_default_namespace => 1 );
 my $controle_r = $controle->compile( READER => pack_type( VOLUME_NS, 'volume') );
 
@@ -44,6 +45,10 @@ my $role_listar = Acao->config->{'roles'}->{'volume'}->{'listar'};
 use constant AUDITORIA_NS =>'http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd';
 my $controle_audit = XML::Compile::Schema->new( Acao->path_to('schemas/auditoria.xsd') );
 my $controle_audit_w = $controle_audit->compile( WRITER => pack_type( AUDITORIA_NS, 'auditoria' ), use_default_namespace => 1 );
+
+use constant CLASSIFICACOES_NS =>'http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd';
+my $controle_class = XML::Compile::Schema->new( Acao->path_to('schemas/classificacao.xsd') );
+my $controle_class_w = $controle_class->compile( WRITER => pack_type( CLASSIFICACOES_NS, 'classificacao' ), use_default_namespace => 1 );
 
 =head1 NAME
 
@@ -74,6 +79,7 @@ txn_method 'listar_volumes' => authorized $role_listar => sub {
   # Query para listagem
    my $list = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";'
             . 'declare namespace author = "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";'
+            . 'declare namespace cl = "http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";'
             . 'subsequence('
             . 'for $x in collection("volume")/ns:volume[ns:autorizacoes/author:autorizacao[('.$grupos.')'
             . 'and @role="listar"]]'
@@ -99,7 +105,6 @@ txn_method 'listar_volumes' => authorized $role_listar => sub {
             . 'for $x in collection("volume")/ns:volume[ns:autorizacoes/author:autorizacao[('.$grupos.')'
             . 'and @role="listar"]]'
             . 'return "")';
-
 
 
     $self->auditoria({ ip => $args->{ip}, operacao => 'list', for => $audit });
@@ -160,7 +165,7 @@ txn_method 'criar_volume' => authorized $role_criar => sub {
                                     collection => $doc_name,
                                     estado => 'aberto',
                                     representaVolumeFisico => $representaVolumeFisico,
-                                    classificacao => $classificacao,
+                                    classificacoes => {classificacao => $classificacao},
                                     localizacao => $localizacao,
                                     autorizacoes => $autorizacoes,
                                     audit      =>  {},
@@ -246,8 +251,8 @@ txn_method 'getDadosVolumeId' => authorized $role_listar => sub {
     my $self = shift;
     my ($id_volume) = @_;
     my $xq = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";
-                    for $x in collection("volume")/ns:volume[ns:collection="'.$id_volume.'"]
-                    return ($x/ns:nome/text(), $x/ns:classificacao/text(), $x/ns:localizacao/text(), $x/ns:estado/text(),
+              declare namespace cl="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";
+                    return ($x/ns:nome/text(), $x/ns:classificacoes/cl:classificacao/text(), $x/ns:localizacao/text(), $x/ns:estado/text(), 
                             $x/ns:criacao/text(), $x/ns:representaVolumeFisico/text())';
 
    $self->sedna->execute($xq);
@@ -255,8 +260,8 @@ txn_method 'getDadosVolumeId' => authorized $role_listar => sub {
     my $vol = {};
     while(my $nome = $self->sedna->get_item){
         $vol = {
-                    nome => $nome,
-                    classificacao => $self->sedna->get_item,
+                    nome => $nome, 
+                    classificacoes => $self->sedna->get_item, 
                     localizacao   => $self->sedna->get_item,
                     estado        => $self->sedna->get_item,
                     criacao       => $self->sedna->get_item,

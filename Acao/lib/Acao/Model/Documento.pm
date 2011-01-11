@@ -316,34 +316,6 @@ txn_method 'invalidar_documento' => authorized $role_listar => sub {
   $self->sedna->execute($xq_motivo_invalidacao);
 };
 
-txn_method 'getDadosDossie' => authorized $role_listar => sub {
-    my $self = shift;
-    my ($id_volume, $controle) = @_;
-
-    my $xq  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
-               declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";
-               for $x in collection("'.$id_volume.'")/ns:dossie
-               where $x/ns:controle="'.$controle.'"
-               return ($x/ns:nome/text(), $x/ns:classificacao/text(), $x/ns:localizacao/text(), $x/ns:estado/text(), 
-                      $x/ns:criacao/text(), $x/ns:representaDossieFisico/text())';
-
-   $self->sedna->execute($xq);
-
-    my $vol = {};
-    while(my $nome = $self->sedna->get_item){
-        $vol = {
-                    nome => $nome,
-                    classificacao => $self->sedna->get_item,
-                    localizacao   => $self->sedna->get_item,
-                    estado        => $self->sedna->get_item,
-                    criacao       =>$self->sedna->get_item,
-                    dossie_fisico => $self->sedna->get_item > 0 ? 'Sim' : 'Não',
-                  };
-    };
-
-   return $vol;
-};
-
 =head1 COPYRIGHT AND LICENSING
 
 Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado

@@ -31,6 +31,7 @@ use constant DOSSIE_NS =>'http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd';
 my $controle = XML::Compile::Schema->new( Acao->path_to('schemas/dossie.xsd') );
 $controle->importDefinitions( Acao->path_to('schemas/documento.xsd') );
 $controle->importDefinitions( Acao->path_to('schemas/auditoria.xsd') );
+$controle->importDefinitions( Acao->path_to('schemas/classificacao.xsd') );
 my $controle_w = $controle->compile( WRITER => pack_type( DOSSIE_NS, 'dossie' ), use_default_namespace => 1 );
 
 my $role_alterar = Acao->config->{'roles'}->{'dossie'}->{'alterar'};
@@ -43,6 +44,9 @@ use constant AUDITORIA_NS =>'http://schemas.fortaleza.ce.gov.br/acao/auditoria.x
 my $controle_audit = XML::Compile::Schema->new( Acao->path_to('schemas/auditoria.xsd') );
 my $controle_audit_w = $controle_audit->compile( WRITER => pack_type( AUDITORIA_NS, 'auditoria' ), use_default_namespace => 1 );
 
+use constant CLASSIFICACOES_NS =>'http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd';
+my $controle_class = XML::Compile::Schema->new( Acao->path_to('schemas/classificacao.xsd') );
+my $controle_class_w = $controle_class->compile( WRITER => pack_type( CLASSIFICACOES_NS, 'classificacao' ), use_default_namespace => 1 );
 
 =head1 NAME
 
@@ -99,6 +103,7 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
 
     my $declare_namespace  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";';
        $declare_namespace .= 'declare namespace dc = "http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";';
+       $declare_namespace .= 'declare namespace cl = "http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";';
        $declare_namespace .= 'declare namespace pes = "http://schemas.fortaleza.ce.gov.br/acao/sdh-identificacaoPessoal.xsd";';
 
     my $xquery_for = 'for $x in '.$for;
@@ -171,7 +176,7 @@ txn_method 'criar_dossie' => authorized $role_criar => sub {
                                     estado       => 'aberto',
                                     controle     => $controle,
                                     representaDossieFisico => $representaDossieFisico,
-                                    classificacao => $classificacao,
+                                    classificacoes => {classificacao => $classificacao},
                                     localizacao => $localizacao,
                                     autorizacao => {
                                                     principal => $self->user->id,
@@ -371,6 +376,34 @@ sub _checa_autorizacao_dossie {
    return $criar_dossie_no_volume
 }
 
+txn_method 'getDadosDossie' => authorized $role_listar => sub {
+    my $self = shift;
+    my ($id_volume, $controle) = @_;
+
+    my $xq  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
+               declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";
+               declare namespace cl="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";
+               for $x in collection("'.$id_volume.'")/ns:dossie
+               where $x/ns:controle="'.$controle.'"
+               return ($x/ns:nome/text(), $x/ns:classificacoes/cl:classificacao/text(), $x/ns:localizacao/text(), $x/ns:estado/text(),
+                      $x/ns:criacao/text(), $x/ns:representaDossieFisico/text())';
+
+   $self->sedna->execute($xq);
+
+    my $vol = {};
+    while(my $nome = $self->sedna->get_item){
+        $vol = {
+                    nome => $nome,
+                    classificacoes => $self->sedna->get_item,
+                    localizacao   => $self->sedna->get_item,
+                    estado        => $self->sedna->get_item,
+                    criacao       =>$self->sedna->get_item,
+                    dossie_fisico => $self->sedna->get_item > 0 ? 'Sim' : 'Não',
+                  };
+    };
+
+   return $vol;
+};
 
 =head1 COPYRIGHT AND LICENSING
 

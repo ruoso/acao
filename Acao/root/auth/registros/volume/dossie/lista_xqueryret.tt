@@ -15,9 +15,9 @@
         </td>
 
         <td>
-            <span title="{$x/ns:classificacao/text()}">
-                {substring($x/ns:classificacao/text(),0, 12)}
-                <!--{$x/ns:classificacao/text()}-->
+            <span title="{$x/ns:classificacoes/text()}">
+                {substring($x/ns:classificacoes/cl:classificacao/text(),0, 12)}
+                <!--{$x/ns:classificacoes/text()}-->
             </span>
         </td>
 
