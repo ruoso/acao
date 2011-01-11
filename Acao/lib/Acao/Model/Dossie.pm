@@ -79,6 +79,7 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
     my $where_nome_membro = $args->{nome_membro};
     my $where_nome_mae =  $args->{nome_mae};
 
+
    if ( $where_nome_membro eq '') {
         $where_nome_membro = '1 = 1';
    } else {
@@ -86,6 +87,7 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
                       .  '[contains(upper-case(pes:nomeCompleto/text()),upper-case("' . $args->{nome_membro} . '"))]'
                       .  'or $x[contains(upper-case(ns:nome/text()),upper-case("' . $args->{nome_membro} . '"))])';
    }
+
 
    if ($where_nome_mae eq '') {
         $where_nome_mae = '1 = 1';
@@ -147,8 +149,10 @@ sub auditoria  {
                                       dados => $args->{dados} || '',
                                     },
                                );
-    my $xq_audit = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
-                update insert ('.$audit->toString.') into '.$args->{for}.'/ns:audit';
+    my $xq_audit = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";'
+                 . 'declare namespace dc = "http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";'
+                 . 'declare namespace pes = "http://schemas.fortaleza.ce.gov.br/acao/sdh-identificacaoPessoal.xsd";'
+                 . 'update insert ('.$audit->toString.') into '.$args->{for}.'/ns:audit';
 
     $self->sedna->execute($xq_audit);
 }
@@ -304,12 +308,14 @@ txn_method 'transferir' => authorized $role_alterar => sub {
     my $self = shift;
     my ( $id_volume, $controle, $volume_destino, $ip ) = @_;
 
+
     my $xq_select = 'declare namespace vol = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";
                   declare namespace dos = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
                   for $x in collection("'.$id_volume.'")/dos:dossie[dos:controle/text() eq "'.$controle.'"] return $x';
 
     $self->sedna->execute($xq_select);
     my $xml = $self->sedna->get_item;
+
 
     $self->sedna->conn->loadData( $xml, $controle, $volume_destino );
     $self->sedna->conn->endLoadData();
