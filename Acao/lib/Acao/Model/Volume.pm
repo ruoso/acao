@@ -31,7 +31,6 @@ use List::MoreUtils 'pairwise';
 
 use constant VOLUME_NS =>'http://schemas.fortaleza.ce.gov.br/acao/volume.xsd';
 my $controle = XML::Compile::Schema->new( Acao->path_to('schemas/volume.xsd') );
-$controle->importDefinitions( Acao->path_to('schemas/auditoria.xsd') );
 $controle->importDefinitions( Acao->path_to('schemas/autorizacoes.xsd') );
 my $controle_w = $controle->compile( WRITER => pack_type( VOLUME_NS, 'volume' ), use_default_namespace => 1 );
 my $controle_r = $controle->compile( READER => pack_type( VOLUME_NS, 'volume') );
@@ -43,9 +42,6 @@ my $role_criar = Acao->config->{'roles'}->{'volume'}->{'criar'};
 my $role_alterar = Acao->config->{'roles'}->{'volume'}->{'alterar'};
 my $role_listar = Acao->config->{'roles'}->{'volume'}->{'listar'};
 
-use constant AUDITORIA_NS =>'http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd';
-my $controle_audit = XML::Compile::Schema->new( Acao->path_to('schemas/auditoria.xsd') );
-my $controle_audit_w = $controle_audit->compile( WRITER => pack_type( AUDITORIA_NS, 'auditoria' ), use_default_namespace => 1 );
 
 =head1 NAME
 
@@ -84,16 +80,7 @@ txn_method 'listar_volumes' => authorized $role_listar => sub {
             . ')';
 
 
-  # Contrução do for para auditoria dos somente listados
-  my $audit = ' subsequence(('
-            . 'for $x in collection("volume")/ns:volume[ns:autorizacoes/author:autorizacao[('.$grupos.')'
-            . 'and @role="listar"]]'
-            . 'return $x),'
-            . ' (('.$args->{interval_ini}.' * '.$args->{num_por_pagina}.') + 1), '.$args->{num_por_pagina}.''
-            .')';
-
-
-  # Contrução da query de contagem para contrução da paginação
+    # Contrução da query de contagem para contrução da paginação
 
   my $count = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";'
             . 'declare namespace author = "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";'
@@ -101,10 +88,6 @@ txn_method 'listar_volumes' => authorized $role_listar => sub {
             . 'for $x in collection("volume")/ns:volume[ns:autorizacoes/author:autorizacao[('.$grupos.')'
             . 'and @role="listar"]]'
             . 'return "")';
-
-
-
-    $self->auditoria({ ip => $args->{ip}, operacao => 'list', for => $audit });
 
     return {
         list       => $list,
@@ -115,20 +98,7 @@ txn_method 'listar_volumes' => authorized $role_listar => sub {
 
 sub auditoria  {
     my ($self, $args) = @_;
-    my $doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
-    my $audit = $controle_audit_w->($doc,
-                                    {
-                                      data => DateTime->now(),
-                                      usuario => $self->user->id,
-                                      acao => $args->{operacao},
-                                      ip => $args->{ip},
-                                      dados => $args->{dados} || '',
-                                    },
-                               );
-    my $xq_audit = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";'
-           . 'declare namespace author = "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";'
-                 . 'update insert ('.$audit->toString.') into '.$args->{for}.'/ns:audit';
-    $self->sedna->execute($xq_audit);
+
 }
 
 
@@ -165,27 +135,12 @@ txn_method 'criar_volume' => authorized $role_criar => sub {
                                     classificacao => $classificacao,
                                     localizacao => $localizacao,
                                     autorizacoes => $autorizacoes,
-                                    audit      =>  {},
+
                                 },
                                );
 
     $self->sedna->conn->loadData( $res_xml->toString, $doc_name, 'volume' );
     $self->sedna->conn->endLoadData();
-
-    my $doc_audit = XML::LibXML::Document->new( '1.0', 'UTF-8' );
-    my $audit = $controle_audit_w->($doc_audit,
-                                            {
-                                              data => DateTime->now(),
-                                              usuario => $self->user->id,
-                                              acao => 'insert',
-                                              ip => $ip,
-                                              dados => $dados,
-                                            },
-                                   );
-
-    my $xq_audit = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";
-                    update insert ('.$audit->toString.') into collection("volume")/ns:volume[ns:collection="'.$doc_name.'"]/ns:audit';
-    $self->sedna->execute($xq_audit);
 
 };
 
@@ -225,22 +180,6 @@ txn_method 'alterar_estado' => authorized $role_alterar => sub {
                $xq .= '/ns:fechamento with <ns:fechamento></ns:fechamento>';
             $self->sedna->execute($xq);
     }
-
-
-    my $doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
-    my $audit = $controle_audit_w->($doc,
-                                        {
-                                          data => DateTime->now(),
-                                          usuario => $self->user->id,
-                                          acao => 'replace',
-                                          ip => $ip,
-                                          dados => $xq,
-                                        },
-                                   );
-
-    my $xq_audit = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";
-                    update insert ('.$audit->toString.') into collection("volume")/ns:volume[ns:collection="'.$id_volume.'"]/ns:audit';
-    $self->sedna->execute($xq_audit);
 
 };
 

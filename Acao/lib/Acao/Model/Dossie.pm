@@ -30,19 +30,12 @@ use Data::Dumper;
 use constant DOSSIE_NS =>'http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd';
 my $controle = XML::Compile::Schema->new( Acao->path_to('schemas/dossie.xsd') );
 $controle->importDefinitions( Acao->path_to('schemas/documento.xsd') );
-$controle->importDefinitions( Acao->path_to('schemas/auditoria.xsd') );
 my $controle_w = $controle->compile( WRITER => pack_type( DOSSIE_NS, 'dossie' ), use_default_namespace => 1 );
 
 my $role_alterar = Acao->config->{'roles'}->{'dossie'}->{'alterar'};
 my $role_criar = Acao->config->{'roles'}->{'dossie'}->{'criar'};
 my $role_listar = Acao->config->{'roles'}->{'dossie'}->{'listar'};
 my $role_transferir = Acao->config->{'roles'}->{'dossie'}->{'transferir'};
-
-
-use constant AUDITORIA_NS =>'http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd';
-my $controle_audit = XML::Compile::Schema->new( Acao->path_to('schemas/auditoria.xsd') );
-my $controle_audit_w = $controle_audit->compile( WRITER => pack_type( AUDITORIA_NS, 'auditoria' ), use_default_namespace => 1 );
-
 
 =head1 NAME
 
@@ -109,15 +102,6 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
             . ')';
 
 
-  # Contrução do for para auditoria dos somente listados
-
-   my $audit = 'subsequence(('
-             . 'for $x in collection("'.$args->{id_volume}.'")/ns:dossie '
-             . 'where '.$where_nome_membro. ' and '. $where_nome_mae.' '
-             . 'return $x), '
-             . '(('.$args->{interval_ini}.' * '.$args->{num_por_pagina}.') + 1), '.$args->{num_por_pagina}.''
-             .')';
-
   # Contrução da query de contagem para contrução da paginação
    my $count = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";'
               . 'declare namespace dc = "http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";'
@@ -128,8 +112,6 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
               . 'return "" )';
 
 
-    $self->auditoria({ ip => $args->{ip}, operacao => 'list', for => $audit, dados => $audit   });
-
     return
         {
           list       => $list,
@@ -139,22 +121,6 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
 
 sub auditoria  {
     my ($self, $args) = @_;
-    my $doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
-    my $audit = $controle_audit_w->($doc,
-                                    {
-                                      data => DateTime->now(),
-                                      usuario => $self->user->id,
-                                      acao => $args->{operacao},
-                                      ip => $args->{ip},
-                                      dados => $args->{dados} || '',
-                                    },
-                               );
-    my $xq_audit = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";'
-                 . 'declare namespace dc = "http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";'
-                 . 'declare namespace pes = "http://schemas.fortaleza.ce.gov.br/acao/sdh-identificacaoPessoal.xsd";'
-                 . 'update insert ('.$audit->toString.') into '.$args->{for}.'/ns:audit';
-
-    $self->sedna->execute($xq_audit);
 }
 
 =item criar_dossie()
@@ -187,27 +153,12 @@ txn_method 'criar_dossie' => authorized $role_criar => sub {
                                                     dataIni => DateTime->now(),
                                                     dataFim => '',
                                                    },
-                                    audit      =>  {},
+
                                     doc=>{},
                                 }
                                );
     $self->sedna->conn->loadData( $res_xml->toString, $controle, $id_volume );
     $self->sedna->conn->endLoadData();
-
-    my $doc_audit = XML::LibXML::Document->new( '1.0', 'UTF-8' );
-    my $audit = $controle_audit_w->($doc_audit,
-                                            {
-                                              data => DateTime->now(),
-                                              usuario => $self->user->id,
-                                              acao => 'insert',
-                                              ip => $ip,
-                                              dados => '$self->sedna->conn->loadData('.$res_xml->toString.','.$controle.','. $id_volume.');',
-                                            },
-                                   );
-
-   my $xq_audit = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
-                    update insert ('.$audit->toString.') into collection("'.$id_volume.'")/ns:dossie[ns:controle="'.$controle.'"]/ns:audit';
-    $self->sedna->execute($xq_audit);
 
 };
 
@@ -249,52 +200,11 @@ txn_method 'alterar_estado' => authorized $role_alterar => sub {
             $self->sedna->execute($xq);
     }
 
-    my $doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
-    my $audit = $controle_audit_w->($doc,
-                                        {
-                                          data => DateTime->now(),
-                                          usuario => $self->user->id,
-                                          acao => 'replace',
-                                          ip => $ip,
-                                          dados => $xq,
-                                        },
-                                   );
-
-    my $xq_audit = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
-                    update insert ('.$audit->toString.') into collection("'.$id_volume.'")/ns:dossie[ns:controle="'.$controle.'"]/ns:audit';
-
-    $self->sedna->execute($xq_audit);
 };
 
 txn_method 'auditoria_listar' => authorized $role_listar => sub {
     my $self = shift;
-    my ($ip, $controles, $id_volume) = @_;
-    my (@control, $where);
 
-    my $dados  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";';
-       $dados .= 'for $x in collection("'.$id_volume.'") return $x';
-
-    my $doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
-
-    my $audit = $controle_audit_w->($doc,
-                                        {
-                                          data => DateTime->now(),
-                                          usuario => $self->user->id,
-                                          acao => 'list',
-                                          ip => $ip,
-                                          dados => $dados,
-                                        },
-                                   );
-      @control = split(/___/,$controles);
-
-    foreach (@control){
-        $where .= ' or ns:controle = "'. $_ .'"';
-    }
-
-   my $xq_audit = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
-                    update insert ('.$audit->toString.') into collection("'.$id_volume.'")/ns:dossie[1=1 '.$where.']/ns:audit';
-
-    $self->sedna->execute($xq_audit);
 };
 
 txn_method 'gerar_uuid' => authorized $role_criar => sub {
@@ -322,22 +232,6 @@ txn_method 'transferir' => authorized $role_alterar => sub {
 
     my $xq_delete = 'drop document "'.$controle.'" in collection "'.$id_volume.'" ';
     $self->sedna->execute($xq_delete);
-
-    my $doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
-    my $audit = $controle_audit_w->($doc,
-                                        {
-                                          data => DateTime->now(),
-                                          usuario => $self->user->id,
-                                          acao => 'Transfer',
-                                          ip => $ip,
-                                          dados => '$self->sedna->conn->loadData('.$xq_select.','.$controle.','. $volume_destino.');',
-                                        },
-                                   );
-
-    my $xq_audit = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
-                    update insert ('.$audit->toString.') into collection("'.$volume_destino.'")/ns:dossie[ns:controle="'.$controle.'"]/ns:audit';
-
-    $self->sedna->execute($xq_audit);
 
 
 };
