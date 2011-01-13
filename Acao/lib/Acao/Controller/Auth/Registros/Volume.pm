@@ -17,12 +17,13 @@ package Acao::Controller::Auth::Registros::Volume;
 # Você deve ter recebido uma cópia da Licença Pública Geral GNU, sob o
 # título "LICENCA.txt", junto com este programa, se não, escreva para a
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
-
-use strict;
-use warnings;
+use Moose;
+use namespace::autoclean;
+BEGIN { extends 'Catalyst::Controller'; }
 use Data::Dumper;
 use List::MoreUtils 'pairwise';
-use parent 'Catalyst::Controller';
+
+with 'Acao::Role::Controller::Autorizacao' => { modelcomponent => 'Volume' };
 
 =head1 NAME
 
@@ -83,38 +84,10 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
               $c->model("LDAP")->grupos_dn;
 
 
-# remove autorizações
-  my (@pos) = grep { s/^remover_autorizacao_// } keys %{$c->req->params};
-  if ( $c->req->param('opcao') eq 'Remover') {
-    if (@pos) {
-      $c->stash->{autorizacoes} = $c->model('Volume')->remove_autorizacoes($c->req->param('autorizacoes'),@pos);
-    } else {
-      $c->stash->{autorizacoes} = $c->req->param('autorizacoes');
-    }
-    $c->stash->{template} = 'auth/registros/volume/form.tt';
-    return;
-  }
-#	Navega nos grupos do LDAP
-  if ( $c->req->param('opcao') eq 'Navegar' ) {
-    $c->stash->{basedn} = $c->req->param('grupos');
-
-    $c->stash->{autorizacoes} = $c->req->param('autorizacoes');
-    $c->stash->{template} = 'auth/registros/volume/form.tt';
-    return;
-  }
-
-#	Adiciona os grupos do LDAP
-  if ( $c->req->param('opcao') eq 'Adicionar' ) {
-
-    my @principal = $c->req->param('grupos');
-    my @role      = $c->req->param('acoes');
-
-    my $permissoes = $c->model('Volume')->build_autorizacao_AoH(\@principal, \@role);
-
-    $c->stash->{autorizacoes} = $c->model('Volume')->add_autorizacoes($c->req->param('autorizacoes'),$permissoes);
-    $c->stash->{template} = 'auth/registros/volume/form.tt';
-    return;
-
+  $c->stash->{autorizacoes} = $c->req->param('autorizacoes');
+  $c->stash->{template} = 'auth/registros/volume/form.tt';
+  if ($self->_processa_autorizacoes($c)) {
+      return;
   }
 
   if ( $c->req->param('representaVolumeFisico') eq 'on' ) {
@@ -187,40 +160,11 @@ sub store_alterar : Chained('get_volume') : PathPart('store_alterar') : Args(0) 
               $c->model("LDAP")->grupos_dn;
 
     $c->stash->{template} = 'auth/registros/volume/form_alterar.tt';
-# remove autorizações
-  my (@pos) = grep { s/^remover_autorizacao_// } keys %{$c->req->params};
-  if ( $c->req->param('opcao') eq 'Remover') {
-    if (@pos) {
-      $c->stash->{autorizacoes} = $c->model('Volume')->remove_autorizacoes($c->req->param('autorizacoes'),@pos);
-    } else {
-      $c->stash->{autorizacoes} = $c->req->param('autorizacoes');
-    }
 
-    return;
+  $c->stash->{autorizacoes} = $c->req->param('autorizacoes');
+  if ($self->_processa_autorizacoes($c)) {
+      return;
   }
-#	Navega nos grupos do LDAP
-  if ( $c->req->param('opcao') eq 'Navegar' ) {
-    $c->stash->{basedn} = $c->req->param('grupos');
-
-    $c->stash->{autorizacoes} = $c->req->param('autorizacoes');
-
-    return;
-  }
-
-#	Adiciona os grupos do LDAP
-  if ( $c->req->param('opcao') eq 'Adicionar' ) {
-
-    my @principal = $c->req->param('grupos');
-    my @role      = $c->req->param('acoes');
-
-    my $permissoes = $c->model('Volume')->build_autorizacao_AoH(\@principal, \@role);
-
-    $c->stash->{autorizacoes} = $c->model('Volume')->add_autorizacoes($c->req->param('autorizacoes'),$permissoes);
-
-    return;
-
-  }
-
 
     if ( $c->req->param('representaVolumeFisico') eq 'on' ) {
     $representaVolumeFisico = '1';
