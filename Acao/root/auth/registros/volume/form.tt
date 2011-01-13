@@ -125,6 +125,51 @@
         <input type="submit" name="opcao" value="Adicionar">
         <input type="submit" name="opcao" value="Navegar"><br/>
 
+    </dl>
+
+ </fieldset>
+
+ <fieldset id="grupos">
+    <label> Classificações: </label>
+     <input type="hidden" name="classificacoes" id="classificacoes" value="[% classificacoes | html %]" />
+     <input type="hidden" name="class_basedn" id="class_basedn" value="[% class_basedn %]" />
+
+     <table>
+      <thead>
+        <th>Grupo</th>
+        <th><input type="submit" name="opcao_class" value="Remover"></th>
+      </thead>
+      <tbody>
+        [% SET count = 0 %]
+        [% FOREACH a IN c.model('Volume').desserialize_classificacoes(classificacoes).classificacao %]
+        <tr>
+          <td>[% c.model('LDAP').decompose_dn(a.classificacao).reverse.join(' - ') %]</td>
+          <td><input type="checkbox" name="remover_classificacao_[% count %]" /></td>
+        </tr>
+        [% SET count = count + 1 %]
+        [% END %]
+      </tbody>
+     </table>
+     <dl>
+
+          <dt class="grp"> Grupo de Usuário e Ações</dt>
+
+            <dt>
+
+                <select multiple name="assuntos" id="classificacoes"  style="height:100px;min-width:150px">
+                   [% IF basedn.size > 1; basedn = basedn.shift; END %]
+                   [% IF basedn != c.model('LDAP').grupos_dn %]
+                   <option  value="[%  c.view('LDAPUtil').voltar_grupos(class_basedn) %]"> ../</option>
+                   [% END %]
+                   [%  FOREACH group IN c.model('LDAP').buscar_dn_assuntos(class_basedn) %]
+                   <option value="[% group.dn %]"> [% group.get_value('cn') %] </option>
+                   [%  END %]
+                </select>
+
+            </dt>
+
+        <input type="submit" name="opcao_class" value="Adicionar">
+        <input type="submit" name="opcao_class" value="Navegar"><br/>
 
     </dl>
 
