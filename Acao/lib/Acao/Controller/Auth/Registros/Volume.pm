@@ -24,6 +24,7 @@ use Data::Dumper;
 use List::MoreUtils 'pairwise';
 
 with 'Acao::Role::Controller::Autorizacao' => { modelcomponent => 'Volume' };
+with 'Acao::Role::Controller::Classificacao' => { modelcomponent => 'Volume' };
 
 =head1 NAME
 
@@ -76,38 +77,6 @@ sub form : Chained('base') : PathPart('criarvolume') : Args(0) {
 # Checa se user logado tem autorização para executar a ação 'Criar'
   $c->model('Volume')->pode_criar_volume() or $c->detach('/public/default');
 }
-
-sub _processamento_classificacao {
-  my ( $self, $c ) = @_;
-
-# remove classificacoes
-  my (@pos) = grep { s/^remover_classificacao_// } keys %{$c->req->params};
-  if ( $c->req->param('opcao_class') eq 'Remover') {
-    if (@pos) {
-      $c->stash->{classificacoes} = $c->model('Volume')->remove_classificacoes($c->req->param('classificacoes'),@pos);
-    } else {
-      $c->stash->{classificacoes} = $c->req->param('classificacoes');
-    }
-    return 1;
-  }
-
-#	Navega nas assuntos do LDAP
-  if ( $c->req->param('opcao_class') eq 'Navegar' ) {
-    $c->stash->{class_basedn} = $c->req->param('assuntos');
-    $c->stash->{classificacoes} = $c->req->param('classificacoes');
-    return 1;
-  }
-
-#	Adiciona os assuntos do LDAP
-  if ( $c->req->param('opcao_class') eq 'Adicionar' ) {
-
-    my @classificacoes = $c->req->param('assuntos');
-    $c->stash->{classificacoes} = $c->model('Volume')->add_classificacoes($c->req->param('autorizacoes'),\@classificacoes);
-    return 1;
-  }
-  return 0;
-}
-
 
 sub store : Chained('base') : PathPart('store') : Args(0) {
   my ( $self, $c ) = @_;

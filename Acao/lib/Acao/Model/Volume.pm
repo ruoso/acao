@@ -37,6 +37,7 @@ my $controle_w = $controle->compile( WRITER => pack_type( VOLUME_NS, 'volume' ),
 my $controle_r = $controle->compile( READER => pack_type( VOLUME_NS, 'volume') );
 
 with 'Acao::Role::Model::Autorizacao' => { xmlcompile => $controle, namespace => VOLUME_NS };
+with 'Acao::Role::Model::Classificacao' => { xmlcompile => $controle, namespace => VOLUME_NS };
 
 my $role_criar = Acao->config->{'roles'}->{'volume'}->{'criar'};
 my $role_alterar = Acao->config->{'roles'}->{'volume'}->{'alterar'};
