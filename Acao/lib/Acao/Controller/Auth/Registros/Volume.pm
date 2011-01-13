@@ -70,10 +70,44 @@ sub form : Chained('base') : PathPart('criarvolume') : Args(0) {
   my ( $self, $c ) = @_;
   my $initial_principals = $c->model('LDAP')->memberof_grupos_dn();
   $c->stash->{autorizacoes} = $c->model("Volume")->new_autorizacao($initial_principals);
+  $c->stash->{classificacoes} = $c->model("Volume")->new_classificacao($initial_principals);
   $c->stash->{basedn} = $c->model("LDAP")->grupos_dn;
+  $c->stash->{class_basedn} = $c->model("LDAP")->assuntos_dn;
 # Checa se user logado tem autorização para executar a ação 'Criar'
   $c->model('Volume')->pode_criar_volume() or $c->detach('/public/default');
 }
+
+sub _processamento_classificacao {
+  my ( $self, $c ) = @_;
+
+# remove classificacoes
+  my (@pos) = grep { s/^remover_classificacao_// } keys %{$c->req->params};
+  if ( $c->req->param('opcao_class') eq 'Remover') {
+    if (@pos) {
+      $c->stash->{classificacoes} = $c->model('Volume')->remove_classificacoes($c->req->param('classificacoes'),@pos);
+    } else {
+      $c->stash->{classificacoes} = $c->req->param('classificacoes');
+    }
+    return 1;
+  }
+
+#	Navega nas assuntos do LDAP
+  if ( $c->req->param('opcao_class') eq 'Navegar' ) {
+    $c->stash->{class_basedn} = $c->req->param('assuntos');
+    $c->stash->{classificacoes} = $c->req->param('classificacoes');
+    return 1;
+  }
+
+#	Adiciona os assuntos do LDAP
+  if ( $c->req->param('opcao_class') eq 'Adicionar' ) {
+
+    my @classificacoes = $c->req->param('assuntos');
+    $c->stash->{classificacoes} = $c->model('Volume')->add_classificacoes($c->req->param('autorizacoes'),\@classificacoes);
+    return 1;
+  }
+  return 0;
+}
+
 
 sub store : Chained('base') : PathPart('store') : Args(0) {
   my ( $self, $c ) = @_;
@@ -82,12 +116,15 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
   my $representaVolumeFisico;
   $c->stash->{basedn} = $c->req->param('basedn') ||
               $c->model("LDAP")->grupos_dn;
+  $c->stash->{class_basedn} = $c->req->param('class_basedn') ||
+              $c->model("LDAP")->assuntos_dn;
 
-
+  $c->stash->{classificacoes} = $c->req->param('classificacoes');
   $c->stash->{autorizacoes} = $c->req->param('autorizacoes');
-  $c->stash->{template} = 'auth/registros/volume/form.tt';
-  if ($self->_processa_autorizacoes($c)) {
-      return;
+  if ($self->_processamento_autorizacao($c) ||
+      $self->_processamento_classificacao($c)) {
+    $c->stash->{template} = 'auth/registros/volume/form.tt';
+    return;
   }
 
   if ( $c->req->param('representaVolumeFisico') eq 'on' ) {
@@ -159,14 +196,17 @@ sub store_alterar : Chained('get_volume') : PathPart('store_alterar') : Args(0) 
   $c->stash->{basedn} = $c->req->param('basedn') ||
               $c->model("LDAP")->grupos_dn;
 
-    $c->stash->{template} = 'auth/registros/volume/form_alterar.tt';
+  $c->stash->{template} = 'auth/registros/volume/form_alterar.tt';
 
+  $c->stash->{classificacoes} = $c->req->param('classificacoes');
   $c->stash->{autorizacoes} = $c->req->param('autorizacoes');
-  if ($self->_processa_autorizacoes($c)) {
-      return;
+
+  if ($self->_processamento_autorizacao($c) ||
+      $self->_processamento_classificacao($c)) {
+    return;
   }
 
-    if ( $c->req->param('representaVolumeFisico') eq 'on' ) {
+  if ( $c->req->param('representaVolumeFisico') eq 'on' ) {
     $representaVolumeFisico = '1';
   }
   else {
