@@ -28,15 +28,13 @@ use Data::UUID;
 use Data::Dumper;
 use List::MoreUtils 'pairwise';
 
-
 use constant VOLUME_NS =>'http://schemas.fortaleza.ce.gov.br/acao/volume.xsd';
 my $controle = XML::Compile::Schema->new( Acao->path_to('schemas/volume.xsd') );
 $controle->importDefinitions( Acao->path_to('schemas/autorizacoes.xsd') );
 my $controle_w = $controle->compile( WRITER => pack_type( VOLUME_NS, 'volume' ), use_default_namespace => 1 );
 my $controle_r = $controle->compile( READER => pack_type( VOLUME_NS, 'volume') );
 
-my $autoriza_w = $controle->compile( WRITER => pack_type( VOLUME_NS, 'autorizacoes'), use_default_namespace => 1);
-my $autoriza_r = $controle->compile( READER => pack_type( VOLUME_NS, 'autorizacoes'));
+with 'Acao::Role::Model::Autorizacao' => { xmlcompile => $controle, namespace => VOLUME_NS };
 
 my $role_criar = Acao->config->{'roles'}->{'volume'}->{'criar'};
 my $role_alterar = Acao->config->{'roles'}->{'volume'}->{'alterar'};
@@ -226,45 +224,6 @@ txn_method 'options_volumes' => authorized $role_alterar => sub {
     }
    return $ret;
 };
-
-sub new_autorizacao {
-  my ($self, $initial_principals) = @_;
-    my $doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
-    my $xml = $autoriza_w->($doc,{ })->toString;
-
-  return $self->add_autorizacoes($xml,$self->build_autorizacao_AoH($initial_principals,
-      [qw(alterar criar listar visualizar)]));
-}
-
-sub remove_autorizacoes {
-  my ($self, $xml_autorizacoes, @positions) = @_;
-  my $hash = $autoriza_r->($xml_autorizacoes);
-  splice @{$hash->{autorizacao}}, $_, 1, () for reverse sort @positions;
-  my $doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
-  return $autoriza_w->($doc, $hash)->toString;
-}
-
-sub add_autorizacoes {
-  my ($self, $xml_autorizacoes, $AoH_novas_autorizacoes) = @_;
-  my $hash = $autoriza_r->($xml_autorizacoes);
-  push @{$hash->{autorizacao}}, @$AoH_novas_autorizacoes;
-  my $doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
-  return $autoriza_w->($doc, $hash)->toString;
-}
-
-sub build_autorizacao_AoH {
-  my ($self, $principal, $role) = @_;
-
-  my @cart_p     = sort( (@$principal) x @$role );
-  my @cart_r     = (@$role) x @$principal;
-  my @permissoes = pairwise { { principal => $a, role => $b } } @cart_p, @cart_r;
-  return \@permissoes;
-}
-
-sub desserialize_autorizacoes {
-  my ($self, $xml_autorizacoes) = @_;
-  return $autoriza_r->($xml_autorizacoes);
-}
 
 sub pode_ver_volume {
   my($self, $id_volume) = @_;
