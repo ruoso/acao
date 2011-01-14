@@ -189,7 +189,7 @@ txn_method 'inserir_documento' => authorized $role_criar => sub {
             $self->sedna->execute($xq_motivo_invalidacao);
 
     }
-
+    return $id_documento;
 };
 
 
@@ -258,6 +258,7 @@ txn_method 'invalidar_documento' => authorized $role_listar => sub {
                                                /ns:doc/dc:documento[dc:id = "'.$id_documento.'"]/dc:motivoInvalidacao
                                                with <dc:motivoInvalidacao>erro</dc:motivoInvalidacao>';
   $self->sedna->execute($xq_motivo_invalidacao);
+  return $id_documento;
 };
 
 txn_method 'getDadosDossie' => authorized $role_listar => sub {

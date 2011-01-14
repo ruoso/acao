@@ -17,11 +17,11 @@ package Acao::Controller::Auth::Registros::Volume::Dossie;
 # título "LICENCA.txt", junto com este programa, se não, escreva para a
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
 
-use strict;
-use warnings;
-use parent 'Catalyst::Controller';
+use Moose;
+use namespace::autoclean;
+BEGIN { extends 'Catalyst::Controller'; }
 use Data::Dumper;
-
+with 'Acao::Role::Auditoria' => { category => 'Dossie'};
 =head1 NAME
 
 Acao::Controller::Auth::Registros::Volume::Dossie - Controlador
@@ -48,8 +48,7 @@ Delega à view a renderização do formulário desse dossiê.
 =cut
 
 sub lista : Chained('base') : PathPart('') : Args(0) {
-    my ( $self, $c ) = @_;
-}
+    my ( $self, $c ) = @_;}
 
 sub form : Chained('base') : PathPart('criardossie') : Args(0) {
     my ( $self, $c ) = @_;
@@ -79,17 +78,19 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
        $representaDossieFisico = '0';
     }
     eval {
-        $c->model('Dossie')->criar_dossie(
-                                      $c->req->address,
-                                      $c->req->param('nome'),
-                                $c->req->param('id_volume'),
-                                $c->req->param('controle'),
-                                          $representaDossieFisico,
-                                $c->req->param('classificacao'),
-                                $c->req->param('localizacao'),
+        my $id = $c->model('Dossie')->criar_dossie(
+                              $c->req->address,
+                              $c->req->param('nome'),
+                              $c->req->param('id_volume'),
+                              $c->req->param('controle'),
+                              $representaDossieFisico,
+                              $c->req->param('classificacao'),
+                              $c->req->param('localizacao'),
                                );
 
+        $self->audit_criar($id, $c->req->param('nome'));
     };
+
 
     if ($@) { $c->flash->{erro} = $@ . "";  }
     else { $c->flash->{sucesso} = 'Dossie criado com sucesso'; }
@@ -107,6 +108,7 @@ sub alterar_estado : Chained('base') : PathPart('alterar_estado') : Args(2) {
     else {
         $c->flash->{sucesso} = 'Estado alterado com sucesso!';
     }
+    $self->audit_alterar('estado: ',$estado);
     $c->res->redirect( $c->uri_for('/auth/registros/volume/' . $c->stash->{id_volume}) );
 }
 
@@ -126,6 +128,8 @@ sub transferir : Chained('base') : PathPart('transferir') : Args(1) {
     else {
         $c->flash->{sucesso} = 'Alterado com sucesso!';
     }
+
+    $self->audit_alterar('transferir: ',$controle);
     $c->res->redirect( $c->uri_for('/auth/registros/volume/' . $c->stash->{id_volume}) );
 }
 

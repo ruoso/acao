@@ -24,6 +24,7 @@ use Data::Dumper;
 use List::MoreUtils 'pairwise';
 
 with 'Acao::Role::Controller::Autorizacao' => { modelcomponent => 'Volume' };
+with 'Acao::Role::Auditoria' => { category => 'Volume'};
 
 =head1 NAME
 
@@ -47,6 +48,7 @@ sub base : Chained('/auth/registros/base') : PathPart('volume') : CaptureArgs(0)
 
 sub get_volume :Chained('base') : PathPart('') : CaptureArgs(1) {
     my ( $self, $c, $id_volume ) = @_;
+    Log::Log4perl::MDC->put('Volume', $id_volume);
     $c->stash->{id_volume} = $id_volume
       or $c->detach('/public/default');
 
@@ -61,9 +63,8 @@ tem acesso.
 
 =cut
 
-sub lista : Chained('base') : PathPart('') : Args(0) {
+sub lista : Chained('base') : PathPart('') :Args(0) {
   my ( $self, $c ) = @_;
-
 }
 
 sub form : Chained('base') : PathPart('criarvolume') : Args(0) {
@@ -79,6 +80,8 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
   my ( $self, $c ) = @_;
   #	Checa se user logado tem autorização para executar a ação 'Criar'
   $c->model('Volume')->pode_criar_volume() or $c->detach('/public/default');
+
+
   my $representaVolumeFisico;
   $c->stash->{basedn} = $c->req->param('basedn') ||
               $c->model("LDAP")->grupos_dn;
@@ -98,7 +101,7 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
   }
 
   eval {
-    $c->model('Volume')->criar_volume(
+    my $id = $c->model('Volume')->criar_volume(
       $c->req->param('nome'),
       $representaVolumeFisico,
       $c->req->param('classificacao'),
@@ -106,7 +109,7 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
       $c->model('Volume')->desserialize_autorizacoes($c->req->param('autorizacoes')),
       $c->req->address,
     );
-
+    $self->audit_criar($id, $c->req->param('nome'));
   };
 
   if ($@) { $c->flash->{erro} = $@ . ""; }
@@ -120,12 +123,13 @@ sub xsd : Chained('base') : PathPart('xsd') : Args(1) {
   $c->forward( $c->view('XML') );
 }
 
-sub alterar_estado : Chained('base') : PathPart('alterar_estado') : Args(1) {
+sub alterar_estado : Chained('get_volume') : PathPart('alterar_estado') : Args(1) {
   my ( $self, $c, $estado ) = @_;
   my $id_volume = $c->stash->{id_volume};
   eval {
     $c->model('Volume')
       ->alterar_estado( $id_volume, $estado, $c->req->address );
+    $self->audit_alterar('estado: ',$estado);
   };
   if ($@) {
     $c->flash->{erro} = $@;
@@ -185,7 +189,7 @@ sub store_alterar : Chained('get_volume') : PathPart('store_alterar') : Args(0) 
           ip            => $c->req->address,
      }
     );
-
+    $self->audit_alterar('geral');
 
   };
 

@@ -159,6 +159,7 @@ txn_method 'criar_dossie' => authorized $role_criar => sub {
                                );
     $self->sedna->conn->loadData( $res_xml->toString, $controle, $id_volume );
     $self->sedna->conn->endLoadData();
+    return $controle;
 
 };
 

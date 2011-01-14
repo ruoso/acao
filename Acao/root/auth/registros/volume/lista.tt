@@ -73,6 +73,7 @@
       c.model('Sedna').execute( xquery.list );
 
       WHILE (volumeid = c.model('Sedna').get_item);
+        CALL c.controller.audit_listar(volumeid);
         SET html = c.model('Sedna').get_item;
         html;
       END;

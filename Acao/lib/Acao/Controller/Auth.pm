@@ -44,6 +44,8 @@ sub base : Chained('/') : PathPart('auth') : CaptureArgs(0) {
         $c->res->redirect( $c->uri_for('/login') );
         $c->detach;
     }
+    Log::Log4perl::MDC->put('user', $c->user->uid);
+    Log::Log4perl::MDC->put('address', $c->req->address);
 }
 
 =item principal

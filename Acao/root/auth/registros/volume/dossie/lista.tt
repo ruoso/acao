@@ -134,6 +134,7 @@
     c.model('Sedna').execute( xquery.list );
 
    WHILE (control = c.model('Sedna').get_item) ;
+     CALL c.controller.audit_listar(control);
      SET html = c.model('Sedna').get_item ;
      html ;
    END

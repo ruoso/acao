@@ -139,6 +139,7 @@ txn_method 'criar_volume' => authorized $role_criar => sub {
 
     $self->sedna->conn->loadData( $res_xml->toString, $doc_name, 'volume' );
     $self->sedna->conn->endLoadData();
+    return $doc_name;
 
 };
 
