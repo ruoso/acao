@@ -90,8 +90,9 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
 
   $c->stash->{classificacoes} = $c->req->param('classificacoes');
   $c->stash->{autorizacoes} = $c->req->param('autorizacoes');
-  if ($self->_processamento_autorizacao($c) ||
-      $self->_processamento_classificacao($c)) {
+  $c->stash->{localizacao} = $c->req->param('localizacao');
+  if ($self->_processa_autorizacao($c) ||
+      $self->_processa_classificacao($c)) {
     $c->stash->{template} = 'auth/registros/volume/form.tt';
     return;
   }
@@ -107,7 +108,7 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
     $c->model('Volume')->criar_volume(
       $c->req->param('nome'),
       $representaVolumeFisico,
-      $c->req->param('classificacao'),
+      $c->model('Volume')->desserialize_classificacoes($c->req->param('classificacoes')),
       $c->req->param('localizacao'),
       $c->model('Volume')->desserialize_autorizacoes($c->req->param('autorizacoes')),
       $c->req->address,
@@ -159,7 +160,6 @@ sub alterar_volume :Chained('get_volume') : PathPart('alterar') : Args(0) {
 sub store_alterar : Chained('get_volume') : PathPart('store_alterar') : Args(0) {
   my ( $self, $c ) = @_;
 #	Checa se user logado tem autorização para executar a ação 'Alterar'
-   $c->model('Volume')->pode_alterar_volume($c->stash->{id_volume}) or $c->detach('/public/default');
 
   my $representaVolumeFisico;
   $c->stash->{basedn} = $c->req->param('basedn') ||
@@ -170,8 +170,8 @@ sub store_alterar : Chained('get_volume') : PathPart('store_alterar') : Args(0) 
   $c->stash->{classificacoes} = $c->req->param('classificacoes');
   $c->stash->{autorizacoes} = $c->req->param('autorizacoes');
 
-  if ($self->_processamento_autorizacao($c) ||
-      $self->_processamento_classificacao($c)) {
+  if ($self->_processa_autorizacao($c) ||
+      $self->_processa_classificacao($c)) {
     return;
   }
 

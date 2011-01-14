@@ -38,7 +38,7 @@ role {
     my $reader = $xmlcompile->compile( READER => pack_type( $ns, 'classificacoes'));
     my $writer = $xmlcompile->compile( WRITER => pack_type( $ns, 'classificacoes'));
 
-    method new_classificacoes => sub {
+    method new_classificacao => sub {
         my ($self, $initial_principals) = @_;
         my $doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
         return $writer->($doc,{  })->toString;

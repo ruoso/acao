@@ -71,12 +71,19 @@ sub _buscar_dn {
   return $mesg->sorted('o');
 }
 
+sub decompose_dn_assuntos {
+    $_[0]->decompose_dn($_[1], $_[0]->assuntos_dn)
+}
+
+sub decompose_dn_grupos {
+    $_[0]->decompose_dn($_[1], $_[0]->grupos_dn)
+}
+
 sub decompose_dn {
   [ map { (split /=/)[1] }
     split /,/,
-    substr($_[1], 0, 0 - length($_[0]->grupos_dn)) ];
+    substr($_[1], 0, 0 - length($_[2])) ];
 }
-
 
 sub buscar_dn_assuntos {
   my $self = shift;

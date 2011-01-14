@@ -30,7 +30,7 @@ role {
     my $p = shift;
     my $model = $p->modelcomponent;
 
-    method '_processa_autorizacoes' => sub {
+    method '_processa_autorizacao' => sub {
         my ($self, $c) = @_;
         # remove autorizações
         my (@pos) = grep { s/^remover_autorizacao_// } keys %{$c->req->params};

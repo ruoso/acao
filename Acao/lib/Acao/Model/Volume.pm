@@ -166,7 +166,7 @@ txn_method 'criar_volume' => authorized $role_criar => sub {
                                     collection => $doc_name,
                                     estado => 'aberto',
                                     representaVolumeFisico => $representaVolumeFisico,
-                                    classificacoes => {classificacao => $classificacao},
+                                    classificacoes => $classificacao,
                                     localizacao => $localizacao,
                                     autorizacoes => $autorizacoes,
                                     audit      =>  {},
@@ -298,7 +298,7 @@ sub pode_ver_volume {
   my $grupos = join ' or ', map { '@principal = "'.$_.'"' } @{$self->user->memberof};
 
   $self->sedna->begin;
-    my $query  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";'
+  my $query  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";'
              . 'declare namespace author = "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";'
              . 'for $x in collection("volume")/ns:volume[ns:collection = "'.$id_volume.'"] '
              . 'where $x/ns:autorizacoes/author:autorizacao[('.$grupos.') and @role="listar"] '
@@ -315,6 +315,7 @@ sub pode_criar_volume {
   return $role_criar ~~ @{$self->user->memberof};
 
 }
+
 sub pode_alterar_volume {
   my($self, $id_volume) = @_;
   return $self->_checa_autorizacao_volume($id_volume, 'alterar') &&
@@ -324,8 +325,7 @@ sub pode_alterar_volume {
 sub autorizacoes_do_volume {
     my($self, $id_volume) = @_;
 
-
-  $self->sedna->begin;
+    $self->sedna->begin;
     my $query  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";'
              . 'declare namespace author = "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";'
              . 'for $x in collection("volume")/ns:volume[ns:collection = "'.$id_volume.'"] '
@@ -370,8 +370,6 @@ sub store_altera_volume {
 
     $self->sedna->begin;
     $self->sedna->execute($query_autorizacao);
-
-
 
 
     my $query_nome  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";'

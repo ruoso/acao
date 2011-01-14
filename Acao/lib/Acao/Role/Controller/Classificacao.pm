@@ -31,7 +31,7 @@ role {
     my $p     = shift;
     my $model = $p->modelcomponent;
 
-    method '_processa_classificacoes' => sub {
+    method '_processa_classificacao' => sub {
         my ( $self, $c ) = @_;
 
         # remove classificacoes
@@ -63,7 +63,7 @@ role {
             my @classificacoes = $c->req->param('assuntos');
             $c->stash->{classificacoes} =
               $c->model('Volume')
-              ->add_classificacoes( $c->req->param('autorizacoes'),
+              ->add_classificacoes( $c->req->param('classificacoes'),
                 \@classificacoes );
             return 1;
         }

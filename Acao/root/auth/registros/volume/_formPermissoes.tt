@@ -32,7 +32,7 @@
         [%  SET count = 0 %]
         [%  FOREACH a IN c.model('Volume').desserialize_autorizacoes(autorizacoes).autorizacao %]
         <tr>
-          <td>[% c.model('LDAP').decompose_dn(a.principal).reverse.join(' - ') %]</td>
+          <td>[% c.model('LDAP').decompose_dn_grupos(a.principal).reverse.join(' - ') %]</td>
           <td>[% a.role %]</td>
           <td><input type="checkbox" name="remover_autorizacao_[% count %]" /></td>
         </tr>

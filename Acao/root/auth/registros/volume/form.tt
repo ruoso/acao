@@ -30,9 +30,11 @@
 	<dd>
 		<input type="text" id="nome" name="nome" class="upper" value="[% nome %]">
 	</dd>
-   <dt>
+
+   <!--<dt>
     <label> Classificação:  </label>
    </dt>
+
 	<dd>
     <select name="classificacao" id="classificacao">
       <option value="Regional I"> Regional I </option>
@@ -43,10 +45,10 @@
       <option value="Regional VI"> Regional VI </option>
       [% # FOREACH do LDAP (descomentar e aplicar o caminho correto) %]
       [% # FOREACH memberof IN c.user.memberof %]
-       <!--<option value="[% c.config.default.localizacao %]"> [% memberof %] </option>-->
+       <option value="[% # c.config.default.localizacao %]"> [% # memberof %] </option>
       [% # END %]
     </select>
-	</dd>
+	</dd>-->
 
    <dt>
     <label> Localização: </label>
@@ -70,11 +72,9 @@
 	</dd>
   </dl>
 
+  <br/>
 
-
-    <br/>
-
- <fieldset id="grupos">
+  <fieldset id="grupos">
     <label> Autorizações: </label>
      <input type="hidden" name="autorizacoes" value="[% autorizacoes | html %]" />
      <input type="hidden" name="basedn" value="[% basedn %]" />
@@ -89,7 +89,7 @@
         [% SET count = 0 %]
         [% FOREACH a IN c.model('Volume').desserialize_autorizacoes(autorizacoes).autorizacao %]
         <tr>
-          <td>[% c.model('LDAP').decompose_dn(a.principal).reverse.join(' - ') %]</td>
+          <td>[% c.model('LDAP').decompose_dn_grupos(a.principal).reverse.join(' - ') %]</td>
           <td>[% a.role %]</td>
           <td><input type="checkbox" name="remover_autorizacao_[% count %]" /></td>
         </tr>
@@ -112,8 +112,7 @@
                    [%  END %]
                 </select>
 
-
-            <select multiple name="acoes" id="acoes" style="height:100px;min-width:150px">
+                <select multiple name="acoes" id="acoes" style="height:100px;min-width:150px">
                     <option  value="alterar"> Alterar </option>
                     <option  value="criar">Criar </option>
                     <option  value="listar">Listar </option>
@@ -143,7 +142,7 @@
         [% SET count = 0 %]
         [% FOREACH a IN c.model('Volume').desserialize_classificacoes(classificacoes).classificacao %]
         <tr>
-          <td>[% c.model('LDAP').decompose_dn(a.classificacao).reverse.join(' - ') %]</td>
+          <td>[% c.model('LDAP').decompose_dn_assuntos(a).reverse.join(' - ') %]</td>
           <td><input type="checkbox" name="remover_classificacao_[% count %]" /></td>
         </tr>
         [% SET count = count + 1 %]
@@ -156,13 +155,13 @@
 
             <dt>
 
-                <select multiple name="assuntos" id="classificacoes"  style="height:100px;min-width:150px">
-                   [% IF basedn.size > 1; basedn = basedn.shift; END %]
-                   [% IF basedn != c.model('LDAP').grupos_dn %]
+                <select multiple name="assuntos" id="classificacoes"  style="height:100px;min-width:300px">
+                   [% IF class_basedn.size > 1; class_basedn = class_basedn.shift; END %]
+                   [% IF class_basedn != c.model('LDAP').assuntos_dn %]
                    <option  value="[%  c.view('LDAPUtil').voltar_grupos(class_basedn) %]"> ../</option>
                    [% END %]
-                   [%  FOREACH group IN c.model('LDAP').buscar_dn_assuntos(class_basedn) %]
-                   <option value="[% group.dn %]"> [% group.get_value('cn') %] </option>
+                   [%  FOREACH class IN c.model('LDAP').buscar_dn_assuntos(class_basedn) %]
+                   <option value="[% class.dn %]"> [% class.get_value('cn') %] </option>
                    [%  END %]
                 </select>
 
@@ -205,6 +204,5 @@
     }
   }
  </script>
-
 
 [% INCLUDE 'footer.tt' %]
