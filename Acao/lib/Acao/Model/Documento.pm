@@ -206,6 +206,22 @@ txn_method 'visualizar' => authorized $role_visualizar => sub {
     return $xml;
 };
 
+txn_method 'obter_xsd_documento' => authorized $role_visualizar => sub {
+    my ( $self, $id_volume, $controle, $id_documento ) = @_;
+
+    my $xq   = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
+                declare namespace dc = "http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";
+                declare namespace adt = "http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd";
+                declare namespace xhtml="http://www.w3.org/1999/xhtml";
+                declare namespace xss="http://www.w3.org/2001/XMLSchema";
+                for $x at $i in collection("'.$id_volume.'")
+                /ns:dossie[ns:controle = "'.$controle.'" ]/ns:doc
+                /dc:documento[dc:id="'.$id_documento.'"]/dc:documento/dc:conteudo/*
+                return namespace-uri($x)';
+    $self->sedna->execute($xq);
+    my $ns = $self->sedna->get_item;
+    return $ns;
+};
 
 txn_method 'visualizar_por_tipo' => authorized $role_visualizar => sub {
     my ( $self, $id_volume, $controle, $xsdDocumento ) = @_;
