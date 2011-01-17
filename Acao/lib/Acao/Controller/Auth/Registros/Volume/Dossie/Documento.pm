@@ -100,7 +100,7 @@ sub visualizar : Chained('get_documento') :PathPart('') :Args(0) {
       ( $c->stash->{id_volume},
         $c->stash->{controle},
         $c->stash->{id_documento} )
-        or $c->detach('/default');
+        or $c->detach('/public/default');
 }
 
 sub visualizar_por_tipo : Chained('get_documento') :PathPart('visualizarportipo') :Args(0) {
@@ -109,7 +109,7 @@ sub visualizar_por_tipo : Chained('get_documento') :PathPart('visualizarportipo'
       ( $c->stash->{id_volume},
         $c->stash->{controle},
         $c->stash->{id_documento} )
-        or $c->detach('/default');
+        or $c->detach('/public/default');
 }
 
 sub invalidar_documento : Chained('get_documento') : PathPart('invalidar_documento') : Args(0){

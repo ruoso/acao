@@ -95,7 +95,7 @@
 <br>
  
  <fieldset> 
-   <a href="[% c.uri_for_action('/auth/registros/volume/dossie/documento/visualizar_por_tipo', [ id_volume, controle, id_documento ] ) %]"> Visualizar Todos Deste Tipo </a>
+   <a href="[% c.uri_for_action('/auth/registros/volume/dossie/documento/visualizar_por_tipo', [ id_volume, controle, id_documento ])%]"> Visualizar Todos Deste Tipo </a>
  </fieldset> 
  
 [% IF invalidacao == '1970-01-01T00:00:00Z' %]
