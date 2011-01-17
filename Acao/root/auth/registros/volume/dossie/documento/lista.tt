@@ -124,7 +124,7 @@
   </form>
 
   <br/>
-<form action="[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/' _ controle _ '/inserirdocumento') %]" id="form" name="form" method="post" onSubmit="return validaDropDonw()">
+<form action="[% c.uri_for_action('/auth/registros/volume/dossie/documento/form',[ id_volume, controle ]) %]" id="form" name="form" method="post" onSubmit="return validaDropDonw()">
 
 </form>
 <br>

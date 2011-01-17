@@ -58,11 +58,11 @@
         </div>
         <div id='barraTopo'>
             <ul>
-                <li style="float: right"><a href="[% c.uri_for('/auth/logout') %]" title="Sair">Sair</a></li>
+                <li style="float: right"><a href="[% c.uri_for_action('/auth/logout') %]" title="Sair">Sair</a></li>
             </ul>
         </div>
         <div id='barraTopoCaminho'>
-        	<a href="[%c.uri_for('/')%]" title='Início'>Início</a> »
+        	<a href="[%c.uri_for_action('/public/entrada')%]" title='Início'>Início</a> »
 [% FOREACH item IN breadcrumb %]
         	<a href="[% item.url %]" title='[% item.title %]'>[% item.text %]</a> »
 [% END %]

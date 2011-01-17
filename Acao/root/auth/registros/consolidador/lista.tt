@@ -35,7 +35,7 @@
  [% FOREACH definicao_consolidacao IN c.model('Consolidador').listar_definicao_consolidacao.all %]
  <tr>
   <td>[% definicao_consolidacao.projeto.nome %]</a></td>
-  <td><a href="[% c.uri_for('/auth/registros/consolidador/') _ definicao_consolidacao.id_definicao_consolidacao %]">[% definicao_consolidacao.nome %]</a></td>
+  <td><a href="[% c.uri_for_action('/auth/registros/consolidador/definicaoconsolidacao/lista', [ definicao_consolidacao.id_definicao_consolidacao ]) %]">[% definicao_consolidacao.nome %]</a></td>
   <td>[% definicao_consolidacao.status %]</a></td>
   <td>[% definicao_consolidacao.data_ini %]</a></td>
   <td>[% definicao_consolidacao.data_fim %]</a></td>

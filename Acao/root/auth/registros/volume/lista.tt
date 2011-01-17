@@ -40,7 +40,7 @@
 <h1 class="titulo-form">Gerenciar Volume |
   <span style="font-size:13px; font-weight:normal;">
     [% IF c.model('Volume').pode_criar_volume %]
-      <a class="criar" href="[% c.uri_for('/auth/registros/volume/criarvolume') %]">Criar Volume</a>
+      <a class="criar" href="[% c.uri_for_action('/auth/registros/volume/form') %]">Criar Volume</a>
   [% END %]
   </span>
 </h1>

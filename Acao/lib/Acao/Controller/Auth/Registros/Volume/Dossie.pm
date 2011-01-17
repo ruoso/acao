@@ -94,7 +94,7 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
 
     if ($@) { $c->flash->{erro} = $@ . "";  }
     else { $c->flash->{sucesso} = 'Dossie criado com sucesso'; }
-    $c->res->redirect( $c->uri_for('/auth/registros/volume/' . $c->req->param('id_volume') ) );
+    $c->res->redirect( $c->uri_for_action('/auth/registros/volume/dossie/lista', [ $c->req->param('id_volume') ]) );
 }
 
 sub alterar_estado : Chained('base') : PathPart('alterar_estado') : Args(2) {
@@ -109,7 +109,7 @@ sub alterar_estado : Chained('base') : PathPart('alterar_estado') : Args(2) {
         $c->flash->{sucesso} = 'Estado alterado com sucesso!';
     }
     $self->audit_alterar('estado: ',$estado);
-    $c->res->redirect( $c->uri_for('/auth/registros/volume/' . $c->stash->{id_volume}) );
+    $c->res->redirect( $c->uri_for_action('/auth/registros/volume/dossie/lista', [ $c->stash->{id_volume} ]) );
 }
 
 sub transferir : Chained('base') : PathPart('transferir') : Args(1) {
@@ -130,7 +130,7 @@ sub transferir : Chained('base') : PathPart('transferir') : Args(1) {
     }
 
     $self->audit_alterar('transferir: ',$controle);
-    $c->res->redirect( $c->uri_for('/auth/registros/volume/' . $c->stash->{id_volume}) );
+    $c->res->redirect( $c->uri_for_action('/auth/registros/volume/dossie/lista',[ $c->stash->{id_volume} ]) );
 }
 
 =head1 COPYRIGHT AND LICENSING

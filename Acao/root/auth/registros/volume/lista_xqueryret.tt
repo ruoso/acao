@@ -2,7 +2,7 @@
     <tr>
         <td style="width:1000">
           { if ( $x/ns:estado/text() eq 'aberto') then (
-                <a title="{$x/ns:nome/text()}" href="[% c.uri_for('/auth/registros/volume') %]/{$x/ns:collection/text()}" >
+                <a title="{$x/ns:nome/text()}" href="[% c.uri_for_action('/auth/registros/volume/dossie/lista', [ '___id_volume___' ]).replace('___id_volume___','{$x/ns:collection/text()}') %]" >
           {$x/ns:nome/text()}
         </a>
             ) else (
@@ -52,16 +52,16 @@
 
     <td width="10%" colspan="4">
            { if ( $x/ns:estado/text() eq 'fechado') then (
-         <a href="[% c.uri_for('/auth/registros/volume/')%]{$x/ns:collection/text()}/alterar_estado/aberto" class="abrir" title="Abrir" > Abrir </a>
+         <a href="[% c.uri_for_action('/auth/registros/volume/dossie/alterar_estado', [ '___id_volume___' ], 'aberto').replace('___id_volume___','{$x/ns:collection/text()}') %]" class="abrir" title="Abrir" > Abrir </a>
            ) else ( )}
            { if ( $x/ns:estado/text() eq 'aberto') then (
-           <a href="[% c.uri_for('/auth/registros/volume/')%]{$x/ns:collection/text()}/alterar_estado/fechado" class="fechar" title="Fechar" onClick="return confirmaFechamento()"> Fechar </a>
+           <a href="[% c.uri_for_action('/auth/registros/volume/dossie/alterar_estado', [ '___id_volume___' ], 'fechado').replace('___id_volume___','{$x/ns:collection/text()}') %]" class="fechar" title="Fechar" onClick="return confirmaFechamento()"> Fechar </a>
            ) else ( )}
            { if ($x/ns:estado/text() eq 'arquivado') then (
-           <a href="[% c.uri_for('/auth/registros/volume/')%]{$x/ns:collection/text()}/alterar_estado/fechado" class="fechar" title="Resgatar" onClick="return confirmaResgate()"> Fechar </a>
+           <a href="[% c.uri_for_action('/auth/registros/volume/dossie/alterar_estado', [ '___id_volume___' ], 'fechado').replace('___id_volume___','{$x/ns:collection/text()}') %]" class="fechar" title="Resgatar" onClick="return confirmaResgate()"> Fechar </a>
            ) else ( )}
            { if ( $x/ns:estado/text() eq 'fechado' ) then (
-           <a href="[% c.uri_for('/auth/registros/volume/')%]{$x/ns:collection/text()}/alterar_estado/arquivado" class="arquivar" title="Arquivar" onClick="return confirmaArquivamento()"> Arquivar </a>
+           <a href="[% c.uri_for_action('/auth/registros/volume/dossie/alterar_estado', [ '___id_volume___' ], 'arquivado').replace('___id_volume___','{$x/ns:collection/text()}') %]" class="arquivar" title="Arquivar" onClick="return confirmaArquivamento()"> Arquivar </a>
          ) else ( )}
   </td>
   <input type="hidden" id="id_volume" nome="id_volume" value="{$x/ns:collection/text()}"/>

@@ -14,6 +14,8 @@ requires 'Catalyst::Model::DBIC::Schema';
 requires 'Catalyst::Model::Sedna';
 requires 'Catalyst::View::TT';
 requires 'DBIx::Class';
+requires 'MooseX::Role::Parameterized';
+requires 'Catalyst::Log::Log4perl';
 requires 'Catalyst::Runtime';
 requires 'Catalyst::Model::LDAP';
 requires 'Data::Dumper';

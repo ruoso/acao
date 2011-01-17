@@ -45,7 +45,7 @@ sub base : Chained('/auth/registros/volume/dossie/base') :PathPart('') :CaptureA
 
 }
 
-sub base_documento :Chained('base') :PathPart('') :CaptureArgs(1) {
+sub get_documento :Chained('base') :PathPart('') :CaptureArgs(1) {
     my ( $self, $c, $id_documento ) = @_;
     Log::Log4perl::MDC->put('Documento', $id_documento);
     $c->stash->{id_documento} = $id_documento
@@ -91,23 +91,16 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
 
     if ($@) { $c->flash->{erro} = $@ . "";  }
     else { $c->flash->{sucesso} = 'Documento criado com sucesso'; }
-    $c->res->redirect( $c->uri_for('/auth/registros/volume/' . $c->stash->{id_volume} . '/' . $c->stash->{controle}) );
+    $c->res->redirect( $c->uri_for_action('/auth/registros/volume/dossie/documento/lista', [ $c->stash->{id_volume}, $c->stash->{controle} ] ) );
 }
 
-sub visualizar : Chained('get_documento') : PathPart('visualizar') : Args(3){
-    my ( $self, $c, $xsdDocumento, $invalidacao, $representaDocumentoFisico ) = @_;
-    $c->stash->{invalidacao} = $invalidacao;
-    $c->stash->{xsdDocumento} = 'http://schemas.fortaleza.ce.gov.br/acao/'.$xsdDocumento;
-    $c->stash->{representaDocumentoFisico} = $representaDocumentoFisico
-        or $c->detach('/public/default');
+sub visualizar : Chained('get_documento') :PathPart('') :Args(0) {
+    my ( $self, $c ) = @_;
 }
 
-sub visualizar_por_tipo : Chained('get_documento') : PathPart('visualizarportipo') : Args(3){
-    my ( $self, $c, $xsdDocumento, $invalidacao, $representaDocumentoFisico ) = @_;
-    $c->stash->{xsdDocumento} = 'http://schemas.fortaleza.ce.gov.br/acao/'.$xsdDocumento;
-    $c->stash->{invalidacao} = $invalidacao;
-    $c->stash->{representaDocumentoFisico} = $representaDocumentoFisico
-         or $c->detach('/public/default');
+sub visualizar_por_tipo : Chained('base') :PathPart('visualizarportipo') :Args(0) {
+    my ( $self, $c ) = @_;
+    $c->stash->{xsdDocumento} = $c->req->param('ns') or $c->detach('/default');
 }
 
 sub invalidar_documento : Chained('get_documento') : PathPart('invalidar_documento') : Args(0){
@@ -123,10 +116,10 @@ sub invalidar_documento : Chained('get_documento') : PathPart('invalidar_documen
 
     if ($@) { $c->flash->{erro} = $@ . "";  }
     else { $c->flash->{sucesso} = 'Documento alterado com sucesso'; }
-    $c->res->redirect( $c->uri_for('/auth/registros/volume/' . $c->stash->{id_volume} . '/' . $c->stash->{controle} ) );
+    $c->res->redirect( $c->uri_for_action('/auth/registros/volume/dossie/documento/lista', [ $c->stash->{id_volume}, $c->stash->{controle} ] ) );
 }
 
-sub xml : Chained('base') : PathPart : Args(0) {
+sub xml : Chained('get_documento') : PathPart : Args(0) {
     my ( $self, $c) = @_;
     $c->stash->{document} = $c->model('Documento')->visualizar( $c->stash->{id_volume},
                                                                 $c->stash->{controle},

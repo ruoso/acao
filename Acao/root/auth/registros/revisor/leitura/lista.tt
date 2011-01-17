@@ -55,7 +55,7 @@
 [% xquery = PROCESS 'auth/registros/revisor/leitura/lista_xquery.tt' %]
 
 
-<form name="form" onSubmit="return valida_campos_busca()" action="[% c.uri_for('/auth/registros/revisor/') _ leitura.id_leitura  %]">
+<form name="form" onSubmit="return valida_campos_busca()" action="[% c.uri_for_action('/auth/registros/revisor/leitura/lista', [ leitura.id_leitura ])  %]">
 
 <fieldset>
 

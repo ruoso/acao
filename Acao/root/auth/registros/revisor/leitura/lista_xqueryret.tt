@@ -7,7 +7,7 @@
 [%#            <a href="#">Diferenças</a>  %]
         ) else () }
             { if ($reg/cd:documento/cd:estadoControle = "Aberto") then (
-            <a href="[% c.uri_for('/auth/registros/revisor/')_ leitura.id_leitura _ '/fecharDocumento/' %]{$reg/cd:documento/cd:controle}" class="fechar" title="Fechar formulário">Fechar formulário</a>
+            <a href="[% c.uri_for_action('/auth/registros/revisor/leitura/fecharDocumento', [ leitura.id_leitura ], '___id_documento___').replace('___id_documento___','{$reg/cd:documento/cd:controle}') %]" class="fechar" title="Fechar formulário">Fechar formulário</a>
              ) else ()}
          </td>
         ) else () }
@@ -48,7 +48,7 @@
                     .replace('____xq_ctrl____','{$reg/cd:documento/cd:controle}')
                     .replace('&','&amp;') %]" class="rejeitar" title="Rejeitar">Rejeitar</a>
         ) else (<a class="link_vazio">Rejeitar</a>) }
-        <a href="[% c.uri_for('/auth/registros/revisor/') _ leitura.id_leitura _ '/visualizar/'%]{$reg/cd:documento/cd:id}" class="visualizar" title="Visualizar">Visualizar</a>
+        <a href="[% c.uri_for_action('/auth/registros/revisor/leitura/visualizar',[ leitura.id_leitura, '___id_documento___' ]).replace('___id_documento___','{$reg/cd:documento/cd:id}') %]" class="visualizar" title="Visualizar">Visualizar</a>
       </td>
       </tr>
 [% IF tem_consulta_formulario -%]

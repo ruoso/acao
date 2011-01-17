@@ -23,8 +23,8 @@
 
 <script SRC="[% c.uri_for('/static/js/xsdForm.js') %]" language="Javascript" ></script>
 
-<form action="[% c.uri_for('/auth/registros/volume/') _ id_volume _ '/' _ controle _ '/store' %]" method="post"
-    onsubmit="return generateXml('[% c.uri_for_action('/auth/registros/xsd/raw', [xsdDocumento] ) %]', this.processed_xml);">
+<form action="[% c.uri_for_action('/auth/registros/volume/dossie/documento/store', [ id_volume , controle ]) %]" method="post"
+    onsubmit="return generateXml('[% c.uri_for_action('/auth/registros/xsd/raw', { ns => xsdDocumento } ) %]', this.processed_xml);">
  <input type="hidden" name="processed_xml">
  <input type="hidden" name="id_volume" value="[% id_volume %]">
  <input type="hidden" name="xsdDocumento" value="[% xsdDocumento %]">
@@ -95,7 +95,7 @@
 <br>
  
  <fieldset> 
-   <a href="[% c.uri_for('/auth/registros/volume/') _ id_volume _ '/' _ controle _ '/visualizarportipo/' _ id_documento _ '/' _ xsdDocumento.substr(40) _ '/' _ invalidacao _ '/' _ representaDocumentoFisico %]"> Visualizar Todos Deste Tipo </a>
+   <a href="[% c.uri_for_action('/auth/registros/volume/dossie/documento/visualizar_por_tipo', [ id_volume, controle ], { ns => xsdDocumento } ) %] %]"> Visualizar Todos Deste Tipo </a>
  </fieldset> 
  
 [% IF invalidacao == '1970-01-01T00:00:00Z' %]
@@ -145,7 +145,7 @@
 
    generateForm("[% c.uri_for_action('/auth/registros/xsd/raw', [ xsdDocumento ],{}) %]", "form_container");
 
-   fillValues  ("[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/' _ controle _ '/xml/' _ id_documento) %]");
+   fillValues  ("[% c.uri_for_action('/auth/registros/volume/dossie/documento/xml', [ id_volume, controle, id_documento ]) %]");
  </script>
 
 [% INCLUDE 'footer.tt' %]

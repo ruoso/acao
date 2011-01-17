@@ -114,7 +114,7 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
 
   if ($@) { $c->flash->{erro} = $@ . ""; }
   else { $c->flash->{sucesso} = 'Volume criado com sucesso'; }
-  $c->res->redirect( $c->uri_for('/auth/registros/volume') );
+  $c->res->redirect( $c->uri_for_action('/auth/registros/volume/lista') );
 }
 
 sub xsd : Chained('base') : PathPart('xsd') : Args(1) {
@@ -137,7 +137,7 @@ sub alterar_estado : Chained('get_volume') : PathPart('alterar_estado') : Args(1
   else {
     $c->flash->{sucesso} = 'Estado alterado com sucesso!';
   }
-  $c->res->redirect( $c->uri_for('/auth/registros/volume') );
+  $c->res->redirect( $c->uri_for_action('/auth/registros/volume/lista') );
 }
 
 sub alterar_volume :Chained('get_volume') : PathPart('alterar') : Args(0) {
@@ -195,7 +195,7 @@ sub store_alterar : Chained('get_volume') : PathPart('store_alterar') : Args(0) 
 
   if ($@) { $c->flash->{erro} = $@ . ""; }
   else { $c->flash->{sucesso} = 'Alteraçoes realizada com sucesso'; }
-  $c->res->redirect( $c->uri_for('/auth/registros/volume/'.$c->stash->{id_volume}) );
+  $c->res->redirect( $c->uri_for_action('/auth/registros/volume/dossie/lista', [$c->stash->{id_volume}]));
 }
 
 =back

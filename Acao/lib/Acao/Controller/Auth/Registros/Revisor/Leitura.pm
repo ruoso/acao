@@ -72,8 +72,8 @@ sub aprovar : Chained('base') : PathPart : Args(2) {
         $c->flash->{sucesso} = 'estadocontrole-aberto';
     }
     $c->res->redirect(
-        $c->uri_for(
-            '/auth/registros/revisor/' . $c->stash->{leitura}->id_leitura
+        $c->uri_for_action(
+            '/auth/registros/revisor/leitura/lista', [ $c->stash->{leitura}->id_leitura ]
         )
     );
 }
@@ -98,8 +98,8 @@ sub rejeitar : Chained('base') : PathPart : Args(2) {
         $c->flash->{sucesso} = 'estadocontrole-aberto';
     }
     $c->res->redirect(
-        $c->uri_for(
-            '/auth/registros/revisor/' . $c->stash->{leitura}->id_leitura
+        $c->uri_for_action(
+            '/auth/registros/revisor/leitura/lista' , [ $c->stash->{leitura}->id_leitura ]
         )
     );
 }
@@ -123,8 +123,8 @@ sub fecharDocumento : Chained('base') : PathPart : Args(1) {
         $c->flash->{sucesso} = 'digitacoes-revisadas';
     }
     $c->res->redirect(
-        $c->uri_for(
-            '/auth/registros/revisor/' . $c->stash->{leitura}->id_leitura
+        $c->uri_for_action(
+            '/auth/registros/revisor/leitura/lista', [ $c->stash->{leitura}->id_leitura ]
         )
     );
 }
