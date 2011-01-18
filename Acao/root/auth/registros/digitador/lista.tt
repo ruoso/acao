@@ -41,7 +41,7 @@
  
  <tr>
   <td>[% leitura.instrumento.projeto.nome %]</a></td>
-  <td><a href="[% c.uri_for('/auth/registros/digitador') _ "/" _ leitura.id_leitura %]">[% leitura.nome %]</a></td>
+  <td><a href="[% c.uri_for_action('/auth/registros/digitador/leitura/form', [ leitura.id_leitura ]) %]">[% leitura.nome %]</a></td>
   <td>[% leitura.coleta_ini %]</a></td>
   <td>[% leitura.coleta_fim %]</a></td>
   <td>[% leitura.digitacao_ini %]</a></td>

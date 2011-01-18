@@ -17,7 +17,7 @@
 # título "LICENCA.txt", junto com este programa, se não, escreva para a
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
 %]
-[% breadcrumb.unshift({ url => c.uri_for('/auth/registros/consolidador/') _ definicao_consolidacao.id_definicao_consolidacao _ '/' _ consolidacao.id_consolidacao,
+[% breadcrumb.unshift({ url => c.uri_for_action('/auth/registros/consolidador/definicaoconsolidacao/consolidacao/lista', [ definicao_consolidacao.id_definicao_consolidacao, consolidacao.id_consolidacao ] ),
 			title => 'Consolidação',
 			text => 'Consolidação' }) %]
 [% INCLUDE 'auth/registros/consolidador/definicaoconsolidacao/header.tt' %]

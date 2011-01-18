@@ -54,17 +54,17 @@ sub principal : Chained('base') : PathPart('') : Args(0) {
     if ( ( grep { /^revisor$/ } @roles )
         && !( grep { /^digitador$/ } @roles ) )
     {
-        $c->res->redirect( $c->uri_for('/auth/registros/revisor') );
+        $c->res->redirect( $c->uri_for_action('/auth/registros/revisor/lista') );
     }
     elsif ( ( grep { /^digitador$/ } @roles )
         && !( grep { /^revisor$/ } @roles ) )
     {
-        $c->res->redirect( $c->uri_for('/auth/registros/digitador') );
+        $c->res->redirect( $c->uri_for_action('/auth/registros/digitador/lista') );
     }
     elsif ((! grep { /^revisor$/   } @roles ) &&
            (! grep { /^digitador$/ } @roles ) )
     {
-        $c->res->redirect( $c->uri_for('/auth/registros/volume') );
+        $c->res->redirect( $c->uri_for_action('/auth/registros/volume/lista') );
     }
 }
 

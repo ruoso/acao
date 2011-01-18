@@ -34,17 +34,17 @@
     [% args.import(c.req.params()) %]
 
     [% args.import({ interval_ini => 0}) %]
-    <a class="paginacao-grid-primeiro" href="[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/' _ controle , args) %]">  << Primeiro </a>
+    <a class="paginacao-grid-primeiro" href="[% c.uri_for_action('/auth/registros/volume/dossie/documento/lista', [id_volume, controle] , args) %]">  << Primeiro </a>
 
     [% IF interval_ini > 0 %]
         [% args.import({ interval_ini => interval_ini - 1 }) %]
-        <a href="[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/' _ controle , args) %]">  < Anterior </a>
+        <a href="[% c.uri_for_action('/auth/registros/volume/dossie/documento/lista', [id_volume, controle], args) %]">  < Anterior </a>
     [% END %]
     
     [% WHILE ini <= fim %]
         [% IF ini < count / num_por_pagina * 2 && ini >= 0 %]
             [% args.import({ interval_ini => ini }) %]
-            <a href="[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/' _ controle , args) %]"> 
+            <a href="[% c.uri_for_action('/auth/registros/volume/dossie/documento/lista', [id_volume, controle] , args) %]"> 
             [% IF ini == interval_ini %]
                 <font size="3"><strong>[% ini + 1 %]</strong></font>
                 [% estado_controle_paginacao = ini %]
@@ -58,10 +58,10 @@
 
     [% IF estado_controle_paginacao < numero_paginas && estado_controle_paginacao != '' %]
         [% args.import({ interval_ini => interval_ini + 1 }) %]
-        <a href="[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/' _ controle , args) %]"> Próximo > </a>
+        <a href="[% c.uri_for_action('/auth/registros/volume/dossie/documento/lista', [id_volume, controle] , args) %]"> Próximo > </a>
     [% END %]
     
     [% args.import({ interval_ini => numero_paginas }) %]
-    <a href="[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/' _ controle, args) %]"> Último >> </a>
+    <a href="[% c.uri_for_action('/auth/registros/volume/dossie/documento/lista', [id_volume, controle], args) %]"> Último >> </a>
     
 </div>

@@ -20,7 +20,7 @@
 [% INCLUDE 'header.tt' %]
 [% INCLUDE 'errosucesso.tt' %]
 
-<form id="form" method="post" action="[%c.uri_for('/login')%]">
+<form id="form" method="post" action="[%c.uri_for_action('/public/login/login')%]">
  <fieldset><legend>Dados de Autenticação</legend>
   <DL>
    <DT>Usuário:</DT>

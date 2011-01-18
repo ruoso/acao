@@ -35,6 +35,7 @@ use warnings;
 
 use Catalyst::Runtime 5.70;
 
+
 use parent qw/Catalyst/;
 use Catalyst qw/
   -Debug
@@ -48,6 +49,11 @@ use Catalyst qw/
   Session::State::Cookie/;
 
 our $VERSION = '0.01';
+
+use Catalyst::Log::Log4perl;
+
+__PACKAGE__->log( Catalyst::Log::Log4perl->new(__PACKAGE__->path_to('Log4perl.conf').''));
+
 __PACKAGE__->setup();
 
 =over

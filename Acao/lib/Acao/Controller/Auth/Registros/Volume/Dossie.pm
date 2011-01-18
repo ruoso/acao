@@ -17,10 +17,11 @@ package Acao::Controller::Auth::Registros::Volume::Dossie;
 # título "LICENCA.txt", junto com este programa, se não, escreva para a
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
 
-use strict;
-use warnings;
-use parent 'Catalyst::Controller';
-
+use Moose;
+use namespace::autoclean;
+BEGIN { extends 'Catalyst::Controller'; }
+use Data::Dumper;
+with 'Acao::Role::Auditoria' => { category => 'Dossie'};
 =head1 NAME
 
 Acao::Controller::Auth::Registros::Volume::Dossie - Controlador
@@ -36,10 +37,8 @@ Carrega para o stash os dados do dossiê.
 
 =cut
 
-sub base : Chained('/auth/registros/volume/base') :PathPart('') :CaptureArgs(1) {
-    my ( $self, $c, $id_volume ) = @_;
-    $c->stash->{id_volume} = $id_volume
-      or $c->detach('/public/default');
+sub base : Chained('/auth/registros/volume/get_volume') :PathPart('') :CaptureArgs(0) {
+
 }
 
 =item form
@@ -49,20 +48,26 @@ Delega à view a renderização do formulário desse dossiê.
 =cut
 
 sub lista : Chained('base') : PathPart('') : Args(0) {
-    my ( $self, $c ) = @_;
-}
+    my ( $self, $c ) = @_;}
 
 sub form : Chained('base') : PathPart('criardossie') : Args(0) {
+    my ( $self, $c ) = @_;
+#   Checa se user logado tem autorização para executar a ação 'Criar'
+    $c->model('Dossie')->pode_criar_dossie($c->stash->{id_volume}) or $c->detach('/public/default');
 }
 
-sub transferir_lista : Chained('base') : PathPart('transferir_lista') : Args(2) {
-    my ( $self, $c, $id_volume, $controle ) = @_;
-    $c->stash->{id_volume} = $id_volume;
+sub transferir_lista : Chained('base') : PathPart('transferir_lista') : Args(1) {
+    my ( $self, $c, $controle ) = @_;
     $c->stash->{controle}  = $controle;
+#   Checa se user logado tem autorização para executar a ação 'Transferir'
+    $c->model('Dossie')->pode_transferir_dossie($c->stash->{id_volume}) or $c->detach('/public/default');
+
 }
 
 sub store : Chained('base') : PathPart('store') : Args(0) {
     my ( $self, $c ) = @_;
+    #   Checa se user logado tem autorização para executar a ação 'Criar'
+    $c->model('Dossie')->pode_criar_dossie($c->stash->{id_volume}) or $c->detach('/public/default');
 
     my $representaDossieFisico;
 
@@ -73,27 +78,29 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
        $representaDossieFisico = '0';
     }
     eval {
-        $c->model('Dossie')->criar_dossie(
-		                                  $c->req->address,
-		                                  $c->req->param('nome'),
-					                      $c->req->param('id_volume'),
-					                      $c->req->param('controle'),
-                                          $representaDossieFisico,
-					                      $c->req->param('classificacao'),
-					                      $c->req->param('localizacao'),
-					                     );
+        my $id = $c->model('Dossie')->criar_dossie(
+                              $c->req->address,
+                              $c->req->param('nome'),
+                              $c->req->param('id_volume'),
+                              $c->req->param('controle'),
+                              $representaDossieFisico,
+                              $c->req->param('classificacao'),
+                              $c->req->param('localizacao'),
+                               );
 
+        $self->audit_criar($id, $c->req->param('nome'));
     };
+
 
     if ($@) { $c->flash->{erro} = $@ . "";  }
     else { $c->flash->{sucesso} = 'Dossie criado com sucesso'; }
-    $c->res->redirect( $c->uri_for('/auth/registros/volume/' . $c->req->param('id_volume') ) );
+    $c->res->redirect( $c->uri_for_action('/auth/registros/volume/dossie/lista', [ $c->req->param('id_volume') ]) );
 }
 
-sub alterar_estado : Chained('base') : PathPart('alterar_estado') : Args(3) {
-     my ( $self, $c, $id_volume, $controle, $estado ) = @_;
+sub alterar_estado : Chained('base') : PathPart('alterar_estado') : Args(2) {
+     my ( $self, $c, $controle, $estado ) = @_;
      eval {
-             $c->model('Dossie')->alterar_estado($id_volume, $controle, $estado, $c->req->address ); 
+             $c->model('Dossie')->alterar_estado($c->stash->{id_volume}, $controle, $estado, $c->req->address );
           };
     if ($@) {
         $c->flash->{erro} = $@;
@@ -101,13 +108,19 @@ sub alterar_estado : Chained('base') : PathPart('alterar_estado') : Args(3) {
     else {
         $c->flash->{sucesso} = 'Estado alterado com sucesso!';
     }
-    $c->res->redirect( $c->uri_for('/auth/registros/volume/' . $id_volume) );
+    $self->audit_alterar('estado: ',$estado);
+    $c->res->redirect( $c->uri_for_action('/auth/registros/volume/dossie/lista', [ $c->stash->{id_volume} ]) );
 }
 
-sub transferir : Chained('base') : PathPart('transferir') : Args(2) {
-     my ( $self, $c, $id_volume, $controle ) = @_;
+sub transferir : Chained('base') : PathPart('transferir') : Args(1) {
+     my ( $self, $c, $controle ) = @_;
+#   Checa se user logado tem autorização para executar a ação 'Transferir'
+    $c->model('Dossie')->pode_transferir_dossie($c->stash->{id_volume}) &&
+       $c->model('Dossie')->pode_criar_dossie($c->req->param('volume_destino'))
+          or $c->detach('/public/default');
+
      eval {
-             $c->model('Dossie')->transferir($id_volume, $controle,  $c->req->param('volume_destino'), $c->req->address ); 
+             $c->model('Dossie')->transferir($c->stash->{id_volume}, $controle,  $c->req->param('volume_destino'), $c->req->address );
           };
     if ($@) {
         $c->flash->{erro} = $@;
@@ -115,7 +128,9 @@ sub transferir : Chained('base') : PathPart('transferir') : Args(2) {
     else {
         $c->flash->{sucesso} = 'Alterado com sucesso!';
     }
-    $c->res->redirect( $c->uri_for('/auth/registros/volume/' . $id_volume) );
+
+    $self->audit_alterar('transferir: ',$controle);
+    $c->res->redirect( $c->uri_for_action('/auth/registros/volume/dossie/lista',[ $c->stash->{id_volume} ]) );
 }
 
 =head1 COPYRIGHT AND LICENSING

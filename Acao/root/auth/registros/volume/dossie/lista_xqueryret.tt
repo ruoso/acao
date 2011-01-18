@@ -2,16 +2,16 @@
     <tr>
 
         <td>
-	       <a href="[% c.uri_for('/auth/registros/volume/') _ id_volume %]/{$x/ns:controle/text()}" >
+         <a href="[% c.uri_for_action('/auth/registros/volume/dossie/documento/lista', [ id_volume, '___id_dossie___' ]).replace('___id_dossie___','{$x/ns:controle/text()}') %]" >
                <span title="{$x/ns:controle/text()}">{substring($x/ns:controle/text(),0, 10)}... </span>
            </a>
         </td>
 
         <td>
-			<span title="{$x/ns:nome/text()}">
-			 	<!--{if (string-length($x/ns:nome/text()) > 30) then (substring($x/ns:nome/text(),0,30)) else ($x/ns:nome/text())}-->
+      <span title="{$x/ns:nome/text()}">
+         <!--{if (string-length($x/ns:nome/text()) > 30) then (substring($x/ns:nome/text(),0,30)) else ($x/ns:nome/text())}-->
                 {$x/ns:nome/text()}
-			</span>
+      </span>
         </td>
 
         <td>
@@ -29,11 +29,11 @@
         </td>
 
         <td>
-	       { if ( $x/ns:representaDossieFisico/text() = 1 ) then ("Sim") else ("Não") }
+         { if ( $x/ns:representaDossieFisico/text() = 1 ) then ("Sim") else ("Não") }
         </td>
 
         <td class="longDateFormat">
-	        {$x/ns:criacao/text()}
+          {$x/ns:criacao/text()}
         </td>
 
         {if ( $x/ns:fechamento/text() eq '1970-01-01T00:00:00Z' ) then (
@@ -49,24 +49,26 @@
          ) }
 
         <td>
-	        {$x/ns:estado/text()}
+          {$x/ns:estado/text()}
         </td>
 
         <td colspan="4">
-             <a href="[% c.uri_for('/auth/registros/volume/dossie/transferir_lista/') _ id_volume %]/{$x/ns:controle/text()}" class="transferir" title="transferir"> transferir </a>
+        [% IF c.model('Dossie').pode_transferir_dossie(id_volume) %]
+             <a href="[% c.uri_for_action('/auth/registros/volume/dossie/transferir_lista', [ id_volume ], '___id_dossie___').replace('___id_dossie___','{$x/ns:controle/text()}') %]" class="transferir" title="transferir"> transferir </a>
+        [% END %]
         </td>
         <td width="60px">
            { if ( $x/ns:estado/text() eq 'fechado') then (
-	       <a href="[% c.uri_for('/auth/registros/volume/dossie/alterar_estado/') _ id_volume %]/{$x/ns:controle/text()}/aberto" class="abrir" title="abrir" > Abrir </a>
+         <a href="[% c.uri_for_action('/auth/registros/volume/dossie/alterar_estado', [ id_volume ], '___id_dossie___','aberto').replace('___id_dossie___','{$x/ns:controle/text()}') %]" class="abrir" title="abrir" > Abrir </a>
            ) else ( )}
            { if ( $x/ns:estado/text() eq 'aberto') then (
-           <a href="[% c.uri_for('/auth/registros/volume/dossie/alterar_estado/') _ id_volume %]/{$x/ns:controle/text()}/fechado" class="fechar" title="Fechar" onClick="return confirmaFechamento()"> Fechar </a>
+           <a href="[% c.uri_for_action('/auth/registros/volume/dossie/alterar_estado', [ id_volume ], '___id_dossie___','fechado').replace('___id_dossie___','{$x/ns:controle/text()}') %]" class="fechar" title="Fechar" onClick="return confirmaFechamento()"> Fechar </a>
            ) else ( )}
            { if ( $x/ns:estado/text() eq 'arquivado') then (
-           <a href="[% c.uri_for('/auth/registros/volume/dossie/alterar_estado/') _ id_volume %]/{$x/ns:controle/text()}/fechado" class="fechar" title="Resgatar" onClick="return confirmaResgate()"> Fechar </a>
+           <a href="[% c.uri_for_action('/auth/registros/volume/dossie/alterar_estado', [ id_volume ], '___id_dossie___','fechado').replace('___id_dossie___','{$x/ns:controle/text()}') %]" class="fechar" title="Resgatar" onClick="return confirmaResgate()"> Fechar </a>
            ) else ( )}
-           { if ( $x/ns:estado/text() eq 'fechado' ) then (    
-           <a href="[% c.uri_for('/auth/registros/volume/dossie/alterar_estado/') _ id_volume %]/{$x/ns:controle/text()}/arquivado" class="arquivar" title="Arquivar" onClick="return confirmaArquivamento()"> Arquivar </a>
+           { if ( $x/ns:estado/text() eq 'fechado' ) then (
+           <a href="[% c.uri_for_action('/auth/registros/volume/dossie/alterar_estado', [ id_volume ], '___id_dossie___','arquivado').replace('___id_dossie___','{$x/ns:controle/text()}') %]" class="arquivar" title="Arquivar" onClick="return confirmaArquivamento()"> Arquivar </a>
          ) else ( )}
         </td>
         <input type="hidden" id="id_dossie" nome="id_dossie" value="{$x/ns:collection/text()}"/>

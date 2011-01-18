@@ -21,9 +21,9 @@
 <h1>Registros</h1>
 [%usuario%]
 <ul>
- <li><a href="[%c.uri_for('digitador')%]">Digitador</a></li>
- <li><a href="[%c.uri_for('revisor')%]">Revisor</a></li>
- <li><a href="[%c.uri_for('consolidador')%]">Consolidador</a></li>
- <li><a href="[%c.uri_for('volume')%]">Volume</a></li>
+ <li><a href="[%c.uri_for_action('/auth/registros/digitador/lista')%]">Digitador</a></li>
+ <li><a href="[%c.uri_for_action('/auth/registros/revisor/lista')%]">Revisor</a></li>
+ <li><a href="[%c.uri_for_action('/auth/registros/consolidador/lista')%]">Consolidador</a></li>
+ <li><a href="[%c.uri_for_action('/auth/registros/volume/lista')%]">Volume</a></li>
 </ul>
 [% INCLUDE 'footer.tt' %]

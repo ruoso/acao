@@ -55,7 +55,7 @@ sub login : Chained('base') : PathPart('') : Args(0) {
       $c->get_auth_realm(Acao->config->{'Plugin::Authentication'}{default_realm})->store->user_basedn($c->req->param('dominio'));
         if ( $c->authenticate( { id => $user, password => $password } ) ) {
             $c->res->redirect(
-                $c->uri_for( $c->controller('auth')->action_for('principal') )
+                $c->uri_for_action('/auth/principal')
             );
             return;
         }
