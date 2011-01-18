@@ -31,7 +31,7 @@
 
 [%# definição da variavel schema para este template %]
 
-[%  c.model('Sedna').conn.setConnectionAttr_CONCURRENCY_TYPE(c.model('Sedna').conn.SEDNA_READONLY_TRANSACTION); %]
+[%#  c.model('Sedna').conn.setConnectionAttr_CONCURRENCY_TYPE(c.model('Sedna').conn.SEDNA_READONLY_TRANSACTION); %]
 
 [% CALL c.model('Sedna').begin %]
 [% SET schema = c.model('Sedna').get_collection('volume') %]
@@ -69,7 +69,7 @@
 
 [% TRY %]
    [% xqueryret = PROCESS 'auth/registros/volume/lista_xqueryret.tt';
-        c.model('Sedna').conn.setConnectionAttr_CONCURRENCY_TYPE(c.model('Sedna').conn.SEDNA_READONLY_TRANSACTION);
+        #c.model('Sedna').conn.setConnectionAttr_CONCURRENCY_TYPE(c.model('Sedna').conn.SEDNA_READONLY_TRANSACTION);
         xquery = c.model('Volume').listar_volumes({
                               'xqueryret' => xqueryret,
                              'ip' => c.req.address,

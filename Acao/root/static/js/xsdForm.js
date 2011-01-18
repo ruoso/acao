@@ -63,15 +63,6 @@ function getByName(strId) {
     return document.getElementsByName(strId);
 }
 
-function docWrite(text) {
-    document.write( text );
-}
-
-function docWriteBr(text) {
-    document.write( text );
-    document.write( '<br>' );
-}
-
 function xmlLoader(pathXML) {
     var loader;
     if (window.XMLHttpRequest) {
@@ -195,6 +186,7 @@ function generateFormFromNode(tagRaiz, xmlNode, namePattern) {
     var label;
     var type = getValueAttributeByName(xmlNode, "type");
     var minOccurs = getValueAttributeByName(xmlNode, "minOccurs");
+    if (minOccurs == null) {minOccurs = 1}
     if (type != null && static_type(type)) {
         return generateFormField(tagRaiz, xmlNode, type, namePattern, minOccurs);
     } else if (type != null) {
@@ -232,6 +224,7 @@ function generateFormFromNode(tagRaiz, xmlNode, namePattern) {
 function generateXmlFromNode(odoc, namespace, tagRaiz, xmlNode, namePattern) {
     var type = getValueAttributeByName(xmlNode, "type");
     var minOccurs = getValueAttributeByName(xmlNode, "minOccurs");
+    if (minOccurs == null) {minOccurs = 1}
     if (type != null && static_type(type)) {
         // pre-defined types
         if (type == "xs:integer"  ||
@@ -332,25 +325,18 @@ function generateFormFromSimpleTypeNode(tagRaiz, xmlNode, namePattern, name, lab
             return generateFormFromSimpleTypeNodeRestrictionEnumeration(tagRaiz, xmlNode, namePattern, name, label, minOccurs);
         } else if (restrictionNode.childNodes[i].nodeType == 1 && restrictionNode.childNodes[i].nodeName == 'xs:maxLength'  ) {
             return generateFormFromSimpleTypeNodeRestrictionMaxLength(tagRaiz, xmlNode, namePattern, name, label, minOccurs);
+        } else if (restrictionNode.childNodes[i].nodeType == 1 && restrictionNode.childNodes[i].nodeName == 'xs:fractionDigits'  ) {
+            return createFieldDecimal(namePattern, name, label);
         }
     }
 }
 
 function generateFormFromSimpleTypeNodeRestrictionEnumeration(tagRaiz, xmlNode, namePattern, name, label, minOccurs){
     var inputName = namePattern + "__" + name;
-    var divValidation = document.createElement('div');
-    divValidation.setAttribute('name', 'xsdFormValidation')
 
     var frag = document.createDocumentFragment();
     var dt = document.createElement('dt');
     var dd = document.createElement('dd');
-
-    var divRequiredField = document.createElement('div');
-    divRequiredField.setAttribute('name', 'requiredField')
-    divRequiredField.setAttribute('style', 'display:none;')
-
-    var required = ( minOccurs == '0' )? 'false': 'true';
-    divRequiredField.appendChild( document.createTextNode( required ) );
 
     var newSelect = document.createElement('select');
     newSelect.name  = inputName;
@@ -377,10 +363,7 @@ function generateFormFromSimpleTypeNodeRestrictionEnumeration(tagRaiz, xmlNode, 
 
     dt.appendChild(newLabel);
 
-    divValidation.appendChild(newSelect);
-    divValidation.appendChild(divRequiredField);
-
-    dd.appendChild(divValidation);
+    dd.appendChild(newSelect);
     dt.appendChild(newLabel);
     frag.appendChild(dt);
     frag.appendChild(dd);
@@ -391,18 +374,6 @@ function generateFormFromSimpleTypeNodeRestrictionEnumeration(tagRaiz, xmlNode, 
 function generateFormFromSimpleTypeNodeRestrictionMaxLength(tagRaiz, xmlNode, namePattern, name, label, minOccurs){
     var inputName = namePattern + "__" + name;
 
-    var divValidation = document.createElement('div');
-    divValidation.setAttribute('name', 'xsdFormValidation')
-     
-    var divRequiredField = document.createElement('div');
-    divRequiredField.setAttribute('name', 'requiredField')
-    divRequiredField.setAttribute('style', 'display:none;')
-
-    var required = ( minOccurs == '0' )? 'false': 'true';
-    divRequiredField.appendChild( document.createTextNode( required ) );
-    divValidation.appendChild(createInput('text' ,inputName, inputName));
-    divValidation.appendChild(divRequiredField);
-
     var newLabel = document.createElement("label");
     newLabel.innerHTML = label;
     newLabel.htmlFor = inputName;
@@ -410,7 +381,7 @@ function generateFormFromSimpleTypeNodeRestrictionMaxLength(tagRaiz, xmlNode, na
     var dt = document.createElement('dt');
     var dd = document.createElement('dd');
     dt.appendChild(newLabel);
-    dd.appendChild(divValidation);
+    dd.appendChild(createInput('text' ,inputName, inputName));
 
     var frag = document.createDocumentFragment();
     frag.appendChild(dt);
@@ -452,18 +423,30 @@ function getTextTagInAnnotationAppinfo(xmlNode, strTag, annotation) {
 }
 
 function generateXmlFromSimpleTextNode(odoc, namespace, tagRaiz, xmlNode, namePattern) {
-
+    var type = getValueAttributeByName(xmlNode, "type");
     var name = getValueAttributeByName(xmlNode, "name");
     var minOccurs = getValueAttributeByName(xmlNode, "minOccurs");
+    if (minOccurs == null) {minOccurs = 1}
     var inputName = namePattern + "__" + name;
     var valueField = getById(inputName).value;
 
-    if ( minOccurs != '0' || valueField != '' ) {
-        var tag = odoc.createElementNS(namespace, name);
-        var content = odoc.createTextNode( valueField );
-        tag.appendChild(content);
-        return tag;
-    } else if ( minOccurs == '0' ) {
+    if ( minOccurs > 0 && valueField == '' ) {
+        throw "Campo obrigatório";
+    } else if ( valueField != '' ) {
+        // valida mandatorio
+        if (!validateValue(type, valueField)) {
+            $('#'+inputName+"_input_deflate").addClass('xsd__validationfailed');
+            $('#'+inputName).addClass('xsd__validationfailed');
+            throw "Erro de validação";
+        } else {
+            $('#'+inputName+"_input_deflate").removeClass('xsd__validationfailed');
+            $('#'+inputName).removeClass('xsd__validationfailed');
+            var tag = odoc.createElementNS(namespace, name);
+            var content = odoc.createTextNode( valueField );
+            tag.appendChild(content);
+            return tag;
+        }
+    } else {
         return false;
     }
 
@@ -491,7 +474,7 @@ function generateForm(xsdFile,containerId) {
 
         //carrega o xml
         var xml = xmlLoader(xsdFile);
-        var tagRaiz  = xml.getElementsByTagName('xs:schema')[0];
+        var tagRaiz  = xml.getElementsByTagNameNS('http://www.w3.org/2001/XMLSchema','schema')[0];
         var elemRoot = getNodeByTagName(tagRaiz, 'xs:element'); // elemento raiz
         var elHtml = generateFormFromNode(tagRaiz, elemRoot, "xsdform___");
         getById(containerId).appendChild( elHtml );
@@ -528,97 +511,12 @@ function generateXml(xsdFile, input_to_set) {
     var type;
     var firstFieldError = null;
 
-    var arrDivsValidation = getByName('xsdFormValidation');
-
-    this.setFirstFieldError = function(field) {
-        if ( firstFieldError == null ) {
-            firstFieldError = field;
-        }
-    }
-
-    for (var i = 0; i < arrDivsValidation.length; i++) {
-        divParent = arrDivsValidation[i];
-        messageError = false;
-
-        // percorre a div que contem o campo
-        for (var j = 0; j < divParent.childNodes.length; j++) {
-
-            if ( divParent.childNodes[j].nodeName == 'INPUT' || divParent.childNodes[j].nodeName == 'TEXTAREA') {
-                field = divParent.childNodes[j];
-
-            } else if ( divParent.childNodes[j].nodeName == 'DIV' && getValueAttributeByName(divParent.childNodes[j], 'name' ) == 'requiredField' ) {
-                requiredField = divParent.childNodes[j].innerHTML;
-
-            } else if ( divParent.childNodes[j].nodeName == 'DIV' && getValueAttributeByName(divParent.childNodes[j], 'name' ) == 'messageError' ) {
-                messageError = true;
-                divMessageError = divParent.childNodes[j];
-
-            } else if ( divParent.childNodes[j].nodeName == 'DIV' && getValueAttributeByName(divParent.childNodes[j], 'name' ) == 'type' ) {
-                type = divParent.childNodes[j].innerHTML;
-
-            } else if ( divParent.childNodes[j].nodeName == 'SELECT' ) {
-                field = divParent.childNodes[j];
-
-            }
-
-        }
-
-
-        if ( requiredField == 'true' ) {
-            if ( field.nodeName == 'INPUT' || field.nodeName == 'TEXTAREA') {
-                if ( messageError ) {
-                    if ( field.value == '' ) {
-                        submitForm = false;
-                        this.setFirstFieldError(field);
-                    } else {
-                        divMessageError.parentNode.removeChild( divMessageError );
-                    }
-                } else if ( field.value == '' ) {
-                    div = createDivError('campo obrigatório.', 'messageError');
-                    divParent.appendChild(div);
-                    submitForm = false;
-                    this.setFirstFieldError(field);
-                }
-            } else if ( field.nodeName == 'SELECT' ) {
-                if ( messageError ) {
-                    if ( field.options[field.selectedIndex].text == '' ) {
-                        submitForm = false;
-                        this.setFirstFieldError(field);
-                    } else {
-                        divMessageError.parentNode.removeChild( divMessageError );
-                    }
-                } else if ( field.options[field.selectedIndex].text == '' ) {
-                    div = createDivError('campo obrigatório.', 'messageError');
-                    divParent.appendChild(div);
-                    submitForm = false;
-                    this.setFirstFieldError(field);
-                }
-            }
-        }
-
-        if ( type == 'xs:date' && !validateDateField(field) ) {
-            this.setFirstFieldError(field);
-            submitForm = false;
-        } else if ( type == 'xs:dateTime' && !validateDateTimeField(field) ) {
-            this.setFirstFieldError(field);
-            submitForm = false;
-        } else if ( type == 'xs:float' && !validateFloatField(field) ) {
-            this.setFirstFieldError(field);
-            submitForm = false;
-        }
-
-    }
-
-    if ( submitForm == false ) {
-        alert('Dados inconsistentes.');
-        firstFieldError.focus();
-        return false;
-    }
-
     try {
         var xml = xmlLoader(xsdFile);
-        var tagRaiz  = xml.getElementsByTagName('xs:schema')[0];
+        var tagRaiz  = xml.getElementsByTagNameNS('http://www.w3.org/2001/XMLSchema','schema')[0];
         var elemRoot = getNodeByTagName(tagRaiz, 'xs:element'); // elemento raiz
+
+        validateMandatory();
         // adicionar xmlns="..." de acordo com o atributo 'targetNamespace' do
 	// xml schema.
         var namespace = getValueAttributeByName(tagRaiz,'targetNamespace');
@@ -631,297 +529,99 @@ function generateXml(xsdFile, input_to_set) {
 
 
     } catch (myError) {
-        alert( myError.name + ': ' + myError.message + "\n" + myError);
-    }
-}
-
-function integerField(obj) {
-    var expRegNumInt = /^\d+$/; // só números
-
-    if ( !expRegNumInt.test(obj.value) ) {
-        obj.value = obj.value.substr(0, (obj.value.length - 1));
-    }
-    obj.focus();
-}
-
-function validateDate(objInputText) {
-    if (objInputText.value != "") {
-        var dia = parseInt( objInputText.value.substring(8,10), 10 );
-        var mes = parseInt( objInputText.value.substring(5,7), 10 );
-        var ano = parseInt( objInputText.value.substring(0,4), 10 );
-
-        var DateVal = mes + "/" + dia + "/" + ano;
-        var date = new Date(DateVal);
-        var mesValid = (mes - 1); // o metodo getMonth retorna o mes porem janeiro é zero
-
-        if ( date.getDate() != dia ) {
-            return false;
-        } else if ( date.getMonth() != mesValid ) {
-            return false;
-        } else if ( date.getFullYear() != ano ) {
-            return false;
-        }
-        return true;
-    } else {
-        return true;
-    }
-}
-
-function validateDateTime(pObj) {
-    if (pObj.value != "") {
-        var dia = parseInt( pObj.value.substring(8,10), 10 );
-        var mes = parseInt( pObj.value.substring(5,7), 10 );
-        var ano = parseInt( pObj.value.substring(0,4), 10 );
-
-        var hora = parseInt( pObj.value.substring(11,13), 10 );
-        var minuto = parseInt( pObj.value.substring(14,16), 10 );
-        var segundo = parseInt( pObj.value.substring(17,19), 10 );
-
-        var DateVal = mes + "/" + dia + "/" + ano + ' ' + hora + ':' + minuto + ':' + segundo;
-        var date = new Date(DateVal);
-        var mesValid = (mes - 1); // o metodo getMonth retorna o mes porem janeiro é zero
-
-        if ( date.getDate() != dia ) {
-            return false;
-        } else if ( date.getMonth() != mesValid ) {
-            return false;
-        } else if ( date.getFullYear() != ano ) {
-            return false;
-        } else if ( date.getHours() != hora ) {
-            return false;
-        } else if ( date.getHours() != hora ) {
-            return false;
-        } else if ( date.getMinutes() != minuto ) {
-            return false;
-        } else if ( date.getSeconds() != segundo ) {
-            return false;
-        }
-        return true;
-    } else {
-        return true;
-    }
-}
-
-function validateFloat(pObj) {
-    var expRegNumInt = /^\d+(\.\d+)?$/; // float
-    if (pObj.value != "") {
-        if (!expRegNumInt.test(pObj.value)) {
-            return false;
+        if (myError.name != null) {
+            alert( myError.name + ': ' + myError.message + "\n" + myError);
         } else {
-            return true;
-        }
-    } else {
-        return true;
-    }
-}
-
-function mascaraData(objFieldDate, evt) {
-    var expRegNumInt = /^\d+$/; // só números
-
-    if ( !expRegNumInt.test( onlyNumbersDateTime( objFieldDate.value ) ) ) {
-        objFieldDate.value = objFieldDate.value.substr(0, (objFieldDate.value.length - 1));
-        return false;
-    }
-
-    evt = (evt) ? evt : ((window.event) ? event : null);
-    if (evt.keyCode != 8 && evt.keyCode != 46) {
-        objFieldDate.value = formatDate(objFieldDate.value);
-        return true;
-    }
-}
-
-function onlyNumbersDateTime(str) {
-    var expRegTrim = /:|-|T/g;
-    return str.replace(expRegTrim, '');
-}
-
-function formatDateTime(strDate) {
-    if (strDate.length == 4 || strDate.length == 7 ) {
-        strDate += '-';
-    } else if ( strDate.length == 10 ) {
-        strDate += 'T';
-    } else if ( strDate.length == 13 || strDate.length == 16 ) {
-        strDate += ':';
-    }
-    return strDate;
-}
-
-function formatDate(strDate) {
-    if (strDate.length == 4 || strDate.length == 7 ) {
-        strDate += '-';
-    }
-    return strDate;
-}
-
-function mascaraDateTime(objFieldDate, evt) {
-    var date = objFieldDate.value;
-    var expRegNumInt = /^\d+$/; // só números
-
-    if ( !expRegNumInt.test( onlyNumbersDateTime( objFieldDate.value ) ) ) {
-        objFieldDate.value = objFieldDate.value.substr(0, (objFieldDate.value.length - 1));
-        return false;
-    }
-
-    evt = (evt) ? evt : ((window.event) ? event : null);
-    if (evt.keyCode != 8 && evt.keyCode != 46) {
-        objFieldDate.value = formatDateTime(date);
-        return true;
-    }
-}
-
-function validateDateField(obj) {
-    if ( !validateDate(obj) ) {
-
-        if ( getById('fieldDate__' + obj.id) == null ) {
-            var div = createDivError('Data Inválida.');
-            div.id = 'fieldDate__' + obj.id;
-
-            var containerField = obj.parentNode;
-            containerField.appendChild( div );
-        } else {
-            div = getById('fieldDate__' + obj.id);
+            alert(myError);
         }
         return false;
-
-    } else {
-        try {
-            removeById('fieldDate__' + obj.id);
-        } catch (obgError) {
-        }
-        return true;
-
     }
 }
 
-function validateDateTimeField(obj) {
-    if ( !validateDateTime(obj) ) {
-
-        if ( getById('fieldDate__' + obj.id) == null ) {
-            var div = createDivError('Data e/ou Hora Inválida(s).');
-            div.id = 'fieldDate__' + obj.id;
-
-            var containerField = obj.parentNode;
-            containerField.appendChild( div );
-        } else {
-            div = getById('fieldDate__' + obj.id);
-        }
-        return false;
-
-    } else {
-        try {
-            removeById('fieldDate__' + obj.id);
-        } catch (obgError) {
-        }
-        return true;
+function createFieldString(name, minOccurs) {
+    var field = createTextArea(name);
+    if (minOccurs > 0) {
+        field.setAttribute('class', 'xsdForm__mandatory')
     }
-}
 
-function validateFloatField(obj) {
-    if ( !validateFloat(obj) ) {
-
-        if ( getById('fieldFloat__' + obj.id) == null ) {
-            var div = createDivError('Valor inválido.');
-            div.id = 'fieldFloat__' + obj.id;
-            
-
-            var containerField = obj.parentNode;
-            containerField.appendChild( div );
-        } else {
-            div = getById('fieldFloat__' + obj.id);
-        }
-        return false;
-
-    } else {
-        try {
-            removeById('fieldFloat__' + obj.id);
-        } catch (obgError) {
-        }
-        return true;
-    }
-}
-
-function onlyNumbersFloat(str) {
-    var expRegTrim = /\./g;
-    return str.replace(expRegTrim, '');
-}
-
-function floatField(obj) {
-    //var expText = /[a-zA-Z]|,|ç/; // texto
-    var expText = /\d|\./;
-    var caractere;
-    for (var i = 0 ; i < obj.value.length ; i++) {
-        caractere = obj.value.charAt(i);
-        if (!expText.test(caractere)) {
-            obj.value = obj.value.replace(caractere,'');
-        }
-    }
-    obj.focus();
-}
-
-function formatCurrency(o, n, dig, dec) {
-    new function(c, dig, dec, m){
-        addEvent(o, "keypress", function(e, _){
-                if((_ = e.key == 45) || e.key > 47 && e.key < 58){
-                    var o = this, d = 0, n, s, h = o.value.charAt(0) == "-" ? "-" : "",
-                        l = (s = (o.value.replace(/^(-?)0+/g, "$1") + String.fromCharCode(e.key)).replace(/\D/g, "")).length;
-                    m + 1 && (o.maxLength = m + (d = o.value.length - l + 1));
-                    if(m + 1 && l >= m && !_) return false;
-                    l <= (n = c) && (s = new Array(n - l + 2).join("0") + s);
-                    for(var i = (l = (s = s.split("")).length) - n; (i -= 3) > 0; s[i - 1] += dig);
-                    n && n < l && (s[l - ++n] += dec);
-                    _ ? h ? m + 1 && (o.maxLength = m + d) : s[0] = "-" + s[0] : s[0] = h + s[0];
-                    o.value = s.join("");
-                }
-                e.key > 30 && e.preventDefault();
-            });
-    }(!isNaN(n) ? Math.abs(n) : 2, typeof dig != "string" ? "." : dig, typeof dec != "string" ? "," : dec, o.maxLength);
-}
-
-function createFieldString(name) {
-    return createTextArea(name);
-}
-
-function createFieldFloat(name) {
-    var field;
-    field = createInput('text', name);
-    //field.setAttribute('onkeypress','floatField(this);bloquearTexto(event)');
-    field.setAttribute('onkeypress','return validaCampoNumerico(event,"float");');
-    //field.setAttribute('onkeyup','floatField(this);');
-    field.setAttribute('onblur', 'validateFloatField(this,event);');
     return field;
 }
 
-function createFieldInteger(name) {
+function createFieldFloat(name, minOccurs) {
     var field;
     field = createInput('text', name);
-    //field.setAttribute('onchange', 'integerField(this);');
-    //field.setAttribute('onkeypress', 'integerField(this);');
-    field.setAttribute('onkeypress','return validaCampoNumerico(event,"integer");');
-    //field.setAttribute('onkeyup', 'integerField(this);');
+    field.setAttribute('class','xsdForm__float');
+    if (minOccurs > 0) {
+        field.setAttribute('class', 'xsdForm__float xsdForm__mandatory')
+    }
     return field;
 }
 
-function createFieldDate(name) {
+function createFieldInteger(name, minOccurs) {
+    var field;
+    field = createInput('text', name);
+    field.setAttribute('class','xsdForm__integer');
+    if (minOccurs > 0) {
+        field.setAttribute('class', 'xsdForm__integer xsdForm__mandatory')
+    }
+    return field;
+}
+
+function createFieldDate(name, minOccurs) {
     var field;
     field = createInput('text', name);
     field.setAttribute('maxlength', '10');
-    field.setAttribute('onkeypress', 'mascaraData(this, event);');
-    field.setAttribute('onkeyup', 'mascaraData(this, event);');
-    field.setAttribute('onblur', 'validateDateField(this,event);');
+    field.setAttribute('class', 'xsdForm__date');
+    //field.setAttribute('onblur', 'validateValues()');
+    if (minOccurs > 0) {
+        field.setAttribute('class', 'xsdForm__date xsdForm__mandatory')
+    }
     return field;
 }
 
-function createFieldDateTime(name) {
+function createFieldDateTime(name, minOccurs) {
     var field;
     field = createInput('text', name);
     field.setAttribute('maxlength', '19');
-    field.setAttribute('onkeypress', 'mascaraDateTime(this,event);');
-    field.setAttribute('onkeyup', 'mascaraDateTime(this,event);');
-    field.setAttribute('onblur', 'validateDateTimeField(this);');
+    field.setAttribute('class','xsdForm__dateTime');
+    //field.setAttribute('onblur', 'validateValues()');
+    if (minOccurs > 0) {
+        field.setAttribute('class', 'xsdForm__dateTime xsdForm__mandatory')
+    }
     return field;
 }
 
-function createFieldBoolean(name) {
+function createFieldDecimal(namePattern, name, label, minOccurs) {
+    var field;
+    
+    var inputName = namePattern + "__" + name;
+    var frag = document.createDocumentFragment();
+    var dt = document.createElement('dt');
+    var dd = document.createElement('dd');
+
+    var newLabel = document.createElement("label");
+    
+    field = createInput('text', inputName);
+    field.setAttribute('class','xsdForm__decimal');
+
+    if (minOccurs > 0) {
+        field.setAttribute('class', 'xsdForm__decimal xsdForm__mandatory')
+    }
+    
+    newLabel.innerHTML = label;
+    newLabel.htmlFor = inputName;
+
+    dt.appendChild(newLabel);
+
+    dd.appendChild(field);
+    dt.appendChild(newLabel);
+    frag.appendChild(dt);
+    frag.appendChild(dd);
+
+    return frag;
+}
+
+function createFieldBoolean(name, minOccurs) {
     return createInput('checkbox', name);
 }
 
@@ -932,15 +632,17 @@ function generateFormField(tagRaiz, xmlNode, type, namePattern, minOccurs) {
 
     var field;
     if ( type == "xs:string" ) {
-        field = createFieldString(inputName);
+        field = createFieldString(inputName, minOccurs);
     } else if ( type == "xs:float" ) {
-        field = createFieldFloat(inputName);
+        field = createFieldFloat(inputName, minOccurs);
+    } else if ( type == "xs:decimal" ) {
+        field = createFieldDecimal(inputName, minOccurs);
     } else if ( type == "xs:integer" ) {
-        field = createFieldInteger(inputName);
+        field = createFieldInteger(inputName, minOccurs);
     } else if ( type == "xs:date" ) {
-        field = createFieldDate(inputName);
+        field = createFieldDate(inputName, minOccurs);
     } else if ( type == "xs:dateTime" ) {
-        field = createFieldDateTime(inputName);
+        field = createFieldDateTime(inputName, minOccurs);
     } else if ( type == "xs:boolean" ) {
         field = createFieldBoolean(inputName);
     } else {
@@ -960,26 +662,12 @@ function generateFormField(tagRaiz, xmlNode, type, namePattern, minOccurs) {
     } else  {
         var dd = document.createElement('dd');
 
-        var divValidation = document.createElement('div');
-        divValidation.setAttribute('name', 'xsdFormValidation');
-
-        var divRequiredField = document.createElement('div');
-        divRequiredField.setAttribute('name', 'requiredField');
-        divRequiredField.setAttribute('style', 'display:none;');
-
-        var required = ( minOccurs == '0' )? 'false': 'true';
-        divRequiredField.appendChild( document.createTextNode( required ) );
-
         var divType = document.createElement('div');
         divType.setAttribute('name', 'type');
         divType.setAttribute('style', 'display:none;');
         divType.appendChild( document.createTextNode( type ) );
 
-        divValidation.appendChild(field);
-        divValidation.appendChild(divRequiredField);
-        divValidation.appendChild(divType);
-
-        dd.appendChild(divValidation);
+        dd.appendChild(field);
         dt.appendChild(newLabel);
         frag.appendChild(dt);
         frag.appendChild(dd);
@@ -1037,98 +725,112 @@ function insereValor(nameField,valor) {
     }
 }
 
-function validaCampoNumerico(objEvento, type) {
-    var iKeyCode;
+function validateMandatory() {
+    var error = 0;
+    $('.xsdForm__mandatory').each(function() {
+        if ($(this).val() == null ||
+            $(this).val() == "") {
+            $(this).addClass('xsd__validationfailed');
+            error = 1;
+        } else {
+            $(this).removeClass('xsd__validationfailed');
+        }
+    });
+    if (error) {
+        throw "Campos obrigatórios não preenchidos";
+    }
+}
 
-    if(objEvento.keyCode)
-        {
-            iKeyCode = objEvento.keyCode;
-        }
-    else if(objEvento.which)
-        {
-            iKeyCode = objEvento.which;
-        }
-    else if(objEvento.charCode)
-        {
-            iKeyCode = objEvento.charCode;
-        }
-    else
-        {
-            iKeyCode = void(0);
-        }
+function validateDate(value) {
+    var dia = parseInt( value.substring(8,10), 10 );
+    var mes = parseInt( value.substring(5,7), 10 );
+    var ano = parseInt( value.substring(0,4), 10 );
 
-    if (type == "float") {
-        return validaFloat(iKeyCode);
+    var DateVal = mes + "/" + dia + "/" + ano;
+    var date = new Date(DateVal);
+    var mesValid = (mes - 1); // o metodo getMonth retorna o mes porem janeiro é zero
+
+    if ( date.getDate() != dia ) {
+        return false;
+    } else if ( date.getMonth() != mesValid ) {
+        return false;
+    } else if ( date.getFullYear() != ano ) {
+        return false;
+    }
+    return true;
+}
+
+function validateDateTime(value) {
+    var dia = parseInt( value.substring(8,10), 10 );
+    var mes = parseInt( value.substring(5,7), 10 );
+    var ano = parseInt( value.substring(0,4), 10 );
+
+    var hora = parseInt( value.substring(11,13), 10 );
+    var minuto = parseInt( value.substring(14,16), 10 );
+    var segundo = parseInt( value.substring(17,19), 10 );
+
+    var DateVal = mes + "/" + dia + "/" + ano + ' ' + hora + ':' + minuto + ':' + segundo;
+    var date = new Date(DateVal);
+    var mesValid = (mes - 1); // o metodo getMonth retorna o mes porem janeiro é zero
+
+    if ( date.getDate() != dia ) {
+        return false;
+    } else if ( date.getMonth() != mesValid ) {
+        return false;
+    } else if ( date.getFullYear() != ano ) {
+        return false;
+    } else if ( date.getHours() != hora ) {
+        return false;
+    } else if ( date.getHours() != hora ) {
+        return false;
+    } else if ( date.getMinutes() != minuto ) {
+        return false;
+    } else if ( date.getSeconds() != segundo ) {
+        return false;
+    }
+    return true;
+
+}
+
+function validateFloat(value) {
+    var expRegNumInt = /^\d+(\.\d+)?$/; // float
+    if (value != "") {
+        if (!expRegNumInt.test(value)) {
+            return false;
+        } else {
+            return true;
+        }
     } else {
-        return validaInteger(iKeyCode);
+        return true;
     }
 }
 
-function validaFloat(iKeyCode) {
-    switch (iKeyCode) {
-    case 48:
+function validateInteger(value) {
+    var expRegNumInt = /^\d+$/; // float
+    if (value != "") {
+        if (!expRegNumInt.test(value)) {
+            return false;
+        } else {
+            return true;
+        }
+    } else {
         return true;
-    case 49:
-        return true;
-    case 50:
-        return true;
-    case 51:
-        return true;
-    case 52:
-        return true;
-    case 53:
-        return true;
-    case 54:
-        return true;
-    case 55:
-        return true;
-    case 56:
-        return true;
-    case 57:
-        return true;
-    case 46:
-        return true;
-    case 116:
-        return true;
-    case 8:
-        return true;
-    case 9:
-        return true;
-    default:
-        return false;
     }
 }
 
-function validaInteger(iKeyCode) {
-    switch (iKeyCode) {
-    case 48:
+
+function validateValue(type, value) {
+    if (type == "xs:float") {
+        return validateFloat(value);
+    } else if (type == "xs:integer") {
+        return validateInteger(value);
+    } else if (type == "xs:decimal") {
+        return validateFloat(value);
+    } else if (type == "xs:date") {
+        return validateDate(value);
+    } else if (type == "xs:dateTime") {
+        return validateDateTime(value);
+    } else {
         return true;
-    case 49:
-        return true;
-    case 50:
-        return true;
-    case 51:
-        return true;
-    case 52:
-        return true;
-    case 53:
-        return true;
-    case 54:
-        return true;
-    case 55:
-        return true;
-    case 56:
-        return true;
-    case 57:
-        return true;
-    case 116:
-        return true;
-    case 8:
-        return true;
-    case 9:
-        return true;
-    default:
-        return false;
     }
-    return false;
 }

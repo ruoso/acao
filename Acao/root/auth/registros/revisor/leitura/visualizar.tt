@@ -18,7 +18,11 @@
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
 %]
 [% INCLUDE 'auth/registros/revisor/leitura/visualizar/header.tt' %]
+<script SRC="[% c.uri_for('/static/js/input.deflate.plugin.js') %]" language="Javascript" ></script>
+<script SRC="[% c.uri_for('/static/js/regex-mask-plugin.js') %]" language="Javascript" ></script>
+<script SRC="[% c.uri_for('/static/js/jquery.meio.mask.js') %]" language="Javascript" ></script>
 <script SRC="[% c.uri_for('/static/js/xsdForm.js') %]" language="Javascript" ></script>
+<script SRC="[% c.uri_for('/static/js/xsdForm-ui.js') %]" language="Javascript" ></script>
 
  <form action="[% c.uri_for_action('/auth/registros/revisor/leitura/store',
                                    [ leitura.id_leitura,
@@ -67,6 +71,7 @@
                                    [ leitura.id_leitura,
                                      id_doc
                                    ],{}) %]");
+   generateXsdFormUI();
  </script>
 
 

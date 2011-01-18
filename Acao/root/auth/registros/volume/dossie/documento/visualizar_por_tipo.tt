@@ -22,7 +22,11 @@
 [% SET dos = ( c.model('Documento').getDadosDossie(id_volume, controle) ) %]
 [% SET iteration = 0 %]
 
+<script SRC="[% c.uri_for('/static/js/input.deflate.plugin.js') %]" language="Javascript" ></script>
+<script SRC="[% c.uri_for('/static/js/regex-mask-plugin.js') %]" language="Javascript" ></script>
+<script SRC="[% c.uri_for('/static/js/jquery.meio.mask.js') %]" language="Javascript" ></script>
 <script SRC="[% c.uri_for('/static/js/xsdForm.js') %]" language="Javascript" ></script>
+<script SRC="[% c.uri_for('/static/js/xsdForm-ui.js') %]" language="Javascript" ></script>
 
 <form action="[% c.uri_for_action('/auth/registros/volume/dossie/documento/store', [ id_volume , controle ]) %]" method="post"
     onsubmit="return generateXml('[% c.uri_for_action('/auth/registros/xsd/raw', { ns => xsdDocumento } ) %]', this.processed_xml);">
@@ -106,6 +110,7 @@
    generateFormIteration("[% c.uri_for_action('/auth/registros/xsd/raw', { ns => xsdDocumento }) %]", "form_container", "[% iteration %]");
 
    fillValuesIteration  ("[% c.uri_for_action('/auth/registros/volume/dossie/documento/xml', [ id_volume, controle, id_doc] ) %]", "[% iteration %]");
+   generateXsdFormUI();
 
  </script>
  [% iteration = iteration + 1 %]
