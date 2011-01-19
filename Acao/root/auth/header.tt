@@ -25,7 +25,7 @@
         <link href='[% c.uri_for('/static/css/ui-lightness/jquery-ui-1.7.2.custom.css') %]' rel='stylesheet' type='text/css' />
         <link href='[% c.uri_for('/static/css/estilo.css') %]' rel='stylesheet' type='text/css' />
       	<script language='javascript' src='[% c.uri_for('/static/js/plugins/jquery.js') %]'></script>
-      	<script language='javascript' src='[% c.uri_for('/static/js/plugins/jquery-1.3.2.min.js') %]'></script>
+      	<script language='javascript' src='[% c.uri_for('/static/js/plugins/jquery-1.4.4.min.js') %]'></script>
       	<script language='javascript' src='[% c.uri_for('/static/js/funcoes.js') %]'></script>
 
 		<!--Instituto Atlântico-->
@@ -58,11 +58,11 @@
         </div>
         <div id='barraTopo'>
             <ul>
-                <li style="float: right"><a href="[% c.uri_for('/auth/logout') %]" title="Sair">Sair</a></li>
+                <li style="float: right"><a href="[% c.uri_for_action('/auth/logout') %]" title="Sair">Sair</a></li>
             </ul>
         </div>
         <div id='barraTopoCaminho'>
-        	<a href="[%c.uri_for('/')%]" title='Início'>Início</a> »
+        	<a href="[%c.uri_for_action('/public/entrada')%]" title='Início'>Início</a> »
 [% FOREACH item IN breadcrumb %]
         	<a href="[% item.url %]" title='[% item.title %]'>[% item.text %]</a> »
 [% END %]

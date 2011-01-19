@@ -55,62 +55,62 @@
 [% SET dos = ( c.model('Dossie').getDadosDossie(id_volume, controle) ) %]
 
 <div id="accordion">
-	<h3><a href="#">Dados do Volume: [% vol.nome %]</a></h3>
-	<div>		
-		<fieldset class="fieldsetBorderNone">
-			  <dl class="form15">
-				<dt>Volume:</dt>
-				<dd><span>[% vol.nome %]</span></dd>
+  <h3><a href="#">Dados do Volume: [% vol.nome %]</a></h3>
+  <div>
+    <fieldset class="fieldsetBorderNone">
+        <dl class="form15">
+        <dt>Volume:</dt>
+        <dd><span>[% vol.nome %]</span></dd>
 
 				<dt>Classificação:</dt>
 				<dd><span>[% vol.classificacoes %]</span></dd>
 
-				<dt>Localização:</dt>
-				<dd><span>[% vol.localizacao %]</span></dd>
+        <dt>Localização:</dt>
+        <dd><span>[% vol.localizacao %]</span></dd>
 
-				<dt>Estado:</dt>
-				<dd><span>[% vol.estado %]</span></dd>
+        <dt>Estado:</dt>
+        <dd><span>[% vol.estado %]</span></dd>
 
-				<dt>Data Criação:</dt>
-				<dd><span class="longDateFormat">[% vol.criacao %]</span></dd>
+        <dt>Data Criação:</dt>
+        <dd><span class="longDateFormat">[% vol.criacao %]</span></dd>
 
-				<dt>Vol. Físico:</dt>
-				<dd><span>[% vol.volume_fisico %]</span></dd>
-			  </dl>
-		 </fieldset>
+        <dt>Vol. Físico:</dt>
+        <dd><span>[% vol.volume_fisico %]</span></dd>
+        </dl>
+     </fieldset>
 
-	</div>
-	<h3><a href="#">Dados do Prontuário: [% dos.nome %]</a></h3>
-		<div>		
-			<fieldset class="fieldsetBorderNone">
-			   <dl class="form15">
-				<dt> <label> Prontuário: </label> </dt>
-				<dd> <span> [% dos.nome %] </span> </dd>
+  </div>
+  <h3><a href="#">Dados do Prontuário: [% dos.nome %]</a></h3>
+    <div>
+      <fieldset class="fieldsetBorderNone">
+         <dl class="form15">
+        <dt> <label> Prontuário: </label> </dt>
+        <dd> <span> [% dos.nome %] </span> </dd>
 
 				<dt>Classificação:</dt>
 				<dd><span>[% dos.classificacoes %]</span></dd>
 
-				<dt>Localização:</dt>
-				<dd><span>[% dos.localizacao %]</span></dd>
+        <dt>Localização:</dt>
+        <dd><span>[% dos.localizacao %]</span></dd>
 
-				<dt>Estado:</dt>
-				<dd><span>[% dos.estado %]</span></dd>
+        <dt>Estado:</dt>
+        <dd><span>[% dos.estado %]</span></dd>
 
-				<dt>Data Criação:</dt>
-				<dd><span class="longDateFormat">[% dos.criacao %]</span></dd>
+        <dt>Data Criação:</dt>
+        <dd><span class="longDateFormat">[% dos.criacao %]</span></dd>
 
-				<dt>Pront. Físico:</dt>
-				<dd><span>[% dos.dossie_fisico %]</span></dd>
-			  <dl>
-			</fieldset>
+        <dt>Pront. Físico:</dt>
+        <dd><span>[% dos.dossie_fisico %]</span></dd>
+        <dl>
+      </fieldset>
 
-		</div>
+    </div>
 </div>
 <br>
 
 <fieldset>
-  <legend>Filtrar Documentos</legend>	
-  <form>   
+  <legend>Filtrar Documentos</legend>
+  <form>
     <strong>Incluir Documentos Inativos: </strong>
     <input type="checkbox" name="documentos_validos" id="documentos_validos">
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -124,7 +124,7 @@
   </form>
 
   <br/>
-<form action="[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/' _ controle _ '/inserirdocumento') %]" id="form" name="form" method="post" onSubmit="return validaDropDonw()">
+<form action="[% c.uri_for_action('/auth/registros/volume/dossie/documento/form',[ id_volume, controle ]) %]" id="form" name="form" method="post" onSubmit="return validaDropDonw()">
 
 </form>
 <br>
@@ -158,16 +158,17 @@
                                                 num_por_pagina            => num_por_pagina
                                         });
 
-     c.model('Sedna').conn.setConnectionAttr_CONCURRENCY_TYPE(c.model('Sedna').conn.SEDNA_READONLY_TRANSACTION);
+     #c.model('Sedna').conn.setConnectionAttr_CONCURRENCY_TYPE(c.model('Sedna').conn.SEDNA_READONLY_TRANSACTION);
 
  	 c.model('Sedna').begin;
 	 c.model('Sedna').execute( xquery.list );
 
-	 WHILE (doc = c.model('Sedna').get_item);
-		 SET html = c.model('Sedna').get_item;
-	 html;
+   WHILE (doc = c.model('Sedna').get_item);
+        CALL c.controller.audit_listar(doc);
+     SET html = c.model('Sedna').get_item;
+   html;
 
-	 END; %]
+   END; %]
 
  [%# Executa a contagem dos registros para fazer a paginação  %]
  [% c.model('Sedna').execute( xquery.count );
@@ -194,66 +195,66 @@
 </fieldset>
 
 <div id="lstDocumentos" class="hidden panel">
-	<div class="text">
-  		[% c.model('XSD').link_xsd(controle) %]
-	</div>
+  <div class="text">
+      [% c.model('XSD').link_xsd(controle) %]
+  </div>
 </div>
 
 <style rel="stylesheet" type="text/css">
-	.text {
-		padding:10px 10px 10px 10px;
-	}
+  .text {
+    padding:10px 10px 10px 10px;
+  }
 
-	.panel {
-		position:absolute;
-		top:218px;
-		left:291px;
-		background:#FFFFAF;
-		border:3px solid #E6B800;
-		line-height: 1.6em;	
-		height: 300px;
-		width: 300px;
-		overflow: auto;	
-	}
+  .panel {
+    position:absolute;
+    top:218px;
+    left:291px;
+    background:#FFFFAF;
+    border:3px solid #E6B800;
+    line-height: 1.6em;
+    height: 300px;
+    width: 300px;
+    overflow: auto;
+  }
 
-	.selected-option-panel {
-		background-color: #E6B800 !important;
-		border:4px solid #E6B800 !important;
-		color:black !important;
-		text-decoration:none !important;
-	}
-	
+  .selected-option-panel {
+    background-color: #E6B800 !important;
+    border:4px solid #E6B800 !important;
+    color:black !important;
+    text-decoration:none !important;
+  }
+
 </style>
 
 <script language="javascript" type="text/javascript">
 
-	$(function(){
-		//Adicionando evento de click no botão addDocumento
-		$("#addDocument").click(swap);
-		$('body').click(disableAddDocument);
+  $(function(){
+    //Adicionando evento de click no botão addDocumento
+    $("#addDocument").click(swap);
+    $('body').click(disableAddDocument);
 
-	});
+  });
 
-	function swap(event){
-		if($("#lstDocumentos:hidden").length > 0){
-				enableAddDocument();
-				event.stopPropagation();
-			}
-		else{
-				disableAddDocument();
-				event.stopPropagation();
-			}	
-	}
+  function swap(event){
+    if($("#lstDocumentos:hidden").length > 0){
+        enableAddDocument();
+        event.stopPropagation();
+      }
+    else{
+        disableAddDocument();
+        event.stopPropagation();
+      }
+  }
 
-	function enableAddDocument(){
-		$("#addDocument").addClass("selected-option-panel");
-		$("#lstDocumentos").removeClass("hidden");
-	}
-	
-	function disableAddDocument(){
-		$("#addDocument").removeClass("selected-option-panel");
-		$("#lstDocumentos").addClass("hidden");
-	}
+  function enableAddDocument(){
+    $("#addDocument").addClass("selected-option-panel");
+    $("#lstDocumentos").removeClass("hidden");
+  }
+
+  function disableAddDocument(){
+    $("#addDocument").removeClass("selected-option-panel");
+    $("#lstDocumentos").addClass("hidden");
+  }
 
     function validaDropDonw(){
         if (document.getElementById('xsdDocumento').value == '') {

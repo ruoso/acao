@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns:audt="http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd"
 	xmlns:author="http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd"
-        xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+    xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
 	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd"
 	elementFormDefault="qualified">
 	<xs:element name="volume">
@@ -26,7 +25,6 @@
 				<xs:element name="classificacoes" minOccurs="0" type="class:classificacoes"/>
 				<xs:element name="localizacao" type="xs:string" />
                 <xs:element name="autorizacoes" minOccurs="0" type="author:autorizacoes"/>
-                <xs:element name="audit" minOccurs="0" type="audt:audit"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>

@@ -23,7 +23,7 @@
 <span>[%status_msg%]</span>
 <span>[%error_msg%]</span>
 <ul>
- <li><a href="[%c.uri_for('/login')%]">Fazer Login</a></li>
- <li><a href="[%c.uri_for('/auth')%]">&Aacute;rea Autenticada</a></li>
+ <li><a href="[%c.uri_for_action('/public/login/login')%]">Fazer Login</a></li>
+ <li><a href="[%c.uri_for_action('/auth/principal')%]">&Aacute;rea Autenticada</a></li>
 </ul>
 [% INCLUDE 'footer.tt' %]

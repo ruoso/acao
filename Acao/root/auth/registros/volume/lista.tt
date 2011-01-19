@@ -31,7 +31,7 @@
 
 [%# definição da variavel schema para este template %]
 
-[%  c.model('Sedna').conn.setConnectionAttr_CONCURRENCY_TYPE(c.model('Sedna').conn.SEDNA_READONLY_TRANSACTION); %]
+[%#  c.model('Sedna').conn.setConnectionAttr_CONCURRENCY_TYPE(c.model('Sedna').conn.SEDNA_READONLY_TRANSACTION); %]
 
 [% CALL c.model('Sedna').begin %]
 [% SET schema = c.model('Sedna').get_collection('volume') %]
@@ -46,7 +46,7 @@
 <h1 class="titulo-form">Gerenciar Volume |
   <span style="font-size:13px; font-weight:normal;">
     [% IF c.model('Volume').pode_criar_volume %]
-      <a class="criar" href="[% c.uri_for('/auth/registros/volume/criarvolume') %]">Criar Volume</a>
+      <a class="criar" href="[% c.uri_for_action('/auth/registros/volume/form') %]">Criar Volume</a>
   [% END %]
   </span>
 </h1>
@@ -68,17 +68,25 @@
 <TBODY>
 
 [% TRY %]
-	 [% xqueryret = PROCESS 'auth/registros/volume/lista_xqueryret.tt'; 
-        xquery = c.model('Volume').listar_volumes({ 'xqueryret' => xqueryret, 'ip' => c.req.address, 'interval_ini' => interval_ini, 'num_por_pagina' => num_por_pagina });
 
-      # c.model('Sedna').conn.setConnectionAttr_CONCURRENCY_TYPE(c.model('Sedna').conn.SEDNA_READONLY_TRANSACTION);
-      c.model('Sedna').begin;
+   [% xqueryret = PROCESS 'auth/registros/volume/lista_xqueryret.tt';
+        #c.model('Sedna').conn.setConnectionAttr_CONCURRENCY_TYPE(c.model('Sedna').conn.SEDNA_READONLY_TRANSACTION);
+        xquery = c.model('Volume').listar_volumes({
+                              'xqueryret' => xqueryret,
+                             'ip' => c.req.address,
+                             'interval_ini' => interval_ini,
+                             'num_por_pagina' => num_por_pagina
+                            });
+        c.model('Sedna').begin;
+
       c.model('Sedna').execute( xquery.list );
 
       WHILE (volumeid = c.model('Sedna').get_item);
+        CALL c.controller.audit_listar(volumeid);
         SET html = c.model('Sedna').get_item;
         html;
       END;
+
 
       c.model('Sedna').execute( xquery.count );
       WHILE (contador = c.model('Sedna').get_item);
@@ -86,7 +94,7 @@
       END;
 
       c.model('Sedna').commit;
-      c.model('Sedna').conn.setConnectionAttr_CONCURRENCY_TYPE(c.model('Sedna').conn.SEDNA_UPDATE_TRANSACTION) %]
+      #c.model('Sedna').conn.setConnectionAttr_CONCURRENCY_TYPE(c.model('Sedna').conn.SEDNA_UPDATE_TRANSACTION) %]
 
 [% CATCH %]
     <div class="erro">ERRO AO PROCESSAR CONSULTA:

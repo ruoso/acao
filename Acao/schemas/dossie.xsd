@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:doc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd"
-	xmlns:audt="http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd"
     xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
 	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"
 	elementFormDefault="qualified">
@@ -34,7 +33,6 @@
 						<xs:attribute name="dataFim" type="xs:string" use="optional" />
 					</xs:complexType>
 				</xs:element>
-				<xs:element name="audit" type="audt:audit" minOccurs="0" />
 				<xs:element name="doc" type="doc:doc" minOccurs="0" />
 			</xs:sequence>
 		</xs:complexType>

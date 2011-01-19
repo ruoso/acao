@@ -12,13 +12,10 @@ sub base : Chained('/') : PathPart('ldap') : CaptureArgs(0) {
 sub login :Chained('base') :PathPart('') : Args(0) {
     my ( $self, $c) = @_;
     my $mesg = $c->model('Ldap')->search('(cn=bastos_tiago)');
-    warn Dumper($mesg);
-    warn 'WWWWWWWWWWWWWWWWWWWWWWW';
     my @entries = $mesg->entries;
 
-    $c->res->redirect( $c->uri_for( $c->controller('auth')->action_for('principal') ) );
+    $c->res->redirect( $c->uri_for_action('/auth/principal') );
 
-  #  warn $entries[0]->sn;
 }
 
 1;

@@ -1,21 +1,7 @@
 (
   <tr>
     <td>
-	<a title="{$x/dc:id/text()}" href="[% 
-            c.uri_for_action
-		(
-		 '/auth/registros/volume/dossie/documento/visualizar',
-		 [ id_volume, controle ],
-		 '___replace__doc__id___',
-		 '___replace__invalidacao___',
-		 '___replace__docfisico___',
-		 { ns => '___replace__xsd__ns___' }
-                )
-		.replace('___replace__xsd__ns___','{ namespace-uri($x/dc:documento/*/*)}')
-		.replace('___replace__doc__id___','{$x/dc:id/text()}')
-		.replace('___replace__invalidacao___','{$x/dc:invalidacao/text()}')
-		.replace('___replace__docfisico___','{if ($x/dc:representaDocumentoFisico/text() eq "1") then ("true") else ("false")}')
-	   %]">
+        <a title="{$x/dc:id/text()}" href="[% c.uri_for_action('/auth/registros/volume/dossie/documento/visualizar', [ id_volume, controle, '___id_documento___' ]).replace('___id_documento___', '{$x/dc:id/text()}') %]">
           {if ($x/dc:invalidacao/text() ne '1970-01-01T00:00:00Z') then (
              <strike> {$y} </strike>
           ) else (
@@ -29,46 +15,27 @@
     {if ( $x/dc:invalidacao/text() eq '1970-01-01T00:00:00Z' ) then (
         <td class="longDateFormat">
         <x class="longDateFormat">
-            {replace ($x/dc:invalidacao/text(), '1970-01-01T00:00:00Z', '-')} 
+            {replace ($x/dc:invalidacao/text(), '1970-01-01T00:00:00Z', '-')}
         </x>
             {replace(replace ($x/dc:motivoInvalidacao/text(),'erro',' / ERRO'),'replace',' / ALTERAÇÃO')}
         </td>
     ) else (
         <td class="longDateFormat">
         <x class="longDateFormat">
-            {replace ($x/dc:invalidacao/text(), '1970-01-01T00:00:00Z', '-')} 
+            {replace ($x/dc:invalidacao/text(), '1970-01-01T00:00:00Z', '-')}
         </x>
             {replace(replace ($x/dc:motivoInvalidacao/text(),'erro',' / ERRO'),'replace',' / ALTERAÇÃO')}
         </td>
     ) }
 
     <td>
-	  { if ( $x/dc:representaDocumentoFisico/text() eq '1' ) then ("Sim") else ("Não") }
+    { if ( $x/dc:representaDocumentoFisico/text() eq '1' ) then ("Sim") else ("Não") }
     </td>
     <td>
-
-<!--<a title="{$x/dc:audit/adt:auditoria/adt:original/text()}" href="[% c.uri_for('/auth/registros/volume/') _ id_volume _ '/' _ controle %]/visualizar/{$x/dc:audit/adt:auditoria/adt:original/text()}/{substring(namespace-uri($x/dc:documento/*/*),41)}/{$x/dc:invalidacao/text()}/{if ($x/dc:representaDocumentoFisico/text() eq '1') then ('true') else ('false')}" >-->
- { if (exists($x/dc:audit/adt:auditoria/adt:original) ) then (
-	<a title="{$x/dc:id/text()}" href="[% 
-            c.uri_for_action
-		(
-		 '/auth/registros/volume/dossie/documento/visualizar',
-		 [ id_volume, controle ],
-		 '___replace__doc__id__original___',
-		 '___replace__invalidacao___',
-		 '___replace__docfisico___',
-		 { ns => '___replace__xsd__ns___' }
-                )
-		.replace('___replace__xsd__ns___','{ namespace-uri($x/dc:documento/*/*)}')
-		.replace('___replace__doc__id__original___','{$x/dc:audit/adt:auditoria/adt:original/text()}')
-		.replace('___replace__invalidacao___','{$x/dc:invalidacao/text()}')
-		.replace('___replace__docfisico___','{if ($x/dc:representaDocumentoFisico/text() eq "1") then ("true") else ("false")}')
-	   %]">Original</a>
-) else ( ) }
     </td>
     <td>
       {if ($x/dc:invalidacao/text() eq '1970-01-01T00:00:00Z') then (
-	      <a href="[% c.uri_for('/auth/registros/volume/') _ id_volume _ '/' _ controle %]/invalidar_documento/{$x/dc:id/text()}" class="fechar" title="Invalidar" onclick="javascript:if(!confirm('Deseja realmente INVALIDAR o documento?'))return false" id="invalidar"> Invalidar </a>
+        <a href="[% c.uri_for_action('/auth/registros/volume/dossie/documento/invalidar_documento', [ id_volume, controle, '___id_documento___' ]).replace('___id_documento___','{$x/dc:id/text()}') %]" class="fechar" title="Invalidar" onclick="javascript:if(!confirm('Deseja realmente INVALIDAR o documento?'))return false" id="invalidar"> Invalidar </a>
        ) else ( ) }
         </td>
     <input type="hidden" id="id_dossie" nome="id_dossie" value="{$x/ns:dossie/ns:collection/text()}"/>

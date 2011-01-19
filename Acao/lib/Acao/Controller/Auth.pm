@@ -41,9 +41,11 @@ chain.
 sub base : Chained('/') : PathPart('auth') : CaptureArgs(0) {
     my ( $self, $c ) = @_;
     unless ( $c->user ) {
-        $c->res->redirect( $c->uri_for('/login') );
+        $c->res->redirect( $c->uri_for_action('/public/login/login') );
         $c->detach;
     }
+    Log::Log4perl::MDC->put('user', $c->user->uid);
+    Log::Log4perl::MDC->put('address', $c->req->address);
 }
 
 =item principal
@@ -55,7 +57,7 @@ para essa área.
 
 sub principal : Chained('base') : PathPart('') : Args(0) {
     my ( $self, $c ) = @_;
-    $c->res->redirect( $c->uri_for('/auth/registros') );
+    $c->res->redirect( $c->uri_for_action('/auth/registros/principal') );
 }
 
 =item logout
@@ -68,7 +70,7 @@ redirect para o / no final.
 sub logout : Chained('base') : PathPart('logout') : Args(0) {
     my ( $self, $c ) = @_;
     $c->logout;
-    $c->res->redirect( $c->uri_for('/') );
+    $c->res->redirect( $c->uri_for_action('/public/entrada') );
 }
 
 =back

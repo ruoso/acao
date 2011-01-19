@@ -1,41 +1,40 @@
 (
     <tr>
         <td style="width:1000">
-	        { if ( $x/ns:estado/text() eq 'aberto') then (
-                <a title="{$x/ns:nome/text()}" href="[% c.uri_for('/auth/registros/volume') %]/{$x/ns:collection/text()}" > 
-					{$x/ns:nome/text()}
-				</a>
+          { if ( $x/ns:estado/text() eq 'aberto') then (
+                <a title="{$x/ns:nome/text()}" href="[% c.uri_for_action('/auth/registros/volume/dossie/lista', [ '___id_volume___' ]).replace('___id_volume___','{$x/ns:collection/text()}') %]" >
+          {$x/ns:nome/text()}
+        </a>
             ) else (
-                <a title="{$x/ns:nome/text()}" href="" onclick="javasctipt:alert('Volume deve estar no estado ABERTO para que possa ser visualizado!')"> 
-					{$x/ns:nome/text()}
-				 </a>
+                <a title="{$x/ns:nome/text()}" href="" onclick="javasctipt:alert('Volume deve estar no estado ABERTO para que possa ser visualizado!')">
+          {$x/ns:nome/text()}
+         </a>
             )}
         </td>
 
         <td>
-	        <span title="{$x/ns:classificacoes/cl:classificacao/text()}">
-                <!--{$x/ns:classificacao/text()}-->
+
                 {string-join(for $c in $x/ns:classificacoes/cl:classificacao/text()
                  return (if (ends-with($c,",[% c.model('LDAP').assuntos_dn %]")) then (
                                 string-join(reverse(for $i in tokenize(substring-before($c,",[% c.model('LDAP').assuntos_dn %]"),',')
                                  return (tokenize($i,'='))[2]),' - ')
                                ) else ($c)),', ')}
-            </span>
+
         </td>
 
         <td>
-	        <span title="{$x/ns:localizacao/text()}">
+          <span title="{$x/ns:localizacao/text()}">
                 <!--{$x/ns:localizacao/text()}-->
                 {substring($x/ns:localizacao/text(),0, 12)}
             </span>
         </td>
 
         <td>
-	       { if ( $x/ns:representaVolumeFisico/text() eq '1' ) then ("Sim") else ("Não") }
+         { if ( $x/ns:representaVolumeFisico/text() eq '1' ) then ("Sim") else ("Não") }
         </td>
 
         <td class="longDateFormat">
-	        {$x/ns:criacao/text()}
+          {$x/ns:criacao/text()}
         </td>
 
         {if ( $x/ns:fechamento/text() eq '1970-01-01T00:00:00Z' ) then (
@@ -51,23 +50,23 @@
          ) }
 
         <td>
-	        {$x/ns:estado/text()}
+          {$x/ns:estado/text()}
         </td>
 
-		<td width="10%" colspan="4">
+    <td width="10%" colspan="4">
            { if ( $x/ns:estado/text() eq 'fechado') then (
-	       <a href="[% c.uri_for('/auth/registros/volume/alterar_estado/')%]{$x/ns:collection/text()}/aberto" class="abrir" title="Abrir" > Abrir </a>
+         <a href="[% c.uri_for_action('/auth/registros/volume/dossie/alterar_estado', [ '___id_volume___' ], 'aberto').replace('___id_volume___','{$x/ns:collection/text()}') %]" class="abrir" title="Abrir" > Abrir </a>
            ) else ( )}
            { if ( $x/ns:estado/text() eq 'aberto') then (
-           <a href="[% c.uri_for('/auth/registros/volume/alterar_estado/')%]{$x/ns:collection/text()}/fechado" class="fechar" title="Fechar" onClick="return confirmaFechamento()"> Fechar </a>
+           <a href="[% c.uri_for_action('/auth/registros/volume/dossie/alterar_estado', [ '___id_volume___' ], 'fechado').replace('___id_volume___','{$x/ns:collection/text()}') %]" class="fechar" title="Fechar" onClick="return confirmaFechamento()"> Fechar </a>
            ) else ( )}
            { if ($x/ns:estado/text() eq 'arquivado') then (
-           <a href="[% c.uri_for('/auth/registros/volume/alterar_estado/')%]{$x/ns:collection/text()}/fechado" class="fechar" title="Resgatar" onClick="return confirmaResgate()"> Fechar </a>
+           <a href="[% c.uri_for_action('/auth/registros/volume/dossie/alterar_estado', [ '___id_volume___' ], 'fechado').replace('___id_volume___','{$x/ns:collection/text()}') %]" class="fechar" title="Resgatar" onClick="return confirmaResgate()"> Fechar </a>
            ) else ( )}
-           { if ( $x/ns:estado/text() eq 'fechado' ) then (    
-           <a href="[% c.uri_for('/auth/registros/volume/alterar_estado/')%]{$x/ns:collection/text()}/arquivado" class="arquivar" title="Arquivar" onClick="return confirmaArquivamento()"> Arquivar </a>
+           { if ( $x/ns:estado/text() eq 'fechado' ) then (
+           <a href="[% c.uri_for_action('/auth/registros/volume/dossie/alterar_estado', [ '___id_volume___' ], 'arquivado').replace('___id_volume___','{$x/ns:collection/text()}') %]" class="arquivar" title="Arquivar" onClick="return confirmaArquivamento()"> Arquivar </a>
          ) else ( )}
-	</td>
-	<input type="hidden" id="id_volume" nome="id_volume" value="{$x/ns:collection/text()}"/>	
+  </td>
+  <input type="hidden" id="id_volume" nome="id_volume" value="{$x/ns:collection/text()}"/>
     </tr>
 )

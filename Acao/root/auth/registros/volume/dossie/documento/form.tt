@@ -21,9 +21,11 @@
 [% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume) ) %]
 [% SET dos = ( c.model('Documento').getDadosDossie(id_volume, controle) ) %]
 
+<script SRC="[% c.uri_for('/static/js/input.deflate.plugin.js') %]" language="Javascript" ></script>
+<script SRC="[% c.uri_for('/static/js/regex-mask-plugin.js') %]" language="Javascript" ></script>
+<script SRC="[% c.uri_for('/static/js/jquery.meio.mask.js') %]" language="Javascript" ></script>
 <script SRC="[% c.uri_for('/static/js/xsdForm.js') %]" language="Javascript" ></script>
-
-<script SRC="[% c.uri_for('/static/js/forms/' ) _ c.req.param('xsdDocumento') _ '.js' %]" language="Javascript" ></script>
+<script SRC="[% c.uri_for('/static/js/xsdForm-ui.js') %]" language="Javascript" ></script>
 
 <form action="" id="form" name="form" method="post" onsubmit="return generateXml('[% c.uri_for_action('/auth/registros/xsd/raw', { ns => c.req.param('xsdDocumento') } ) %]', this.processed_xml);">
  <input type="hidden" name="processed_xml">
@@ -99,7 +101,7 @@
 <br>
  <div id="form_container"></div>
 
- <input type="submit" name="Submeter" onClick="javascript:document.getElementById('form').action='[% c.uri_for('/auth/registros/volume/') _ id_volume _ '/' _ controle _ '/store' %]';" value="Criar">
+ <input type="submit" name="Submeter" onClick="javascript:document.getElementById('form').action='[% c.uri_for_action('/auth/registros/volume/dossie/documento/store', [ id_volume, controle ]) %]';" value="Criar">
 
  <input type="button" name="Cancelar" onClick="javascript:history.go(-1);" value="Cancelar">
 
@@ -107,6 +109,7 @@
 
  <script language="javascript">
    generateForm("[% c.uri_for_action('/auth/registros/xsd/raw', { ns => c.req.param('xsdDocumento') } ) %]", "form_container");
+   generateXsdFormUI();
  </script>
 
 [% INCLUDE 'footer.tt' %]

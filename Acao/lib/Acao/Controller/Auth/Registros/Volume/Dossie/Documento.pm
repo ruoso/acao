@@ -17,10 +17,10 @@ package Acao::Controller::Auth::Registros::Volume::Dossie::Documento;
 # título "LICENCA.txt", junto com este programa, se não, escreva para a
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
 
-use strict;
-use warnings;
-use parent 'Catalyst::Controller';
-
+use Moose;
+use namespace::autoclean;
+BEGIN { extends 'Catalyst::Controller'; }
+with 'Acao::Role::Auditoria' => { category => 'Documento'};
 
 =head1 NAME
 
@@ -39,10 +39,17 @@ Carrega para o stash os dados do dossiê.
 
 sub base : Chained('/auth/registros/volume/dossie/base') :PathPart('') :CaptureArgs(1) {
     my ( $self, $c, $controle ) = @_;
-
+    Log::Log4perl::MDC->put('Dossie', $controle);
     $c->stash->{controle} = $controle
       or $c->detach('/public/default');
 
+}
+
+sub get_documento :Chained('base') :PathPart('') :CaptureArgs(1) {
+    my ( $self, $c, $id_documento ) = @_;
+    Log::Log4perl::MDC->put('Documento', $id_documento);
+    $c->stash->{id_documento} = $id_documento
+      or $c->detach('/public/default');
 }
 
 =item form
@@ -69,60 +76,60 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
        $representaDocumentoFisico = '0';
     }
     eval {
-        $c->model('Documento')->inserir_documento(
-		                                  $c->req->address,
-		                                  $c->request->param('processed_xml'),
-					                      $c->stash->{'id_volume'},
-					                      $c->stash->{'controle'},
+       my $id =  $c->model('Documento')->inserir_documento(
+                                      $c->req->address,
+                                      $c->request->param('processed_xml'),
+                                $c->stash->{'id_volume'},
+                                $c->stash->{'controle'},
                                           $c->req->param('xsdDocumento'),
                                           $representaDocumentoFisico,
                                           $c->req->param('id_documento'),
-					                     );
+                               );
+    $self->audit_criar($id);
 
     };
 
     if ($@) { $c->flash->{erro} = $@ . "";  }
     else { $c->flash->{sucesso} = 'Documento criado com sucesso'; }
-    $c->res->redirect( $c->uri_for('/auth/registros/volume/' . $c->stash->{id_volume} . '/' . $c->stash->{controle}) );
+    $c->res->redirect( $c->uri_for_action('/auth/registros/volume/dossie/documento/lista', [ $c->stash->{id_volume}, $c->stash->{controle} ] ) );
 }
 
-sub visualizar : Chained('base') : PathPart('visualizar') : Args(3){
-    my ( $self, $c, $id_documento, $invalidacao, $representaDocumentoFisico ) = @_;
-    my $xsdDocumento = $c->req->param('ns');
-    $c->stash->{id_documento} = $id_documento;
-    $c->stash->{invalidacao} = $invalidacao;
-    $c->stash->{xsdDocumento} = $xsdDocumento;
-    $c->stash->{representaDocumentoFisico} = $representaDocumentoFisico
+sub visualizar : Chained('get_documento') :PathPart('') :Args(0) {
+    my ( $self, $c ) = @_;
+    $c->stash->{xsdDocumento} = $c->model('Documento')->obter_xsd_documento
+      ( $c->stash->{id_volume},
+        $c->stash->{controle},
+        $c->stash->{id_documento} )
         or $c->detach('/public/default');
 }
 
-sub visualizar_por_tipo : Chained('base') : PathPart('visualizarportipo') : Args(4){
-    my ( $self, $c, $id_documento, $xsdDocumento, $invalidacao, $representaDocumentoFisico ) = @_;
-    $c->stash->{id_documento} = $id_documento;
-    $c->stash->{xsdDocumento} = 'http://schemas.fortaleza.ce.gov.br/acao/'.$xsdDocumento;
-    $c->stash->{invalidacao} = $invalidacao;
-    $c->stash->{representaDocumentoFisico} = $representaDocumentoFisico
-         or $c->detach('/public/default');
+sub visualizar_por_tipo : Chained('get_documento') :PathPart('visualizarportipo') :Args(0) {
+    my ( $self, $c ) = @_;
+    $c->stash->{xsdDocumento} = $c->model('Documento')->obter_xsd_documento
+      ( $c->stash->{id_volume},
+        $c->stash->{controle},
+        $c->stash->{id_documento} )
+        or $c->detach('/public/default');
 }
 
-sub invalidar_documento : Chained('base') : PathPart('invalidar_documento') : Args(1){
-    my ( $self, $c, $id_documento ) = @_;
-     $c->stash->{id_documento} = $id_documento;
+sub invalidar_documento : Chained('get_documento') : PathPart('invalidar_documento') : Args(0){
+    my ( $self, $c) = @_;
       eval {
-        $c->model('Documento')->invalidar_documento(
-		                                              $c->stash->{id_volume},
-		                                              $c->stash->{controle},
-					                                  $c->stash->{id_documento},
-					                                 );
+        my $id = $c->model('Documento')->invalidar_documento(
+                                                  $c->stash->{id_volume},
+                                                  $c->stash->{controle},
+                                            $c->stash->{id_documento},
+                                           );
+       $self->audit_alterar('Invalidar Documento: ',$id );
         };
+
     if ($@) { $c->flash->{erro} = $@ . "";  }
     else { $c->flash->{sucesso} = 'Documento alterado com sucesso'; }
-    $c->res->redirect( $c->uri_for('/auth/registros/volume/' . $c->stash->{id_volume} . '/' . $c->stash->{controle} ) );
+    $c->res->redirect( $c->uri_for_action('/auth/registros/volume/dossie/documento/lista', [ $c->stash->{id_volume}, $c->stash->{controle} ] ) );
 }
 
-sub xml : Chained('base') : PathPart : Args(1) {
-    my ( $self, $c, $id_documento ) = @_;
-    $c->stash->{id_documento} = $id_documento;
+sub xml : Chained('get_documento') : PathPart : Args(0) {
+    my ( $self, $c) = @_;
     $c->stash->{document} = $c->model('Documento')->visualizar( $c->stash->{id_volume},
                                                                 $c->stash->{controle},
                                                                 $c->stash->{id_documento},

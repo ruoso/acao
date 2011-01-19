@@ -23,7 +23,7 @@
 [% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume) ) %]
 [% SET nome = vol.nome %]
 [% SET localizacao = vol.localizacao %]
- <form id="form" name="form" action="[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/store_alterar') %]" method="post" onsubmit="">
+ <form id="form" name="form" action="[% c.uri_for_action('/auth/registros/volume/store_alterar', [ id_volume ]) %]" method="post" onsubmit="">
 
 	[% INCLUDE 'auth/registros/volume/_formVolume.tt' %]
 	[% INCLUDE 'auth/registros/volume/_formPermissoes.tt' %]

@@ -37,11 +37,11 @@
   <span style="font-size:13px; font-weight:normal;">
 
     [% IF c.model('Dossie').pode_criar_dossie(id_volume) %]
-        <a class="criar" href="[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/criardossie') %]">Criar Prontuário</a>
+        <a class="criar" href="[% c.uri_for_action('/auth/registros/volume/dossie/form', [ id_volume ]) %]">Criar Prontuário</a>
     [% END %]
     |
     [% IF c.model('Volume').pode_alterar_volume(id_volume) %]
-        <a class="alterar" href="[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/alterar') %]">Alterar Volume</a>
+        <a class="alterar" href="[% c.uri_for_action('/auth/registros/volume/alterar_volume', [ id_volume ]) %]">Alterar Volume</a>
     [% END %]
   </span>
 </h1>
@@ -134,6 +134,7 @@
     c.model('Sedna').execute( xquery.list );
 
    WHILE (control = c.model('Sedna').get_item) ;
+     CALL c.controller.audit_listar(control);
      SET html = c.model('Sedna').get_item ;
      html ;
    END
