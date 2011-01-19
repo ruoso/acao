@@ -15,7 +15,11 @@
         <td>
 	        <span title="{$x/ns:classificacoes/cl:classificacao/text()}">
                 <!--{$x/ns:classificacao/text()}-->
-                {substring($x/ns:classificacoes/cl:classificacao/text(),0, 12)}
+                {string-join(for $c in $x/ns:classificacoes/cl:classificacao/text()
+                 return (if (ends-with($c,",[% c.model('LDAP').assuntos_dn %]")) then (
+                                string-join(reverse(for $i in tokenize(substring-before($c,",[% c.model('LDAP').assuntos_dn %]"),',')
+                                 return (tokenize($i,'='))[2]),' - ')
+                               ) else ($c)),', ')}
             </span>
         </td>
 

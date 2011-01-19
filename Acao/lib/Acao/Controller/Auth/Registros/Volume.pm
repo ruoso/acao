@@ -82,12 +82,13 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
   my ( $self, $c ) = @_;
   #	Checa se user logado tem autorização para executar a ação 'Criar'
   $c->model('Volume')->pode_criar_volume() or $c->detach('/public/default');
+
   my $representaVolumeFisico;
   $c->stash->{basedn} = $c->req->param('basedn') ||
               $c->model("LDAP")->grupos_dn;
   $c->stash->{class_basedn} = $c->req->param('class_basedn') ||
               $c->model("LDAP")->assuntos_dn;
-
+  $c->stash->{nome} = $c->req->param('nome');
   $c->stash->{classificacoes} = $c->req->param('classificacoes');
   $c->stash->{autorizacoes} = $c->req->param('autorizacoes');
   $c->stash->{localizacao} = $c->req->param('localizacao');
@@ -151,7 +152,9 @@ sub alterar_volume :Chained('get_volume') : PathPart('alterar') : Args(0) {
     my $initial_principals = $c->model('LDAP')->memberof_grupos_dn();
 
   $c->stash->{autorizacoes} = $c->model('Volume')->autorizacoes_do_volume($c->stash->{id_volume});
+  $c->stash->{classificacoes} = $c->model("Volume")->classificacoes_do_volume($c->stash->{id_volume});
   $c->stash->{basedn} = $c->model("LDAP")->grupos_dn;
+  $c->stash->{class_basedn} = $c->req->param('class_basedn') || $c->model("LDAP")->assuntos_dn;
   $c->stash->{template} = 'auth/registros/volume/form_alterar.tt';
 
 }
@@ -182,14 +185,13 @@ sub store_alterar : Chained('get_volume') : PathPart('store_alterar') : Args(0) 
     $representaVolumeFisico = '0';
   }
 
-
   eval {
      $c->model('Volume')->store_altera_volume({
           id_volume     => $c->stash->{id_volume},
           autorizacoes  => $c->req->param('autorizacoes'),
           nome          => $c->req->param('nome'),
           volume_fisico => $representaVolumeFisico,
-          classificacao => $c->req->param('classificacao'),
+          classificacoes => $c->req->param('classificacoes'),
           localizacao   => $c->req->param('localizacao'),
           ip            => $c->req->address,
      }

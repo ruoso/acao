@@ -34,6 +34,7 @@ role {
     method '_processa_classificacao' => sub {
         my ( $self, $c ) = @_;
 
+        $c->stash->{class_basedn}   = $c->req->param('class_basedn');
         # remove classificacoes
         my (@pos) =
           grep { s/^remover_classificacao_// } keys %{ $c->req->params };

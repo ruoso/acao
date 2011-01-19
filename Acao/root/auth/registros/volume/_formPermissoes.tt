@@ -19,8 +19,8 @@
 %]
  <fieldset id="grupos">
     <label> Autorizações: </label>
-     <input type="hidden" name="autorizacoes" value="[%  autorizacoes | html %]" />
-     <input type="hidden" name="basedn" value="[%  basedn %]" />
+     <input type="hidden" name="autorizacoes" value="[% autorizacoes | html %]" />
+     <input type="hidden" name="basedn" value="[% basedn %]" />
 
      <table>
       <thead>
@@ -29,17 +29,18 @@
         <th><input type="submit" name="opcao" value="Remover"></th>
       </thead>
       <tbody>
-        [%  SET count = 0 %]
-        [%  FOREACH a IN c.model('Volume').desserialize_autorizacoes(autorizacoes).autorizacao %]
+        [% SET count = 0 %]
+        [% FOREACH a IN c.model('Volume').desserialize_autorizacoes(autorizacoes).autorizacao %]
         <tr>
           <td>[% c.model('LDAP').decompose_dn_grupos(a.principal).reverse.join(' - ') %]</td>
           <td>[% a.role %]</td>
           <td><input type="checkbox" name="remover_autorizacao_[% count %]" /></td>
         </tr>
-        [%  SET count = count + 1 %]
-        [%  END %]
+        [% SET count = count + 1 %]
+        [% END %]
       </tbody>
      </table>
+
      <dl>
           <dt class="grp"> Grupo de Usuário e Ações</dt>
 
@@ -55,8 +56,7 @@
                    [%  END %]
                 </select>
 
-
-            <select multiple name="acoes" id="acoes" style="height:100px;min-width:150px">
+                <select multiple name="acoes" id="acoes" style="height:100px;min-width:150px">
                     <option  value="alterar"> Alterar </option>
                     <option  value="criar">Criar </option>
                     <option  value="listar">Listar </option>
@@ -68,7 +68,7 @@
         <input type="submit" name="opcao" value="Adicionar">
         <input type="submit" name="opcao" value="Navegar"><br/>
 
-
     </dl>
 
  </fieldset>
+

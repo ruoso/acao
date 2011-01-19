@@ -318,6 +318,7 @@ txn_method 'transferir' => authorized $role_alterar => sub {
     $self->sedna->conn->endLoadData();
 
     my $xq_delete = 'drop document "'.$controle.'" in collection "'.$id_volume.'" ';
+
     $self->sedna->execute($xq_delete);
 
     my $doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );

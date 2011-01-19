@@ -71,8 +71,7 @@ Retorna os volumes os quais o usuário autenticado tem acesso.
 =cut
 
 txn_method 'listar_volumes' => authorized $role_listar => sub {
-    my ($self, $args) = @_;
-
+  my ($self, $args) = @_;
 
   my $grupos = join ' or ', map { '@principal = "'.$_.'"' } @{$self->user->memberof};
 
@@ -251,10 +250,12 @@ txn_method 'alterar_estado' => authorized $role_alterar => sub {
 txn_method 'getDadosVolumeId' => authorized $role_listar => sub {
     my $self = shift;
     my ($id_volume) = @_;
+
     my $xq = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";
               declare namespace cl="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";
-                    return ($x/ns:nome/text(), $x/ns:classificacoes/cl:classificacao/text(), $x/ns:localizacao/text(), $x/ns:estado/text(), 
-                            $x/ns:criacao/text(), $x/ns:representaVolumeFisico/text())';
+              for $x in collection("volume")/ns:volume[ns:collection="'.$id_volume.'"] 
+                    return (concat($x/ns:nome/text(),""), concat($x/ns:classificacoes,""), concat($x/ns:localizacao/text(),""), concat($x/ns:estado/text(),""), 
+                            concat($x/ns:criacao/text(),""), concat($x/ns:representaVolumeFisico/text(),""))';
 
    $self->sedna->execute($xq);
 
@@ -268,6 +269,7 @@ txn_method 'getDadosVolumeId' => authorized $role_listar => sub {
                     criacao       => $self->sedna->get_item,
                     volume_fisico => $self->sedna->get_item > 0 ? 'Sim' : 'Não',
                   };
+
     };
 
    return $vol;
@@ -327,17 +329,30 @@ sub autorizacoes_do_volume {
 
     $self->sedna->begin;
     my $query  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";'
-             . 'declare namespace author = "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";'
-             . 'for $x in collection("volume")/ns:volume[ns:collection = "'.$id_volume.'"] '
-             . 'return $x/ns:autorizacoes';
-
-
+               . 'declare namespace author = "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";'
+               . 'for $x in collection("volume")/ns:volume[ns:collection = "'.$id_volume.'"] '
+               . 'return $x/ns:autorizacoes';
 
     $self->sedna->execute($query);
     my $xml =$self->sedna->get_item();
     $self->sedna->commit;
   return $xml;
 
+}
+
+sub classificacoes_do_volume {
+    my($self, $id_volume) = @_;
+
+    $self->sedna->begin;
+    my $query  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";'
+               . 'declare namespace cl = "http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";'
+               . 'for $x in collection("volume")/ns:volume[ns:collection = "'.$id_volume.'"] '
+               . 'return $x/ns:classificacoes';
+
+    $self->sedna->execute($query);
+    my $xml =$self->sedna->get_item();
+    $self->sedna->commit;
+  return $xml;
 
 }
 
@@ -364,51 +379,49 @@ sub store_altera_volume {
     my($self, $args) = @_;
 # Gambis provisória -  Fazendo Update de cada campo separadamente!
     my $query_autorizacao  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";'
-               . 'update replace $x in collection("volume")'
-               . '[/ns:volume/ns:collection="'.$args->{id_volume}.'"]/ns:volume/ns:autorizacoes'
-               . ' with '.$args->{autorizacoes};
+                           . 'update replace $x in collection("volume")'
+                           . '[/ns:volume/ns:collection="'.$args->{id_volume}.'"]/ns:volume/ns:autorizacoes'
+                           . ' with '.$args->{autorizacoes};
 
     $self->sedna->begin;
     $self->sedna->execute($query_autorizacao);
 
 
     my $query_nome  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";'
-               . 'update replace $x in collection("volume")'
-               . '[/ns:volume/ns:collection="'.$args->{id_volume}.'"]/ns:volume/ns:nome'
-               . ' with <nome xmlns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd">'.$args->{nome}.'</nome>';
+                    . 'update replace $x in collection("volume")'
+                    . '[/ns:volume/ns:collection="'.$args->{id_volume}.'"]/ns:volume/ns:nome'
+                    . ' with <nome xmlns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd">'.$args->{nome}.'</nome>';
 
 
     $self->sedna->execute($query_nome);
 
 
-    my $query_classificacao  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";'
-               . 'update replace $x in collection("volume")'
-               . '[/ns:volume/ns:collection="'.$args->{id_volume}.'"]/ns:volume/ns:classificacao'
-               . ' with <classificacao xmlns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd">'.$args->{classificacao}.'</classificacao>';
+    my $query_classificacoes  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";'
+                              . 'declare namespace cl = "http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";'
+                              . 'update replace $x in collection("volume")'
+                              . '[/ns:volume/ns:collection="'.$args->{id_volume}.'"]/ns:volume/ns:classificacoes'
+                              . ' with '.$args->{classificacoes} ;
 
-    $self->sedna->execute($query_classificacao);
+    $self->sedna->execute($query_classificacoes);
 
 
     my $query_volume_fisico  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";'
-               . 'update replace $x in collection("volume")'
-               . '[/ns:volume/ns:collection="'.$args->{id_volume}.'"]/ns:volume/ns:representaVolumeFisico'
-               . ' with <representaVolumeFisico xmlns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd">'.$args->{volume_fisico}.'</representaVolumeFisico>';
+                             . 'update replace $x in collection("volume")'
+                             . '[/ns:volume/ns:collection="'.$args->{id_volume}.'"]/ns:volume/ns:representaVolumeFisico'
+                             . ' with <representaVolumeFisico xmlns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd">'.$args->{volume_fisico}.'</representaVolumeFisico>';
 
     $self->sedna->execute($query_volume_fisico);
 
 
     my $query_localizacao  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";'
-               . 'update replace $x in collection("volume")'
-               . '[/ns:volume/ns:collection="'.$args->{id_volume}.'"]/ns:volume/ns:localizacao'
-               . ' with <localizacao xmlns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd">'.$args->{localizacao}.'</localizacao>';
+                           . 'update replace $x in collection("volume")'
+                           . '[/ns:volume/ns:collection="'.$args->{id_volume}.'"]/ns:volume/ns:localizacao'
+                           . ' with <localizacao xmlns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd">'.$args->{localizacao}.'</localizacao>';
 
     $self->sedna->execute($query_localizacao);
 
 $self->sedna->commit;
 }
-
-
-
 
 =cut
 

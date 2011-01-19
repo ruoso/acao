@@ -75,7 +75,7 @@ txn_method 'link_xsd' => authorized $role_listar => sub {
                         </a>
                      </div>
               [starts-with($x/xs:schema/@targetNamespace, "http://schemas.fortaleza.ce.gov.br/acao/sdh")]';
-    warn $xq;
+
     $self->sedna->execute($xq);
     my $ret;
     while (my $item = $self->sedna->get_item()) {
