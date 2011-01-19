@@ -21,10 +21,6 @@ Instalando/Configurando
     4.3 - Copie o endereço localizado no campo Read-Only | HTTP Read-Only
     4.4 - Para baixar o sistema açao digite no terminal: git clone "cole o endereço copiado no passo 4.3"
 
-<<<<<<< HEAD:docs/acao_instalacao
-5 - Instalando pacotes necessarios
-    5.1 - sudo apt-get install libpq-dev
-=======
 5 - Baixando os arquivos Sedna pelo github 
     5.1 - Pelo terminal abra o mesmo diretorio aberto no passo 4.1
     5.2 - Abra seu WebBrowser e digite a url: http://github.com/ruoso/Sedna
@@ -34,7 +30,6 @@ Instalando/Configurando
         5.5.1 - perl Makefile.PL
         5.5.2 - make
         5.5.3 - sudo make install
->>>>>>> 4fd4c63f932da987a7a91384a663f71647e872c9:docs/acao_instalacao
 
 6 - Instalando o Framework Catalyst e demais pacotes necessarios para a aplicação
     6.1 - Pelo terminal do linux abra o terminal do CPAN digitando: sudo cpan
@@ -51,12 +46,6 @@ Instalando/Configurando
     6.12 - force install Sedna
     6.13 - install Catalyst::Model::Sedna
 
-<<<<<<< HEAD:docs/acao_instalacao
-7 - Configurando drive do sedna
-    7.1 - sudo cp /home/claudio/sedna/driver/c/libsedna* /usr/local/lib
-    7.2 - sudo cp /home/claudio/sedna/driver/c/*.h /usr/local/include
-    7.3 - sudo ldconfig
-=======
 7 - Instalando o Framework Catalyst e demais pacotes necessarios para a aplicação
     7.1 - Pelo terminal do linux abra o terminal do CPAN digitando: sudo cpan
     7.2 - install Catalyst::Runtime
@@ -67,7 +56,7 @@ Instalando/Configurando
     7.7 - install Catalyst::Authentication::Store::LDAP
     7.8 - install Class::MOP
     7.9 - install Catalyst::Plugin::Session::Store::FastMmap
->>>>>>> 4fd4c63f932da987a7a91384a663f71647e872c9:docs/acao_instalacao
+    7.10 - install Catalyst::Log::Log4perl
 
 8 - Instalando o SGBD XML Sedna
     8.1 - Baixe o pacote de instalção do sedna do site oficial e execute a instalação do pacote;

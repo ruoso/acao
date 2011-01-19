@@ -31,7 +31,7 @@
 [% SET nome_membro = c.req.param('nome_membro') %]
 [% SET nome_mae = c.req.param('nome_mae') %]
 
-[% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume) ) %]
+[% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume, c.model('LDAP').assuntos_dn) ) %]
 <br>
 <h1 class="titulo-form">Gerenciar Prontuários |
   <span style="font-size:13px; font-weight:normal;">
