@@ -31,13 +31,13 @@
 
 [%# definição da variavel schema para este template %]
 
-[%#  c.model('Sedna').conn.setConnectionAttr_CONCURRENCY_TYPE(c.model('Sedna').conn.SEDNA_READONLY_TRANSACTION); %]
+[% # c.model('Sedna').conn.setConnectionAttr_CONCURRENCY_TYPE(c.model('Sedna').conn.SEDNA_READONLY_TRANSACTION); %]
 
 [% CALL c.model('Sedna').begin %]
 [% SET schema = c.model('Sedna').get_collection('volume') %]
 [% CALL c.model('Sedna').commit %]
 
-[% c.model('Sedna').conn.setConnectionAttr_CONCURRENCY_TYPE(c.model('Sedna').conn.SEDNA_UPDATE_TRANSACTION); %]
+[% # c.model('Sedna').conn.setConnectionAttr_CONCURRENCY_TYPE(c.model('Sedna').conn.SEDNA_UPDATE_TRANSACTION); %]
 
 [% SET volumes = '' %]
 

@@ -50,7 +50,7 @@ lista das sub-áreas da área de registros.
 sub principal : Chained('base') : PathPart('') : Args(0) {
     my ( $self, $c ) = @_;
     my @roles = @{$c->user->memberof};
-
+warn @roles;
     if ( ( grep { /^revisor$/ } @roles )
         && !( grep { /^digitador$/ } @roles ) )
     {

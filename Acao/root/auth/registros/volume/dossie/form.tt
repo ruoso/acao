@@ -19,8 +19,6 @@
 %]
 [% INCLUDE 'auth/registros/volume/dossie/header.tt' %]
 
-[% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume) ) %]
-
 <br>
 <h1 class="titulo-form">Criar Prontuários</h1>
 
@@ -30,95 +28,16 @@
 <script SRC="[% c.uri_for('/static/js/xsdForm.js') %]" language="Javascript" ></script>
 <script SRC="[% c.uri_for('/static/js/xsdForm-ui.js') %]" language="Javascript" ></script>
 
-<form id="form" name="form" action="" method="post">
- <input type="hidden" name="id_volume" value="[% id_volume %]">
+<form id="form" name="form" action="[% c.uri_for_action('/auth/registros/volume/dossie/store',[ id_volume ]) %]" method="post">
+  <input type="hidden" name="id_volume" value="[% id_volume %]">
 
-<div id="accordion">
-	<h3><a href="#">Dados do Volume: [% vol.nome %]</a></h3>
-	<div>		
-		<fieldset class="fieldsetBorderNone">
-			  <dl class="form15">
-				<dt>Volume:</dt>
-				<dd><span>[% vol.nome %]</span></dd>
-
-				<dt>Classificação:</dt>
-				<dd><span>[% vol.classificacoes %]</span></dd>
-
-				<dt>Localização:</dt>
-				<dd><span>[% vol.localizacao %]</span></dd>
-
-				<dt>Estado:</dt>
-				<dd><span>[% vol.estado %]</span></dd>
-
-				<dt>Data Criação:</dt>
-				<dd><span>[% vol.criacao %]</span></dd>
-
-				<dt>Vol. Físico:</dt>
-				<dd><span>[% vol.volume_fisico %]</span></dd>
-			  </dl>
-	 	</fieldset>
-
-	</div>
-</div>
-<br>
-
- <fieldset>
-  <legend>Dados do Prontuário</legend>
-  <dl class="form15">
-    <dt> <label> Nome Prontuário: </label> </dt>
-    <dd> <input type="text" id="nome" name="nome" class="upper"> </dd>
-
-    <dt>
-      <label> Classificação: &nbsp; </label>
-      <dd>  
-        <select name="classificacao" id="classificacao">
-          <option value="Regional I"> Regional I </option>
-          <option value="Regional II"> Regional II </option>
-          <option value="Regional III"> Regional III </option>
-          <option value="Regional IV"> Regional IV </option>
-          <option value="Regional V"> Regional V </option>
-          <option value="Regional VI"> Regional VI </option>
-          [% # FOREACH do LDAP (descomentar e aplicar o caminho correto) %]
-          [% # FOREACH memberof IN c.user.memberof %]
-           <!--<option value="[% c.config.default.localizacao %]"> [% memberof %] </option>-->
-          [% # END %]
-        </select>
-      </dd>
-    </dt>
-
-    <dt> 
-      <label> Localização: &nbsp; </label>
-      <dd>
-        <select name="localizacao" id="localizacao">
-          <option value="Núcleo I"> Núcleo I </option>
-          <option value="Núcleo II"> Núcleo II </option>
-          <option value="Núcleo III"> Núcleo III </option>
-          <option value="Núcleo IV"> Núcleo IV </option>
-          <option value="Núcleo V"> Núcleo V </option>
-          <option value="Núcleo VI"> Núcleo VI </option>
-          [% # FOREACH do LDAP (descomentar e aplicar o caminho correto) %]
-          [% # FOREACH memberof IN c.user.memberof %]
-            <!--<option value="[% c.config.default.localizacao %]"> [% memberof %] </option>-->
-          [% # END %]
-        </select>
-      </dd>
-    </dt>
-
-    <dt>Controle:</dt>
-    <dd>
-     <input type="text" name="controle" id="controle" value="[% c.model('Dossie').gerar_uuid %]" readonly="readonly"/>
-    </dd>
-    <br/>
-    <br/>
-	<dd> <input type="checkbox" id="representaDossieFisico" name="representaDossieFisico" evt="representaDossieFisico" checked="checked">
-           <label for="representaDossieFisico"> Representa Prontuário Físico </label> 
-	</dd>
-  </dl>
- </fieldset>
+    [% INCLUDE 'auth/registros/volume/dossie/_formDossie.tt' %] 
+ 	[% # INCLUDE 'auth/registros/volume/dossie/_formPermissoes.tt' %]
+ 	[% INCLUDE 'auth/registros/volume/dossie/_formClassificacoes.tt' %]
  
  <div id="form_container"></div>
 
- <input type="submit" name="Submeter" onClick="javascript:document.getElementById('form').action='[% c.uri_for_action('/auth/registros/volume/dossie/store',[ id_volume ]) %]'; javascript:return validaForm();" value="Criar">
+ <input type="submit" name="Submeter" onClick="return validaForm();" value="Criar">
 
  <input type="button" name="Cancelar" onClick="javascript:history.go(-1);" value="Cancelar">
 

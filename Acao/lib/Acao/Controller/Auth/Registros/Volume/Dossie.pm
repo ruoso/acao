@@ -21,7 +21,11 @@ use Moose;
 use namespace::autoclean;
 BEGIN { extends 'Catalyst::Controller'; }
 use Data::Dumper;
+
 with 'Acao::Role::Auditoria' => { category => 'Dossie'};
+with 'Acao::Role::Controller::Classificacao' => { modelcomponent => 'Dossie' };
+
+
 =head1 NAME
 
 Acao::Controller::Auth::Registros::Volume::Dossie - Controlador
@@ -53,7 +57,15 @@ sub lista : Chained('base') : PathPart('') : Args(0) {
 sub form : Chained('base') : PathPart('criardossie') : Args(0) {
     my ( $self, $c ) = @_;
 #   Checa se user logado tem autorização para executar a ação 'Criar'
+    my $initial_principals = $c->model('LDAP')->memberof_grupos_dn();
+    $c->stash->{classificacoes} = $c->model("Dossie")->new_classificacao($initial_principals);
+    $c->stash->{basedn} = $c->model("LDAP")->grupos_dn;
+    $c->stash->{class_basedn} = $c->model("LDAP")->assuntos_dn;
+#   Checa se user logado tem autorização para executar a ação 'Criar'
     $c->model('Dossie')->pode_criar_dossie($c->stash->{id_volume}) or $c->detach('/public/default');
+
+
+
 }
 
 sub transferir_lista : Chained('base') : PathPart('transferir_lista') : Args(1) {
@@ -69,8 +81,15 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
     #   Checa se user logado tem autorização para executar a ação 'Criar'
     $c->model('Dossie')->pode_criar_dossie($c->stash->{id_volume}) or $c->detach('/public/default');
 
-    my $representaDossieFisico;
+    $c->stash->{class_basedn} = $c->req->param('class_basedn') || $c->model("LDAP")->assuntos_dn;
 
+    $c->stash->{template} = 'auth/registros/volume/dossie/form.tt';
+    $c->stash->{classificacoes} = $c->req->param('classificacoes');
+    if ($self->_processa_classificacao($c)) {
+        return;
+    }
+
+    my $representaDossieFisico;
     if ($c->req->param('representaDossieFisico') eq 'on'){
        $representaDossieFisico = '1';
     }
@@ -84,7 +103,7 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
                               $c->req->param('id_volume'),
                               $c->req->param('controle'),
                               $representaDossieFisico,
-                              $c->req->param('classificacao'),
+                              $c->model('Dossie')->desserialize_classificacoes($c->stash->{classificacoes}),
                               $c->req->param('localizacao'),
                                );
 

@@ -26,21 +26,22 @@ use DateTime;
 use Encode;
 use Data::UUID;
 use Data::Dumper;
+use List::MoreUtils 'pairwise';
 
 use constant DOSSIE_NS =>'http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd';
 my $controle = XML::Compile::Schema->new( Acao->path_to('schemas/dossie.xsd') );
 $controle->importDefinitions( Acao->path_to('schemas/documento.xsd') );
 $controle->importDefinitions( Acao->path_to('schemas/classificacao.xsd') );
 my $controle_w = $controle->compile( WRITER => pack_type( DOSSIE_NS, 'dossie' ), use_default_namespace => 1 );
+my $controle_r = $controle->compile( READER => pack_type( DOSSIE_NS, 'dossie') );
+
+with 'Acao::Role::Model::Classificacao' => { xmlcompile => $controle, namespace => DOSSIE_NS };
 
 my $role_alterar = Acao->config->{'roles'}->{'dossie'}->{'alterar'};
 my $role_criar = Acao->config->{'roles'}->{'dossie'}->{'criar'};
 my $role_listar = Acao->config->{'roles'}->{'dossie'}->{'listar'};
 my $role_transferir = Acao->config->{'roles'}->{'dossie'}->{'transferir'};
 
-use constant CLASSIFICACOES_NS =>'http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd';
-my $controle_class = XML::Compile::Schema->new( Acao->path_to('schemas/classificacao.xsd') );
-my $controle_class_w = $controle_class->compile( WRITER => pack_type( CLASSIFICACOES_NS, 'classificacao' ), use_default_namespace => 1 );
 
 =head1 NAME
 
@@ -151,7 +152,7 @@ txn_method 'criar_dossie' => authorized $role_criar => sub {
                                     estado       => 'aberto',
                                     controle     => $controle,
                                     representaDossieFisico => $representaDossieFisico,
-                                    classificacoes => {classificacao => $classificacao},
+                                    classificacoes => $classificacao,
                                     localizacao => $localizacao,
                                     autorizacao => {
                                                     principal => $self->user->id,

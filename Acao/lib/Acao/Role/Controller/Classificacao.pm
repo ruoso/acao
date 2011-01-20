@@ -41,7 +41,7 @@ role {
         if ( $c->req->param('opcao_class') eq 'Remover' ) {
             if (@pos) {
                 $c->stash->{classificacoes} =
-                  $c->model('Volume')
+                  $c->model($model)
                   ->remove_classificacoes( $c->req->param('classificacoes'),
                     @pos );
             }
@@ -63,7 +63,7 @@ role {
 
             my @classificacoes = $c->req->param('assuntos');
             $c->stash->{classificacoes} =
-              $c->model('Volume')
+              $c->model($model)
               ->add_classificacoes( $c->req->param('classificacoes'),
                 \@classificacoes );
             return 1;

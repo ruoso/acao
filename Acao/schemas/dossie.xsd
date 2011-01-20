@@ -23,8 +23,7 @@
 				<xs:element name="controle" type="xs:string" />
 				<xs:element name="representaDossieFisico" type="xs:boolean" />
 				<xs:element name="classificacoes" minOccurs="0" type="class:classificacoes"/>
-				<xs:element name="localizacao" type="xs:string"
-					maxOccurs="unbounded" />
+				<xs:element name="localizacao" type="xs:string" maxOccurs="unbounded" />
 				<xs:element name="autorizacao">
 					<xs:complexType>
 						<xs:attribute name="principal" type="xs:string" use="required" />
@@ -37,4 +36,5 @@
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
+    <xs:element name="classificacoes" type="class:classificacoes"/>
 </xs:schema>
