@@ -79,39 +79,69 @@
 <fieldset>
   <legend>Buscar Prontuários</legend>
 
-
   <form action="[% '/auth/registros/volume/' _ id_volume %]">
+   <div>
+
+    [% SET numero_campos = (c.req.param('numero_campos')||0) + 0 %]
+    [% SET labels = [] %]
+
+    [% IF c.req.param('add_campo_pesquisa');
+       CALL c.req.param('pesquisa_' _ numero_campos _ '_ns', c.req.param('xsd_pesquisa'));
+       SET numero_campos = numero_campos + 1;
+       ELSIF c.req.param('del_campo_pesquisa') && numero_campos > 0;
+       SET numero_campos = numero_campos - 1;
+       END;
+    %]
+
     <div>
-
-
-    <label> Adolescente: </label>
-    <input type="text" name="nome_membro" id="nome_membro" value="[% nome_membro %]" style="width: 300px;">
-
-    <label> Mãe:    </label>
-    <input type="text" name="nome_mae" id="nome_mae" value="[% nome_mae %]" style="width: 300px;">
-
-    <input type="submit" name="submit_form" id="submit_form" value="Pesquisar">
+     <input type="hidden" name="numero_campos" value="[% numero_campos %]" />
+     <div>
+      <label> Nome do prontuário:
+      <input type="text" name="nome_prontuario" id="nome_prontuario" value="[% c.req.param('nome_prontuario') | html %]" /></label>
+      <input type="submit" name="submit_form" id="submit_form_2" value="Pesquisar">
+     </div>
+     <div>
+      <label>Adicionar um campo de pesquisa: <select name="xsd_pesquisa">[% c.model('XSD').options_xsd() %]</select></label>
+      <input type="submit" name="add_campo_pesquisa" value="+" />
+      [% IF numero_campos > 0 %]<input type="submit" name="del_campo_pesquisa" value="-" />[% END %]
+     </div>
     </div>
+
+    [% SET counter = 0 %]
+    [% WHILE (counter < numero_campos) %]
+    <fieldset id="campo_pesquisa_[% counter %]">
+     <legend>Buscar em:</legend>
+     [% SET schema = c.model('XSD').obter_xsd( c.req.param('pesquisa_' _ counter _ '_ns') ) %]
+     <input type="hidden" name="pesquisa_[% counter%]_ns" value="[% c.req.param('pesquisa_' _ counter _ '_ns') %]" />
+     <select name="campo_formulario_[% counter %]" id="campo_formulario_[% counter %]"  style="width:100%;">
+      [% FOREACH field IN c.model('Dossie').get_simpletype_annotations(schema) %]
+        <OPTION VALUE="[% field.path %]" [% IF (c.req.param('campo_formulario_' _ counter) == field.path); labels.push({ l => field.completelabel, ns => c.req.param('pesquisa_' _ counter _ '_ns'), p => field.path}) %] selected [% END %]>[% field.completelabel %]</OPTION>
+      [% END %]
+     </select>
+
+     <select name="campo_operador_[% counter %]" id="campo_operador_[% counter %]">
+      <option value="igual" [% IF (c.req.param('campo_operador_' _ counter) == 'igual') %] selected [% END %]>igual a</option>
+      <option value="igualn" [% IF (c.req.param('campo_operador_' _ counter) == 'igualn') %] selected [% END %]>igual a numero</option>
+      <option value="diferente" [% IF (c.req.param('campo_operador_' _ counter) == 'diferente') %] selected [% END %]>diferente de</option>
+      <option value="maior" [% IF (c.req.param('campo_operador_' _ counter) == 'maior') %] selected [% END %]>maior que</option>
+      <option value="maiorn" [% IF (c.req.param('campo_operador_' _ counter) == 'maiorn') %] selected [% END %]>maior que numero</option>
+      <option value="menor" [% IF (c.req.param('campo_operador_' _ counter) == 'menor') %] selected [% END %]>menor que</option>
+      <option value="menorn" [% IF (c.req.param('campo_operador_' _ counter) == 'menorn') %] selected [% END %]>menor que numero</option>
+      <option value="contem" [% IF (c.req.param('campo_operador_' _ counter) == 'contem') %] selected [% END %]>contém</option>
+      <option value="inicia" [% IF (c.req.param('campo_operador_' _ counter) == 'inicia') %] selected [% END %]>inicia com</option>
+      <option value="termina" [% IF (c.req.param('campo_operador_' _ counter) == 'termina') %] selected [% END %]>termina com</option>
+     </select>
+  
+     <input type="text" id="valor_pesquisado_[% counter %]" name="valor_pesquisado_[% counter %]" value="[% c.req.param('valor_pesquisado_' _ counter) | html %]"  />
+    </fieldset>      
+    [% counter = counter + 1; END %]
+
+   </div>
   </form>
 
 <br/>
 
-<table>
-<thead>
- <tr>
-  <th width="70px">Controle</th>
-  <th>Prontuário</th>
-  <th>Classificação</th>
-  <th>Localização</th>
-  <th width="80px">Pront. Físico</th>
-  <th width="110px">Criação</th>
-  <th width="110px">Fechamento</th>
-  <th width="110px">Arquivamento</th>
-  <th width="40px">Estado</th>
-  <th colspan="5" align="center">Ação</th>
- </tr>
-</thead>
-<TBODY>
+[% IF c.req.param('submit_form') %]
 
  [% # O foreach abaixo vai buscar diretamente no model por estar livre de contexto %]
  [% # (nao recebe argumento pela url) %]
@@ -126,14 +156,31 @@
                                                 id_volume         => id_volume,
                                                 interval_ini      => interval_ini,
                                                 num_por_pagina    => num_por_pagina,
-                                                nome_mae  	      => nome_mae,
-                                                nome_membro		  => nome_membro,
-
+                                                pesquisa          => c.req.params()
                                         });
+    #"<textarea cols=180 rows=80>" _ xquery.list _ "</textarea>";
     #c.model('Sedna').conn.setConnectionAttr_CONCURRENCY_TYPE(c.model('Sedna').conn.SEDNA_READONLY_TRANSACTION);
     c.model('Sedna').begin ;
     c.model('Sedna').execute( xquery.list );
+  %]
 
+<table id="buscadossie">
+<thead>
+ <tr>
+  <th width="70px">Controle</th>
+  <th>Prontuário</th>
+  <th>Classificação</th>
+  <th>Localização</th>
+  <th width="80px">Pront. Físico</th>
+  <th width="110px">Criação</th>
+  <th width="110px">Fechamento</th>
+  <th width="110px">Arquivamento</th>
+  <th width="40px">Estado</th>
+  <th colspan="5" align="center">Ação</th>
+ </tr>
+</thead>
+
+ [%
    WHILE (control = c.model('Sedna').get_item) ;
      CALL c.controller.audit_listar(control);
      SET html = c.model('Sedna').get_item ;
@@ -157,7 +204,6 @@
  </div>
 [% END %]
 
-</TBODY>
 
 </table>
 
@@ -186,6 +232,8 @@
 [% paginacao = PROCESS 'auth/registros/volume/dossie/paginacao.tt' %]
 [% paginacao %]
 </fieldset>
+
+[% END %]
 
 [% INCLUDE 'footer.tt' %]
 

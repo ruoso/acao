@@ -1,4 +1,5 @@
 (
+   <tbody>
     <tr>
 
         <td>
@@ -73,4 +74,18 @@
         </td>
         <input type="hidden" id="id_dossie" nome="id_dossie" value="{$x/ns:collection/text()}"/>
     </tr>
+    [% SET counter = 0 %]
+    [% IF labels %]
+    [% SET seen = {} %]
+    [% FOREACH l IN labels %]
+      [% SET uniq = '{' _ l.ns _ '}' _ l.p %]
+       [% IF !(seen.exists(uniq)) %]
+        <tr><td></td>
+         <td colspan="13"><strong>[% l.l %]: </strong>{string-join($x/ns:doc/dc:documento/dc:documento/dc:conteudo/[% c.model('Dossie').produce_xpath('extra' _ counter, l.p) %],', ')}</td>
+        </tr>
+        [% seen.import({ $uniq => 1 }) %]
+       [% END %]
+    [% SET counter = counter + 1; END %]
+    [% END %]
+   </tbody>
 )
