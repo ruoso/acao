@@ -17,97 +17,13 @@ package Acao::Model::BuscaXSD;
 # título "LICENCA.txt", junto com este programa, se não, escreva para a
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
 
-use base 'Catalyst::Model';
+use Moose;
+extends 'Catalyst::Model';
 use XML::LibXML;
-use Acao::Util::AnnotatedSimpleType;
 use strict;
 use warnings;
 use 5.10.0;
 
-sub get_simpletype_annotations {
-    my ($self, $xsd) = @_;
-    my $schemadoc = XML::LibXML->load_xml(string => $xsd);
-    my $schemabaseel = $schemadoc->getDocumentElement;
-    my $targetns = $schemabaseel->getAttribute('targetNamespace');
-    my ($stack, $stelements) = ([], []);
-    Acao::Util::AnnotatedSimpleType::traverse_schema($schemabaseel,$targetns,$schemabaseel,$stack,$stelements);
-    return $stelements;
-}
-
-sub get_target_namespace {
-    my ($self, $xsd) = @_;
-
-    my $schemadoc = XML::LibXML->load_xml(string => $xsd);
-    my $schemabaseel = $schemadoc->getDocumentElement;
-    return $schemabaseel->getAttribute('targetNamespace');
-}
-
-sub produce_xpath {
-    my ($self, $nsprefix, $path_form) = @_;
-
-    return
-        join '/',
-        map { $nsprefix.':'.$_ }
-        grep { $_ }
-        map { s/[^0-9a-zA-Z\_\-]//gs; $_ }
-        split /\//, $path_form;
-}
-
-sub produce_expr {
-    my ($self, $nsprefix, $path_form, $oper, $valor)= @_;
-    my $tipo_operador;
-    my $operador;
-    given ($oper) {
-        when ('igual') {
-            $operador = 'eq';
-            $tipo_operador = 'infix';
-        }
-        when ('diferente') {
-            $operador = 'ne';
-            $tipo_operador = 'infix';
-        }
-        when ('maior') {
-            $operador = 'gt';
-            $tipo_operador = 'infix';
-        }
-        when ('menor') {
-            $operador = 'lt';
-            $tipo_operador = 'infix';
-        }
-        when ('contem') {
-            $operador = 'contains';
-            $tipo_operador = 'function';
-        }
-        when ('inicia') {
-            $operador = 'starts-with';
-            $tipo_operador = 'function';
-        }
-        when ('termina') {
-            $operador = 'ends-with';
-            $tipo_operador = 'function';
-        }
-        default {
-            die 'submissao-invalida';
-        }
-    }
-    given ($tipo_operador) {
-        when ('infix') {
-            return join ' ', 'upper-case('.$self->produce_xpath($nsprefix, $path_form).')',
-                $operador, 'upper-case('.$self->quote_valor($valor).')';
-        }
-        when ('function') {
-            return join ' ', $operador , '(' ,
-                'upper-case('.$self->produce_xpath($nsprefix, $path_form).'),',
-                'upper-case('.$self->quote_valor($valor).'))';
-        }    }
-}
-
-sub quote_valor {
-    my ($self, $valor) = @_;
-    $valor =~ s/\\/\\\\/gs;
-    $valor =~ s/\"/\\\"/gs;
-    $valor =~ s/\'/\\\'/gs;
-    return q(").$valor.q(");
-}
+with 'Acao::Role::Model::BuscaXSD';
 
 1;

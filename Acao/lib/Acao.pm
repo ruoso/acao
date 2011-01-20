@@ -1,4 +1,5 @@
 package Acao;
+
 # Copyright 2010 - Prefeitura Municipal de Fortaleza
 #
 # Este arquivo é parte do programa Ação - Sistema de Acompanhamento de
@@ -35,7 +36,6 @@ use warnings;
 
 use Catalyst::Runtime 5.70;
 
-
 use parent qw/Catalyst/;
 use Catalyst qw/
   -Debug
@@ -52,7 +52,9 @@ our $VERSION = '0.01';
 
 use Catalyst::Log::Log4perl;
 
-__PACKAGE__->log( Catalyst::Log::Log4perl->new(__PACKAGE__->path_to('Log4perl.conf').''));
+__PACKAGE__->log(
+    Catalyst::Log::Log4perl->new( __PACKAGE__->path_to('Log4perl.conf') . '' )
+);
 
 __PACKAGE__->setup();
 

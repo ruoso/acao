@@ -28,6 +28,8 @@ use Data::UUID;
 use Data::Dumper;
 use List::MoreUtils 'pairwise';
 
+with 'Acao::Role::Model::BuscaXSD';
+
 use constant DOSSIE_NS =>'http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd';
 my $controle = XML::Compile::Schema->new( Acao->path_to('schemas/dossie.xsd') );
 $controle->importDefinitions( Acao->path_to('schemas/documento.xsd') );
@@ -73,54 +75,69 @@ Retorna os dossies os quais o usuário autenticado tem acesso.
 
 =cut
 
-
 txn_method 'listar_dossies' => authorized $role_listar => sub {
     my ($self, $args) = @_;
-    my $where_nome_membro = $args->{nome_membro};
-    my $where_nome_mae =  $args->{nome_mae};
 
-	 if ( $where_nome_membro eq '') {
-	 	   $where_nome_membro = '1 = 1';
-	 } else {
-	 	   $where_nome_membro  =  '($x/ns:doc/dc:documento/dc:documento/dc:conteudo/pes:formIdentificacaoPessoal';
-	       $where_nome_membro .=  '[contains(upper-case(pes:nomeCompleto/text()),upper-case("' . $args->{nome_membro} . '"))]';
-	       $where_nome_membro .=  'or $x[contains(upper-case(ns:nome/text()),upper-case("' . $args->{nome_membro} . '"))])' ;
-	 }
+    my $pesquisa = $args->{pesquisa};
+    use Data::Dumper;
 
-	 if ($where_nome_mae eq '') {
-	 	   $where_nome_mae = '1 = 1';
-	 } else {
-	 	   $where_nome_mae  = '$x/ns:doc/dc:documento/dc:documento/dc:conteudo/pes:formIdentificacaoPessoal/pes:filiacao';
-           $where_nome_mae .= '[contains(upper-case(pes:mae/text()),upper-case("'. $args->{nome_mae} .'"))]';
-	 }
+    my %ns_base = ( ns => "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd",
+                    dc => "http://schemas.fortaleza.ce.gov.br/acao/documento.xsd",
+                    cl => "http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd" );
+    my @ns_add  = map { $args->{pesquisa}{'pesquisa_'.$_.'_ns'} } 0..($args->{pesquisa}{numero_campos} - 1);
+    my $counter;
+    my %ns = (%ns_base, map { "extra".$counter++ => $_ } @ns_add);
+    my %prefix = reverse %ns;
+    my $declarens = join "\n", map { 'declare namespace '.$_.'="'.$ns{$_}.'";' } keys %ns;
 
-    my $for = 'collection("'.$args->{id_volume}.'")/ns:dossie';
+    my $xpprefix = '$x/ns:doc/dc:documento/dc:documento/dc:conteudo/';
+    my @where;
+    foreach my $counter (0..($args->{pesquisa}{numero_campos} - 1)) {
+      my $ns = $args->{pesquisa}{"pesquisa_${counter}_ns"};
+      my $prefix = $prefix{$ns};
+      warn $args->{pesquisa}{"campo_formulario_${counter}"};
+      my $expr = $self->produce_expr
+        ( $prefix,
+          $args->{pesquisa}{"campo_formulario_${counter}"},
+          $args->{pesquisa}{"campo_operador_${counter}"},
+          $args->{pesquisa}{"valor_pesquisado_${counter}"},
+          $xpprefix
+        );
+      push @where, $expr;
+    }
 
-    my $declare_namespace  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";';
-       $declare_namespace .= 'declare namespace dc = "http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";';
-       $declare_namespace .= 'declare namespace cl = "http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";';
-       $declare_namespace .= 'declare namespace pes = "http://schemas.fortaleza.ce.gov.br/acao/sdh-identificacaoPessoal.xsd";';
+    if ($args->{pesquisa}{nome_prontuario}) {
+      push @where, 'contains(upper-case($x/ns:nome/text()),upper-case('.$self->quote_valor($args->{pesquisa}{nome_prontuario}).'))';
+    }
 
-    my $xquery_for = 'for $x in '.$for;
+    my $where = '';
+    $where = 'where ('.join(' and ', @where).') ' if @where;
 
-    my $xquery_where  = ' where '.$where_nome_membro;
-       $xquery_where .= ' and '. $where_nome_mae;
+    # Query para listagem
+    my $list = $declarens
+            . 'subsequence('
+            . 'for $x in collection("'.$args->{id_volume}.'")/ns:dossie '
+            . $where
+            . 'order by $x/ns:criacao descending '
+            . 'return ($x/ns:controle/text() , '.$args->{xqueryret}.'), '
+            . '(('.$args->{interval_ini}.' * '.$args->{num_por_pagina}.') + 1), '.$args->{num_por_pagina}.''
+            . ')';
 
-    my $list  = $declare_namespace.' subsequence('.$xquery_for.$xquery_where
-             .                     ' order by $x/ns:criacao descending'
-             .                     ' return ($x/ns:controle/text() , '.$args->{xqueryret}.'), '
-             .                     '(('.$args->{interval_ini}.' * '.$args->{num_por_pagina}.') + 1), '.$args->{num_por_pagina}.')';
 
+    # Contrução da query de contagem para contrução da paginação
+    my $count = $declarens
+              . 'count('
+              . 'for $x in collection("'.$args->{id_volume}.'")/ns:dossie '
+              . $where
+              . 'return "" )';
 
-	my $audit = ' subsequence(('.$xquery_for.$xquery_where.' return $x),'
-             .  ' (('.$args->{interval_ini}.' * '.$args->{num_por_pagina}.') + 1), '.$args->{num_por_pagina}.')';
-
-    my $count = $declare_namespace.'count('.$xquery_for.$xquery_where.' return "")';
 
     return
         {
           list       => $list,
-          count      => $count
+          count      => $count,
+          nsprefix   => \%prefix,
+          xpprefix   => $xpprefix
         };
 };
 
