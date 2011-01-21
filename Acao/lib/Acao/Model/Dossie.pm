@@ -82,8 +82,12 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
     my %prefix = reverse %ns;
     my $declarens = join "\n", map { 'declare namespace '.$_.'="'.$ns{$_}.'";' } keys %ns;
 
-    my $xpprefix = 'ns:doc/dc:documento/dc:documento/dc:conteudo/';
     my @where;
+
+    if ($args->{pesquisa}{nome_prontuario}) {
+      push @where, '[contains(upper-case(ns:nome/text()),upper-case('.$self->quote_valor($args->{pesquisa}{nome_prontuario}).'))]';
+    }
+    my $xpprefix = 'ns:doc/dc:documento/dc:documento/dc:conteudo/';
     foreach my $counter (0..($args->{pesquisa}{numero_campos} - 1)) {
       my $ns = $args->{pesquisa}{"pesquisa_${counter}_ns"};
       my $prefix = $prefix{$ns};
@@ -98,9 +102,6 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
       push @where, $expr;
     }
 
-    if ($args->{pesquisa}{nome_prontuario}) {
-      push @where, 'contains(upper-case(ns:nome/text()),upper-case('.$self->quote_valor($args->{pesquisa}{nome_prontuario}).'))';
-    }
     my $where = join '', @where if @where;
 
     # Query para listagem
