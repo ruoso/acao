@@ -82,13 +82,13 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
     my %prefix = reverse %ns;
     my $declarens = join "\n", map { 'declare namespace '.$_.'="'.$ns{$_}.'";' } keys %ns;
 
-    my $xpprefix = '$x/ns:doc/dc:documento/dc:documento/dc:conteudo/';
+    my $xpprefix = 'ns:doc/dc:documento/dc:documento/dc:conteudo/';
     my @where;
     foreach my $counter (0..($args->{pesquisa}{numero_campos} - 1)) {
       my $ns = $args->{pesquisa}{"pesquisa_${counter}_ns"};
       my $prefix = $prefix{$ns};
       warn $args->{pesquisa}{"campo_formulario_${counter}"};
-      my $expr = $self->produce_expr
+      my $expr = $self->produce_expr_xpfilter
         ( $prefix,
           $args->{pesquisa}{"campo_formulario_${counter}"},
           $args->{pesquisa}{"campo_operador_${counter}"},
@@ -99,18 +99,16 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
     }
 
     if ($args->{pesquisa}{nome_prontuario}) {
-      push @where, 'contains(upper-case($x/ns:nome/text()),upper-case('.$self->quote_valor($args->{pesquisa}{nome_prontuario}).'))';
+      push @where, 'contains(upper-case(ns:nome/text()),upper-case('.$self->quote_valor($args->{pesquisa}{nome_prontuario}).'))';
     }
-
-    my $where = '';
-    $where = 'where ('.join(' and ', @where).') ' if @where;
+    my $where = join '', @where if @where;
 
     # Query para listagem
     my $list = $declarens
             . 'subsequence('
             . 'for $x in collection("'.$args->{id_volume}.'")/ns:dossie '
             . $where
-            . 'order by $x/ns:criacao descending '
+            . ' order by $x/ns:criacao descending '
             . 'return ($x/ns:controle/text() , '.$args->{xqueryret}.'), '
             . '(('.$args->{interval_ini}.' * '.$args->{num_por_pagina}.') + 1), '.$args->{num_por_pagina}.''
             . ')';
@@ -119,9 +117,9 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
     # Contrução da query de contagem para contrução da paginação
     my $count = $declarens
               . 'count('
-              . 'for $x in collection("'.$args->{id_volume}.'")/ns:dossie '
+              . ' for $x in collection("'.$args->{id_volume}.'")/ns:dossie '
               . $where
-              . 'return "" )';
+              . ' return "" )';
 
 
     return
