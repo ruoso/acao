@@ -119,7 +119,7 @@ sub produce_expr {
             my $vb = $valor;
             my $filter = $self->produce_operador($classe_operador, $tipo_operador, $operador, $va, $vb);
             chop($xpath_prefix) if $xpath_prefix =~ /\/$/;
-            return join '', '[', $xpath_prefix, '[', $filter, ']', ']';
+            return join '', '[', (join '/', $xpath_prefix, @seg),'[', $filter, ']', ']';
         }
     }
 }
