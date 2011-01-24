@@ -18,16 +18,26 @@
    height:10px;
    width:100%;
    padding:10px;
-
 }
 
 /* Navegação */
 
 
-#E6B800
-
-
 /* Tabela de listagem (grid) */
+
+#buscadossie tbody tr td {
+    border-bottom: 0px;
+    background-color: #eee;
+}
+
+#buscadossie tbody tr:first-child td {
+    border-top: 1px solid #e5e5e5 !important;
+    background-color: #fff;
+}
+
+#buscadossie tbody tr td:first-child {
+    background-color: #fff !important;
+}
 
 
 table.wide-table { width:100%; } 

@@ -77,7 +77,7 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
         $c->flash->{sucesso} = 'Digitação armazenada com sucesso';
     }
 
-    $c->res->redirect( $c->uri_for('/auth/registros/digitador') );
+    $c->res->redirect( $c->uri_for_action('/auth/registros/digitador/lista') );
 }
 
 =item xsd

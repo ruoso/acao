@@ -22,9 +22,13 @@
 [% SET dos = ( c.model('Documento').getDadosDossie(id_volume, controle) ) %]
 [% SET iteration = 0 %]
 
+<script SRC="[% c.uri_for('/static/js/input.deflate.plugin.js') %]" language="Javascript" ></script>
+<script SRC="[% c.uri_for('/static/js/regex-mask-plugin.js') %]" language="Javascript" ></script>
+<script SRC="[% c.uri_for('/static/js/jquery.meio.mask.js') %]" language="Javascript" ></script>
 <script SRC="[% c.uri_for('/static/js/xsdForm.js') %]" language="Javascript" ></script>
+<script SRC="[% c.uri_for('/static/js/xsdForm-ui.js') %]" language="Javascript" ></script>
 
-<form action="[% c.uri_for('/auth/registros/volume/') _ id_volume _ '/' _ controle _ '/store' %]" method="post"
+<form action="[% c.uri_for_action('/auth/registros/volume/dossie/documento/store', [ id_volume , controle ]) %]" method="post"
     onsubmit="return generateXml('[% c.uri_for_action('/auth/registros/xsd/raw', { ns => xsdDocumento } ) %]', this.processed_xml);">
  <input type="hidden" name="processed_xml">
  <input type="hidden" name="id_volume" value="[% id_volume %]">
@@ -92,7 +96,7 @@
  </fieldset> 
 
  <fieldset> 
-    <a href="[% c.uri_for('/auth/registros/volume/') _ id_volume _ '/' _ controle _ '/visualizar/' _ id_documento _ '/' _ xsdDocumento.substr(40) _ '/' _ invalidacao _ '/' _ representaDocumentoFisico %]"> Voltar ao Documento Selecionado </a>
+   <a href="[% c.uri_for_action('/auth/registros/volume/dossie/documento/visualizar', [ id_volume, controle, id_documento ] ) %]"> Voltar ao Documento Selecionado </a>
  </fieldset> 
 
 <div id="form_container"></div>
@@ -105,7 +109,8 @@
 
    generateFormIteration("[% c.uri_for_action('/auth/registros/xsd/raw', { ns => xsdDocumento }) %]", "form_container", "[% iteration %]");
 
-   fillValuesIteration  ("[% c.uri_for('/auth/registros/volume/' _ id_volume _ '/' _ controle _ '/xml/' _ id_doc ) %]", "[% iteration %]");
+   fillValuesIteration  ("[% c.uri_for_action('/auth/registros/volume/dossie/documento/xml', [ id_volume, controle, id_doc] ) %]", "[% iteration %]");
+   generateXsdFormUI();
 
  </script>
  [% iteration = iteration + 1 %]

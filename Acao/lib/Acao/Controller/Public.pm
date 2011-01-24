@@ -48,7 +48,7 @@ temos ações autenticadas, portanto ele faz redirect para aquela área.
 
 sub entrada : Chained('base') : PathPart('') : Args(0) {
     my ( $self, $c ) = @_;
-    $c->res->redirect( $c->uri_for('/auth') );
+    $c->res->redirect( $c->uri_for_action('/auth/principal') );
 }
 
 =item default

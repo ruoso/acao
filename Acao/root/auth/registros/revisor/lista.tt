@@ -35,7 +35,7 @@
   <tr>
     <td>[% leitura.instrumento.projeto.nome %]</td>
     <td>
-      <a href="[% c.uri_for('/auth/registros/revisor') _ "/" _ leitura.id_leitura %]">
+      <a href="[% c.uri_for_action('/auth/registros/revisor/leitura/lista', [leitura.id_leitura]) %]">
         [% leitura.instrumento.nome %]
       </a>
     </td>
