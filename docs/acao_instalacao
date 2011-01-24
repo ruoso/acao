@@ -9,7 +9,7 @@ Instalando/Configurando
         1.1.4 - Para ver a chave gerada digite no terminal: cat /home/jackson/.ssh/id_rsa.pub
     1.2 - Copie a chave gerada para o campo "chave ssh" no formulario de cadastro do github e conclua o cadastro
 
-2 - Pelo terninal entre no diretorio para onde o projeto ação será baixado (Ex: devel)
+2 - Pelo terminal entre no diretorio para onde o projeto ação será baixado (Ex: devel)
 
 3 - Instalando os pacotes necessarios no Linux
     3.1 - Para instalar o pacote do github digite no terminal: sudo apt-get install git-core
@@ -278,7 +278,7 @@ Iniciando a Aplicação
     1.1 - Pelo terminal abra o diretorio onde está a raiz dos codigos fontes do sitema ação (Ex. cd devel/acao/Acao)
     1.2 - Digite no console: sudo /usr/lib/sedna/bin/se_gov
     1.3 - Digite no console: sudo /usr/lib/sedna/bin/se_sm acao
-    1.4 - DBIC_TRACE=1 script/acao_server.pl -r (Obs. o trcho DBIC_TRACE=1 habilita a visualização via terminal dos passos realizados pelo sistam durante seu uso mostrando por exemplo as comsultas sql realizadas; o trecho -r desabilita a necessidade de reiniciar o servidor conforme e sistema é alterado;)
+    1.4 - DBIC_TRACE=1 script/acao_server.pl -r (Obs. o trcho DBIC_TRACE=1 habilita a visualização via terminal dos passos realizados pelo sistam durante seu uso mostrando por exemplo as consultas sql realizadas; o trecho -r desabilita a necessidade de reiniciar o servidor conforme e sistema é alterado;)
     1.4 - Para iniciar visualizar o sistema digite a url: http://localhost:3000
 
 
