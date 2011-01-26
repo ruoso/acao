@@ -324,6 +324,7 @@ sub _checa_autorizacao_volume {
 
 sub store_altera_volume {
     my($self, $args) = @_;
+
 # Gambis provisória -  Fazendo Update de cada campo separadamente!
     my $query_autorizacao  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";'
                            . 'update replace $x in collection("volume")'
@@ -348,7 +349,8 @@ sub store_altera_volume {
                               . 'update replace $x in collection("volume")'
                               . '[/ns:volume/ns:collection="'.$args->{id_volume}.'"]/ns:volume/ns:classificacoes'
                               . ' with '.$args->{classificacoes} ;
-
+ warn $args->{classificacoes};
+ warn $query_classificacoes;
     $self->sedna->execute($query_classificacoes);
 
 

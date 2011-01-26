@@ -37,13 +37,7 @@ Carrega para o stash os dados do dossiê.
 
 =cut
 
-sub base : Chained('/auth/registros/volume/dossie/base') :PathPart('') :CaptureArgs(1) {
-    my ( $self, $c, $controle ) = @_;
-    Log::Log4perl::MDC->put('Dossie', $controle);
-    $c->stash->{controle} = $controle
-      or $c->detach('/public/default');
-
-}
+sub base : Chained('../get_dossie') :PathPart('') :CaptureArgs(0) {}
 
 sub get_documento :Chained('base') :PathPart('') :CaptureArgs(1) {
     my ( $self, $c, $id_documento ) = @_;

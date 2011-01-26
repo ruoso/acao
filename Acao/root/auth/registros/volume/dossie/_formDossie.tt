@@ -53,7 +53,7 @@
   <legend>Dados do Prontuário</legend>
   <dl class="form15">
     <dt> <label> Nome Prontuário: </label> </dt>
-    <dd> <input type="text" id="nome" name="nome" class="upper"> </dd>
+    <dd> <input type="text" id="nome" name="nome" value="[% nome %]" class="upper"> </dd>
 
     <dt> 
       <label> Localização: &nbsp; </label>
@@ -70,13 +70,9 @@
       </dd>
     </dt>
 
-    <dt>Controle:</dt>
-    <dd>
-     <input type="text" name="controle" id="controle" value="[% c.model('Dossie').gerar_uuid %]" readonly="readonly"/>
-    </dd>
     <br/>
     <br/>
-	<dd> <input type="checkbox" id="representaDossieFisico" name="representaDossieFisico" evt="representaDossieFisico" checked="checked">
+	<dd> <input type="checkbox" id="representaDossieFisico" name="representaDossieFisico" evt="representaDossieFisico" [% IF dos.dossie_fisico == 'Sim'  %] checked [% END %]>
            <label for="representaDossieFisico"> Representa Prontuário Físico </label> 
 	</dd>
   </dl>

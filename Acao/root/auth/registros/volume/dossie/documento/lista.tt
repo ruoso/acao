@@ -45,14 +45,16 @@
 
 [% SET tipo_documento = c.req.param('tipo_documento') %]
 [% SET xsd = c.req.param('c') %]
+
 <br>
 <h1 class="titulo-form">Gerenciar Documentos | <span style="font-size:13px; font-weight:normal;">
-<a id="addDocument" class="criar">Inserir Documento</a>
+    <a id="addDocument" class="criar">Inserir Documento</a>
+    |
+    <a class="alterar" href="[% c.uri_for_action('/auth/registros/volume/dossie/alterar_dossie', [ id_volume, controle ]) %]">Alterar Prontuário</a>
 </span></h1>
 
-
 [% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume) ) %]
-[% SET dos = ( c.model('Dossie').getDadosDossie(id_volume, controle) ) %]
+[% SET dos = ( c.model('Dossie').getDadosDossie(id_volume, controle, c.model('LDAP').assuntos_dn) ) %]
 
 <div id="accordion">
   <h3><a href="#">Dados do Volume: [% vol.nome %]</a></h3>
