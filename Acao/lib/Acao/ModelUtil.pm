@@ -61,7 +61,7 @@ sub txn_method {
         my $committed = 0;
         eval {
             $_[0]->sedna->begin;
-            $ret = $code->(@_);
+            $ret = $_[0]->dbic->txn_do($code, @_);
             $_[0]->sedna->commit;
             $committed = 1;
         };

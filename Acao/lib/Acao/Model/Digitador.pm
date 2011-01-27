@@ -27,6 +27,7 @@ use Encode;
 
 use constant DIGITACAO_NS => 'http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd';
 
+my $digitador = Acao->config->{roles}{digitador};
 my $controle = XML::Compile::Schema->new( Acao->path_to('schemas/controledigitacao.xsd') );
 my $controle_w = $controle->compile(WRITER => pack_type( DIGITACAO_NS, 'registroDigitacao' ),
 				    use_default_namespace => 1 );
@@ -50,12 +51,12 @@ Retorna as leituras as quais o usuário autenticado tem acesso.
 
 =cut
 
-txn_method 'listar_leituras' => authorized 'digitador' => sub {
+txn_method 'listar_leituras' => authorized $digitador => sub {
     my $self = shift;
 
     # sera dentro de uma transacao, e so pode ser usado por digitadores
     return $self->dbic->resultset('Leitura')->search(
-        { 'digitadores.dn' => $self->user->id },
+        { 'digitadores.dn' => $self->user->get('entrydn') },
         {
             prefetch => { 'instrumento' => 'projeto' },
             join     => 'digitadores',
@@ -71,12 +72,12 @@ ele ou não.
 
 =cut
 
-txn_method 'obter_leitura' => authorized 'digitador' => sub {
+txn_method 'obter_leitura' => authorized $digitador => sub {
     my ( $self, $id_leitura ) = @_;
 
     return $self->dbic->resultset('Leitura')->find(
         {
-            'digitadores.dn' => $self->user->id,
+            'digitadores.dn' => $self->user->get('entrydn'),
             'me.id_leitura'  => $id_leitura,
         },
         {
@@ -92,7 +93,7 @@ Retorna o docuemnto XSD para essa leitura.
 
 =cut
 
-txn_method 'obter_xsd_leitura' => authorized 'digitador' => sub {
+txn_method 'obter_xsd_leitura' => authorized $digitador => sub {
     my ( $self, $leitura ) = @_;
     return $self->sedna->get_document( $leitura->instrumento->xml_schema );
 };
@@ -106,11 +107,11 @@ registrar a digitação.
 
 =cut
 
-txn_method 'salvar_digitacao' => authorized 'digitador' => sub {
+txn_method 'salvar_digitacao' => authorized $digitador => sub {
     my ( $self, $leitura, $xml, $controle, $ip ) = @_;
     my $docname = join '_', 'digitacao',
        $leitura->instrumento->projeto->id_projeto, $leitura->instrumento->nome,
-       $leitura->id_leitura, $self->user->id, time;
+       $leitura->id_leitura, $self->user->get('entrydn'), time;
     $docname =~ s/[^a-zA-Z0-9]/_/gs;
 
     my $xq = 'declare namespace cd = "http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd"; 
@@ -149,7 +150,7 @@ txn_method 'salvar_digitacao' => authorized 'digitador' => sub {
         $doc,
         {
             digitacao => {
-                digitador      => $self->user->id,
+                digitador      => $self->user->get('entrydn'),
                 dataDigitacao  => DateTime->now(),
                 localDigitacao => $ip,
             },

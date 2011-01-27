@@ -22,6 +22,7 @@ use Acao::ModelUtil;
 use XML::LibXML;
 use XML::Compile::Schema;
 
+my $revisor = Acao->config->{roles}{revisor};
 
 =head1 NAME
 
@@ -43,11 +44,11 @@ revisor.
 
 =cut
 
-txn_method 'listar_leituras' => authorized 'revisor' => sub {
+txn_method 'listar_leituras' => authorized $revisor => sub {
     my $self = shift;
 
     return $self->dbic->resultset('Leitura')->search(
-        { 'revisores.dn' => $self->user->id },
+        { 'revisores.dn' => $self->user->get('entrydn') },
         {
             prefetch => { 'instrumento' => 'projeto' },
             join     => 'revisores',
@@ -63,12 +64,12 @@ específica.
 
 =cut
 
-txn_method 'obter_leitura' => authorized 'revisor' => sub {
+txn_method 'obter_leitura' => authorized $revisor => sub {
     my ( $self, $id_leitura ) = @_;
 
     return $self->dbic->resultset('Leitura')->find(
         {
-            'revisores.dn'  => $self->user->id,
+            'revisores.dn'  => $self->user->get('entrydn'),
             'me.id_leitura' => $id_leitura,
         },
         {
@@ -87,7 +88,7 @@ mais de um documento aprovado em um grupo.
 
 =cut
 
-txn_method 'aprovar' => authorized 'revisor' => sub {
+txn_method 'aprovar' => authorized $revisor => sub {
     my ( $self, $leitura, $id_doc, $controle ) = @_;
     $id_doc =~ s/\"\\//gs;
 
@@ -130,7 +131,7 @@ rejeitados.
 
 =cut
 
-txn_method 'rejeitar' => authorized 'revisor' => sub {
+txn_method 'rejeitar' => authorized $revisor => sub {
     my ( $self, $leitura, $id_doc, $controle ) = @_;
     $id_doc =~ s/\"\\//gs;
 
@@ -175,7 +176,7 @@ estados de aprovação e rejeição.
 
 =cut
 
-txn_method 'fecharDocumento' => authorized 'revisor' => sub {
+txn_method 'fecharDocumento' => authorized $revisor => sub {
     my ( $self, $leitura, $controle ) = @_;
 
     $self->sedna->execute(
@@ -214,7 +215,7 @@ Retorna o valor do campo controle para um determinado documento.
 
 =cut
 
-txn_method 'obter_campo_controle' => authorized 'revisor' => sub {
+txn_method 'obter_campo_controle' => authorized $revisor => sub {
     my ( $self, $leitura, $id_doc ) = @_;
     $id_doc =~ s/\"\\//gs;
     my $xml;
@@ -233,7 +234,7 @@ Retorna o conteúdo do documento com id $id_doc para visualização.
 
 =cut
 
-txn_method 'visualizar' => authorized 'revisor' => sub {
+txn_method 'visualizar' => authorized $revisor => sub {
     my ( $self, $leitura, $id_doc ) = @_;
     $id_doc =~ s/\"\\//gs;
     my $xml;
@@ -255,7 +256,7 @@ Retorna o documento XSD para a leitura informada.
 
 =cut
 
-txn_method 'obter_xsd_leitura' => authorized 'revisor' => sub {
+txn_method 'obter_xsd_leitura' => authorized $revisor => sub {
     my ( $self, $leitura ) = @_;
     return $self->sedna->get_document( $leitura->instrumento->xml_schema );
 };
