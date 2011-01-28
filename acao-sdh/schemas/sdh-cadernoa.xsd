@@ -1,6 +1,7 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-cadernoa.xsd"
+    xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
 	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-cadernoa.xsd"
 	elementFormDefault="qualified">
 
@@ -8,6 +9,9 @@
 		<xs:annotation>
 			<xs:appinfo>
 				<label>Proposta de Cadastro Único</label>
+                <class:classificacoes>
+                    <class:classificacao>cn=Direitos Humanos</class:classificacao>
+                </class:classificacoes>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>

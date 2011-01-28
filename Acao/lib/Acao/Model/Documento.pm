@@ -72,7 +72,7 @@ txn_method 'listar_documentos' => authorized $role_listar => sub {
        $declare_namespace .= 'declare namespace dc = "http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";';
        $declare_namespace .= 'declare namespace adt = "http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd";';
        $declare_namespace .= 'declare namespace xhtml = "http://www.w3.org/1999/xhtml";';
-     $declare_namespace .= 'declare namespace xss = "http://www.w3.org/2001/XMLSchema";';
+       $declare_namespace .= 'declare namespace xss = "http://www.w3.org/2001/XMLSchema";';
 
   my $for = 'collection("'.$args->{id_volume}.'")/ns:dossie[ns:controle = "'.$args->{controle}.'" ]';
 

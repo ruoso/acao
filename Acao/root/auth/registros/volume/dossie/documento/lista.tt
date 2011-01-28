@@ -198,7 +198,7 @@
 
 <div id="lstDocumentos" class="hidden panel">
   <div class="text">
-      [% c.model('XSD').link_xsd(controle) %]
+      [% c.model('XSD').link_xsd(id_volume, controle, c.model('LDAP').assuntos_dn) %]
   </div>
 </div>
 
@@ -273,6 +273,5 @@
      }
 
 </script>
-
 
 [% INCLUDE 'footer.tt' %]

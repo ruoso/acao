@@ -1,13 +1,18 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-evolucao.xsd"
-	xmlns:xhtml="http://www.w3.org/1999/xhtml" targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-evolucao.xsd"
+    xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml" 
+    targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-evolucao.xsd"
 	elementFormDefault="qualified">
 
 	<xs:element name="formEvolucao" type="formEvolucao">
 		<xs:annotation>
 			<xs:appinfo>
 				<xhtml:label>SG 02.EVOLUÇÃO</xhtml:label>
+                <class:classificacoes>
+                    <class:classificacao>cn=Direitos Humanos</class:classificacao>
+                </class:classificacoes>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>

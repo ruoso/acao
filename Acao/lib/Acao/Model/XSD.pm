@@ -65,9 +65,43 @@ txn_method 'options_xsd' => authorized $role_listar => sub {
 };
 
 txn_method 'link_xsd' => authorized $role_listar => sub {
-    my ( $self, $controle ) = @_;
-    my $xq = 'declare namespace xhtml="http://www.w3.org/1999/xhtml"; declare namespace xs="http://www.w3.org/2001/XMLSchema"; 
-              for $x in collection("acao-schemas")
+    my ( $self, $id_volume, $controle, $assuntos_dn ) = @_;
+
+    my %classificacoes = ();
+
+    my $vol_query  = ' declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd"; '
+                   . ' declare namespace cl = "http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"; '
+                   . ' for $x in collection("volume")/ns:volume[ns:collection = "'.$id_volume.'"] '
+                   . ' return $x/ns:classificacoes/cl:classificacao/text() ';
+    $self->sedna->execute($vol_query);
+    while (my $vol_class =$self->sedna->get_item()) {
+        $classificacoes{$vol_class} = 1;
+    }
+
+
+    my $dos_query = ' declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; '
+                  . ' declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd"; '
+                  . ' declare namespace cl="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"; '
+                  . ' for $x in collection("'.$id_volume.'")/ns:dossie[ns:controle="'.$controle.'"] '
+                  . ' return $x/ns:classificacoes/cl:classificacao/text()';
+    $self->sedna->execute($dos_query);
+    while (my $dos_class =$self->sedna->get_item()) {
+        $classificacoes{$dos_class} = 1;
+    }
+
+    my @classificacoes = keys %classificacoes;
+    my $filter = join ' or ',
+        map { 'cl:classificacao eq "'.$_.'"' }
+        map { /$assuntos_dn$/ ? substr($_, 0, 0 - length($assuntos_dn) - 1) : $_ }
+        @classificacoes;
+    $filter = '[xs:schema/xs:element/xs:annotation/xs:appinfo/cl:classificacoes['.$filter.']]' if $filter;
+
+    warn $filter;
+
+    my $xq = 'declare namespace xhtml="http://www.w3.org/1999/xhtml";
+              declare namespace xs="http://www.w3.org/2001/XMLSchema";
+              declare namespace cl = "http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";
+              for $x in collection("acao-schemas")'.$filter.'
               order by $x/xs:schema/xs:element/xs:annotation/xs:appinfo/xhtml:label/text()
               return <div>
                         <a href="' . $controle . '/inserirdocumento?xsdDocumento={ $x/xs:schema/@targetNamespace }">
@@ -75,7 +109,7 @@ txn_method 'link_xsd' => authorized $role_listar => sub {
                         </a>
                      </div>
               [starts-with($x/xs:schema/@targetNamespace, "http://schemas.fortaleza.ce.gov.br/acao/sdh")]';
-
+warn $xq;
     $self->sedna->execute($xq);
     my $ret;
     while (my $item = $self->sedna->get_item()) {
