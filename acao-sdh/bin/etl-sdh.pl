@@ -17,7 +17,8 @@ my $sedna = Sedna->connect('127.0.0.1', 'acao', 'acao', '12345');
 
 $sedna->setConnectionAttr(AUTOCOMMIT => Sedna::SEDNA_AUTOCOMMIT_OFF() );
 
-my $dbi = DimSchema->connect("dbi:Pg:dbname=sdh;host=127.0.0.1;port=5432",'acao','blableblibloblu');
+#my $dbi = DimSchema->connect("dbi:Pg:dbname=sdh;host=127.0.0.1;port=5432",'acao','blableblibloblu');
+my $dbi = DimSchema->connect("dbi:Pg:dbname=acao;host=127.0.0.1;port=5432",'acao','12345');
 
 BEGIN {
     die 'Informe a variavel de ambiente ACAO_HOME' unless -d $ENV{ACAO_HOME};
@@ -26,7 +27,7 @@ BEGIN {
 #define as constantes para os caminhos dos schemas, utilizando variável de ambiente
 use constant HOME_SCHEMAS => $ENV{HOME_SCHEMAS} || catfile($Bin, '..', 'schemas');
 use constant SCHEMA_DOSSIE    => catfile($ENV{ACAO_HOME}, 'schemas', 'dossie.xsd');
-use constant SCHEMA_AUDITORIA => catfile($ENV{ACAO_HOME}, 'schemas', 'auditoria.xsd');
+#use constant SCHEMA_AUDITORIA => catfile($ENV{ACAO_HOME}, 'schemas', 'auditoria.xsd');
 use constant SCHEMA_DOCUMENTO => catfile($ENV{ACAO_HOME}, 'schemas', 'documento.xsd');
 use constant SCHEMA_ATENDIMENTOESPECIFICOSEGARANTA => catfile(HOME_SCHEMAS, 'sdh-atendimentoEspecificoSEGARANTA.xsd');
 use constant SCHEMA_CONDICOESDEMORADIA             => catfile(HOME_SCHEMAS, 'sdh-condicoesDeMoradia.xsd');
@@ -60,7 +61,7 @@ use constant SCHEMA_VISITAINSTITUCIONAL            => catfile(HOME_SCHEMAS, 'sdh
 
 use constant DOSSIE_NS    => 'http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd';
 use constant DOCUMENTO_NS => 'http://schemas.fortaleza.ce.gov.br/acao/documento.xsd';
-use constant AUDITORIA_NS => 'http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd';
+#use constant AUDITORIA_NS => 'http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd';
 
 my $schema_form = {
                'formAtendimentoEspecificoSEGARANTA' => XML::Compile::Schema->new(SCHEMA_ATENDIMENTOESPECIFICOSEGARANTA),
@@ -94,7 +95,8 @@ my $schema_form = {
                'formVisitaInstitucional'            => XML::Compile::Schema->new(SCHEMA_VISITAINSTITUCIONAL),
                   };
 
-my $schema = XML::Compile::Schema->new([SCHEMA_DOCUMENTO, SCHEMA_AUDITORIA]);
+#my $schema = XML::Compile::Schema->new([SCHEMA_DOCUMENTO, SCHEMA_AUDITORIA]);
+my $schema = XML::Compile::Schema->new([SCHEMA_DOCUMENTO]);
 my $read = $schema->compile(READER => pack_type(DOCUMENTO_NS, 'documento'),  any_element => 'TAKE_ALL');
 
 sub getVolumes{
@@ -136,11 +138,53 @@ sub getDossies{
     }
 
     for (my $i=0; $i < scalar(@dossies); $i+= 2){
-        warn 'Faltando ' . ((scalar(@dossies)) - ($i)) . ' .....................................';
+#        warn 'Faltando ' . ((scalar(@dossies)) - ($i)) . ' .....................................';
         $dossies[$i+1]=~ s/^\s+//;
         extract($dossies[$i], $dossies[$i + 1]);
+#drop_auditoria($dossies[$i], $dossies[$i + 1]);
     }
 
+}
+
+sub geIdtDocumentos{
+    my ($id_volume, $controle) = @_;
+    my $xq = 'declare namespace dos = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
+              declare namespace dc = "http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";
+                    for $x in collection("' . $id_volume . '")/dos:dossie[dos:controle="'. $controle .'"]
+                    /dos:doc/dc:documento/dc:id/text() return $x';
+    my @documentos;
+    #inicia a conexão com o sedna
+    $sedna->begin;
+
+    #executa a consulta
+    $sedna->execute($xq);
+     while ($sedna->next){
+        push(@documentos, $sedna->getItem());
+     }
+    $sedna->commit;
+
+    for (my $i=0; $i < scalar(@documentos); $i++){
+        $documentos[$i]=~ s/^\s+//;
+    }
+    return @documentos;
+}
+#este metodo é usado apenas para corrigir a estrutura dos xml antigos que usavam auditoria.
+sub drop_auditoria {
+    my ($id_volume, $controle) = @_;
+
+    my $xq = 'declare namespace dos = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
+              declare namespace dc = "http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";
+                    update delete collection("' . $id_volume . '")/dos:dossie[dos:controle="'. $controle .'"]
+                    /dos:doc/dc:documento/dc:audit';
+
+    #inicia a conexão com o sedna
+    $sedna->begin;
+
+    #executa a consulta
+    $sedna->execute($xq);
+
+    $sedna->commit;
+warn "auditoria dropado do controle $controle do volume $id_volume"
 }
 
 sub extract {
@@ -152,10 +196,10 @@ sub extract {
               declare namespace dc = "http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";
                     for $x in collection("' . $id_volume . '")/dos:dossie[dos:controle="'. $controle .'"]
                     /dos:doc/dc:documento[dc:invalidacao/text() eq "1970-01-01T00:00:00Z"] return $x';
-
     #inicia a conexão com o sedna
     $sedna->begin;
-
+#warn $id_volume . "\n";
+#warn $controle . "\n";
     #executa a consulta
     $sedna->execute($xq);
   my @result;
@@ -165,18 +209,16 @@ sub extract {
        #atribui os itens retornados da consulta acima na variavel $xsd sob a forma de XML String
        my $xml_string = $sedna->getItem();
        my $data = $read->($xml_string);
-
        my @array_keys = keys( %{ $data->{documento}[0]{conteudo}} );
        my @namespace = split(/}/, $array_keys[0]);
-if($namespace[1] eq 'formProtecaoEspecial')
+if($namespace[1] eq 'formIdentificacaoPessoal')
 {
-#warn $xml_string;
+warn $xml_string;
 }
 
 #warn $namespace[1];
        my $read_doc = $schema_form->{$namespace[1]}->compile(READER => pack_type( substr($namespace[0],1) , $namespace[1] ));
        my $data_doc = $read_doc->($data->{documento}[0]{conteudo}{pack_type(substr($namespace[0],1) ,  $namespace[1])}[0]);
-
        push @result, { $namespace[1] => $data_doc};
        
 if($namespace[1] eq 'formProfissionalizacaoHabilidades')
@@ -348,6 +390,7 @@ sub transform_estado_civil {
 sub transform_raca_etnia {
     my $data = shift;
     my $value = 'Não Informado';
+warn $data->{racaEtinia};
     if ($data->{racaEtinia}){
         $value = $data->{racaEtinia};
     }
