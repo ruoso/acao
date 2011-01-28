@@ -25,6 +25,8 @@ use XML::Compile::Schema;
 use DateTime;
 use XML::Compile::Util qw(pack_type);
 
+my $consolidador = Acao->config->{roles}{consolidador};
+
 use constant CONSOLIDACAO_NS =>
   'http://schemas.fortaleza.ce.gov.br/acao/controleconsolidacao.xsd';
 
@@ -55,12 +57,12 @@ usuário tem acesso.
 
 =cut
 
-txn_method 'listar_definicao_consolidacao' => authorized 'consolidador' => sub {
+txn_method 'listar_definicao_consolidacao' => authorized $consolidador => sub {
     my $self = shift;
 
     # sera dentro de uma transacao, e so pode ser usado por consolidadores
     return $self->dbic->resultset('DefinicaoConsolidacao')->search(
-        { 'consolidador.dn' => $self->user->id },
+        { 'consolidador.dn' => $self->user->get('entrydn') },
         {
             prefetch => 'projeto',
             join     => 'consolidador',
@@ -75,11 +77,11 @@ tempo em que verifica se o usuário tem esse acesso.
 
 =cut
 
-txn_method 'obter_definicao_consolidacao' => authorized 'consolidador' => sub {
+txn_method 'obter_definicao_consolidacao' => authorized $consolidador => sub {
     my ( $self, $id_definicao_consolidacao ) = @_;
     return $self->dbic->resultset('DefinicaoConsolidacao')->find(
         {
-            'consolidador.dn'              => $self->user->id,
+            'consolidador.dn'              => $self->user->get('entrydn'),
             'me.id_definicao_consolidacao' => $id_definicao_consolidacao
         },
         {
@@ -95,11 +97,11 @@ Este método retorna um objeto consolidação.
 
 =cut
 
-txn_method 'obter_consolidacao' => authorized 'consolidador' => sub {
+txn_method 'obter_consolidacao' => authorized $consolidador => sub {
     my ( $self, $id_consolidacao ) = @_;
     return $self->dbic->resultset('Consolidacao')->find(
         {
-            'consolidador.dn'    => $self->user->id,
+            'consolidador.dn'    => $self->user->get('entrydn'),
             'me.id_consolidacao' => $id_consolidacao
         },
 
@@ -121,13 +123,13 @@ consolidacao e o nome do usuário.
 
 =cut
 
-txn_method 'iniciar_consolidacao' => authorized 'consolidador' => sub {
+txn_method 'iniciar_consolidacao' => authorized $consolidador => sub {
     my ( $self, $definicao_consolidacao ) = @_;
     my $consolidacao = $definicao_consolidacao->consolidacao->create(
         {
             status   => 'Criada',
             data_ini => DateTime->now(),
-            dn       => $self->user->id
+            dn       => $self->user->get('entrydn')
         }
     );
 
@@ -140,7 +142,7 @@ txn_method 'iniciar_consolidacao' => authorized 'consolidador' => sub {
     #    close STDOUT;
     #    close STDIN;
     #    my $pid = system( $^X, $script, $consolidacao->id_consolidacao,
-    #        $self->user->id );
+    #        $self->user->get('entrydn') );
     #    use POSIX ":sys_wait_h";
     #    waitpid( $pid, WNOHANG );
     #    exit;
@@ -154,7 +156,7 @@ para compor esse documento consolidado, associado aos dados da leitura.
 
 =cut
 
-txn_method obter_documentos_entrada => authorized 'consolidador' => sub {
+txn_method obter_documentos_entrada => authorized $consolidador => sub {
     my ( $self, $consolidacao, $id_documento_consolidado ) = @_;
     my $xq = 'declare namespace ab="http://schemas.fortaleza.ce.gov.br/acao/controleconsolidacao.xsd"; 
               for $x in collection("consolidacao-entrada-'

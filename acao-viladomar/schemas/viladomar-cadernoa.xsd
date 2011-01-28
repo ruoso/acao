@@ -1,6 +1,7 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema
  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+ xmlns:xhtml="http://www.w3.org/1999/xhtml"
  xmlns="http://schemas.fortaleza.ce.gov.br/habitafor/viladomar-cadernoa.xsd" 
  targetNamespace="http://schemas.fortaleza.ce.gov.br/habitafor/viladomar-cadernoa.xsd" 
  elementFormDefault="qualified">
@@ -8,7 +9,7 @@
  <xs:element name="formCadernoA" type="formCadernoA">
   <xs:annotation>
    <xs:appinfo>
-    <label>Recadastramento Vila do Mar - Caderno A</label>
+    <xhtml:label>Recadastramento Vila do Mar - Caderno A</xhtml:label>
    </xs:appinfo>
   </xs:annotation>
  </xs:element>
@@ -19,7 +20,7 @@
     <xs:element name="identificacao">
      <xs:annotation>
       <xs:appinfo>
-       <label>Identificação</label>
+       <xhtml:label>Identificação</xhtml:label>
       </xs:appinfo>
      </xs:annotation>
      <xs:complexType>
@@ -28,7 +29,7 @@
        <xs:element name="codigoPMF" type="xs:integer" minOccurs="0">
         <xs:annotation>
          <xs:appinfo>
-          <label>1 - Código PMF</label>
+          <xhtml:label>1 - Código PMF</xhtml:label>
          </xs:appinfo>
         </xs:annotation>
        </xs:element>
@@ -36,7 +37,7 @@
 
         <xs:annotation>
          <xs:appinfo>
-          <label>Não tem</label>
+          <xhtml:label>Não tem</xhtml:label>
          </xs:appinfo>
         </xs:annotation>
        </xs:element>
@@ -44,7 +45,7 @@
         <xs:annotation>
 
          <xs:appinfo>
-          <label>2 - Data</label>
+          <xhtml:label>2 - Data</xhtml:label>
          </xs:appinfo>
         </xs:annotation>
        </xs:element>
@@ -52,14 +53,14 @@
         <xs:annotation>
          <xs:appinfo>
 
-          <label>3 - Órgão Cadastrador</label>
+          <xhtml:label>3 - Órgão Cadastrador</xhtml:label>
          </xs:appinfo>
         </xs:annotation>
        </xs:element>
        <xs:element name="entrevistador" type="xs:string" minOccurs="0">
         <xs:annotation>
          <xs:appinfo>
-          <label>4 - Entrevistador</label>
+          <xhtml:label>4 - Entrevistador</xhtml:label>
 
          </xs:appinfo>
         </xs:annotation>
@@ -67,7 +68,7 @@
        <xs:element name="titularBeneficiario" type="xs:string" minOccurs="0">
         <xs:annotation>
          <xs:appinfo>
-          <label>5 - Titular Beneficiário</label>
+          <xhtml:label>5 - Titular Beneficiário</xhtml:label>
          </xs:appinfo>
 
         </xs:annotation>
@@ -75,7 +76,7 @@
        <xs:element name="tipoDemanda" minOccurs="0">
         <xs:annotation>
          <xs:appinfo>
-          <label>6 - Tipo de Demanda</label>
+          <xhtml:label>6 - Tipo de Demanda</xhtml:label>
          </xs:appinfo>
         </xs:annotation>
 
@@ -90,7 +91,7 @@
         <xs:annotation>
 
          <xs:appinfo>
-          <label>7 - Cartão</label>
+          <xhtml:label>7 - Cartão</xhtml:label>
          </xs:appinfo>
         </xs:annotation>
         <xs:simpleType>
@@ -108,7 +109,7 @@
      <xs:annotation>
       <xs:appinfo>
 
-       <label>Endereço do Imóvel</label>
+       <xhtml:label>Endereço do Imóvel</xhtml:label>
       </xs:appinfo>
      </xs:annotation>
      <xs:complexType>
@@ -117,14 +118,14 @@
         <xs:annotation>
          <xs:appinfo>
 
-          <label>8 - Logradouro</label>
+          <xhtml:label>8 - Logradouro</xhtml:label>
          </xs:appinfo>
         </xs:annotation>
        </xs:element>
        <xs:element name="numero" type="xs:integer" minOccurs="0">
         <xs:annotation>
          <xs:appinfo>
-          <label>9 - Número</label>
+          <xhtml:label>9 - Número</xhtml:label>
 
          </xs:appinfo>
         </xs:annotation>
@@ -132,7 +133,7 @@
        <xs:element name="complemento" type="xs:string" minOccurs="0">
         <xs:annotation>
          <xs:appinfo>
-          <label>10 - Complemento</label>
+          <xhtml:label>10 - Complemento</xhtml:label>
          </xs:appinfo>
 
         </xs:annotation>
@@ -140,7 +141,7 @@
        <xs:element name="setor" type="xs:string" minOccurs="0">
         <xs:annotation>
          <xs:appinfo>
-          <label>11 - Setor</label>
+          <xhtml:label>11 - Setor</xhtml:label>
          </xs:appinfo>
         </xs:annotation>
 
@@ -148,7 +149,7 @@
        <xs:element name="localizacaoCartografica" type="xs:string" minOccurs="0">
         <xs:annotation>
          <xs:appinfo>
-          <label>12 - localização Cartográfica</label>
+          <xhtml:label>12 - localização Cartográfica</xhtml:label>
          </xs:appinfo>
         </xs:annotation>
        </xs:element>
@@ -156,7 +157,7 @@
        <xs:element name="bairro" type="xs:string" minOccurs="0">
         <xs:annotation>
          <xs:appinfo>
-          <label>13 - Bairro/Comunidade</label>
+          <xhtml:label>13 - Bairro/Comunidade</xhtml:label>
          </xs:appinfo>
         </xs:annotation>
        </xs:element>
@@ -164,7 +165,7 @@
 
         <xs:annotation>
          <xs:appinfo>
-          <label>14 - Telefone</label>
+          <xhtml:label>14 - Telefone</xhtml:label>
          </xs:appinfo>
         </xs:annotation>
        </xs:element>
@@ -172,7 +173,7 @@
         <xs:annotation>
 
          <xs:appinfo>
-          <label>15 - Situação do Imóvel (Morador)</label>
+          <xhtml:label>15 - Situação do Imóvel (Morador)</xhtml:label>
          </xs:appinfo>
         </xs:annotation>
         <xs:simpleType>
@@ -192,7 +193,7 @@
 
         <xs:annotation>
          <xs:appinfo>
-          <label>16 - Observações</label>
+          <xhtml:label>16 - Observações</xhtml:label>
          </xs:appinfo>
         </xs:annotation>
        </xs:element>
@@ -200,7 +201,7 @@
         <xs:annotation>
 
          <xs:appinfo>
-          <label>17 - 1ª Visita</label>
+          <xhtml:label>17 - 1ª Visita</xhtml:label>
          </xs:appinfo>
         </xs:annotation>
        </xs:element>
@@ -208,14 +209,14 @@
         <xs:annotation>
          <xs:appinfo>
 
-          <label>18 - 2ª Visita</label>
+          <xhtml:label>18 - 2ª Visita</xhtml:label>
          </xs:appinfo>
         </xs:annotation>
        </xs:element>
        <xs:element name="visita3" type="xs:dateTime" minOccurs="0">
         <xs:annotation>
          <xs:appinfo>
-          <label>19 - 3ª Visita</label>
+          <xhtml:label>19 - 3ª Visita</xhtml:label>
 
          </xs:appinfo>
         </xs:annotation>
@@ -223,7 +224,7 @@
        <xs:element name="notificacao" type="xs:dateTime" minOccurs="0">
         <xs:annotation>
          <xs:appinfo>
-          <label>20 - Notificação</label>
+          <xhtml:label>20 - Notificação</xhtml:label>
          </xs:appinfo>
 
         </xs:annotation>
@@ -234,7 +235,7 @@
     <xs:element name="caracteristicasImovel">
      <xs:annotation>
       <xs:appinfo>
-       <label>Características do Imóvel</label>
+       <xhtml:label>Características do Imóvel</xhtml:label>
 
       </xs:appinfo>
      </xs:annotation>
@@ -243,7 +244,7 @@
        <xs:element name="localizacao" minOccurs="0">
         <xs:annotation>
          <xs:appinfo>
-          <label>21 - Localização</label>
+          <xhtml:label>21 - Localização</xhtml:label>
 
          </xs:appinfo>
         </xs:annotation>
@@ -252,7 +253,7 @@
           <xs:element name="quadraloteada" type="xs:boolean">
            <xs:annotation>
             <xs:appinfo>
-             <label>Quadra Loteada</label>
+             <xhtml:label>Quadra Loteada</xhtml:label>
 
             </xs:appinfo>
            </xs:annotation>
@@ -260,7 +261,7 @@
           <xs:element name="leitoDeRua" type="xs:boolean">
            <xs:annotation>
             <xs:appinfo>
-             <label>Leito de Rua</label>
+             <xhtml:label>Leito de Rua</xhtml:label>
             </xs:appinfo>
 
            </xs:annotation>
@@ -268,7 +269,7 @@
           <xs:element name="praca" type="xs:boolean">
            <xs:annotation>
             <xs:appinfo>
-             <label>Praça</label>
+             <xhtml:label>Praça</xhtml:label>
             </xs:appinfo>
            </xs:annotation>
 
@@ -276,7 +277,7 @@
           <xs:element name="areaVerde" type="xs:boolean">
            <xs:annotation>
             <xs:appinfo>
-             <label>Área Verde</label>
+             <xhtml:label>Área Verde</xhtml:label>
             </xs:appinfo>
            </xs:annotation>
           </xs:element>
@@ -284,7 +285,7 @@
           <xs:element name="terroParaEquipamentoComunitario" type="xs:boolean">
            <xs:annotation>
             <xs:appinfo>
-             <label>Terro p/ Equipamento Comunitário</label>
+             <xhtml:label>Terro p/ Equipamento Comunitário</xhtml:label>
             </xs:appinfo>
            </xs:annotation>
           </xs:element>
@@ -292,7 +293,7 @@
 
            <xs:annotation>
             <xs:appinfo>
-             <label>Outro</label>
+             <xhtml:label>Outro</xhtml:label>
             </xs:appinfo>
            </xs:annotation>
           </xs:element>
@@ -300,7 +301,7 @@
            <xs:annotation>
 
             <xs:appinfo>
-             <label>Especifique</label>
+             <xhtml:label>Especifique</xhtml:label>
             </xs:appinfo>
            </xs:annotation>
           </xs:element>
@@ -311,7 +312,7 @@
        <xs:element name="areaPreservacao" minOccurs="0">
         <xs:annotation>
          <xs:appinfo>
-          <label>22 - Area de Preservação</label>
+          <xhtml:label>22 - Area de Preservação</xhtml:label>
          </xs:appinfo>
         </xs:annotation>
         <xs:simpleType>
@@ -325,7 +326,7 @@
        <xs:element name="tipologiaUso" minOccurs="0">
         <xs:annotation>
          <xs:appinfo>
-          <label>23 - Tipologia de Uso</label>
+          <xhtml:label>23 - Tipologia de Uso</xhtml:label>
 
          </xs:appinfo>
         </xs:annotation>
@@ -342,7 +343,7 @@
        <xs:element name="tipoServico" type="xs:string" minOccurs="0">
         <xs:annotation>
          <xs:appinfo>
-          <label>24 - Tipo de Serviço</label>
+          <xhtml:label>24 - Tipo de Serviço</xhtml:label>
          </xs:appinfo>
         </xs:annotation>
 
@@ -350,7 +351,7 @@
        <xs:element name="situacaoFundiaria" minOccurs="0">
         <xs:annotation>
          <xs:appinfo>
-          <label>25 - Situação Fundiária</label>
+          <xhtml:label>25 - Situação Fundiária</xhtml:label>
          </xs:appinfo>
         </xs:annotation>
         <xs:simpleType>
@@ -366,7 +367,7 @@
         <xs:annotation>
 
          <xs:appinfo>
-          <label>26 - Compartimentos da Moradia</label>
+          <xhtml:label>26 - Compartimentos da Moradia</xhtml:label>
          </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
@@ -375,7 +376,7 @@
            <xs:annotation>
 
             <xs:appinfo>
-             <label>Quarto(s)</label>
+             <xhtml:label>Quarto(s)</xhtml:label>
             </xs:appinfo>
            </xs:annotation>
           </xs:element>
@@ -383,14 +384,14 @@
            <xs:annotation>
             <xs:appinfo>
 
-             <label>Sala(s)</label>
+             <xhtml:label>Sala(s)</xhtml:label>
             </xs:appinfo>
            </xs:annotation>
           </xs:element>
           <xs:element name="qtdCozinhas" type="xs:integer" minOccurs="0">
            <xs:annotation>
             <xs:appinfo>
-             <label>Cozinha(s)</label>
+             <xhtml:label>Cozinha(s)</xhtml:label>
 
             </xs:appinfo>
            </xs:annotation>
@@ -398,7 +399,7 @@
           <xs:element name="qtdBanheiros" type="xs:integer" minOccurs="0">
            <xs:annotation>
             <xs:appinfo>
-             <label>Banheiro(s)</label>
+             <xhtml:label>Banheiro(s)</xhtml:label>
             </xs:appinfo>
 
            </xs:annotation>
@@ -406,7 +407,7 @@
           <xs:element name="qtdQuintais" type="xs:integer" minOccurs="0">
            <xs:annotation>
             <xs:appinfo>
-             <label>Qtde Quintais</label>
+             <xhtml:label>Qtde Quintais</xhtml:label>
             </xs:appinfo>
            </xs:annotation>
 
@@ -414,7 +415,7 @@
           <xs:element name="qtdUotros" type="xs:integer" minOccurs="0">
            <xs:annotation>
             <xs:appinfo>
-             <label>Outro(s)</label>
+             <xhtml:label>Outro(s)</xhtml:label>
             </xs:appinfo>
            </xs:annotation>
           </xs:element>
@@ -422,7 +423,7 @@
           <xs:element name="localizacaoOutro" type="xs:string" minOccurs="0">
            <xs:annotation>
             <xs:appinfo>
-             <label>Especifique</label>
+             <xhtml:label>Especifique</xhtml:label>
             </xs:appinfo>
            </xs:annotation>
           </xs:element>
@@ -433,7 +434,7 @@
        <xs:element name="tipoMoradia" minOccurs="0">
         <xs:annotation>
          <xs:appinfo>
-          <label>27 - Tipo de Moradia</label>
+          <xhtml:label>27 - Tipo de Moradia</xhtml:label>
          </xs:appinfo>
         </xs:annotation>
 
@@ -452,7 +453,7 @@
        <xs:element name="TempoMoradia" minOccurs="0">
         <xs:annotation>
          <xs:appinfo>
-          <label>28 - Tempo de moradia</label>
+          <xhtml:label>28 - Tempo de moradia</xhtml:label>
          </xs:appinfo>
         </xs:annotation>
 
@@ -471,7 +472,7 @@
        <xs:element name="numMatricula" type="xs:integer" minOccurs="0">
         <xs:annotation>
          <xs:appinfo>
-          <label>29 - Num. Matrícula</label>
+          <xhtml:label>29 - Num. Matrícula</xhtml:label>
          </xs:appinfo>
         </xs:annotation>
 
@@ -479,7 +480,7 @@
        <xs:element name="cartorio" type="xs:string" minOccurs="0">
         <xs:annotation>
          <xs:appinfo>
-          <label>30 - Cartório</label>
+          <xhtml:label>30 - Cartório</xhtml:label>
          </xs:appinfo>
         </xs:annotation>
        </xs:element>
@@ -487,7 +488,7 @@
        <xs:element name="zona" type="xs:string" minOccurs="0">
         <xs:annotation>
          <xs:appinfo>
-          <label>31 - Zona</label>
+          <xhtml:label>31 - Zona</xhtml:label>
          </xs:appinfo>
         </xs:annotation>
        </xs:element>
@@ -495,7 +496,7 @@
 
         <xs:annotation>
          <xs:appinfo>
-          <label>32 - Nome do Proprietário</label>
+          <xhtml:label>32 - Nome do Proprietário</xhtml:label>
          </xs:appinfo>
         </xs:annotation>
        </xs:element>
@@ -503,7 +504,7 @@
         <xs:annotation>
 
          <xs:appinfo>
-          <label>33 - Valor</label>
+          <xhtml:label>33 - Valor</xhtml:label>
          </xs:appinfo>
         </xs:annotation>
        </xs:element>
@@ -511,14 +512,14 @@
         <xs:annotation>
          <xs:appinfo>
 
-          <label>34 - Endereço do Proprietário</label>
+          <xhtml:label>34 - Endereço do Proprietário</xhtml:label>
          </xs:appinfo>
         </xs:annotation>
        </xs:element>
        <xs:element name="telefoneProprietario" type="xs:string" minOccurs="0">
         <xs:annotation>
          <xs:appinfo>
-          <label>35 - Telefone do Proprietário</label>
+          <xhtml:label>35 - Telefone do Proprietário</xhtml:label>
 
          </xs:appinfo>
         </xs:annotation>
@@ -526,7 +527,7 @@
        <xs:element name="tipologiaConstrucao" minOccurs="0">
         <xs:annotation>
          <xs:appinfo>
-          <label>36 - Tipologia de Construção</label>
+          <xhtml:label>36 - Tipologia de Construção</xhtml:label>
          </xs:appinfo>
 
         </xs:annotation>
@@ -547,7 +548,7 @@
        <xs:element name="tipoCobertura" minOccurs="0">
         <xs:annotation>
          <xs:appinfo>
-          <label>37 - Tipo de Cobertura</label>
+          <xhtml:label>37 - Tipo de Cobertura</xhtml:label>
 
          </xs:appinfo>
         </xs:annotation>
@@ -564,7 +565,7 @@
        <xs:element name="tipoPiso" minOccurs="0">
         <xs:annotation>
          <xs:appinfo>
-          <label>38 - Tipo de Piso</label>
+          <xhtml:label>38 - Tipo de Piso</xhtml:label>
          </xs:appinfo>
         </xs:annotation>
 
@@ -581,7 +582,7 @@
        <xs:element name="revestimentoParede" minOccurs="0">
         <xs:annotation>
          <xs:appinfo>
-          <label>39 - Revestimento de Parede</label>
+          <xhtml:label>39 - Revestimento de Parede</xhtml:label>
          </xs:appinfo>
         </xs:annotation>
         <xs:simpleType>
@@ -601,7 +602,7 @@
        <xs:element name="casaEmSituacaRisco" minOccurs="0">
         <xs:annotation>
          <xs:appinfo>
-          <label>40 - Casa em Situação de Risco</label>
+          <xhtml:label>40 - Casa em Situação de Risco</xhtml:label>
          </xs:appinfo>
         </xs:annotation>
         <xs:simpleType>
@@ -616,7 +617,7 @@
         <xs:annotation>
          <xs:appinfo>
 
-          <label>41 - Tipo de Risco</label>
+          <xhtml:label>41 - Tipo de Risco</xhtml:label>
          </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
@@ -625,14 +626,14 @@
            <xs:annotation>
             <xs:appinfo>
 
-             <label>Alagamento</label>
+             <xhtml:label>Alagamento</xhtml:label>
             </xs:appinfo>
            </xs:annotation>
           </xs:element>
           <xs:element name="inundacao" type="xs:boolean">
            <xs:annotation>
             <xs:appinfo>
-             <label>Inundação</label>
+             <xhtml:label>Inundação</xhtml:label>
 
             </xs:appinfo>
            </xs:annotation>
@@ -640,7 +641,7 @@
           <xs:element name="deslizamento" type="xs:boolean">
            <xs:annotation>
             <xs:appinfo>
-             <label>Deslizamento</label>
+             <xhtml:label>Deslizamento</xhtml:label>
             </xs:appinfo>
 
            </xs:annotation>
@@ -648,7 +649,7 @@
           <xs:element name="viaFerrea" type="xs:boolean">
            <xs:annotation>
             <xs:appinfo>
-             <label>Via Férrea</label>
+             <xhtml:label>Via Férrea</xhtml:label>
             </xs:appinfo>
            </xs:annotation>
 
@@ -656,7 +657,7 @@
           <xs:element name="linhaAltaTensao" type="xs:boolean">
            <xs:annotation>
             <xs:appinfo>
-             <label>Linha de Alta Tensão</label>
+             <xhtml:label>Linha de Alta Tensão</xhtml:label>
             </xs:appinfo>
            </xs:annotation>
           </xs:element>
@@ -664,7 +665,7 @@
           <xs:element name="outro" type="xs:boolean">
            <xs:annotation>
             <xs:appinfo>
-             <label>Outro</label>
+             <xhtml:label>Outro</xhtml:label>
             </xs:appinfo>
            </xs:annotation>
           </xs:element>
@@ -672,7 +673,7 @@
 
            <xs:annotation>
             <xs:appinfo>
-             <label>Especifique</label>
+             <xhtml:label>Especifique</xhtml:label>
             </xs:appinfo>
            </xs:annotation>
           </xs:element>
@@ -686,8 +687,8 @@
     <xs:element name="necessitaReparos" minOccurs="0">
      <xs:annotation>
       <xs:appinfo>
-       <label>42 - a sua opinião o seu imóvel necessita de quais reparos
-		estruturais?</label>
+       <xhtml:label>42 - a sua opinião o seu imóvel necessita de quais reparos
+		estruturais?</xhtml:label>
 
       </xs:appinfo>
      </xs:annotation>
@@ -696,7 +697,7 @@
        <xs:element name="instalacoesHidrosanitarias" type="xs:boolean">
         <xs:annotation>
          <xs:appinfo>
-          <label>Instalações Hidrosanitárias</label>
+          <xhtml:label>Instalações Hidrosanitárias</xhtml:label>
 
          </xs:appinfo>
         </xs:annotation>
@@ -704,7 +705,7 @@
        <xs:element name="pintura" type="xs:boolean">
         <xs:annotation>
          <xs:appinfo>
-          <label>Pintura</label>
+          <xhtml:label>Pintura</xhtml:label>
          </xs:appinfo>
 
         </xs:annotation>
@@ -712,7 +713,7 @@
        <xs:element name="cobertaTelhado" type="xs:boolean">
         <xs:annotation>
          <xs:appinfo>
-          <label>Coberta/Telhado</label>
+          <xhtml:label>Coberta/Telhado</xhtml:label>
          </xs:appinfo>
         </xs:annotation>
 
@@ -720,7 +721,7 @@
        <xs:element name="outro" type="xs:boolean">
         <xs:annotation>
          <xs:appinfo>
-          <label>Outro</label>
+          <xhtml:label>Outro</xhtml:label>
          </xs:appinfo>
         </xs:annotation>
        </xs:element>
@@ -728,7 +729,7 @@
        <xs:element name="tipoReparoOutro" type="xs:string" minOccurs="0">
         <xs:annotation>
          <xs:appinfo>
-          <label>Especifique</label>
+          <xhtml:label>Especifique</xhtml:label>
          </xs:appinfo>
         </xs:annotation>
        </xs:element>
@@ -739,7 +740,7 @@
     <xs:element name="infraestrutura">
      <xs:annotation>
       <xs:appinfo>
-       <label>Infraestrutura</label>
+       <xhtml:label>Infraestrutura</xhtml:label>
       </xs:appinfo>
      </xs:annotation>
 
@@ -748,7 +749,7 @@
        <xs:element name="redeDeAgua" minOccurs="0">
         <xs:annotation>
          <xs:appinfo>
-          <label>43 - Rede de Água</label>
+          <xhtml:label>43 - Rede de Água</xhtml:label>
          </xs:appinfo>
         </xs:annotation>
 
@@ -763,7 +764,7 @@
         <xs:annotation>
 
          <xs:appinfo>
-          <label>44 - Abastecimento de Água</label>
+          <xhtml:label>44 - Abastecimento de Água</xhtml:label>
          </xs:appinfo>
         </xs:annotation>
         <xs:simpleType>
@@ -777,7 +778,7 @@
        <xs:element name="abastecimentoAgua">
         <xs:annotation>
          <xs:appinfo>
-          <label>Abastecimento</label>
+          <xhtml:label>Abastecimento</xhtml:label>
          </xs:appinfo>
 
         </xs:annotation>
@@ -786,7 +787,7 @@
           <xs:element name="tipoAbastecimentoAgua" minOccurs="0">
            <xs:annotation>
             <xs:appinfo>
-             <label>45 - Tipo de Abastecimento de Água</label>
+             <xhtml:label>45 - Tipo de Abastecimento de Água</xhtml:label>
             </xs:appinfo>
 
            </xs:annotation>
@@ -805,7 +806,7 @@
           <xs:element name="tipoAbastecimentoAguaOutro" type="xs:string" minOccurs="0">
            <xs:annotation>
             <xs:appinfo>
-             <label>Especifique</label>
+             <xhtml:label>Especifique</xhtml:label>
             </xs:appinfo>
 
            </xs:annotation>
@@ -816,7 +817,7 @@
        <xs:element name="redeColetaEsgoto" minOccurs="0">
         <xs:annotation>
          <xs:appinfo>
-          <label>46 - Rede de Coleta de Esgoto</label>
+          <xhtml:label>46 - Rede de Coleta de Esgoto</xhtml:label>
 
          </xs:appinfo>
         </xs:annotation>
@@ -831,7 +832,7 @@
        <xs:element name="esgotamentoSanitario" minOccurs="0">
         <xs:annotation>
          <xs:appinfo>
-          <label>47 - Esgotamento Sanitário</label>
+          <xhtml:label>47 - Esgotamento Sanitário</xhtml:label>
          </xs:appinfo>
         </xs:annotation>
         <xs:simpleType>
@@ -845,7 +846,7 @@
        <xs:element name="esgotamentoSanitario2">
         <xs:annotation>
          <xs:appinfo>
-          <label>48 - Tipo de Esgotamento Sanitário</label>
+          <xhtml:label>48 - Tipo de Esgotamento Sanitário</xhtml:label>
 
          </xs:appinfo>
         </xs:annotation>
@@ -854,7 +855,7 @@
           <xs:element name="tipo" minOccurs="0">
            <xs:annotation>
             <xs:appinfo>
-             <label>Tipo</label>
+             <xhtml:label>Tipo</xhtml:label>
 
             </xs:appinfo>
            </xs:annotation>
@@ -872,7 +873,7 @@
           <xs:element name="tipoAbastecimentoAgua2Outro" type="xs:string" minOccurs="0">
            <xs:annotation>
             <xs:appinfo>
-             <label>Especifique</label>
+             <xhtml:label>Especifique</xhtml:label>
             </xs:appinfo>
 
            </xs:annotation>
@@ -883,7 +884,7 @@
        <xs:element name="tipoLigacaoRedeEletrica" minOccurs="0">
         <xs:annotation>
          <xs:appinfo>
-          <label>49 - Tipo de Ligação com a Rede de Energia Elétrica</label>
+          <xhtml:label>49 - Tipo de Ligação com a Rede de Energia Elétrica</xhtml:label>
 
          </xs:appinfo>
         </xs:annotation>
@@ -900,7 +901,7 @@
        <xs:element name="tipoPavimentacao" minOccurs="0">
         <xs:annotation>
          <xs:appinfo>
-          <label>50 - Tipo de Pavimentação</label>
+          <xhtml:label>50 - Tipo de Pavimentação</xhtml:label>
          </xs:appinfo>
         </xs:annotation>
 
@@ -918,7 +919,7 @@
        <xs:element name="tipoDrenagem" minOccurs="0">
         <xs:annotation>
          <xs:appinfo>
-          <label>51 - Tipo de Drenagem</label>
+          <xhtml:label>51 - Tipo de Drenagem</xhtml:label>
          </xs:appinfo>
         </xs:annotation>
         <xs:complexType>
@@ -927,7 +928,7 @@
           <xs:element name="galeriaSubterranea" type="xs:boolean">
            <xs:annotation>
             <xs:appinfo>
-             <label>Galeria Subterrânea</label>
+             <xhtml:label>Galeria Subterrânea</xhtml:label>
             </xs:appinfo>
            </xs:annotation>
           </xs:element>
@@ -935,7 +936,7 @@
           <xs:element name="sarjeta" type="xs:boolean">
            <xs:annotation>
             <xs:appinfo>
-             <label>Sarjeta</label>
+             <xhtml:label>Sarjeta</xhtml:label>
             </xs:appinfo>
            </xs:annotation>
           </xs:element>
@@ -943,7 +944,7 @@
 
            <xs:annotation>
             <xs:appinfo>
-             <label>Curso D'água Canalizado</label>
+             <xhtml:label>Curso D'água Canalizado</xhtml:label>
             </xs:appinfo>
            </xs:annotation>
           </xs:element>
@@ -951,7 +952,7 @@
            <xs:annotation>
 
             <xs:appinfo>
-             <label>Curso D'água Não Canalizado</label>
+             <xhtml:label>Curso D'água Não Canalizado</xhtml:label>
             </xs:appinfo>
            </xs:annotation>
           </xs:element>
@@ -959,14 +960,14 @@
            <xs:annotation>
             <xs:appinfo>
 
-             <label>Outro</label>
+             <xhtml:label>Outro</xhtml:label>
             </xs:appinfo>
            </xs:annotation>
           </xs:element>
           <xs:element name="tipoDrenagemOutro" type="xs:string" minOccurs="0">
            <xs:annotation>
             <xs:appinfo>
-             <label>Especifique</label>
+             <xhtml:label>Especifique</xhtml:label>
 
             </xs:appinfo>
            </xs:annotation>
@@ -978,8 +979,8 @@
         <xs:annotation>
          <xs:appinfo>
 
-          <label>52 - Tipo de Serviço Telefônico Utilizado
-		      Predominantemente</label>
+          <xhtml:label>52 - Tipo de Serviço Telefônico Utilizado
+		      Predominantemente</xhtml:label>
          </xs:appinfo>
         </xs:annotation>
         <xs:simpleType>
@@ -995,7 +996,7 @@
        <xs:element name="destinoLixo" minOccurs="0">
         <xs:annotation>
          <xs:appinfo>
-          <label>53 - Destino do Lixo</label>
+          <xhtml:label>53 - Destino do Lixo</xhtml:label>
 
          </xs:appinfo>
         </xs:annotation>
@@ -1004,7 +1005,7 @@
           <xs:element name="sistemaColeta" type="xs:boolean">
            <xs:annotation>
             <xs:appinfo>
-             <label>Sistema de Coleta</label>
+             <xhtml:label>Sistema de Coleta</xhtml:label>
 
             </xs:appinfo>
            </xs:annotation>
@@ -1012,7 +1013,7 @@
           <xs:element name="conteiner" type="xs:boolean">
            <xs:annotation>
             <xs:appinfo>
-             <label>Contêiner</label>
+             <xhtml:label>Contêiner</xhtml:label>
             </xs:appinfo>
 
            </xs:annotation>
@@ -1020,7 +1021,7 @@
           <xs:element name="terrenoBaldio" type="xs:boolean">
            <xs:annotation>
             <xs:appinfo>
-             <label>Terreno Baldio</label>
+             <xhtml:label>Terreno Baldio</xhtml:label>
             </xs:appinfo>
            </xs:annotation>
 
@@ -1028,7 +1029,7 @@
           <xs:element name="cursoDagua" type="xs:boolean">
            <xs:annotation>
             <xs:appinfo>
-             <label>Curso d'água</label>
+             <xhtml:label>Curso d'água</xhtml:label>
             </xs:appinfo>
            </xs:annotation>
           </xs:element>
@@ -1036,7 +1037,7 @@
           <xs:element name="passeio" type="xs:boolean">
            <xs:annotation>
             <xs:appinfo>
-             <label>Passeio</label>
+             <xhtml:label>Passeio</xhtml:label>
             </xs:appinfo>
            </xs:annotation>
           </xs:element>
@@ -1044,7 +1045,7 @@
 
            <xs:annotation>
             <xs:appinfo>
-             <label>Logradouro</label>
+             <xhtml:label>Logradouro</xhtml:label>
             </xs:appinfo>
            </xs:annotation>
           </xs:element>
@@ -1052,7 +1053,7 @@
            <xs:annotation>
 
             <xs:appinfo>
-             <label>Enterrado</label>
+             <xhtml:label>Enterrado</xhtml:label>
             </xs:appinfo>
            </xs:annotation>
           </xs:element>
@@ -1060,14 +1061,14 @@
            <xs:annotation>
             <xs:appinfo>
 
-             <label>Queimado</label>
+             <xhtml:label>Queimado</xhtml:label>
             </xs:appinfo>
            </xs:annotation>
           </xs:element>
           <xs:element name="outro" type="xs:boolean">
            <xs:annotation>
             <xs:appinfo>
-             <label>Outro</label>
+             <xhtml:label>Outro</xhtml:label>
 
             </xs:appinfo>
            </xs:annotation>
@@ -1075,7 +1076,7 @@
           <xs:element name="tipoDrenagemOutro" type="xs:string" minOccurs="0">
            <xs:annotation>
             <xs:appinfo>
-             <label>Especifique</label>
+             <xhtml:label>Especifique</xhtml:label>
             </xs:appinfo>
 
            </xs:annotation>
@@ -1090,7 +1091,7 @@
 
      <xs:annotation>
       <xs:appinfo>
-       <label>Outras Observacoes</label>
+       <xhtml:label>Outras Observacoes</xhtml:label>
       </xs:appinfo>
      </xs:annotation>
     </xs:element>

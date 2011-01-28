@@ -20,7 +20,10 @@ package Acao::Controller::Auth::Registros;
 use strict;
 use warnings;
 use parent 'Catalyst::Controller';
-my $role_listar = Acao->config->{'roles'}->{'volume'}->{'listar'};
+
+my $digitador = Acao->config->{roles}{digitador};
+my $revisor = Acao->config->{roles}{revisor};
+
 =head1 NAME
 
 Acao::Controller::Auth::Registros - Raiz da área de registros.
@@ -51,18 +54,18 @@ sub principal : Chained('base') : PathPart('') : Args(0) {
     my ( $self, $c ) = @_;
     my @roles = @{$c->user->memberof};
 
-    if ( ( grep { /^revisor$/ } @roles )
-        && !( grep { /^digitador$/ } @roles ) )
+    if ( ( grep { $revisor eq $_ } @roles )
+        && !( grep { $digitador eq $_ } @roles ) )
     {
         $c->res->redirect( $c->uri_for_action('/auth/registros/revisor/lista') );
     }
-    elsif ( ( grep { /^digitador$/ } @roles )
-        && !( grep { /^revisor$/ } @roles ) )
+    elsif ( ( grep { $digitador eq $_ } @roles )
+        && !( grep { $revisor eq $_ } @roles ) )
     {
         $c->res->redirect( $c->uri_for_action('/auth/registros/digitador/lista') );
     }
-    elsif ((! grep { /^revisor$/   } @roles ) &&
-           (! grep { /^digitador$/ } @roles ) )
+    elsif ((! grep { $revisor eq $_   } @roles ) &&
+           (! grep { $digitador eq $_ } @roles ) )
     {
         $c->res->redirect( $c->uri_for_action('/auth/registros/volume/lista') );
     }
