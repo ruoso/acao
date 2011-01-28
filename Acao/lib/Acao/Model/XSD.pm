@@ -50,12 +50,19 @@ txn_method 'obter_xsd' => authorized $role_listar => sub {
     return $self->sedna->get_item();
 };
 
+
 txn_method 'options_xsd' => authorized $role_listar => sub {
-    my ( $self ) = @_;
-    my $xq = 'declare namespace xhtml="http://www.w3.org/1999/xhtml"; declare namespace xs="http://www.w3.org/2001/XMLSchema"; 
-              for $x in collection("acao-schemas")
-              order by $x/xs:schema/xs:element/xs:annotation/xs:appinfo/xhtml:label/text()
-              return <option value="{ $x/xs:schema/@targetNamespace }">{ $x/xs:schema/xs:element/xs:annotation/xs:appinfo/xhtml:label/text() }</option> [starts-with($x/xs:schema/@targetNamespace, "http://schemas.fortaleza.ce.gov.br/acao/sdh")]';
+    my ( $self, $id_volume, $controle, $assuntos_dn ) = @_;
+
+    my $filter = $self->get_filter_classificacoes($id_volume, $controle, $assuntos_dn);
+
+    my $xq = ' declare namespace xhtml="http://www.w3.org/1999/xhtml"; '
+           . ' declare namespace xs="http://www.w3.org/2001/XMLSchema"; '
+           . ' declare namespace cl="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"; '
+           . ' for $x in collection("acao-schemas") ' .$filter
+           . ' order by $x/xs:schema/xs:element/xs:annotation/xs:appinfo/xhtml:label/text() '
+           . ' return <option value="{ $x/xs:schema/@targetNamespace }">{ $x/xs:schema/xs:element/xs:annotation/xs:appinfo/xhtml:label/text() }</option>';
+
     $self->sedna->execute($xq);
     my $ret;
     while (my $item = $self->sedna->get_item()) {
@@ -65,6 +72,31 @@ txn_method 'options_xsd' => authorized $role_listar => sub {
 };
 
 txn_method 'link_xsd' => authorized $role_listar => sub {
+    my ( $self, $id_volume, $controle, $assuntos_dn ) = @_;
+
+    my $filter = $self->get_filter_classificacoes($id_volume, $controle, $assuntos_dn);
+
+    my $xq = 'declare namespace xhtml="http://www.w3.org/1999/xhtml";
+              declare namespace xs="http://www.w3.org/2001/XMLSchema";
+              declare namespace cl = "http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";
+              for $x in collection("acao-schemas")'.$filter.'
+              order by $x/xs:schema/xs:element/xs:annotation/xs:appinfo/xhtml:label/text()
+              return <div>
+                        <a href="' . $controle . '/inserirdocumento?xsdDocumento={ $x/xs:schema/@targetNamespace }">
+                            { $x/xs:schema/xs:element/xs:annotation/xs:appinfo/xhtml:label/text() }
+                        </a>
+                     </div>';
+
+    $self->sedna->execute($xq);
+    my $ret;
+    while (my $item = $self->sedna->get_item()) {
+       $ret .= $item;
+    }
+   return $ret;
+};
+
+
+sub get_filter_classificacoes {
     my ( $self, $id_volume, $controle, $assuntos_dn ) = @_;
 
     my %classificacoes = ();
@@ -89,33 +121,16 @@ txn_method 'link_xsd' => authorized $role_listar => sub {
         $classificacoes{$dos_class} = 1;
     }
 
+
     my @classificacoes = keys %classificacoes;
     my $filter = join ' or ',
         map { 'cl:classificacao eq "'.$_.'"' }
         map { /$assuntos_dn$/ ? substr($_, 0, 0 - length($assuntos_dn) - 1) : $_ }
+        map { s/^\s+|\s+$//gs; $_ }
         @classificacoes;
     $filter = '[xs:schema/xs:element/xs:annotation/xs:appinfo/cl:classificacoes['.$filter.']]' if $filter;
-
-    warn $filter;
-
-    my $xq = 'declare namespace xhtml="http://www.w3.org/1999/xhtml";
-              declare namespace xs="http://www.w3.org/2001/XMLSchema";
-              declare namespace cl = "http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";
-              for $x in collection("acao-schemas")'.$filter.'
-              order by $x/xs:schema/xs:element/xs:annotation/xs:appinfo/xhtml:label/text()
-              return <div>
-                        <a href="' . $controle . '/inserirdocumento?xsdDocumento={ $x/xs:schema/@targetNamespace }">
-                            { $x/xs:schema/xs:element/xs:annotation/xs:appinfo/xhtml:label/text() }
-                        </a>
-                     </div>
-              [starts-with($x/xs:schema/@targetNamespace, "http://schemas.fortaleza.ce.gov.br/acao/sdh")]';
-warn $xq;
-    $self->sedna->execute($xq);
-    my $ret;
-    while (my $item = $self->sedna->get_item()) {
-       $ret .= $item;
-    }
-   return $ret;
+    
+    return $filter;
 };
 
 =cut

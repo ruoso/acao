@@ -152,7 +152,11 @@ sub auditoria  {
 
 txn_method 'criar_dossie' => authorized $role_criar => sub {
     my $self = shift;
-    my ($ip, $nome, $id_volume, $controle, $representaDossieFisico, $classificacao, $localizacao) = @_;
+    my ($ip, $nome, $id_volume, $representaDossieFisico, $classificacao, $localizacao) = @_;
+
+    my $ug  = new Data::UUID;
+    my $uuid = $ug->create();
+    my $controle = $ug->to_string($uuid);
 
     my $acao = 'insert';
     my $role = 'role';
@@ -180,6 +184,8 @@ txn_method 'criar_dossie' => authorized $role_criar => sub {
                                     doc=>{},
                                 }
                                );
+
+
     $self->sedna->conn->loadData( $res_xml->toString, $controle, $id_volume );
     $self->sedna->conn->endLoadData();
     return $controle;
@@ -383,7 +389,7 @@ sub store_altera_dossie {
                             . ' update replace $x in collection("'.$args->{id_volume}.'")/ns:dossie[ns:controle="'.$args->{controle}.'"]/ns:representaDossieFisico '
                             . ' with <representaDossieFisico xmlns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd">'.$args->{dossie_fisico}.'</representaDossieFisico>';
 
-    $self->sedna->execute($query_dossie_fisico);
+    #$self->sedna->execute($query_dossie_fisico);
 
 
     my $query_localizacao  = ' declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; '
@@ -391,7 +397,6 @@ sub store_altera_dossie {
                            . ' update replace $x in collection("'.$args->{id_volume}.'")/ns:dossie[ns:controle="'.$args->{controle}.'"]/ns:localizacao '
                            . ' with <localizacao xmlns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd">'.$args->{localizacao}.'</localizacao> ';
 
-warn $query_localizacao;
     $self->sedna->execute($query_localizacao);
 
 $self->sedna->commit;

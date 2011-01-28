@@ -86,28 +86,28 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
     my ( $self, $c ) = @_;
     #   Checa se user logado tem autorização para executar a ação 'Criar'
     $c->model('Dossie')->pode_criar_dossie($c->stash->{id_volume}) or $c->detach('/public/default');
-
     $c->stash->{class_basedn} = $c->req->param('class_basedn') || $c->model("LDAP")->assuntos_dn;
-
     $c->stash->{template} = 'auth/registros/volume/dossie/form.tt';
     $c->stash->{classificacoes} = $c->req->param('classificacoes');
+   
     if ($self->_processa_classificacao($c)) {
         return;
     }
 
     my $representaDossieFisico;
+
     if ($c->req->param('representaDossieFisico') eq 'on'){
        $representaDossieFisico = '1';
     }
     else {
        $representaDossieFisico = '0';
     }
+
     eval {
         my $id = $c->model('Dossie')->criar_dossie(
                               $c->req->address,
                               $c->req->param('nome'),
                               $c->req->param('id_volume'),
-                              $c->req->param('controle'),
                               $representaDossieFisico,
                               $c->model('Dossie')->desserialize_classificacoes($c->stash->{classificacoes}),
                               $c->req->param('localizacao'),
@@ -115,7 +115,6 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
 
         $self->audit_criar($id, $c->req->param('nome'));
     };
-
 
     if ($@) { $c->flash->{erro} = $@ . "";  }
     else { $c->flash->{sucesso} = 'Dossie criado com sucesso'; }

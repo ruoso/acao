@@ -100,7 +100,7 @@
       <input type="submit" name="submit_form" id="submit_form_2" value="Pesquisar">
      </div>
      <div>
-      <label>Adicionar um campo de pesquisa: <select name="xsd_pesquisa">[% c.model('XSD').options_xsd() %]</select></label>
+      <label>Adicionar um campo de pesquisa: <select name="xsd_pesquisa">[% c.model('XSD').options_xsd(id_volume, controle, c.model('LDAP').assuntos_dn) %]</select></label>
       <input type="submit" name="add_campo_pesquisa" value="+" />
       [% IF numero_campos > 0 %]<input type="submit" name="del_campo_pesquisa" value="-" />[% END %]
      </div>

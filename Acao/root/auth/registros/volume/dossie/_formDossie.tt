@@ -69,7 +69,7 @@
         </select>
       </dd>
     </dt>
-
+[% dos.dossie_fisico %]
     <br/>
     <br/>
 	<dd> <input type="checkbox" id="representaDossieFisico" name="representaDossieFisico" evt="representaDossieFisico" [% IF dos.dossie_fisico == 'Sim'  %] checked [% END %]>
