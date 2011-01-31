@@ -45,14 +45,16 @@
 
 [% SET tipo_documento = c.req.param('tipo_documento') %]
 [% SET xsd = c.req.param('c') %]
+
 <br>
 <h1 class="titulo-form">Gerenciar Documentos | <span style="font-size:13px; font-weight:normal;">
-<a id="addDocument"  class="criar">Inserir Documento</a>
+    <a id="addDocument" class="criar">Inserir Documento</a>
+    |
+    <a class="alterar" href="[% c.uri_for_action('/auth/registros/volume/dossie/alterar_dossie', [ id_volume, controle ]) %]">Alterar Prontuário</a>
 </span></h1>
 
-
-[% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume) ) %]
-[% SET dos = ( c.model('Documento').getDadosDossie(id_volume, controle) ) %]
+[% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume, c.model('LDAP').assuntos_dn) ) %]
+[% SET dos = ( c.model('Dossie').getDadosDossie(id_volume, controle, c.model('LDAP').assuntos_dn) ) %]
 
 <div id="accordion">
   <h3><a href="#">Dados do Volume: [% vol.nome %]</a></h3>
@@ -62,8 +64,8 @@
         <dt>Volume:</dt>
         <dd><span>[% vol.nome %]</span></dd>
 
-        <dt>Classificação:</dt>
-        <dd><span>[% vol.classificacao %]</span></dd>
+				<dt>Classificação:</dt>
+				<dd><span>[% vol.classificacoes %]</span></dd>
 
         <dt>Localização:</dt>
         <dd><span>[% vol.localizacao %]</span></dd>
@@ -87,8 +89,8 @@
         <dt> <label> Prontuário: </label> </dt>
         <dd> <span> [% dos.nome %] </span> </dd>
 
-        <dt>Classificação:</dt>
-        <dd><span>[% dos.classificacao %]</span></dd>
+				<dt>Classificação:</dt>
+				<dd><span>[% dos.classificacoes %]</span></dd>
 
         <dt>Localização:</dt>
         <dd><span>[% dos.localizacao %]</span></dd>
@@ -117,7 +119,7 @@
     <strong>Tipo de Documento: </strong>
     <select name="tipo_documento" id="tipo_documento">
       <option value="">Escolha uma opção</option>
-      [% c.model('XSD').options_xsd %]
+      [% c.model('XSD').options_xsd(id_volume, controle, c.model('LDAP').assuntos_dn ) %]
     </select>
     &nbsp;&nbsp;&nbsp;
     <input type="submit" name="submit_form" id="submit_form" value="Pesquisar">
@@ -196,7 +198,8 @@
 
 <div id="lstDocumentos" class="hidden panel">
   <div class="text">
-      [% c.model('XSD').link_xsd(controle) %]
+
+      [% c.model('XSD').link_xsd(id_volume, controle, c.model('LDAP').assuntos_dn ) %]
   </div>
 </div>
 
@@ -271,6 +274,5 @@
      }
 
 </script>
-
 
 [% INCLUDE 'footer.tt' %]

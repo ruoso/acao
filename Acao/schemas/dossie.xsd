@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-  xmlns:doc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd"
-  targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"
-  elementFormDefault="qualified">
-  <xs:element name="dossie">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element name="nome" type="xs:string" />
-        <xs:element name="criacao" type="xs:dateTime" />
-        <xs:element name="fechamento" type="xs:dateTime" use="optional" />
-        <xs:element name="arquivamento" type="xs:dateTime" use="optional" />
-        <xs:element name="estado">
-          <xs:simpleType>
-            <xs:restriction base="xs:string">
-              <xs:enumeration value="aberto" />
-              <xs:enumeration value="fechado" />
-              <xs:enumeration value="arquivado" />
-            </xs:restriction>
-          </xs:simpleType>
-        </xs:element>
-        <xs:element name="controle" type="xs:string" />
-        <xs:element name="representaDossieFisico" type="xs:boolean" />
-        <xs:element name="classificacao" type="xs:string"
-          maxOccurs="unbounded" />
-        <xs:element name="localizacao" type="xs:string"
-          maxOccurs="unbounded" />
-        <xs:element name="autorizacao">
-          <xs:complexType>
-            <xs:attribute name="principal" type="xs:string" use="required" />
-            <xs:attribute name="role" type="xs:string" use="required" />
-            <xs:attribute name="dataIni" type="xs:string" use="required" />
-            <xs:attribute name="dataFim" type="xs:string" use="optional" />
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="doc" type="doc:doc" minOccurs="0" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
+	xmlns:doc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd"
+    xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"
+	elementFormDefault="qualified">
+	<xs:element name="dossie">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="nome" type="xs:string" />
+				<xs:element name="criacao" type="xs:dateTime" />
+				<xs:element name="fechamento" type="xs:dateTime" use="optional" />
+				<xs:element name="arquivamento" type="xs:dateTime" use="optional" />
+				<xs:element name="estado">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="aberto" />
+							<xs:enumeration value="fechado" />
+							<xs:enumeration value="arquivado" />
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="controle" type="xs:string" />
+				<xs:element name="representaDossieFisico" type="xs:boolean" />
+				<xs:element name="classificacoes" minOccurs="0" type="class:classificacoes"/>
+				<xs:element name="localizacao" type="xs:string" maxOccurs="unbounded" />
+				<xs:element name="autorizacao">
+					<xs:complexType>
+						<xs:attribute name="principal" type="xs:string" use="required" />
+						<xs:attribute name="role" type="xs:string" use="required" />
+						<xs:attribute name="dataIni" type="xs:string" use="required" />
+						<xs:attribute name="dataFim" type="xs:string" use="optional" />
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="doc" type="doc:doc" minOccurs="0" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+    <xs:element name="classificacoes" type="class:classificacoes"/>
 </xs:schema>

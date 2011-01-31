@@ -1,6 +1,7 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-atendimentoEspecificoSEGARANTA.xsd"
+    xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
 	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-atendimentoEspecificoSEGARANTA.xsd"
 	elementFormDefault="qualified">
@@ -9,6 +10,9 @@
 		<xs:annotation>
 			<xs:appinfo>
 				<xhtml:label>SG 01.ATENDIMENTO ESPECÍFICO SE GARANTA</xhtml:label>
+                <class:classificacoes>
+                    <class:classificacao>cn=Direitos Humanos</class:classificacao>
+                </class:classificacoes>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>

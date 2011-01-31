@@ -1,0 +1,82 @@
+[%#
+# Copyright 2010 - Prefeitura Municipal de Fortaleza
+#
+# Este arquivo é parte do programa Ação - Sistema de Acompanhamento de
+# Projetos Sociais
+#
+# O Ação é um software livre; você pode redistribui-lo e/ou modifica-lo
+# dentro dos termos da Licença Pública Geral GNU como publicada pela
+# Fundação do Software Livre (FSF); na versão 2 da Licença.
+#
+# Este programa é distribuido na esperança que possa ser util, mas SEM
+# NENHUMA GARANTIA; sem uma garantia implicita de ADEQUAÇÂO a qualquer
+# MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a Licença Pública Geral GNU
+# para maiores detalhes.
+#
+# Você deve ter recebido uma cópia da Licença Pública Geral GNU, sob o
+# título "LICENCA.txt", junto com este programa, se não, escreva para a
+# Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
+%]
+
+[% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume) ) %]
+
+<div id="accordion">
+	<h3><a href="#">Dados do Volume: [% vol.nome %]</a></h3>
+	<div>		
+		<fieldset class="fieldsetBorderNone">
+			  <dl class="form15">
+				<dt>Volume:</dt>
+				<dd><span>[% vol.nome %]</span></dd>
+
+				<dt>Classificação:</dt>
+				<dd><span>[% vol.classificacoes %]</span></dd>
+
+				<dt>Localização:</dt>
+				<dd><span>[% vol.localizacao %]</span></dd>
+
+				<dt>Estado:</dt>
+				<dd><span>[% vol.estado %]</span></dd>
+
+				<dt>Data Criação:</dt>
+				<dd><span>[% vol.criacao %]</span></dd>
+
+				<dt>Vol. Físico:</dt>
+				<dd><span>[% vol.volume_fisico %]</span></dd>
+			  </dl>
+	 	</fieldset>
+
+	</div>
+</div>
+
+
+
+<br>
+
+ <fieldset>
+  <legend>Dados do Prontuário</legend>
+  <dl class="form15">
+    <dt> <label> Nome Prontuário: </label> </dt>
+    <dd> <input type="text" id="nome" name="nome" value="[% nome %]" class="upper"> </dd>
+
+    <dt> 
+      <label> Localização: &nbsp; </label>
+      <dd>
+        <select name="localizacao" id="localizacao">
+          <option value="[% vol.localizacao %]">[% localizacao %] </option>
+          <option value="Núcleo I"> Núcleo I </option>
+          <option value="Núcleo II"> Núcleo II </option>
+          <option value="Núcleo III"> Núcleo III </option>
+          <option value="Núcleo IV"> Núcleo IV </option>
+          <option value="Núcleo V"> Núcleo V </option>
+          <option value="Núcleo VI"> Núcleo VI </option>
+        </select>
+      </dd>
+    </dt>
+[% dos.dossie_fisico %]
+    <br/>
+    <br/>
+	<dd> <input type="checkbox" id="representaDossieFisico" name="representaDossieFisico" evt="representaDossieFisico" [% IF dos.dossie_fisico == 'Sim'  %] checked [% END %]>
+           <label for="representaDossieFisico"> Representa Prontuário Físico </label> 
+	</dd>
+  </dl>
+ </fieldset>

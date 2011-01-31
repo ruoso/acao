@@ -1,6 +1,7 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-saude.xsd"
+    xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml" targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-saude.xsd"
 	elementFormDefault="qualified">
 
@@ -8,6 +9,9 @@
 		<xs:annotation>
 			<xs:appinfo>
 				<xhtml:label>13.SAÚDE DA FAMÍLIA / ADOLESCENTE</xhtml:label>
+                <class:classificacoes>
+                    <class:classificacao>cn=Direitos Humanos</class:classificacao>
+                </class:classificacoes>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>

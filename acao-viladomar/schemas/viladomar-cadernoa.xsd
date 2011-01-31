@@ -2,6 +2,7 @@
 <xs:schema
  xmlns:xs="http://www.w3.org/2001/XMLSchema"
  xmlns:xhtml="http://www.w3.org/1999/xhtml"
+ xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
  xmlns="http://schemas.fortaleza.ce.gov.br/habitafor/viladomar-cadernoa.xsd" 
  targetNamespace="http://schemas.fortaleza.ce.gov.br/habitafor/viladomar-cadernoa.xsd" 
  elementFormDefault="qualified">
@@ -10,6 +11,9 @@
   <xs:annotation>
    <xs:appinfo>
     <xhtml:label>Recadastramento Vila do Mar - Caderno A</xhtml:label>
+    <class:classificacoes>
+     <class:classificacao>cn=Direitos Humanos</class:classificacao>
+    </class:classificacoes>
    </xs:appinfo>
   </xs:annotation>
  </xs:element>
