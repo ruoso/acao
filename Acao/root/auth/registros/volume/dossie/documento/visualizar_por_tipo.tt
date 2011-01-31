@@ -19,7 +19,7 @@
 %]
 [% INCLUDE 'auth/registros/volume/dossie/documento/header.tt' %]
 [% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume) ) %]
-[% SET dos = ( c.model('Documento').getDadosDossie(id_volume, controle) ) %]
+[% SET dos = ( c.model('Dossie').getDadosDossie(id_volume, controle) ) %]
 [% SET iteration = 0 %]
 
 <script SRC="[% c.uri_for('/static/js/input.deflate.plugin.js') %]" language="Javascript" ></script>

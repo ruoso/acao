@@ -31,9 +31,8 @@
 [% SET nome_membro = c.req.param('nome_membro') %]
 [% SET nome_mae = c.req.param('nome_mae') %]
 
+[% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume, c.model('LDAP').assuntos_dn) ) %]
 
-
-[% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume) ) %]
 <br>
 <h1 class="titulo-form">Gerenciar Prontuários |
   <span style="font-size:13px; font-weight:normal;">
@@ -57,7 +56,7 @@
            <dd> <span>[% vol.nome %]</span>	</dd>
 
            <dt>Classificação:</dt>
-           <dd><span>[% vol.classificacao %]</span></dd>
+           <dd><span>[% vol.classificacoes %]</span></dd>
 
            <dt>Localização:</dt>
            <dd><span>[% vol.localizacao %]</span></dd>
@@ -101,7 +100,7 @@
       <input type="submit" name="submit_form" id="submit_form_2" value="Pesquisar">
      </div>
      <div>
-      <label>Adicionar um campo de pesquisa: <select name="xsd_pesquisa">[% c.model('XSD').options_xsd() %]</select></label>
+      <label>Adicionar um campo de pesquisa: <select name="xsd_pesquisa">[% c.model('XSD').options_xsd(id_volume, controle, c.model('LDAP').assuntos_dn) %]</select></label>
       <input type="submit" name="add_campo_pesquisa" value="+" />
       [% IF numero_campos > 0 %]<input type="submit" name="del_campo_pesquisa" value="-" />[% END %]
      </div>
@@ -197,7 +196,7 @@
     END;
 
    c.model('Sedna').commit;
-   c.model('Sedna').conn.setConnectionAttr_CONCURRENCY_TYPE(c.model('Sedna').conn.SEDNA_UPDATE_TRANSACTION); %]
+   # c.model('Sedna').conn.setConnectionAttr_CONCURRENCY_TYPE(c.model('Sedna').conn.SEDNA_UPDATE_TRANSACTION); %]
  [% CATCH %]
  <div class="erro">ERRO AO PROCESSAR CONSULTA:
   <PRE>[% error.info %]</PRE>

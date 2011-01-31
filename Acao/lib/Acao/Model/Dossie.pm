@@ -26,18 +26,24 @@ use DateTime;
 use Encode;
 use Data::UUID;
 use Data::Dumper;
+use List::MoreUtils 'pairwise';
 
 with 'Acao::Role::Model::BuscaXSD';
 
 use constant DOSSIE_NS =>'http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd';
 my $controle = XML::Compile::Schema->new( Acao->path_to('schemas/dossie.xsd') );
 $controle->importDefinitions( Acao->path_to('schemas/documento.xsd') );
+$controle->importDefinitions( Acao->path_to('schemas/classificacao.xsd') );
 my $controle_w = $controle->compile( WRITER => pack_type( DOSSIE_NS, 'dossie' ), use_default_namespace => 1 );
+my $controle_r = $controle->compile( READER => pack_type( DOSSIE_NS, 'dossie') );
+
+with 'Acao::Role::Model::Classificacao' => { xmlcompile => $controle, namespace => DOSSIE_NS };
 
 my $role_alterar = Acao->config->{'roles'}->{'dossie'}->{'alterar'};
 my $role_criar = Acao->config->{'roles'}->{'dossie'}->{'criar'};
 my $role_listar = Acao->config->{'roles'}->{'dossie'}->{'listar'};
 my $role_transferir = Acao->config->{'roles'}->{'dossie'}->{'transferir'};
+
 
 =head1 NAME
 
@@ -71,11 +77,13 @@ Retorna os dossies os quais o usuário autenticado tem acesso.
 
 txn_method 'listar_dossies' => authorized $role_listar => sub {
     my ($self, $args) = @_;
+
     my $pesquisa = $args->{pesquisa};
     use Data::Dumper;
 
     my %ns_base = ( ns => "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd",
-                    dc => "http://schemas.fortaleza.ce.gov.br/acao/documento.xsd" );
+                    dc => "http://schemas.fortaleza.ce.gov.br/acao/documento.xsd",
+                    cl => "http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd" );
     my @ns_add  = map { $args->{pesquisa}{'pesquisa_'.$_.'_ns'} } 0..($args->{pesquisa}{numero_campos} - 1);
     my $counter;
     my %ns = (%ns_base, map { "extra".$counter++ => $_ } @ns_add);
@@ -144,7 +152,11 @@ sub auditoria  {
 
 txn_method 'criar_dossie' => authorized $role_criar => sub {
     my $self = shift;
-    my ($ip, $nome, $id_volume, $controle, $representaDossieFisico, $classificacao, $localizacao) = @_;
+    my ($ip, $nome, $id_volume, $representaDossieFisico, $classificacao, $localizacao) = @_;
+
+    my $ug  = new Data::UUID;
+    my $uuid = $ug->create();
+    my $controle = $ug->to_string($uuid);
 
     my $acao = 'insert';
     my $role = 'role';
@@ -160,7 +172,7 @@ txn_method 'criar_dossie' => authorized $role_criar => sub {
                                     estado       => 'aberto',
                                     controle     => $controle,
                                     representaDossieFisico => $representaDossieFisico,
-                                    classificacao => $classificacao,
+                                    classificacoes => $classificacao,
                                     localizacao => $localizacao,
                                     autorizacao => {
                                                     principal => $self->user->id,
@@ -172,6 +184,8 @@ txn_method 'criar_dossie' => authorized $role_criar => sub {
                                     doc=>{},
                                 }
                                );
+
+
     $self->sedna->conn->loadData( $res_xml->toString, $controle, $id_volume );
     $self->sedna->conn->endLoadData();
     return $controle;
@@ -247,6 +261,7 @@ txn_method 'transferir' => authorized $role_alterar => sub {
     $self->sedna->conn->endLoadData();
 
     my $xq_delete = 'drop document "'.$controle.'" in collection "'.$id_volume.'" ';
+
     $self->sedna->execute($xq_delete);
 
 
@@ -287,6 +302,105 @@ sub _checa_autorizacao_dossie {
   $self->sedna->commit;
 
    return $criar_dossie_no_volume
+}
+
+txn_method 'getDadosDossie' => authorized $role_listar => sub {
+    my $self = shift;
+    my ($id_volume, $controle, $assuntos_dn) = @_;
+
+    my $xq  = q|declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
+               declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";
+               declare namespace cl="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";
+               for $x in collection("|.$id_volume.q|")/ns:dossie
+               where $x/ns:controle="|.$controle.q|"
+               return (concat($x/ns:nome/text(),""), string-join(for $c in $x/ns:classificacoes/cl:classificacao/text()
+                 return (if (ends-with($c,",|. $assuntos_dn .q|")) then (
+                                string-join(reverse(for $i in tokenize(substring-before($c,",|. $assuntos_dn .q|"),',')
+                                 return (tokenize($i,'='))[2]),' - ')
+                               ) else ($c)),', '),
+                     concat($x/ns:localizacao/text(),""), concat($x/ns:estado/text(),""), concat($x/ns:criacao/text(),""), concat($x/ns:representaDossieFisico/text(),""))|;
+
+    $self->sedna->execute($xq);
+
+    my $vol = {};
+    while(my $nome = $self->sedna->get_item){
+        $vol = {
+                    nome => $nome,
+                    classificacoes => $self->sedna->get_item,
+                    localizacao   => $self->sedna->get_item,
+                    estado        => $self->sedna->get_item,
+                    criacao       =>$self->sedna->get_item,
+                    dossie_fisico => $self->sedna->get_item > 0 ? 'Sim' : 'Não',
+                  };
+    };
+
+   return $vol;
+};
+
+
+sub classificacoes_do_dossie {
+    my($self, $id_volume, $controle) = @_;
+
+    $self->sedna->begin;
+
+    my $query = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
+                 declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";
+                 declare namespace cl="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";
+                 for $x in collection("'.$id_volume.'")/ns:dossie[ns:controle="'.$controle.'"]
+                 return $x/ns:classificacoes';
+
+    $self->sedna->execute($query);
+    my $xml =$self->sedna->get_item();
+    $self->sedna->commit;
+  return $xml;
+
+}
+
+
+sub store_altera_dossie {
+    my($self, $args) = @_;
+
+# Gambis provisória -  Fazendo Update de cada campo separadamente!
+#    my $query_autorizacao  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";'
+#                           . 'update replace $x in collection("volume")'
+#                           . '[/ns:volume/ns:collection="'.$args->{id_volume}.'"]/ns:volume/ns:autorizacoes'
+#                           . ' with '.$args->{autorizacoes};
+#
+    $self->sedna->begin;
+#    $self->sedna->execute($query_autorizacao);
+
+    my $query_nome = ' declare namespace ds="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; '
+                   . ' update replace $x in collection("'.$args->{id_volume}.'")/ds:dossie[ds:controle="'.$args->{controle}.'"]/ds:nome '
+                   . ' with <nome xmlns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd">'.$args->{nome}.'</nome> ';
+
+    $self->sedna->execute($query_nome);
+
+
+    my $query_classificacoes = ' declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; '
+                             . ' declare namespace cl="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"; '
+                             . ' update replace $x in collection("'.$args->{id_volume}.'")/ns:dossie[ns:controle="'.$args->{controle}.'"]/ns:classificacoes '
+                             . ' with '.$args->{classificacoes};
+
+    $self->sedna->execute($query_classificacoes);
+
+
+    my $query_dossie_fisico = ' declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; '
+                            . ' declare namespace cl="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"; '
+                            . ' update replace $x in collection("'.$args->{id_volume}.'")/ns:dossie[ns:controle="'.$args->{controle}.'"]/ns:representaDossieFisico '
+                            . ' with <representaDossieFisico xmlns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd">'.$args->{dossie_fisico}.'</representaDossieFisico>';
+
+    #$self->sedna->execute($query_dossie_fisico);
+
+
+    my $query_localizacao  = ' declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; '
+                           . ' declare namespace cl="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"; '
+                           . ' update replace $x in collection("'.$args->{id_volume}.'")/ns:dossie[ns:controle="'.$args->{controle}.'"]/ns:localizacao '
+                           . ' with <localizacao xmlns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd">'.$args->{localizacao}.'</localizacao> ';
+
+    $self->sedna->execute($query_localizacao);
+
+$self->sedna->commit;
+
 }
 
 

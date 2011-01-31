@@ -11,6 +11,7 @@ has ldap_config => (is => 'ro', required => 1);
 has ldap => (is => 'rw', lazy => 1, builder => '_bind_ldap');
 has dominios_dn => (is => 'ro', required => 1);
 has grupos_dn => (is => 'ro', required => 1);
+has assuntos_dn => (is => 'ro', required => 1);
 
 sub build_per_context_instance {
 	my ( $self, $c ) = @_;
@@ -47,7 +48,44 @@ sub memberof_grupos_dn {
 	[ grep { /$sufix$/ } @{$self->user->memberof} ]
 }
 
+sub buscar_dn_assuntos {
+  my $self = shift;
+  my $base = shift || $self->assuntos_dn;
+  return $self->_buscar_dn($base);
+}
+
 sub buscar_dn_adm {
+  my $self = shift;
+  my $base = shift || $self->grupos_dn;
+  return $self->_buscar_dn($base);
+}
+
+sub _buscar_dn {
+  my ($self, $base) = @_;
+  my $mesg = $self->ldap->search
+    ( base   => $base,
+      filter => "(&(objectClass=*))",
+      scope  => 'one'
+    );
+  croak 'LDAP error: ' . $mesg->error if $mesg->is_error;
+  return $mesg->sorted('o');
+}
+
+sub decompose_dn_assuntos {
+    $_[0]->decompose_dn($_[1], $_[0]->assuntos_dn)
+}
+
+sub decompose_dn_grupos {
+    $_[0]->decompose_dn($_[1], $_[0]->grupos_dn)
+}
+
+sub decompose_dn {
+  [ map { (split /=/)[1] }
+    split /,/,
+    substr($_[1], 0, 0 - length($_[2])) ];
+}
+
+sub buscar_dn_assuntos {
   my $self = shift;
   my $base = shift || $self->grupos_dn;
 
@@ -60,15 +98,6 @@ sub buscar_dn_adm {
   croak 'LDAP error: ' . $mesg->error if $mesg->is_error;
   return $mesg->sorted('o');
 }
-
-sub decompose_dn {
-  [ map { (split /=/)[1] }
-    split /,/,
-    substr($_[1], 0, 0 - length($_[0]->grupos_dn)) ];
-}
-
-
-
 
 1;
 

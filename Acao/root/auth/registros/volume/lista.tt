@@ -31,13 +31,13 @@
 
 [%# definição da variavel schema para este template %]
 
-[%#  c.model('Sedna').conn.setConnectionAttr_CONCURRENCY_TYPE(c.model('Sedna').conn.SEDNA_READONLY_TRANSACTION); %]
+[% # c.model('Sedna').conn.setConnectionAttr_CONCURRENCY_TYPE(c.model('Sedna').conn.SEDNA_READONLY_TRANSACTION); %]
 
 [% CALL c.model('Sedna').begin %]
 [% SET schema = c.model('Sedna').get_collection('volume') %]
 [% CALL c.model('Sedna').commit %]
 
-[% c.model('Sedna').conn.setConnectionAttr_CONCURRENCY_TYPE(c.model('Sedna').conn.SEDNA_UPDATE_TRANSACTION); %]
+[% # c.model('Sedna').conn.setConnectionAttr_CONCURRENCY_TYPE(c.model('Sedna').conn.SEDNA_UPDATE_TRANSACTION); %]
 
 [% SET volumes = '' %]
 
@@ -68,6 +68,7 @@
 <TBODY>
 
 [% TRY %]
+
    [% xqueryret = PROCESS 'auth/registros/volume/lista_xqueryret.tt';
         #c.model('Sedna').conn.setConnectionAttr_CONCURRENCY_TYPE(c.model('Sedna').conn.SEDNA_READONLY_TRANSACTION);
         xquery = c.model('Volume').listar_volumes({
@@ -77,6 +78,7 @@
                              'num_por_pagina' => num_por_pagina
                             });
         c.model('Sedna').begin;
+
       c.model('Sedna').execute( xquery.list );
 
       WHILE (volumeid = c.model('Sedna').get_item);
@@ -85,14 +87,14 @@
         html;
       END;
 
-        c.model('Sedna').execute( xquery.count );
-        WHILE (contador = c.model('Sedna').get_item);
-          count = contador;
-        END;
 
-	    c.model('Sedna').commit;
+      c.model('Sedna').execute( xquery.count );
+      WHILE (contador = c.model('Sedna').get_item);
+        count = contador;
+      END;
 
-        c.model('Sedna').conn.setConnectionAttr_CONCURRENCY_TYPE(c.model('Sedna').conn.SEDNA_UPDATE_TRANSACTION); %]
+      c.model('Sedna').commit;
+      #c.model('Sedna').conn.setConnectionAttr_CONCURRENCY_TYPE(c.model('Sedna').conn.SEDNA_UPDATE_TRANSACTION) %]
 
 [% CATCH %]
     <div class="erro">ERRO AO PROCESSAR CONSULTA:
