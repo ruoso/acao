@@ -56,9 +56,9 @@
  
  <div id="form_container"></div>
 
-[% IF c.user.roles.grep('digitador') %]
+[%# IF c.user.roles.grep('digitador') %]
  <input type="submit" value="Submeter correções como nova digitação">
-[% END %]
+[%# END %]
 
  </form>
 
