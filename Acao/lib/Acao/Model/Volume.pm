@@ -195,13 +195,13 @@ txn_method 'getDadosVolumeId' => authorized $role_listar => sub {
     my $xq = q|declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";
               declare namespace cl="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";
               for $x in collection("volume")/ns:volume[ns:collection="|.$id_volume.q|"] 
-                    return (concat($x/ns:nome/text(),""), string-join(for $c in $x/ns:classificacoes/cl:classificacao/text()
+                    return (concat($x/ns:nome/text()," "), string-join(for $c in $x/ns:classificacoes/cl:classificacao/text()
                  return (if (ends-with($c,",|. $assuntos_dn .q|")) then (
                                 string-join(reverse(for $i in tokenize(substring-before($c,",|. $assuntos_dn .q|"),',')
                                  return (tokenize($i,'='))[2]),' - ')
                                ) else ($c)),', '),
-                    concat($x/ns:localizacao/text(),""), concat($x/ns:estado/text(),""), 
-                            concat($x/ns:criacao/text(),""), concat($x/ns:representaVolumeFisico/text(),""))|;
+                    concat($x/ns:localizacao/text()," "), concat($x/ns:estado/text()," "), 
+                            concat($x/ns:criacao/text()," "), concat($x/ns:representaVolumeFisico/text()," "))|;
 
 
    $self->sedna->execute($xq);

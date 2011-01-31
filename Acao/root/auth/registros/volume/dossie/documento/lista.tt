@@ -53,7 +53,7 @@
     <a class="alterar" href="[% c.uri_for_action('/auth/registros/volume/dossie/alterar_dossie', [ id_volume, controle ]) %]">Alterar Prontuário</a>
 </span></h1>
 
-[% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume) ) %]
+[% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume, c.model('LDAP').assuntos_dn) ) %]
 [% SET dos = ( c.model('Dossie').getDadosDossie(id_volume, controle, c.model('LDAP').assuntos_dn) ) %]
 
 <div id="accordion">
