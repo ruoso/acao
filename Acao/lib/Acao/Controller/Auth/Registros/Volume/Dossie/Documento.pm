@@ -62,6 +62,12 @@ sub form : Chained('base') : PathPart('inserirdocumento') : Args(0) {
 sub store : Chained('base') : PathPart('store') : Args(0) {
     my ( $self, $c ) = @_;
     my $representaDocumentoFisico;
+    my $id_volume = $c->stash->{'id_volume'};
+    my $controle = $c->stash->{'controle'};
+    my $id_documento = $c->req->param('id_documento');
+    my $id;
+    my $xml = $c->request->param('processed_xml');
+    my $xsdDocumento = $c->req->param('xsdDocumento');
 
     if ($c->req->param('representaDocumentoFisico') eq 'on'){
        $representaDocumentoFisico = '1';
@@ -70,21 +76,24 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
        $representaDocumentoFisico = '0';
     }
     eval {
-       my $id =  $c->model('Documento')->inserir_documento(
+       $id =  $c->model('Documento')->inserir_documento(
                                       $c->req->address,
-                                      $c->request->param('processed_xml'),
-                                $c->stash->{'id_volume'},
-                                $c->stash->{'controle'},
-                                          $c->req->param('xsdDocumento'),
-                                          $representaDocumentoFisico,
-                                          $c->req->param('id_documento'),
+                                      $xml,
+                                      $id_volume,
+                                      $controle,
+                                      $xsdDocumento,
+                                      $representaDocumentoFisico,
+                                      $id_documento,
                                );
     $self->audit_criar($id);
 
     };
 
     if ($@) { $c->flash->{erro} = $@ . "";  }
-    else { $c->flash->{sucesso} = 'Documento criado com sucesso'; }
+    else { 
+	    $c->flash->{sucesso} = 'Documento criado com sucesso';
+	    $c->model('Indices')->insert_indices($id_volume, $controle, $id, $xsdDocumento, $xml);
+    }
     $c->res->redirect( $c->uri_for_action('/auth/registros/volume/dossie/documento/lista', [ $c->stash->{id_volume}, $c->stash->{controle} ] ) );
 }
 

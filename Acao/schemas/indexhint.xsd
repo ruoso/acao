@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:author="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
+  targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
+  elementFormDefault="qualified">
+  <xs:element name="index">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="hint" minOccurs="0" maxOccurs="unbounded">
+         <xs:complexType>
+          <xs:attribute name="key" type="xs:string" />
+          <xs:attribute name="xpath" type="xs:string" />
+         </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

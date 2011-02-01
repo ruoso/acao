@@ -167,9 +167,6 @@ txn_method 'inserir_documento' => authorized $role_criar => sub {
     my $xq  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";';
        $xq .= 'update insert ('.$res_xml->toString.') into collection("'.$id_volume.'")/ns:dossie[ns:controle="'.$controle.'"]/ns:doc';
 
-    $self->sedna->execute($xq);
-
-    my $acao = $id_documento eq '' ? 'insert' : 'edit';
 
     if ($id_documento ne '')
     {
@@ -190,6 +187,7 @@ txn_method 'inserir_documento' => authorized $role_criar => sub {
             $self->sedna->execute($xq_motivo_invalidacao);
 
     }
+    $id_documento = $uuid_str;
     return $id_documento;
 };
 
@@ -200,7 +198,6 @@ txn_method 'visualizar' => authorized $role_visualizar => sub {
     my $xq  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";';
        $xq .= 'declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";';
        $xq .= 'for $x in collection("'.$id_volume.'")/ns:dossie/ns:doc/* return $x[dc:id="'.$id_documento.'"]/dc:documento/*/*';
-warn $xq;
     $self->sedna->execute($xq);
 
     my $xml = $self->sedna->get_item;
