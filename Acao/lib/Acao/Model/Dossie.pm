@@ -34,9 +34,12 @@ use constant DOSSIE_NS =>'http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd';
 my $controle = XML::Compile::Schema->new( Acao->path_to('schemas/dossie.xsd') );
 $controle->importDefinitions( Acao->path_to('schemas/documento.xsd') );
 $controle->importDefinitions( Acao->path_to('schemas/classificacao.xsd') );
+$controle->importDefinitions( Acao->path_to('schemas/autorizacoes.xsd') );
+
 my $controle_w = $controle->compile( WRITER => pack_type( DOSSIE_NS, 'dossie' ), use_default_namespace => 1 );
 my $controle_r = $controle->compile( READER => pack_type( DOSSIE_NS, 'dossie') );
 
+with 'Acao::Role::Model::Autorizacao' => { xmlcompile => $controle, namespace => DOSSIE_NS };
 with 'Acao::Role::Model::Classificacao' => { xmlcompile => $controle, namespace => DOSSIE_NS };
 
 my $role_alterar = Acao->config->{'roles'}->{'dossie'}->{'alterar'};
@@ -152,7 +155,7 @@ sub auditoria  {
 
 txn_method 'criar_dossie' => authorized $role_criar => sub {
     my $self = shift;
-    my ($ip, $nome, $id_volume, $representaDossieFisico, $classificacao, $localizacao) = @_;
+    my ($ip, $nome, $id_volume, $representaDossieFisico, $classificacao, $localizacao,$herdar_author,$autorizacoes,) = @_;
 
     my $ug  = new Data::UUID;
     my $uuid = $ug->create();
@@ -162,6 +165,7 @@ txn_method 'criar_dossie' => authorized $role_criar => sub {
     my $role = 'role';
 
     my $doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
+
 
     my $res_xml = $controle_w->($doc,
                                 {
@@ -174,12 +178,8 @@ txn_method 'criar_dossie' => authorized $role_criar => sub {
                                     representaDossieFisico => $representaDossieFisico,
                                     classificacoes => $classificacao,
                                     localizacao => $localizacao,
-                                    autorizacao => {
-                                                    principal => $self->user->id,
-                                                    role => $role,
-                                                    dataIni => DateTime->now(),
-                                                    dataFim => '',
-                                                   },
+                                    autorizacoes => {%$autorizacoes,
+                                                    herdar => $herdar_author},
 
                                     doc=>{},
                                 }
@@ -338,6 +338,23 @@ txn_method 'getDadosDossie' => authorized $role_listar => sub {
 };
 
 
+sub autorizacoes_do_dossie {
+    my($self, $id_volume, $controle) = @_;
+
+    $self->sedna->begin;
+
+    my $query = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
+                 declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";
+                 declare namespace cl="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";
+                 for $x in collection("'.$id_volume.'")/ns:dossie[ns:controle="'.$controle.'"]
+                 return $x/ns:autorizacoes';
+
+    $self->sedna->execute($query);
+    my $xml =$self->sedna->get_item();
+    $self->sedna->commit;
+  return $xml;
+
+}
 sub classificacoes_do_dossie {
     my($self, $id_volume, $controle) = @_;
 
@@ -361,13 +378,15 @@ sub store_altera_dossie {
     my($self, $args) = @_;
 
 # Gambis provisória -  Fazendo Update de cada campo separadamente!
-#    my $query_autorizacao  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";'
-#                           . 'update replace $x in collection("volume")'
-#                           . '[/ns:volume/ns:collection="'.$args->{id_volume}.'"]/ns:volume/ns:autorizacoes'
-#                           . ' with '.$args->{autorizacoes};
-#
+
+    my $query_autorizacao = ' declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; '
+                             . ' declare namespace cl="http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd"; '
+                             . ' update replace $x in collection("'.$args->{id_volume}.'")/ns:dossie[ns:controle="'.$args->{controle}.'"]/ns:autorizacoes '
+                             . ' with '.$args->{autorizacoes};
+
+
     $self->sedna->begin;
-#    $self->sedna->execute($query_autorizacao);
+    $self->sedna->execute($query_autorizacao);
 
     my $query_nome = ' declare namespace ds="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; '
                    . ' update replace $x in collection("'.$args->{id_volume}.'")/ds:dossie[ds:controle="'.$args->{controle}.'"]/ds:nome '

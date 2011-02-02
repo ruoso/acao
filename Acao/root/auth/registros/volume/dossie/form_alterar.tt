@@ -26,9 +26,9 @@
 
  <form id="form" name="form" action="[% c.uri_for_action('/auth/registros/volume/dossie/store_alterar', [ id_volume, controle ]) %]" method="post" onsubmit="">
 
-	[% INCLUDE 'auth/registros/volume/dossie/_formDossie.tt' %]
-	[% # INCLUDE 'auth/registros/volume/dossie/_formPermissoes.tt' %]
-	[% INCLUDE 'auth/registros/volume/dossie/_formClassificacoes.tt' %]
+  [% INCLUDE 'auth/registros/volume/dossie/_formDossie.tt' %]
+  [% INCLUDE 'auth/registros/volume/dossie/_formPermissoes.tt' %]
+  [% INCLUDE 'auth/registros/volume/dossie/_formClassificacoes.tt' %]
 
   <input type="submit" name="opcao" onClick="javascript:return validaForm();" value="Salvar">
 
@@ -37,7 +37,7 @@
 
  <script language="javascript">
   function validaForm(){
-	//Valida Nome do volume
+  //Valida Nome do volume
     if(document.getElementById('nome').value == ''){
       alert('Informe o nome do volume');
       document.getElementById('nome').focus();
