@@ -200,7 +200,7 @@ txn_method 'visualizar' => authorized $role_visualizar => sub {
     my $xq  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";';
        $xq .= 'declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";';
        $xq .= 'for $x in collection("'.$id_volume.'")/ns:dossie/ns:doc/* return $x[dc:id="'.$id_documento.'"]/dc:documento/*/*';
-warn $xq;
+
     $self->sedna->execute($xq);
 
     my $xml = $self->sedna->get_item;

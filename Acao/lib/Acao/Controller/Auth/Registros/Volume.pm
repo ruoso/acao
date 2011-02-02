@@ -25,6 +25,7 @@ use List::MoreUtils 'pairwise';
 
 with 'Acao::Role::Controller::Autorizacao' => { modelcomponent => 'Volume' };
 with 'Acao::Role::Controller::Classificacao' => { modelcomponent => 'Volume' };
+with 'Acao::Role::Controller::Localizacao' => { modelcomponent => 'Volume' };
 with 'Acao::Role::Auditoria' => { category => 'Volume'};
 
 =head1 NAME
@@ -155,10 +156,14 @@ sub alterar_volume :Chained('get_volume') : PathPart('alterar') : Args(0) {
 
   $c->stash->{autorizacoes} = $c->model('Volume')->autorizacoes_do_volume($c->stash->{id_volume});
   $c->stash->{classificacoes} = $c->model("Volume")->classificacoes_do_volume($c->stash->{id_volume});
+  $c->stash->{localizacao} = $c->model("Volume")->localizacao_do_volume($c->stash->{id_volume});
+  $c->stash->{local_basedn} = $c->stash->{localizacao};
+  $c->stash->{local_basedn} =~ s/^.+?,//;
+
   $c->stash->{basedn} = $c->model("LDAP")->grupos_dn;
   $c->stash->{class_basedn} = $c->req->param('class_basedn') || $c->model("LDAP")->assuntos_dn;
+  #$c->stash->{local_basedn} = $c->req->param('local_basedn') || $c->model("LDAP")->local_dn;
   $c->stash->{template} = 'auth/registros/volume/form_alterar.tt';
-
 }
 
 
@@ -169,14 +174,20 @@ sub store_alterar : Chained('get_volume') : PathPart('store_alterar') : Args(0) 
   my $representaVolumeFisico;
   $c->stash->{basedn} = $c->req->param('basedn') ||
               $c->model("LDAP")->grupos_dn;
+  $c->stash->{class_basedn} = $c->req->param('class_basedn') ||
+              $c->model("LDAP")->assuntos_dn;
+  $c->stash->{local_basedn} = $c->req->param('local_basedn') ||
+              $c->model("LDAP")->local_dn;
 
   $c->stash->{template} = 'auth/registros/volume/form_alterar.tt';
 
   $c->stash->{classificacoes} = $c->req->param('classificacoes');
   $c->stash->{autorizacoes} = $c->req->param('autorizacoes');
+  $c->stash->{localizacao} = $c->req->param('localizacao');
 
-  if ($self->_processa_autorizacao($c) ||
-      $self->_processa_classificacao($c)) {
+  if ($self->_processa_autorizacao($c) || 
+      $self->_processa_classificacao($c) || 
+      $self->_processa_localizacao($c) ) {
     return;
   }
 
