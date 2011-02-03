@@ -62,7 +62,7 @@ txn_method 'options_xsd' => authorized $role_listar => sub {
            . ' for $x in collection("acao-schemas") ' .$filter
            . ' order by $x/xs:schema/xs:element/xs:annotation/xs:appinfo/xhtml:label/text() '
            . ' return <option value="{ $x/xs:schema/@targetNamespace }">{ $x/xs:schema/xs:element/xs:annotation/xs:appinfo/xhtml:label/text() }</option>';
-
+  
     $self->sedna->execute($xq);
     my $ret;
     while (my $item = $self->sedna->get_item()) {

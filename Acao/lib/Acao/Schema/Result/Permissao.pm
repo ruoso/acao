@@ -40,12 +40,32 @@ __PACKAGE__->add_columns(
     data_type         => "integer",
     is_auto_increment => 1,
     is_nullable       => 0,
-    sequence          => "serial_permissions",
   },
   "dn",
   { data_type => "varchar", is_nullable => 1, size => 255 },
 );
-__PACKAGE__->set_primary_key("entry_id");
+
+=head1 RELATIONS
+
+=head2 entry
+
+Type: belongs_to
+
+Related object: L<Acao::Schema::Result::Entry>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "entry",
+  "Acao::Schema::Result::Entry",
+  { entry_id => "entry_id" },
+  {
+    is_deferrable => 1,
+    join_type     => "LEFT",
+    on_delete     => "CASCADE",
+    on_update     => "CASCADE",
+  },
+);
 
 
 # Created by DBIx::Class::Schema::Loader v0.07005 @ 2011-01-27 15:39:05

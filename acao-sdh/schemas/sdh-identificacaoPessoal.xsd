@@ -2,6 +2,7 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-identificacaoPessoal.xsd"
     xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+    xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
 	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-identificacaoPessoal.xsd"
 	elementFormDefault="qualified">
@@ -13,6 +14,14 @@
                 <class:classificacoes>
                     <class:classificacao>cn=Direitos Humanos</class:classificacao>
                 </class:classificacoes>
+                <idx:index>
+                    <idx:hint key="pessoa.nome" xpath="formIdentificacaoPessoal/nomeCompleto" />
+                    <idx:hint key="pessoa.nomemae" xpath="formIdentificacaoPessoal/filiacao/mae" />
+                    <idx:hint key="pessoa.datanascimento" xpath="formIdentificacaoPessoal/dataNascimento" />
+                    <idx:hint key="pessoa.sexo" xpath="formIdentificacaoPessoal/sexo" />
+                    <idx:hint key="pessoa.naturalidade" xpath="formIdentificacaoPessoal/naturalidade" />
+                    <idx:hint key="pessoa.etnia" xpath="formIdentificacaoPessoal/racaEtnia" />
+                </idx:index>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>

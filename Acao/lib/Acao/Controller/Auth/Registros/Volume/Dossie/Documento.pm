@@ -92,7 +92,6 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
     if ($@) { $c->flash->{erro} = $@ . "";  }
     else { 
 	    $c->flash->{sucesso} = 'Documento criado com sucesso';
-	    $c->model('Indices')->insert_indices($id_volume, $controle, $id, $xsdDocumento, $xml);
     }
     $c->res->redirect( $c->uri_for_action('/auth/registros/volume/dossie/documento/lista', [ $c->stash->{id_volume}, $c->stash->{controle} ] ) );
 }

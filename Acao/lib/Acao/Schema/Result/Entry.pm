@@ -88,6 +88,21 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+=head2 gin_indexes
+
+Type: has_many
+
+Related object: L<Acao::Schema::Result::Permissao>
+
+=cut
+
+__PACKAGE__->has_many(
+  "permissoes",
+  "Acao::Schema::Result::Permissao",
+  { "foreign.entry_id" => "self.entry_id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 
 # Created by DBIx::Class::Schema::Loader v0.07005 @ 2011-01-27 15:39:05
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:pPGrpgZSykyHGw/AdkJB4Q
