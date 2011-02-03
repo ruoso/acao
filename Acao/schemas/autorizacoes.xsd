@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns="http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd"
-	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd"
-	elementFormDefault="qualified">
+  xmlns="http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd"
+  targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd"
+  elementFormDefault="qualified">
 
-	<xs:complexType name="autorizacoes">
-		<xs:sequence>
-			<xs:element name="autorizacao" minOccurs="0" maxOccurs="unbounded">
-				<xs:complexType>
-					<xs:attribute name="principal" type="xs:string" />
-					<xs:attribute name="role" type="xs:string" />
-				</xs:complexType>
-			</xs:element>
-		</xs:sequence>
-	</xs:complexType>
+  <xs:complexType name="autorizacoes">
+    <xs:sequence>
+      <xs:element name="autorizacao" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:attribute name="principal" type="xs:string" />
+          <xs:attribute name="role" type="xs:string" />
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="herdar" type="xs:boolean" use="optional" />
+  </xs:complexType>
 
 </xs:schema>
 
