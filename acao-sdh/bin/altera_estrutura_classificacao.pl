@@ -45,7 +45,7 @@ sub altera_dados_dossie {
                   <classificacoes xmlns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd" xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd">
                     <class:classificacao>{$x/text()}</class:classificacao>
                   </classificacoes>';
-warn $xq;
+
         $sedna->execute($xq);
         $sedna->commit;
 
