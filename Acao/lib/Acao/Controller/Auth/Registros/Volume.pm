@@ -48,7 +48,7 @@ sub base : Chained('/auth/registros/base') : PathPart('volume') : CaptureArgs(0)
   my ( $self, $c ) = @_;
 }
 
-sub get_volume :Chained('base') : PathPart('') : CaptureArgs(1) {
+sub get_volume : Chained('base') : PathPart('') : CaptureArgs(1) {
     my ( $self, $c, $id_volume ) = @_;
     Log::Log4perl::MDC->put('Volume', $id_volume);
     $c->stash->{id_volume} = $id_volume
@@ -133,6 +133,7 @@ sub xsd : Chained('base') : PathPart('xsd') : Args(1) {
 sub alterar_estado : Chained('get_volume') : PathPart('alterar_estado') : Args(1) {
   my ( $self, $c, $estado ) = @_;
   my $id_volume = $c->stash->{id_volume};
+
   eval {
     $c->model('Volume')
       ->alterar_estado( $id_volume, $estado, $c->req->address );

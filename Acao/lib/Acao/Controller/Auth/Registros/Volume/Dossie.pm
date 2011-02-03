@@ -40,7 +40,7 @@ Carrega para o stash os dados do dossiê.
 
 =cut
 
-sub base : Chained('/auth/registros/volume/get_volume') :PathPart('') :CaptureArgs(0) {
+sub base : Chained('/auth/registros/volume/get_volume') :PathPart('dossie') :CaptureArgs(0) {
 
 }
 
@@ -70,9 +70,6 @@ sub form : Chained('base') : PathPart('criardossie') : Args(0) {
     $c->stash->{class_basedn} = $c->model("LDAP")->assuntos_dn;
 #   Checa se user logado tem autorização para executar a ação 'Criar'
     $c->model('Dossie')->pode_criar_dossie($c->stash->{id_volume}) or $c->detach('/public/default');
-
-
-
 }
 
 sub transferir_lista : Chained('get_dossie') : PathPart('transferir_lista') : Args(0) {
