@@ -14,11 +14,11 @@ has grupos_dn => (is => 'ro', required => 1);
 has assuntos_dn => (is => 'ro', required => 1);
 
 sub build_per_context_instance {
-	my ( $self, $c ) = @_;
-	return $self->new( user => $c->user,
-					   dbic => $c->model('DB')->schema,
-					   sedna => $c->model('Sedna'),
-					   %{Acao->config->{'Model::LDAP'}})
+  my ( $self, $c ) = @_;
+  return $self->new( user => $c->user,
+             dbic => $c->model('DB')->schema,
+             sedna => $c->model('Sedna'),
+             %{Acao->config->{'Model::LDAP'}})
 }
 
 sub _bind_ldap {
@@ -43,16 +43,11 @@ sub buscar_dominios_auth {
 }
 
 sub memberof_grupos_dn {
-	my ($self) = @_;
-	my $sufix = $self->grupos_dn;
-	[ grep { /$sufix$/ } @{$self->user->memberof} ]
+  my ($self) = @_;
+  my $sufix = $self->grupos_dn;
+  [ grep { /$sufix$/ } @{$self->user->memberof} ]
 }
 
-sub buscar_dn_assuntos {
-  my $self = shift;
-  my $base = shift || $self->assuntos_dn;
-  return $self->_buscar_dn($base);
-}
 
 sub buscar_dn_adm {
   my $self = shift;

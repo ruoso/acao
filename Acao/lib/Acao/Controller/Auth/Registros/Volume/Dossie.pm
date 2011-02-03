@@ -21,7 +21,9 @@ use Moose;
 use namespace::autoclean;
 BEGIN { extends 'Catalyst::Controller'; }
 use Data::Dumper;
+use List::MoreUtils 'pairwise';
 
+with 'Acao::Role::Controller::Autorizacao' => { modelcomponent => 'Dossie' };
 with 'Acao::Role::Controller::Classificacao' => { modelcomponent => 'Dossie' };
 with 'Acao::Role::Auditoria' => { category => 'Dossie'};
 
@@ -63,8 +65,8 @@ sub lista : Chained('base') : PathPart('') : Args(0) {
 
 sub form : Chained('base') : PathPart('criardossie') : Args(0) {
     my ( $self, $c ) = @_;
-#   Checa se user logado tem autorização para executar a ação 'Criar'
     my $initial_principals = $c->model('LDAP')->memberof_grupos_dn();
+    $c->stash->{autorizacoes} = $c->model("Dossie")->new_autorizacao();
     $c->stash->{classificacoes} = $c->model("Dossie")->new_classificacao($initial_principals);
     $c->stash->{basedn} = $c->model("LDAP")->grupos_dn;
     $c->stash->{class_basedn} = $c->model("LDAP")->assuntos_dn;
@@ -84,23 +86,38 @@ sub transferir_lista : Chained('get_dossie') : PathPart('transferir_lista') : Ar
 
 sub store : Chained('base') : PathPart('store') : Args(0) {
     my ( $self, $c ) = @_;
+
     #   Checa se user logado tem autorização para executar a ação 'Criar'
     $c->model('Dossie')->pode_criar_dossie($c->stash->{id_volume}) or $c->detach('/public/default');
+    $c->stash->{basedn} = $c->req->param('basedn') || $c->model("LDAP")->grupos_dn;
     $c->stash->{class_basedn} = $c->req->param('class_basedn') || $c->model("LDAP")->assuntos_dn;
+    $c->stash->{nome} = $c->req->param('nome');
     $c->stash->{template} = 'auth/registros/volume/dossie/form.tt';
     $c->stash->{classificacoes} = $c->req->param('classificacoes');
-   
-    if ($self->_processa_classificacao($c)) {
-        return;
-    }
+    $c->stash->{autorizacoes} = $c->req->param('autorizacoes');
+
+    if ($self->_processa_autorizacao($c) ||
+      $self->_processa_classificacao($c)) {
+        $c->stash->{template} = 'auth/registros/volume/dossie/form.tt';
+    return;
+
+  }
 
     my $representaDossieFisico;
+    my $herdar_author;
 
     if ($c->req->param('representaDossieFisico') eq 'on'){
        $representaDossieFisico = '1';
     }
     else {
        $representaDossieFisico = '0';
+    }
+
+    if ($c->req->param('herdar_author') eq 'on'){
+       $herdar_author = '1';
+    }
+    else {
+       $herdar_author = '0';
     }
 
     eval {
@@ -111,6 +128,8 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
                               $representaDossieFisico,
                               $c->model('Dossie')->desserialize_classificacoes($c->stash->{classificacoes}),
                               $c->req->param('localizacao'),
+                              $herdar_author,
+                              $c->model('Dossie')->desserialize_autorizacoes($c->req->param('autorizacoes')),
                                );
 
         $self->audit_criar($id, $c->req->param('nome'));
@@ -160,29 +179,35 @@ sub transferir : Chained('get_dossie') : PathPart('transferir') : Args(0) {
 
 sub alterar_dossie : Chained('get_dossie') : PathPart('alterar') : Args(0) {
     my ($self, $c) = @_;
-#   Checa se user logado tem autorização para executar a ação 'Alterar'
 
     my $initial_principals = $c->model('LDAP')->memberof_grupos_dn();
 
+    my $herdar = $c->model('Dossie')->desserialize_autorizacoes(
+                    $c->model('Dossie')->autorizacoes_do_dossie($c->stash->{id_volume},$c->stash->{controle} ));
+
+    $c->stash->{herdar} = $herdar->{herdar};
+    $c->stash->{autorizacoes} = $c->model('Dossie')->autorizacoes_do_dossie($c->stash->{id_volume},$c->stash->{controle} );
     $c->stash->{classificacoes} = $c->model("Dossie")->classificacoes_do_dossie($c->stash->{id_volume}, $c->stash->{controle});
-#    $c->stash->{basedn} = $c->model("LDAP")->grupos_dn;
+    $c->stash->{basedn} = $c->model("LDAP")->grupos_dn;
     $c->stash->{class_basedn} = $c->req->param('class_basedn') || $c->model("LDAP")->assuntos_dn;
     $c->stash->{template} = 'auth/registros/volume/dossie/form_alterar.tt';
+
 }
+
 
 sub store_alterar : Chained('get_dossie') : PathPart('store_alterar') : Args(0) {
   my ( $self, $c ) = @_;
-#	Checa se user logado tem autorização para executar a ação 'Alterar'
+
   my $representaDossieFisico;
-#  $c->stash->{basedn} = $c->req->param('basedn') || $c->model("LDAP")->grupos_dn;
+  my $herdar_author;
+
+  $c->stash->{basedn} = $c->req->param('basedn') || $c->model("LDAP")->grupos_dn;
   $c->stash->{class_basedn} = $c->req->param('class_basedn') || $c->model("LDAP")->assuntos_dn;
   $c->stash->{template} = 'auth/registros/volume/dossie/form_alterar.tt';
   $c->stash->{classificacoes} = $c->req->param('classificacoes');
   $c->stash->{autorizacoes} = $c->req->param('autorizacoes');
 
-  if ($self->_processa_classificacao($c)) {
-    return;
-  }
+
 
   if ( $c->req->param('representaDossieFisico') eq 'on' ) {
     $representaDossieFisico = '1';
@@ -191,11 +216,28 @@ sub store_alterar : Chained('get_dossie') : PathPart('store_alterar') : Args(0) 
     $representaDossieFisico = '0';
   }
 
+  if ($c->req->param('herdar_author') eq 'on'){
+       $herdar_author = '1';
+  }
+   else {
+      $herdar_author = '0';
+  }
+
+  $c->stash->{herdar} = $herdar_author;
+
+  if ($self->_processa_autorizacao($c) ||
+      $self->_processa_classificacao($c)) {
+    return;
+  }
+
+  my $autorizacoes_h = $c->model('Dossie')->desserialize_autorizacoes($c->req->param('autorizacoes'));
+  $autorizacoes_h->{'herdar'} = $herdar_author ;
+
   eval {
      $c->model('Dossie')->store_altera_dossie({
           id_volume     => $c->stash->{id_volume},
           controle      => $c->stash->{controle},
-#          autorizacoes  => $c->req->param('autorizacoes'),
+          autorizacoes  => $c->model('Dossie')->serialize_autorizacoes($autorizacoes_h),
           nome          => $c->req->param('nome'),
           classificacoes => $c->req->param('classificacoes'),
           localizacao   => $c->req->param('localizacao'),
