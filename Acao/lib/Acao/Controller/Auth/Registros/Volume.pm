@@ -54,7 +54,7 @@ sub get_volume :Chained('base') : PathPart('') : CaptureArgs(1) {
       or $c->detach('/public/default');
 
     $c->model('Volume')->pode_ver_volume($id_volume)
-    or $c->detach('/public/default');
+      or $c->detach('/public/default');
 }
 
 =item lista

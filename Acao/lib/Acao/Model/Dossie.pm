@@ -273,6 +273,11 @@ sub pode_criar_dossie {
     $role_criar ~~ @{$self->user->memberof};
 }
 
+sub pode_alterar_dossie {
+  my($self, $id_volume, $controle) = @_;
+  return $self->_checa_autorizacao_dossie($id_volume, 'alterar',$controle) &&
+    $role_alterar ~~ @{$self->user->memberof};
+}
 
 sub pode_transferir_dossie {
   my($self, $id_volume) = @_;
@@ -287,15 +292,29 @@ sub pode_listar_dossie {
 }
 
 sub _checa_autorizacao_dossie {
-   my($self, $id_volume, $acao) = @_;
+   my($self, $id_volume, $acao, $controle) = @_;
   my $grupos = join ' or ', map { '@principal = "'.$_.'"' }  @{$self->user->memberof};
 
   $self->sedna->begin;
-  my $query  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";'
+  my $query;
+
+  if ($controle)
+  {
+      $query  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";'
+             . 'declare namespace author = "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";'
+             . 'for $x in collection("'.$id_volume.'")/ns:dossie[ns:controle = "'.$controle.'"] '
+             . 'where $x/ns:autorizacoes/author:autorizacao[('.$grupos.') and @role="'.$acao.'"] '
+             . 'return $x/ns:autorizacoes';
+
+  }
+  else
+  {
+       $query  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";'
              . 'declare namespace author = "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";'
              . 'for $x in collection("volume")/ns:volume[ns:collection = "'.$id_volume.'"] '
              . 'where $x/ns:autorizacoes/author:autorizacao[('.$grupos.') and @role="'.$acao.'"] '
              . 'return $x/ns:autorizacoes';
+  }
 
   $self->sedna->execute($query);
   my $criar_dossie_no_volume =$self->sedna->get_item();

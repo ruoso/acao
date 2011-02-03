@@ -65,9 +65,7 @@ sub lista : Chained('base') : PathPart('') : Args(0) {
 
 sub form : Chained('base') : PathPart('criardossie') : Args(0) {
     my ( $self, $c ) = @_;
-#   Checa se user logado tem autorização para executar a ação 'Criar'
     my $initial_principals = $c->model('LDAP')->memberof_grupos_dn();
-
     $c->stash->{autorizacoes} = $c->model("Dossie")->new_autorizacao();
     $c->stash->{classificacoes} = $c->model("Dossie")->new_classificacao($initial_principals);
     $c->stash->{basedn} = $c->model("LDAP")->grupos_dn;
@@ -181,7 +179,6 @@ sub transferir : Chained('get_dossie') : PathPart('transferir') : Args(0) {
 
 sub alterar_dossie : Chained('get_dossie') : PathPart('alterar') : Args(0) {
     my ($self, $c) = @_;
-#   Checa se user logado tem autorização para executar a ação 'Alterar'
 
     my $initial_principals = $c->model('LDAP')->memberof_grupos_dn();
 
@@ -200,7 +197,6 @@ sub alterar_dossie : Chained('get_dossie') : PathPart('alterar') : Args(0) {
 
 sub store_alterar : Chained('get_dossie') : PathPart('store_alterar') : Args(0) {
   my ( $self, $c ) = @_;
-#	Checa se user logado tem autorização para executar a ação 'Alterar'
 
   my $representaDossieFisico;
   my $herdar_author;
