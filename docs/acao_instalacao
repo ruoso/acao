@@ -1,6 +1,9 @@
 Instalando/Configurando
 =======================
 
+Pre-requisitos:
+apt-get install make gcc cmake flex postgresql-server-dev-8.4
+
 1 - Criando usuario no github
     1.1 - Criar usuario (http://github.com/)
         1.1.1 - Para gerar chave ssh digite no terminal: ssh-keygen
@@ -21,56 +24,19 @@ Instalando/Configurando
     4.3 - Copie o endereço localizado no campo Read-Only | HTTP Read-Only
     4.4 - Para baixar o sistema açao digite no terminal: git clone "cole o endereço copiado no passo 4.3"
 
-5 - Baixando os arquivos Sedna pelo github 
-    5.1 - Pelo terminal abra o mesmo diretorio aberto no passo 4.1
-    5.2 - Abra seu WebBrowser e digite a url: http://github.com/ruoso/Sedna
-    5.3 - Copie o endereço localizado no campo Read-Only | HTTP Read-Only
-    5.4 - Para baixar o Sedna digite no terminal: git clone "cole o endereço copiado no passo 6.3"
-    5.5 - Pelo console acesse o diretorio Sedna que foi baixado, digite e execute:
-        5.5.1 - perl Makefile.PL
-        5.5.2 - make
-        5.5.3 - sudo make install
-
-6 - Instalando o Framework Catalyst e demais pacotes necessarios para a aplicação
-    6.1 - Pelo terminal do linux abra o terminal do CPAN digitando: sudo cpan
-    6.2 - install Catalyst::Runtime
-    6.3 - install Catalyst::Devel
-    6.4 - install Task::Catalyst
-    6.5 - install Catalyst::Plugin::Unicode
-    6.6 - install Catalyst::Model::LDAP
-    6.7 - install Catalyst::Authentication::Store::LDAP
-    6.8 - install DBD::Pg (caso 7.8 nao funcione tente: force install DBD::Pg)
-    6.9 - install Catalyst::Plugin::Session::Store::FastMmap
-    6.10 - install DateTime
-    6.11 - install DateTime::Format::XSD
-    6.12 - force install Sedna
-    6.13 - install Catalyst::Model::Sedna
-
-7 - Instalando o Framework Catalyst e demais pacotes necessarios para a aplicação
-    7.1 - Pelo terminal do linux abra o terminal do CPAN digitando: sudo cpan
-    7.2 - install Catalyst::Runtime
-    7.3 - install Catalyst::Devel
-    7.4 - install Task::Catalyst
-    7.5 - install Catalyst::Plugin::Unicode
-    7.6 - install Catalyst::Model::LDAP
-    7.7 - install Catalyst::Authentication::Store::LDAP
-    7.8 - install Class::MOP
-    7.9 - install Catalyst::Plugin::Session::Store::FastMmap
-    7.10 - install Catalyst::Log::Log4perl
-
-8 - Instalando o SGBD XML Sedna
-    8.1 - Baixe o pacote de instalção do sedna do site oficial e execute a instalação do pacote;
-    8.2 - Para iniciar o Sedna digite no terminal: sudo /usr/lib/sedna/bin/se_gov
-    8.3 - Para criar o DataBase no sedna do ação digite no terminal: sudo /usr/lib/sedna/bin/se_cdb acao
-    8.4 - Para iniciar o banco criado digite no terminal: sudo /usr/lib/sedna/bin/se_sm acao
-    8.5 - Para inicair o console do Sedna digite no terminal: LD_LIBRARY_PATH=/usr/lib/sedna/driver/c/ /usr/lib/sedna/bin/se_term acao
-    8.6 - Para criar o usuario acao digite: acao> CREATE USER "acao" WITH PASSWORD "12345" &
-    8.7 - No console do SEDNA crie a collection volume com o comando: create collection "volume" &
-    8.8 - No console do SEDNA crie a collection acao-schemas com o comando: create collection "acao-schemas" &
-    8.9 - Isira todos os arquivos que estão na pasta acao/acao-sdh na collection acao-schemas com o comando:
-        8.9.1 - Pelo console do linux navegue ate o doretorio acao
-        8.9.2 - Inicie o console do SEDNA a partir do diretorio acao
-        8.9.3 - Copie os comandos abaixo
+5 - Instalando o SGBD XML Sedna
+    5.1 - Baixe o pacote de instalção do sedna do site oficial e execute a instalação do pacote;
+    5.2 - Para iniciar o Sedna digite no terminal: sudo /usr/lib/sedna/bin/se_gov
+    5.3 - Para criar o DataBase no sedna do ação digite no terminal: sudo /usr/lib/sedna/bin/se_cdb acao
+    5.4 - Para iniciar o banco criado digite no terminal: sudo /usr/lib/sedna/bin/se_sm acao
+    5.5 - Para inicair o console do Sedna digite no terminal: LD_LIBRARY_PATH=/usr/lib/sedna/driver/c/ /usr/lib/sedna/bin/se_term acao
+    5.6 - Para criar o usuario acao digite: acao> CREATE USER "acao" WITH PASSWORD "12345" &
+    5.7 - No console do SEDNA crie a collection volume com o comando: create collection "volume" &
+    5.8 - No console do SEDNA crie a collection acao-schemas com o comando: create collection "acao-schemas" &
+    5.9 - Isira todos os arquivos que estão na pasta acao/acao-sdh na collection acao-schemas com o comando:
+        5.9.1 - Pelo console do linux navegue ate o doretorio acao
+        5.9.2 - Inicie o console do SEDNA a partir do diretorio acao
+        5.9.3 - Copie os comandos abaixo
             LOAD "acao-sdh/schemas/sdh-origemEncaminhamento.xsd" "sdh-origemEncaminhamento.xsd" "acao-schemas" &
             LOAD "acao-sdh/schemas/sdh-vinculacaoNaCCA.xsd" "sdh-vinculacaoNaCCA.xsd" "acao-schemas" &
             LOAD "acao-sdh/schemas/sdh-identificacaoPessoal.xsd" "sdh-identificacaoPessoal.xsd" "acao-schemas" &
@@ -101,22 +67,55 @@ Instalando/Configurando
             LOAD "acao-sdh/schemas/sdh-relatoriosEncaminhados.xsd" "sdh-relatoriosEncaminhados.xsd" "acao-schemas" &
             LOAD "acao-sdh/schemas/sdh-planoIndividualDeAtendimento.xsd" "sdh-planoIndividualDeAtendimento.xsd" "acao-schemas" &
 
-        8.9.4 - Cole os comando acima no cosole do SEDNA e cetifique do sucesso da persistencia de TODOS os arquivos.
+        5.9.4 - Cole os comando acima no cosole do SEDNA e cetifique do sucesso da persistencia de TODOS os arquivos.
 
-9 - Para criar o Usuario e Data Base acao no SGBD Postgre SQL digite no terminal
-    9.1 - digite sudo su e digite a sua senha
-    9.2 - mude para o usuário postgres, para isto, utilize o comando: su postgres
-    9.3 - createuser -P acao
-    9.4 - createdb -Uacao -h127.0.0.1 acao
-    9.5 - Para recriar a estrutura do banco em acordo com o model do sistema
-        9.5.1 - Pelo terminal abra o diretorio onde está o projeto ação (Ex: devel/acao/Acao)
-        9.5.2 - Digite o comando: perl -Ilib -MAcao -e 'Acao->model("DB")->schema->deploy'
 
-10 - Instalando o LibXML no Linux
-    10.1 Para baixar e instalar o LibXML digite no console: sudo apt-get install libxml2-dev
-    10.2 Abra com o console do CPAN dogitando no console do Linux: cpan
-    10.3 Para instalar o libXML digite no terminal do CPAN: install XML::LibXML
-    10.4 Para instalar o XMLCompile digite no terminal do CPAN: install XML::Compile
+6 - Baixando os arquivos Sedna pelo github 
+    6.1 - Pelo terminal abra o mesmo diretorio aberto no passo 4.1
+    6.2 - Abra seu WebBrowser e digite a url: http://github.com/ruoso/Sedna
+    6.3 - Copie o endereço localizado no campo Read-Only | HTTP Read-Only
+    6.4 - Para baixar o Sedna digite no terminal: git clone "cole o endereço copiado no passo 6.3"
+    6.5 - Pelo console acesse o diretorio Sedna que foi baixado, digite e execute:
+        6.5.1 - perl Makefile.PL
+        6.5.2 - make
+        6.5.3 - sudo make install
+
+7 - Instalando o Framework Catalyst e demais pacotes necessarios para a aplicação
+    7.1 - Pelo terminal do linux abra o terminal do CPAN digitando: sudo cpan
+    7.2 - install Catalyst::Runtime
+    7.3 - install Catalyst::Devel
+    7.4 - install Task::Catalyst
+    7.5 - install Catalyst::Plugin::Unicode
+    7.6 - install Catalyst::Model::LDAP
+    7.7 - install Catalyst::Authentication::Store::LDAP
+    7.8 - install DBD::Pg (caso 7.8 nao funcione tente: force install DBD::Pg)
+    7.9 - install Catalyst::Plugin::Session::Store::FastMmap
+    7.10 - install DateTime
+    7.11 - install DateTime::Format::XSD
+    7.12 - force install Sedna
+    7.13 - install Catalyst::Model::Sedna
+    7.14 - install Class::MOP
+    7.15 - install Catalyst::Log::Log4perl
+
+8 - [deprecated]
+
+9 - Instalando o LibXML no Linux
+    9.1 Para baixar e instalar o LibXML digite no console: sudo apt-get install libxml2-dev
+    9.2 Abra com o console do CPAN dogitando no console do Linux: cpan
+    9.3 Para instalar o libXML digite no terminal do CPAN: install XML::LibXML
+    9.4 Para instalar o XMLCompile digite no terminal do CPAN: install XML::Compile
+
+10 - Para criar o Usuario e Data Base acao no SGBD Postgre SQL digite no terminal
+    10.1 - digite sudo su e digite a sua senha
+    10.2 - mude para o usuário postgres, para isto, utilize o comando: su postgres
+    10.3 - createuser -P acao
+    10.4 - createdb -Uacao -h127.0.0.1 acao
+    10.5 - Para recriar a estrutura do banco em acordo com o model do sistema
+        10.5.1 - Pelo terminal abra o diretorio onde está o projeto ação (Ex: devel/acao/Acao)
+        10.5.2 - Digite o comando: perl -Ilib -MAcao -e 'Acao->model("DB")->schema->deploy'
+        10.5.3 - Se tiver problemas com a libsedna, crie o arquivo /etc/ld.so.conf.d/sedna.conf a adicione o path de onde está a lib
+	10.5.4 - rode ldconfig
+
 
 11- Instalando o SVN
     11.1 Para baixar o svn digite no console: sudo apt-get install subversion
