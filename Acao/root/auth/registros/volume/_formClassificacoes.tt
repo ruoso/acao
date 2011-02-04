@@ -40,18 +40,18 @@
 
      <dl>
 
-          <dt class="grp">Assuntos:</dt>
+          <dt class="grp">Assuntos: [% c.model('LDAP').decompose_dn_assuntos(class_basedn).reverse.join(' - ') %]</dt>
 
             <dt>
 
                 <select multiple name="assuntos" id="classificacoes"  style="height:100px;min-width:300px">
                    [% IF class_basedn.size > 1; class_basedn = class_basedn.shift; END %]
                    [% IF class_basedn != c.model('LDAP').assuntos_dn %]
-                   <option  value="[%  c.view('LDAPUtil').voltar_grupos(class_basedn) %]"> ../</option>
+                   <option  value="[% c.view('LDAPUtil').voltar_grupos(class_basedn) %]"> ../</option>
                    [% END %]
-                   [%  FOREACH class IN c.model('LDAP').buscar_dn_assuntos(class_basedn) %]
+                   [% FOREACH class IN c.model('LDAP').buscar_dn_assuntos(class_basedn) %]
                    <option value="[% class.dn %]"> [% class.get_value('cn') %] </option>
-                   [%  END %]
+                   [% END %]
                 </select>
 
             </dt>

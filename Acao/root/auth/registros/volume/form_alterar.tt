@@ -22,12 +22,12 @@
 <h1 class="titulo-form">Alterar Volume:</h1>
 [% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume) ) %]
 [% SET nome = vol.nome %]
-[% SET localizacao = vol.localizacao %]
  <form id="form" name="form" action="[% c.uri_for_action('/auth/registros/volume/store_alterar', [ id_volume ]) %]" method="post" onsubmit="">
 
 	[% INCLUDE 'auth/registros/volume/_formVolume.tt' %]
 	[% INCLUDE 'auth/registros/volume/_formPermissoes.tt' %]
 	[% INCLUDE 'auth/registros/volume/_formClassificacoes.tt' %]
+	[% INCLUDE 'auth/registros/volume/_formLocalizacao.tt' %]
 
   <input type="submit" name="opcao" onClick="javascript:return validaForm();" value="Salvar">
 

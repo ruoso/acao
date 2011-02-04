@@ -37,7 +37,7 @@ Carrega para o stash os dados do dossiê.
 
 =cut
 
-sub base : Chained('../get_dossie') :PathPart('') :CaptureArgs(0) {}
+sub base : Chained('../get_dossie') :PathPart('documento') :CaptureArgs(0) {}
 
 sub get_documento :Chained('base') :PathPart('') :CaptureArgs(1) {
     my ( $self, $c, $id_documento ) = @_;

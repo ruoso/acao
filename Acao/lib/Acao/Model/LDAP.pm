@@ -2,16 +2,20 @@ package Acao::Model::LDAP;
 use Net::LDAP;
 use Moose;
 use Data::Dumper;
+use strict;
+use warnings;
 
 
 use Carp qw(croak);
 extends 'Acao::Model';
 
 has ldap_config => (is => 'ro', required => 1);
-has ldap => (is => 'rw', lazy => 1, builder => '_bind_ldap');
+has ldap        => (is => 'rw', lazy => 1, builder => '_bind_ldap');
 has dominios_dn => (is => 'ro', required => 1);
-has grupos_dn => (is => 'ro', required => 1);
+has grupos_dn   => (is => 'ro', required => 1);
 has assuntos_dn => (is => 'ro', required => 1);
+has local_dn    => (is => 'ro', required => 1);
+
 
 sub build_per_context_instance {
   my ( $self, $c ) = @_;
@@ -48,6 +52,17 @@ sub memberof_grupos_dn {
   [ grep { /$sufix$/ } @{$self->user->memberof} ]
 }
 
+#sub buscar_dn_assuntos {
+#  my $self = shift;
+#  my $base = shift || $self->assuntos_dn;
+#  return $self->_buscar_dn($base);
+#}
+
+sub buscar_dn_local {
+  my $self = shift;
+  my $base = shift || $self->local_dn;
+  return $self->_buscar_dn($base);
+}
 
 sub buscar_dn_adm {
   my $self = shift;
@@ -72,6 +87,10 @@ sub decompose_dn_assuntos {
 
 sub decompose_dn_grupos {
     $_[0]->decompose_dn($_[1], $_[0]->grupos_dn)
+}
+
+sub decompose_dn_local {
+    $_[0]->decompose_dn($_[1], $_[0]->local_dn)
 }
 
 sub decompose_dn {

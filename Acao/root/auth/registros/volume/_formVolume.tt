@@ -17,34 +17,16 @@
 # título "LICENCA.txt", junto com este programa, se não, escreva para a
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
 %]
-
 <fieldset>
-
-
   <dl  class="form10">
-   <dt> <label> Nome Volume: </label> </dt>
-	<dd>
-		<input type="text" id="nome" name="nome" class="upper" value="[% nome %]">
+    <dt> <label> Nome Volume: </label> </dt>
+    <dd>
+	  <input type="text" id="nome" name="nome" class="upper" value="[% nome %]">
 	</dd>
-
-   <dt>
-    <label> Localização: </label>
-	</dt>
-	<dd>
-    <select name="localizacao" id="localizacao">
-      <option value="[% vol.localizacao %]">[% localizacao %] </option>
-      <option value="Núcleo I"> Núcleo I </option>
-      <option value="Núcleo II"> Núcleo II </option>
-      <option value="Núcleo III"> Núcleo III </option>
-      <option value="Núcleo IV"> Núcleo IV </option>
-      <option value="Núcleo V"> Núcleo V </option>
-      <option value="Núcleo VI"> Núcleo VI </option>
-
-    </select>
-   </dd>
-   <br/>
- 	<dd> <input type="checkbox" id="representaVolumeFisico" name="representaVolumeFisico" evt="representaVolumeFisico" [% IF vol.volume_fisico == 'Sim'  %] checked  	[% END %] >  <label for="representaVolumeFisico"> Representa Volume Físico </label>
-
+    <br/>
+ 	<dd>
+      <input type="checkbox" id="representaVolumeFisico" name="representaVolumeFisico" evt="representaVolumeFisico" [% IF vol.volume_fisico == 'Sim' %] checked [% END %] >  
+      <label for="representaVolumeFisico"> Representa Volume Físico </label>
 	</dd>
   </dl>
 </fieldset>
