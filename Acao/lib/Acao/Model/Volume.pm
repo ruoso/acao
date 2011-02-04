@@ -28,6 +28,8 @@ use Data::UUID;
 use Data::Dumper;
 use List::MoreUtils 'pairwise';
 
+with 'Acao::Role::Model::Indices';
+
 use constant VOLUME_NS =>'http://schemas.fortaleza.ce.gov.br/acao/volume.xsd';
 my $controle = XML::Compile::Schema->new( Acao->path_to('schemas/volume.xsd') );
 $controle->importDefinitions( Acao->path_to('schemas/autorizacoes.xsd') );
@@ -171,6 +173,7 @@ txn_method 'alterar_estado' => authorized $role_alterar => sub {
                $xq .= 'update replace $x in collection("volume")/ns:volume[ns:collection="'.$id_volume.'"]';
                $xq .= '/ns:arquivamento with <ns:arquivamento>'.DateTime->now().'</ns:arquivamento>';
             $self->sedna->execute($xq);
+            $self->drop_indices_invalidate_vol($id_volume);
     }
 
     if($estado eq 'aberto')

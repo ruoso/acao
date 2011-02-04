@@ -84,6 +84,23 @@ sub drop_indices {
     $entry->delete();
 }
 
+=item drop_indices_invalidate_vol()
+
+Este método realiza a remoção dos índices reladionados a um volume
+banco de dados de indexação
+
+=cut
+
+sub drop_indices_invalidate_vol {
+    my ($self, $id_volume) = @_;
+    my $entry = $self->dbic->resultset('Entry')->find({
+        volume => $id_volume,
+    });
+    $entry->gin_indexes->delete();
+    $entry->permissoes->delete();
+    $entry->delete();
+}
+
 =item get_xsd_info()
 
 Obtém as informações sobre os índices o tipo do documento que foi inserido

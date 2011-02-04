@@ -78,7 +78,7 @@
 <fieldset>
   <legend>Buscar Prontuários</legend>
 
-  <form action="[% '/auth/registros/volume/' _ id_volume %]">
+  <form action="[% '/auth/registros/volume/' _ id_volume _ '/dossie' %]">
    <div>
 
     [% SET numero_campos = (c.req.param('numero_campos')||0) + 0 %]
