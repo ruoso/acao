@@ -93,11 +93,9 @@ banco de dados de indexação
 
 sub drop_indices_invalidate_vol {
     my ($self, $id_volume) = @_;
-    my $entry = $self->dbic->resultset('Entry')->find({
+    my $entry = $self->dbic->resultset('Entry')->search({
         volume => $id_volume,
     });
-    $entry->gin_indexes->delete();
-    $entry->permissoes->delete();
     $entry->delete();
 }
 

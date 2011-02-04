@@ -85,7 +85,7 @@ __PACKAGE__->has_many(
   "gin_indexes",
   "Acao::Schema::Result::GinIndex",
   { "foreign.entry" => "self.entry_id" },
-  { cascade_copy => 0, cascade_delete => 0 },
+  { cascade_copy => 1, cascade_delete => 1 },
 );
 
 =head2 gin_indexes
@@ -100,7 +100,7 @@ __PACKAGE__->has_many(
   "permissoes",
   "Acao::Schema::Result::Permissao",
   { "foreign.entry_id" => "self.entry_id" },
-  { cascade_copy => 0, cascade_delete => 0 },
+  { cascade_copy => 1, cascade_delete => 1 },
 );
 
 
