@@ -95,7 +95,8 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
   $c->stash->{autorizacoes} = $c->req->param('autorizacoes');
   $c->stash->{localizacao} = $c->req->param('localizacao');
   if ($self->_processa_autorizacao($c) ||
-      $self->_processa_classificacao($c)) {
+      $self->_processa_classificacao($c) || 
+      $self->_processa_localizacao($c)) {
     $c->stash->{template} = 'auth/registros/volume/form.tt';
     return;
   }
