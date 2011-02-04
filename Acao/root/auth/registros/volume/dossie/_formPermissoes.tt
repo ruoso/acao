@@ -21,6 +21,7 @@
     <label> Autorizações: </label>
      <input type="hidden" name="autorizacoes" value="[% autorizacoes | html %]" />
      <input type="hidden" name="basedn" value="[% basedn %]" />
+     <dt><input type="checkbox" name="herdar_author" [% IF herdar == 1 %] checked [% END %] /> Herdar Autorizações do Volume</dt>
 
      <table>
       <thead>
@@ -30,13 +31,15 @@
       </thead>
       <tbody>
         [% SET count = 0 %]
-        [% FOREACH a IN c.model('Volume').desserialize_autorizacoes(autorizacoes).autorizacao %]
-        <tr>
-          <td>[% c.model('LDAP').decompose_dn_grupos(a.principal).reverse.join(' - ') %]</td>
-          <td>[% a.role %]</td>
-          <td><input type="checkbox" name="remover_autorizacao_[% count %]" /></td>
-        </tr>
-        [% SET count = count + 1 %]
+        [% IF autorizacoes %]
+          [% FOREACH a IN c.model('Dossie').desserialize_autorizacoes(autorizacoes).autorizacao %]
+          <tr>
+            <td>[% c.model('LDAP').decompose_dn_grupos(a.principal).reverse.join(' - ') %]</td>
+            <td>[% a.role %]</td>
+            <td><input type="checkbox" name="remover_autorizacao_[% count %]" /></td>
+          </tr>
+          [% SET count = count + 1 %]
+          [% END %]
         [% END %]
       </tbody>
      </table>

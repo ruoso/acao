@@ -28,13 +28,13 @@
 <script SRC="[% c.uri_for('/static/js/xsdForm.js') %]" language="Javascript" ></script>
 <script SRC="[% c.uri_for('/static/js/xsdForm-ui.js') %]" language="Javascript" ></script>
 
-<form id="form" name="form" action="[% c.uri_for_action('/auth/registros/volume/dossie/store',[ id_volume ]) %]" method="post">
+<form id="form" name="form" action="[% c.uri_for_action('/auth/registros/volume/dossie/store', [ id_volume ]) %]" method="post" onsubmit="">
   <input type="hidden" name="id_volume" value="[% id_volume %]">
 
-    [% INCLUDE 'auth/registros/volume/dossie/_formDossie.tt' %] 
- 	[% # INCLUDE 'auth/registros/volume/dossie/_formPermissoes.tt' %]
- 	[% INCLUDE 'auth/registros/volume/dossie/_formClassificacoes.tt' %]
- 
+    [% INCLUDE 'auth/registros/volume/dossie/_formDossie.tt' %]
+   [% INCLUDE 'auth/registros/volume/dossie/_formPermissoes.tt' %]
+   [% INCLUDE 'auth/registros/volume/dossie/_formClassificacoes.tt' %]
+
  <div id="form_container"></div>
 
  <input type="submit" name="Submeter" onClick="return validaForm();" value="Criar">

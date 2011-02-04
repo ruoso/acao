@@ -28,6 +28,8 @@ use Encode;
 use Data::UUID;
 use Data::Dumper;
 
+with 'Acao::Role::Model::Indices';
+
 use constant DOCUMENTO_NS =>'http://schemas.fortaleza.ce.gov.br/acao/documento.xsd';
 my $controle = XML::Compile::Schema->new( Acao->path_to('schemas/documento.xsd') );
 my $controle_w = $controle->compile( WRITER => pack_type( DOCUMENTO_NS, 'documento' ), use_default_namespace => 1 );
@@ -91,7 +93,7 @@ txn_method 'listar_documentos' => authorized $role_listar => sub {
 
     my $count = $declare_namespace.'count('.$xquery_for.$xquery_where.' return "")';
 
-
+warn $count;
 
     return
         {
@@ -169,8 +171,6 @@ txn_method 'inserir_documento' => authorized $role_criar => sub {
 
     $self->sedna->execute($xq);
 
-    my $acao = $id_documento eq '' ? 'insert' : 'edit';
-
     if ($id_documento ne '')
     {
             my $xq_invalidacao  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
@@ -190,6 +190,11 @@ txn_method 'inserir_documento' => authorized $role_criar => sub {
             $self->sedna->execute($xq_motivo_invalidacao);
 
     }
+
+    $id_documento = $uuid_str;
+
+    $self->insert_indices($id_volume, $controle, $id_documento, $xsdDocumento, $xml);
+
     return $id_documento;
 };
 
@@ -200,7 +205,6 @@ txn_method 'visualizar' => authorized $role_visualizar => sub {
     my $xq  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";';
        $xq .= 'declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";';
        $xq .= 'for $x in collection("'.$id_volume.'")/ns:dossie/ns:doc/* return $x[dc:id="'.$id_documento.'"]/dc:documento/*/*';
-warn $xq;
     $self->sedna->execute($xq);
 
     my $xml = $self->sedna->get_item;
@@ -268,6 +272,7 @@ txn_method 'invalidar_documento' => authorized $role_listar => sub {
                                         with <dc:invalidacao>'.DateTime->now().'</dc:invalidacao>';
 
   $self->sedna->execute($xq_invalidacao);
+  $self->drop_indices($id_volume, $controle, $id_documento);
 
   my $xq_motivo_invalidacao  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
                                 declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";

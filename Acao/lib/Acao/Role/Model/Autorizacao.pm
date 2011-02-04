@@ -20,6 +20,7 @@ use MooseX::Role::Parameterized;
 use List::MoreUtils qw(pairwise);
 use XML::Compile::Util;
 use XML::LibXML;
+use Data::Dumper;
 
 parameter xmlcompile => (
   isa      => 'XML::Compile::Schema',
@@ -36,15 +37,22 @@ role {
     my $xmlcompile = $p->xmlcompile;
     my $ns = $p->namespace;
     my $reader = $xmlcompile->compile( READER => pack_type( $ns, 'autorizacoes'));
-    my $writer = $xmlcompile->compile( WRITER => pack_type( $ns, 'autorizacoes'));
+    my $writer = $xmlcompile->compile( WRITER => pack_type( $ns, 'autorizacoes'), use_default_namespace => 1);
 
     method new_autorizacao => sub {
         my ($self, $initial_principals) = @_;
         my $doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
-        return $writer->($doc,
-            { autorizacao => $self->build_autorizacao_AoH
-                ($initial_principals,
-                 [qw(alterar criar listar visualizar)])})->toString;
+        if ($initial_principals) {
+            return $writer->($doc,
+                { autorizacao => $self->build_autorizacao_AoH
+                    ($initial_principals,
+                     [qw(alterar criar listar visualizar)])})->toString;
+        } else {
+          return  $writer->($doc,
+                { autorizacao => []})->toString;
+        }
+
+
     };
 
     method add_autorizacoes => sub  {
@@ -75,6 +83,14 @@ role {
         my ($self, $xml_autorizacoes) = @_;
         return $reader->($xml_autorizacoes);
     };
+
+    method serialize_autorizacoes => sub  {
+        my ($self, $autorizacoes_h) = @_;
+        my $doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
+        return $writer->($doc, $autorizacoes_h)->toString;
+    };
+
+
 };
 
 =head1 NAME
