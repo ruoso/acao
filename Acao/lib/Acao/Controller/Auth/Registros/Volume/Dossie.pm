@@ -204,10 +204,10 @@ sub alterar_dossie : Chained('get_dossie') : PathPart('alterar') : Args(0) {
     my ($self, $c) = @_;
     #   Checa se user logado tem autorização para executar a ação 'Alterar'
     #   Checa se user logado tem autorização para executar a ação 'Ver' em Volume
-    if (!$c->model('Dossie')->pode_alterar_dossie($c->stash->{id_volume},$c->stash->{controle} )) {
-        $c->flash->{autorizacao} = 'Você não tem autorização';
-        $c->res->redirect( $c->uri_for_action('/auth/registros/volume/lista',$c->stash->{id_volume} ));
-    }
+   # if (!$c->model('Dossie')->pode_alterar_dossie($c->stash->{id_volume},$c->stash->{controle} )) {
+   #     $c->flash->{autorizacao} = 'Você não tem autorização';
+   #     $c->res->redirect( $c->uri_for_action('/auth/registros/volume/lista',$c->stash->{id_volume} ));
+   # }
     #$c->model('Dossie')->pode_alterar_dossie($c->stash->{id_volume},$c->stash->{controle} ) or $c->detach('/public/default');
     my $initial_principals = $c->model('LDAP')->memberof_grupos_dn();
 

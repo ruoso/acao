@@ -43,10 +43,10 @@ Carrega para o stash os dados do dossiê.
 sub base : Chained('../get_dossie') :PathPart('') :CaptureArgs(0) {
     my ( $self, $c, $id_documento ) = @_;
     #   Checa se user logado tem autorização para executar a ação 'Ver' em Dossie
-    if (!$c->model('Dossie')->pode_ver_dossie($c->stash->{id_volume},$c->stash->{controle})) {
-        $c->flash->{autorizacao} = 'Você não tem autorização de ver este Prontuário';
-        $c->res->redirect( $c->uri_for_action('/auth/registros/volume/lista',$c->stash->{id_volume}));
-    }
+   # if (!$c->model('Dossie')->pode_ver_dossie($c->stash->{id_volume},$c->stash->{controle})) {
+   #     $c->flash->{autorizacao} = 'Você não tem autorização de ver este Prontuário';
+   #     $c->res->redirect( $c->uri_for_action('/auth/registros/volume/lista',$c->stash->{id_volume}));
+   # }
 }
 
 sub get_documento :Chained('base') :PathPart('') :CaptureArgs(1) {
