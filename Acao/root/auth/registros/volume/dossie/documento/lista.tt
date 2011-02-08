@@ -53,8 +53,8 @@
     <a class="alterar" href="[% c.uri_for_action('/auth/registros/volume/dossie/alterar_dossie', [ id_volume, controle ]) %]">Alterar Prontuário</a>
 </span></h1>
 
-[% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume, c.model('LDAP').assuntos_dn) ) %]
-[% SET dos = ( c.model('Dossie').getDadosDossie(id_volume, controle, c.model('LDAP').assuntos_dn) ) %]
+[% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume, c.model('LDAP').assuntos_dn, c.model('LDAP').local_dn) ) %]
+[% SET dos = ( c.model('Dossie').getDadosDossie(id_volume, controle, c.model('LDAP').assuntos_dn, c.model('LDAP').local_dn) ) %]
 
 <div id="accordion">
   <h3><a href="#">Dados do Volume: [% vol.nome %]</a></h3>
@@ -198,7 +198,6 @@
 
 <div id="lstDocumentos" class="hidden panel">
   <div class="text">
-
       [% c.model('XSD').link_xsd(id_volume, controle, c.model('LDAP').assuntos_dn ) %]
   </div>
 </div>

@@ -42,7 +42,7 @@
      </table>
 
      <dl>
-          <dt class="grp">Grupo de Usuário e Ações: [% c.model('LDAP').decompose_dn_grupos(basedn).reverse.join(' - ') %]</dt>
+          <dt class="grp"><b>Grupo de Usuário e Ações:</b> [% c.model('LDAP').decompose_dn_grupos(basedn).reverse.join(' - ') %]</dt>
 
             <dt>
 
