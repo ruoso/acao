@@ -318,7 +318,6 @@ txn_method 'getDadosDossie' => authorized $role_listar => sub {
                                 string-join(reverse(for $i in tokenize(substring-before($c,",|. $assuntos_dn .q|"),',')
                                  return (tokenize($i,'='))[2]),' - ')
                                ) else ($c)),', '),
-
                         string-join(
                         for $d in $x/ns:localizacao/text()
                             return (if (ends-with($d,",|. $local_dn .q|")) then (
