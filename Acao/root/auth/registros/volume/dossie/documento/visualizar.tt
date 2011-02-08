@@ -17,7 +17,7 @@
 # título "LICENCA.txt", junto com este programa, se não, escreva para a
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
 %]
-[% INCLUDE 'auth/registros/volume/dossie/documento/header.tt' %]
+[% INCLUDE 'auth/registros/volume/dossie/documento/header_contexto.tt' %]
 [% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume) ) %]
 [% SET dos = ( c.model('Dossie').getDadosDossie(id_volume, controle) ) %]
 
@@ -39,71 +39,71 @@
 
 
 <div id="accordion">
-	<h3><a href="#">Dados do Volume: [% vol.nome %]</a></h3>
-	<div>		
-		<fieldset class="fieldsetBorderNone">
-		  <dl class="form15">
-		  	<dt>Volume:</dt>
-			<dd><span>[% vol.nome %]</span></dd>
+  <h3><a href="#">Dados do Volume: [% vol.nome %]</a></h3>
+  <div>
+    <fieldset class="fieldsetBorderNone">
+      <dl class="form15">
+        <dt>Volume:</dt>
+      <dd><span>[% vol.nome %]</span></dd>
 
-			<dt>Classificação:</dt>
-			<dd><span>[% vol.classificacoes %]</span></dd>
+      <dt>Classificação:</dt>
+      <dd><span>[% vol.classificacoes %]</span></dd>
 
-			<dt>Localização:</dt>
-			<dd><span>[% vol.localizacao %]</span></dd>
+      <dt>Localização:</dt>
+      <dd><span>[% vol.localizacao %]</span></dd>
 
-			<dt>Estado:</dt>
-			<dd><span>[% vol.estado %]</span></dd>
+      <dt>Estado:</dt>
+      <dd><span>[% vol.estado %]</span></dd>
 
-			<dt>Data Criação:</dt>
-			<dd><span class="longDateFormat">[% vol.criacao %]</span></dd>
+      <dt>Data Criação:</dt>
+      <dd><span class="longDateFormat">[% vol.criacao %]</span></dd>
 
-			<dt>Vol. Físico:</dt>
-			<dd><span>[% vol.volume_fisico %]</span></dd>
+      <dt>Vol. Físico:</dt>
+      <dd><span>[% vol.volume_fisico %]</span></dd>
 
-			<dd>
-			  <div name="xsdFormValidation">
-				<input type="hidden" name="controle" value = "[% controle %]"/>
-			
-				<div name="requiredField" style="display: none;">true</div>
-			  </div>
-			</dd>
-		  </dl>
-	 </fieldset>
+      <dd>
+        <div name="xsdFormValidation">
+        <input type="hidden" name="controle" value = "[% controle %]"/>
 
-	</div>
-	<h3><a href="#">Dados do Prontuário: [% dos.nome %]</a></h3>
-		<div>		
-			<fieldset class="fieldsetBorderNone">
-			  <dl class="form15">
-				<dt> <label> Prontuário: </label> </dt>
-				<dd> <span> [% dos.nome %] </span> </dd>
+        <div name="requiredField" style="display: none;">true</div>
+        </div>
+      </dd>
+      </dl>
+   </fieldset>
 
-				<dt>Classificação:</dt>
-				<dd><span>[% dos.classificacoes %]</span></dd>
+  </div>
+  <h3><a href="#">Dados do Prontuário: [% dos.nome %]</a></h3>
+    <div>
+      <fieldset class="fieldsetBorderNone">
+        <dl class="form15">
+        <dt> <label> Prontuário: </label> </dt>
+        <dd> <span> [% dos.nome %] </span> </dd>
 
-				<dt>Localização:</dt>
-				<dd><span>[% dos.localizacao %]</span></dd>
+        <dt>Classificação:</dt>
+        <dd><span>[% dos.classificacoes %]</span></dd>
 
-				<dt>Estado:</dt>
-				<dd><span>[% dos.estado %]</span></dd>
+        <dt>Localização:</dt>
+        <dd><span>[% dos.localizacao %]</span></dd>
 
-				<dt>Data Criação:</dt>
-				<dd><span class="longDateFormat">[% dos.criacao %]</span></dd>
+        <dt>Estado:</dt>
+        <dd><span>[% dos.estado %]</span></dd>
 
-				<dt>Pront. Físico:</dt>
-				<dd><span>[% dos.dossie_fisico %]</span></dd>
-			  <dl>
-			</fieldset>
+        <dt>Data Criação:</dt>
+        <dd><span class="longDateFormat">[% dos.criacao %]</span></dd>
 
-		</div>
+        <dt>Pront. Físico:</dt>
+        <dd><span>[% dos.dossie_fisico %]</span></dd>
+        <dl>
+      </fieldset>
+
+    </div>
 </div>
 <br>
- 
- <fieldset> 
+
+ <fieldset>
    <a href="[% c.uri_for_action('/auth/registros/volume/dossie/documento/visualizar_por_tipo', [ id_volume, controle, id_documento ])%]"> Visualizar Todos Deste Tipo </a>
- </fieldset> 
- 
+ </fieldset>
+
 [% IF invalidacao == '1970-01-01T00:00:00Z' %]
         <input type="checkbox" id="representaDocumentoFisico" name="representaDocumentoFisico" evt="representaDocumentoFisico" [% IF representaDocumentoFisico == 'true' %] checked [% END %] >
         <label for="representaDocumentoFisico"> Representa Documento Físico </label>
@@ -121,29 +121,29 @@
  </form>
 
 <style rel="stylesheet" type="text/css">
-	.text {
-		padding:10px 10px 10px 10px;
-	}
+  .text {
+    padding:10px 10px 10px 10px;
+  }
 
-	.panel {
-		position:absolute;
-		top:220px;
-		left:290px;
-		background:#FFFFAF;
-		border:3px solid #E6B800;
-		line-height: 200%;	
+  .panel {
+    position:absolute;
+    top:220px;
+    left:290px;
+    background:#FFFFAF;
+    border:3px solid #E6B800;
+    line-height: 200%;
 
-		/*height: 300px;*/
-		width: 500px;
-		overflow: auto;
-	
-	}
-	
+    /*height: 300px;*/
+    width: 500px;
+    overflow: auto;
 
-	.hidden {
-		display:none;
-		visibility:hidden;
-	}
+  }
+
+
+  .hidden {
+    display:none;
+    visibility:hidden;
+  }
 </style>
 
 

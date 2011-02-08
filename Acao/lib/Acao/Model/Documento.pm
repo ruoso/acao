@@ -101,12 +101,6 @@ warn $count;
           count      => $count
         };
 };
-# realiza de auditoria ao efetuar operações nos documentos
-sub auditoria  {
-    my ($self, $args) = @_;
-}
-
-
 
 
 =item inserir_documento()

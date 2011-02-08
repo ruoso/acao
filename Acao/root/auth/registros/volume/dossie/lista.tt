@@ -39,11 +39,11 @@
 
     [% IF c.model('Dossie').pode_criar_dossie(id_volume) %]
         <a class="criar" href="[% c.uri_for_action('/auth/registros/volume/dossie/form', [ id_volume ]) %]">Criar Prontuário</a>
-    [% END %]
-    |
+    [% END %]|
     [% IF c.model('Volume').pode_alterar_volume(id_volume) %]
-        <a class="alterar" href="[% c.uri_for_action('/auth/registros/volume/alterar_volume', [ id_volume ]) %]">Alterar Volume</a>
+      <a href="[% c.uri_for_action('/auth/registros/volume/alterar_volume', [ id_volume ]) %]">Alterar volume</a>
     [% END %]
+
   </span>
 </h1>
 
@@ -130,9 +130,9 @@
       <option value="inicia" [% IF (c.req.param('campo_operador_' _ counter) == 'inicia') %] selected [% END %]>inicia com</option>
       <option value="termina" [% IF (c.req.param('campo_operador_' _ counter) == 'termina') %] selected [% END %]>termina com</option>
      </select>
-  
+
      <input type="text" id="valor_pesquisado_[% counter %]" name="valor_pesquisado_[% counter %]" value="[% c.req.param('valor_pesquisado_' _ counter) | html %]"  />
-    </fieldset>      
+    </fieldset>
     [% counter = counter + 1; END %]
 
    </div>

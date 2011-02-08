@@ -32,12 +32,18 @@ parameter namespace => (
   required => 1,
 );
 
+parameter acoes => (
+  isa      => 'ArrayRef',
+  required => 1,
+);
+
 role {
     my $p = shift;
     my $xmlcompile = $p->xmlcompile;
     my $ns = $p->namespace;
     my $reader = $xmlcompile->compile( READER => pack_type( $ns, 'autorizacoes'));
     my $writer = $xmlcompile->compile( WRITER => pack_type( $ns, 'autorizacoes'), use_default_namespace => 1);
+
 
     method new_autorizacao => sub {
         my ($self, $initial_principals) = @_;
@@ -46,7 +52,7 @@ role {
             return $writer->($doc,
                 { autorizacao => $self->build_autorizacao_AoH
                     ($initial_principals,
-                     [qw(alterar criar listar visualizar)])})->toString;
+                     $p->acoes)})->toString;
         } else {
           return  $writer->($doc,
                 { autorizacao => []})->toString;
@@ -89,6 +95,53 @@ role {
         my $doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
         return $writer->($doc, $autorizacoes_h)->toString;
     };
+
+=item autorizacoes_do_volume()
+
+Este método retona um XML das Autorizações do Volume
+
+=cut
+
+    method autorizacoes_do_volume => sub {
+        my($self, $id_volume) = @_;
+
+        my $query  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";'
+                   . 'declare namespace author = "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";'
+                   . 'for $x in collection("volume")/ns:volume[ns:collection = "'.$id_volume.'"] '
+                   . 'return <autorizacoes xmlns="'.$ns.'">{$x/ns:autorizacoes/*}</autorizacoes>';
+        $self->sedna->begin;
+        $self->sedna->execute($query);
+        my $xml =$self->sedna->get_item();
+        $self->sedna->commit;
+        return $xml;
+    };
+
+=item _checa_autorizacao_volume()
+
+Este método retorna/checa as autorização de um Volume de acordo.
+com a ação passada como parametro.
+
+
+=cut
+
+
+    method _checa_autorizacao_volume => sub {
+        my($self, $id_volume, $acao) = @_;
+        my $grupos = join ' or ', map { '@principal = "'.$_.'"' }  @{$self->user->memberof};
+
+        my $query  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";'
+                 . 'declare namespace author = "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";'
+                 . 'for $x in collection("volume")/ns:volume[ns:collection = "'.$id_volume.'"] '
+                 . 'where $x/ns:autorizacoes/author:autorizacao[('.$grupos.') and @role="'.$acao.'"] '
+                 . 'return $x/ns:autorizacoes';
+        $self->sedna->begin;
+        $self->sedna->execute($query);
+        my $xml =$self->sedna->get_item();
+
+        $self->sedna->commit;
+          return $xml;
+    }
+
 
 
 };

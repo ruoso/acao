@@ -42,9 +42,9 @@
      </table>
 
      <dl>
-          <dt class="grp"> Grupo de Usuário e Ações</dt>
+          <dt class="gr4p"> Grupo de Usuário e Ações</dt>
 
-            <dt>
+            <dt style="width: 500px;">
 
                 <select multiple name="grupos" id="grupos"  style="height:100px;min-width:150px">
                    [% IF basedn.size > 1; basedn = basedn.shift; END %]
@@ -56,12 +56,12 @@
                    [%  END %]
                 </select>
 
-                <select multiple name="acoes" id="acoes" style="height:100px;min-width:150px">
-                    <option  value="alterar"> Alterar </option>
-                    <option  value="criar">Criar </option>
-                    <option  value="listar">Listar </option>
-                    <option  value="visualizar">Visualizar </option>
-                    <option  value="transferir">Transferir </option>
+                <select multiple name="acoes" id="acoes" style="height:100px;min-width:200px">
+                    <option  value="Alterar este Volume">Alterar este Volume</option>
+                    <option  value="Criar Prontuarios neste Volume">Criar Prontuários neste Volume</option>
+                    <option  value="Listar este Volume">Listar este Volume</option>
+                    <option  value="Ver este Volume">Ver este Volume</option>
+                    <option  value="Transferir Prontuarios deste Volume">Transferir Prontuários deste Volume</option>
                 </select>
             </dt>
 
