@@ -93,8 +93,6 @@ txn_method 'listar_documentos' => authorized $role_listar => sub {
 
     my $count = $declare_namespace.'count('.$xquery_for.$xquery_where.' return "")';
 
-warn $count;
-
     return
         {
           list       => $list,

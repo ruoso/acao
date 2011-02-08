@@ -197,6 +197,39 @@ sub normalize_xpath {
     return 'concat("",$x/'.$with_prefix.'/text())';
 }
 
+=item
+
+=cut
+
+sub resgata_indices {
+    my ($self, $id_volume) = @_;
+
+    my $xquery = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
+                  declare namespace dc = "http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";
+                  declare namespace adt = "http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd";
+                  declare namespace xhtml="http://www.w3.org/1999/xhtml";
+                  declare namespace xss="http://www.w3.org/2001/XMLSchema";
+                  for $x at $i in collection("'.$id_volume.'")
+                    /ns:dossie/ns:doc/* ,
+                    $y in collection("acao-schemas")/xss:schema/xss:element/xss:annotation/xss:appinfo/xhtml:label/text()
+                    where $y/../../../../../@targetNamespace = namespace-uri($x/dc:documento/*/*)
+                    and namespace-uri($x/dc:documento/*/*) = "http://schemas.fortaleza.ce.gov.br/acao/sdh-identificacaoPessoal.xsd"
+                    order by $x/dc:criacao descending
+                  return (namespace-uri($x/dc:documento/*/*),$x/dc:documento/dc:conteudo)';
+
+    $self->sedna->execute($xquery);
+
+
+    my $docsData = {};
+    while(my $xsdNS = $self->sedna->get_item){
+       $docsData = {
+                        xsdNS => $xsdNS, 
+                        content => $self->sedna->get_item,
+                    };
+    };
+warn Dumper $docsData;
+}
+
 =item get_nm_volume()
 
 Obtém o nome do volume especificado pelo id enviado por parâmetro
