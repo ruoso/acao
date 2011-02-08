@@ -154,12 +154,9 @@ txn_method 'criar_volume' => authorized $role_criar => sub {
 txn_method 'alterar_estado' => authorized $role_alterar => sub {
     my $self = shift;
     my ( $id_volume, $estado, $ip ) = @_;
-    my $estadoAux = $estado;
-    if ($estadoAux eq 'fechado_arq') {
-        $estadoAux = 'fechado';
-    }
+    
     my $xq  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";';
-       $xq .= 'update replace $x in collection("volume")/ns:volume[ns:collection="'.$id_volume.'"]/ns:estado with <ns:estado>'.$estadoAux.'</ns:estado> ';
+       $xq .= 'update replace $x in collection("volume")/ns:volume[ns:collection="'.$id_volume.'"]/ns:estado with <ns:estado>'.$estado.'</ns:estado> ';
     $self->sedna->execute($xq);
 
     if($estado eq 'fechado')
@@ -170,22 +167,12 @@ txn_method 'alterar_estado' => authorized $role_alterar => sub {
             $self->sedna->execute($xq);
     }
 
-    if($estado eq 'fechado_arq')
-    {
-            my $xq  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";';
-               $xq .= 'update replace $x in collection("volume")/ns:volume[ns:collection="'.$id_volume.'"]';
-               $xq .= '/ns:fechamento with <ns:fechamento>'.DateTime->now().'</ns:fechamento>';
-            $self->sedna->execute($xq);
-            $self->resgata_indices($id_volume);
-    }
-
     if($estado eq 'arquivado')
     {
             my $xq  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";';
                $xq .= 'update replace $x in collection("volume")/ns:volume[ns:collection="'.$id_volume.'"]';
                $xq .= '/ns:arquivamento with <ns:arquivamento>'.DateTime->now().'</ns:arquivamento>';
             $self->sedna->execute($xq);
-            $self->drop_indices_invalidate_vol($id_volume);
     }
 
     if($estado eq 'aberto')

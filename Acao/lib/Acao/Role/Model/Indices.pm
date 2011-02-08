@@ -84,21 +84,6 @@ sub drop_indices {
     $entry->delete();
 }
 
-=item drop_indices_invalidate_vol()
-
-Este método realiza a remoção dos índices reladionados a um volume
-banco de dados de indexação
-
-=cut
-
-sub drop_indices_invalidate_vol {
-    my ($self, $id_volume) = @_;
-    my $entry = $self->dbic->resultset('Entry')->search({
-        volume => $id_volume,
-    });
-    $entry->delete();
-}
-
 =item get_xsd_info()
 
 Obtém as informações sobre os índices o tipo do documento que foi inserido
@@ -195,39 +180,6 @@ sub normalize_xpath {
     my ($self, $prefix, $xpath) = @_;
     my $with_prefix = join '/', map { $prefix.':'.$_ } split /\//, $xpath;
     return 'concat("",$x/'.$with_prefix.'/text())';
-}
-
-=item
-
-=cut
-
-sub resgata_indices {
-    my ($self, $id_volume) = @_;
-
-    my $xquery = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
-                  declare namespace dc = "http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";
-                  declare namespace adt = "http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd";
-                  declare namespace xhtml="http://www.w3.org/1999/xhtml";
-                  declare namespace xss="http://www.w3.org/2001/XMLSchema";
-                  for $x at $i in collection("'.$id_volume.'")
-                    /ns:dossie/ns:doc/* ,
-                    $y in collection("acao-schemas")/xss:schema/xss:element/xss:annotation/xss:appinfo/xhtml:label/text()
-                    where $y/../../../../../@targetNamespace = namespace-uri($x/dc:documento/*/*)
-                    and namespace-uri($x/dc:documento/*/*) = "http://schemas.fortaleza.ce.gov.br/acao/sdh-identificacaoPessoal.xsd"
-                    order by $x/dc:criacao descending
-                  return (namespace-uri($x/dc:documento/*/*),$x/dc:documento/dc:conteudo)';
-
-    $self->sedna->execute($xquery);
-
-
-    my $docsData = {};
-    while(my $xsdNS = $self->sedna->get_item){
-       $docsData = {
-                        xsdNS => $xsdNS, 
-                        content => $self->sedna->get_item,
-                    };
-    };
-warn Dumper $docsData;
 }
 
 =item get_nm_volume()
