@@ -47,6 +47,7 @@ sub altera_dados_dossie {
                   </classificacoes>';
 
         $sedna->execute($xq);
+
         $sedna->commit;
 
     }
