@@ -82,7 +82,7 @@ txn_method 'link_xsd' => authorized $role_listar => sub {
               for $x in collection("acao-schemas")'.$filter.'
               order by $x/xs:schema/xs:element/xs:annotation/xs:appinfo/xhtml:label/text()
               return <div>
-                        <a href="' . $controle . '/inserirdocumento?xsdDocumento={ $x/xs:schema/@targetNamespace }">
+                        <a href="documento/inserirdocumento?xsdDocumento={ $x/xs:schema/@targetNamespace }">
                             { $x/xs:schema/xs:element/xs:annotation/xs:appinfo/xhtml:label/text() }
                         </a>
                      </div>';

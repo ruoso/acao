@@ -25,7 +25,11 @@
         <td>
           <span title="{$x/ns:localizacao/text()}">
                 <!--{$x/ns:localizacao/text()}-->
-                {substring($x/ns:localizacao/text(),0, 12)}
+                {string-join(for $c in $x/ns:localizacao/text()
+                 return (if (ends-with($c,",[% c.model('LDAP').local_dn %]")) then (
+                                string-join(reverse(for $i in tokenize(substring-before($c,",[% c.model('LDAP').local_dn %]"),',')
+                                 return (tokenize($i,'='))[2]),' - ')
+                               ) else ($c)),', ')}
             </span>
         </td>
 
@@ -54,17 +58,17 @@
         </td>
 
     <td width="10%" colspan="4">
-           { if ( $x/ns:estado/text() eq 'fechado') then (
-         <a href="[% c.uri_for_action('/auth/registros/volume/dossie/alterar_estado', [ '___id_volume___' ], 'aberto').replace('___id_volume___','{$x/ns:collection/text()}') %]" class="abrir" title="Abrir" > Abrir </a>
+           { if (( $x/ns:estado/text() eq 'fechado') or ( $x/ns:estado/text() eq 'fechado_arq')) then (
+           <a href="[% c.uri_for_action('/auth/registros/volume/alterar_estado', [ '___id_volume___' ], 'aberto').replace('___id_volume___','{$x/ns:collection/text()}') %]" class="abrir" title="Abrir" > Abrir </a>
            ) else ( )}
            { if ( $x/ns:estado/text() eq 'aberto') then (
-           <a href="[% c.uri_for_action('/auth/registros/volume/dossie/alterar_estado', [ '___id_volume___' ], 'fechado').replace('___id_volume___','{$x/ns:collection/text()}') %]" class="fechar" title="Fechar" onClick="return confirmaFechamento()"> Fechar </a>
+           <a href="[% c.uri_for_action('/auth/registros/volume/alterar_estado', [ '___id_volume___'], 'fechado').replace('___id_volume___','{$x/ns:collection/text()}') %]" class="fechar" title="Fechar" onClick="return confirmaFechamento()"> Fechar </a>
            ) else ( )}
            { if ($x/ns:estado/text() eq 'arquivado') then (
-           <a href="[% c.uri_for_action('/auth/registros/volume/dossie/alterar_estado', [ '___id_volume___' ], 'fechado').replace('___id_volume___','{$x/ns:collection/text()}') %]" class="fechar" title="Resgatar" onClick="return confirmaResgate()"> Fechar </a>
+           <a href="[% c.uri_for_action('/auth/registros/volume/alterar_estado', [ '___id_volume___' ], 'fechado').replace('___id_volume___','{$x/ns:collection/text()}') %]" class="fechar" title="Resgatar" onClick="return confirmaResgate()"> Fechar </a>
            ) else ( )}
-           { if ( $x/ns:estado/text() eq 'fechado' ) then (
-           <a href="[% c.uri_for_action('/auth/registros/volume/dossie/alterar_estado', [ '___id_volume___' ], 'arquivado').replace('___id_volume___','{$x/ns:collection/text()}') %]" class="arquivar" title="Arquivar" onClick="return confirmaArquivamento()"> Arquivar </a>
+           { if (( $x/ns:estado/text() eq 'fechado' ) or ( $x/ns:estado/text() eq 'fechado_arq' )) then (
+           <a href="[% c.uri_for_action('/auth/registros/volume/alterar_estado', [ '___id_volume___' ], 'arquivado').replace('___id_volume___','{$x/ns:collection/text()}') %]" class="arquivar" title="Arquivar" onClick="return confirmaArquivamento()"> Arquivar </a>
          ) else ( )}
 
            <a href="[% c.uri_for_action('/auth/registros/volume/alterar_volume', [ '___id_volume___' ]).replace('___id_volume___','{$x/ns:collection/text()}') %]" class="editar" title="Alterar" >Alterar</a>

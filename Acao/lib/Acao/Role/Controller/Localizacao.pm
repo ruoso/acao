@@ -1,4 +1,4 @@
-package Acao::Role::Controller::Classificacao;
+package Acao::Role::Controller::Localizacao;
 
 # Copyright 2010 - Prefeitura Municipal de Fortaleza
 #
@@ -28,46 +28,14 @@ parameter modelcomponent => (
 );
 
 role {
-    my $p     = shift;
-    my $model = $p->modelcomponent;
 
-    method '_processa_classificacao' => sub {
+    method '_processa_localizacao' => sub {
         my ( $self, $c ) = @_;
 
-        $c->stash->{class_basedn}   = $c->req->param('class_basedn');
-        # remove classificacoes
-        my (@pos) =
-          grep { s/^remover_classificacao_// } keys %{ $c->req->params };
-        if ( $c->req->param('opcao_class') eq 'Remover' ) {
-            if (@pos) {
-                $c->stash->{classificacoes} =
-                  $c->model($model)
-                  ->remove_classificacoes( $c->req->param('classificacoes'),
-                    @pos );
-            }
-            else {
-                $c->stash->{classificacoes} = $c->req->param('classificacoes');
-            }
-            return 1;
-        }
-
         #	Navega nas assuntos do LDAP
-        if ( $c->req->param('opcao_class') eq 'Navegar' ) {
-            if ($c->req->param('assuntos')) {
-                $c->stash->{class_basedn}   = $c->req->param('assuntos');
-                $c->stash->{classificacoes} = $c->req->param('classificacoes');
-            }
-            return 1;
-        }
-
-        #	Adiciona os assuntos do LDAP
-        if ( $c->req->param('opcao_class') eq 'Adicionar' ) {
-
-            my @classificacoes = $c->req->param('assuntos');
-            $c->stash->{classificacoes} =
-              $c->model($model)
-              ->add_classificacoes( $c->req->param('classificacoes'),
-                \@classificacoes );
+        if ( $c->req->param('opcao_local') eq 'Navegar' ) {
+            $c->stash->{local_basedn} = $c->req->param('localizacao');
+            $c->stash->{localizacao} = $c->req->param('localizacao');
             return 1;
         }
         return 0;

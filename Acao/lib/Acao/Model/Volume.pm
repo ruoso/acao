@@ -28,6 +28,8 @@ use Data::UUID;
 use Data::Dumper;
 use List::MoreUtils 'pairwise';
 
+with 'Acao::Role::Model::Indices';
+
 use constant VOLUME_NS =>'http://schemas.fortaleza.ce.gov.br/acao/volume.xsd';
 my $controle = XML::Compile::Schema->new( Acao->path_to('schemas/volume.xsd') );
 $controle->importDefinitions( Acao->path_to('schemas/autorizacoes.xsd') );
@@ -157,7 +159,7 @@ txn_method 'criar_volume' => authorized $role_criar => sub {
 txn_method 'alterar_estado' => authorized $role_alterar => sub {
     my $self = shift;
     my ( $id_volume, $estado, $ip ) = @_;
-
+    
     my $xq  = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";';
        $xq .= 'update replace $x in collection("volume")/ns:volume[ns:collection="'.$id_volume.'"]/ns:estado with <ns:estado>'.$estado.'</ns:estado> ';
     $self->sedna->execute($xq);
@@ -202,21 +204,29 @@ Este método retona os Dados de um Volume.
 
 txn_method 'getDadosVolumeId' => authorized $role_listar => sub {
     my $self = shift;
-    my ($id_volume, $assuntos_dn) = @_;
+    my ($id_volume, $assuntos_dn, $local_dn) = @_;
 
     my $xq = q|declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";
               declare namespace cl="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";
-              for $x in collection("volume")/ns:volume[ns:collection="|.$id_volume.q|"]
-                    return (concat($x/ns:nome/text()," "), string-join(for $c in $x/ns:classificacoes/cl:classificacao/text()
-                 return (if (ends-with($c,",|. $assuntos_dn .q|")) then (
+              for $x in collection("volume")/ns:volume[ns:collection="|.$id_volume.q|"] 
+                 return (concat($x/ns:nome/text()," "), 
+                    string-join(
+                        for $c in $x/ns:classificacoes/cl:classificacao/text()
+                            return (if (ends-with($c,",|. $assuntos_dn .q|")) then (
                                 string-join(reverse(for $i in tokenize(substring-before($c,",|. $assuntos_dn .q|"),',')
                                  return (tokenize($i,'='))[2]),' - ')
                                ) else ($c)),', '),
-                    concat($x/ns:localizacao/text()," "), concat($x/ns:estado/text()," "),
-                            concat($x/ns:criacao/text()," "), concat($x/ns:representaVolumeFisico/text()," "))|;
+                    string-join(
+                        for $d in $x/ns:localizacao/text()
+                            return (if (ends-with($d,",|. $local_dn .q|")) then (
+                                string-join(reverse(for $j in tokenize(substring-before($d,",|. $local_dn .q|"),',')
+                                 return (tokenize($j,'='))[2]),' - ')
+                               ) else ($d)),', '),
+                    concat($x/ns:estado/text()," "), 
+                    concat($x/ns:criacao/text()," "),
+                    concat($x/ns:representaVolumeFisico/text()," "))|;
 
-
-   $self->sedna->execute($xq);
+    $self->sedna->execute($xq);
 
     my $vol = {};
     while(my $nome = $self->sedna->get_item){
@@ -366,7 +376,6 @@ sub store_altera_volume {
                            . 'update replace $x in collection("volume")'
                            . '[/ns:volume/ns:collection="'.$args->{id_volume}.'"]/ns:volume/ns:autorizacoes'
                            . ' with '.$args->{autorizacoes};
-
     $self->sedna->begin;
     $self->sedna->execute($query_autorizacao);
 
@@ -375,8 +384,6 @@ sub store_altera_volume {
                     . 'update replace $x in collection("volume")'
                     . '[/ns:volume/ns:collection="'.$args->{id_volume}.'"]/ns:volume/ns:nome'
                     . ' with <nome xmlns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd">'.$args->{nome}.'</nome>';
-
-
     $self->sedna->execute($query_nome);
 
 
@@ -385,8 +392,6 @@ sub store_altera_volume {
                               . 'update replace $x in collection("volume")'
                               . '[/ns:volume/ns:collection="'.$args->{id_volume}.'"]/ns:volume/ns:classificacoes'
                               . ' with '.$args->{classificacoes} ;
- warn $args->{classificacoes};
- warn $query_classificacoes;
     $self->sedna->execute($query_classificacoes);
 
 
@@ -394,7 +399,6 @@ sub store_altera_volume {
                              . 'update replace $x in collection("volume")'
                              . '[/ns:volume/ns:collection="'.$args->{id_volume}.'"]/ns:volume/ns:representaVolumeFisico'
                              . ' with <representaVolumeFisico xmlns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd">'.$args->{volume_fisico}.'</representaVolumeFisico>';
-
     $self->sedna->execute($query_volume_fisico);
 
 
@@ -402,10 +406,25 @@ sub store_altera_volume {
                            . 'update replace $x in collection("volume")'
                            . '[/ns:volume/ns:collection="'.$args->{id_volume}.'"]/ns:volume/ns:localizacao'
                            . ' with <localizacao xmlns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd">'.$args->{localizacao}.'</localizacao>';
-
     $self->sedna->execute($query_localizacao);
 
     $self->sedna->commit;
+}
+
+sub localizacao_do_volume {
+    my $self = shift;
+    my ($id_volume) = @_;
+
+    my $xq = q|declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";
+             declare namespace cl="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";
+             for $x in collection("volume")/ns:volume[ns:collection="|.$id_volume.q|"] 
+             return $x/ns:localizacao/text()|;
+
+    $self->sedna->begin;
+    $self->sedna->execute($xq);
+    my $local = $self->sedna->get_item;
+    $self->sedna->commit;
+    return $local;
 }
 
 =cut

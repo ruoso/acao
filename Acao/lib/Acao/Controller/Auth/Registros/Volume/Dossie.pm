@@ -42,6 +42,7 @@ Carrega para o stash os dados do dossiê.
 
 =cut
 
+
 sub base : Chained('/auth/registros/volume/get_volume') :PathPart('') :CaptureArgs(0) {
     my ($self, $c,) = @_;
 #   Checa se user logado tem autorização para executar a ação 'Ver' em Volume
@@ -49,7 +50,6 @@ sub base : Chained('/auth/registros/volume/get_volume') :PathPart('') :CaptureAr
         $c->flash->{autorizacao} = 'Você não tem autorização para ver este Volume';
         $c->res->redirect( $c->uri_for_action('/auth/registros/volume/lista'));
     }
-
 }
 
 sub get_dossie : Chained('base') :PathPart('') :CaptureArgs(1) {
@@ -80,9 +80,6 @@ sub form : Chained('base') : PathPart('criardossie') : Args(0) {
     $c->stash->{herdar} or $c->stash->{herdar} = 1;
 #   Checa se user logado tem autorização para executar a ação 'Criar'
     $c->model('Dossie')->pode_criar_dossie($c->stash->{id_volume}) or $c->detach('/public/default');
-
-
-
 }
 
 sub transferir_lista : Chained('get_dossie') : PathPart('transferir_lista') : Args(0) {

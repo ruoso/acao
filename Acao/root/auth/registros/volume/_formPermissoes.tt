@@ -42,8 +42,7 @@
      </table>
 
      <dl>
-          <dt class="gr4p"> Grupo de Usuário e Ações</dt>
-
+          <dt class="grp">Grupo de Usuário e Ações: [% c.model('LDAP').decompose_dn_grupos(basedn).reverse.join(' - ') %]</dt>
             <dt style="width: 500px;">
 
                 <select multiple name="grupos" id="grupos"  style="height:100px;min-width:150px">

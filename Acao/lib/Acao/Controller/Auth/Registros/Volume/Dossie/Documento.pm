@@ -39,6 +39,7 @@ Carrega para o stash os dados do dossiê.
 
 =cut
 
+
 sub base : Chained('../get_dossie') :PathPart('') :CaptureArgs(0) {
     my ( $self, $c, $id_documento ) = @_;
     #   Checa se user logado tem autorização para executar a ação 'Ver' em Dossie

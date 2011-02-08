@@ -31,7 +31,7 @@
 [% SET nome_membro = c.req.param('nome_membro') %]
 [% SET nome_mae = c.req.param('nome_mae') %]
 
-[% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume, c.model('LDAP').assuntos_dn) ) %]
+[% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume, c.model('LDAP').assuntos_dn, c.model('LDAP').local_dn) ) %]
 
 <br>
 <h1 class="titulo-form">Gerenciar Prontuários |
@@ -78,7 +78,7 @@
 <fieldset>
   <legend>Buscar Prontuários</legend>
 
-  <form action="[% '/auth/registros/volume/' _ id_volume %]">
+  <form action="[% '/auth/registros/volume/' _ id_volume _ '/dossie' %]">
    <div>
 
     [% SET numero_campos = (c.req.param('numero_campos')||0) + 0 %]
