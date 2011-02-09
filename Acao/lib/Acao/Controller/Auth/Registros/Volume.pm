@@ -54,7 +54,7 @@ sub get_volume : Chained('base') : PathPart('') : CaptureArgs(1) {
     $c->stash->{id_volume} = $id_volume
       or $c->detach('/public/default');
 
-    $c->model('Volume')->pode_ver_volume($id_volume)
+    $c->model('Volume')->pode_listar_volume($id_volume)
       or $c->detach('/public/default');
 }
 
@@ -67,7 +67,13 @@ tem acesso.
 
 sub lista : Chained('base') : PathPart('') :Args(0) {
   my ( $self, $c ) = @_;
+
 }
+
+=item form
+
+
+=cut
 
 sub form : Chained('base') : PathPart('criarvolume') : Args(0) {
   my ( $self, $c ) = @_;
@@ -152,7 +158,14 @@ sub alterar_estado : Chained('get_volume') : PathPart('alterar_estado') : Args(1
 sub alterar_volume :Chained('get_volume') : PathPart('alterar') : Args(0) {
     my ($self, $c) = @_;
 #   Checa se user logado tem autorização para executar a ação 'Alterar'
-   $c->model('Volume')->pode_alterar_volume($c->stash->{id_volume}) or $c->detach('/public/default');
+   #$c->model('Volume')->pode_alterar_volume($c->stash->{id_volume}) or $c->detach('/public/default');
+   if (!$c->model('Volume')->pode_alterar_volume($c->stash->{id_volume})) {
+       $c->flash->{autorizacao} = 'Ops! Você não tem autorização para isso, consulte...';
+       $c->res->redirect( $c->uri_for_action('/auth/registros/volume/lista') );
+  }
+
+
+
 
     my $initial_principals = $c->model('LDAP')->memberof_grupos_dn();
 
@@ -172,6 +185,10 @@ sub alterar_volume :Chained('get_volume') : PathPart('alterar') : Args(0) {
 sub store_alterar : Chained('get_volume') : PathPart('store_alterar') : Args(0) {
   my ( $self, $c ) = @_;
 #	Checa se user logado tem autorização para executar a ação 'Alterar'
+   if (!$c->model('Volume')->pode_alterar_volume($c->stash->{id_volume})) {
+       $c->flash->{autorizacao} = '';
+       $c->res->redirect( $c->uri_for_action('/auth/registros/volume/lista') );
+  }
 
   my $representaVolumeFisico;
   $c->stash->{basedn} = $c->req->param('basedn') ||

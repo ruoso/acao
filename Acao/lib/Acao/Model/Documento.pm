@@ -99,12 +99,6 @@ txn_method 'listar_documentos' => authorized $role_listar => sub {
           count      => $count
         };
 };
-# realiza de auditoria ao efetuar operações nos documentos
-sub auditoria  {
-    my ($self, $args) = @_;
-}
-
-
 
 
 =item inserir_documento()

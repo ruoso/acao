@@ -42,8 +42,14 @@ Carrega para o stash os dados do dossiê.
 
 =cut
 
-sub base : Chained('/auth/registros/volume/get_volume') :PathPart('dossie') :CaptureArgs(0) {
 
+sub base : Chained('/auth/registros/volume/get_volume') :PathPart('dossie') :CaptureArgs(0) {
+     my ($self, $c,) = @_;
+#   Checa se user logado tem autorização para executar a ação 'Ver' em Volume
+    if (!$c->model('Volume')->pode_ver_volume($c->stash->{id_volume})) {
+        $c->flash->{autorizacao} = 'Você não tem autorização para ver este Volume';
+        $c->res->redirect( $c->uri_for_action('/auth/registros/volume/lista'));
+    }
 }
 
 sub get_dossie : Chained('base') :PathPart('') :CaptureArgs(1) {
@@ -61,7 +67,8 @@ Delega à view a renderização do formulário desse dossiê.
 =cut
 
 sub lista : Chained('base') : PathPart('') : Args(0) {
-    my ( $self, $c ) = @_;}
+    my ( $self, $c ) = @_;
+}
 
 sub form : Chained('base') : PathPart('criardossie') : Args(0) {
     my ( $self, $c ) = @_;
@@ -70,14 +77,22 @@ sub form : Chained('base') : PathPart('criardossie') : Args(0) {
     $c->stash->{classificacoes} = $c->model("Dossie")->new_classificacao($initial_principals);
     $c->stash->{basedn} = $c->model("LDAP")->grupos_dn;
     $c->stash->{class_basedn} = $c->model("LDAP")->assuntos_dn;
-#   Checa se user logado tem autorização para executar a ação 'Criar'
+    $c->stash->{herdar} or $c->stash->{herdar} = 1;
+    #   Checa se user logado tem autorização para executar a ação 'Criar'
     $c->model('Dossie')->pode_criar_dossie($c->stash->{id_volume}) or $c->detach('/public/default');
 }
 
 sub transferir_lista : Chained('get_dossie') : PathPart('transferir_lista') : Args(0) {
     my ( $self, $c ) = @_;
-#   Checa se user logado tem autorização para executar a ação 'Transferir'
-    $c->model('Dossie')->pode_transferir_dossie($c->stash->{id_volume}) or $c->detach('/public/default');
+    #   Checa se user logado tem autorização para executar a ação 'Transferir'
+    #    $c->model('Dossie')->pode_transferir_dossie($c->stash->{id_volume}) or $c->detach('/public/default');
+    #   $c->model('Dossie')->pode_transferir_dossie($c->stash->{id_volume},$c->stash->{controle}) or $c->detach('/public/default');
+
+    if (!$c->model('Dossie')->pode_transferir_dossie($c->stash->{id_volume},$c->stash->{controle}))
+       {
+       $c->flash->{autorizacao} = 'Ops! Você não tem autorização para isso, consulte...';
+       $c->res->redirect( $c->uri_for_action('/auth/registros/volume/dossie/lista', [ $c->stash->{id_volume} ]) );
+       }
 
 }
 
@@ -93,12 +108,7 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
     $c->stash->{classificacoes} = $c->req->param('classificacoes');
     $c->stash->{autorizacoes} = $c->req->param('autorizacoes');
 
-    if ($self->_processa_autorizacao($c) ||
-      $self->_processa_classificacao($c)) {
-        $c->stash->{template} = 'auth/registros/volume/dossie/form.tt';
-    return;
 
-  }
 
     my $representaDossieFisico;
     my $herdar_author;
@@ -116,6 +126,15 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
     else {
        $herdar_author = '0';
     }
+
+    $c->stash->{herdar} = $herdar_author;
+
+    if ($self->_processa_autorizacao($c) ||
+      $self->_processa_classificacao($c)) {
+          $c->stash->{template} = 'auth/registros/volume/dossie/form.tt';
+    return;
+
+     }
 
     eval {
         my $id = $c->model('Dossie')->criar_dossie(
@@ -155,10 +174,17 @@ sub alterar_estado : Chained('get_dossie') : PathPart('alterar_estado') : Args(1
 sub transferir : Chained('get_dossie') : PathPart('transferir') : Args(0) {
      my ( $self, $c ) = @_;
     my $controle = $c->stash->{controle};
-#   Checa se user logado tem autorização para executar a ação 'Transferir'
-    $c->model('Dossie')->pode_transferir_dossie($c->stash->{id_volume}) &&
+
+    #   Checa se user logado tem autorização para executar a ação 'Transferir'
+        $c->model('Dossie')->pode_transferir_dossie($c->stash->{id_volume}) &&
        $c->model('Dossie')->pode_criar_dossie($c->req->param('volume_destino'))
           or $c->detach('/public/default');
+
+    if (!($c->model('Dossie')->pode_transferir_dossie($c->stash->{id_volume},$controle) &&
+       $c->model('Dossie')->pode_criar_dossie($c->req->param('volume_destino')))) {
+            $c->flash->{autorizacao} = 'Ops! Você não tem autorização para isso, consulte...';
+            $c->res->redirect( $c->uri_for_action('/auth/registros/volume/dossie/lista', [ $c->stash->{id_volume} ]) );
+       }
 
      eval {
              $c->model('Dossie')->transferir($c->stash->{id_volume}, $controle,  $c->req->param('volume_destino'), $c->req->address );
@@ -176,7 +202,13 @@ sub transferir : Chained('get_dossie') : PathPart('transferir') : Args(0) {
 
 sub alterar_dossie : Chained('get_dossie') : PathPart('alterar') : Args(0) {
     my ($self, $c) = @_;
-
+    #   Checa se user logado tem autorização para executar a ação 'Alterar'
+    #   Checa se user logado tem autorização para executar a ação 'Ver' em Volume
+    # if (!$c->model('Dossie')->pode_alterar_dossie($c->stash->{id_volume},$c->stash->{controle} )) {
+    #     $c->flash->{autorizacao} = 'Você não tem autorização';
+    #     $c->res->redirect( $c->uri_for_action('/auth/registros/volume/lista',$c->stash->{id_volume} ));
+    # }
+    #$c->model('Dossie')->pode_alterar_dossie($c->stash->{id_volume},$c->stash->{controle} ) or $c->detach('/public/default');
     my $initial_principals = $c->model('LDAP')->memberof_grupos_dn();
 
     my $herdar = $c->model('Dossie')->desserialize_autorizacoes(
@@ -194,7 +226,8 @@ sub alterar_dossie : Chained('get_dossie') : PathPart('alterar') : Args(0) {
 
 sub store_alterar : Chained('get_dossie') : PathPart('store_alterar') : Args(0) {
   my ( $self, $c ) = @_;
-
+    #   Checa se user logado tem autorização para executar a ação 'Alterar'
+    $c->model('Dossie')->pode_alterar_dossie($c->stash->{id_volume},$c->stash->{controle} ) or $c->detach('/public/default');
   my $representaDossieFisico;
   my $herdar_author;
 

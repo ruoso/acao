@@ -17,7 +17,7 @@
 # título "LICENCA.txt", junto com este programa, se não, escreva para a
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
 %]
-
+[% SET autorizacao = c.flash.autorizacao %]
 [% SET mensagem = c.flash.mensagem %]
 [% SET erro = c.flash.erro _ '' %]
 
@@ -37,6 +37,10 @@
   } %]
 [% SET mensagens_sucesso = {
   } %]
+
+  [% SET mensagens_autorizacao = {
+  } %]
+
 [% IF erro %]
    <span class="erro">
      [% IF mensagens_erro.exists(codigo_erro) %]
@@ -58,6 +62,15 @@
           [% mensagens_sucesso.item(sucesso) %]
      [% ELSE %]
        Opera&ccedil;&atilde;o realizada com sucesso.
+     [% END %]
+   </span>
+[% END %]
+[% IF autorizacao %]
+   <span class="erro">
+     [% IF mensagens_autorizacao.contains(autorizacao) %]
+        [% mensagens_autorizacao.item(autorizacao) %]
+     [% ELSE %]
+       Você não tem autorização.
      [% END %]
    </span>
 [% END %]
