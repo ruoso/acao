@@ -48,7 +48,11 @@ role {
             return $writer->($doc,
                 { autorizacao => $self->build_autorizacao_AoH
                     ($initial_principals,
+<<<<<<< HEAD
                      [qw(alterar criar listar visualizar transferir)])})->toString;
+=======
+                     [qw('alterar criar listar visualizar transferir')])})->toString;
+>>>>>>> 76afe14e5bc8f8493d5b5579d1fc105917a01e4c
         } else {
           return  $writer->($doc,
                 { autorizacao => []})->toString;

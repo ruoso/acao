@@ -65,9 +65,17 @@
                 </select>
 
                 <select multiple name="acoes" id="acoes" style="height:100px;min-width:200px">
+<<<<<<< HEAD
                 [% FOREACH r IN labels_roles.keys %]
                     <option  value="[% r %]">[% labels_roles.item(r) %]</option>
                 [% END %]
+=======
+                    <option  value="alterar">Alterar este Volume</option>
+                    <option  value="criar">Criar Prontuários neste Volume</option>
+                    <option  value="listar">Listar este Volume</option>
+                    <option  value="visualizar">Ver este Volume</option>
+                    <option  value="transferir">Transferir Prontuários deste Volume</option>
+>>>>>>> 76afe14e5bc8f8493d5b5579d1fc105917a01e4c
                 </select>
             </dt>
 
