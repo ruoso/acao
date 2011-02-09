@@ -36,14 +36,9 @@ $controle->importDefinitions( Acao->path_to('schemas/autorizacoes.xsd') );
 $controle->importDefinitions( Acao->path_to('schemas/classificacao.xsd') );
 my $controle_w = $controle->compile( WRITER => pack_type( VOLUME_NS, 'volume' ), use_default_namespace => 1 );
 my $controle_r = $controle->compile( READER => pack_type( VOLUME_NS, 'volume') );
-my $acao_criar = 'Criar Prontuarios neste Volume';
-my $acao_alterar = 'Alterar este Volume';
-my $acao_listar = 'Listar este Volume';
-my $acao_ver = 'Ver este Volume';
-my $acao_transferir = 'Transferir Prontuarios deste Volume';
-my $acoes = [$acao_criar,$acao_alterar,$acao_listar,$acao_ver,$acao_transferir];
 
-with 'Acao::Role::Model::Autorizacao' => { xmlcompile => $controle, namespace => VOLUME_NS, acoes => $acoes };
+
+with 'Acao::Role::Model::Autorizacao' => { xmlcompile => $controle, namespace => VOLUME_NS };
 with 'Acao::Role::Model::Classificacao' => { xmlcompile => $controle, namespace => VOLUME_NS, };
 
 my $role_criar = Acao->config->{'roles'}->{'volume'}->{'criar'};
@@ -88,7 +83,7 @@ txn_method 'listar_volumes' => authorized $role_listar => sub {
             . 'declare namespace cl = "http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";'
             . 'subsequence('
             . 'for $x in collection("volume")/ns:volume[ns:autorizacoes/author:autorizacao[('.$grupos.')'
-            . 'and @role="'.$acao_listar.'"]]'
+            . 'and @role="listar"]]'
             . 'return ($x/ns:collection/text(), '.$args->{xqueryret}.'),'
             . '('.$args->{interval_ini} * $args->{num_por_pagina}.') + 1 ,'.$args->{num_por_pagina}.''
             . ')';
@@ -100,7 +95,7 @@ txn_method 'listar_volumes' => authorized $role_listar => sub {
             . 'declare namespace author = "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";'
             . 'count('
             . 'for $x in collection("volume")/ns:volume[ns:autorizacoes/author:autorizacao[('.$grupos.')'
-            . 'and @role="'.$acao_listar.'"]]'
+            . 'and @role="listar"]]'
             . 'return "")';
 
     return {
@@ -260,7 +255,7 @@ txn_method 'options_volumes' => authorized $role_alterar => sub {
     my $xq = 'declare namespace vol = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";
               declare namespace author = "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";
               for $x in collection("volume")/vol:volume[vol:autorizacoes/author:autorizacao[('.$grupos.')
-                 and @role="'.$acao_criar.'"]][vol:collection/text() ne "'.$volume_origem.'"]
+                 and @role="criar"]][vol:collection/text() ne "'.$volume_origem.'"]
                      return <option value="{$x/vol:collection/text()}">{$x/vol:nome/text()}</option>';
 
     $self->sedna->execute($xq);
@@ -287,7 +282,7 @@ sub pode_listar_volume {
   my $query  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";'
              . 'declare namespace author = "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";'
              . 'for $x in collection("volume")/ns:volume[ns:collection = "'.$id_volume.'"] '
-             . 'where $x/ns:autorizacoes/author:autorizacao[('.$grupos.') and @role="'.$acao_listar.'"] '
+             . 'where $x/ns:autorizacoes/author:autorizacao[('.$grupos.') and @role="listar"] '
              . 'return $x/ns:autorizacoes';
 
     $self->sedna->execute($query);
@@ -319,7 +314,7 @@ user logado pode ALTERAR Volume(s)
 
 sub pode_alterar_volume {
   my($self, $id_volume) = @_;
-  return $self->_checa_autorizacao_volume($id_volume, $acao_alterar) &&
+  return $self->_checa_autorizacao_volume($id_volume, 'alterar') &&
     $role_alterar ~~ @{$self->user->memberof};
 }
 
@@ -332,7 +327,7 @@ user logado pode VER o conteúdo do Volume
 
 sub pode_ver_volume {
   my($self, $id_volume) = @_;
-  return $self->_checa_autorizacao_volume($id_volume, $acao_ver) &&
+  return $self->_checa_autorizacao_volume($id_volume, 'visualizar') &&
     $role_ver ~~ @{$self->user->memberof};
 
 }

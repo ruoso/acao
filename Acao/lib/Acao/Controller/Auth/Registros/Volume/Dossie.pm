@@ -43,8 +43,8 @@ Carrega para o stash os dados do dossiê.
 =cut
 
 
-sub base : Chained('/auth/registros/volume/get_volume') :PathPart('') :CaptureArgs(0) {
-    my ($self, $c,) = @_;
+sub base : Chained('/auth/registros/volume/get_volume') :PathPart('dossie') :CaptureArgs(0) {
+     my ($self, $c,) = @_;
 #   Checa se user logado tem autorização para executar a ação 'Ver' em Volume
     if (!$c->model('Volume')->pode_ver_volume($c->stash->{id_volume})) {
         $c->flash->{autorizacao} = 'Você não tem autorização para ver este Volume';
@@ -176,9 +176,9 @@ sub transferir : Chained('get_dossie') : PathPart('transferir') : Args(0) {
     my $controle = $c->stash->{controle};
 
     #   Checa se user logado tem autorização para executar a ação 'Transferir'
-    #    $c->model('Dossie')->pode_transferir_dossie($c->stash->{id_volume}) &&
-    #   $c->model('Dossie')->pode_criar_dossie($c->req->param('volume_destino'))
-    #      or $c->detach('/public/default');
+        $c->model('Dossie')->pode_transferir_dossie($c->stash->{id_volume}) &&
+       $c->model('Dossie')->pode_criar_dossie($c->req->param('volume_destino'))
+          or $c->detach('/public/default');
 
     if (!($c->model('Dossie')->pode_transferir_dossie($c->stash->{id_volume},$controle) &&
        $c->model('Dossie')->pode_criar_dossie($c->req->param('volume_destino')))) {

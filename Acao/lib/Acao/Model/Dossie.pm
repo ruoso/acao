@@ -39,16 +39,9 @@ $controle->importDefinitions( Acao->path_to('schemas/autorizacoes.xsd') );
 
 my $controle_w = $controle->compile( WRITER => pack_type( DOSSIE_NS, 'dossie' ), use_default_namespace => 1 );
 my $controle_r = $controle->compile( READER => pack_type( DOSSIE_NS, 'dossie') );
-my $acao_criar_do_volume = 'Criar Prontuarios neste Volume';
-my $acao_criar = 'Criar Documentos neste Prontuario';
-my $acao_alterar = 'Alterar este Prontuario';
-my $acao_listar = 'Listar este Prontuario';
-my $acao_ver = 'Ver este Prontuario';
-my $acao_transferir = 'Transferir este Prontuario';
-my $acao_transferir_do_volume = 'Transferir Prontuarios deste Volume';
-my $acoes = [$acao_criar,$acao_alterar,$acao_listar,$acao_ver,$acao_transferir];
 
-with 'Acao::Role::Model::Autorizacao' => { xmlcompile => $controle, namespace => DOSSIE_NS, acoes => $acoes };
+
+with 'Acao::Role::Model::Autorizacao' => { xmlcompile => $controle, namespace => DOSSIE_NS };
 with 'Acao::Role::Model::Classificacao' => { xmlcompile => $controle, namespace => DOSSIE_NS };
 
 my $role_alterar = Acao->config->{'roles'}->{'dossie'}->{'alterar'};
@@ -103,13 +96,14 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
 
     my %ns_base = ( ns => "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd",
                     dc => "http://schemas.fortaleza.ce.gov.br/acao/documento.xsd",
+                    author => "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd",
                     cl => "http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd" );
     my @ns_add  = map { $args->{pesquisa}{'pesquisa_'.$_.'_ns'} } 0..($args->{pesquisa}{numero_campos} - 1);
     my $counter;
     my %ns = (%ns_base, map { "extra".$counter++ => $_ } @ns_add);
     my %prefix = reverse %ns;
     my $declarens = join "\n", map { 'declare namespace '.$_.'="'.$ns{$_}.'";' } keys %ns;
-
+    my $grupos = join ' or ', map { '@principal = "'.$_.'"' } @{$self->user->memberof};
     my @where;
 
     if ($args->{pesquisa}{nome_prontuario}) {
@@ -135,7 +129,8 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
     # Query para listagem
     my $list = $declarens
             . 'subsequence('
-            . 'for $x in collection("'.$args->{id_volume}.'")/ns:dossie '
+            . 'for $x in collection("'.$args->{id_volume}.'")/ns:dossie[ns:autorizacoes/author:autorizacao[('.$grupos.')'
+            . 'and @role="listar"]] '
             . $where
             . ' order by $x/ns:criacao descending '
             . 'return ($x/ns:controle/text() , '.$args->{xqueryret}.'), '
@@ -146,7 +141,8 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
     # Contrução da query de contagem para contrução da paginação
     my $count = $declarens
               . 'count('
-              . ' for $x in collection("'.$args->{id_volume}.'")/ns:dossie '
+              . ' for $x in collection("'.$args->{id_volume}.'")/ns:dossie[ns:autorizacoes/author:autorizacao[('.$grupos.')'
+              . 'and @role="listar"]]  '
               . $where
               . ' return "" )';
 
@@ -302,7 +298,7 @@ user logado pode CRIAR Dossies
 
 sub pode_criar_dossie {
   my($self, $id_volume) = @_;
-  return $self->_checa_autorizacao_volume($id_volume, $acao_criar_do_volume) &&
+  return $self->_checa_autorizacao_volume($id_volume, 'criar') &&
     $role_criar ~~ @{$self->user->memberof};
 }
 
@@ -315,7 +311,7 @@ user logado pode ALTERAR Dossie(s)
 
 sub pode_alterar_dossie {
   my($self, $id_volume, $controle) = @_;
-  return $self->_checa_autorizacao_dossie($id_volume, $acao_alterar,$controle) &&
+  return $self->_checa_autorizacao_dossie($id_volume, 'alterar',$controle) &&
     $role_alterar ~~ @{$self->user->memberof};
 }
 
@@ -329,8 +325,7 @@ user logado pode TRANSFERIR Dossie(s)
 sub pode_transferir_dossie {
   my($self, $id_volume,$controle) = @_;
 
-  return ($self->_checa_autorizacao_volume($id_volume, $acao_transferir_do_volume) ||
-        $self->_checa_autorizacao_dossie($id_volume, $acao_transferir,$controle)) &&
+  return $self->_checa_autorizacao_volume_dossie($id_volume, 'transferir',$controle) &&
         $role_transferir ~~ @{$self->user->memberof};
 }
 
@@ -343,7 +338,7 @@ user logado pode LISTAR Dossies
 
 sub pode_listar_dossie {
   my($self, $id_volume) = @_;
-  return $self->_checa_autorizacao_dossie($id_volume, $acao_listar) &&
+  return $self->_checa_autorizacao_volume_dossie($id_volume, 'listar') &&
     $role_listar ~~ @{$self->user->memberof};
 }
 
@@ -357,7 +352,7 @@ user logado pode LISTAR Dossies
 
 sub pode_ver_dossie {
   my($self, $id_volume, $controle) = @_;
-  return $self->_checa_autorizacao_dossie($id_volume, $acao_ver, $controle) &&
+  return $self->_checa_autorizacao_dossie($id_volume, 'visualizar', $controle) &&
     $role_ver ~~ @{$self->user->memberof};
 }
 
@@ -382,8 +377,9 @@ sub _checa_autorizacao_dossie {
               . 'declare namespace vol = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";'
               . 'declare namespace author = "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";'
               . 'for $x in collection("'.$id_volume.'")/ns:dossie[ns:controle = "'.$controle.'"] '
-              . 'where $x/ns:autorizacoes/author:autorizacao['.$herdar.'] '
+              . 'where $x/ns:autorizacoes/author:autorizacao['.$check.'] '
               . 'return 1';
+
 
     $self->sedna->begin;
     $self->sedna->execute($query);

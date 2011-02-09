@@ -22,6 +22,14 @@
      <input type="hidden" name="autorizacoes" value="[% autorizacoes | html %]" />
      <input type="hidden" name="basedn" value="[% basedn %]" />
 
+[% SET labels_roles = {
+        "alterar" => "Alterar este Volume",
+        "criar" => "Criar Prontuários neste Volume",
+        "listar" => "Listar este Volume",
+        "visualizar" => "Ver este Volume",
+        "transferir" => "Transferir Prontuários neste Volume",
+   } %]
+
      <table>
       <thead>
         <th>Grupo</th>
@@ -33,7 +41,7 @@
         [% FOREACH a IN c.model('Volume').desserialize_autorizacoes(autorizacoes).autorizacao %]
         <tr>
           <td>[% c.model('LDAP').decompose_dn_grupos(a.principal).reverse.join(' - ') %]</td>
-          <td>[% a.role %]</td>
+          <td>[% labels_roles.item(a.role) %]</td>
           <td><input type="checkbox" name="remover_autorizacao_[% count %]" /></td>
         </tr>
         [% SET count = count + 1 %]
@@ -57,11 +65,9 @@
                 </select>
 
                 <select multiple name="acoes" id="acoes" style="height:100px;min-width:200px">
-                    <option  value="Alterar este Volume">Alterar este Volume</option>
-                    <option  value="Criar Prontuarios neste Volume">Criar Prontuários neste Volume</option>
-                    <option  value="Listar este Volume">Listar este Volume</option>
-                    <option  value="Ver este Volume">Ver este Volume</option>
-                    <option  value="Transferir Prontuarios deste Volume">Transferir Prontuários deste Volume</option>
+                [% FOREACH r IN labels_roles.keys %]
+                    <option  value="[% r %]">[% labels_roles.item(r) %]</option>
+                [% END %]
                 </select>
             </dt>
 
