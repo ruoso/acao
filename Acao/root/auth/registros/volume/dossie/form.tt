@@ -58,12 +58,6 @@
       return false;
     }
 
-    if(document.getElementById('localizacao').value == ''){
-      alert('Informe o nome da localização');
-      document.getElementById('localizacao').focus();
-      return false;
-    }
-
     if(document.getElementById('controle').value == ''){
       alert('Informe o controle do Prontuário');
       document.getElementById('controle').focus();
