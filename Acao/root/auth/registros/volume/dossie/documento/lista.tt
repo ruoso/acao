@@ -196,10 +196,18 @@
 [% paginacao = PROCESS 'auth/registros/volume/dossie/documento/paginacao.tt' %]
 [% paginacao %]
 
+[% xqueryret = BLOCK %]
+  <div>
+     <a href="[% c.uri_for_action('/auth/registros/volume/dossie/documento/form', [ id_volume, controle ], { xsdDocumento => '___ns___' }).replace('___ns___','{ $x/xs:schema/@targetNamespace }') %]">
+         { $x/xs:schema/xs:element/xs:annotation/xs:appinfo/xhtml:label/text() }
+     </a>
+  </div>
+[% END %]
+
 </fieldset>
 <div id="lstDocumentos" class="hidden panel">
   <div class="text">
-      [% c.model('XSD').link_xsd(id_volume, controle, c.model('LDAP').assuntos_dn ) %]
+      [% c.model('XSD').link_xsd(id_volume, controle, c.model('LDAP').assuntos_dn, xqueryret ) %]
   </div>
 </div>
 

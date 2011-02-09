@@ -74,7 +74,7 @@ txn_method 'options_xsd' => authorized $role_listar => sub {
 };
 
 txn_method 'link_xsd' => authorized $role_listar => sub {
-    my ( $self, $id_volume, $controle, $assuntos_dn ) = @_;
+    my ( $self, $id_volume, $controle, $assuntos_dn, $xqueryret ) = @_;
 
     my $filter = $self->get_filter_classificacoes($id_volume, $controle, $assuntos_dn);
 
@@ -83,11 +83,7 @@ txn_method 'link_xsd' => authorized $role_listar => sub {
               declare namespace cl = "http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";
               for $x in collection("acao-schemas")'.$filter.'
               order by $x/xs:schema/xs:element/xs:annotation/xs:appinfo/xhtml:label/text()
-              return <div>
-                        <a href="documento/inserirdocumento?xsdDocumento={ $x/xs:schema/@targetNamespace }">
-                            { $x/xs:schema/xs:element/xs:annotation/xs:appinfo/xhtml:label/text() }
-                        </a>
-                     </div>';
+              return '.$xqueryret;
 
     $self->sedna->execute($xq);
     my $ret;

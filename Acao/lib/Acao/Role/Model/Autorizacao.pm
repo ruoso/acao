@@ -32,10 +32,6 @@ parameter namespace => (
   required => 1,
 );
 
-parameter acoes => (
-  isa      => 'ArrayRef',
-  required => 1,
-);
 
 role {
     my $p = shift;
@@ -52,7 +48,7 @@ role {
             return $writer->($doc,
                 { autorizacao => $self->build_autorizacao_AoH
                     ($initial_principals,
-                     $p->acoes)})->toString;
+                     [qw('alterar criar listar visualizar transferir')])})->toString;
         } else {
           return  $writer->($doc,
                 { autorizacao => []})->toString;
@@ -140,8 +136,31 @@ com a ação passada como parametro.
 
         $self->sedna->commit;
           return $xml;
-    }
+    };
 
+    method _checa_autorizacao_volume_dossie => sub {
+       my($self, $id_volume, $acao, $controle) = @_;
+       my $grupos = join ' or ', map { '@principal = "'.$_.'"' }  @{$self->user->memberof};
+       my $check = '('.$grupos.') and @role="'.$acao.'"';
+       my $herdar = '(('.$check.') or (../@herdar=1 and (collection("volume")/vol:volume[vol:collection="'.
+                  $id_volume.'"]/vol:autorizacoes/author:autorizacao['.$check.'])))';
+
+        my $query  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";'
+                  . 'declare namespace vol = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";'
+                  . 'declare namespace author = "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";'
+                  . 'for $x in collection("'.$id_volume.'")/ns:dossie[ns:controle = "'.$controle.'"] '
+                  . 'where $x/ns:autorizacoes/author:autorizacao['.$herdar.'] '
+                  . 'return 1';
+
+
+        $self->sedna->begin;
+        $self->sedna->execute($query);
+        my $ret = $self->sedna->get_item();
+
+        $self->sedna->commit;
+
+       return $ret;
+    };
 
 
 };
