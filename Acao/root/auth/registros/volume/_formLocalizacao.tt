@@ -21,10 +21,10 @@
     <label> Localização: </label>
      <input type="hidden" name="local_basedn" id="local_basedn" value="[% local_basedn %]" />
 
-    [% local_basedn = local_basedn.shift; %]
+    [% # local_basedn = local_basedn.shift; %]
 
      <dl>
-          <dt class="grp">Local: [% c.model('LDAP').decompose_dn_local(local_basedn).join(' - ') %]</dt>
+          <dt class="grp"><b>Local:</b> [% c.model('LDAP').decompose_dn_local(local_basedn).join(' - ') %]</dt>
             <dt>
                 <select multiple name="localizacao" id="localizacao"  style="height:100px;min-width:300px">
                    [% IF local_basedn.size > 1; local_basedn = local_basedn.shift; END %]

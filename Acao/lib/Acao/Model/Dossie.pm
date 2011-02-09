@@ -325,7 +325,7 @@ sub _checa_autorizacao_dossie {
 
 txn_method 'getDadosDossie' => authorized $role_listar => sub {
     my $self = shift;
-    my ($id_volume, $controle, $assuntos_dn) = @_;
+    my ($id_volume, $controle, $assuntos_dn, $local_dn) = @_;
 
     my $xq  = q|declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
                declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";
@@ -337,8 +337,14 @@ txn_method 'getDadosDossie' => authorized $role_listar => sub {
                                 string-join(reverse(for $i in tokenize(substring-before($c,",|. $assuntos_dn .q|"),',')
                                  return (tokenize($i,'='))[2]),' - ')
                                ) else ($c)),', '),
-                     concat($x/ns:localizacao/text(),""), concat($x/ns:estado/text(),""), concat($x/ns:criacao/text(),""), concat($x/ns:representaDossieFisico/text(),""))|;
-
+                        string-join(
+                        for $d in $x/ns:localizacao/text()
+                            return (if (ends-with($d,",|. $local_dn .q|")) then (
+                                string-join(reverse(for $j in tokenize(substring-before($d,",|. $local_dn .q|"),',')
+                                 return (tokenize($j,'='))[2]),' - ')
+                               ) else ($d)),', '),
+                        concat($x/ns:estado/text(),""), concat($x/ns:criacao/text(),""), concat($x/ns:representaDossieFisico/text(),""))|;
+warn $xq;
     $self->sedna->execute($xq);
 
     my $vol = {};

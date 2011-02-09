@@ -44,8 +44,10 @@ de volume.
 
 txn_method 'obter_xsd' => authorized $role_listar => sub {
     my ( $self, $namespace ) = @_;
+
     my $xq = 'declare namespace xs="http://www.w3.org/2001/XMLSchema"; 
               for $x in collection("acao-schemas")[xs:schema/@targetNamespace="'.$namespace.'"] return $x';
+
     $self->sedna->execute($xq);
     return $self->sedna->get_item();
 };

@@ -40,7 +40,7 @@
 
      <dl>
 
-          <dt class="grp">Assuntos: [% c.model('LDAP').decompose_dn_assuntos(class_basedn).reverse.join(' - ') %]</dt>
+          <dt class="grp"><b>Assuntos:</b> [% c.model('LDAP').decompose_dn_assuntos(class_basedn).reverse.join(' - ') %]</dt>
 
             <dt>
 
