@@ -8,3 +8,5 @@ dbicdump Acao::Plugins::SDH::DimSchema "dbi:Pg:dbname=sdh;host=127.0.0.1;port=54
 # a partir das classes do dbix class constrói as tabelas
 perl -Ilib -MAcao -e 'Acao->model("DB")->schema->deploy'
 
+
+perl -MDBIx::Class::Schema::Loader=dump_to_dir:"/tmp/bla" -e 'DBIx::Class::Schema::Loader->connection("dbi:SQLite:dbname=acao.db")'

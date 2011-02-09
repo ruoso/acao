@@ -56,13 +56,15 @@ sub insert_indices {
     #Constrói o resumo do índice inserido
     my $resumo = "$nm_volume - $nm_prontuario - $label";
     my $indices = $self->extract_xml_keys($xsd, $idx_data, $id_volume, $controle, $id_documento);
-    my $autorizacoes = $self->extract_autorizacoes($id_volume);
-	$self->dbic->resultset('Entry')->find_or_create({ volume =>  $id_volume, 
-								dossie => $controle, 
-								documento => $id_documento,
-								resumo => $resumo,
-                                gin_indexes => $indices,
-                                permissoes => $autorizacoes });
+    my $autorizacoes = $self->extract_autorizacoes_volume($id_volume);
+    my $v = $self->dbic->resultset('Volume')->find_or_create({id_volume => $id_volume,
+                                                              nome => $nm_volume,
+                                                              permissao_volumes => $autorizacoes });
+    my $dossie = $v->dossies->find_or_create({ id_dossie => $controle,
+                                               nome => $nm_prontuario });
+    my $doc = $dossie->entries->find_or_create({ documento => $id_documento,
+ 								                 resumo => $resumo,
+                                                 gin_indexes => $indices });
 }
 
 =item drop_indices()
@@ -152,20 +154,20 @@ do volume relacionado com os índices em inclusão
 
 =cut
 
-sub extract_autorizacoes {
+sub extract_autorizacoes_volume {
     my $self = shift;
     my ($id_volume) = @_;
     my $xquery = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";
                   declare namespace author = "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";
                   for $x in collection("volume")/ns:volume[ns:collection = "'.$id_volume.'"] 
-                      return $x/ns:autorizacoes/author:autorizacao/@principal/string()';
-    my @xmldata;
+                      return $x/ns:autorizacoes/author:autorizacao[@role="listar"]/@principal/string()';
+    my %dns;
     $self->sedna->execute($xquery);
     while (my $autorizacao = $self->sedna->get_item) {
         $autorizacao =~ s/^\s+|\s+$//gs;
-        push @xmldata, { dn => $autorizacao };
+        $dns{$autorizacao} = 1;
     }
-    return \@xmldata;
+    return [ map { { dn => $_ } } keys %dns ];
 }
 
 =item normalize_xpath()

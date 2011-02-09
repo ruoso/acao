@@ -373,6 +373,7 @@ sub store_altera_volume {
     $self->sedna->execute($query_localizacao);
 
 $self->sedna->commit;
+
 }
 
 sub localizacao_do_volume {

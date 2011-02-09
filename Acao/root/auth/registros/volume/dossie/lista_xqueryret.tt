@@ -26,12 +26,12 @@
             </span>
         </td>
 
-        <td>
+        <!--<td>
             <span title="{$x/ns:localizacao/text()}">
                 {substring($x/ns:localizacao/text(),0, 12)}
-                <!--{$x/ns:localizacao/text()}-->
+                {$x/ns:localizacao/text()}
             </span>
-        </td>
+        </td>-->
 
         <td>
          { if ( $x/ns:representaDossieFisico/text() = 1 ) then ("Sim") else ("Não") }
