@@ -95,6 +95,7 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
     my $pesquisa = $args->{pesquisa};
 
     my %ns_base = ( ns => "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd",
+                    vol => "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd",
                     dc => "http://schemas.fortaleza.ce.gov.br/acao/documento.xsd",
                     author => "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd",
                     cl => "http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd" );
@@ -103,7 +104,6 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
     my %ns = (%ns_base, map { "extra".$counter++ => $_ } @ns_add);
     my %prefix = reverse %ns;
     my $declarens = join "\n", map { 'declare namespace '.$_.'="'.$ns{$_}.'";' } keys %ns;
-    my $grupos = join ' or ', map { '@principal = "'.$_.'"' } @{$self->user->memberof};
     my @where;
 
     if ($args->{pesquisa}{nome_prontuario}) {
@@ -126,11 +126,15 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
 
     my $where = join '', @where if @where;
 
+    my $grupos = join ' or ', map { '@principal = "'.$_.'"' }  @{$self->user->memberof};
+    my $check = '('.$grupos.') and @role="listar"';
+    my $herdar = '(author:autorizacao[('.$check.')] or (@herdar/string() = "1" and (collection("volume")/vol:volume[vol:collection="'.
+      $args->{id_volume}.'"][vol:autorizacoes/author:autorizacao['.$check.']])))';
+
     # Query para listagem
     my $list = $declarens
             . 'subsequence('
-            . 'for $x in collection("'.$args->{id_volume}.'")/ns:dossie[ns:autorizacoes/author:autorizacao[('.$grupos.')'
-            . 'and @role="listar"]] '
+            . 'for $x in collection("'.$args->{id_volume}.'")/ns:dossie[ns:autorizacoes['.$herdar.']] '
             . $where
             . ' order by $x/ns:criacao descending '
             . 'return ($x/ns:controle/text() , '.$args->{xqueryret}.'), '
