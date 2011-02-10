@@ -79,7 +79,6 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
     my $id;
     my $xml = $c->request->param('processed_xml');
     my $xsdDocumento = $c->req->param('xsdDocumento');
-    print Dumper($id_volume,$controle,$id_documento,$xml,$xsdDocumento);
 
     if ($c->req->param('representaDocumentoFisico') eq 'on'){
        $representaDocumentoFisico = '1';
