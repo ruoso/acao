@@ -210,24 +210,23 @@
 
     function confirmaFechamento(){
         if (!confirm('Deseja realmente fechar este prontuário?')){
-             return false;
+            return false;
         }
      }
 
     function confirmaArquivamento(){
         if (!confirm('Deseja realmente arquivar este prontuário?')){
-             return false;
+            return false;
         }
     }
 
     function confirmaResgate(){
         if (!confirm('Deseja realmente resgatar este prontuário?')){
-             return false;
+            return false;
         }
      }
 
 </script>
-
 [% paginacao = PROCESS 'auth/registros/volume/dossie/paginacao.tt' %]
 [% paginacao %]
 </fieldset>
@@ -235,4 +234,3 @@
 [% END %]
 
 [% INCLUDE 'footer.tt' %]
-
