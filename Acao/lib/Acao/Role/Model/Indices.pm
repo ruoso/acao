@@ -99,17 +99,20 @@ sub get_xsd_info {
               declare namespace xhtml="http://www.w3.org/1999/xhtml";
               declare namespace idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"; 
               for $x in collection("acao-schemas")/xs:schema[@targetNamespace="'.$ns.'"] 
-              return ( $x/xs:element[1]/xs:annotation/xs:appinfo/idx:index,
-                       $x/xs:element[1]/xs:annotation/xs:appinfo/xhtml:label/text() )';
+              return ( $x/xs:element[1]/xs:annotation/xs:appinfo/xhtml:label/text(),
+                       $x/xs:element[1]/xs:annotation/xs:appinfo/idx:index )';
     $self->sedna->execute($xq);
-    my $idx = $self->sedna->get_item;
     my $label = $self->sedna->get_item;
-    my $octets = encode('utf8', $idx);
-    my $idx_data = $controle_r->($octets);
-    
     $label =~ s/^\s+|\s+$//gs;
+    my $idx = $self->sedna->get_item;
 
-    return $idx_data, $label;
+    if ($idx) {
+        my $octets = encode('utf8', $idx);
+        my $idx_data = $controle_r->($octets);
+        return $idx_data, $label;
+    } else {
+        return {}, $label;
+    }
 }
 
 =item extract_xml_keys()
