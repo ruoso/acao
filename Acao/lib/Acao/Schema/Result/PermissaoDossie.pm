@@ -64,7 +64,8 @@ Related object: L<Acao::Schema::Result::Dossie>
 __PACKAGE__->belongs_to(
   "id_dossie",
   "Acao::Schema::Result::Dossie",
-  { id_dossie => "id_dossie" },
+  { id_dossie => "id_dossie",
+    id_volume => "id_volume" },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
@@ -78,7 +79,7 @@ Related object: L<Acao::Schema::Result::Volume>
 
 __PACKAGE__->belongs_to(
   "id_volume",
-  "Acao::Schema::Result::Volume",
+  "Acao::Schema::Result::Dossie",
   { id_volume => "id_volume" },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );

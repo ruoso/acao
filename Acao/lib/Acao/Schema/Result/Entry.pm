@@ -53,7 +53,6 @@ __PACKAGE__->table("entries");
 =head2 herda_permissoes
 
   data_type: 'boolean'
-  default_value: TRUE
   is_nullable: 0
 
 =cut
@@ -70,7 +69,7 @@ __PACKAGE__->add_columns(
   "resumo",
   { data_type => "varchar", is_nullable => 1, size => 255 },
   "herda_permissoes",
-  { data_type => "boolean", default_value => \"TRUE", is_nullable => 0 },
+  { data_type => "boolean", is_nullable => 0 },
 );
 __PACKAGE__->set_primary_key("entry_id");
 

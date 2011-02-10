@@ -56,15 +56,19 @@ sub insert_indices {
     #Constrói o resumo do índice inserido
     my $resumo = "$nm_volume - $nm_prontuario - $label";
     my $indices = $self->extract_xml_keys($xsd, $idx_data, $id_volume, $controle, $id_documento);
-    my $autorizacoes = $self->extract_autorizacoes_volume($id_volume);
+    my $autorizacoes_vol = $self->extract_autorizacoes_volume($id_volume);
+    my ($autorizacoes_dos, $herda_dos) = $self->extract_autorizacoes_dossie($id_volume, $controle);
     my $v = $self->dbic->resultset('Volume')->find_or_create({id_volume => $id_volume,
                                                               nome => $nm_volume,
-                                                              permissao_volumes => $autorizacoes });
+                                                              permissao_volumes => $autorizacoes_vol });
     my $dossie = $v->dossies->find_or_create({ id_dossie => $controle,
-                                               nome => $nm_prontuario });
+                                               nome => $nm_prontuario,
+                                               permissao_dossies => $autorizacoes_dos,
+                                               herda_permissoes => $herda_dos });
     my $doc = $dossie->entries->find_or_create({ documento => $id_documento,
  								                 resumo => $resumo,
-                                                 gin_indexes => $indices });
+                                                 gin_indexes => $indices,
+                                                 herda_permissoes => 1 });
 }
 
 =item drop_indices()
@@ -147,7 +151,7 @@ sub extract_xml_keys {
     return \@xmldata;
 };
 
-=item extract_autorizacoes()
+=item extract_autorizacoes_volume()
 
 Extrai os valores do parâmetro principal das tags de autorizacao
 do volume relacionado com os índices em inclusão
@@ -168,6 +172,33 @@ sub extract_autorizacoes_volume {
         $dns{$autorizacao} = 1;
     }
     return [ map { { dn => $_ } } keys %dns ];
+}
+
+=item extract_autorizacoes_dossie()
+
+Extrai os valores do parâmetro principal das tags de autorizacao
+do dossie relacionado com os índices em inclusão
+
+=cut
+
+sub extract_autorizacoes_dossie {
+    my $self = shift;
+    my ($id_volume, $controle) = @_;
+    my $xquery = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
+                  declare namespace author = "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";
+                  for $x in collection("'.$id_volume.'")/ns:dossie[ns:controle = "'.$controle.'"] 
+                        return ( if ($x/ns:autorizacoes/@herdar/string())
+                                 then ($x/ns:autorizacoes/@herdar/string())
+                                 else ("0"),
+                                 $x/ns:autorizacoes/author:autorizacao[@role="listar"]/@principal/string() )';
+    my %dns;
+    $self->sedna->execute($xquery);
+    my $herda = $self->sedna->get_item;
+    while (my $autorizacao = $self->sedna->get_item) {
+        $autorizacao =~ s/^\s+|\s+$//gs;
+        $dns{$autorizacao} = 1;
+    }
+    return [ map { { dn => $_ } } keys %dns ], $herda;
 }
 
 =item normalize_xpath()
