@@ -194,7 +194,7 @@ txn_method 'criar_dossie' => authorized $role_criar => sub {
                                     representaDossieFisico => $representaDossieFisico,
                                     classificacoes => $classificacao,
                                     localizacao => $localizacao,
-                                    autorizacoes => {%$autorizacoes,
+                                    autorizacoes => {ref $autorizacoes eq 'HASH' ? %$autorizacoes : (),
                                                     herdar => $herdar_author},
 
                                     doc=>{},
