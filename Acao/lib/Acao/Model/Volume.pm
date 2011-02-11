@@ -29,7 +29,7 @@ use Data::UUID;
 use Data::Dumper;
 use List::MoreUtils 'pairwise';
 
-with 'Acao::Role::Model::Indices';
+#with 'Acao::Role::Model::Indices';
 
 use constant VOLUME_NS => 'http://schemas.fortaleza.ce.gov.br/acao/volume.xsd';
 my $controle = XML::Compile::Schema->new( Acao->path_to('schemas/volume.xsd') );

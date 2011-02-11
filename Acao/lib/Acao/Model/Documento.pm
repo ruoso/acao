@@ -29,7 +29,7 @@ use Encode;
 use Data::UUID;
 use Data::Dumper;
 
-with 'Acao::Role::Model::Indices';
+#with 'Acao::Role::Model::Indices';
 
 use constant DOCUMENTO_NS =>
   'http://schemas.fortaleza.ce.gov.br/acao/documento.xsd';
@@ -233,8 +233,8 @@ txn_method 'inserir_documento' => authorized $role_criar => sub {
 
     $id_documento = $uuid_str;
 
-    $self->insert_indices( $id_volume, $controle, $id_documento, $xsdDocumento,
-        $xml );
+   # $self->insert_indices( $id_volume, $controle, $id_documento, $xsdDocumento,
+   #     $xml );
 
     return $id_documento;
 };
@@ -331,7 +331,7 @@ txn_method 'invalidar_documento' => authorized $role_listar => sub {
       . '</dc:invalidacao>';
 
     $self->sedna->execute($xq_invalidacao);
-    $self->drop_indices( $id_volume, $controle, $id_documento );
+  #  $self->drop_indices( $id_volume, $controle, $id_documento );
 
     my $xq_motivo_invalidacao =
 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
