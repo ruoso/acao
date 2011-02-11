@@ -371,7 +371,6 @@ sub store_altera_volume {
                            . 'update replace $x in collection("volume")'
                            . '[/ns:volume/ns:collection="'.$args->{id_volume}.'"]/ns:volume/ns:autorizacoes'
                            . ' with '.$args->{autorizacoes};
-    warn $query_autorizacao;
     $self->sedna->begin;
     $self->sedna->execute($query_autorizacao);
 
@@ -404,7 +403,7 @@ sub store_altera_volume {
                            . ' with <localizacao xmlns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd">'.$args->{localizacao}.'</localizacao>';
     $self->sedna->execute($query_localizacao);
 
-    $self->update_autorizacoes(desserialize_autorizacoes($args->{autorizacoes}));
+    $self->update_autorizacoes($self->desserialize_autorizacoes($args->{autorizacoes}));
 
     $self->sedna->commit;
 

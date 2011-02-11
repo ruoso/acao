@@ -27,6 +27,8 @@ my $controle = XML::Compile::Schema->new( Acao->path_to('schemas/indexhint.xsd')
 my $controle_w = $controle->compile( WRITER => pack_type( IDX_NS, 'index' ), use_default_namespace => 1 );
 my $controle_r = $controle->compile( READER => pack_type( IDX_NS, 'index' ));
 
+
+
 =head1 NAME
 
 Acao::Model::Indices - Classe modelo para os indices
