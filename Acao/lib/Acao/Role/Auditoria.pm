@@ -1,4 +1,5 @@
 package Acao::Role::Auditoria;
+
 # Copyright 2010 - Prefeitura Municipal de Fortaleza
 #
 # Este arquivo é parte do programa Ação - Sistema de Acompanhamento de
@@ -24,27 +25,27 @@ use MooseX::Role::Parameterized;
 use XML::Compile::Util;
 
 parameter category => (
-  isa      => 'Str',
-  required => 1,
+    isa      => 'Str',
+    required => 1,
 );
 
 role {
-    my $p = shift;
-    my $cat = $p->category;
-    my $logger = Log::Log4perl->get_logger("AUDIT::".$cat);
+    my $p      = shift;
+    my $cat    = $p->category;
+    my $logger = Log::Log4perl->get_logger( "AUDIT::" . $cat );
 
     method 'audit_listar' => sub {
-        my ($self, $id) = @_;
+        my ( $self, $id ) = @_;
         $id =~ s/^\s+|\s+$//gs;
-        Log::Log4perl::MDC->put($cat, $id);
+        Log::Log4perl::MDC->put( $cat, $id );
         $logger->info('listar');
     };
 
     method 'audit_criar' => sub {
-        my ($self, $id, @info) = @_;
+        my ( $self, $id, @info ) = @_;
         $id =~ s/^\s+|\s+$//gs;
-        Log::Log4perl::MDC->put($cat, $id);
-        $logger->info('criar: ', @info);
+        Log::Log4perl::MDC->put( $cat, $id );
+        $logger->info( 'criar: ', @info );
     };
 
     method 'audit_ver' => sub {
@@ -53,8 +54,8 @@ role {
     };
 
     method 'audit_alterar' => sub {
-        my ($self, @info) = @_;
-        $logger->info('alterar: ',@info);
+        my ( $self, @info ) = @_;
+        $logger->info( 'alterar: ', @info );
     };
 };
 

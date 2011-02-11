@@ -1,4 +1,5 @@
 package Acao::Model::Revisor;
+
 # Copyright 2010 - Prefeitura Municipal de Fortaleza
 #
 # Este arquivo é parte do programa Ação - Sistema de Acompanhamento de
@@ -108,12 +109,16 @@ txn_method 'aprovar' => authorized $revisor => sub {
 
         #Aprova a digitacao selecionada
 
-        $self->sedna->execute('declare namespace cd = "http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd";
-                        	     UPDATE replace $a in collection("leitura-'. $leitura->id_leitura. '")
-                                        /cd:registroDigitacao/cd:documento/cd:estado[../cd:controle="'. $controle . '"]
-                                    with ( if ($a[../cd:id="' . $id_doc . '"]) then ( <cd:estado>Aprovado</cd:estado> )
+        $self->sedna->execute(
+'declare namespace cd = "http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd";
+                        	     UPDATE replace $a in collection("leitura-'
+              . $leitura->id_leitura . '")
+                                        /cd:registroDigitacao/cd:documento/cd:estado[../cd:controle="'
+              . $controle . '"]
+                                    with ( if ($a[../cd:id="' . $id_doc
+              . '"]) then ( <cd:estado>Aprovado</cd:estado> )
                                              else ( <cd:estado>Rejeitado</cd:estado> ) )'
-                             );
+        );
     }
     else {
         die 'estadocontrole-fechado';
@@ -189,13 +194,13 @@ txn_method 'fecharDocumento' => authorized $revisor => sub {
             return count($x)'
     );
     my $qtdDigitados = $self->sedna->get_item;
-    if (!$@){
+    if ( !$@ ) {
         if ( $qtdDigitados >= 1 ) {
             die 'digitacoes-naoRevisadas';
         }
         else {
             $self->sedna->execute(
-    'declare namespace cd = "http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd";
+'declare namespace cd = "http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd";
 		     UPDATE replace $a in
 		                        collection("leitura-'
                   . $leitura->id_leitura
@@ -221,8 +226,10 @@ txn_method 'obter_campo_controle' => authorized $revisor => sub {
     my $xml;
     $self->sedna->execute(
 'declare namespace cd = "http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd";
-	     for $x in collection("leitura-'. $leitura->id_leitura. '")/cd:registroDigitacao/
-            cd:documento[cd:id = "'. $id_doc . '"] return data($x/cd:controle)'
+	     for $x in collection("leitura-'
+          . $leitura->id_leitura
+          . '")/cd:registroDigitacao/
+            cd:documento[cd:id = "' . $id_doc . '"] return data($x/cd:controle)'
     );
     $xml = $self->sedna->get_item;
     return $xml;

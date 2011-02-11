@@ -35,7 +35,7 @@ role {
         #	Navega nas assuntos do LDAP
         if ( $c->req->param('opcao_local') eq 'Navegar' ) {
             $c->stash->{local_basedn} = $c->req->param('localizacao');
-            $c->stash->{localizacao} = $c->req->param('localizacao');
+            $c->stash->{localizacao}  = $c->req->param('localizacao');
             return 1;
         }
         return 0;

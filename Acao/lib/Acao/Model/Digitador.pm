@@ -1,4 +1,5 @@
 package Acao::Model::Digitador;
+
 # Copyright 2010 - Prefeitura Municipal de Fortaleza
 #
 # Este arquivo é parte do programa Ação - Sistema de Acompanhamento de
@@ -25,12 +26,16 @@ use XML::Compile::Util;
 use DateTime;
 use Encode;
 
-use constant DIGITACAO_NS => 'http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd';
+use constant DIGITACAO_NS =>
+  'http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd';
 
 my $digitador = Acao->config->{roles}{digitador};
-my $controle = XML::Compile::Schema->new( Acao->path_to('schemas/controledigitacao.xsd') );
-my $controle_w = $controle->compile(WRITER => pack_type( DIGITACAO_NS, 'registroDigitacao' ),
-				    use_default_namespace => 1 );
+my $controle =
+  XML::Compile::Schema->new( Acao->path_to('schemas/controledigitacao.xsd') );
+my $controle_w = $controle->compile(
+    WRITER                => pack_type( DIGITACAO_NS, 'registroDigitacao' ),
+    use_default_namespace => 1
+);
 
 =head1 NAME
 
@@ -60,7 +65,7 @@ txn_method 'listar_leituras' => authorized $digitador => sub {
         {
             prefetch => { 'instrumento' => 'projeto' },
             join     => 'digitadores',
-	    order_by => 'me.nome ASC',
+            order_by => 'me.nome ASC',
         }
     );
 };
@@ -110,13 +115,16 @@ registrar a digitação.
 txn_method 'salvar_digitacao' => authorized $digitador => sub {
     my ( $self, $leitura, $xml, $controle, $ip ) = @_;
     my $docname = join '_', 'digitacao',
-       $leitura->instrumento->projeto->id_projeto, $leitura->instrumento->nome,
-       $leitura->id_leitura, $self->user->get('entrydn'), time;
+      $leitura->instrumento->projeto->id_projeto, $leitura->instrumento->nome,
+      $leitura->id_leitura, $self->user->get('entrydn'), time;
     $docname =~ s/[^a-zA-Z0-9]/_/gs;
 
-    my $xq = 'declare namespace cd = "http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd"; 
-	      for $x in collection("leitura-'. $leitura->id_leitura. '")/cd:registroDigitacao/cd:documento
-		[cd:controle="'. $controle . '"] return data($x/cd:estadoControle)';
+    my $xq =
+'declare namespace cd = "http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd"; 
+	      for $x in collection("leitura-'
+      . $leitura->id_leitura
+      . '")/cd:registroDigitacao/cd:documento
+		[cd:controle="' . $controle . '"] return data($x/cd:estadoControle)';
 
     $self->sedna->execute($xq);
 
@@ -126,10 +134,12 @@ txn_method 'salvar_digitacao' => authorized $digitador => sub {
         }
     }
 
-    $self->sedna->execute('declare namespace cd = "http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd";
-			    for $x in doc("'. $leitura->instrumento->xml_schema . '") return $x');
+    $self->sedna->execute(
+'declare namespace cd = "http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd";
+			    for $x in doc("' . $leitura->instrumento->xml_schema . '") return $x'
+    );
     my $xsd = $self->sedna->get_item;
-    my $octets = encode('utf8', $xsd);
+    my $octets = encode( 'utf8', $xsd );
 
     my $x_c_s    = XML::Compile::Schema->new($octets);
     my @elements = $x_c_s->elements;
@@ -137,8 +147,8 @@ txn_method 'salvar_digitacao' => authorized $digitador => sub {
     my $read = $x_c_s->compile( READER => $elements[0] );
     my $writ =
       $x_c_s->compile( WRITER => $elements[0], use_default_namespace => 1 );
-    
-     my $xml_en = encode('utf8', $xml);
+
+    my $xml_en = encode( 'utf8', $xml );
 
     my $input_doc = XML::LibXML->load_xml( string => $xml_en );
     my $element   = $input_doc->getDocumentElement;

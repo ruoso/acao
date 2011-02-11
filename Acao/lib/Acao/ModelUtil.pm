@@ -1,4 +1,5 @@
 package Acao::ModelUtil;
+
 # Copyright 2010 - Prefeitura Municipal de Fortaleza
 #
 # Este arquivo é parte do programa Ação - Sistema de Acompanhamento de
@@ -61,7 +62,7 @@ sub txn_method {
         my $committed = 0;
         eval {
             $_[0]->sedna->begin;
-            $ret = $_[0]->dbic->txn_do($code, @_);
+            $ret = $_[0]->dbic->txn_do( $code, @_ );
             $_[0]->sedna->commit;
             $committed = 1;
         };
@@ -87,7 +88,7 @@ exceção caso não tenha.
 sub authorized {
     my ( $role, $code ) = @_;
     return sub {
-        if (grep { $_ eq $role } @{$_[0]->user->memberof}) {
+        if ( grep { $_ eq $role } @{ $_[0]->user->memberof } ) {
             $code->(@_);
         }
         else {
@@ -106,7 +107,5 @@ sob a GPL versão 2.
 
 =cut
 
-
 1;
-
 

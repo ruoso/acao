@@ -34,7 +34,8 @@ role {
     method '_processa_classificacao' => sub {
         my ( $self, $c ) = @_;
 
-        $c->stash->{class_basedn}   = $c->req->param('class_basedn');
+        $c->stash->{class_basedn} = $c->req->param('class_basedn');
+
         # remove classificacoes
         my (@pos) =
           grep { s/^remover_classificacao_// } keys %{ $c->req->params };
@@ -53,7 +54,7 @@ role {
 
         #	Navega nas assuntos do LDAP
         if ( $c->req->param('opcao_class') eq 'Navegar' ) {
-            if ($c->req->param('assuntos')) {
+            if ( $c->req->param('assuntos') ) {
                 $c->stash->{class_basedn}   = $c->req->param('assuntos');
                 $c->stash->{classificacoes} = $c->req->param('classificacoes');
             }

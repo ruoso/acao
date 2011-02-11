@@ -1,4 +1,5 @@
 package Acao::Role::Model::Autorizacao;
+
 # Copyright 2010 - Prefeitura Municipal de Fortaleza
 #
 # Este arquivo é parte do programa Ação - Sistema de Acompanhamento de
@@ -23,73 +24,80 @@ use XML::LibXML;
 use Data::Dumper;
 
 parameter xmlcompile => (
-  isa      => 'XML::Compile::Schema',
-  required => 1,
+    isa      => 'XML::Compile::Schema',
+    required => 1,
 );
 
 parameter namespace => (
-  isa      => 'Str',
-  required => 1,
+    isa      => 'Str',
+    required => 1,
 );
 
-
 role {
-    my $p = shift;
+    my $p          = shift;
     my $xmlcompile = $p->xmlcompile;
-    my $ns = $p->namespace;
-    my $reader = $xmlcompile->compile( READER => pack_type( $ns, 'autorizacoes'));
-    my $writer = $xmlcompile->compile( WRITER => pack_type( $ns, 'autorizacoes'), use_default_namespace => 1);
-
+    my $ns         = $p->namespace;
+    my $reader =
+      $xmlcompile->compile( READER => pack_type( $ns, 'autorizacoes' ) );
+    my $writer = $xmlcompile->compile(
+        WRITER                => pack_type( $ns, 'autorizacoes' ),
+        use_default_namespace => 1
+    );
 
     method new_autorizacao => sub {
-        my ($self, $initial_principals) = @_;
+        my ( $self, $initial_principals ) = @_;
         my $doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
         if ($initial_principals) {
-            return $writer->($doc,
-                { autorizacao => $self->build_autorizacao_AoH
-                    ($initial_principals,
-                     [qw(alterar criar listar visualizar transferir)])})->toString;
-        } else {
-          return  $writer->($doc,
-                { autorizacao => []})->toString;
+            return $writer->(
+                $doc,
+                {
+                    autorizacao => $self->build_autorizacao_AoH(
+                        $initial_principals,
+                        [qw(alterar criar listar visualizar transferir)]
+                    )
+                }
+            )->toString;
+        }
+        else {
+            return $writer->( $doc, { autorizacao => [] } )->toString;
         }
 
-
     };
 
-    method add_autorizacoes => sub  {
-        my ($self, $xml_autorizacoes, $AoH_novas_autorizacoes) = @_;
+    method add_autorizacoes => sub {
+        my ( $self, $xml_autorizacoes, $AoH_novas_autorizacoes ) = @_;
         my $hash = $reader->($xml_autorizacoes);
-        push @{$hash->{autorizacao}}, @$AoH_novas_autorizacoes;
+        push @{ $hash->{autorizacao} }, @$AoH_novas_autorizacoes;
         my $doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
-        return $writer->($doc, $hash)->toString;
+        return $writer->( $doc, $hash )->toString;
     };
 
-    method remove_autorizacoes => sub  {
-        my ($self, $xml_autorizacoes, @positions) = @_;
+    method remove_autorizacoes => sub {
+        my ( $self, $xml_autorizacoes, @positions ) = @_;
         my $hash = $reader->($xml_autorizacoes);
-        splice @{$hash->{autorizacao}}, $_, 1, () for reverse sort @positions;
+        splice @{ $hash->{autorizacao} }, $_, 1, () for reverse sort @positions;
         my $doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
-        return $writer->($doc, $hash)->toString;
+        return $writer->( $doc, $hash )->toString;
     };
 
-    method build_autorizacao_AoH => sub  {
-        my ($self, $principal, $role) = @_;
+    method build_autorizacao_AoH => sub {
+        my ( $self, $principal, $role ) = @_;
         my @cart_p     = sort( (@$principal) x @$role );
         my @cart_r     = (@$role) x @$principal;
-        my @permissoes = pairwise { { principal => $a, role => $b } } @cart_p, @cart_r;
+        my @permissoes = pairwise { { principal => $a, role => $b } } @cart_p,
+          @cart_r;
         return \@permissoes;
     };
 
-    method desserialize_autorizacoes => sub  {
-        my ($self, $xml_autorizacoes) = @_;
+    method desserialize_autorizacoes => sub {
+        my ( $self, $xml_autorizacoes ) = @_;
         return $reader->($xml_autorizacoes);
     };
 
-    method serialize_autorizacoes => sub  {
-        my ($self, $autorizacoes_h) = @_;
+    method serialize_autorizacoes => sub {
+        my ( $self, $autorizacoes_h ) = @_;
         my $doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
-        return $writer->($doc, $autorizacoes_h)->toString;
+        return $writer->( $doc, $autorizacoes_h )->toString;
     };
 
 =item autorizacoes_do_volume()
@@ -99,15 +107,19 @@ Este método retona um XML das Autorizações do Volume
 =cut
 
     method autorizacoes_do_volume => sub {
-        my($self, $id_volume) = @_;
+        my ( $self, $id_volume ) = @_;
 
-        my $query  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";'
-                   . 'declare namespace author = "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";'
-                   . 'for $x in collection("volume")/ns:volume[ns:collection = "'.$id_volume.'"] '
-                   . 'return <autorizacoes xmlns="'.$ns.'">{$x/ns:autorizacoes/*}</autorizacoes>';
+        my $query =
+'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";'
+          . 'declare namespace author = "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";'
+          . 'for $x in collection("volume")/ns:volume[ns:collection = "'
+          . $id_volume . '"] '
+          . 'return <autorizacoes xmlns="'
+          . $ns
+          . '">{$x/ns:autorizacoes/*}</autorizacoes>';
         $self->sedna->begin;
         $self->sedna->execute($query);
-        my $xml =$self->sedna->get_item();
+        my $xml = $self->sedna->get_item();
         $self->sedna->commit;
         return $xml;
     };
@@ -120,38 +132,53 @@ com a ação passada como parametro.
 
 =cut
 
-
     method _checa_autorizacao_volume => sub {
-        my($self, $id_volume, $acao) = @_;
-        my $grupos = join ' or ', map { '@principal = "'.$_.'"' }  @{$self->user->memberof};
+        my ( $self, $id_volume, $acao ) = @_;
+        my $grupos = join ' or ',
+          map { '@principal = "' . $_ . '"' } @{ $self->user->memberof };
 
-        my $query  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";'
-                 . 'declare namespace author = "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";'
-                 . 'for $x in collection("volume")/ns:volume[ns:collection = "'.$id_volume.'"] '
-                 . 'where $x/ns:autorizacoes/author:autorizacao[('.$grupos.') and @role="'.$acao.'"] '
-                 . 'return $x/ns:autorizacoes';
+        my $query =
+'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";'
+          . 'declare namespace author = "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";'
+          . 'for $x in collection("volume")/ns:volume[ns:collection = "'
+          . $id_volume . '"] '
+          . 'where $x/ns:autorizacoes/author:autorizacao[('
+          . $grupos
+          . ') and @role="'
+          . $acao . '"] '
+          . 'return $x/ns:autorizacoes';
         $self->sedna->begin;
         $self->sedna->execute($query);
-        my $xml =$self->sedna->get_item();
+        my $xml = $self->sedna->get_item();
 
         $self->sedna->commit;
-          return $xml;
+        return $xml;
     };
 
     method _checa_autorizacao_volume_dossie => sub {
-       my($self, $id_volume, $acao, $controle) = @_;
-       my $grupos = join ' or ', map { '@principal = "'.$_.'"' }  @{$self->user->memberof};
-       my $check = '('.$grupos.') and @role="'.$acao.'"';
-       my $herdar = '(('.$check.') or (../@herdar=1 and (collection("volume")/vol:volume[vol:collection="'.
-                  $id_volume.'"]/vol:autorizacoes/author:autorizacao['.$check.'])))';
+        my ( $self, $id_volume, $acao, $controle ) = @_;
+        my $grupos = join ' or ',
+          map { '@principal = "' . $_ . '"' } @{ $self->user->memberof };
+        my $check = '(' . $grupos . ') and @role="' . $acao . '"';
+        my $herdar =
+            '((' 
+          . $check
+          . ') or (../@herdar=1 and (collection("volume")/vol:volume[vol:collection="'
+          . $id_volume
+          . '"]/vol:autorizacoes/author:autorizacao['
+          . $check . '])))';
 
-        my $query  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";'
-                  . 'declare namespace vol = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";'
-                  . 'declare namespace author = "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";'
-                  . 'for $x in collection("'.$id_volume.'")/ns:dossie[ns:controle = "'.$controle.'"] '
-                  . 'where $x/ns:autorizacoes/author:autorizacao['.$herdar.'] '
-                  . 'return 1';
-
+        my $query =
+'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";'
+          . 'declare namespace vol = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";'
+          . 'declare namespace author = "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";'
+          . 'for $x in collection("'
+          . $id_volume
+          . '")/ns:dossie[ns:controle = "'
+          . $controle . '"] '
+          . 'where $x/ns:autorizacoes/author:autorizacao['
+          . $herdar . '] '
+          . 'return 1';
 
         $self->sedna->begin;
         $self->sedna->execute($query);
@@ -159,9 +186,8 @@ com a ação passada como parametro.
 
         $self->sedna->commit;
 
-       return $ret;
+        return $ret;
     };
-
 
 };
 
@@ -184,4 +210,5 @@ Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
 sob a GPL versão 2.
 
 =cut
+
 1;

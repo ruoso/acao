@@ -5,7 +5,11 @@ perl -MDBIx::Class::Schema::Loader=dump_to_dir:"/home/paulo/devel/acao-viladomar
 # cmd best
 dbicdump Acao::Plugins::SDH::DimSchema "dbi:Pg:dbname=sdh;host=127.0.0.1;port=5432" acao blableblibloblu
 
-# a partir das classes do dbix class constrói as tabelas
+
+#gera as tabela a partir das classes do dbixclass sem estar no MODEL
+perl -MAcao::Plugins::VilaDoMar::DimSchema -e'my $schema = Acao::Plugins::VilaDoMar::DimSchema->connect("dbi:Pg:host=127.0.0.1;dbname=acaodw",'acao', '12345'); $schema->deploy();'
+
+# a partir das classes do dbix class no MODEL constrói as tabelas
 perl -Ilib -MAcao -e 'Acao->model("DB")->schema->deploy'
 
 

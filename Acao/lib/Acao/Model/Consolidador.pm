@@ -1,4 +1,5 @@
 package Acao::Model::Consolidador;
+
 # Copyright 2010 - Prefeitura Municipal de Fortaleza
 #
 # Este arquivo é parte do programa Ação - Sistema de Acompanhamento de
@@ -32,8 +33,7 @@ use constant CONSOLIDACAO_NS =>
 
 my $controle =
   XML::Compile::Schema->new(
-    Acao->path_to('schemas/controleconsolidacao.xsd')
-  );
+    Acao->path_to('schemas/controleconsolidacao.xsd') );
 my $entradas_r =
   $controle->compile( READER => pack_type( CONSOLIDACAO_NS, 'entradas' ) );
 
@@ -108,7 +108,7 @@ txn_method 'obter_consolidacao' => authorized $consolidador => sub {
 # prefetch tem funcao similar a do join diferenciando por trazer os elementos na clausula select
         {
             prefetch =>
-                { 'definicao_consolidacao' => [ 'consolidador', 'projeto' ] },
+              { 'definicao_consolidacao' => [ 'consolidador', 'projeto' ] },
         }
     );
 };
@@ -136,7 +136,8 @@ txn_method 'iniciar_consolidacao' => authorized $consolidador => sub {
     my $script = Acao->path_to('script/acao_consolida.pl');
 
     #if ( my $pid = fork() ) {
-        return $consolidacao;
+    return $consolidacao;
+
     #}
     #else {
     #    close STDOUT;
@@ -158,21 +159,25 @@ para compor esse documento consolidado, associado aos dados da leitura.
 
 txn_method obter_documentos_entrada => authorized $consolidador => sub {
     my ( $self, $consolidacao, $id_documento_consolidado ) = @_;
-    my $xq = 'declare namespace ab="http://schemas.fortaleza.ce.gov.br/acao/controleconsolidacao.xsd"; 
+    my $xq =
+'declare namespace ab="http://schemas.fortaleza.ce.gov.br/acao/controleconsolidacao.xsd"; 
               for $x in collection("consolidacao-entrada-'
-              . $consolidacao->id_consolidacao
-              .'")/ab:registroConsolidacao[ab:documento/ab:id="'
-              . $id_documento_consolidado 
-              . '"]/ab:consolidacao/ab:entradas return $x';
+      . $consolidacao->id_consolidacao
+      . '")/ab:registroConsolidacao[ab:documento/ab:id="'
+      . $id_documento_consolidado
+      . '"]/ab:consolidacao/ab:entradas return $x';
     $self->sedna->execute($xq);
     my $xml_entradas = $self->sedna->get_item();
-  #  warn $xq;
+
+    #  warn $xq;
     if ($xml_entradas) {
+
         # chama o XML::Compile::Schema para traduzir o XML
         # para um AoH
         my $entradas = $entradas_r->($xml_entradas);
         return $entradas->{entrada};
-    } else {
+    }
+    else {
         return [];
     }
 };

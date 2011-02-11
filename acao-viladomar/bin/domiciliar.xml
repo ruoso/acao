@@ -1,0 +1,564 @@
+<Schema name="vilaDoMar">
+  <Dimension type="StandardDimension" name="data">
+    <Hierarchy name="data" hasAll="true" primaryKey="data">
+      <Table name="d_data" schema="public">
+      </Table>
+      <Level name="data" column="data" type="Date" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="dia" column="dia" type="Integer" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="mes" column="mes" type="Integer" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="ano" column="ano" type="Integer" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="bimestre" column="bimestre" type="Integer" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="trimestre" column="trimestre" type="Integer" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="semestre" column="semestre" type="Integer" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" name="endereco">
+    <Hierarchy name="endereco" hasAll="true" primaryKey="id">
+      <Table name="d_endereco_imovel" schema="public">
+      </Table>
+      <Level name="bairro" column="bairro" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="logradouro" column="logradouro" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="numero" column="numero" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="complemento" column="complemento" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Cube name="domiciliar" cache="true" enabled="true">
+    <Table name="f_entrevista_domiciliar_vila_do_mar" schema="public">
+    </Table>
+    <Dimension type="StandardDimension" foreignKey="situacao_morador_imovel_id" name="situacao_morador_imovel">
+      <Hierarchy name="situacao_morador_imovel" hasAll="true" primaryKey="id">
+        <Table name="d_situacao_morador_imovel" schema="public">
+        </Table>
+        <Level name="situacao_morador_imovel" column="situacao_morador_imovel" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="tipologia_uso_imovel_id" name="tipologia_uso_imovel">
+      <Hierarchy name="tipologia_uso_imovel" hasAll="true" primaryKey="id">
+        <Table name="d_tipologia_uso_imovel" schema="public">
+        </Table>
+        <Level name="tipologia_uso_imovel" column="tipologia_uso_imovel" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="situacao_fundiaria_imovel_id" name="situacao_fundiaria_imovel">
+      <Hierarchy name="situacao_fundiaria_imovel" hasAll="true" primaryKey="id">
+        <Table name="d_situacao_fundiaria_imovel" schema="public">
+        </Table>
+        <Level name="situacao_fundiaria_imovel" column="situacao_fundiaria_imovel" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="tipo_moradia_imovel_id" name="tipo_moradia_imovel">
+      <Hierarchy name="tipo_moradia_imovel" hasAll="true" primaryKey="id">
+        <Table name="d_tipo_moradia_imovel" schema="public">
+        </Table>
+        <Level name="tipo_moradia_imovel" column="tipo_moradia_imovel" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="tempo_moradia_imovel_id" name="tempo_moradia_imovel">
+      <Hierarchy name="tempo_moradia_imovel" hasAll="true" primaryKey="id">
+        <Table name="d_tempo_moradia_imovel" schema="public">
+        </Table>
+        <Level name="tempo_moradia_imovel" column="tempo_moradia_imovel" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="tipologia_construcao_imovel_id" name="tipologia_construcao_imovel">
+      <Hierarchy name="tipologia_construcao_imovel" hasAll="true" primaryKey="id">
+        <Table name="d_tipologia_construcao_imovel" schema="public">
+        </Table>
+        <Level name="tipologia_construcao_imovel" column="tipologia_construcao_imovel" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="tipo_cobertura_imovel_id" name="tipo_cobertura_imovel">
+      <Hierarchy name="tipo_cobertura_imovel" hasAll="true" primaryKey="id">
+        <Table name="d_tipo_cobertura_imovel" schema="public">
+        </Table>
+        <Level name="tipo_cobertura_imovel" column="tipo_cobertura_imovel" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="tipo_piso_imovel_id" name="tipo_piso_imovel">
+      <Hierarchy name="tipo_piso_imovel" hasAll="true" primaryKey="id">
+        <Table name="d_tipo_piso_imovel" schema="public">
+        </Table>
+        <Level name="tipo_piso_imovel" column="tipo_piso_imovel" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="revestimento_parede_imovel_id" name="revestimento_parede_imovel">
+      <Hierarchy name="revestimento_parede_imovel" hasAll="true" primaryKey="id">
+        <Table name="d_revestimento_parede_imovel" schema="public">
+        </Table>
+        <Level name="revestimento_parede_imovel" column="revestimento_parede_imovel" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="tipo_fornecedor_abastecimento_agua_imovel_id" name="tipo_fornecedor_abastecimento_agua_imovel">
+      <Hierarchy name="tipo_fornecedor_abastecimento_agua_imovel" hasAll="true" primaryKey="id">
+        <Table name="d_tipo_fornecedor_abastecimento_agua_imovel" schema="public">
+        </Table>
+        <Level name="tipo_fornecedor_abastecimento_agua_imovel" column="tipo_fornecedor_abastecimento_agua_imovel" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="tipo_abastecimento_agua_imovel_id" name="tipo_abastecimento_agua_imovel">
+      <Hierarchy name="tipo_abastecimento_agua_imovel" hasAll="true" primaryKey="id">
+        <Table name="d_tipo_abastecimento_agua_imovel" schema="public">
+        </Table>
+        <Level name="tipo_abastecimento_agua_imovel" column="tipo_abastecimento_agua_imovel" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="tipo_esgoto_sanitario_imovel_id" name="tipo_esgoto_sanitario_imovel">
+      <Hierarchy name="tipo_esgoto_sanitario_imovel" hasAll="true" primaryKey="id">
+        <Table name="d_tipo_esgotamento_sanitario_imovel" schema="public">
+        </Table>
+        <Level name="tipo_esgoto_sanitario_imovel" column="tipo_esgotamento_sanitario_imovel" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="tipo_rede_esgoto_sanitario_imovel_id" name="tipo_rede_esgoto_sanitario_imovel">
+      <Hierarchy name="tipo_rede_esgoto_sanitario_imovel" hasAll="true" primaryKey="id">
+        <Table name="d_tipo_rede_esgotamento_sanitario_imovel" schema="public">
+        </Table>
+        <Level name="tipo_rede_esgoto_sanitario_imovel" column="tipo_rede_esgotamento_sanitario_imovel" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="tipo_ligacao_eletrica_imovel_id" name="tipo_ligacao_eletrica_imovel">
+      <Hierarchy name="tipo_ligacao_eletrica_imovel" hasAll="true" primaryKey="id">
+        <Table name="d_tipo_ligacao_rede_eletrica_imovel" schema="public">
+        </Table>
+        <Level name="tipo_ligacao_eletrica_imovel" column="tipo_ligacao_rede_eletrica_imovel" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="tipo_pavimentacao_id" name="tipo_pavimentacao">
+      <Hierarchy name="tipo_pavimentacao" hasAll="true" primaryKey="id">
+        <Table name="d_tipo_pavimentacao" schema="public">
+        </Table>
+        <Level name="tipo_pavimentacao" column="tipo_pavimentacao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="tipo_servico_telefonico_id" name="tipo_servico_telefonico">
+      <Hierarchy name="tipo_servico_telefonico" hasAll="true" primaryKey="id">
+        <Table name="d_tipo_servico_telefonico" schema="public">
+        </Table>
+        <Level name="tipo_servico_telefonico" column="tipo_servico_telefonico" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="renda_familiar_id" name="renda_familiar">
+      <Hierarchy name="renda_familiar" hasAll="true" primaryKey="id">
+        <Table name="d_renda" schema="public">
+        </Table>
+        <Level name="renda_familiar" column="renda" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <DimensionUsage source="data" name="data_id" caption="data" foreignKey="data_id">
+    </DimensionUsage>
+    <DimensionUsage source="data" name="visita1" caption="visita1" foreignKey="visita1">
+    </DimensionUsage>
+    <DimensionUsage source="data" name="visita2" caption="visita2" foreignKey="visita2">
+    </DimensionUsage>
+    <DimensionUsage source="data" name="visita3" caption="visita3" foreignKey="visita3">
+    </DimensionUsage>
+    <DimensionUsage source="endereco" name="endereco_id" foreignKey="endereco_imovel_id">
+    </DimensionUsage>
+    <Measure name="rede_agua" column="rede_agua" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="valor_imovel" column="valor_imovel" datatype="Numeric" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="rede_coleta_esgoto" column="rede_coleta_esgoto" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="situacao_risco_imovel" column="situacao_risco_imovel" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="quantidade_banheiro_imovel" column="quantidade_banheiro_imovel" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="quantidade_cozinha_imovel" column="quantidade_cozinha_imovel" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="quantidade_quarto_imovel" column="quantidade_quarto_imovel" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="quantidade_quintal_imovel" column="quantidade_quintal_imovel" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="quantidade_sala_imovel" column="quantidade_sala_imovel" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="quantidade_integrantes" column="quantidade_integrantes" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="area_preservacao_imovel" column="area_preservacao_imovel" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="destino_lixo_sistema_coleta" column="destino_lixo_sistema_coleta" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="destino_lixo_conteiner" column="destino_lixo_conteiner" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="destino_lixo_terreno_baldio" column="destino_lixo_terreno_baldio" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="destino_lixo_curso_dagua" column="destino_lixo_curso_dagua" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="destino_lixo_passeio" column="destino_lixo_passeio" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="destino_lixo_logradouro" column="destino_lixo_logradouro" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="destino_lixo_enterrado" column="destino_lixo_enterrado" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="destino_lixo_queimado" column="destino_lixo_queimado" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="destino_lixo_outro" column="destino_lixo_outro" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="tipo_drenagem_galeria_subterranea" column="tipo_drenagem_galeria_subterranea" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="tipo_drenagem_sarjeta" column="tipo_drenagem_sarjeta" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="tipo_drenagem_curso_dagua_canalizado" column="tipo_drenagem_curso_dagua_canalizado" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="tipo_drenagem_outro" column="tipo_drenagem_outro" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="tipo_drenagem_curso_dagua_nao_canalizado" column="tipo_drenagem_curso_dagua_nao_canalizado" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="necessita_reparos_hidrosanitarias" column="necessita_reparos_hidrosanitarias" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="necessidade_reparos_pinturas" column="necessidade_reparos_pinturas" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="necessidade_reparos_coberta_telhado" column="necessidade_reparos_coberta_telhado" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="necessidade_reparos_outro" column="necessidade_reparos_outro" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="tipo_risco_alagamento" column="tipo_risco_alagamento" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="tipo_risco_inundacao" column="tipo_risco_inundacao" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="tipo_risco_deslizamento" column="tipo_risco_deslizamento" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="tipo_risco_linha_alta_tensao" column="tipo_risco_linha_alta_tensao" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="tipo_risco_outro" column="tipo_risco_outro" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="tipo_risco_via_ferrea" column="tipo_risco_via_ferrea" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="localizacao_quadra_loteada" column="localizacao_quadra_loteada" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="localizacao_leito_rua" column="localizacao_leito_rua" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="localizacao_praca" column="localizacao_praca" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="localizacao_area_verde" column="localizacao_area_verde" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="localizacao_terreno_eqp_comunitario" column="localizacao_terreno_eqp_comunitario" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="localizacao_outro" column="localizacao_outro" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="cod_pmf" column="cod_pmf" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="quantidade" column="qtd_familias" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="controle" column="controle" datatype="Integer" aggregator="count" visible="true">
+    </Measure>
+    <Measure name="nome" column="nome" datatype="String" aggregator="count" visible="true">
+    </Measure>
+  </Cube>
+  <Cube name="individual" cache="true" enabled="true">
+    <Table name="f_entrevista_individual_vila_do_mar" schema="public">
+    </Table>
+    <Dimension type="StandardDimension" foreignKey="informante_id" name="informante">
+      <Hierarchy name="informante" hasAll="true" primaryKey="id">
+        <Table name="d_informante" schema="public">
+        </Table>
+        <Level name="informante" column="informante" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="tipo_de_escola_id" name="tipo_de_escola">
+      <Hierarchy name="tipo_de_escola" hasAll="true" primaryKey="id">
+        <Table name="d_tipo_de_escola" schema="public">
+        </Table>
+        <Level name="tipo_de_escola" column="tipodeescola" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="tempo_procurando_trabalho_id" name="tempo_procurando_trabalho">
+      <Hierarchy name="tempo_procurando_trabalho" hasAll="true" primaryKey="id">
+        <Table name="d_tempo_procurando_trabalho" schema="public">
+        </Table>
+        <Level name="tempo_procurando_trabalho" column="tempoprocurandotrabalho" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="situacao_conjugal_id" name="situacao_conjugal">
+      <Hierarchy name="situacao_conjugal" hasAll="true" primaryKey="id">
+        <Table name="d_situacao_conjugal" schema="public">
+        </Table>
+        <Level name="situacao_conjugal" column="situacao_conjugal" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="sexo_id" name="sexo">
+      <Hierarchy name="sexo" hasAll="true" primaryKey="id">
+        <Table name="d_sexo" schema="public">
+        </Table>
+        <Level name="sexo" column="sexo" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="qtd_gravidou_id" name="qtd_gravidou">
+      <Hierarchy name="qtd_gravidou" hasAll="true" primaryKey="id">
+        <Table name="d_qtd_gravidou" schema="public">
+        </Table>
+        <Level name="qtd_gravidou" column="qtd_gravidou" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="obito_infantil_ultimo_ano_id" name="obito_infantil_ultimo_ano">
+      <Hierarchy name="obito_infantil_ultimo_ano" hasAll="true" primaryKey="id">
+        <Table name="d_obito_infantil_ultimo_ano" schema="public">
+        </Table>
+        <Level name="obito_infantil_ultimo_ano" column="obito_infantil_ultimo_ano" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="grau_escolaridade_id" name="grau_escolaridade">
+      <Hierarchy name="grau_escolaridade" hasAll="true" primaryKey="id">
+        <Table name="d_grau_escolaridade" schema="public">
+        </Table>
+        <Level name="grau_escolaridade" column="grau_escolaridade" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="fez_prenatal_id" name="fez_prenatal">
+      <Hierarchy name="fez_prenatal" hasAll="true" primaryKey="id">
+        <Table name="d_fez_prenatal" schema="public">
+        </Table>
+        <Level name="fez_prenatal" column="fez_prenatal" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="status_atual_id" name="status_atual">
+      <Hierarchy name="status_atual" hasAll="true" primaryKey="id">
+        <Table name="d_status_atual" schema="public">
+        </Table>
+        <Level name="status_atual" column="status_atual" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="motivo_de_para_de_estudar_id" name="motivo_de_para_de_estudar">
+      <Hierarchy name="motivo_de_para_de_estudar" hasAll="true" primaryKey="id">
+        <Table name="d_motivo_de_para_de_estudar" schema="public">
+        </Table>
+        <Level name="motivo_de_para_de_estudar" column="motivo_de_para_de_estudar" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="causas_obitos_id" name="causas_obitos">
+      <Hierarchy name="causas_obitos" hasAll="true" primaryKey="id">
+        <Table name="d_causas_obitos" schema="public">
+        </Table>
+        <Level name="causas_obitos" column="causas_obitos" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="unidade_medica_procurada_id" name="unidade_medica_procurada">
+      <Hierarchy name="unidade_medica_procurada" hasAll="true" primaryKey="id">
+        <Table name="d_unidade_medica_procurada" schema="public">
+        </Table>
+        <Level name="unidade_medica_procurada" column="unidade_medica_procurada" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <DimensionUsage source="data" name="data_id" foreignKey="data_id">
+    </DimensionUsage>
+    <DimensionUsage source="endereco" name="endereco_id" foreignKey="endereco_imovel_id">
+    </DimensionUsage>
+    <Dimension type="StandardDimension" foreignKey="atividade_id" name="profissao_atividade">
+      <Hierarchy name="profissao_atividade" hasAll="true" primaryKey="id">
+        <Table name="d_profissao_atividade" schema="public">
+        </Table>
+        <Level name="profissao_atividade" column="atividade" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Measure name="origem_renda_visinhoscomunidade" column="origem_renda_visinhoscomunidade" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="origem_renda_salario" column="origem_renda_salario" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="origem_renda_jovem_ambientalista" column="origem_renda_jovem_ambientalista" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="origem_renda_familia_cidada" column="origem_renda_familia_cidada" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="origem_renda_pro_jovem" column="origem_renda_pro_jovem" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="origem_renda_bpc_pne" column="origem_renda_bpc_pne" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="origem_renda_bpc_idoso" column="origem_renda_bpc_idoso" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="origem_renda_bolsa_familia" column="origem_renda_bolsa_familia" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="origem_renda_ong" column="origem_renda_ong" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="origem_renda_igreja" column="origem_renda_igreja" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="origem_renda_familiares" column="origem_renda_familiares" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="origem_renda_nao_se_aplica" column="origem_renda_nao_se_aplica" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="porque_nao_econtra_trabalho_problemas_de_saude" column="porque_nao_econtra_trabalho_problemas_de_saude" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="porque_nao_econtra_trabalho_nao_ha_trabalho_sua_especialidade" column="porque_nao_econtra_trabalho_nao_ha_trabalho_sua_especialidade" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="porque_nao_econtra_trabalho_outras_causas_pessoais" column="porque_nao_econtra_trabalho_outras_causas_pessoais" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="porque_nao_econtra_trabalho_outras_causastrabalhistas" column="porque_nao_econtra_trabalho_outras_causastrabalhistas" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="porque_nao_econtra_trabalho_nao_ha_trabalho" column="porque_nao_econtra_trabalho_nao_ha_trabalho" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="porque_nao_econtra_trabalho_lugar_de_residencia" column="porque_nao_econtra_trabalho_lugar_de_residencia" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="porque_nao_econtra_trabalho_falta_experiencia" column="porque_nao_econtra_trabalho_falta_experiencia" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="porque_nao_econtra_trabalho_falta_capacitacao" column="porque_nao_econtra_trabalho_falta_capacitacao" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="porque_nao_econtra_trabalho_nivel_educacional_exigido" column="porque_nao_econtra_trabalho_nivel_educacional_exigido" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="porque_nao_econtra_trabalho_por_conta_idade" column="porque_nao_econtra_trabalho_por_conta_idade" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="meio_transporte_trabalho_nao_se_aplica" column="meio_transporte_trabalho_nao_se_aplica" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="meio_transporte_trabalho_carro_moto" column="meio_transporte_trabalho_carro_moto" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="meio_transporte_trabalho_bicicleta" column="meio_transporte_trabalho_bicicleta" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="meio_transporte_trabalho_a_pe" column="meio_transporte_trabalho_a_pe" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="meio_transporte_trabalho_trem" column="meio_transporte_trabalho_trem" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="meio_transporte_trabalho_onibus" column="meio_transporte_trabalho_onibus" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="situacao_risco_nao_tem" column="situacao_risco_nao_tem" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="situacao_risco_hipertencao" column="situacao_risco_hipertencao" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="situacao_risco_hiv" column="situacao_risco_hiv" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="situacao_risco_tabagismo" column="situacao_risco_tabagismo" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="situacao_risco_diabetes" column="situacao_risco_diabetes" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="situacao_risco_tuberculose" column="situacao_risco_tuberculose" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="situacao_risco_transtorno_psicologico" column="situacao_risco_transtorno_psicologico" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="situacao_risco_dst" column="situacao_risco_dst" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="situacao_risco_eplepsia" column="situacao_risco_eplepsia" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="situacao_risco_maustratos" column="situacao_risco_maustratos" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="situacao_risco_malaria" column="situacao_risco_malaria" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="situacao_risco_hanseniase" column="situacao_risco_hanseniase" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="situacao_risco_doenca_de_chagas" column="situacao_risco_doenca_de_chagas" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="situacao_risco_pcl" column="situacao_risco_pcl" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="historico_doencas_nao_sei" column="historico_doencas_nao_sei" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="historico_doencas_nao_tem" column="historico_doencas_nao_tem" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="historico_doencas_diarreia" column="historico_doencas_diarreia" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="historico_doencas_alcoolismo" column="historico_doencas_alcoolismo" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="historico_doencas_usodrogas" column="historico_doencas_usodrogas" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="historico_doencas_verminose" column="historico_doencas_verminose" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="historico_doencas_virose" column="historico_doencas_virose" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="historico_doencas_pele" column="historico_doencas_pele" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="historico_doencas_dengue" column="historico_doencas_dengue" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="historico_doencas_respiratoria" column="historico_doencas_respiratoria" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="tratamento_contraceptivo_laqueadura" column="tratamento_contraceptivo_laqueadura" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="tratamento_contraceptivo_nao" column="tratamento_contraceptivo_nao" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="tratamento_contraceptivo_remedio_caseiro" column="tratamento_contraceptivo_remedio_caseiro" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="tratamento_contraceptivo_pilula" column="tratamento_contraceptivo_pilula" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="tratamento_contraceptivo_tabela" column="tratamento_contraceptivo_tabela" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="tratamento_contraceptivo_diu" column="tratamento_contraceptivo_diu" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="tratamento_contraceptivo_camisinha" column="tratamento_contraceptivo_camisinha" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="opcoes_de_lazer_pracas" column="opcoes_de_lazer_pracas" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="opcoes_de_lazer_frequentar_bares" column="opcoes_de_lazer_frequentar_bares" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="opcoes_de_lazer_participar_organizacao" column="opcoes_de_lazer_participar_organizacao" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="opcoes_de_lazer_festas" column="opcoes_de_lazer_festas" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="opcoes_de_lazer_escutar_musica" column="opcoes_de_lazer_escutar_musica" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="opcoes_de_lazer_assistir_tv" column="opcoes_de_lazer_assistir_tv" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="opcoes_de_lazer_sair_com_amigos" column="opcoes_de_lazer_sair_com_amigos" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="opcoes_de_lazer_futebol" column="opcoes_de_lazer_futebol" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="documentos_nao_possui_documento" column="documentos_nao_possui_documento" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="documentos_nis" column="documentos_nis" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="documentos_titulo_eleitor" column="documentos_titulo_eleitor" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="documentos_cpf" column="documentos_cpf" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="documentos_rg" column="documentos_rg" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="esta_em_tratamento" column="esta_em_tratamento" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="possui_deficiencia_auditiva" column="possui_deficiencia_auditiva" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="possui_deficiencia_visual" column="possui_deficiencia_visual" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="possui_deficiencia_mental" column="possui_deficiencia_mental" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="possui_deficiencia_fisica" column="possui_deficiencia_fisica" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="fez_prevencao" column="fez_prevencao" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="deseja_estudar" column="deseja_estudar" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="cursando_atualmente" column="cursando_atualmente" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="quantidade" column="qtd_individuos" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="nome" column="nome" datatype="String" aggregator="count" visible="true">
+    </Measure>
+    <Measure name="cpf" column="cpf" datatype="String" aggregator="count" visible="true">
+    </Measure>
+    <Measure name="pescador" column="pescador" datatype="Integer" aggregator="count" visible="true">
+    </Measure>
+  </Cube>
+</Schema>
