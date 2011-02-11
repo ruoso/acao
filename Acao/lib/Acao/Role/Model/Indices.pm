@@ -90,6 +90,18 @@ sub drop_indices {
     $entry->delete();
 }
 
+=item update_autorizacoes()
+
+Altera as autorizações do volume no banco de indexação
+
+=cut
+
+sub update_autorizacoes {
+    my ($self, $autorizacoes) = @_;
+    warn 'UPDATEUPDATEUPDATEUPDATEUPDATEUPDATEUPDATEUPDATEUPDATEUPDATEUPDATEUPDATEUPDATEUPDATEUPDATEUPDATE';
+    warn Dumper $autorizacoes;
+}
+
 =item get_xsd_info()
 
 Obtém as informações sobre os índices o tipo do documento que foi inserido
