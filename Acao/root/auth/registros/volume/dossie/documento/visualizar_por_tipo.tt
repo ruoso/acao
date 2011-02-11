@@ -17,7 +17,7 @@
 # título "LICENCA.txt", junto com este programa, se não, escreva para a
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
 %]
-[% INCLUDE 'auth/registros/volume/dossie/documento/header.tt' %]
+[% INCLUDE 'auth/registros/volume/dossie/documento/header_contexto.tt' %]
 [% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume) ) %]
 [% SET dos = ( c.model('Dossie').getDadosDossie(id_volume, controle) ) %]
 [% SET iteration = 0 %]
@@ -57,11 +57,11 @@
     <dt>Vol. Físico:</dt>
     <dd><span>[% vol.volume_fisico %]</span></dd>
     <dd>
-	  <div name="xsdFormValidation">
-		<input type="hidden" name="controle" value = "[% controle %]"/>
-        
-		<div name="requiredField" style="display: none;">true</div>
-	  </div>
+    <div name="xsdFormValidation">
+    <input type="hidden" name="controle" value = "[% controle %]"/>
+
+    <div name="requiredField" style="display: none;">true</div>
+    </div>
     </dd>
   </dl>
  </fieldset>
@@ -87,17 +87,17 @@
     <dt>Pront. Físico:</dt>
     <dd><span>[% dos.dossie_fisico %]</span></dd>
    <!-- [% #IF invalidacao == '1970-01-01T00:00:00Z' %]
-    <div> 
-        <input type="checkbox" id="representaDocumentoFisico" name="representaDocumentoFisico" evt="representaDocumentoFisico" [% # IF representaDocumentoFisico == 'true' %] checked [% # END %]> 
+    <div>
+        <input type="checkbox" id="representaDocumentoFisico" name="representaDocumentoFisico" evt="representaDocumentoFisico" [% # IF representaDocumentoFisico == 'true' %] checked [% # END %]>
         <label for="representaDocumentoFisico"> Representa Documento Físico </label>
     </div>
    [% # END %] -->
   </dl>
- </fieldset> 
+ </fieldset>
 
- <fieldset> 
+ <fieldset>
    <a href="[% c.uri_for_action('/auth/registros/volume/dossie/documento/visualizar', [ id_volume, controle, id_documento ] ) %]"> Voltar ao Documento Selecionado </a>
- </fieldset> 
+ </fieldset>
 
 <div id="form_container"></div>
   [% SET controles = c.model('Documento').visualizar_por_tipo(id_volume, controle, xsdDocumento) %]

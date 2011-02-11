@@ -50,11 +50,13 @@
 <h1 class="titulo-form">Gerenciar Documentos | <span style="font-size:13px; font-weight:normal;">
     <a id="addDocument" class="criar">Inserir Documento</a>
     |
-    <a class="alterar" href="[% c.uri_for_action('/auth/registros/volume/dossie/alterar_dossie', [ id_volume, controle ]) %]">Alterar Prontuário</a>
+    [% IF c.model('Dossie').pode_alterar_dossie(id_volume,controle) %]
+      <a class="alterar" href="[% c.uri_for_action('/auth/registros/volume/dossie/alterar_dossie', [ id_volume, controle ]) %]">Alterar Prontuário</a>
+    [% END %]
 </span></h1>
 
-[% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume, c.model('LDAP').assuntos_dn) ) %]
-[% SET dos = ( c.model('Dossie').getDadosDossie(id_volume, controle, c.model('LDAP').assuntos_dn) ) %]
+[% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume, c.model('LDAP').assuntos_dn, c.model('LDAP').local_dn) ) %]
+[% SET dos = ( c.model('Dossie').getDadosDossie(id_volume, controle, c.model('LDAP').assuntos_dn, c.model('LDAP').local_dn) ) %]
 
 <div id="accordion">
   <h3><a href="#">Dados do Volume: [% vol.nome %]</a></h3>
@@ -64,8 +66,8 @@
         <dt>Volume:</dt>
         <dd><span>[% vol.nome %]</span></dd>
 
-				<dt>Classificação:</dt>
-				<dd><span>[% vol.classificacoes %]</span></dd>
+        <dt>Classificação:</dt>
+        <dd><span>[% vol.classificacoes %]</span></dd>
 
         <dt>Localização:</dt>
         <dd><span>[% vol.localizacao %]</span></dd>
@@ -89,8 +91,8 @@
         <dt> <label> Prontuário: </label> </dt>
         <dd> <span> [% dos.nome %] </span> </dd>
 
-				<dt>Classificação:</dt>
-				<dd><span>[% dos.classificacoes %]</span></dd>
+        <dt>Classificação:</dt>
+        <dd><span>[% dos.classificacoes %]</span></dd>
 
         <dt>Localização:</dt>
         <dd><span>[% dos.localizacao %]</span></dd>
@@ -162,8 +164,8 @@
 
      #c.model('Sedna').conn.setConnectionAttr_CONCURRENCY_TYPE(c.model('Sedna').conn.SEDNA_READONLY_TRANSACTION);
 
- 	 c.model('Sedna').begin;
-	 c.model('Sedna').execute( xquery.list );
+    c.model('Sedna').begin;
+   c.model('Sedna').execute( xquery.list );
 
    WHILE (doc = c.model('Sedna').get_item);
         CALL c.controller.audit_listar(doc);
@@ -194,12 +196,18 @@
 [% paginacao = PROCESS 'auth/registros/volume/dossie/documento/paginacao.tt' %]
 [% paginacao %]
 
-</fieldset>
+[% xqueryret = BLOCK %]
+  <div>
+     <a href="[% c.uri_for_action('/auth/registros/volume/dossie/documento/form', [ id_volume, controle ], { xsdDocumento => '___ns___' }).replace('___ns___','{ $x/xs:schema/@targetNamespace }') %]">
+         { $x/xs:schema/xs:element/xs:annotation/xs:appinfo/xhtml:label/text() }
+     </a>
+  </div>
+[% END %]
 
+</fieldset>
 <div id="lstDocumentos" class="hidden panel">
   <div class="text">
-
-      [% c.model('XSD').link_xsd(id_volume, controle, c.model('LDAP').assuntos_dn ) %]
+      [% c.model('XSD').link_xsd(id_volume, controle, c.model('LDAP').assuntos_dn, xqueryret ) %]
   </div>
 </div>
 

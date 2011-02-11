@@ -36,16 +36,27 @@ $controle->importDefinitions( Acao->path_to('schemas/documento.xsd') );
 $controle->importDefinitions( Acao->path_to('schemas/classificacao.xsd') );
 $controle->importDefinitions( Acao->path_to('schemas/autorizacoes.xsd') );
 
+
 my $controle_w = $controle->compile( WRITER => pack_type( DOSSIE_NS, 'dossie' ), use_default_namespace => 1 );
 my $controle_r = $controle->compile( READER => pack_type( DOSSIE_NS, 'dossie') );
+
 
 with 'Acao::Role::Model::Autorizacao' => { xmlcompile => $controle, namespace => DOSSIE_NS };
 with 'Acao::Role::Model::Classificacao' => { xmlcompile => $controle, namespace => DOSSIE_NS };
 
 my $role_alterar = Acao->config->{'roles'}->{'dossie'}->{'alterar'};
+=item  $role_criar
+    Role de Criar Dossie
+    Informa a DN do LDAP ao qual o membro deve pertencer para CRIAR Dossie.
+=cut
 my $role_criar = Acao->config->{'roles'}->{'dossie'}->{'criar'};
 my $role_listar = Acao->config->{'roles'}->{'dossie'}->{'listar'};
+=item  $role_transferir
+    Role de Transferir Dossie entre Volumes.
+    Informa a DN do LDAP ao qual o membro deve pertencer para TRANSFERIR Dossie.
+=cut
 my $role_transferir = Acao->config->{'roles'}->{'dossie'}->{'transferir'};
+my $role_ver = Acao->config->{'roles'}->{'dossie'}->{'visualizar'};
 
 
 =head1 NAME
@@ -74,7 +85,7 @@ txn_method 'obter_xsd_dossie' => authorized $role_listar => sub {
 
 =item listar_dossies()
 
-Retorna os dossies os quais o usuário autenticado tem acesso.
+Este método retorna os dossies os quais o usuário autenticado tem acesso.
 
 =cut
 
@@ -82,17 +93,17 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
     my ($self, $args) = @_;
 
     my $pesquisa = $args->{pesquisa};
-    use Data::Dumper;
 
     my %ns_base = ( ns => "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd",
+                    vol => "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd",
                     dc => "http://schemas.fortaleza.ce.gov.br/acao/documento.xsd",
+                    author => "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd",
                     cl => "http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd" );
     my @ns_add  = map { $args->{pesquisa}{'pesquisa_'.$_.'_ns'} } 0..($args->{pesquisa}{numero_campos} - 1);
     my $counter;
     my %ns = (%ns_base, map { "extra".$counter++ => $_ } @ns_add);
     my %prefix = reverse %ns;
     my $declarens = join "\n", map { 'declare namespace '.$_.'="'.$ns{$_}.'";' } keys %ns;
-
     my @where;
 
     if ($args->{pesquisa}{nome_prontuario}) {
@@ -115,10 +126,15 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
 
     my $where = join '', @where if @where;
 
+    my $grupos = join ' or ', map { '@principal = "'.$_.'"' }  @{$self->user->memberof};
+    my $check = '('.$grupos.') and @role="listar"';
+    my $herdar = '(author:autorizacao[('.$check.')] or (@herdar/string() = "1" and (collection("volume")/vol:volume[vol:collection="'.
+      $args->{id_volume}.'"][vol:autorizacoes/author:autorizacao['.$check.']])))';
+
     # Query para listagem
     my $list = $declarens
             . 'subsequence('
-            . 'for $x in collection("'.$args->{id_volume}.'")/ns:dossie '
+            . 'for $x in collection("'.$args->{id_volume}.'")/ns:dossie[ns:autorizacoes['.$herdar.']] '
             . $where
             . ' order by $x/ns:criacao descending '
             . 'return ($x/ns:controle/text() , '.$args->{xqueryret}.'), '
@@ -129,7 +145,8 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
     # Contrução da query de contagem para contrução da paginação
     my $count = $declarens
               . 'count('
-              . ' for $x in collection("'.$args->{id_volume}.'")/ns:dossie '
+              . ' for $x in collection("'.$args->{id_volume}.'")/ns:dossie[ns:autorizacoes/author:autorizacao[('.$grupos.')'
+              . 'and @role="listar"]]  '
               . $where
               . ' return "" )';
 
@@ -145,11 +162,10 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
 
 
 
-sub auditoria  {
-    my ($self, $args) = @_;
-}
 
 =item criar_dossie()
+
+Este método realiza a persistencia das informações informadas no processo/ação de criar um novo Dossie.
 
 =cut
 
@@ -178,7 +194,7 @@ txn_method 'criar_dossie' => authorized $role_criar => sub {
                                     representaDossieFisico => $representaDossieFisico,
                                     classificacoes => $classificacao,
                                     localizacao => $localizacao,
-                                    autorizacoes => {%$autorizacoes,
+                                    autorizacoes => {ref $autorizacoes eq 'HASH' ? %$autorizacoes : (),
                                                     herdar => $herdar_author},
 
                                     doc=>{},
@@ -237,12 +253,23 @@ txn_method 'auditoria_listar' => authorized $role_listar => sub {
 
 };
 
+
+=item gerar_uuid()
+
+=cut
+
 txn_method 'gerar_uuid' => authorized $role_criar => sub {
     my $ug  = new Data::UUID;
     my $uuid = $ug->create();
     my $str = $ug->to_string($uuid);
    return $str;
 };
+
+=item transferir()
+
+Esté método realiza a persistencia da tranferência de Dossie para outro Volume.
+
+=cut
 
 txn_method 'transferir' => authorized $role_alterar => sub {
     my $self = shift;
@@ -266,12 +293,25 @@ txn_method 'transferir' => authorized $role_alterar => sub {
 
 
 };
+=item pode_criar_dossie()
+
+Esté método realiza a validação de autorização, verificando se o
+user logado pode CRIAR Dossies
+
+=cut
 
 sub pode_criar_dossie {
   my($self, $id_volume) = @_;
-  return $self->_checa_autorizacao_dossie($id_volume, 'criar') &&
+  return $self->_checa_autorizacao_volume($id_volume, 'criar') &&
     $role_criar ~~ @{$self->user->memberof};
 }
+
+=item pode_alterar_dossie()
+
+Esté método realiza a validação de autorização, verificando se o
+user logado pode ALTERAR Dossie(s)
+
+=cut
 
 sub pode_alterar_dossie {
   my($self, $id_volume, $controle) = @_;
@@ -279,53 +319,89 @@ sub pode_alterar_dossie {
     $role_alterar ~~ @{$self->user->memberof};
 }
 
+=item pode_transferir_dossie()
+
+Esté método realiza a validação de autorização, verificando se o
+user logado pode TRANSFERIR Dossie(s)
+
+=cut
+
 sub pode_transferir_dossie {
-  my($self, $id_volume) = @_;
-  return $self->_checa_autorizacao_dossie($id_volume, 'transferir') &&
-    $role_transferir ~~ @{$self->user->memberof};
+  my($self, $id_volume,$controle) = @_;
+
+  return $self->_checa_autorizacao_volume_dossie($id_volume, 'transferir',$controle) &&
+        $role_transferir ~~ @{$self->user->memberof};
 }
+
+=item pode_listar_dossie()
+
+Esté método realiza a validação de autorização, verificando se o
+user logado pode LISTAR Dossies
+
+=cut
 
 sub pode_listar_dossie {
   my($self, $id_volume) = @_;
-  return $self->_checa_autorizacao_dossie($id_volume, 'listar') &&
+  return $self->_checa_autorizacao_volume_dossie($id_volume, 'listar') &&
     $role_listar ~~ @{$self->user->memberof};
 }
 
+
+=item pode_ver_dossie()
+
+Esté método realiza a validação de autorização, verificando se o
+user logado pode LISTAR Dossies
+
+=cut
+
+sub pode_ver_dossie {
+  my($self, $id_volume, $controle) = @_;
+  return $self->_checa_autorizacao_dossie($id_volume, 'visualizar', $controle) &&
+    $role_ver ~~ @{$self->user->memberof};
+}
+
+=item _checa_autorizacao_dossie()
+
+Este método retorna/checa as autorização de Dossie de acordo com a ação
+passada como parametro.
+Também verifica se o volume a qual o Dossie pertence permite realizar
+a ação desejada, como: 'transferir' e 'criar'.
+
+
+=cut
+
 sub _checa_autorizacao_dossie {
    my($self, $id_volume, $acao, $controle) = @_;
-  my $grupos = join ' or ', map { '@principal = "'.$_.'"' }  @{$self->user->memberof};
+   my $grupos = join ' or ', map { '@principal = "'.$_.'"' }  @{$self->user->memberof};
+   my $check = '('.$grupos.') and @role="'.$acao.'"';
+   my $herdar = '(author:autorizacao[('.$check.')] or (@herdar=1 and (collection("volume")/vol:volume[vol:collection="'.
+              $id_volume.'"]/vol:autorizacoes/author:autorizacao['.$check.'])))';
 
-  $self->sedna->begin;
-  my $query;
+   my $query  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";'
+              . 'declare namespace vol = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";'
+              . 'declare namespace author = "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";'
+              . 'for $x in collection("'.$id_volume.'")/ns:dossie[ns:controle = "'.$controle.'"] '
+              . 'where $x/ns:autorizacoes['.$herdar.'] '
+              . 'return 1';
 
-  if ($controle)
-  {
-      $query  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";'
-             . 'declare namespace author = "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";'
-             . 'for $x in collection("'.$id_volume.'")/ns:dossie[ns:controle = "'.$controle.'"] '
-             . 'where $x/ns:autorizacoes/author:autorizacao[('.$grupos.') and @role="'.$acao.'"] '
-             . 'return $x/ns:autorizacoes';
+    $self->sedna->begin;
+    $self->sedna->execute($query);
+    my $ret = $self->sedna->get_item();
 
-  }
-  else
-  {
-       $query  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";'
-             . 'declare namespace author = "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";'
-             . 'for $x in collection("volume")/ns:volume[ns:collection = "'.$id_volume.'"] '
-             . 'where $x/ns:autorizacoes/author:autorizacao[('.$grupos.') and @role="'.$acao.'"] '
-             . 'return $x/ns:autorizacoes';
-  }
+    $self->sedna->commit;
 
-  $self->sedna->execute($query);
-  my $criar_dossie_no_volume =$self->sedna->get_item();
-  $self->sedna->commit;
-
-   return $criar_dossie_no_volume
+   return $ret;
 }
+
+=item getDadosDossie()
+
+Este método retona os Dados de um Dossie.
+
+=cut
 
 txn_method 'getDadosDossie' => authorized $role_listar => sub {
     my $self = shift;
-    my ($id_volume, $controle, $assuntos_dn) = @_;
+    my ($id_volume, $controle, $assuntos_dn, $local_dn) = @_;
 
     my $xq  = q|declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
                declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";
@@ -337,8 +413,14 @@ txn_method 'getDadosDossie' => authorized $role_listar => sub {
                                 string-join(reverse(for $i in tokenize(substring-before($c,",|. $assuntos_dn .q|"),',')
                                  return (tokenize($i,'='))[2]),' - ')
                                ) else ($c)),', '),
-                     concat($x/ns:localizacao/text(),""), concat($x/ns:estado/text(),""), concat($x/ns:criacao/text(),""), concat($x/ns:representaDossieFisico/text(),""))|;
-
+                        string-join(
+                        for $d in $x/ns:localizacao/text()
+                            return (if (ends-with($d,",|. $local_dn .q|")) then (
+                                string-join(reverse(for $j in tokenize(substring-before($d,",|. $local_dn .q|"),',')
+                                 return (tokenize($j,'='))[2]),' - ')
+                               ) else ($d)),', '),
+                        concat($x/ns:estado/text(),""), concat($x/ns:criacao/text(),""), concat($x/ns:representaDossieFisico/text(),""))|;
+warn $xq;
     $self->sedna->execute($xq);
 
     my $vol = {};
@@ -357,6 +439,12 @@ txn_method 'getDadosDossie' => authorized $role_listar => sub {
 };
 
 
+=item autorizacoes_do_dossie()
+
+Este método retona um XML das Autorizações do Dossie
+
+=cut
+
 sub autorizacoes_do_dossie {
     my($self, $id_volume, $controle) = @_;
 
@@ -374,6 +462,13 @@ sub autorizacoes_do_dossie {
   return $xml;
 
 }
+
+=item classificacoes_do_dossie()
+
+Este método retona um XML das Classificações do Dossie
+
+=cut
+
 sub classificacoes_do_dossie {
     my($self, $id_volume, $controle) = @_;
 
@@ -392,6 +487,12 @@ sub classificacoes_do_dossie {
 
 }
 
+
+=item store_altera_dossie()
+
+Este método realiza a persistencia das alterações realizadas no Dossie.
+
+=cut
 
 sub store_altera_dossie {
     my($self, $args) = @_;

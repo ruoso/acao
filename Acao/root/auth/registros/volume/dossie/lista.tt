@@ -31,7 +31,7 @@
 [% SET nome_membro = c.req.param('nome_membro') %]
 [% SET nome_mae = c.req.param('nome_mae') %]
 
-[% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume, c.model('LDAP').assuntos_dn) ) %]
+[% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume, c.model('LDAP').assuntos_dn, c.model('LDAP').local_dn) ) %]
 
 <br>
 <h1 class="titulo-form">Gerenciar Prontuários |
@@ -39,11 +39,11 @@
 
     [% IF c.model('Dossie').pode_criar_dossie(id_volume) %]
         <a class="criar" href="[% c.uri_for_action('/auth/registros/volume/dossie/form', [ id_volume ]) %]">Criar Prontuário</a>
-    [% END %]
-    |
+    [% END %]|
     [% IF c.model('Volume').pode_alterar_volume(id_volume) %]
-        <a class="alterar" href="[% c.uri_for_action('/auth/registros/volume/alterar_volume', [ id_volume ]) %]">Alterar Volume</a>
+      <a href="[% c.uri_for_action('/auth/registros/volume/alterar_volume', [ id_volume ]) %]">Alterar volume</a>
     [% END %]
+
   </span>
 </h1>
 
@@ -78,7 +78,7 @@
 <fieldset>
   <legend>Buscar Prontuários</legend>
 
-  <form action="[% '/auth/registros/volume/' _ id_volume %]">
+  <form action="[% c.uri_for_action('/auth/registros/volume/dossie/lista', [ id_volume ]) %]">
    <div>
 
     [% SET numero_campos = (c.req.param('numero_campos')||0) + 0 %]
@@ -130,9 +130,9 @@
       <option value="inicia" [% IF (c.req.param('campo_operador_' _ counter) == 'inicia') %] selected [% END %]>inicia com</option>
       <option value="termina" [% IF (c.req.param('campo_operador_' _ counter) == 'termina') %] selected [% END %]>termina com</option>
      </select>
-  
+
      <input type="text" id="valor_pesquisado_[% counter %]" name="valor_pesquisado_[% counter %]" value="[% c.req.param('valor_pesquisado_' _ counter) | html %]"  />
-    </fieldset>      
+    </fieldset>
     [% counter = counter + 1; END %]
 
    </div>
@@ -169,7 +169,7 @@
   <th width="70px">Controle</th>
   <th>Prontuário</th>
   <th>Classificação</th>
-  <th>Localização</th>
+  <!--<th>Localização</th>-->
   <th width="80px">Pront. Físico</th>
   <th width="110px">Criação</th>
   <th width="110px">Fechamento</th>
@@ -210,24 +210,23 @@
 
     function confirmaFechamento(){
         if (!confirm('Deseja realmente fechar este prontuário?')){
-             return false;
+            return false;
         }
      }
 
     function confirmaArquivamento(){
         if (!confirm('Deseja realmente arquivar este prontuário?')){
-             return false;
+            return false;
         }
     }
 
     function confirmaResgate(){
         if (!confirm('Deseja realmente resgatar este prontuário?')){
-             return false;
+            return false;
         }
      }
 
 </script>
-
 [% paginacao = PROCESS 'auth/registros/volume/dossie/paginacao.tt' %]
 [% paginacao %]
 </fieldset>
@@ -235,4 +234,3 @@
 [% END %]
 
 [% INCLUDE 'footer.tt' %]
-

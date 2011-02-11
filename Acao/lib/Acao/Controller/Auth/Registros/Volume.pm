@@ -25,6 +25,7 @@ use List::MoreUtils 'pairwise';
 
 with 'Acao::Role::Controller::Autorizacao' => { modelcomponent => 'Volume' };
 with 'Acao::Role::Controller::Classificacao' => { modelcomponent => 'Volume' };
+with 'Acao::Role::Controller::Localizacao' => { modelcomponent => 'Volume' };
 with 'Acao::Role::Auditoria' => { category => 'Volume'};
 
 =head1 NAME
@@ -47,13 +48,13 @@ sub base : Chained('/auth/registros/base') : PathPart('volume') : CaptureArgs(0)
   my ( $self, $c ) = @_;
 }
 
-sub get_volume :Chained('base') : PathPart('') : CaptureArgs(1) {
+sub get_volume : Chained('base') : PathPart('') : CaptureArgs(1) {
     my ( $self, $c, $id_volume ) = @_;
     Log::Log4perl::MDC->put('Volume', $id_volume);
     $c->stash->{id_volume} = $id_volume
       or $c->detach('/public/default');
 
-    $c->model('Volume')->pode_ver_volume($id_volume)
+    $c->model('Volume')->pode_listar_volume($id_volume)
       or $c->detach('/public/default');
 }
 
@@ -66,7 +67,13 @@ tem acesso.
 
 sub lista : Chained('base') : PathPart('') :Args(0) {
   my ( $self, $c ) = @_;
+
 }
+
+=item form
+
+
+=cut
 
 sub form : Chained('base') : PathPart('criarvolume') : Args(0) {
   my ( $self, $c ) = @_;
@@ -94,7 +101,8 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
   $c->stash->{autorizacoes} = $c->req->param('autorizacoes');
   $c->stash->{localizacao} = $c->req->param('localizacao');
   if ($self->_processa_autorizacao($c) ||
-      $self->_processa_classificacao($c)) {
+      $self->_processa_classificacao($c) || 
+      $self->_processa_localizacao($c)) {
     $c->stash->{template} = 'auth/registros/volume/form.tt';
     return;
   }
@@ -132,6 +140,7 @@ sub xsd : Chained('base') : PathPart('xsd') : Args(1) {
 sub alterar_estado : Chained('get_volume') : PathPart('alterar_estado') : Args(1) {
   my ( $self, $c, $estado ) = @_;
   my $id_volume = $c->stash->{id_volume};
+
   eval {
     $c->model('Volume')
       ->alterar_estado( $id_volume, $estado, $c->req->address );
@@ -149,34 +158,52 @@ sub alterar_estado : Chained('get_volume') : PathPart('alterar_estado') : Args(1
 sub alterar_volume :Chained('get_volume') : PathPart('alterar') : Args(0) {
     my ($self, $c) = @_;
 #   Checa se user logado tem autorização para executar a ação 'Alterar'
-   $c->model('Volume')->pode_alterar_volume($c->stash->{id_volume}) or $c->detach('/public/default');
-
+   #$c->model('Volume')->pode_alterar_volume($c->stash->{id_volume}) or $c->detach('/public/default');
+    if (!$c->model('Volume')->pode_alterar_volume($c->stash->{id_volume})) {
+       $c->flash->{autorizacao} = 'Ops! Você não tem autorização para isso, consulte...';
+       $c->res->redirect( $c->uri_for_action('/auth/registros/volume/lista') );
+    }
+    
     my $initial_principals = $c->model('LDAP')->memberof_grupos_dn();
 
-  $c->stash->{autorizacoes} = $c->model('Volume')->autorizacoes_do_volume($c->stash->{id_volume});
-  $c->stash->{classificacoes} = $c->model("Volume")->classificacoes_do_volume($c->stash->{id_volume});
-  $c->stash->{basedn} = $c->model("LDAP")->grupos_dn;
-  $c->stash->{class_basedn} = $c->req->param('class_basedn') || $c->model("LDAP")->assuntos_dn;
-  $c->stash->{template} = 'auth/registros/volume/form_alterar.tt';
+    $c->stash->{autorizacoes} = $c->model('Volume')->autorizacoes_do_volume($c->stash->{id_volume});
+    $c->stash->{classificacoes} = $c->model("Volume")->classificacoes_do_volume($c->stash->{id_volume});
+    $c->stash->{localizacao} = $c->model("Volume")->localizacao_do_volume($c->stash->{id_volume});
+    $c->stash->{local_basedn} = $c->stash->{localizacao};
+    $c->stash->{local_basedn} =~ s/^.+?,//;
 
+    $c->stash->{basedn} = $c->model("LDAP")->grupos_dn;
+    $c->stash->{class_basedn} = $c->req->param('class_basedn') || $c->model("LDAP")->assuntos_dn;
+    #$c->stash->{local_basedn} = $c->req->param('local_basedn') || $c->model("LDAP")->local_dn;
+    $c->stash->{template} = 'auth/registros/volume/form_alterar.tt';
 }
 
 
 sub store_alterar : Chained('get_volume') : PathPart('store_alterar') : Args(0) {
   my ( $self, $c ) = @_;
 #	Checa se user logado tem autorização para executar a ação 'Alterar'
+   if (!$c->model('Volume')->pode_alterar_volume($c->stash->{id_volume})) {
+       $c->flash->{autorizacao} = '';
+       $c->res->redirect( $c->uri_for_action('/auth/registros/volume/lista') );
+  }
 
   my $representaVolumeFisico;
   $c->stash->{basedn} = $c->req->param('basedn') ||
               $c->model("LDAP")->grupos_dn;
+  $c->stash->{class_basedn} = $c->req->param('class_basedn') ||
+              $c->model("LDAP")->assuntos_dn;
+  $c->stash->{local_basedn} = $c->req->param('local_basedn') ||
+              $c->model("LDAP")->local_dn;
 
   $c->stash->{template} = 'auth/registros/volume/form_alterar.tt';
 
   $c->stash->{classificacoes} = $c->req->param('classificacoes');
   $c->stash->{autorizacoes} = $c->req->param('autorizacoes');
+  $c->stash->{localizacao} = $c->req->param('localizacao');
 
-  if ($self->_processa_autorizacao($c) ||
-      $self->_processa_classificacao($c)) {
+  if ($self->_processa_autorizacao($c) || 
+      $self->_processa_classificacao($c) || 
+      $self->_processa_localizacao($c) ) {
     return;
   }
 

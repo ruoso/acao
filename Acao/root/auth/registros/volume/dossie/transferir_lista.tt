@@ -21,7 +21,7 @@
 [% INCLUDE 'auth/registros/volume/dossie/header.tt' %]
 [% INCLUDE 'errosucesso.tt' %]
 
-<form action="[% c.uri_for_action('/auth/registros/volume/dossie/transferir/', [ id_volume ], controle ) %]" method="post" onsubmit="return validaForm();">
+<form action="[% c.uri_for_action('/auth/registros/volume/dossie/transferir', [ id_volume  ,  controle ]  ) %]" method="post" onsubmit="return validaForm();">
 
     <b> Selecione o volume de destino: </b> &nbsp&nbsp
     <select name="volume_destino" id="volume_destino">

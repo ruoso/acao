@@ -19,7 +19,9 @@ package Acao::Controller::Auth::Registros::Volume::Dossie::Documento;
 
 use Moose;
 use namespace::autoclean;
+use Data::Dumper;
 BEGIN { extends 'Catalyst::Controller'; }
+
 with 'Acao::Role::Auditoria' => { category => 'Documento'};
 
 =head1 NAME
@@ -37,7 +39,16 @@ Carrega para o stash os dados do dossiê.
 
 =cut
 
-sub base : Chained('../get_dossie') :PathPart('') :CaptureArgs(0) {}
+
+sub base : Chained('../get_dossie') :PathPart('') :CaptureArgs(0) {
+    my ( $self, $c ) = @_;
+    #   Checa se user logado tem autorização para executar a ação 'Ver' em Dossie
+
+    if (!$c->model('Dossie')->pode_ver_dossie($c->stash->{id_volume},$c->stash->{controle})) {
+        $c->flash->{autorizacao} = 'Você não tem autorização de ver este Prontuário';
+        $c->res->redirect( $c->uri_for_action('/auth/registros/volume/lista',$c->stash->{id_volume}));
+    }
+}
 
 sub get_documento :Chained('base') :PathPart('') :CaptureArgs(1) {
     my ( $self, $c, $id_documento ) = @_;
@@ -90,8 +101,8 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
     };
 
     if ($@) { $c->flash->{erro} = $@ . "";  }
-    else { 
-	    $c->flash->{sucesso} = 'Documento criado com sucesso';
+    else {
+      $c->flash->{sucesso} = 'Documento criado com sucesso';
     }
     $c->res->redirect( $c->uri_for_action('/auth/registros/volume/dossie/documento/lista', [ $c->stash->{id_volume}, $c->stash->{controle} ] ) );
 }

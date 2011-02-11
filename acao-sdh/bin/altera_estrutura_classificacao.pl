@@ -3,6 +3,11 @@ use strict;
 use warnings;
 use Switch;
 
+use utf8;
+binmode STDIN, ':utf8';
+binmode STDOUT, ':utf8';
+binmode STDERR, ':utf8';
+
 my $sedna = Sedna->connect('127.0.0.1', 'acao', 'acao', '12345');
 my $novo_nome;
 my $valor = 1;
@@ -37,19 +42,31 @@ sub getVolumes{
 
 sub altera_dados_dossie {
     my (@volumes) = @_;
-   
-    for (my $i = 0; $i < scalar @volumes; $i++) {
-        $sedna->begin;
-        my $xq = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
-                  update replace $x in collection("'.$volumes[$i].'")/ns:dossie/ns:classificacao with
-                  <classificacoes xmlns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd" xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd">
-                    <class:classificacao>{$x/text()}</class:classificacao>
-                  </classificacoes>';
+    my $xq;   
+    $sedna->begin;
 
-        $sedna->execute($xq);
-        $sedna->commit;
+    for (my $i = 0; $i < scalar @volumes; $i++) {
+        warn $volumes[$i];
+        if ($volumes[$i] eq 'volume-2633497e-7395-411b-9587-a9ec8da00c05') {
+          $xq = q|declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
+                 update replace $x in collection("|.$volumes[$i].q|")/ns:dossie/ns:classificacao with
+                 <classificacoes xmlns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd" xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd">
+                    <class:classificacao>cn=Prestação de Serviços à Comunidade,cn=Programa SE GARANTA,cn=Criança e Adolescente,cn=Direitos Humanos,dc=assuntos,dc=diretorio,dc=intranet,dc=cti,dc=fortaleza,dc=ce,dc=gov,dc=br</class:classificacao>
+                 </classificacoes>|;
+          $sedna->execute($xq);
+        } 
+        else {
+          $xq =  q|declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
+                  update replace $x in collection("|.$volumes[$i].q|")/ns:dossie/ns:classificacao with
+                  <classificacoes xmlns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd" xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd">
+                    <class:classificacao>cn=Liberdade Assistida,cn=Programa SE GARANTA,cn=Criança e Adolescente,cn=Direitos Humanos,dc=assuntos,dc=diretorio,dc=intranet,dc=cti,dc=fortaleza,dc=ce,dc=gov,dc=br</class:classificacao>
+                  </classificacoes>|;
+          $sedna->execute($xq);
+        }
 
     }
+
+    $sedna->commit;
 
 }
 
@@ -57,13 +74,32 @@ sub altera_dados_volume {
 
     $sedna->begin;
 
-    my $xq  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";
-               update replace $x in collection("volume")/ns:volume/ns:classificacao with 
-               <classificacoes xmlns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd" xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd">
-                <class:classificacao>{$x/text()}</class:classificacao>
-               </classificacoes>';
+    my $xqc  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";
+                update replace $x in collection("volume")/ns:volume/ns:classificacao with 
+                <classificacoes xmlns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd" xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd">
+                    <class:classificacao>cn=Direitos Humanos,dc=assuntos,dc=diretorio,dc=intranet,dc=cti,dc=fortaleza,dc=ce,dc=gov,dc=br</class:classificacao>
+                </classificacoes>';
 
-    $sedna->execute($xq);
+    $sedna->execute($xqc);
+
+    my $xql  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";
+                update replace $x in collection("volume")/ns:volume/ns:localizacao with 
+                <localizacao xmlns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd">ser=SERCEFOR,dc=local,dc=diretorio,dc=intranet,dc=cti,dc=fortaleza,dc=ce,dc=gov,dc=br</localizacao>';
+
+    $sedna->execute($xql);
+
+
+    my $xqa  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";
+                update replace $x in collection("volume")/ns:volume/ns:autorizacao with 
+                <autorizacoes xmlns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd" xmlns:author="http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd">
+                    <author:autorizacao principal="o=SDH,o=PMF,dc=adm,dc=diretorio,dc=intranet,dc=cti,dc=fortaleza,dc=ce,dc=gov,dc=br" role="alterar"/>
+                    <author:autorizacao principal="o=SDH,o=PMF,dc=adm,dc=diretorio,dc=intranet,dc=cti,dc=fortaleza,dc=ce,dc=gov,dc=br" role="criar"/>
+                    <author:autorizacao principal="o=SDH,o=PMF,dc=adm,dc=diretorio,dc=intranet,dc=cti,dc=fortaleza,dc=ce,dc=gov,dc=br" role="listar"/>
+                    <author:autorizacao principal="o=SDH,o=PMF,dc=adm,dc=diretorio,dc=intranet,dc=cti,dc=fortaleza,dc=ce,dc=gov,dc=br" role="visualizar"/>
+                </autorizacoes>';
+
+    $sedna->execute($xqa);
+
     $sedna->commit;
 }
 

@@ -56,13 +56,19 @@ sub insert_indices {
     #Constrói o resumo do índice inserido
     my $resumo = "$nm_volume - $nm_prontuario - $label";
     my $indices = $self->extract_xml_keys($xsd, $idx_data, $id_volume, $controle, $id_documento);
-    my $autorizacoes = $self->extract_autorizacoes($id_volume);
-	$self->dbic->resultset('Entry')->find_or_create({ volume =>  $id_volume, 
-								dossie => $controle, 
-								documento => $id_documento,
-								resumo => $resumo,
-                                gin_indexes => $indices,
-                                permissoes => $autorizacoes });
+    my $autorizacoes_vol = $self->extract_autorizacoes_volume($id_volume);
+    my ($autorizacoes_dos, $herda_dos) = $self->extract_autorizacoes_dossie($id_volume, $controle);
+    my $v = $self->dbic->resultset('Volume')->find_or_create({id_volume => $id_volume,
+                                                              nome => $nm_volume,
+                                                              permissao_volumes => $autorizacoes_vol });
+    my $dossie = $v->dossies->find_or_create({ id_dossie => $controle,
+                                               nome => $nm_prontuario,
+                                               permissao_dossies => $autorizacoes_dos,
+                                               herda_permissoes => $herda_dos });
+    my $doc = $dossie->entries->find_or_create({ documento => $id_documento,
+ 								                 resumo => $resumo,
+                                                 gin_indexes => $indices,
+                                                 herda_permissoes => 1 });
 }
 
 =item drop_indices()
@@ -97,17 +103,20 @@ sub get_xsd_info {
               declare namespace xhtml="http://www.w3.org/1999/xhtml";
               declare namespace idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"; 
               for $x in collection("acao-schemas")/xs:schema[@targetNamespace="'.$ns.'"] 
-              return ( $x/xs:element[1]/xs:annotation/xs:appinfo/idx:index,
-                       $x/xs:element[1]/xs:annotation/xs:appinfo/xhtml:label/text() )';
+              return ( $x/xs:element[1]/xs:annotation/xs:appinfo/xhtml:label/text(),
+                       $x/xs:element[1]/xs:annotation/xs:appinfo/idx:index )';
     $self->sedna->execute($xq);
-    my $idx = $self->sedna->get_item;
     my $label = $self->sedna->get_item;
-    my $octets = encode('utf8', $idx);
-    my $idx_data = $controle_r->($octets);
-    
     $label =~ s/^\s+|\s+$//gs;
+    my $idx = $self->sedna->get_item;
 
-    return $idx_data, $label;
+    if ($idx) {
+        my $octets = encode('utf8', $idx);
+        my $idx_data = $controle_r->($octets);
+        return $idx_data, $label;
+    } else {
+        return {}, $label;
+    }
 }
 
 =item extract_xml_keys()
@@ -145,27 +154,54 @@ sub extract_xml_keys {
     return \@xmldata;
 };
 
-=item extract_autorizacoes()
+=item extract_autorizacoes_volume()
 
 Extrai os valores do parâmetro principal das tags de autorizacao
 do volume relacionado com os índices em inclusão
 
 =cut
 
-sub extract_autorizacoes {
+sub extract_autorizacoes_volume {
     my $self = shift;
     my ($id_volume) = @_;
     my $xquery = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";
                   declare namespace author = "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";
                   for $x in collection("volume")/ns:volume[ns:collection = "'.$id_volume.'"] 
-                      return $x/ns:autorizacoes/author:autorizacao/@principal/string()';
-    my @xmldata;
+                      return $x/ns:autorizacoes/author:autorizacao[@role="listar"]/@principal/string()';
+    my %dns;
     $self->sedna->execute($xquery);
     while (my $autorizacao = $self->sedna->get_item) {
         $autorizacao =~ s/^\s+|\s+$//gs;
-        push @xmldata, { dn => $autorizacao };
+        $dns{$autorizacao} = 1;
     }
-    return \@xmldata;
+    return [ map { { dn => $_ } } keys %dns ];
+}
+
+=item extract_autorizacoes_dossie()
+
+Extrai os valores do parâmetro principal das tags de autorizacao
+do dossie relacionado com os índices em inclusão
+
+=cut
+
+sub extract_autorizacoes_dossie {
+    my $self = shift;
+    my ($id_volume, $controle) = @_;
+    my $xquery = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
+                  declare namespace author = "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";
+                  for $x in collection("'.$id_volume.'")/ns:dossie[ns:controle = "'.$controle.'"] 
+                        return ( if ($x/ns:autorizacoes/@herdar/string())
+                                 then ($x/ns:autorizacoes/@herdar/string())
+                                 else ("0"),
+                                 $x/ns:autorizacoes/author:autorizacao[@role="listar"]/@principal/string() )';
+    my %dns;
+    $self->sedna->execute($xquery);
+    my $herda = $self->sedna->get_item;
+    while (my $autorizacao = $self->sedna->get_item) {
+        $autorizacao =~ s/^\s+|\s+$//gs;
+        $dns{$autorizacao} = 1;
+    }
+    return [ map { { dn => $_ } } keys %dns ], $herda;
 }
 
 =item normalize_xpath()
