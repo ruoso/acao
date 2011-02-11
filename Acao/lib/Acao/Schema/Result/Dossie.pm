@@ -41,7 +41,6 @@ __PACKAGE__->table("dossie");
 =head2 herda_permissoes
 
   data_type: 'boolean'
-  default_value: TRUE
   is_nullable: 0
 
 =cut
@@ -54,7 +53,7 @@ __PACKAGE__->add_columns(
   "nome",
   { data_type => "varchar", is_nullable => 1, size => 255 },
   "herda_permissoes",
-  { data_type => "boolean", default_value => \"TRUE", is_nullable => 0 },
+  { data_type => "boolean", is_nullable => 0 },
 );
 __PACKAGE__->set_primary_key("id_volume", "id_dossie");
 
@@ -86,7 +85,8 @@ Related object: L<Acao::Schema::Result::PermissaoDossie>
 __PACKAGE__->has_many(
   "permissao_dossies",
   "Acao::Schema::Result::PermissaoDossie",
-  { "foreign.id_dossie" => "self.id_dossie" },
+  { "foreign.id_dossie" => "self.id_dossie",
+    "foreign.id_volume" => "self.id_volume"  },
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
