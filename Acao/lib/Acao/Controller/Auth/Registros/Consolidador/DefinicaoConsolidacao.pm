@@ -1,5 +1,6 @@
 package Acao::Controller::Auth::Registros::Consolidador::DefinicaoConsolidacao;
 use utf8;
+
 # Copyright 2010 - Prefeitura Municipal de Fortaleza
 #
 # Este arquivo é parte do programa Ação - Sistema de Acompanhamento de
@@ -42,7 +43,9 @@ sub base : Chained('/auth/registros/consolidador/base') : PathPart('') :
   CaptureArgs(1) {
     my ( $self, $c, $id_definicao_consolidacao ) = @_;
     $c->stash->{id_definicao_consolidacao} = $id_definicao_consolidacao;
-    $c->stash->{definicao_consolidacao} = $c->model("Consolidador")->obter_definicao_consolidacao($id_definicao_consolidacao)
+    $c->stash->{definicao_consolidacao} =
+      $c->model("Consolidador")
+      ->obter_definicao_consolidacao($id_definicao_consolidacao)
       or $c->detach('/public/default');
 }
 
@@ -92,7 +95,6 @@ usuário tem acesso.
 sub lista : Chained('base') : PathPart('') : Args(0) {
 }
 
-
 =back
 
 =head1 COPYRIGHT AND LICENSING
@@ -101,6 +103,5 @@ Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
 sob a GPL versão 2.
 
 =cut
-
 
 1;

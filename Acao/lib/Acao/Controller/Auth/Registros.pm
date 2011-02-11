@@ -1,4 +1,5 @@
 package Acao::Controller::Auth::Registros;
+
 # Copyright 2010 - Prefeitura Municipal de Fortaleza
 #
 # Este arquivo é parte do programa Ação - Sistema de Acompanhamento de
@@ -22,7 +23,7 @@ use warnings;
 use parent 'Catalyst::Controller';
 
 my $digitador = Acao->config->{roles}{digitador};
-my $revisor = Acao->config->{roles}{revisor};
+my $revisor   = Acao->config->{roles}{revisor};
 
 =head1 NAME
 
@@ -52,20 +53,22 @@ lista das sub-áreas da área de registros.
 
 sub principal : Chained('base') : PathPart('') : Args(0) {
     my ( $self, $c ) = @_;
-    my @roles = @{$c->user->memberof};
+    my @roles = @{ $c->user->memberof };
 
     if ( ( grep { $revisor eq $_ } @roles )
         && !( grep { $digitador eq $_ } @roles ) )
     {
-        $c->res->redirect( $c->uri_for_action('/auth/registros/revisor/lista') );
+        $c->res->redirect(
+            $c->uri_for_action('/auth/registros/revisor/lista') );
     }
     elsif ( ( grep { $digitador eq $_ } @roles )
         && !( grep { $revisor eq $_ } @roles ) )
     {
-        $c->res->redirect( $c->uri_for_action('/auth/registros/digitador/lista') );
+        $c->res->redirect(
+            $c->uri_for_action('/auth/registros/digitador/lista') );
     }
-    elsif ((! grep { $revisor eq $_   } @roles ) &&
-           (! grep { $digitador eq $_ } @roles ) )
+    elsif (( !grep { $revisor eq $_ } @roles )
+        && ( !grep { $digitador eq $_ } @roles ) )
     {
         $c->res->redirect( $c->uri_for_action('/auth/registros/volume/lista') );
     }

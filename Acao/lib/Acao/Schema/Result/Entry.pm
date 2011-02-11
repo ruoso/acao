@@ -8,7 +8,6 @@ use warnings;
 
 use base 'DBIx::Class::Core';
 
-
 =head1 NAME
 
 Acao::Schema::Result::Entry
@@ -58,18 +57,28 @@ __PACKAGE__->table("entries");
 =cut
 
 __PACKAGE__->add_columns(
-  "entry_id",
-  { data_type => "integer", is_auto_increment => 1, is_nullable => 0 },
-  "volume",
-  { data_type => "varchar", is_foreign_key => 1, is_nullable => 1, size => 255 },
-  "dossie",
-  { data_type => "varchar", is_foreign_key => 1, is_nullable => 1, size => 255 },
-  "documento",
-  { data_type => "varchar", is_nullable => 1, size => 255 },
-  "resumo",
-  { data_type => "varchar", is_nullable => 1, size => 255 },
-  "herda_permissoes",
-  { data_type => "boolean", is_nullable => 0 },
+    "entry_id",
+    { data_type => "integer", is_auto_increment => 1, is_nullable => 0 },
+    "volume",
+    {
+        data_type      => "varchar",
+        is_foreign_key => 1,
+        is_nullable    => 1,
+        size           => 255
+    },
+    "dossie",
+    {
+        data_type      => "varchar",
+        is_foreign_key => 1,
+        is_nullable    => 1,
+        size           => 255
+    },
+    "documento",
+    { data_type => "varchar", is_nullable => 1, size => 255 },
+    "resumo",
+    { data_type => "varchar", is_nullable => 1, size => 255 },
+    "herda_permissoes",
+    { data_type => "boolean", is_nullable => 0 },
 );
 __PACKAGE__->set_primary_key("entry_id");
 
@@ -84,10 +93,10 @@ Related object: L<Acao::Schema::Result::GinIndex>
 =cut
 
 __PACKAGE__->has_many(
-  "gin_indexes",
-  "Acao::Schema::Result::GinIndex",
-  { "foreign.entry" => "self.entry_id" },
-  { cascade_copy => 1, cascade_delete => 1 },
+    "gin_indexes",
+    "Acao::Schema::Result::GinIndex",
+    { "foreign.entry" => "self.entry_id" },
+    { cascade_copy    => 1, cascade_delete => 1 },
 );
 
 =head2 gin_indexes
@@ -99,10 +108,10 @@ Related object: L<Acao::Schema::Result::Permissao>
 =cut
 
 __PACKAGE__->has_many(
-  "permissoes",
-  "Acao::Schema::Result::Permissao",
-  { "foreign.entry_id" => "self.entry_id" },
-  { cascade_copy => 1, cascade_delete => 1 },
+    "permissoes",
+    "Acao::Schema::Result::Permissao",
+    { "foreign.entry_id" => "self.entry_id" },
+    { cascade_copy       => 1, cascade_delete => 1 },
 );
 
 =head2 dossie
@@ -114,16 +123,18 @@ Related object: L<Acao::Schema::Result::Dossie>
 =cut
 
 __PACKAGE__->belongs_to(
-  "dossie",
-  "Acao::Schema::Result::Dossie",
-  { id_dossie => "dossie",
-    id_volume => "volume" },
-  {
-    is_deferrable => 1,
-    join_type     => "LEFT",
-    on_delete     => "CASCADE",
-    on_update     => "CASCADE",
-  },
+    "dossie",
+    "Acao::Schema::Result::Dossie",
+    {
+        id_dossie => "dossie",
+        id_volume => "volume"
+    },
+    {
+        is_deferrable => 1,
+        join_type     => "LEFT",
+        on_delete     => "CASCADE",
+        on_update     => "CASCADE",
+    },
 );
 
 =head2 volume
@@ -135,21 +146,19 @@ Related object: L<Acao::Schema::Result::Volume>
 =cut
 
 __PACKAGE__->belongs_to(
-  "volume",
-  "Acao::Schema::Result::Volume",
-  { id_volume => "volume" },
-  {
-    is_deferrable => 1,
-    join_type     => "LEFT",
-    on_delete     => "CASCADE",
-    on_update     => "CASCADE",
-  },
+    "volume",
+    "Acao::Schema::Result::Volume",
+    { id_volume => "volume" },
+    {
+        is_deferrable => 1,
+        join_type     => "LEFT",
+        on_delete     => "CASCADE",
+        on_update     => "CASCADE",
+    },
 );
-
 
 # Created by DBIx::Class::Schema::Loader v0.07005 @ 2011-02-08 15:29:11
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:g/0u/y0VhkjJH+wTjEC7Yw
-
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
 1;

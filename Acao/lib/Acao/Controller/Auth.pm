@@ -1,4 +1,5 @@
 package Acao::Controller::Auth;
+
 # Copyright 2010 - Prefeitura Municipal de Fortaleza
 #
 # Este arquivo é parte do programa Ação - Sistema de Acompanhamento de
@@ -44,8 +45,8 @@ sub base : Chained('/') : PathPart('auth') : CaptureArgs(0) {
         $c->res->redirect( $c->uri_for_action('/public/login/login') );
         $c->detach;
     }
-    Log::Log4perl::MDC->put('user', $c->user->uid);
-    Log::Log4perl::MDC->put('address', $c->req->address);
+    Log::Log4perl::MDC->put( 'user',    $c->user->uid );
+    Log::Log4perl::MDC->put( 'address', $c->req->address );
 }
 
 =item principal
@@ -81,6 +82,5 @@ Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
 sob a GPL versão 2.
 
 =cut
-
 
 1;

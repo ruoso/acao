@@ -4,9 +4,9 @@ use Data::Dumper;
 extends 'Catalyst::View';
 
 sub voltar_grupos {
-	my ( $self, $voltar ) = @_;
-	my @voltar = split /,/, $voltar;
-	return join ',', splice @voltar, 1;
+    my ( $self, $voltar ) = @_;
+    my @voltar = split /,/, $voltar;
+    return join ',', splice @voltar, 1;
 }
 
 1;

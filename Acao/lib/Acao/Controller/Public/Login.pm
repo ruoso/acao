@@ -1,4 +1,5 @@
 package Acao::Controller::Public::Login;
+
 # Copyright 2010 - Prefeitura Municipal de Fortaleza
 #
 # Este arquivo é parte do programa Ação - Sistema de Acompanhamento de
@@ -21,6 +22,7 @@ use strict;
 use warnings;
 use parent 'Catalyst::Controller';
 use Data::Dumper;
+
 =head1 NAME
 
 Acao::Controller::Public::Login - Implementa a chamada para o início
@@ -52,11 +54,11 @@ sub login : Chained('base') : PathPart('') : Args(0) {
     my $password = $c->request->params->{password};
 
     if ( defined $user && defined $password ) {
-      $c->get_auth_realm(Acao->config->{'Plugin::Authentication'}{default_realm})->store->user_basedn($c->req->param('dominio'));
+        $c->get_auth_realm(
+            Acao->config->{'Plugin::Authentication'}{default_realm} )
+          ->store->user_basedn( $c->req->param('dominio') );
         if ( $c->authenticate( { id => $user, password => $password } ) ) {
-            $c->res->redirect(
-                $c->uri_for_action('/auth/principal')
-            );
+            $c->res->redirect( $c->uri_for_action('/auth/principal') );
             return;
         }
         else {

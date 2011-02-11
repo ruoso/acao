@@ -1,4 +1,5 @@
 package Acao::Schema::Result::Alertas;
+
 # Copyright 2010 - Prefeitura Municipal de Fortaleza
 #
 # Este arquivo é parte do programa Ação - Sistema de Acompanhamento de
@@ -31,7 +32,6 @@ Acao::Schema::Result::Alertas - Resultsource da tabela alertas
 Esta entidade descreve o "log" de uma execução de consolidação.
 
 =cut
-
 
 __PACKAGE__->load_components( "InflateColumn::DateTime", "Core" );
 __PACKAGE__->table("alertas");

@@ -1,4 +1,5 @@
 package Acao::Role::Controller::Autorizacao;
+
 # Copyright 2010 - Prefeitura Municipal de Fortaleza
 #
 # Este arquivo é parte do programa Ação - Sistema de Acompanhamento de
@@ -22,29 +23,35 @@ use XML::Compile::Util;
 use XML::LibXML;
 
 parameter modelcomponent => (
-  isa      => 'Str',
-  required => 1,
+    isa      => 'Str',
+    required => 1,
 );
 
 role {
-    my $p = shift;
+    my $p     = shift;
     my $model = $p->modelcomponent;
 
     method '_processa_autorizacao' => sub {
-        my ($self, $c) = @_;
+        my ( $self, $c ) = @_;
+
         # remove autorizações
-        my (@pos) = grep { s/^remover_autorizacao_// } keys %{$c->req->params};
-        if ( $c->req->param('opcao') eq 'Remover') {
+        my (@pos) =
+          grep { s/^remover_autorizacao_// } keys %{ $c->req->params };
+        if ( $c->req->param('opcao') eq 'Remover' ) {
             if (@pos) {
-                $c->stash->{autorizacoes} = $c->model($model)->remove_autorizacoes($c->req->param('autorizacoes'),@pos);
-            } else {
+                $c->stash->{autorizacoes} =
+                  $c->model($model)
+                  ->remove_autorizacoes( $c->req->param('autorizacoes'), @pos );
+            }
+            else {
                 $c->stash->{autorizacoes} = $c->req->param('autorizacoes');
             }
             return 1;
         }
+
         # Navega nos grupos do LDAP
         if ( $c->req->param('opcao') eq 'Navegar' ) {
-            $c->stash->{basedn} = $c->req->param('grupos');
+            $c->stash->{basedn}       = $c->req->param('grupos');
             $c->stash->{autorizacoes} = $c->req->param('autorizacoes');
             return 1;
         }
@@ -53,8 +60,11 @@ role {
         if ( $c->req->param('opcao') eq 'Adicionar' ) {
             my @principal = $c->req->param('grupos');
             my @role      = $c->req->param('acoes');
-            my $permissoes = $c->model($model)->build_autorizacao_AoH(\@principal, \@role);
-            $c->stash->{autorizacoes} = $c->model($model)->add_autorizacoes($c->req->param('autorizacoes'),$permissoes);
+            my $permissoes =
+              $c->model($model)->build_autorizacao_AoH( \@principal, \@role );
+            $c->stash->{autorizacoes} =
+              $c->model($model)
+              ->add_autorizacoes( $c->req->param('autorizacoes'), $permissoes );
             return 1;
         }
         return 0;
@@ -80,4 +90,5 @@ Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
 sob a GPL versão 2.
 
 =cut
+
 1;

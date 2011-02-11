@@ -1,4 +1,5 @@
 package Acao::View::TT;
+
 # Copyright 2010 - Prefeitura Municipal de Fortaleza
 #
 # Este arquivo é parte do programa Ação - Sistema de Acompanhamento de
@@ -36,13 +37,11 @@ __PACKAGE__->config(
     ENCODING           => 'UTF-8',
 );
 
-
 =head1 COPYRIGHT AND LICENSING
 
 Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
 sob a GPL versão 2.
 
 =cut
-
 
 1;

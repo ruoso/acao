@@ -1,4 +1,5 @@
 package Acao::Schema::Result::EtapaTransformacao;
+
 # Copyright 2010 - Prefeitura Municipal de Fortaleza
 #
 # Este arquivo é parte do programa Ação - Sistema de Acompanhamento de
@@ -33,7 +34,6 @@ Esta entidade descreve os plugins a serem executados para a
 transformação de dados em um processo de consolidacao.
 
 =cut
-
 
 __PACKAGE__->load_components( "InflateColumn::DateTime", "Core" );
 __PACKAGE__->table("etapa_transformacao");
@@ -74,6 +74,5 @@ Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
 sob a GPL versão 2.
 
 =cut
-
 
 1;

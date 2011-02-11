@@ -1,4 +1,5 @@
 package Acao::Schema::Result::DefinicaoConsolidacao;
+
 # Copyright 2010 - Prefeitura Municipal de Fortaleza
 #
 # Este arquivo é parte do programa Ação - Sistema de Acompanhamento de

@@ -8,7 +8,6 @@ use warnings;
 
 use base 'DBIx::Class::Core';
 
-
 =head1 NAME
 
 Estrutura::DimSchema::Result::Permissao
@@ -35,14 +34,14 @@ __PACKAGE__->table("permissao");
 =cut
 
 __PACKAGE__->add_columns(
-  "entry_id",
-  {
-    data_type         => "integer",
-    is_auto_increment => 1,
-    is_nullable       => 0,
-  },
-  "dn",
-  { data_type => "varchar", is_nullable => 1, size => 255 },
+    "entry_id",
+    {
+        data_type         => "integer",
+        is_auto_increment => 1,
+        is_nullable       => 0,
+    },
+    "dn",
+    { data_type => "varchar", is_nullable => 1, size => 255 },
 );
 
 =head1 RELATIONS
@@ -56,21 +55,19 @@ Related object: L<Acao::Schema::Result::Entry>
 =cut
 
 __PACKAGE__->belongs_to(
-  "entry",
-  "Acao::Schema::Result::Entry",
-  { entry_id => "entry_id" },
-  {
-    is_deferrable => 1,
-    join_type     => "LEFT",
-    on_delete     => "CASCADE",
-    on_update     => "CASCADE",
-  },
+    "entry",
+    "Acao::Schema::Result::Entry",
+    { entry_id => "entry_id" },
+    {
+        is_deferrable => 1,
+        join_type     => "LEFT",
+        on_delete     => "CASCADE",
+        on_update     => "CASCADE",
+    },
 );
-
 
 # Created by DBIx::Class::Schema::Loader v0.07005 @ 2011-01-27 15:39:05
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:+z8Q9BSTJyDPzjNvt1rA3w
-
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
 1;

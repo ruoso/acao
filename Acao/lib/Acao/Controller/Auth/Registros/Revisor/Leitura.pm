@@ -1,4 +1,5 @@
 package Acao::Controller::Auth::Registros::Revisor::Leitura;
+
 # Copyright 2010 - Prefeitura Municipal de Fortaleza
 #
 # Este arquivo é parte do programa Ação - Sistema de Acompanhamento de
@@ -36,10 +37,10 @@ Carrega para o stash os dados da leitura solicitada.
 
 =cut
 
-sub base :Chained('/auth/registros/revisor/base') :PathPart('') :CaptureArgs(1) {
+sub base : Chained('/auth/registros/revisor/base') : PathPart('') :
+  CaptureArgs(1) {
     my ( $self, $c, $id_leitura ) = @_;
-    $c->stash->{leitura} =
-      $c->model('Revisor')->obter_leitura($id_leitura)
+    $c->stash->{leitura} = $c->model('Revisor')->obter_leitura($id_leitura)
       or $c->detach('/public/default');
 }
 
@@ -73,7 +74,8 @@ sub aprovar : Chained('base') : PathPart : Args(2) {
     }
     $c->res->redirect(
         $c->uri_for_action(
-            '/auth/registros/revisor/leitura/lista', [ $c->stash->{leitura}->id_leitura ]
+            '/auth/registros/revisor/leitura/lista',
+            [ $c->stash->{leitura}->id_leitura ]
         )
     );
 }
@@ -99,7 +101,8 @@ sub rejeitar : Chained('base') : PathPart : Args(2) {
     }
     $c->res->redirect(
         $c->uri_for_action(
-            '/auth/registros/revisor/leitura/lista' , [ $c->stash->{leitura}->id_leitura ]
+            '/auth/registros/revisor/leitura/lista',
+            [ $c->stash->{leitura}->id_leitura ]
         )
     );
 }
@@ -124,7 +127,8 @@ sub fecharDocumento : Chained('base') : PathPart : Args(1) {
     }
     $c->res->redirect(
         $c->uri_for_action(
-            '/auth/registros/revisor/leitura/lista', [ $c->stash->{leitura}->id_leitura ]
+            '/auth/registros/revisor/leitura/lista',
+            [ $c->stash->{leitura}->id_leitura ]
         )
     );
 }
@@ -141,7 +145,7 @@ sub visualizar_base : Chained('base') : PathPart('visualizar') : CaptureArgs(1)
     $c->stash->{id_doc} = $id_doc;
     $c->stash->{campo_controle} =
       $c->model('Revisor')
-        ->obter_campo_controle( $c->stash->{leitura}, $id_doc );
+      ->obter_campo_controle( $c->stash->{leitura}, $id_doc );
 }
 
 =item visualizar

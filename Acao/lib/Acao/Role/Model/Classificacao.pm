@@ -1,4 +1,5 @@
 package Acao::Role::Model::Classificacao;
+
 # Copyright 2010 - Prefeitura Municipal de Fortaleza
 #
 # Este arquivo é parte do programa Ação - Sistema de Acompanhamento de
@@ -22,46 +23,49 @@ use XML::Compile::Util;
 use XML::LibXML;
 
 parameter xmlcompile => (
-  isa      => 'XML::Compile::Schema',
-  required => 1,
+    isa      => 'XML::Compile::Schema',
+    required => 1,
 );
 
 parameter namespace => (
-  isa      => 'Str',
-  required => 1,
+    isa      => 'Str',
+    required => 1,
 );
 
 role {
-    my $p = shift;
+    my $p          = shift;
     my $xmlcompile = $p->xmlcompile;
-    my $ns = $p->namespace;
-    my $reader = $xmlcompile->compile( READER => pack_type( $ns, 'classificacoes'));
-    my $writer = $xmlcompile->compile( WRITER => pack_type( $ns, 'classificacoes'));
+    my $ns         = $p->namespace;
+    my $reader =
+      $xmlcompile->compile( READER => pack_type( $ns, 'classificacoes' ) );
+    my $writer =
+      $xmlcompile->compile( WRITER => pack_type( $ns, 'classificacoes' ) );
 
     method new_classificacao => sub {
-        my ($self, $initial_principals) = @_;
+        my ( $self, $initial_principals ) = @_;
         my $doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
-        return $writer->($doc,{  })->toString;
+        return $writer->( $doc, {} )->toString;
     };
 
-    method add_classificacoes => sub  {
-        my ($self, $xml_classificacoes, $novas_classificacoes) = @_;
+    method add_classificacoes => sub {
+        my ( $self, $xml_classificacoes, $novas_classificacoes ) = @_;
         my $hash = $reader->($xml_classificacoes);
-        push @{$hash->{classificacao}}, @$novas_classificacoes;
+        push @{ $hash->{classificacao} }, @$novas_classificacoes;
         my $doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
-        return $writer->($doc, $hash)->toString;
+        return $writer->( $doc, $hash )->toString;
     };
 
-    method remove_classificacoes => sub  {
-        my ($self, $xml_classificacoes, @positions) = @_;
+    method remove_classificacoes => sub {
+        my ( $self, $xml_classificacoes, @positions ) = @_;
         my $hash = $reader->($xml_classificacoes);
-        splice @{$hash->{classificacao}}, $_, 1, () for reverse sort @positions;
+        splice @{ $hash->{classificacao} }, $_, 1, ()
+          for reverse sort @positions;
         my $doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
-        return $writer->($doc, $hash)->toString;
+        return $writer->( $doc, $hash )->toString;
     };
 
-    method desserialize_classificacoes => sub  {
-        my ($self, $xml_classificacoes) = @_;
+    method desserialize_classificacoes => sub {
+        my ( $self, $xml_classificacoes ) = @_;
         return $reader->($xml_classificacoes);
     };
 };
@@ -85,4 +89,5 @@ Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
 sob a GPL versão 2.
 
 =cut
+
 1;

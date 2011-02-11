@@ -1,4 +1,5 @@
 package Acao::Controller::Auth::Registros::Consolidador::DefinicaoConsolidacao::Consolidacao;
+
 # Copyright 2010 - Prefeitura Municipal de Fortaleza
 #
 # Este arquivo é parte do programa Ação - Sistema de Acompanhamento de
@@ -40,8 +41,9 @@ sub base : Chained('/auth/registros/consolidador/definicaoconsolidacao/base') :
   PathPart('') : CaptureArgs(1) {
     my ( $self, $c, $id_consolidacao ) = @_;
     $c->stash->{consolidacao} =
-      $c->stash->{definicao_consolidacao}->consolidacao->find({ id_consolidacao => $id_consolidacao })
-        or $c->detach('/public/default');
+      $c->stash->{definicao_consolidacao}
+      ->consolidacao->find( { id_consolidacao => $id_consolidacao } )
+      or $c->detach('/public/default');
 }
 
 =item lista
@@ -61,7 +63,7 @@ esse documento consolidado.
 
 =cut
 
-sub entradas :Chained('base') :PathPart :Args(1) {
+sub entradas : Chained('base') : PathPart : Args(1) {
     my ( $self, $c, $id_documento_consolidado ) = @_;
     $c->stash->{id_documento_consolidado} = $id_documento_consolidado;
 }
@@ -73,8 +75,8 @@ de alertas possa ser alimentada sem refresh através de ajax.
 
 =cut
 
-sub fragmentos_alertas : Chained('base') :PathPart :Args(1){
-    my ($self, $c, $id_alerta) = @_;
+sub fragmentos_alertas : Chained('base') : PathPart : Args(1) {
+    my ( $self, $c, $id_alerta ) = @_;
     $c->stash->{id_alerta} = $id_alerta;
 }
 

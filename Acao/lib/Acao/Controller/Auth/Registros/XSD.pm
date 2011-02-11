@@ -1,4 +1,5 @@
 package Acao::Controller::Auth::Registros::XSD;
+
 # Copyright 2010 - Prefeitura Municipal de Fortaleza
 #
 # Este arquivo é parte do programa Ação - Sistema de Acompanhamento de
@@ -35,19 +36,19 @@ Ação raiz para as ações de digitador.
 
 =cut
 
-sub base : Chained('/auth/registros/base') : PathPart('xsd') :
-  CaptureArgs(0) {
+sub base : Chained('/auth/registros/base') : PathPart('xsd') : CaptureArgs(0) {
     my ( $self, $c ) = @_;
 }
 
-sub dados :Chained('base') :PathPart('') :CaptureArgs(0) {
+sub dados : Chained('base') : PathPart('') : CaptureArgs(0) {
     my ( $self, $c ) = @_;
     $c->stash->{namespace} = $c->req->param('ns');
 }
 
 sub raw : Chained('dados') : PathPart('raw') : Args(0) {
     my ( $self, $c ) = @_;
-    $c->stash->{document} = $c->model('XSD')->obter_xsd( $c->stash->{namespace} );
+    $c->stash->{document} =
+      $c->model('XSD')->obter_xsd( $c->stash->{namespace} );
     $c->forward( $c->view('XML') );
 }
 
