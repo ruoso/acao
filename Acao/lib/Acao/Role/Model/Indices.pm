@@ -123,10 +123,16 @@ Altera as autorizações do volume no banco de indexação
 
 =cut
 
-sub update_autorizacoes {
-    my ($self, $autorizacoes) = @_;
-    warn 'UPDATEUPDATEUPDATEUPDATEUPDATEUPDATEUPDATEUPDATEUPDATEUPDATEUPDATEUPDATEUPDATEUPDATEUPDATEUPDATE';
-    warn Dumper $autorizacoes;
+sub update_autorizacoes_vol {
+    my ($self, $id_volume, $autorizacoes) = @_;
+
+    my $auth_list = [ map { { dn => $_->{principal} }} grep { $_->{role} eq 'listar'} @{$autorizacoes->{'autorizacao'}} ];
+
+    my $vol = $self->dbic->resultset('Volume')->find_or_create({
+        id_volume => $id_volume,
+        permissao_volumes => $auth_list
+    });
+    
 }
 
 =item get_xsd_info()
