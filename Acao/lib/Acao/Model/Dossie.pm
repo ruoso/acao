@@ -30,6 +30,7 @@ use Data::Dumper;
 use List::MoreUtils 'pairwise';
 
 with 'Acao::Role::Model::BuscaXSD';
+with 'Acao::Role::Model::Indices';
 
 use constant DOSSIE_NS => 'http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd';
 my $controle = XML::Compile::Schema->new( Acao->path_to('schemas/dossie.xsd') );
@@ -650,7 +651,8 @@ sub store_altera_dossie {
     $self->sedna->execute($query_localizacao);
 
     $self->sedna->commit;
-
+    
+    $self->update_autorizacoes_dos($args->{id_volume}, $args->{controle}, $self->desserialize_autorizacoes($args->{autorizacoes}));
 }
 
 =head1 COPYRIGHT AND LICENSING
