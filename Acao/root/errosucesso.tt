@@ -36,9 +36,25 @@
    'access-denied!' => 'Acesso Negado.',
   } %]
 [% SET mensagens_sucesso = {
+
   } %]
 
-  [% SET mensagens_autorizacao = {
+  [%  SET mensagens_autorizacao = {
+     'volume-alterar' => 'Você não tem autorização para alterar este Volume',
+      'volume-criar' => 'Você não tem autorização para Prontuários deste Volume',
+       'volume-visualizar' => 'Você não tem autorização para ver o conteúdo deste Volume',
+      'volume-transferir' => 'Você não tem autorização para transferir Prontuários deste Volume',
+       'volume-listar' => 'Você não tem autorização para listar este Volume',
+     'dossie-alterar' => 'Você não tem autorização para alterar este Prontuário',
+      'dossie-criar' => 'Você não tem autorização para criar Documentos neste Prontuário',
+       'dossie-visualizar' => 'Você não tem autorização para ver o conteúdo deste Prontuário',
+      'dossie-transferir' => 'Você não tem autorização para transferir este Prontuário',
+       'dossie-listar' => 'Você não tem autorização para listar este Prontuário',
+     'documento-alterar' => 'Você não tem autorização para alterar este Documento',
+       'documento-visualizar' => 'Você não tem autorização para ver este Documento',
+      'documento-transferir' => 'Você não tem autorização para transferir este Documento',
+       'documento-listar' => 'Você não tem autorização para listar este documento',
+      'documento-invalidar' => 'Você não tem autorização para invalidar este documento',
   } %]
 
 [% IF erro %]
@@ -67,8 +83,9 @@
 [% END %]
 [% IF autorizacao %]
    <span class="erro">
-     [% IF mensagens_autorizacao.contains(autorizacao) %]
-        [% mensagens_autorizacao.item(autorizacao) %]
+     [% IF mensagens_autorizacao.exists(autorizacao) %]
+          [% mensagens_autorizacao.item(autorizacao) %]
+
      [% ELSE %]
        Você não tem autorização.
      [% END %]

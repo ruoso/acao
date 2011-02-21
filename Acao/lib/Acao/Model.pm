@@ -18,6 +18,7 @@ package Acao::Model;
 # título "LICENCA.txt", junto com este programa, se não, escreva para a
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
 use Moose;
+
 with 'Catalyst::Component::InstancePerContext';
 has 'user'  => ( is => 'rw' );
 has 'dbic'  => ( is => 'rw' );
@@ -44,6 +45,9 @@ sub build_per_context_instance {
         sedna => $c->model('Sedna')
     );
 }
+
+
+
 
 =head1 COPYRIGHT AND LICENSING
 

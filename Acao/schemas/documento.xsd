@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:author="http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd"
   xmlns="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd"
   targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd"
   elementFormDefault="qualified">
@@ -21,14 +22,7 @@
       <xs:element name="invalidacao" type="xs:dateTime" minOccurs="0" />
       <xs:element name="motivoInvalidacao" type="xs:string" minOccurs="0" />
       <xs:element name="representaDocumentoFisico" type="xs:boolean" minOccurs="0" />
-      <xs:element name="autorizacao" minOccurs="0">
-        <xs:complexType>
-          <xs:attribute name="principal" type="xs:string" use="required" />
-          <xs:attribute name="role" type="xs:string" use="required" />
-          <xs:attribute name="dataIni" type="xs:string" use="required" />
-          <xs:attribute name="dataFim" type="xs:string" use="optional" />
-        </xs:complexType>
-      </xs:element>
+      <xs:element name="autorizacoes" type="author:autorizacoes"/>
       <xs:element name="documento" maxOccurs="unbounded">
         <xs:complexType>
           <xs:sequence>
@@ -44,5 +38,5 @@
       </xs:element>
     </xs:sequence>
   </xs:complexType>
-
+ <xs:element name="autorizacoes" type="author:autorizacoes"/>
 </xs:schema>

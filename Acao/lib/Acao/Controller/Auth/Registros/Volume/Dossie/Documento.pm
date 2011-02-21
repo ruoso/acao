@@ -21,9 +21,11 @@ package Acao::Controller::Auth::Registros::Volume::Dossie::Documento;
 use Moose;
 use namespace::autoclean;
 use Data::Dumper;
+use utf8;
 BEGIN { extends 'Catalyst::Controller'; }
 
 with 'Acao::Role::Auditoria' => { category => 'Documento' };
+with 'Acao::Role::Controller::Autorizacao'   => { modelcomponent => 'Documento' };
 
 =head1 NAME
 
@@ -43,20 +45,6 @@ Carrega para o stash os dados do dossiê.
 sub base : Chained('../get_dossie') : PathPart('') : CaptureArgs(0) {
     my ( $self, $c ) = @_;
 
-#   Checa se user logado tem autorização para executar a ação 'Ver' em Dossie
-
-    if ( !$c->model('Dossie')
-        ->pode_ver_dossie( $c->stash->{id_volume}, $c->stash->{controle} ) )
-    {
-        $c->flash->{autorizacao} =
-          'Você não tem autorização de ver este Prontuário';
-        $c->res->redirect(
-            $c->uri_for_action(
-                '/auth/registros/volume/lista',
-                $c->stash->{id_volume}
-            )
-        );
-    }
 }
 
 sub get_documento : Chained('base') : PathPart('') : CaptureArgs(1) {
@@ -64,6 +52,15 @@ sub get_documento : Chained('base') : PathPart('') : CaptureArgs(1) {
     Log::Log4perl::MDC->put( 'Documento', $id_documento );
     $c->stash->{id_documento} = $id_documento
       or $c->detach('/public/default');
+    #   Checa se user logado tem autorização para Ver o Documento
+    if (!$c->model('Documento')->pode_ver_documento($c->stash->{id_volume},
+                                                    $c->stash->{controle},
+                                                    $c->stash->{id_documento})) {
+      $c->flash->{autorizacao} = 'documento-visualizar';
+      $c->res->redirect( $c->uri_for_action('/auth/registros/volume/dossie/documento/lista',[$c->stash->{id_volume},
+                                                                                            $c->stash->{controle}] ));
+      return;
+    }
 }
 
 =item form
@@ -74,12 +71,36 @@ Delega à view a renderização do formulário desse dossiê.
 
 sub lista : Chained('base') : PathPart('') : Args(0) {
     my ( $self, $c ) = @_;
+
+    #   Checa se user logado tem autorização para listar documentos (Ver em Dossie)
+
+    if ( !$c->model('Dossie')
+        ->pode_ver_dossie( $c->stash->{id_volume}, $c->stash->{controle} ) )
+    {
+        $c->flash->{autorizacao} = 'dossie-visualizar';
+        $c->res->redirect( $c->uri_for_action('/auth/registros/volume/dossie/lista',[$c->stash->{id_volume}] ));
+        return;
+    }
 }
 
 sub form : Chained('base') : PathPart('inserirdocumento') : Args(0) {
+    my ( $self, $c ) = @_;
+      #   Checa se user logado tem autorização para Criar Documento
+    if (!$c->model('Documento')->pode_criar_documento($c->stash->{id_volume},$c->stash->{controle})) {
+      $c->flash->{autorizacao} = 'dossie-criar';
+      $c->res->redirect( $c->uri_for_action('/auth/registros/volume/dossie/documento/lista',[$c->stash->{id_volume},$c->stash->{controle}] ));
+      return;
+    }
+
+
+    my $initial_principals = $c->model('LDAP')->memberof_grupos_dn();
+    $c->stash->{autorizacoes} = $c->model("Documento")->new_autorizacao();
+    $c->stash->{basedn}       = $c->model("LDAP")->grupos_dn;
+    $c->stash->{herdar} or $c->stash->{herdar} = 1;
 }
 
 sub store : Chained('base') : PathPart('store') : Args(0) {
+
     my ( $self, $c ) = @_;
     my $representaDocumentoFisico;
     my $id_volume    = $c->stash->{'id_volume'};
@@ -88,6 +109,8 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
     my $id;
     my $xml          = $c->request->param('processed_xml');
     my $xsdDocumento = $c->req->param('xsdDocumento');
+    my $herdar_author;
+    $c->stash->{autorizacoes} = $c->req->param('autorizacoes');
 
     if ( $c->req->param('representaDocumentoFisico') eq 'on' ) {
         $representaDocumentoFisico = '1';
@@ -95,11 +118,56 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
     else {
         $representaDocumentoFisico = '0';
     }
+
+    if ( $c->req->param('herdar_author') eq 'on' ) {
+        $herdar_author = '1';
+    }
+    else {
+        $herdar_author = '0';
+    }
+
+    $c->stash->{herdar} = $herdar_author;
+    #   checagem se a requisição vem da view visualizar.tt
+    if ( $self->_processa_autorizacao($c))
+        {
+            if ($c->req->param('view') eq 'visualizar')
+            {
+
+                 $c->stash->{'xsdDocumento'} = $c->req->param('xsdDocumento');
+                 $c->stash->{'id_documento'} = $c->req->param('id_documento');
+                 $c->stash->{'invalidacao'} = $c->req->param('invalidacao');
+                 $c->stash->{'representaDocumentoFisico'} = $c->req->param('representaDocumentoFisico');
+
+                $c->stash->{template} = 'auth/registros/volume/dossie/documento/visualizar.tt';
+            } else
+            {
+                #   Checa se user logado tem autorização para Criar Documento
+                if (!$c->model('Documento')->pode_criar_documento($c->stash->{id_volume},$c->stash->{controle})) {
+                  $c->flash->{autorizacao} = 'dossie-criar';
+                  $c->res->redirect( $c->uri_for_action('/auth/registros/volume/dossie/documento/lista',[$c->stash->{id_volume},$c->stash->{controle}] ));
+                  return;
+                }
+
+                $c->stash->{template} = 'auth/registros/volume/dossie/documento/form.tt';
+            }
+
+            return ;
+        }
+
+
+
+
     eval {
         $id =
           $c->model('Documento')
-          ->inserir_documento( $c->req->address, $xml, $id_volume, $controle,
-            $xsdDocumento, $representaDocumentoFisico, $id_documento, );
+          ->inserir_documento( $c->req->address,
+                               $xml, $id_volume, $controle,
+                               $xsdDocumento,
+                               $representaDocumentoFisico,
+                               $herdar_author,
+                               $c->model('Documento')
+                                ->desserialize_autorizacoes( $c->req->param('autorizacoes') ),
+                                $id_documento );
         $self->audit_criar($id);
 
     };
@@ -118,16 +186,51 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
 
 sub visualizar : Chained('get_documento') : PathPart('') : Args(0) {
     my ( $self, $c ) = @_;
+    #   Checa se user logado tem autorização para Ver Documento
+    if (!$c->model('Documento')->pode_ver_documento($c->stash->{id_volume},
+                                                    $c->stash->{controle},
+                                                    $c->stash->{id_documento})) {
+      $c->flash->{autorizacao} = 'documento-visualizar';
+      $c->res->redirect( $c->uri_for_action('/auth/registros/volume/dossie/documento/lista',[$c->stash->{id_volume},$c->stash->{controle}] ));
+      return;
+    }
+
+
     $c->stash->{xsdDocumento} = $c->model('Documento')->obter_xsd_documento(
         $c->stash->{id_volume},
         $c->stash->{controle},
         $c->stash->{id_documento}
     ) or $c->detach('/public/default');
+
+    my $initial_principals = $c->model('LDAP')->memberof_grupos_dn();
+
+    my $herdar = $c->model('Documento')->desserialize_autorizacoes(
+        $c->model('Documento')->autorizacoes_de_documento(
+            $c->stash->{id_volume},
+            $c->stash->{controle},
+            $c->stash->{id_documento})
+    );
+
+    $c->stash->{herdar} = $herdar->{herdar};
+    $c->stash->{autorizacoes} = $c->model('Documento')
+                                ->autorizacoes_de_documento( $c->stash->{id_volume},
+                                                             $c->stash->{controle},
+                                                             $c->stash->{id_documento}
+                                                             );
+    $c->stash->{basedn}       = $c->model("LDAP")->grupos_dn;
+
 }
 
 sub visualizar_por_tipo : Chained('get_documento') :
   PathPart('visualizarportipo') : Args(0) {
     my ( $self, $c ) = @_;
+    #   Checa se user logado tem autorização para Ver Documento
+    if (!$c->model('Documento')->pode_ver_documento($c->stash->{id_volume},$c->stash->{controle},$c->stash->{id_documento} )) {
+      $c->flash->{autorizacao} = 'documento-visualizar';
+      $c->res->redirect( $c->uri_for_action('/auth/registros/volume/dossie/documento/lista',[$c->stash->{id_volume},$c->stash->{controle}] ));
+      return;
+    }
+
     $c->stash->{xsdDocumento} = $c->model('Documento')->obter_xsd_documento(
         $c->stash->{id_volume},
         $c->stash->{controle},
@@ -138,6 +241,18 @@ sub visualizar_por_tipo : Chained('get_documento') :
 sub invalidar_documento : Chained('get_documento') :
   PathPart('invalidar_documento') : Args(0) {
     my ( $self, $c ) = @_;
+
+    #   Checa se user logado tem autorização para alterar o Documento
+    if (!$c->model('Documento')->pode_alterar_documento($c->stash->{id_volume},
+                                        $c->stash->{controle},
+                                        $c->stash->{id_documento})) {
+        $c->flash->{autorizacao} = 'documento-invalidar';
+        $c->res->redirect(
+                $c->uri_for_action('/auth/registros/volume/dossie/documento/lista',[$c->stash->{id_volume},
+                                                                                    $c->stash->{controle}] ));
+        return;
+    }
+
     eval {
         my $id = $c->model('Documento')->invalidar_documento(
             $c->stash->{id_volume},
@@ -164,6 +279,46 @@ sub xml : Chained('get_documento') : PathPart : Args(0) {
         $c->stash->{id_documento}, $c->req->address,
     );
     $c->forward( $c->view('XML') );
+}
+
+
+sub alterar : Chained('get_documento') : PathPart('alterar_documento') : Args(0) {
+    my ($self, $c) = @_;
+
+     #   Checa se user logado tem autorização para Alterar Documento
+    if (!$c->model('Documento')->pode_alterar_documento($c->stash->{id_volume},
+                                                    $c->stash->{controle},
+                                                    $c->stash->{id_documento})) {
+      $c->flash->{autorizacao} = 'documento-alterar';
+      $c->res->redirect( $c->uri_for_action('/auth/registros/volume/dossie/documento/lista',[$c->stash->{id_volume},$c->stash->{controle}] ));
+      return;
+    }
+    $c->stash->{template} = 'auth/registros/volume/dossie/documento/form_alterar.tt';
+
+    $c->stash->{xsdDocumento} = $c->model('Documento')->obter_xsd_documento(
+        $c->stash->{id_volume},
+        $c->stash->{controle},
+        $c->stash->{id_documento}
+    ) or $c->detach('/public/default');
+
+    my $initial_principals = $c->model('LDAP')->memberof_grupos_dn();
+
+    my $herdar = $c->model('Documento')->desserialize_autorizacoes(
+        $c->model('Documento')->autorizacoes_de_documento(
+            $c->stash->{id_volume},
+            $c->stash->{controle},
+            $c->stash->{id_documento})
+    );
+
+    $c->stash->{herdar} = $herdar->{herdar};
+    $c->stash->{autorizacoes} = $c->model('Documento')
+                                ->autorizacoes_de_documento( $c->stash->{id_volume},
+                                                             $c->stash->{controle},
+                                                             $c->stash->{id_documento}
+                                                             );
+    $c->stash->{basedn}       = $c->model("LDAP")->grupos_dn;
+
+
 }
 
 =item xml
