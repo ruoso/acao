@@ -94,7 +94,8 @@ txn_method 'listar_volumes' => authorized $role_listar => sub {
       . 'subsequence('
       . 'for $x in collection("volume")/ns:volume[ns:autorizacoes/author:autorizacao[('
       . $grupos . ')'
-      . 'and @role="listar"]]'
+      . 'and @role="listar"]] '
+      . 'let $alterar := count(collection("volume")/ns:volume[ns:collection = $x/ns:collection]/ns:autorizacoes/author:autorizacao[('.$grupos.') and @role = "alterar"])'
       . 'return ($x/ns:collection/text(), '
       . $args->{xqueryret} . '),' . '('
       . $args->{interval_ini} * $args->{num_por_pagina}
@@ -241,8 +242,8 @@ txn_method 'getDadosVolumeId' => authorized $role_listar => sub {
 q|declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";
               declare namespace cl="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";
               for $x in collection("volume")/ns:volume[ns:collection="|
-      . $id_volume . q|"] 
-                 return (concat($x/ns:nome/text()," "), 
+      . $id_volume . q|"]
+                 return (concat($x/ns:nome/text()," "),
                     string-join(
                         for $c in $x/ns:classificacoes/cl:classificacao/text()
                             return (if (ends-with($c,",|
@@ -263,7 +264,7 @@ q|declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";
       . q|"),',')
                                  return (tokenize($j,'='))[2]),' - ')
                                ) else ($d)),', '),
-                    concat($x/ns:estado/text()," "), 
+                    concat($x/ns:estado/text()," "),
                     concat($x/ns:criacao/text()," "),
                     concat($x/ns:representaVolumeFisico/text()," "))|;
 
@@ -473,7 +474,7 @@ sub store_altera_volume {
       . '</localizacao>';
     $self->sedna->execute($query_localizacao);
 
-    $self->update_autorizacoes_vol($args->{id_volume},$self->desserialize_autorizacoes($args->{autorizacoes}));
+    #$self->update_autorizacoes_vol($args->{id_volume},$self->desserialize_autorizacoes($args->{autorizacoes}));
 
     $self->sedna->commit;
 
@@ -487,7 +488,7 @@ sub localizacao_do_volume {
 q|declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";
              declare namespace cl="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";
              for $x in collection("volume")/ns:volume[ns:collection="|
-      . $id_volume . q|"] 
+      . $id_volume . q|"]
              return $x/ns:localizacao/text()|;
 
     $self->sedna->begin;

@@ -118,9 +118,9 @@
 [% # IF c.user.roles.grep('digitador') %]
 [%# IF c.config.roles.dossie.criar %]
     [%# IF invalidacao == '1970-01-01T00:00:00Z' %]
-      [% IF c.model('Documento').pode_alterar_documento(id_volume,controle,id_documento) %]
+
          <input type="submit" value="Submeter alterações como novo documento">
-         [% END %]
+
     [%# END %]
 [%# END %]
 

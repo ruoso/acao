@@ -29,20 +29,24 @@ use Encode;
 use Data::UUID;
 use Data::Dumper;
 
-with 'Acao::Role::Model::Indices';
 
 use constant DOCUMENTO_NS =>
   'http://schemas.fortaleza.ce.gov.br/acao/documento.xsd';
 my $controle =
   XML::Compile::Schema->new( Acao->path_to('schemas/documento.xsd') );
+$controle->importDefinitions(Acao->path_to('schemas/autorizacoes.xsd'));
 my $controle_w = $controle->compile(
     WRITER                => pack_type( DOCUMENTO_NS, 'documento' ),
     use_default_namespace => 1
 );
+with 'Acao::Role::Model::Indices';
+with 'Acao::Role::Model::Autorizacao' =>
+  { xmlcompile => $controle, namespace => DOCUMENTO_NS };
 
 my $role_visualizar = Acao->config->{'roles'}->{'documento'}->{'visualizar'};
 my $role_criar      = Acao->config->{'roles'}->{'documento'}->{'criar'};
 my $role_listar     = Acao->config->{'roles'}->{'documento'}->{'listar'};
+my $role_alterar     = Acao->config->{'roles'}->{'documento'}->{'alterar'};
 
 =head1 NAME
 
@@ -75,6 +79,7 @@ Retorna os dossies os quais o usuário autenticado tem acesso.
 txn_method 'listar_documentos' => authorized $role_listar => sub {
     my ( $self, $args ) = @_;
 
+
     my $declare_namespace =
 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";';
     $declare_namespace .=
@@ -82,17 +87,47 @@ txn_method 'listar_documentos' => authorized $role_listar => sub {
     $declare_namespace .=
 'declare namespace adt = "http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd";';
     $declare_namespace .=
+'declare namespace author = "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";';
+    $declare_namespace .=
+'declare namespace vol = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";';
+    $declare_namespace .=
       'declare namespace xhtml = "http://www.w3.org/1999/xhtml";';
     $declare_namespace .=
       'declare namespace xss = "http://www.w3.org/2001/XMLSchema";';
+      #######################################################################
+    my $grupos = join ' or ',
+      map { '@principal = "' . $_ . '"' } @{ $self->user->memberof };
+      my $check = '(' . $grupos . ') and @role="listar"';
 
+      my $herdar_author_volume ='(collection("volume")/vol:volume[vol:collection="'.$args->{id_volume}
+      . '"]/vol:autorizacoes/author:autorizacao['.$check.'])';
+
+
+      my $herdar_author_dossie =
+      '(collection("'.$args->{id_volume}.'")'
+      .'/ns:dossie[ns:controle="'.$args->{controle} .'"]'
+      .'/ns:autorizacoes[author:autorizacao['.$check.']]))';
+
+      my $herdar_dossie = 'collection("'.$args->{id_volume}.'")/ns:dossie[ns:controle="'.$args->{controle} .'"]'
+       .'/ns:autorizacoes/@herdar/string()';
+
+      my $herdar ='(author:autorizacao[('.$check.')]'
+      . ' or (@herdar/string() = "1" and '.$herdar_author_dossie.')'
+      .' or (@herdar/string() = "1" and ('.$herdar_dossie.') = "1" and '.$herdar_author_volume.')';
+
+
+
+
+      ####################################################################***
     my $for =
         'collection("'
       . $args->{id_volume}
       . '")/ns:dossie[ns:controle = "'
-      . $args->{controle} . '" ]';
+      . $args->{controle}.'"]';
+
 
     my $xquery_for = 'for $x at $i in ' . $for . '/ns:doc/*, ';
+
     $xquery_for .=
 '$y in collection("acao-schemas")/xss:schema/xss:element/xss:annotation/xss:appinfo/xhtml:label/text() ';
 
@@ -100,6 +135,10 @@ txn_method 'listar_documentos' => authorized $role_listar => sub {
 'where $y/../../../../../@targetNamespace = namespace-uri($x/dc:documento/*/*) ';
     $xquery_where .= 'and ' . $args->{where_documentos_validos} . ' ';
     $xquery_where .= 'and ' . $args->{where_tipo_documento} . ' ';
+    $xquery_where .= 'and $x/dc:autorizacoes['.$herdar.']';
+
+
+
 
     my $list =
       $declare_namespace . ' subsequence(' . $xquery_for . $xquery_where . ' ';
@@ -112,7 +151,7 @@ txn_method 'listar_documentos' => authorized $role_listar => sub {
       . $args->{num_por_pagina} . ')';
 
     my $count =
-        $declare_namespace 
+        $declare_namespace
       . 'count('
       . $xquery_for
       . $xquery_where
@@ -131,7 +170,7 @@ txn_method 'listar_documentos' => authorized $role_listar => sub {
 txn_method 'inserir_documento' => authorized $role_criar => sub {
     my $self = shift;
     my ( $ip, $xml, $id_volume, $controle, $xsdDocumento,
-        $representaDocumentoFisico, $id_documento )
+        $representaDocumentoFisico,$herdar_author, $autorizacoes , $id_documento )
       = @_;
 
     my $role = 'role';
@@ -174,11 +213,9 @@ txn_method 'inserir_documento' => authorized $role_criar => sub {
             invalidacao               => '',
             motivoInvalidacao         => '',
             representaDocumentoFisico => $representaDocumentoFisico,
-            autorizacao               => {
-                principal => $self->user->id,
-                role      => $role,
-                dataIni   => DateTime->now(),
-                dataFim   => '',
+            autorizacoes           => {
+                ref $autorizacoes eq 'HASH' ? %$autorizacoes : (),
+                herdar => $herdar_author
             },
 
             documento => { conteudo => { "{}conteudo" => $conteudo_registro }, }
@@ -233,8 +270,8 @@ txn_method 'inserir_documento' => authorized $role_criar => sub {
 
     $id_documento = $uuid_str;
 
-    $self->insert_indices( $id_volume, $controle, $id_documento, $xsdDocumento,
-        $xml );
+    #$self->insert_indices( $id_volume, $controle, $id_documento, $xsdDocumento,
+    #    $xml );
 
     return $id_documento;
 };
@@ -312,7 +349,7 @@ txn_method 'visualizar_por_tipo' => authorized $role_visualizar => sub {
 
 };
 
-txn_method 'invalidar_documento' => authorized $role_listar => sub {
+txn_method 'invalidar_documento' => authorized $role_alterar => sub {
     my $self = shift;
     my ( $id_volume, $controle, $id_documento ) = @_;
     my $xq_invalidacao =
@@ -331,7 +368,7 @@ txn_method 'invalidar_documento' => authorized $role_listar => sub {
       . '</dc:invalidacao>';
 
     $self->sedna->execute($xq_invalidacao);
-    $self->drop_indices( $id_volume, $controle, $id_documento );
+    #$self->drop_indices( $id_volume, $controle, $id_documento );
 
     my $xq_motivo_invalidacao =
 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
@@ -377,6 +414,82 @@ txn_method 'getDadosDossie' => authorized $role_listar => sub {
 
     return $vol;
 };
+
+sub pode_criar_documento {
+    my ( $self, $id_volume , $controle) = @_;
+    return $self->_checa_autorizacao_dossie( $id_volume, 'criar',$controle )
+      && $role_criar ~~ @{ $self->user->memberof };
+}
+sub pode_ver_documento {
+    my ( $self, $id_volume , $controle, $id_documento) = @_;
+    return $self->_checa_autorizacao_documento( $id_volume, 'visualizar',$controle, $id_documento )
+      && $role_visualizar ~~ @{ $self->user->memberof };
+}
+
+sub pode_alterar_documento {
+    my ( $self, $id_volume , $controle, $id_documento) = @_;
+    return $self->_checa_autorizacao_documento( $id_volume, 'alterar',$controle, $id_documento )
+      && $role_alterar ~~ @{ $self->user->memberof };
+}
+
+sub _checa_autorizacao_documento {
+    my ( $self, $id_volume, $acao, $controle, $id_documento ) = @_;
+    my $grupos = join ' or ',
+      map { '@principal = "' . $_ . '"' } @{ $self->user->memberof };
+    my $check = '(' . $grupos . ') and @role="' . $acao . '"';
+    my $herdar =
+        '(author:autorizacao[('
+      . $check
+      . ')] or (@herdar=1 and (collection("volume")/vol:volume[vol:collection="'
+      . $id_volume
+      . '"]/vol:autorizacoes/author:autorizacao['
+      . $check . '])))';
+
+    my $query =
+'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";'
+.'declare namespace doc = "http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";'
+      . 'declare namespace vol = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";'
+      . 'declare namespace author = "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";'
+      . 'for $x in collection("'
+      . $id_volume
+      . '")/ns:dossie[ns:controle = "'
+      . $controle . '"]/ns:doc/doc:documento[doc:id ="'.$id_documento.'"] '
+      . 'where $x/doc:autorizacoes['
+      . $herdar . '] '
+      . 'return 1';
+
+    $self->sedna->begin;
+    $self->sedna->execute($query);
+    my $ret = $self->sedna->get_item();
+
+    $self->sedna->commit;
+
+    return $ret;
+}
+
+
+sub autorizacoes_de_documento {
+    my ($self, $id_volume, $controle, $id_documento) = @_;
+
+      my $query =
+       'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";'
+      .'declare namespace doc = "http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";'
+      . 'declare namespace vol = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";'
+      . 'declare namespace author = "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";'
+      . 'for $x in collection("'
+      . $id_volume
+      . '")/ns:dossie[ns:controle = "'
+      . $controle . '"]/ns:doc/doc:documento[doc:id ="'.$id_documento.'"] '
+      . 'return $x/doc:autorizacoes';
+
+    $self->sedna->begin;
+    $self->sedna->execute($query);
+    my $autorizacoes = $self->sedna->get_item();
+    $self->sedna->commit;
+    return $autorizacoes;
+
+
+}
 
 =head1 COPYRIGHT AND LICENSING
 
