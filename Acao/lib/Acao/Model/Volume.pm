@@ -474,9 +474,9 @@ sub store_altera_volume {
       . '</localizacao>';
     $self->sedna->execute($query_localizacao);
 
-    #$self->update_autorizacoes_vol($args->{id_volume},$self->desserialize_autorizacoes($args->{autorizacoes}));
-
     $self->sedna->commit;
+
+    $self->update_autorizacoes_vol($args->{id_volume},$self->desserialize_autorizacoes($args->{autorizacoes}));
 
 }
 

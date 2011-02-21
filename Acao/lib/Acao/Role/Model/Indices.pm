@@ -117,7 +117,7 @@ sub drop_indices {
     $entry->delete();
 }
 
-=item update_autorizacoes()
+=item update_autorizacoes_vol()
 
 Altera as autorizações do volume no banco de indexação
 
@@ -128,11 +128,36 @@ sub update_autorizacoes_vol {
 
     my $auth_list = [ map { { dn => $_->{principal} }} grep { $_->{role} eq 'listar'} @{$autorizacoes->{'autorizacao'}} ];
 
-    my $vol = $self->dbic->resultset('Volume')->find_or_create({
-        id_volume => $id_volume,
-        permissao_volumes => $auth_list
-    });
+    $self->dbic->resultset('PermissaoVolume')->search({
+        id_volume => $id_volume
+    })->delete();
+    my $volprs = $self->dbic->resultset('Volume')->find({
+        id_volume => $id_volume
+    })->permissao_volumes;
+    $volprs->create($_) for @$auth_list;
+}
+
+=item update_autorizacoes_dos()
+
+Altera as autorizações dos dossiês no banco de indexação
+
+=cut
+
+sub update_autorizacoes_dos {
+    my ($self, $id_volume, $controle, $autorizacoes) = @_;
+
+    my $auth_list = [ map { { dn => $_->{principal} }} grep { $_->{role} eq 'listar'} @{$autorizacoes->{'autorizacao'}} ];
     
+    $self->dbic->resultset('PermissaoDossie')->search({
+        id_volume => $id_volume,
+        id_dossie => $controle
+    })->delete();
+    my $dosprs = $self->dbic->resultset('Dossie')->find({
+        id_volume => $id_volume,
+        id_dossie => $controle
+    })->permissao_dossies;
+
+    $dosprs->create($_) for @$auth_list;
 }
 
 =item get_xsd_info()
