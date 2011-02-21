@@ -24,6 +24,7 @@ use XML::Compile::Util;
 use Data::Dumper;
 
 use constant IDX_NS => 'http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd';
+
 my $controle =
   XML::Compile::Schema->new( Acao->path_to('schemas/indexhint.xsd') );
 my $controle_w = $controle->compile(
@@ -137,27 +138,30 @@ sub update_autorizacoes_vol {
     $volprs->create($_) for @$auth_list;
 }
 
-=item update_autorizacoes_dos()
+=item find_for_name_index()
 
-Altera as autorizações dos dossiês no banco de indexação
+Realiza as buscas através do nome passado, utilizando os índices
 
 =cut
 
-sub update_autorizacoes_dos {
-    my ($self, $id_volume, $controle, $autorizacoes) = @_;
+sub find_for_index {
+    my ($self, $hashClause) = @_;
 
-    my $auth_list = [ map { { dn => $_->{principal} }} grep { $_->{role} eq 'listar'} @{$autorizacoes->{'autorizacao'}} ];
+    my @busca;
+    for my $k (keys %{$hashClause}) {
+        push @busca, {
+            'gin_indexes.key' => $k,
+            'gin_indexes.value' => { like => '%'.$hashClause->{$k}.'%'}
+        };
+    }
+    #warn Dumper @busca;
+    my $entries = $self->dbic->resultset('Entry')->search(
+    [@busca],
+    {join => 'gin_indexes',
+     distinct => 1});
+
+    return $entries;
     
-    $self->dbic->resultset('PermissaoDossie')->search({
-        id_volume => $id_volume,
-        id_dossie => $controle
-    })->delete();
-    my $dosprs = $self->dbic->resultset('Dossie')->find({
-        id_volume => $id_volume,
-        id_dossie => $controle
-    })->permissao_dossies;
-
-    $dosprs->create($_) for @$auth_list;
 }
 
 =item get_xsd_info()

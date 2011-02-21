@@ -257,6 +257,26 @@ sub store_alterar : Chained('get_volume') : PathPart('store_alterar') : Args(0)
     );
 }
 
+sub formIndexes : Chained('base') : PathPart('formIndexes') : Args(0) {
+    my ($self) = @_;
+}
+
+sub findIndexes : Chained('base') : PathPart('findIndexes') : Args(0) {
+    my ($self, $c) = @_;
+    my @keys = ($c->req->param);
+    my %hashIndexes;
+    foreach (@keys) {
+        unless ($_ eq 'buscar') {
+            $hashIndexes{$_} = $c->req->param($_);
+        }
+    }
+    my $entries = $c->model('Volume')->buscar_no_indice(\%hashIndexes);
+
+    return $entries;
+    
+    
+}
+
 =back
 
 =head1 COPYRIGHT AND LICENSING

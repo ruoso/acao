@@ -266,7 +266,7 @@ q|declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";
                     concat($x/ns:estado/text()," "), 
                     concat($x/ns:criacao/text()," "),
                     concat($x/ns:representaVolumeFisico/text()," "))|;
-
+warn $xq;
     $self->sedna->execute($xq);
 
     my $vol = {};
@@ -495,6 +495,49 @@ q|declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";
     my $local = $self->sedna->get_item;
     $self->sedna->commit;
     return $local;
+}
+
+sub buscar_no_indice {
+    my $self = shift;
+    my $hashClause = shift;
+    return $self->find_for_index($hashClause);
+}
+
+sub find_key_indexes {
+    my ($self, $c) = @_;
+    my $classificacao;
+    my @indexes;
+    my $grupos = join ' or ',
+      map { '@principal = "' . $_ . '"' } @{ $self->user->memberof };
+
+    # Query para listagem
+    my $list =
+        'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";'
+      . 'declare namespace author = "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";'
+      . 'declare namespace cl = "http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";'
+      . 'for $x in collection("volume")/ns:volume[ns:autorizacoes/author:autorizacao[('
+      . $grupos . ')'
+      . 'and @role="listar"]] '
+      . 'return tokenize($x/ns:classificacoes/cl:classificacao/text(),",")[1]';
+    $self->sedna->begin;
+    $self->sedna->execute($list);
+    $classificacao = $self->sedna->get_item();
+    $self->sedna->commit;
+
+    my $xq_indexes = 'declare namespace cl = "http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";
+                      declare namespace idx = "http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd";
+                      for $x in collection("acao-schemas")/*/*/*/*/cl:classificacoes[cl:classificacao="'.$classificacao.'"]
+                      return $x/../../../../*/*/*/idx:index/idx:hint/@key/string()';
+    $self->sedna->begin;
+    $self->sedna->execute($xq_indexes);
+    while (my $item=$self->sedna->get_item ) {
+        $item =~ s/^\s+//;
+    	$item =~ s/\s+$//;
+        push(@indexes, $item);
+    }
+    $self->sedna->commit;
+    return @indexes;
+
 }
 
 =cut
