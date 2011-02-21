@@ -225,7 +225,7 @@ sub visualizar_por_tipo : Chained('get_documento') :
   PathPart('visualizarportipo') : Args(0) {
     my ( $self, $c ) = @_;
     #   Checa se user logado tem autorização para Ver Documento
-    if (!$c->model('Documento')->pode_ver_documento($c->stash->{id_volume},$c->stash->{controle})) {
+    if (!$c->model('Documento')->pode_ver_documento($c->stash->{id_volume},$c->stash->{controle},$c->stash->{id_documento} )) {
       $c->flash->{autorizacao} = 'documento-visualizar';
       $c->res->redirect( $c->uri_for_action('/auth/registros/volume/dossie/documento/lista',[$c->stash->{id_volume},$c->stash->{controle}] ));
       return;
