@@ -234,7 +234,7 @@ sub extract_xml_keys {
         next unless $val;
         push @xmldata, { key => $key, value => $val };
     }
-
+    warn Dumper @xmldata;
     return \@xmldata;
 }
 
