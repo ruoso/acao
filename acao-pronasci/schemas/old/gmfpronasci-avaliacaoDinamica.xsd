@@ -1,0 +1,281 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-avaliacao-dinamica.xsd"
+	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-avaliacao-dinamica.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="form" type="formAvaliacaoDinamica">
+		<xs:annotation>
+			<xs:appinfo>
+				<xhtml:label>AVALIAÇÃO DA DINÂMICA MULHERES DA PAZ</xhtml:label>
+				<class:classificacoes>
+					<class:classificacao>cn=Mulheres da Paz,cn=Direitos Humanos</class:classificacao>
+				</class:classificacoes>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="formAvaliacaoDinamica">
+
+		<xs:sequence>
+
+			<xs:element name="avaliacaoDinamica">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>AVALIAÇÃO DA DINÂMICA</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="fluenciaVerbal" minOccurs="1">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Fluência verbal</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Ótimo(10-9)" />
+									<xs:enumeration value="Bom(8-6)" />
+									<xs:enumeration value="Regular(5-3)" />
+									<xs:enumeration value="Ruim(2-1)" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="notaFluenciaVerbal" type="xs:float">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nota </xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+
+						<xs:element name="desenvoturaExtrovesao" minOccurs="1">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Desenvotura Extroversão</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Ótimo(10-9)" />
+									<xs:enumeration value="Bom(8-6)" />
+									<xs:enumeration value="Regular(5-3)" />
+									<xs:enumeration value="Ruim(2-1)" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="notaDesenvoturalExtroversao" type="xs:float">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nota </xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="iniciativa" minOccurs="1">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Iniciativa</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Ótimo(10-9)" />
+									<xs:enumeration value="Bom(8-6)" />
+									<xs:enumeration value="Regular(5-3)" />
+									<xs:enumeration value="Ruim(2-1)" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="notaIniciativa" type="xs:float">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nota </xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="carecteristicaLideranca" minOccurs="1">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Característica da liderança</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Ótimo(10-9)" />
+									<xs:enumeration value="Bom(8-6)" />
+									<xs:enumeration value="Regular(5-3)" />
+									<xs:enumeration value="Ruim(2-1)" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="notaCaracteristicaLideraca" type="xs:float">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nota </xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="cooperacao" minOccurs="1">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Cooperação</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Ótimo(10-9)" />
+									<xs:enumeration value="Bom(8-6)" />
+									<xs:enumeration value="Regular(5-3)" />
+									<xs:enumeration value="Ruim(2-1)" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="notaCooperacao" type="xs:float">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nota </xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="tomadaDecisao" minOccurs="1">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Tomada de decisão</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Ótimo(10-9)" />
+									<xs:enumeration value="Bom(8-6)" />
+									<xs:enumeration value="Regular(5-3)" />
+									<xs:enumeration value="Ruim(2-1)" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="notaTomadaDecisao" type="xs:float">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nota </xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="adequacaoTrbalhoEquipe" minOccurs="1">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Adequação ao trabalho em equipe</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Ótimo(10-9)" />
+									<xs:enumeration value="Bom(8-6)" />
+									<xs:enumeration value="Regular(5-3)" />
+									<xs:enumeration value="Ruim(2-1)" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="notaAdequacaoTrabalhoEquipe" type="xs:float">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nota </xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="comprencaoRealidade" minOccurs="1">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Compreensão da realidade</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Ótimo(10-9)" />
+									<xs:enumeration value="Bom(8-6)" />
+									<xs:enumeration value="Regular(5-3)" />
+									<xs:enumeration value="Ruim(2-1)" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="notaCompreensaoRealidade" type="xs:float">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nota </xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+					</xs:sequence>
+
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="notaFinal">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Nota Final:</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="valorNotaFinal" type="xs:float">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label></xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="facilitador">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Facilitador /Observado(a):</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="nomeFacilitador" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label></xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="dataDinamica">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Data da dinâmica:</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="data" type="xs:date">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label></xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>
