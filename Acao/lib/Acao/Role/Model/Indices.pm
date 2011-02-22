@@ -149,12 +149,14 @@ sub find_for_index {
 
     my @busca;
     for my $k (keys %{$hashClause}) {
-        push @busca, {
-            'gin_indexes.key' => $k,
-            'gin_indexes.value' => { like => '%'.$hashClause->{$k}.'%'}
-        };
+        if ($hashClause->{$k} ne '') {
+            push @busca, {
+                'gin_indexes.key' => $k,
+                'gin_indexes.value' => { like => '%'.$hashClause->{$k}.'%' }
+            };
+        }
     }
-    #warn Dumper @busca;
+    warn Dumper @busca;
     my $entries = $self->dbic->resultset('Entry')->search(
     [@busca],
     {join => 'gin_indexes',

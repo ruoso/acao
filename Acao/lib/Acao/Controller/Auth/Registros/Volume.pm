@@ -270,12 +270,6 @@ sub store_alterar : Chained('get_volume') : PathPart('store_alterar') : Args(0)
     );
 }
 
-
-sub formIndexes : Chained('base') : PathPart('formIndexes') : Args(0) {
-    my ($self) = @_;
-}
-
-
 =back
 
 =head1 COPYRIGHT AND LICENSING

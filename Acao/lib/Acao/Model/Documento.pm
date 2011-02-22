@@ -270,8 +270,8 @@ txn_method 'inserir_documento' => authorized $role_criar => sub {
 
     $id_documento = $uuid_str;
 
-    #$self->insert_indices( $id_volume, $controle, $id_documento, $xsdDocumento,
-    #    $xml );
+    $self->insert_indices( $id_volume, $controle, $id_documento, $xsdDocumento,
+        $xml );
 
     return $id_documento;
 };
