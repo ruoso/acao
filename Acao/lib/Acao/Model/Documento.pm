@@ -435,19 +435,28 @@ sub pode_alterar_documento {
 sub _checa_autorizacao_documento {
     my ( $self, $id_volume, $acao, $controle, $id_documento ) = @_;
     my $grupos = join ' or ',
-      map { '@principal = "' . $_ . '"' } @{ $self->user->memberof };
-    my $check = '(' . $grupos . ') and @role="' . $acao . '"';
-    my $herdar =
-        '(author:autorizacao[('
-      . $check
-      . ')] or (@herdar=1 and (collection("volume")/vol:volume[vol:collection="'
-      . $id_volume
-      . '"]/vol:autorizacoes/author:autorizacao['
-      . $check . '])))';
+    map { '@principal = "' . $_ . '"' } @{ $self->user->memberof };
+    my $check = '(' . $grupos . ') and @role="'.$acao.'"';
+
+    my $herdar_author_volume ='(collection("volume")/vol:volume[vol:collection="'.$id_volume
+     . '"]/vol:autorizacoes/author:autorizacao['.$check.'])';
+
+
+    my $herdar_author_dossie =
+      '(collection("'.$id_volume.'")'
+      .'/ns:dossie[ns:controle="'.$controle .'"]'
+      .'/ns:autorizacoes[author:autorizacao['.$check.']]))';
+
+    my $herdar_dossie = 'collection("'.$id_volume.'")/ns:dossie[ns:controle="'.$controle .'"]'
+       .'/ns:autorizacoes/@herdar/string()';
+
+    my $herdar ='(author:autorizacao[('.$check.')]'
+      . ' or (@herdar/string() = "1" and '.$herdar_author_dossie.')'
+      .' or (@herdar/string() = "1" and ('.$herdar_dossie.') = "1" and '.$herdar_author_volume.')';
 
     my $query =
-'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";'
-.'declare namespace doc = "http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";'
+       'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";'
+      .'declare namespace doc = "http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";'
       . 'declare namespace vol = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";'
       . 'declare namespace author = "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";'
       . 'for $x in collection("'
