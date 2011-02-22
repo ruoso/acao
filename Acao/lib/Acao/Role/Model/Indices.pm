@@ -138,6 +138,30 @@ sub update_autorizacoes_vol {
     $volprs->create($_) for @$auth_list;
 }
 
+=item update_autorizacoes_dos()
+
+Altera as autorizações do prontuário no banco de indexação
+
+=cut
+
+sub update_autorizacoes_dos {
+    my ($self, $id_volume, $controle, $autorizacoes) = @_;
+
+    my $auth_list = [ map { { dn => $_->{principal} }} grep { $_->{role} eq 'listar'} @{$autorizacoes->{'autorizacao'}} ];
+
+    $self->dbic->resultset('PermissaoDossie')->search({
+        id_volume => $id_volume,
+        id_dossie => $controle
+    })->delete();
+
+    my $dosprs = $self->dbic->resultset('Dossie')->find({
+        id_volume => $id_volume,
+        id_dossie => $controle
+    })->permissao_dossies;
+
+    $dosprs->create($_) for @$auth_list;
+}
+
 =item find_for_name_index()
 
 Realiza as buscas através do nome passado, utilizando os índices
