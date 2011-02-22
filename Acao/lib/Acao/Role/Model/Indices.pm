@@ -180,7 +180,6 @@ sub find_for_index {
             };
         }
     }
-    warn Dumper @busca;
     my $entries = $self->dbic->resultset('Entry')->search(
     [@busca],
     {join => 'gin_indexes',
@@ -251,14 +250,19 @@ sub extract_xml_keys {
 
     my @xmldata;
     $self->sedna->execute($xquery);
+    my @data;
     while ( my $key = $self->sedna->get_item ) {
         my $val = $self->sedna->get_item;
         $key =~ s/^\s+|\s+$//gs;
         $val =~ s/^\s+|\s+$//gs;
+        if ($key eq 'pessoa.datanascimento') {
+            @data = split('-',$val);
+            $val = $data[2].'/'.$data[1].'/'.$data[0];
+        }
         next unless $val;
         push @xmldata, { key => $key, value => $val };
     }
-    warn Dumper @xmldata;
+
     return \@xmldata;
 }
 
