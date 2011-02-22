@@ -20,7 +20,7 @@
 	<xs:complexType name="formFormularioInscricao">
 		<xs:sequence>
 
-			<xs:element name="numeroInscricao" minOccurs="1">
+			<xs:element name="numeroInscricao" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Nº Inscrição:</xhtml:label>
@@ -40,7 +40,7 @@
 				</xs:annotation>
 				<xs:complexType>
 					<xs:sequence>
-						<xs:element name="nome" minOccurs="1">
+						<xs:element name="nome" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Nome</xhtml:label>
@@ -53,21 +53,22 @@
 							</xs:simpleType>
 						</xs:element>
 						<xs:element name="dataNascimento" type="xs:date"
-							minOccurs="1">
+							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Data Nascimento</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
-						<xs:element name="registroGeral" minOccurs="1">
+						<xs:element name="registroGeral" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>RG</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
-								<xs:restriction base="xs:integer">
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
@@ -80,7 +81,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="orgaoExpedidor" minOccurs="1">
+						<xs:element name="orgaoExpedidor" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Órgão</xhtml:label>
@@ -92,7 +93,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="cpf" minOccurs="1">
+						<xs:element name="cpf" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>CPF</xhtml:label>
@@ -177,7 +178,7 @@
 				</xs:annotation>
 				<xs:complexType>
 					<xs:sequence>
-						<xs:element name="referenciaVisinho" minOccurs="1"
+						<xs:element name="referenciaVisinho" minOccurs="0"
 							maxOccurs="3">
 							<xs:annotation>
 								<xs:appinfo>
@@ -214,7 +215,7 @@
 							</xs:complexType>
 						</xs:element>
 
-						<xs:element name="referenciaTrabalho" minOccurs="1"
+						<xs:element name="referenciaTrabalho" minOccurs="0"
 							maxOccurs="3">
 							<xs:annotation>
 								<xs:appinfo>
@@ -267,7 +268,7 @@
 
 					<xs:sequence>
 
-						<xs:element name="escolaridade">
+						<xs:element name="escolaridade" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>2.1 Escolaridade</xhtml:label>
@@ -287,7 +288,7 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="estudaAtualmente">
+						<xs:element name="estudaAtualmente" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>2.2 Estuda atualmente(escola, curso,
@@ -302,7 +303,7 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="turno">
+						<xs:element name="turno" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>2.3 Em que turno você estuda atualmente?
@@ -332,7 +333,7 @@
 				</xs:annotation>
 				<xs:complexType>
 					<xs:sequence>
-						<xs:element name="estadoCivil">
+						<xs:element name="estadoCivil" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Estado Civil
@@ -351,7 +352,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="filhos">
+						<xs:element name="filhos" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Filho(s)</xhtml:label>
@@ -364,7 +365,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="quantidadeFilhos" type="xs:integer">
+						<xs:element name="quantidadeFilhos" type="xs:integer" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Quantos?</xhtml:label>
@@ -372,7 +373,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="idadeFilhos">
+						<xs:element name="idadeFilhos" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Quais as idades deles?</xhtml:label>
@@ -385,7 +386,7 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="comQuemMora">
+						<xs:element name="comQuemMora" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Com quem você mora?</xhtml:label>
@@ -415,7 +416,7 @@
 
 					<xs:sequence>
 
-						<xs:element name="trabalhaAtualmente">
+						<xs:element name="trabalhaAtualmente" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Está trabalhando atualmente?</xhtml:label>
@@ -429,7 +430,7 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="ondeTrabalha" type="xs:string">
+						<xs:element name="ondeTrabalha" type="xs:string" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Onde você trabalha?</xhtml:label>
@@ -437,7 +438,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="queFaz" type="xs:string">
+						<xs:element name="queFaz" type="xs:string" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>O Que faz?</xhtml:label>
@@ -459,7 +460,7 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="valorSalario" type="xs:decimal">
+						<xs:element name="valorSalario" type="xs:float" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Qual o valor do seu salário?</xhtml:label>
@@ -467,7 +468,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="quemTrabalha" type="xs:string">
+						<xs:element name="quemTrabalha" type="xs:string" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Quem trabalha na sua família e quanto ganha?
@@ -476,7 +477,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="cadastroUnicoGoverno">
+						<xs:element name="cadastroUnicoGoverno" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Você/sua família estão no Cadastro Único do
@@ -491,7 +492,7 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="recebemBeneficios">
+						<xs:element name="recebemBeneficios" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Você/sua família recebem benefício social?
@@ -519,7 +520,7 @@
 								<xs:sequence>
 
 									<xs:element name="ultimaExperienciaProfissional"
-										type="xs:string">
+										type="xs:string" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>4.1 Se você não está trabalhando atualmente,
@@ -530,7 +531,7 @@
 
 									</xs:element>
 
-									<xs:element name="rendaMediaFamilia">
+									<xs:element name="rendaMediaFamilia" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>4.2 Você confirma que a renda média da sua
@@ -569,7 +570,7 @@
 
 								<xs:sequence>
 
-									<xs:element name="participa">
+									<xs:element name="participa" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Participa de movimento/organização comunitária
@@ -590,7 +591,7 @@
 
 									</xs:element>
 
-									<xs:element name="participaMovimentos" type="xs:string">
+									<xs:element name="participaMovimentos" type="xs:string" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Quais?
@@ -626,7 +627,7 @@
 							<xs:complexType>
 								<xs:sequence>
 									<xs:element name="descricaoDisponibilidadeProjeto"
-										type="xs:string">
+										type="xs:string" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>
@@ -648,7 +649,7 @@
 							<xs:complexType>
 								<xs:sequence>
 									<xs:element name="descricaoSobreAtuacaoComunidade"
-										type="xs:string">
+										type="xs:string" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>
@@ -670,7 +671,7 @@
 							<xs:complexType>
 								<xs:sequence>
 									<xs:element name="descricaoRazaoParaSerMulherDaPaz"
-										type="xs:string">
+										type="xs:string" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>

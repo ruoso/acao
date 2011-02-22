@@ -27,7 +27,7 @@
 				</xs:annotation>
 				<xs:complexType>
 					<xs:sequence>
-						<xs:element name="numeroInscricao" minOccurs="1">
+						<xs:element name="numeroInscricao" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Nº Inscrição:</xhtml:label>
@@ -47,7 +47,7 @@
 							</xs:annotation>
 							<xs:complexType>
 								<xs:sequence>
-									<xs:element name="nomeMulher" minOccurs="1">
+									<xs:element name="nomeMulher" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Mulher da paz</xhtml:label>
@@ -122,16 +122,12 @@
 										</xs:simpleType>
 									</xs:element>
 
-									<xs:element name="idadeJovem" minOccurs="1">
+									<xs:element name="idadeJovem" minOccurs="0" type="xs:integer">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Idade</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
-										<xs:simpleType>
-											<xs:restriction base="xs:integer">
-											</xs:restriction>
-										</xs:simpleType>
 									</xs:element>
 
 									<xs:element name="enderecoJovem" type="xs:string"
@@ -383,7 +379,7 @@
 										</xs:simpleType>
 									</xs:element>
 
-									<xs:element name="motivosFaltas1" type="xs:string">
+									<xs:element name="motivosFaltas1" type="xs:string" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Motivo</xhtml:label>
@@ -456,7 +452,7 @@
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
-												<xs:element name="lugarDoProjeto" type="xs:string">
+												<xs:element name="lugarDoProjeto" type="xs:string" minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label>Lugar onde participa do Projeto
@@ -500,7 +496,7 @@
 										</xs:simpleType>
 									</xs:element>
 
-									<xs:element name="motivosFaltas2" type="xs:string">
+									<xs:element name="motivosFaltas2" type="xs:string" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Motivo</xhtml:label>
@@ -522,7 +518,7 @@
 							</xs:annotation>
 							<xs:complexType>
 								<xs:sequence>
-									<xs:element name="descricaoVisita" type="xs:string">
+									<xs:element name="descricaoVisita" type="xs:string" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>

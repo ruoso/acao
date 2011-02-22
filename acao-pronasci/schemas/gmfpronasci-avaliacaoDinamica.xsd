@@ -22,7 +22,7 @@
 	<xs:complexType name="formAvaliacaoDinamica">
 
 		<xs:sequence>
-			<xs:element name="numeroInscricao" minOccurs="1">
+			<xs:element name="numeroInscricao" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Nº Inscrição:</xhtml:label>
@@ -44,7 +44,7 @@
 				<xs:complexType>
 					<xs:sequence>
 
-						<xs:element name="fluenciaVerbal" minOccurs="1">
+						<xs:element name="fluenciaVerbal" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Fluência verbal</xhtml:label>
@@ -59,7 +59,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="notaFluenciaVerbal"  type="xs:float">
+						<xs:element name="notaFluenciaVerbal"  type="xs:float"  minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Nota </xhtml:label>
@@ -67,7 +67,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="desenvoturaExtrovesao" minOccurs="1">
+						<xs:element name="desenvoturaExtrovesao" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Desenvoltura Extroversão</xhtml:label>
@@ -82,7 +82,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="notaDesenvoturalExtroversao"  type="xs:float">
+						<xs:element name="notaDesenvoturalExtroversao"  type="xs:float"  minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Nota </xhtml:label>
@@ -90,7 +90,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="iniciativa" minOccurs="1">
+						<xs:element name="iniciativa" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Iniciativa</xhtml:label>
@@ -105,7 +105,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="notaIniciativa"  type="xs:float">
+						<xs:element name="notaIniciativa"  type="xs:float"  minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Nota </xhtml:label>
@@ -113,7 +113,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="carecteristicaLideranca" minOccurs="1">
+						<xs:element name="carecteristicaLideranca" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Característica da liderança</xhtml:label>
@@ -128,7 +128,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="notaCaracteristicaLideraca" type="xs:float">
+						<xs:element name="notaCaracteristicaLideraca" type="xs:float"  minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Nota </xhtml:label>
@@ -136,7 +136,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="cooperacao" minOccurs="1">
+						<xs:element name="cooperacao" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Cooperação</xhtml:label>
@@ -151,7 +151,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="notaCooperacao"  type="xs:float">
+						<xs:element name="notaCooperacao"  type="xs:float"  minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Nota </xhtml:label>
@@ -159,7 +159,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="tomadaDecisao" minOccurs="1">
+						<xs:element name="tomadaDecisao" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Tomada de decisão</xhtml:label>
@@ -174,7 +174,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="notaTomadaDecisao"  type="xs:float">
+						<xs:element name="notaTomadaDecisao"  type="xs:float"  minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Nota </xhtml:label>
@@ -182,7 +182,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="adequacaoTrbalhoEquipe" minOccurs="1">
+						<xs:element name="adequacaoTrbalhoEquipe" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Adequação ao trabalho em equipe</xhtml:label>
@@ -197,7 +197,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="notaAdequacaoTrabalhoEquipe"  type="xs:float">
+						<xs:element name="notaAdequacaoTrabalhoEquipe"  type="xs:float"  minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Nota </xhtml:label>
@@ -205,7 +205,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="comprencaoRealidade" minOccurs="1">
+						<xs:element name="comprencaoRealidade" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Compreensão da realidade</xhtml:label>
@@ -221,7 +221,7 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="notaCompreensaoRealidade"  type="xs:float">
+						<xs:element name="notaCompreensaoRealidade"  type="xs:float" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Nota </xhtml:label>
@@ -241,7 +241,7 @@
 				</xs:annotation>
 				<xs:complexType>
 					<xs:sequence>
-						<xs:element name="valorNotaFinal"  type="xs:float">
+						<xs:element name="valorNotaFinal"  type="xs:float" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label></xhtml:label>
@@ -284,7 +284,7 @@
 				</xs:annotation>
 				<xs:complexType>
 					<xs:sequence>
-						<xs:element name="data" type="xs:date">
+						<xs:element name="data" type="xs:date" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label></xhtml:label>
