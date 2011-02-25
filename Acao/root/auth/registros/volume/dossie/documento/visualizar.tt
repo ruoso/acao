@@ -112,7 +112,7 @@
  <div id="form_container"></div>
   <input type="hidden" name="view" value="visualizar">
   [% IF c.model('Documento').pode_alterar_documento(id_volume,controle,id_documento) %]
-    [% INCLUDE 'auth/registros/volume/dossie/documento/_formPermissoes.tt' %]
+
   [% END %]
 
 [% # IF c.user.roles.grep('digitador') %]

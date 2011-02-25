@@ -17,9 +17,53 @@
 # título "LICENCA.txt", junto com este programa, se não, escreva para a
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
 %]
+<style>
+#acoes_ {
+  left: 240px;
+  position: relative;
+  top: -145px;
+}
+
+.consultaLdap {
+
+  position: relative;
+  height: 220px;
+  width: 200px;
+  border-right: 1px dotted #cccccc;
+
+}
+
+#borderAutorizacao {
+  border: 1px solid;
+  border-color: #cccccc;
+  padding: 20px;
+  height: 200px;
+
+}
+
+.consultaLdap_ {
+  height: 200px;
+  overflow-y: scroll !important ;
+  position: relative;
+  width: 200px;
+
+}
+
+.consultaLdap .base {
+  border-bottom: 1px dotted #cccccc;
+  margin-bottom: -6px;
+}
+
+
+
+
+
+
+</style>
+
  <fieldset id="grupos">
     <legend> Autorizações: </legend>
-     <input type="hidden" name="autorizacoes" value="[% autorizacoes | html %]" />
+     <input type="hidden" id ="author" name="autorizacoes" value="[% autorizacoes | html %]" />
      <input type="hidden" name="basedn" value="[% basedn %]" />
      <dt><input type="checkbox" name="herdar_author" [% IF herdar == 1 %] checked [% END %] /> Herdar Autorizações do Prontuário</dt>
 [% SET labels_roles = {
@@ -28,55 +72,143 @@
         "visualizar" => "Ver este Documento",
         "transferir" => "Transferir este Documento",
    } %]
-     <table>
-      <thead>
-        <th>Grupo</th>
-        <th>Permissão</th>
-        <th><input type="submit" name="opcao" value="Remover"></th>
-      </thead>
-      <tbody>
-        [% SET count = 0 %]
-        [% IF autorizacoes %]
-          [% FOREACH a IN c.model('Documento').desserialize_autorizacoes(autorizacoes).autorizacao %]
-          <tr>
-            <td>[% c.model('LDAP').decompose_dn_grupos(a.principal).reverse.join(' - ') %]</td>
-            <td>[% labels_roles.item(a.role) %]</td>
-            <td><input type="checkbox" name="remover_autorizacao_[% count %]" /></td>
-          </tr>
-          [% SET count = count + 1 %]
-          [% END %]
-        [% END %]
-      </tbody>
-     </table>
 
-     <dl>
-          <dt class="grp"> Grupo de Usuário e Ações</dt>
+<br/>
+  [% IF c.model('Documento').pode_alterar_documento(id_volume,controle,id_documento) %]
+    <a href="javascript:void(0);"  name="visualizar_autorizacoes" onclick="ver_autorizacoes('[% c.uri_for_action('/auth/registros/volume/dossie/documento/ver_autorizacoes_grid', [ id_volume, controle, id_documento ]) %]')" >
+  Visualizar Autorizações</a>
+  [% END %]
+<br/>
 
-            <dt>
+  <div id="grid-autorizacoes"></div>
+<div id="borderAutorizacao">
+  <div class="consultaLdap">
 
-                <select multiple name="grupos" id="grupos"  style="height:100px;min-width:150px">
-                   [% IF basedn.size > 1; basedn = basedn.shift; END %]
-                   [% IF basedn != c.model('LDAP').grupos_dn %]
-                   <option  value="[%  c.view('LDAPUtil').voltar_grupos(basedn) %]"> ../</option>
-                   [% END %]
-                   [%  FOREACH group IN c.model('LDAP').buscar_dn_adm(basedn) %]
-                   <option value="[% group.dn %]"> [% group.get_value('o') || group.get_value('ou') %] </option>
-                   [%  END %]
-                </select>
+  <div class='base' >
+     [%  FOREACH group IN c.model('LDAP').buscar_dn_adm(basedn) %]
 
-                <select multiple name="acoes" id="acoes" style="height:100px;min-width:150px">
-             [% FOREACH r IN labels_roles.keys %]
-                    <option  value="[% r %]">[% labels_roles.item(r) %]</option>
-                [% END %]
-                </select>
-            </dt>
+        <input type="checkbox" name="grupos_ldap[]" value="[% group.dn %]"/>
+        <a  href="javascript:void(0);" name="grupos" onclick="navega_ldap('[% c.uri_for_action('/auth/registros/volume/dossie/documento/navega_ldap', [ id_volume, controle ]) %]','[% group.dn %]')" >
+           [% group.get_value('o') || group.get_value('ou') %]
+        </a>
 
+     [% END %]
+ </div>
+</div>
 
-        <input type="submit" name="opcao" onClick="javascript:document.getElementById('form').action='[% c.uri_for_action('/auth/registros/volume/dossie/documento/store', [ id_volume, controle ]) %]';" value="Adicionar">
-        <input type="submit" name="opcao" onClick="javascript:document.getElementById('form').action='[% c.uri_for_action('/auth/registros/volume/dossie/documento/store', [ id_volume, controle ]) %]';" value="Navegar">
-
-
-    </dl>
-
+  <div id="acoes_">
+      <input type="checkbox" name="checkAllAcoes" id="checkAllAcoes" />
+      Marcar Todas
+      [% FOREACH r IN labels_roles.keys %]
+         <li>
+            <input type="checkbox" name="acoes_autorizacoes[]" value="[% r %]"/>
+      [% labels_roles.item(r) %]
+         </li>
+      [% END %]
+      <a href="javascript:void(0);"  name="adicionar" onclick="add_autorizacoes('[% c.uri_for_action('/auth/registros/volume/dossie/documento/add_autorizacoes_grid', [ id_volume, controle ]) %]')" >Adicionar</a>
+  </div>
+</div>
  </fieldset>
 
+
+<script type="text/javascript">
+
+
+
+$('#checkAllAcoes').click(function() {
+  if ($("input[name='checkAllAcoes']").is(':checked') ) {
+    $("input[name='acoes_autorizacoes[]']").attr('checked', true);
+  } else {
+    $("input[name='acoes_autorizacoes[]']").attr('checked', false);
+  }
+});
+
+function navega_ldap(action,grupos) {
+  $.ajax({
+       type: "POST",
+       url: action,
+       data: "grupos=" + grupos ,
+       success: function(msg){
+        $('.consultaLdap').html(msg);
+
+       }
+
+  });
+}
+
+function add_autorizacoes(action) {
+
+  var autorizacoes_add = $("input[name='autorizacoes']").val();
+  var acoes_autorizacoes = [];
+  var grupos_ldap = [];
+
+  $("input[name='acoes_autorizacoes[]']:checked").each(function(){acoes_autorizacoes.push($(this).val());});
+  $("input[name='grupos_ldap[]']:checked").each(function(){grupos_ldap.push($(this).val());});
+
+  if ( ($("input[name='acoes_autorizacoes[]']:checked").length > 0) &&
+       ($("input[name='grupos_ldap[]']:checked").length))
+       {
+       $("#author").remove();
+
+      $.ajax({
+           type: "POST",
+           url: action,
+
+           data: {
+             'autorizacoes_ldap':  autorizacoes_add,
+             'grupos': grupos_ldap.join(" - "),
+             'role':  acoes_autorizacoes
+             },
+           success: function(msg){
+             $('#grid-autorizacoes').html(msg);
+             $("input[name='acoes_autorizacoes[]']").attr('checked', false);
+             $("input[name='grupos_ldap[]']").attr('checked', false);
+             $("input[name='checkAllAcoes']").attr('checked', false);
+
+           }
+
+      });
+  }
+}
+
+function remover_autorizacoes(action,posicao) {
+
+  var autorizacoes_ldap = $("input[name='autorizacoes']").val();
+      $.ajax({
+           type: "POST",
+           url: action,
+
+           data: {
+             'autorizacoes_ldap':  autorizacoes_ldap,
+             'posicao': posicao,
+             },
+          success: function(msg){
+             $('#grid-autorizacoes').html(msg);
+             $("input[name='acoes_autorizacoes[]']").attr('checked', false);
+             $("input[name='grupos_ldap[]']").attr('checked', false);
+             $("input[name='checkAllAcoes']").attr('checked', false);
+           }
+
+      });
+
+}
+
+function ver_autorizacoes(action) {
+
+
+      $.ajax({
+           type: "POST",
+           url: action,
+           data: {},
+          success: function(msg){
+             $('#grid-autorizacoes').html(msg);
+             $("#author").remove();
+           }
+
+      });
+
+}
+
+
+
+   </script>

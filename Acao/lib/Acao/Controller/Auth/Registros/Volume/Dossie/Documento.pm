@@ -321,6 +321,62 @@ sub alterar : Chained('get_documento') : PathPart('alterar_documento') : Args(0)
 
 }
 
+
+sub navega_ldap : Chained('base') : PathPart('navega_ldap') : Args(0){
+    my ($self,$c) = @_;
+    $c->stash->{template} = 'auth/registros/volume/dossie/documento/navega_ldap.tt';
+    $c->stash->{basedn}       = $c->req->param('grupos');
+    $c->stash->{autorizacoes} = $c->req->param('autorizacoes');
+    return 1;
+
+}
+
+sub add_autorizacoes_grid : Chained('base') : PathPart('add_autorizacoes') : Args(0){
+    my ($self,$c) = @_;
+    $c->stash->{template} = 'auth/registros/volume/dossie/documento/grid_autorizacoes.tt';
+    my @principal = split /-/, $c->req->param('grupos');
+    my @role =  $c->req->param('role[]');
+    my $permissoes = $c->model('Documento')->build_autorizacao_AoH( \@principal, \@role );
+    $c->stash->{autorizacoes} = $c->model('Documento')->add_autorizacoes( $c->req->param('autorizacoes_ldap'), $permissoes );
+    return 1;
+
+}
+
+sub remover_autorizacoes_grid : Chained('base') : PathPart('remover_autorizacoes_ldap') : Args(0){
+    my ($self,$c) = @_;
+    $c->stash->{template} = 'auth/registros/volume/dossie/documento/grid_autorizacoes.tt';
+    my ($pos) = $c->req->param('posicao');
+    if ($pos or $pos == 0 ) {
+        $c->stash->{autorizacoes} =
+        $c->model('Documento')->remove_autorizacoes( $c->req->param('autorizacoes_ldap'), $pos );
+    } else  {
+        $c->stash->{autorizacoes} = $c->req->param('autorizacoes_ldap');
+    }
+    return 1;
+
+}
+
+sub ver_autorizacoes_grid : Chained('get_documento') : PathPart('autorizacoes') : Args(0){
+    my ($self,$c) = @_;
+    $c->stash->{template} = 'auth/registros/volume/dossie/documento/grid_autorizacoes.tt';
+    my $initial_principals = $c->model('LDAP')->memberof_grupos_dn();
+    my $herdar = $c->model('Documento')->desserialize_autorizacoes(
+    $c->model('Documento')->autorizacoes_de_documento(
+        $c->stash->{id_volume},
+        $c->stash->{controle},
+        $c->stash->{id_documento})
+    );
+    $c->stash->{herdar} = $herdar->{herdar};
+    $c->stash->{autorizacoes} = $c->model('Documento')
+                                ->autorizacoes_de_documento( $c->stash->{id_volume},
+                                                             $c->stash->{controle},
+                                                             $c->stash->{id_documento}
+                                                             );
+    $c->stash->{basedn}       = $c->model("LDAP")->grupos_dn;
+    return 1;
+
+}
+
 =item xml
 
 Delega à view XML a exibição do documento específico.
