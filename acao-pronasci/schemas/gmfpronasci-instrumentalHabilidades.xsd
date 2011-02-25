@@ -1009,6 +1009,7 @@
 														</xs:restriction>
 													</xs:simpleType>
 												</xs:element>
+												
 												<xs:element name="corteCabelo " type="xs:boolean">
 													<xs:annotation>
 														<xs:appinfo>
@@ -1016,7 +1017,7 @@
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
-												<xs:element name="prioridadeMonitorEsporte"
+												<xs:element name="prioridadeCorteCabelo"
 													minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
@@ -1228,7 +1229,7 @@
 
 						</xs:element>
 
-						<xs:element name="dadosEscolares">
+						<xs:element name="habilidades">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>6. HABILIDADES</xhtml:label>
@@ -1252,7 +1253,7 @@
 								</xs:sequence>
 							</xs:complexType>
 						</xs:element>
-						<xs:element name="dadosEscolares">
+						<xs:element name="inscricaoPelc">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>7. INSCRIÇÃO PARA O PELC: </xhtml:label>
@@ -1260,8 +1261,6 @@
 							</xs:annotation>
 							<xs:complexType>
 								<xs:sequence>
-
-
 
 									<xs:element name="disponibilidadeSabado">
 										<xs:annotation>
