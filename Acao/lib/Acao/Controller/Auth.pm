@@ -22,6 +22,9 @@ use strict;
 use warnings;
 use parent 'Catalyst::Controller';
 
+my $admin_schemas = Acao->config->{'Model::LDAP'}->{admin_schemas};
+my $admin_registros = Acao->config->{'Model::LDAP'}->{admin_registros};
+
 =head1 NAME
 
 Acao::Controller::Auth - Controlador raiz para todas as ações que
@@ -58,7 +61,12 @@ para essa área.
 
 sub principal : Chained('base') : PathPart('') : Args(0) {
     my ( $self, $c ) = @_;
-    $c->res->redirect( $c->uri_for_action('/auth/registros/principal') );
+    if (($admin_registros ~~ @{$c->user->memberof}) or ($admin_schemas ~~ @{$c->user->memberof}) ) {
+        $c->res->redirect( $c->uri_for_action('/auth/admin/principal') );
+    } else {
+        $c->res->redirect( $c->uri_for_action('/auth/registros/principal') );
+    }
+
 }
 
 =item logout
