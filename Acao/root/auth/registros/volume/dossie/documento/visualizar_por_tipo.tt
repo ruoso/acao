@@ -18,8 +18,8 @@
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
 %]
 [% INCLUDE 'auth/registros/volume/dossie/documento/header_contexto.tt' %]
-[% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume) ) %]
-[% SET dos = ( c.model('Dossie').getDadosDossie(id_volume, controle) ) %]
+[% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume, c.model('LDAP').assuntos_dn, c.model('LDAP').local_dn) ) %]
+[% SET dos = ( c.model('Dossie').getDadosDossie(id_volume, controle, c.model('LDAP').assuntos_dn, c.model('LDAP').local_dn) ) %]
 [% SET iteration = 0 %]
 
 <script SRC="[% c.uri_for('/static/js/input.deflate.plugin.js') %]" language="Javascript" ></script>
@@ -75,8 +75,8 @@
     <dt>Classificação:</dt>
     <dd><span>[% dos.classificacao %]</span></dd>
 
-    <dt>Localização:</dt>
-    <dd><span>[% dos.localizacao %]</span></dd>
+    <!--<dt>Localização:</dt>
+    <dd><span>[% dos.localizacao %]</span></dd>-->
 
     <dt>Estado:</dt>
     <dd><span>[% dos.estado %]</span></dd>

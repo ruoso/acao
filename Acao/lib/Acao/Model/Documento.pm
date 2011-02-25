@@ -172,7 +172,7 @@ txn_method 'inserir_documento' => authorized $role_criar => sub {
             nome                      => '',
             criacao                   => DateTime->now(),
             invalidacao               => '',
-            motivoInvalidacao         => '',
+            motivoInvalidacao         => {},
             representaDocumentoFisico => $representaDocumentoFisico,
             autorizacao               => {
                 principal => $self->user->id,
@@ -226,15 +226,15 @@ txn_method 'inserir_documento' => authorized $role_criar => sub {
                                                          /ns:doc/dc:documento[dc:id = "'
           . $id_documento
           . '"]/dc:motivoInvalidacao
-                                                         with <dc:motivoInvalidacao>replace</dc:motivoInvalidacao>';
+                                                         with <dc:motivoInvalidacao documentoOriginal="'.$id_documento.'">replace</dc:motivoInvalidacao>';
         $self->sedna->execute($xq_motivo_invalidacao);
 
     }
 
     $id_documento = $uuid_str;
 
-    $self->insert_indices( $id_volume, $controle, $id_documento, $xsdDocumento,
-        $xml );
+    #$self->insert_indices( $id_volume, $controle, $id_documento, $xsdDocumento,
+    #    $xml );
 
     return $id_documento;
 };
