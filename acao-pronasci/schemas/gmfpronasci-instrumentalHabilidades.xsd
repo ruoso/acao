@@ -22,6 +22,29 @@
 	<xs:complexType name="formInstrumentalHabilidades">
 		<xs:sequence>
 
+			<xs:element name="informacaoInscricao">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Nº inscrição ou identificação</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="numeroInscricao" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label></xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
 
 			<xs:element name="dadosJovem">
 				<xs:annotation>
@@ -70,7 +93,7 @@
 						<xs:element name="redeSocial" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Rede Sorcial/Orkut</xhtml:label>
+									<xhtml:label>Rede social/orkut</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -82,7 +105,7 @@
 						<xs:element name="racaEtinia">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Raça/Etinia</xhtml:label>
+									<xhtml:label>Raça/etnia</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -112,8 +135,7 @@
 						<xs:element name="turno">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Turno
-									</xhtml:label>
+									<xhtml:label>Turno</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -124,8 +146,6 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-
-
 
 					</xs:sequence>
 				</xs:complexType>
@@ -192,7 +212,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="atividadeExerceu" minOccurs="0">
+						<xs:element name="dataAssinaturaCarteira" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Data de assinatura da carteira?</xhtml:label>
@@ -404,9 +424,6 @@
 				<xs:complexType>
 					<xs:sequence>
 
-
-
-
 						<xs:element name="documentos">
 							<xs:annotation>
 								<xs:appinfo>
@@ -417,7 +434,7 @@
 							<xs:complexType>
 								<xs:sequence>
 
-									<xs:element name="rg" type="xs:boolean">
+									<xs:element name="rg" type="xs:boolean" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>RG</xhtml:label>
@@ -438,7 +455,7 @@
 									</xs:element>
 
 									<xs:element name="dataEmissao" type="xs:date"
-										minOccurs="1">
+										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Data de emissão</xhtml:label>
@@ -446,10 +463,10 @@
 										</xs:annotation>
 									</xs:element>
 
-									<xs:element name="certidaoNascimento" type="xs:boolean">
+									<xs:element name="certidaoNascimento" type="xs:boolean" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Certidão de Nascimento</xhtml:label>
+												<xhtml:label>Certidão de nascimento</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -457,7 +474,7 @@
 										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Nº Certidão Nascimento </xhtml:label>
+												<xhtml:label>Nº certidão nascimento </xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:simpleType>
@@ -467,7 +484,7 @@
 										</xs:simpleType>
 									</xs:element>
 
-									<xs:element name="carteiraTrabalho" type="xs:boolean">
+									<xs:element name="carteiraTrabalho" type="xs:boolean" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Carteira de trabalho</xhtml:label>
@@ -486,7 +503,7 @@
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:element>
-									<xs:element name="tituloEleitor" type="xs:boolean">
+									<xs:element name="tituloEleitor" type="xs:boolean" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Titulo de Eleitor</xhtml:label>
@@ -510,7 +527,7 @@
 							</xs:complexType>
 						</xs:element>
 
-						<xs:element name="alistamento">
+						<xs:element name="alistamento" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Já se alistou no serviço militar?</xhtml:label>
@@ -525,10 +542,10 @@
 						</xs:element>
 
 
-						<xs:element name="voltarEstudar">
+						<xs:element name="voltarEstudar" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Possui Certidão de Reservista? </xhtml:label>
+									<xhtml:label>Possui certidão de reservista? </xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -542,7 +559,7 @@
 						<xs:element name="nemeroReservista " minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Nº Reservista </xhtml:label>
+									<xhtml:label>Nº reservista </xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -551,7 +568,6 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-
 
 					</xs:sequence>
 				</xs:complexType>
@@ -1009,7 +1025,7 @@
 														</xs:restriction>
 													</xs:simpleType>
 												</xs:element>
-												
+
 												<xs:element name="corteCabelo " type="xs:boolean">
 													<xs:annotation>
 														<xs:appinfo>
@@ -1244,7 +1260,8 @@
 											<xs:appinfo>
 												<xhtml:label>Informe se possui algum curso técnico ou
 													profissionalizante
-													ou habilidade para desenvolver algum trabalho: </xhtml:label>
+													ou habilidade para desenvolver algum
+													trabalho: </xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>

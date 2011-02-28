@@ -23,6 +23,30 @@
 
 		<xs:sequence>
 
+			<xs:element name="numeroInscricao">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Nº Inscrição ou identificação</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="numeroInscricao" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label></xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
 			<xs:element name="dadosPessoais">
 				<xs:annotation>
 					<xs:appinfo>
@@ -106,7 +130,7 @@
 										</xs:complexType>
 									</xs:element>
 									<xs:element name="dataNascimento" type="xs:date"
-										minOccurs="1">
+										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Data nascimento*</xhtml:label>
@@ -346,7 +370,7 @@
 													</xs:simpleType>
 												</xs:element>
 												<xs:element name="dataChegadaBrasil" type="xs:date"
-													minOccurs="1">
+													minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label>Data de chegada ao Brasil**</xhtml:label>
@@ -366,7 +390,7 @@
 										</xs:annotation>
 										<xs:complexType>
 											<xs:sequence>
-												<xs:element name="estadoCivilEscolha" minOccurs="0">
+												<xs:element name="estadoCivilEscolha">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label></xhtml:label>
@@ -393,7 +417,7 @@
 										</xs:annotation>
 										<xs:complexType>
 											<xs:sequence>
-												<xs:element name="etniaEscolha" minOccurs="0">
+												<xs:element name="etniaEscolha">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label></xhtml:label>
@@ -431,7 +455,7 @@
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
-												<xs:element name="sim" minOccurs="0">
+												<xs:element name="sim">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label>Sim</xhtml:label>
@@ -440,7 +464,7 @@
 													<xs:complexType>
 														<xs:sequence>
 															<xs:element name="cegueira" type="xs:boolean"
-																minOccurs="0">
+															minOccurs="0">
 																<xs:annotation>
 																	<xs:appinfo>
 																		<xhtml:label>Cegueira</xhtml:label>
@@ -554,7 +578,7 @@
 							</xs:annotation>
 							<xs:complexType>
 								<xs:sequence>
-									<xs:element name="numeroTituloEleitor">
+									<xs:element name="numeroTituloEleitor" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Número</xhtml:label>
@@ -566,7 +590,7 @@
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:element>
-									<xs:element name="zonaTituloEleitor">
+									<xs:element name="zonaTituloEleitor" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Zona</xhtml:label>
@@ -578,7 +602,7 @@
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:element>
-									<xs:element name="secaoTituloEleitor">
+									<xs:element name="secaoTituloEleitor" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Seção</xhtml:label>
@@ -646,7 +670,7 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="numeroCertificado">
+									<xs:element name="numeroCertificado" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Número certificado reservista</xhtml:label>
