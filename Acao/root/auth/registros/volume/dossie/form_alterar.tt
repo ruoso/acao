@@ -37,25 +37,21 @@
 
  <script language="javascript">
   function validaForm(){
-  //Valida Nome do volume
+alert(document.getElementById('classificacoes').value);
     if(document.getElementById('nome').value == ''){
-      alert('Informe o nome do volume');
+      alert('Informe o nome do Prontuário');
       document.getElementById('nome').focus();
       return false;
     }
 
-    if(document.getElementById('classificacao').value == ''){
-      alert('Informe o nome do classificação');
-      document.getElementById('classificacao').focus();
+    if(document.getElementById('classificacoes').value == '<x0:classificacoes xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd" xmlns:x0="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"/>'){
+      alert('Informe a classificação do volume.');
+      document.getElementById('classificacoes').focus();
       return false;
     }
 
-    if(document.getElementById('localizacao').value == ''){
-      alert('Informe o nome da localização');
-      document.getElementById('localizacao').focus();
-      return false;
-    }
   }
+
  </script>
 
 [% INCLUDE 'footer.tt' %]

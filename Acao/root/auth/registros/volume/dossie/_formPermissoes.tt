@@ -19,9 +19,9 @@
 %]
  <fieldset id="grupos">
     <legend> Autorizações: </legend>
-     <input type="hidden" name="autorizacoes" value="[% autorizacoes | html %]" />
-     <input type="hidden" name="basedn" value="[% basedn %]" />
-     <dt><input type="checkbox" name="herdar_author" [% IF herdar == 1 %] checked [% END %] /> Herdar Autorizações do Volume</dt>
+     <input type="hidden" name="autorizacoes" id="autorizacoes" value="[% autorizacoes | html %]" />
+     <input type="hidden" name="basedn" id="basedn" value="[% basedn %]" />
+     <dt><input type="checkbox" name="herdar_author" id="herdar_author" [% IF herdar == 1 %] checked [% END %] /> Herdar Autorizações do Volume</dt>
 
 [% SET labels_roles = {
         "alterar" => "Alterar este Prontuário",
