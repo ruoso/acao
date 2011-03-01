@@ -5,33 +5,47 @@ use Data::Dumper;
 use strict;
 use warnings;
 use List::MoreUtils qw{uniq};
+use XML::LibXML;
+use XML::Compile::Schema;
+use XML::Compile::Util;
 
 use Carp qw(croak);
 extends 'Acao::Model::LDAP';
 
 sub listar_schemas {
-    my ( $self, $c, $filtro ) = @_;
+    my ( $self, $args ) = @_;
     my @return;
 
-    my $query =
-        'declare namespace cs = "http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";'
-        .'declare namespace acao = "http://schemas.fortaleza.ce.gov.br/acao/acao-schemas.xsd";'
-        .'for $x in collection("acao-schemas") return '
-        .'( <schema>{$x//@targetNamespace/string()}</schema>,'
-        .' <class>{$x//cs:classificacoes/cs:classificacao/text()}</class>'
-        .')';
+    my $list =
+'declare namespace class = "http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";'
+      . 'for $x in collection("acao-schemas")/xs:schema'
+      . ' return ('
+      . $args->{grid} . '  )';
 
-    $self->sedna->begin;
-    $self->sedna->execute($query);
 
-    #while ( my $item = $self->sedna->get_item ) {
-    #    push( @return, $item );
-    #}
+    return {
+        list => $list
 
-    $self->sedna->commit;
-    warn @return;
-    return @return;
+    };
 
+}
+
+sub buscar_schemas {
+    my ( $self, $filtro,$template ) = @_;
+    my @return;
+
+    my $list =
+'declare namespace class = "http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";'
+      . 'for $x in collection("acao-schemas")/xs:schema'
+      . 'where $x/xs:element/xs:annotation/xs:appinfo/class:classificacoes/class:classificacao/text() = '
+      . $filtro
+      . ' return ($x)';
+
+
+    return {
+        list => $list
+
+    };
 }
 
 1;

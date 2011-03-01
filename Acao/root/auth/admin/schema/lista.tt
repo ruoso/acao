@@ -18,10 +18,53 @@
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
 %]
 [% INCLUDE 'auth/admin/header.tt' %]
+<table>
+<thead>
+ <tr>
+  <th width="20%">Schemas XSD</th>
+  <th>Classificação</th>
+ </tr>
+</thead>
+<TBODY>
 
-    [% FOREACH user IN usuarios %]
-      <a href="#" rel="[% user.dn %]"></a> [% user.nome%]<br/>
-    [% END %]
+[% TRY %]
+
+   [%
+
+    xqueryret = PROCESS 'auth/admin/schema/lista_xqueryret.tt';
+
+    xquery = c.model('Schema').listar_schemas({
+                              'grid' => xqueryret,|
+                              'filtro' => xqueryret,|
+                            });
+    c.model('Sedna').begin;
+
+    c.model('Sedna').execute( xquery.list );
+
+    WHILE (item = c.model('Sedna').get_item);
+        #CALL c.controller.audit_listar(item);
+        SET html = c.model('Sedna').get_item;
+        html;
+    END;
+
+
+     # c.model('Sedna').execute( xquery.count );
+     # WHILE (contador = c.model('Sedna').get_item);
+     #   count = contador;
+     # END;
+
+    c.model('Sedna').commit; %]
+
+
+[% CATCH %]
+    <div class="erro">ERRO AO PROCESSAR CONSULTA:
+     <PRE>[% error.info %]</PRE>
+    </div>
+[% END %]
+
+
+</TBODY>
+</table>
 
 
 [% INCLUDE 'footer.tt' %]
