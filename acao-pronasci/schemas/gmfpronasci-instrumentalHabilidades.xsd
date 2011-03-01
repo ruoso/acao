@@ -1,9 +1,10 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
-	xmlns="http://schemas.fortaleza.ce.gov.br/acao/gmfprotejo-Instrumenta-de-Habilidades.xsd"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/gmfprotejo-instrumentalHabilidades.xsd"
 	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
-	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/gmfprotejo-Instrumenta-de-Habilidades.xsd"
+	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/gmfprotejo-instrumentalHabilidades.xsd"
 	elementFormDefault="qualified">
 
 	<xs:element name="form" type="formInstrumentalHabilidades">
@@ -12,8 +13,7 @@
 				<xhtml:label>INSTRUMENTAL PARA IDENTIFICAÇÃO DE INTERESSES E
 					DISPONIBILIDADE PARA ATIVIDADES DO PROTEJO</xhtml:label>
 				<class:classificacoes>
-					<class:classificacao>cn=Protejo cn=Instrumental de Habilidades
-					</class:classificacao>
+					<class:classificacao>cn=Protejo cn=Instrumental de Habilidades</class:classificacao>
 				</class:classificacoes>
 			</xs:appinfo>
 		</xs:annotation>
@@ -78,17 +78,12 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="jovemIdade" minOccurs="0">
+						<xs:element name="jovemIdade" type="xs:integer" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Idade</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
-							<xs:simpleType>
-								<xs:restriction base="xs:string">
-									<xs:maxLength value="255" />
-								</xs:restriction>
-							</xs:simpleType>
 						</xs:element>
 						<xs:element name="redeSocial" minOccurs="0">
 							<xs:annotation>
@@ -168,7 +163,7 @@
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
 									<xs:enumeration value="Sim" />
-									<xs:enumeration value="Nao" />
+									<xs:enumeration value="Não" />
 									<xs:enumeration value="Não, mas já trabalhei" />
 								</xs:restriction>
 							</xs:simpleType>
@@ -196,7 +191,7 @@
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
 									<xs:enumeration value="Sim" />
-									<xs:enumeration value="Nao" />
+									<xs:enumeration value="Não" />
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
@@ -227,13 +222,13 @@
 						<xs:element name="trabalhaInformal">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Trabalho informal.</xhtml:label>
+									<xhtml:label>Trabalho informal</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
 									<xs:enumeration value="Sim" />
-									<xs:enumeration value="Nao" />
+									<xs:enumeration value="Não" />
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
@@ -261,7 +256,7 @@
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
 									<xs:enumeration value="Sim" />
-									<xs:enumeration value="Nao" />
+									<xs:enumeration value="Não" />
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
@@ -288,7 +283,7 @@
 							</xs:annotation>
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
-									<xs:enumeration value="Semana Inteira" />
+									<xs:enumeration value="Semana inteira" />
 									<xs:enumeration value="Finais de semana" />
 									<xs:enumeration value="Alguns dias da semana" />
 								</xs:restriction>
@@ -354,19 +349,19 @@
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
 									<xs:enumeration value="Sim" />
-									<xs:enumeration value="Nao" />
+									<xs:enumeration value="Não" />
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
 						<xs:element name="horario">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Horario</xhtml:label>
+									<xhtml:label>Horário</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
-									<xs:enumeration value="Manha" />
+									<xs:enumeration value="Manhã" />
 									<xs:enumeration value="Tarde" />
 									<xs:enumeration value="Noite" />
 								</xs:restriction>
@@ -406,7 +401,7 @@
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
 									<xs:enumeration value="Sim" />
-									<xs:enumeration value="Nao" />
+									<xs:enumeration value="Não" />
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
@@ -463,7 +458,8 @@
 										</xs:annotation>
 									</xs:element>
 
-									<xs:element name="certidaoNascimento" type="xs:boolean" minOccurs="0">
+									<xs:element name="certidaoNascimento" type="xs:boolean"
+										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Certidão de nascimento</xhtml:label>
@@ -484,7 +480,8 @@
 										</xs:simpleType>
 									</xs:element>
 
-									<xs:element name="carteiraTrabalho" type="xs:boolean" minOccurs="0">
+									<xs:element name="carteiraTrabalho" type="xs:boolean"
+										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Carteira de trabalho</xhtml:label>
@@ -503,7 +500,8 @@
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:element>
-									<xs:element name="tituloEleitor" type="xs:boolean" minOccurs="0">
+									<xs:element name="tituloEleitor" type="xs:boolean"
+										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Titulo de Eleitor</xhtml:label>
@@ -536,7 +534,7 @@
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
 									<xs:enumeration value="Sim" />
-									<xs:enumeration value="Nao" />
+									<xs:enumeration value="Não" />
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
@@ -551,7 +549,7 @@
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
 									<xs:enumeration value="Sim" />
-									<xs:enumeration value="Nao" />
+									<xs:enumeration value="Não" />
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
@@ -609,7 +607,7 @@
 												<xs:element name="manha" type="xs:boolean">
 													<xs:annotation>
 														<xs:appinfo>
-															<xhtml:label>Manha</xhtml:label>
+															<xhtml:label>Manhã</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
@@ -642,7 +640,7 @@
 												<xs:element name="manha" type="xs:boolean">
 													<xs:annotation>
 														<xs:appinfo>
-															<xhtml:label>Manha</xhtml:label>
+															<xhtml:label>Manhã</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
@@ -675,7 +673,7 @@
 												<xs:element name="manha" type="xs:boolean">
 													<xs:annotation>
 														<xs:appinfo>
-															<xhtml:label>Manha</xhtml:label>
+															<xhtml:label>Manhã</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
@@ -708,7 +706,7 @@
 												<xs:element name="manha" type="xs:boolean">
 													<xs:annotation>
 														<xs:appinfo>
-															<xhtml:label>Manha</xhtml:label>
+															<xhtml:label>Manhã</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
@@ -741,7 +739,7 @@
 												<xs:element name="manha" type="xs:boolean">
 													<xs:annotation>
 														<xs:appinfo>
-															<xhtml:label>Manha</xhtml:label>
+															<xhtml:label>Manhã</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
@@ -774,7 +772,7 @@
 												<xs:element name="manha" type="xs:boolean">
 													<xs:annotation>
 														<xs:appinfo>
-															<xhtml:label>Manha</xhtml:label>
+															<xhtml:label>Manhã</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
@@ -826,7 +824,7 @@
 												<xs:element name="monitorEsporte" type="xs:boolean">
 													<xs:annotation>
 														<xs:appinfo>
-															<xhtml:label>Monitor de Esporte</xhtml:label>
+															<xhtml:label>Monitor de esporte</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
@@ -1046,7 +1044,7 @@
 														</xs:restriction>
 													</xs:simpleType>
 												</xs:element>
-												<xs:element name="Manicure" type="xs:boolean">
+												<xs:element name="manicure" type="xs:boolean">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label>Manicure</xhtml:label>
@@ -1151,7 +1149,7 @@
 													type="xs:boolean">
 													<xs:annotation>
 														<xs:appinfo>
-															<xhtml:label>Produção de Alimentos - Salgados
+															<xhtml:label>Produção de Alimentos - salgados
 															</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
@@ -1232,13 +1230,10 @@
 													</xs:simpleType>
 												</xs:element>
 
-
 											</xs:sequence>
 
 										</xs:complexType>
 									</xs:element>
-
-
 
 								</xs:sequence>
 							</xs:complexType>
@@ -1265,7 +1260,6 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-
 
 								</xs:sequence>
 							</xs:complexType>
@@ -1355,11 +1349,9 @@
 										</xs:complexType>
 									</xs:element>
 
-
 								</xs:sequence>
 							</xs:complexType>
 						</xs:element>
-
 
 					</xs:sequence>
 				</xs:complexType>
@@ -1367,7 +1359,6 @@
 			</xs:element>
 
 		</xs:sequence>
-
 	</xs:complexType>
 
 </xs:schema>

@@ -3,6 +3,7 @@
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
 	xmlns="http://schemas.fortaleza.ce.gov.br/acao/gmfprotejo-instrumentalCaracterizacaoJovens.xsd"
 	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
 	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/gmfprotejo-instrumentalCaracterizacaoJovens.xsd"
 	elementFormDefault="qualified">
 
@@ -11,8 +12,7 @@
 			<xs:appinfo>
 				<xhtml:label>PESQUISA POPULAR SOBRE O PERFIL DOS ADOLESCENTES E JOVENS – PRONASCI</xhtml:label>
 				<class:classificacoes>
-					<class:classificacao>cn=Protejo cn=Direitos Humanos
-					</class:classificacao>
+					<class:classificacao>cn=Protejo cn=Direitos Humanos</class:classificacao>
 				</class:classificacoes>
 			</xs:appinfo>
 		</xs:annotation>
@@ -156,25 +156,12 @@
 									<xhtml:label>Sexo</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
-							<xs:complexType>
-								<xs:sequence>
-									<xs:element name="masc" type="xs:boolean">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>M</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="femi" type="xs:boolean">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>F</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-
-								</xs:sequence>
-							</xs:complexType>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Masculino"/>
+									<xs:enumeration value="Feminino"/>
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 						<xs:element name="idade" minOccurs="0">
 							<xs:annotation>
@@ -242,17 +229,12 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="quantosFilhos" minOccurs="0">
+						<xs:element name="quantosFilhos" type="xs:integer" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Se têm, quantos são?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
-							<xs:simpleType>
-								<xs:restriction base="xs:string">
-									<xs:maxLength value="255" />
-								</xs:restriction>
-							</xs:simpleType>
 						</xs:element>
 						<xs:element name="escolaridade">
 							<xs:annotation>
@@ -273,11 +255,11 @@
 									<xs:enumeration value="7ª série" />
 									<xs:enumeration value="8ª série" />
 									<xs:enumeration value="9ª série" />
-									<xs:enumeration value="1º ano do E. M" />
-									<xs:enumeration value="2º ano do E. M" />
-									<xs:enumeration value="3º ano do E. M" />
-									<xs:enumeration value="Sup. Incompleto" />
-									<xs:enumeration value="Sup. completo" />
+									<xs:enumeration value="1º ano Ensino Médio" />
+									<xs:enumeration value="2º ano Ensino Médio" />
+									<xs:enumeration value="3º ano Ensino Médio" />
+									<xs:enumeration value="Superior incompleto" />
+									<xs:enumeration value="Superior completo" />
 									<xs:enumeration value="Pós-Graduação" />
 								</xs:restriction>
 							</xs:simpleType>
@@ -336,7 +318,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="seTrabalha" minOccurs="0">
+						<xs:element name="ondeTrabalha" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Se trabalha, onde?</xhtml:label>
@@ -348,7 +330,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="formal" minOccurs="0">
+						<xs:element name="tipoTrabalho" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label></xhtml:label>
@@ -373,17 +355,12 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="rendaMensal" minOccurs="0">
+						<xs:element name="rendaMensal" type="xs:float" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Renda mensal em R$</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
-							<xs:simpleType>
-								<xs:restriction base="xs:string">
-									<xs:maxLength value="255" />
-								</xs:restriction>
-							</xs:simpleType>
 						</xs:element>
 						<xs:element name="comQuemMora" type="xs:string"
 							minOccurs="0">
@@ -511,7 +488,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="porquantoTempo" type="xs:integer"
+						<xs:element name="quantoTempo" type="xs:string"
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
@@ -519,7 +496,7 @@
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
-						<xs:element name="tempoParou" type="xs:integer"
+						<xs:element name="tempoParou" type="xs:string"
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
@@ -530,15 +507,14 @@
 						<xs:element name="programaErradicacao" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Participou do Programa de Erradicação do Trabalho
-										Infantil:</xhtml:label>
+									<xhtml:label>Participou do programa de erradicação do trabalho infantil:</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
-									<xs:enumeration value="Não" />
 									<xs:enumeration value="Sim" />
 									<xs:enumeration value="Sim, ainda participa" />
+									<xs:enumeration value="Não" />
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
@@ -559,9 +535,9 @@
 							</xs:annotation>
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
-									<xs:enumeration value="Não" />
 									<xs:enumeration value="Sim" />
 									<xs:enumeration value="Sim, ainda participa" />
+									<xs:enumeration value="Não" />
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
@@ -582,8 +558,8 @@
 							</xs:annotation>
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
-									<xs:enumeration value="Não" />
 									<xs:enumeration value="Sim" />
+									<xs:enumeration value="Não" />
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
@@ -597,8 +573,8 @@
 							</xs:annotation>
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
-									<xs:enumeration value="Não" />
 									<xs:enumeration value="Sim" />
+									<xs:enumeration value="Não" />
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
@@ -610,21 +586,21 @@
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
-						<xs:element name="cumpriuMedidaSocio" minOccurs="0">
+						<xs:element name="jacumpriuMedidaSocioEducativa" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Já cumpriu Medida Sócioeducativa:</xhtml:label>
+									<xhtml:label>Já cumpriu medida sócioeducativa:</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
-									<xs:enumeration value="Não" />
 									<xs:enumeration value="Sim" />
 									<xs:enumeration value="Sim, está cumprindo" />
+									<xs:enumeration value="Não" />
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="seCumpriuMedidaSocio" minOccurs="0">
+						<xs:element name="cumpriuMedidaSocio" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Se sim, qual</xhtml:label>
@@ -632,16 +608,16 @@
 							</xs:annotation>
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
-									<xs:enumeration value="Obrigação de Reparar o Dano" />
-									<xs:enumeration value="Prestação de Serviços à Comunidade - PSC" />
-									<xs:enumeration value="Liberdade Assistida" />
-									<xs:enumeration value="Semi-Liberdade" />
+									<xs:enumeration value="Obrigação de reparar o dano" />
+									<xs:enumeration value="Prestação de serviços à comunidade - PSC" />
+									<xs:enumeration value="Liberdade assistida" />
+									<xs:enumeration value="Semi-liberdade" />
 									<xs:enumeration value="Internação" />
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="foiPreso" minOccurs="0">
+						<xs:element name="jafoiPreso" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Já foi preso (só para os maiores de 18 anos):
@@ -650,8 +626,8 @@
 							</xs:annotation>
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
-									<xs:enumeration value="Não" />
 									<xs:enumeration value="Sim" />
+									<xs:enumeration value="Não" />
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
@@ -695,13 +671,13 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Já cumpriu Medida Sócioeducativa:</xhtml:label>
+									<xhtml:label>Já cumpriu medida sócioeducativa:</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
-									<xs:enumeration value="Não" />
 									<xs:enumeration value="Sim" />
+									<xs:enumeration value="Não" />
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
@@ -726,9 +702,9 @@
 							</xs:annotation>
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
-									<xs:enumeration value="Não" />
 									<xs:enumeration value="Sim" />
 									<xs:enumeration value="Sim, ainda vivencia" />
+									<xs:enumeration value="Não" />
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
@@ -740,8 +716,8 @@
 							</xs:annotation>
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
-									<xs:enumeration value="Não" />
 									<xs:enumeration value="Sim" />
+									<xs:enumeration value="Não" />
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
@@ -761,8 +737,7 @@
 			<xs:element name="participacaoProjetosSociais">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>3.Participação em projetos
-							sociais/profissionalizantes</xhtml:label>
+						<xhtml:label>3.Participação em projetos sociais/profissionalizantes</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -770,15 +745,14 @@
 						<xs:element name="participouProjeto" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Participou de algum projeto social ou
-										profissionalizante</xhtml:label>
+									<xhtml:label>Participou de algum projeto social ou profissionalizante</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
-									<xs:enumeration value="Não" />
 									<xs:enumeration value="Sim" />
 									<xs:enumeration value="Sim, ainda participa" />
+									<xs:enumeration value="Não" />
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
@@ -824,8 +798,7 @@
 							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Qual atividade gostaria de desenvolver em um
-										projeto: </xhtml:label>
+									<xhtml:label>Qual atividade gostaria de desenvolver em um projeto: </xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
@@ -875,8 +848,7 @@
 									<xs:element name="customizacao" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Customização(remodelar peças de roupas,
-													objetos..)</xhtml:label>
+												<xhtml:label>Customização(remodelar peças de roupas, objetos..)</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
