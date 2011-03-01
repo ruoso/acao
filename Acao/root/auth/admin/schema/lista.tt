@@ -34,8 +34,8 @@
     xqueryret = PROCESS 'auth/admin/schema/lista_xqueryret.tt';
 
     xquery = c.model('Schema').listar_schemas({
-                              'grid' => xqueryret,|
-                              'filtro' => xqueryret,|
+                              'grid' => xqueryret,
+
                             });
     c.model('Sedna').begin;
 

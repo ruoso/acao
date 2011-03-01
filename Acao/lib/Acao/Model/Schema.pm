@@ -40,6 +40,7 @@ sub buscar_schemas {
       . 'where $x/xs:element/xs:annotation/xs:appinfo/class:classificacoes/class:classificacao/text() = '
       . $filtro
       . ' return ($x)';
+
     return {
         list => $list
     };
