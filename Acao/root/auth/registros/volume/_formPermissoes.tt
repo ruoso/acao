@@ -19,8 +19,8 @@
 %]
  <fieldset id="grupos">
     <legend> Autorizações: </legend>
-     <input type="hidden" name="autorizacoes" value="[% autorizacoes | html %]" />
-     <input type="hidden" name="basedn" value="[% basedn %]" />
+     <input type="hidden" name="autorizacoes" id="autorizacoes" value="[% autorizacoes | html %]" />
+     <input type="hidden" name="basedn" id="basedn" value="[% basedn %]" />
 
 [% SET labels_roles = {
         "alterar" => "Alterar este Volume",

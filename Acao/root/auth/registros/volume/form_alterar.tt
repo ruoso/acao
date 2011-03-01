@@ -36,24 +36,33 @@
 
  <script language="javascript">
   function validaForm(){
-  //Valida Nome do volume
+
     if(document.getElementById('nome').value == ''){
-      alert('Informe o nome do volume');
+      alert('Informe o nome do volume.');
       document.getElementById('nome').focus();
       return false;
     }
 
-    if(document.getElementById('classificacao').value == ''){
-      alert('Informe o nome do classificação');
-      document.getElementById('classificacao').focus();
+    if(document.getElementById('classificacoes').value == '<x0:classificacoes xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd" xmlns:x0="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd"/>'){
+      alert('Informe a(as) classificação(ões) do volume.');
+      document.getElementById('classificacoes').focus();
       return false;
     }
 
     if(document.getElementById('localizacao').value == ''){
-      alert('Informe o nome da localização');
+      alert('Informe a localização do volume.');
       document.getElementById('localizacao').focus();
       return false;
     }
+
+    if(document.getElementById('autorizacoes').value == '<autorizacoes xmlns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd" xmlns:author="http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd"/>'){
+      if(confirm('O volume não possue autorização(ções). Deseja criá-lo assim mesmo?')){
+      }
+      else {
+        return false;
+      }
+    }
+
   }
  </script>
 

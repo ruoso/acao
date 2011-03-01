@@ -438,7 +438,6 @@ sub pode_ver_dossie {
 }
 
 
-
 =item getDadosDossie()
 
 Este método retona os Dados de um Dossie.
