@@ -24,6 +24,7 @@ use parent 'Catalyst::Controller';
 
 my $digitador = Acao->config->{roles}{digitador};
 my $revisor   = Acao->config->{roles}{revisor};
+my $admin_super = Acao->config->{'Model::LDAP'}->{admin_super};
 
 =head1 NAME
 
@@ -41,6 +42,8 @@ Ação raiz da área de registros.
 
 sub base : Chained('/auth/base') : PathPart('administracao') : CaptureArgs(0) {
     my ( $self, $c ) = @_;
+    #   Valida se usuário é Super Admin para acessar a área administrativa
+    ($admin_super ~~ @{$c->user->memberof}) or $c->detach('/public/default');
 }
 
 =item principal
@@ -53,6 +56,8 @@ lista das sub-áreas da área de registros.
 
 sub principal : Chained('base') : PathPart('') : Args(0) {
     my ( $self, $c ) = @_;
+
+
 
 }
 

@@ -51,7 +51,7 @@ my $role_criar   = Acao->config->{'roles'}->{'volume'}->{'criar'};
 my $role_alterar = Acao->config->{'roles'}->{'volume'}->{'alterar'};
 my $role_listar  = Acao->config->{'roles'}->{'volume'}->{'listar'};
 my $role_ver     = Acao->config->{'roles'}->{'volume'}->{'visualizar'};
-
+my $admin_super = Acao->config->{'Model::LDAP'}->{admin_super};
 use constant CLASSIFICACOES_NS =>
   'http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd';
 my $controle_class =
@@ -354,7 +354,8 @@ user logado pode CRIAR Volumes
 
 sub pode_criar_volume {
     my ($self) = @_;
-    return $role_criar ~~ @{ $self->user->memberof };
+    return $admin_super ~~ @{$self->user->memberof} ||
+    $role_criar ~~ @{ $self->user->memberof };
 
 }
 
@@ -367,7 +368,8 @@ user logado pode ALTERAR Volume(s)
 
 sub pode_alterar_volume {
     my ( $self, $id_volume ) = @_;
-    return $self->_checa_autorizacao_volume( $id_volume, 'alterar' )
+    return $admin_super ~~ @{$self->user->memberof} ||
+    $self->_checa_autorizacao_volume( $id_volume, 'alterar' )
       && $role_alterar ~~ @{ $self->user->memberof };
 }
 
@@ -380,7 +382,8 @@ user logado pode VER o conteúdo do Volume
 
 sub pode_ver_volume {
     my ( $self, $id_volume ) = @_;
-    return $self->_checa_autorizacao_volume( $id_volume, 'visualizar' )
+    return $admin_super ~~ @{$self->user->memberof} ||
+    $self->_checa_autorizacao_volume( $id_volume, 'visualizar' )
       && $role_ver ~~ @{ $self->user->memberof };
 
 }
@@ -533,7 +536,7 @@ sub find_key_indexes {
     $self->sedna->execute($xq_indexes);
     while (my $item=$self->sedna->get_item ) {
         $item =~ s/^\s+//;
-    	$item =~ s/\s+$//;
+      $item =~ s/\s+$//;
         push(@indexes, $item);
     }
     $self->sedna->commit;

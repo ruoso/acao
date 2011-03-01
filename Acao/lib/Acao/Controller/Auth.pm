@@ -24,6 +24,7 @@ use parent 'Catalyst::Controller';
 
 my $admin_schemas = Acao->config->{'Model::LDAP'}->{admin_schemas};
 my $admin_registros = Acao->config->{'Model::LDAP'}->{admin_registros};
+my $admin_super = Acao->config->{'Model::LDAP'}->{admin_super};
 
 =head1 NAME
 
@@ -61,7 +62,8 @@ para essa área.
 
 sub principal : Chained('base') : PathPart('') : Args(0) {
     my ( $self, $c ) = @_;
-    if (($admin_registros ~~ @{$c->user->memberof}) or ($admin_schemas ~~ @{$c->user->memberof}) ) {
+    # redireciona o usuário para área administrativa caso seja super admin.
+    if (($admin_super ~~ @{$c->user->memberof})) {
         $c->res->redirect( $c->uri_for_action('/auth/admin/principal') );
     } else {
         $c->res->redirect( $c->uri_for_action('/auth/registros/principal') );

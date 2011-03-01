@@ -67,7 +67,7 @@ my $role_listar = Acao->config->{'roles'}->{'dossie'}->{'listar'};
 
 my $role_transferir = Acao->config->{'roles'}->{'dossie'}->{'transferir'};
 my $role_ver        = Acao->config->{'roles'}->{'dossie'}->{'visualizar'};
-
+my $admin_super = Acao->config->{'Model::LDAP'}->{admin_super};
 =head1 NAME
 
 Acao::Model::Dossie - Implementa as regras de negócio do papel volume
@@ -372,7 +372,8 @@ user logado pode CRIAR Dossies
 
 sub pode_criar_dossie {
     my ( $self, $id_volume ) = @_;
-    return $self->_checa_autorizacao_volume( $id_volume, 'criar' )
+    return $admin_super ~~ @{$self->user->memberof} ||
+        $self->_checa_autorizacao_volume( $id_volume, 'criar' )
       && $role_criar ~~ @{ $self->user->memberof };
 }
 
@@ -386,7 +387,8 @@ user logado pode ALTERAR Dossie(s)
 
 sub pode_alterar_dossie {
     my ( $self, $id_volume, $controle ) = @_;
-    return $self->_checa_autorizacao_dossie( $id_volume, 'alterar', $controle )
+    return $admin_super ~~ @{$self->user->memberof} ||
+         $self->_checa_autorizacao_dossie( $id_volume, 'alterar', $controle )
       && $role_alterar ~~ @{ $self->user->memberof };
 }
 
@@ -400,7 +402,8 @@ user logado pode TRANSFERIR Dossie(s)
 sub pode_transferir_dossie {
     my ( $self, $id_volume, $controle ) = @_;
 
-    return $self->_checa_autorizacao_dossie( $id_volume, 'transferir',
+    return $admin_super ~~ @{$self->user->memberof} ||
+         $self->_checa_autorizacao_dossie( $id_volume, 'transferir',
         $controle )
       && $role_transferir ~~ @{ $self->user->memberof };
 }
@@ -414,7 +417,8 @@ user logado pode LISTAR Dossies
 
 sub pode_listar_dossie {
     my ( $self, $id_volume ) = @_;
-    return $self->_checa_autorizacao_dossie( $id_volume, 'listar' )
+    return $admin_super ~~ @{$self->user->memberof} ||
+        $self->_checa_autorizacao_dossie( $id_volume, 'listar' )
       && $role_listar ~~ @{ $self->user->memberof };
 }
 
@@ -427,7 +431,8 @@ user logado pode LISTAR Dossies
 
 sub pode_ver_dossie {
     my ( $self, $id_volume, $controle ) = @_;
-    return $self->_checa_autorizacao_dossie( $id_volume, 'visualizar',
+    return $admin_super ~~ @{$self->user->memberof} ||
+    $self->_checa_autorizacao_dossie( $id_volume, 'visualizar',
         $controle )
       && $role_ver ~~ @{ $self->user->memberof };
 }
@@ -622,7 +627,7 @@ sub store_altera_dossie {
     $self->sedna->execute($query_localizacao);
 
     $self->sedna->commit;
-    
+
     $self->update_autorizacoes_dos($args->{id_volume}, $args->{controle}, $self->desserialize_autorizacoes($args->{autorizacoes}));
 }
 

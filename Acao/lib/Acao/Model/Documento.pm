@@ -47,7 +47,7 @@ my $role_visualizar = Acao->config->{'roles'}->{'documento'}->{'visualizar'};
 my $role_criar      = Acao->config->{'roles'}->{'documento'}->{'criar'};
 my $role_listar     = Acao->config->{'roles'}->{'documento'}->{'listar'};
 my $role_alterar     = Acao->config->{'roles'}->{'documento'}->{'alterar'};
-
+my $admin_super = Acao->config->{'Model::LDAP'}->{admin_super};
 =head1 NAME
 
 Acao::Model::Documento - Implementa as regras de negócio do papel volume
@@ -417,18 +417,21 @@ txn_method 'getDadosDossie' => authorized $role_listar => sub {
 
 sub pode_criar_documento {
     my ( $self, $id_volume , $controle) = @_;
-    return $self->_checa_autorizacao_dossie( $id_volume, 'criar',$controle )
+    return $admin_super ~~ @{$self->user->memberof} ||
+        $self->_checa_autorizacao_dossie( $id_volume, 'criar',$controle )
       && $role_criar ~~ @{ $self->user->memberof };
 }
 sub pode_ver_documento {
     my ( $self, $id_volume , $controle, $id_documento) = @_;
-    return $self->_checa_autorizacao_documento( $id_volume, 'visualizar',$controle, $id_documento )
+    return $admin_super ~~ @{$self->user->memberof} ||
+        $self->_checa_autorizacao_documento( $id_volume, 'visualizar',$controle, $id_documento )
       && $role_visualizar ~~ @{ $self->user->memberof };
 }
 
 sub pode_alterar_documento {
     my ( $self, $id_volume , $controle, $id_documento) = @_;
-    return $self->_checa_autorizacao_documento( $id_volume, 'alterar',$controle, $id_documento )
+    return $admin_super ~~ @{$self->user->memberof} ||
+        $self->_checa_autorizacao_documento( $id_volume, 'alterar',$controle, $id_documento )
       && $role_alterar ~~ @{ $self->user->memberof };
 }
 
