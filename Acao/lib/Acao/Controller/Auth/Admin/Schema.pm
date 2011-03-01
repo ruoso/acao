@@ -30,9 +30,12 @@ sub base : Chained('/auth/admin/base') : PathPart('schemas') : CaptureArgs(0) {
 
 sub lista : Chained('base') : PathPart('') : Args(0) {
     my ( $self, $c ) = @_;
-    $c->model('Schema')->listar_schemas();
 
-    return;
+}
+
+sub buscar : Chained('base') : PathPart('buscar') : Args(1) {
+    my ( $self, $c,$filtro ) = @_;
+
 }
 
 1;

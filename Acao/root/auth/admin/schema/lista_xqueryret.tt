@@ -1,0 +1,10 @@
+(
+<tr>
+  <td>
+    {replace($x/@targetNamespace/string(), "http://schemas.fortaleza.ce.gov.br/acao/", "")}
+  </td>
+  <td>
+    {replace($x/xs:element/xs:annotation/xs:appinfo/class:classificacoes/class:classificacao/text(),"cn=","")}
+  </td>
+</tr>
+)
