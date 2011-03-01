@@ -13,7 +13,7 @@
 				<xhtml:label>INSTRUMENTAL PARA IDENTIFICAÇÃO DE INTERESSES E
 					DISPONIBILIDADE PARA ATIVIDADES DO PROTEJO</xhtml:label>
 				<class:classificacoes>
-					<class:classificacao>cn=Protejo cn=Instrumental de Habilidades</class:classificacao>
+					<class:classificacao>cn=Mulheres da Paz,cn=Direitos Humanos</class:classificacao>
 				</class:classificacoes>
 			</xs:appinfo>
 		</xs:annotation>
@@ -25,7 +25,7 @@
 			<xs:element name="informacaoInscricao">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Nº inscrição ou identificação</xhtml:label>
+						<xhtml:label>DADOS INSCRIÇÃO</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -33,7 +33,7 @@
 						<xs:element name="numeroInscricao" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label></xhtml:label>
+									<xhtml:label>Número de inscrição</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -554,7 +554,7 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="nemeroReservista " minOccurs="0">
+						<xs:element name="nemeroReservista" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Nº reservista </xhtml:label>
@@ -901,14 +901,14 @@
 														</xs:restriction>
 													</xs:simpleType>
 												</xs:element>
-												<xs:element name="eletricista " type="xs:boolean">
+												<xs:element name="eletricista" type="xs:boolean">
 													<xs:annotation>
 														<xs:appinfo>
-															<xhtml:label>Eletricista </xhtml:label>
+															<xhtml:label>Eletricista</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
-												<xs:element name="prioridadeEletricista "
+												<xs:element name="prioridadeEletricista"
 													minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
@@ -921,14 +921,14 @@
 														</xs:restriction>
 													</xs:simpleType>
 												</xs:element>
-												<xs:element name="construçãoServente " type="xs:boolean">
+												<xs:element name="construçãoServente" type="xs:boolean">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label>Construção/servente </xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
-												<xs:element name="prioridadeConstruçãoServente "
+												<xs:element name="prioridadeConstruçãoServente"
 													minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
@@ -961,7 +961,7 @@
 														</xs:restriction>
 													</xs:simpleType>
 												</xs:element>
-												<xs:element name="monitoriaProjetosSociais "
+												<xs:element name="monitoriaProjetosSociais"
 													type="xs:boolean">
 													<xs:annotation>
 														<xs:appinfo>
@@ -969,7 +969,7 @@
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
-												<xs:element name="prioridadeMonitoriaProjetosSociais "
+												<xs:element name="prioridadeMonitoriaProjetosSociais"
 													minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
@@ -1024,7 +1024,7 @@
 													</xs:simpleType>
 												</xs:element>
 
-												<xs:element name="corteCabelo " type="xs:boolean">
+												<xs:element name="corteCabelo" type="xs:boolean">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label>Corte de cabelo </xhtml:label>
@@ -1063,7 +1063,7 @@
 														</xs:restriction>
 													</xs:simpleType>
 												</xs:element>
-												<xs:element name="depilacao " type="xs:boolean">
+												<xs:element name="depilacao" type="xs:boolean">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label>Depilação </xhtml:label>
@@ -1104,7 +1104,7 @@
 														</xs:restriction>
 													</xs:simpleType>
 												</xs:element>
-												<xs:element name="informatica " type="xs:boolean">
+												<xs:element name="informatica" type="xs:boolean">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label>Informática </xhtml:label>
@@ -1145,7 +1145,7 @@
 														</xs:restriction>
 													</xs:simpleType>
 												</xs:element>
-												<xs:element name="producaoAlimentosSalgados "
+												<xs:element name="producaoAlimentosSalgados"
 													type="xs:boolean">
 													<xs:annotation>
 														<xs:appinfo>
@@ -1154,7 +1154,7 @@
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
-												<xs:element name="prioridadeProducaoAlimentosSalgados "
+												<xs:element name="prioridadeProducaoAlimentosSalgados"
 													minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
@@ -1189,7 +1189,7 @@
 														</xs:restriction>
 													</xs:simpleType>
 												</xs:element>
-												<xs:element name="serigrafia " type="xs:boolean">
+												<xs:element name="serigrafia" type="xs:boolean">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label>Serigrafia </xhtml:label>
@@ -1296,7 +1296,7 @@
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
-												<xs:element name="futebol " type="xs:boolean">
+												<xs:element name="futebol" type="xs:boolean">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label>Futebol </xhtml:label>
@@ -1317,7 +1317,7 @@
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
-												<xs:element name="caminhadaOrientada " type="xs:boolean">
+												<xs:element name="caminhadaOrientada" type="xs:boolean">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label>Caminhada Orientada </xhtml:label>
@@ -1338,7 +1338,7 @@
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
-												<xs:element name="futivolei " type="xs:boolean">
+												<xs:element name="futivolei" type="xs:boolean">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label>Futivôlei </xhtml:label>
@@ -1362,3 +1362,4 @@
 	</xs:complexType>
 
 </xs:schema>
+
