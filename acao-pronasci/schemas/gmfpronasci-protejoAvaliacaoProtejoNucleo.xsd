@@ -12,7 +12,8 @@
 			<xs:appinfo>
 				<xhtml:label>AVALIAÇÃO PROTEJO NÚCLEOS</xhtml:label>
 				<class:classificacoes>
-					<class:classificacao>cn=Mulheres da Paz,cn=Direitos Humanos</class:classificacao>
+					<class:classificacao>cn=Mulheres da Paz,cn=Direitos Humanos
+					</class:classificacao>
 				</class:classificacoes>
 			</xs:appinfo>
 		</xs:annotation>
@@ -20,18 +21,40 @@
 
 	<xs:complexType name="formAvaliacaoProtejoNucleo">
 		<xs:sequence>
-
-			<xs:element name="nucleo" minOccurs="0">
+			<xs:element name="dadosInscricao">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Núcleo</xhtml:label>
+						<xhtml:label>Dados de inscrição</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:maxLength value="255" />
-					</xs:restriction>
-				</xs:simpleType>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="numeroInscricao" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Número de inscrição</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="nucleo" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Núcleo</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
 			</xs:element>
 
 			<xs:element name="dadosJovem1">
@@ -143,7 +166,8 @@
 
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>2- Que opção você escolheria para avaliar o seu desempenho no projeto:</xhtml:label>
+						<xhtml:label>2- Que opção você escolheria para avaliar o seu
+							desempenho no projeto:</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -342,6 +366,30 @@
 						<xs:element name="avaliacaoAtividades">
 							<xs:annotation>
 								<xs:appinfo>
+									<xs:element name="numeroInscricao">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Nº Inscrição ou identificação</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="numeroInscricao" minOccurs="0">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label></xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="255" />
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+
 									<xhtml:label>Suas atividades externas
 									</xhtml:label>
 								</xs:appinfo>
@@ -469,6 +517,30 @@
 					<xs:appinfo>
 						<xhtml:label>10- O projeto fez alguma diferença na sua vida
 						</xhtml:label>
+						<xs:element name="numeroInscricao">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº Inscrição ou identificação</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="numeroInscricao" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label></xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
