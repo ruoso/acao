@@ -20,4 +20,5 @@
 [% breadcrumb.unshift({ url => c.uri_for_action('/auth/admin/principal'),
       title => 'Administração',
       text => 'Administração' }) %]
+
 [% INCLUDE 'auth/admin/header_admin.tt' %]
