@@ -19,7 +19,7 @@ sub listar_schemas {
     my $list =
 'declare namespace class = "http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";'
       . 'for $x in collection("acao-schemas")/xs:schema'
-      . ' return ('
+      . ' return ($x,'
       . $args->{grid} . '  )';
 
 
