@@ -138,6 +138,30 @@ sub update_autorizacoes_vol {
     $volprs->create($_) for @$auth_list;
 }
 
+=item update_autorizacoes_dos()
+
+Altera as autorizações do prontuário no banco de indexação
+
+=cut
+
+sub update_autorizacoes_dos {
+    my ($self, $id_volume, $controle, $autorizacoes) = @_;
+
+    my $auth_list = [ map { { dn => $_->{principal} }} grep { $_->{role} eq 'listar'} @{$autorizacoes->{'autorizacao'}} ];
+
+    $self->dbic->resultset('PermissaoDossie')->search({
+        id_volume => $id_volume,
+        id_dossie => $controle
+    })->delete();
+
+    my $dosprs = $self->dbic->resultset('Dossie')->find({
+        id_volume => $id_volume,
+        id_dossie => $controle
+    })->permissao_dossies;
+
+    $dosprs->create($_) for @$auth_list;
+}
+
 =item find_for_name_index()
 
 Realiza as buscas através do nome passado, utilizando os índices
@@ -156,7 +180,6 @@ sub find_for_index {
             };
         }
     }
-    warn Dumper @busca;
     my $entries = $self->dbic->resultset('Entry')->search(
     [@busca],
     {join => 'gin_indexes',
@@ -227,14 +250,19 @@ sub extract_xml_keys {
 
     my @xmldata;
     $self->sedna->execute($xquery);
+    my @data;
     while ( my $key = $self->sedna->get_item ) {
         my $val = $self->sedna->get_item;
         $key =~ s/^\s+|\s+$//gs;
         $val =~ s/^\s+|\s+$//gs;
+        if ($key eq 'pessoa.datanascimento') {
+            @data = split('-',$val);
+            $val = $data[2].'/'.$data[1].'/'.$data[0];
+        }
         next unless $val;
         push @xmldata, { key => $key, value => $val };
     }
-    warn Dumper @xmldata;
+
     return \@xmldata;
 }
 

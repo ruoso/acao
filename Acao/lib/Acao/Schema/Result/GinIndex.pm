@@ -43,7 +43,7 @@ __PACKAGE__->add_columns(
     { data_type => "varchar", is_nullable => 1, size => 50 },
     "value",
     { data_type => "varchar", is_nullable => 1, size => 255 },
-    "entry",
+    "entry_id",
     { data_type => "integer", is_foreign_key => 1, is_nullable => 1 },
 );
 
@@ -58,9 +58,9 @@ Related object: L<Acao::Schema::Result::Entry>
 =cut
 
 __PACKAGE__->belongs_to(
-    "entry",
+    "entry_id",
     "Acao::Schema::Result::Entry",
-    { entry_id => "entry" },
+    { entry_id => "entry_id" },
     {
         is_deferrable => 1,
         join_type     => "LEFT",

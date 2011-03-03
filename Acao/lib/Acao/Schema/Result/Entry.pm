@@ -95,7 +95,7 @@ Related object: L<Acao::Schema::Result::GinIndex>
 __PACKAGE__->has_many(
     "gin_indexes",
     "Acao::Schema::Result::GinIndex",
-    { "foreign.entry" => "self.entry_id" },
+    { "foreign.entry_id" => "self.entry_id" },
     { cascade_copy    => 1, cascade_delete => 1 },
 );
 
