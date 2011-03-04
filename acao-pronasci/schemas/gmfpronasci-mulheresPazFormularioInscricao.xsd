@@ -1,29 +1,46 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
-	xmlns="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-formulario-inscricao.xsd"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-mulheresDaPazFormularioInscricao.xsd"
 	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
-	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-formulario-inscricao.xsd"
+	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-mulheresDaPazFormularioInscricao.xsd"
 	elementFormDefault="qualified">
 
-	<xs:element name="form" type="formFormularioInscricao">
+	<xs:element name="form" type="formMulheresDaPazFormularioInscricao">
 		<xs:annotation>
 			<xs:appinfo>
 				<xhtml:label>FORMULÁRIO INSCRIÇÃO MULHERES DA PAZ</xhtml:label>
 				<class:classificacoes>
-					<class:classificacao>cn=Mulheres da Paz,cn=Direitos Humanos</class:classificacao>
+					<class:classificacao>cn=Mulheres da Paz,cn=Direitos Humanos
+					</class:classificacao>
 				</class:classificacoes>
+				<idx:index>
+					<idx:hint key="mulherdapaz.numeroInscricao" xpath="formMulheresDaPazFormularioInscricao/numeroInscricao" />
+					<idx:hint key="mulherdapaz.nome" xpath="formMulheresDaPazFormularioInscricao/dadosPessoais/nome" />
+					<idx:hint key="mulherdapaz.dataNascimento" xpath="formMulheresDaPazFormularioInscricao/dadosPessoais/dataNascimento" />
+					<idx:hint key="mulherdapaz.cpf" xpath="formMulheresDaPazFormularioInscricao/dadosPessoais/cpf" />
+					<idx:hint key="mulherdapaz.registroGeral" xpath="formMulheresDaPazFormularioInscricao/dadosPessoais/registroGeral" />
+					<idx:hint key="mulherdapaz.cpf" xpath="formMulheresDaPazFormularioInscricao/dadosPessoais/cpf" />
+					<idx:hint key="mulherdapaz.bairro" xpath="formMulheresDaPazFormularioInscricao/dadosPessoais/bairro" />
+					<idx:hint key="mulherdapaz.endereco" xpath="formMulheresDaPazFormularioInscricao/dadosPessoais/endereco" />
+					<idx:hint key="mulherdapaz.escolaridade" xpath="formMulheresDaPazFormularioInscricao/dadosEscolaridade/escolaridade" />
+					<idx:hint key="mulherdapaz.turno" xpath="formMulheresDaPazFormularioInscricao/dadosEscolaridade/turno" />
+					<idx:hint key="mulherdapaz.cadastrounicogoverno" xpath="formMulheresDaPazFormularioInscricao/dadosTrabalho/cadastroUnicoGoverno" />
+					<idx:hint key="mulherdapaz.valorsalario" xpath="formMulheresDaPazFormularioInscricao/dadosTrabalho/valorSalario" />
+					<idx:hint key="mulherdapaz.estadocivil" xpath="formMulheresDaPazFormularioInscricao/configuracaoFamiliar/estadoCivil" />
+				</idx:index>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
 
-	<xs:complexType name="formFormularioInscricao">
+	<xs:complexType name="formMulheresDaPazFormularioInscricao">
 		<xs:sequence>
 
 			<xs:element name="numeroInscricao" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Nº Inscrição:</xhtml:label>
+						<xhtml:label>Número de inscrição:</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -52,8 +69,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="dataNascimento" type="xs:date"
-							minOccurs="0">
+						<xs:element name="dataNascimento" type="xs:date" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Data Nascimento</xhtml:label>
@@ -72,8 +88,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="dataExpedicao" type="xs:date"
-							minOccurs="0">
+						<xs:element name="dataExpedicao" type="xs:date" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Data expedição</xhtml:label>
@@ -108,7 +123,7 @@
 						<xs:element name="titulo" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Título de Eleitor</xhtml:label>
+									<xhtml:label>Título de eleitor</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -215,8 +230,7 @@
 							</xs:complexType>
 						</xs:element>
 
-						<xs:element name="referenciaTrabalho" minOccurs="0"
-							maxOccurs="3">
+						<xs:element name="referenciaTrabalho" minOccurs="0" maxOccurs="3">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Do Trabalho</xhtml:label>
@@ -257,7 +271,7 @@
 			</xs:element>
 
 			<!--DADOS DE ESCOLARIDADE -->
-			<xs:element name="escolaridade">
+			<xs:element name="dadosEscolaridade">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>2. Escolaridade</xhtml:label>
@@ -336,7 +350,7 @@
 						<xs:element name="estadoCivil" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Estado Civil
+									<xhtml:label>Estado civil
 									</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
@@ -404,7 +418,7 @@
 
 			</xs:element>
 
-			<xs:element name="trabalho">
+			<xs:element name="dadosTrabalho">
 
 				<xs:annotation>
 					<xs:appinfo>
@@ -519,8 +533,7 @@
 
 								<xs:sequence>
 
-									<xs:element name="ultimaExperienciaProfissional"
-										type="xs:string" minOccurs="0">
+									<xs:element name="ultimaExperienciaProfissional" type="xs:string" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>4.1 Se você não está trabalhando atualmente,
@@ -626,8 +639,7 @@
 							</xs:annotation>
 							<xs:complexType>
 								<xs:sequence>
-									<xs:element name="descricaoDisponibilidadeProjeto"
-										type="xs:string" minOccurs="0">
+									<xs:element name="descricaoDisponibilidadeProjeto" type="xs:string" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>
@@ -648,8 +660,7 @@
 							</xs:annotation>
 							<xs:complexType>
 								<xs:sequence>
-									<xs:element name="descricaoSobreAtuacaoComunidade"
-										type="xs:string" minOccurs="0">
+									<xs:element name="descricaoSobreAtuacaoComunidade" type="xs:string" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>
@@ -670,8 +681,7 @@
 							</xs:annotation>
 							<xs:complexType>
 								<xs:sequence>
-									<xs:element name="descricaoRazaoParaSerMulherDaPaz"
-										type="xs:string" minOccurs="0">
+									<xs:element name="descricaoRazaoParaSerMulherDaPaz" type="xs:string" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>

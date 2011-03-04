@@ -1,13 +1,13 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
-	xmlns="http://schemas.fortaleza.ce.gov.br/acao/gmfprotejo-instrumentalHabilidades.xsd"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-protejoInstrumentalHabilidades.xsd"
 	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
 	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
-	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/gmfprotejo-instrumentalHabilidades.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-protejoInstrumentalHabilidades.xsd"
 	elementFormDefault="qualified">
 
-	<xs:element name="form" type="formInstrumentalHabilidades">
+	<xs:element name="form" type="formProtejoInstrumentalHabilidades">
 		<xs:annotation>
 			<xs:appinfo>
 				<xhtml:label>INSTRUMENTAL PARA IDENTIFICAÇÃO DE INTERESSES E
@@ -15,14 +15,22 @@
 				<class:classificacoes>
 					<class:classificacao>cn=Mulheres da Paz,cn=Direitos Humanos</class:classificacao>
 				</class:classificacoes>
+				<idx:index>
+				    <idx:hint key="protejo.numeroInscricao" xpath="formProtejoInstrumentalHabilidades/dadosInscricao/numeroInscricao" />
+				    <idx:hint key="protejo.nomejovem" xpath="formProtejoInstrumentalHabilidades/dadosJovem/nomeJovem" />
+				    <idx:hint key="protejo.idadejovem" xpath="formProtejoInstrumentalHabilidades/dadosJovem/idadeJovem" />
+				    <idx:hint key="protejo.redeSocial" xpath="formProtejoInstrumentalHabilidades/dadosJovem/redeSocial" />
+				    <idx:hint key="protejo.nucleo" xpath="formProtejoInstrumentalHabilidades/dadosInscricao/nomeEntrevistador" />
+				    <idx:hint key="protejo.nomeEntrevistador" xpath="formProtejoInstrumentalHabilidades/dadosInscricao/nomeEntrevistador" />
+				</idx:index>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
 
-	<xs:complexType name="formInstrumentalHabilidades">
+	<xs:complexType name="formProtejoInstrumentalHabilidades">
 		<xs:sequence>
 
-			<xs:element name="informacaoInscricao">
+			<xs:element name="dadosInscricao">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>DADOS INSCRIÇÃO</xhtml:label>
@@ -66,7 +74,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="jovemTelefone" minOccurs="0">
+						<xs:element name="telefoneJovem" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Telefone</xhtml:label>
@@ -78,7 +86,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="jovemIdade" type="xs:integer" minOccurs="0">
+						<xs:element name="idadeJovem" type="xs:integer" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Idade</xhtml:label>
@@ -97,7 +105,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="racaEtinia">
+						<xs:element name="racaEtnia">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Raça/etnia</xhtml:label>
@@ -146,7 +154,7 @@
 				</xs:complexType>
 			</xs:element>
 
-			<xs:element name="trabalhoJovem">
+			<xs:element name="dadosTrabalho">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>1. TRABALHO</xhtml:label>
@@ -171,8 +179,7 @@
 						<xs:element name="atividadeExerceu" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Qual atividade você exerce ou exerceu?
-									</xhtml:label>
+									<xhtml:label>Qual atividade você exerce ou exerceu?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -184,8 +191,7 @@
 						<xs:element name="carteiraAssinada">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Trabalha com carteira assinada.
-									</xhtml:label>
+									<xhtml:label>Trabalha com carteira assinada.</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -249,8 +255,7 @@
 						<xs:element name="empreendimentoInformal">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Empreendimento individual ou coletivo.
-									</xhtml:label>
+									<xhtml:label>Empreendimento individual ou coletivo.</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -277,8 +282,7 @@
 						<xs:element name="horarioTrabalho">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Quais os dias e o horário de trabalho?
-									</xhtml:label>
+									<xhtml:label>Quais os dias e o horário de trabalho?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -410,7 +414,7 @@
 				</xs:complexType>
 			</xs:element>
 
-			<xs:element name="documentacao">
+			<xs:element name="dadosDocumentacao">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>3. DOCUMENTAÇÃO</xhtml:label>
@@ -422,8 +426,7 @@
 						<xs:element name="documentos">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Marque com X a documentacao que possue
-									</xhtml:label>
+									<xhtml:label>Marque com X a documentacao que possue</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
@@ -439,7 +442,7 @@
 									<xs:element name="numeroRG" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Nº RG </xhtml:label>
+												<xhtml:label>Número RG </xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:simpleType>
@@ -453,7 +456,7 @@
 										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Data de emissão</xhtml:label>
+												<xhtml:label>Data da emissão</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -470,7 +473,7 @@
 										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Nº certidão nascimento </xhtml:label>
+												<xhtml:label>Número da certidão nascimento </xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:simpleType>
@@ -491,7 +494,7 @@
 									<xs:element name="numeroCarteiraTrabalho" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Nº Carteira de trabalho </xhtml:label>
+												<xhtml:label>Número carteira de trabalho </xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:simpleType>
@@ -504,14 +507,14 @@
 										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Titulo de Eleitor</xhtml:label>
+												<xhtml:label>Titulo de eleitor</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
 									<xs:element name="numeroTitulo" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Nº Titulo de Eleitor </xhtml:label>
+												<xhtml:label>Número titulo de eleitor </xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:simpleType>
@@ -557,7 +560,7 @@
 						<xs:element name="nemeroReservista" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Nº reservista </xhtml:label>
+									<xhtml:label>Número reservista </xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -828,11 +831,10 @@
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
-												<xs:element name="prioridadeMonitorEsporte"
-													minOccurs="0">
+												<xs:element name="prioridadeMonitorEsporte" minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
-															<xhtml:label>Nº de prioridade </xhtml:label>
+															<xhtml:label>Nº prioridade </xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 													<xs:simpleType>
@@ -853,7 +855,7 @@
 												<xs:element name="prioridadeGrafite" minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
-															<xhtml:label>Nº de prioridade </xhtml:label>
+															<xhtml:label>Nº prioridade </xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 													<xs:simpleType>
@@ -873,7 +875,7 @@
 													minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
-															<xhtml:label>Nº de prioridade </xhtml:label>
+															<xhtml:label>Nº prioridade </xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 													<xs:simpleType>
@@ -892,7 +894,7 @@
 												<xs:element name="prioridadeDJ" minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
-															<xhtml:label>Nº de prioridade </xhtml:label>
+															<xhtml:label>Nº prioridade </xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 													<xs:simpleType>
@@ -912,7 +914,7 @@
 													minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
-															<xhtml:label>Nº de prioridade </xhtml:label>
+															<xhtml:label>Nº prioridade </xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 													<xs:simpleType>
@@ -932,7 +934,7 @@
 													minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
-															<xhtml:label>Nº de prioridade </xhtml:label>
+															<xhtml:label>Nº prioridade </xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 													<xs:simpleType>
@@ -952,7 +954,7 @@
 													minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
-															<xhtml:label>Nº de prioridade </xhtml:label>
+															<xhtml:label>Nº prioridade </xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 													<xs:simpleType>
@@ -973,7 +975,7 @@
 													minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
-															<xhtml:label>Nº de prioridade </xhtml:label>
+															<xhtml:label>Nº prioridade </xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 													<xs:simpleType>
@@ -994,7 +996,7 @@
 													minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
-															<xhtml:label>Nº de prioridade </xhtml:label>
+															<xhtml:label>Nº prioridade </xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 													<xs:simpleType>
@@ -1014,7 +1016,7 @@
 													minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
-															<xhtml:label>Nº de prioridade </xhtml:label>
+															<xhtml:label>Nº prioridade </xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 													<xs:simpleType>
@@ -1035,7 +1037,7 @@
 													minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
-															<xhtml:label>Nº de prioridade </xhtml:label>
+															<xhtml:label>Nº prioridade </xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 													<xs:simpleType>
@@ -1054,7 +1056,7 @@
 												<xs:element name="prioridadeManicure" minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
-															<xhtml:label>Nº de prioridade </xhtml:label>
+															<xhtml:label>Nº prioridade </xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 													<xs:simpleType>
@@ -1073,7 +1075,7 @@
 												<xs:element name="prioridadeDepilacao" minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
-															<xhtml:label>Nº de prioridade </xhtml:label>
+															<xhtml:label>Nº prioridade </xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 													<xs:simpleType>
@@ -1095,7 +1097,7 @@
 													minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
-															<xhtml:label>Nº de prioridade </xhtml:label>
+															<xhtml:label>Nº prioridade </xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 													<xs:simpleType>
@@ -1115,7 +1117,7 @@
 													minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
-															<xhtml:label>Nº de prioridade </xhtml:label>
+															<xhtml:label>Nº prioridade </xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 													<xs:simpleType>
@@ -1136,7 +1138,7 @@
 													minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
-															<xhtml:label>Nº de prioridade </xhtml:label>
+															<xhtml:label>Nº prioridade </xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 													<xs:simpleType>
@@ -1158,7 +1160,7 @@
 													minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
-															<xhtml:label>Nº de prioridade </xhtml:label>
+															<xhtml:label>Nº prioridade </xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 													<xs:simpleType>
@@ -1180,7 +1182,7 @@
 													minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
-															<xhtml:label>Nº de prioridade </xhtml:label>
+															<xhtml:label>Nº prioridade </xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 													<xs:simpleType>
@@ -1200,7 +1202,7 @@
 													minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
-															<xhtml:label>Nº de prioridade </xhtml:label>
+															<xhtml:label>Nº prioridade </xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 													<xs:simpleType>
@@ -1220,7 +1222,7 @@
 													minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
-															<xhtml:label>Nº de prioridade </xhtml:label>
+															<xhtml:label>Nº prioridade </xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 													<xs:simpleType>
@@ -1276,8 +1278,7 @@
 									<xs:element name="disponibilidadeSabado">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Marque as atividades esportivas de seu
-													interesse </xhtml:label>
+												<xhtml:label>Marque as atividades esportivas de seu interesse </xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:complexType>

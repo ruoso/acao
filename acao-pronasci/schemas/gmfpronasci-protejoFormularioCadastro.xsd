@@ -1,26 +1,36 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
-	xmlns="http://schemas.fortaleza.ce.gov.br/acao/gmfprotejo-formularioCadastro.xsd"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-protejoFormularioCadastro.xsd"
 	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
 	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
-	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/gmfprotejo-formularioCadastro.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-protejoFormularioCadastro.xsd"
 	elementFormDefault="qualified">
 
-	<xs:element name="form" type="formFormularioCadastro">
+	<xs:element name="form" type="formProtejoFormularioCadastro">
 		<xs:annotation>
 			<xs:appinfo>
-				<xhtml:label>FICHA CADASTRAL DO JOVEM INGRESSANTE NO PROJETO PROTEJO
-				</xhtml:label>
+				<xhtml:label>FICHA CADASTRAL DO JOVEM INGRESSANTE NO PROJETO PROTEJO</xhtml:label>
 				<class:classificacoes>
 					<class:classificacao>cn=Mulheres da Paz,cn=Direitos Humanos
 					</class:classificacao>
 				</class:classificacoes>
+				<idx:index>
+				    <idx:hint key="protejo.numeroInscricao" xpath="formProtejoFormularioCadastro/dadosInscricao/numeroInscricao" />
+				    <idx:hint key="protejo.nomeCompleto" xpath="formProtejoFormularioCadastro/dadosPessoais/dadosGerais/nomeCompleto" />
+				    <idx:hint key="protejo.cpf" xpath="formProtejoFormularioCadastro/dadosPessoais/dadosGerais/cpf" />
+				    <idx:hint key="protejo.dataNascimento" xpath="formProtejoFormularioCadastro/dadosPessoais/dadosGerais/dataNascimento" />
+				    <idx:hint key="protejo.endereco" xpath="formProtejoFormularioCadastro/dadosPessoais/endereco/logradouro" />
+				    <idx:hint key="protejo.bairro" xpath="formProtejoFormularioCadastro/dadosPessoais/endereco/bairro" />
+				    <idx:hint key="protejo.municipio.nacionalidade" xpath="formProtejoFormularioCadastro/dadosPessoais/dadosPessoalContato/nacionalidade/municNacionalidade" />
+				    <idx:hint key="protejo.uf.nacionalidade" xpath="formProtejoFormularioCadastro/dadosPessoais/dadosPessoalContato/nacionalidade/ufNacionalidade" />
+				    <idx:hint key="protejo.estadocivil" xpath="formProtejoFormularioCadastro/dadosPessoais/dadosPessoalContato/estadoCivil" />
+				</idx:index>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
 
-	<xs:complexType name="formFormularioCadastro">
+	<xs:complexType name="formProtejoFormularioCadastro">
 		<xs:sequence>
 
 			<xs:element name="dadosInscricao">
@@ -112,11 +122,9 @@
 												<xs:enumeration value="Masculino" />
 												<xs:enumeration value="Feminino" />
 											</xs:restriction>
-
 										</xs:simpleType>
 									</xs:element>
-									<xs:element name="dataNascimento" type="xs:date"
-										minOccurs="0">
+									<xs:element name="dataNascimento" type="xs:date" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Data nascimento*</xhtml:label>
@@ -173,8 +181,7 @@
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:element>
-									<xs:element name="numero" type="xs:string"
-										minOccurs="0">
+									<xs:element name="numero" type="xs:string" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Número</xhtml:label>
@@ -223,7 +230,7 @@
 
 						</xs:element>
 
-						<xs:element name="dadosPessoal">
+						<xs:element name="dadosPessoalContato">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Dados pessoais</xhtml:label>
@@ -279,8 +286,7 @@
 										</xs:annotation>
 										<xs:complexType>
 											<xs:sequence>
-												<xs:element name="boolNacionalidade" type="xs:boolean"
-													minOccurs="0">
+												<xs:element name="boolNacionalidade" type="xs:boolean" minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label>Brasileiro(a)</xhtml:label>
@@ -313,16 +319,14 @@
 													</xs:simpleType>
 												</xs:element>
 
-												<xs:element name="boolNacionalizado" type="xs:boolean"
-													minOccurs="0">
+												<xs:element name="boolNacionalizado" type="xs:boolean" minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label>Nacionalizado Brasileiro</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
-												<xs:element name="portariaNacionalizacao"
-													minOccurs="0">
+												<xs:element name="portariaNacionalizacao" minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label>Portaria Nacionalização**</xhtml:label>
@@ -335,15 +339,14 @@
 													</xs:simpleType>
 												</xs:element>
 
-												<xs:element name="boolEstrangeiro" type="xs:boolean"
-													minOccurs="0">
+												<xs:element name="boolEstrangeiro" type="xs:boolean" minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label>Estrangeiro</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
-												<xs:element name="pais" minOccurs="0">
+												<xs:element name="paisNacionalidade" minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label>País</xhtml:label>
@@ -355,8 +358,7 @@
 														</xs:restriction>
 													</xs:simpleType>
 												</xs:element>
-												<xs:element name="dataChegadaBrasil" type="xs:date"
-													minOccurs="0">
+												<xs:element name="dataChegadaBrasil" type="xs:date" minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label>Data de chegada ao Brasil**</xhtml:label>
@@ -384,6 +386,7 @@
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:element>
+
 									<xs:element name="etnia">
 										<xs:annotation>
 											<xs:appinfo>
@@ -411,17 +414,14 @@
 										</xs:annotation>
 										<xs:complexType>
 											<xs:sequence>
-
-												<xs:element name="nao" type="xs:boolean"
-													minOccurs="0">
+												<xs:element name="naoPossui" type="xs:boolean" minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label>Não possui</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
-												<xs:element name="cegueira" type="xs:boolean"
-													minOccurs="0">
+												<xs:element name="cegueira" type="xs:boolean" minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label>Cegueira</xhtml:label>
@@ -429,32 +429,28 @@
 													</xs:annotation>
 												</xs:element>
 
-												<xs:element name="surdez" type="xs:boolean"
-													minOccurs="0">
+												<xs:element name="surdez" type="xs:boolean" minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label>Surdez</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
-												<xs:element name="mudez" type="xs:boolean"
-													minOccurs="0">
+												<xs:element name="mudez" type="xs:boolean" minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label>Mudez</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
-												<xs:element name="fisica" type="xs:boolean"
-													minOccurs="0">
+												<xs:element name="fisica" type="xs:boolean" minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label>Física</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
-												<xs:element name="mental" type="xs:boolean"
-													minOccurs="0">
+												<xs:element name="mental" type="xs:boolean" minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label>Mental</xhtml:label>
@@ -621,7 +617,7 @@
 							<xs:complexType>
 								<xs:sequence>
 								
-												<xs:element name="alfabetizacaoAdultos" type="xs:boolean">
+									<xs:element name="alfabetizacaoAdultos" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Alfabetização de Adultos</xhtml:label>
@@ -660,7 +656,7 @@
 									<xs:element name="ensinoMedioEscolha" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Ensino Médio ou 2º grau:</xhtml:label>
+												<xhtml:label>Ensino médio ou 2º grau:</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -688,7 +684,7 @@
 									<xs:element name="supletivoEnsinoFundamental" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Supletivo de Ensino Fundamental ou de 1º grau: </xhtml:label>
+												<xhtml:label>Supletivo de ensino fundamental ou de 1º grau: </xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -696,7 +692,7 @@
 									<xs:element name="supletivoEnsinoMedio" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Supletivo de Ensino Médio ou de 2º grau:</xhtml:label>
+												<xhtml:label>Supletivo de ensino médio ou de 2º grau:</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>

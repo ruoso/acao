@@ -1,13 +1,13 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
-	xmlns="http://schemas.fortaleza.ce.gov.br/acao/gmfprotejo-avaliacaoProtejoNucleo.xsd"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-protejoAvaliacaoProtejoNucleo.xsd"
 	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
 	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
-	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/gmfprotejo-avaliacaoProtejoNucleo.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-protejoAvaliacaoProtejoNucleo.xsd"
 	elementFormDefault="qualified">
 
-	<xs:element name="form" type="formAvaliacaoProtejoNucleo">
+	<xs:element name="form" type="formProtejoAvaliacaoProtejoNucleo">
 		<xs:annotation>
 			<xs:appinfo>
 				<xhtml:label>AVALIAÇÃO PROTEJO NÚCLEOS</xhtml:label>
@@ -15,11 +15,15 @@
 					<class:classificacao>cn=Mulheres da Paz,cn=Direitos Humanos
 					</class:classificacao>
 				</class:classificacoes>
+				<idx:index>
+				    <idx:hint key="protejo.numeroInscricao" xpath="formProtejoAvaliacaoProtejoNucleo/dadosInscricao/numeroInscricao" />
+				    <idx:hint key="protejo.nucleo" xpath="formProtejoAvaliacaoProtejoNucleo/dadosInscricao/nucleo" />
+				</idx:index>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
 
-	<xs:complexType name="formAvaliacaoProtejoNucleo">
+	<xs:complexType name="formProtejoAvaliacaoProtejoNucleo">
 		<xs:sequence>
 			<xs:element name="dadosInscricao">
 				<xs:annotation>
@@ -61,8 +65,7 @@
 
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>1- Que opção você escolheria para avaliar o
-							desempenho dos seus educadores, quanto a(o):</xhtml:label>
+						<xhtml:label>1- Que opção você escolheria para avaliar o desempenho dos seus educadores, quanto a(o):</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -116,7 +119,7 @@
 						<xs:element name="integracaoGrupo">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>D) Integração com o grupo  </xhtml:label>
+									<xhtml:label>D) Integração com o grupo</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -131,8 +134,7 @@
 						<xs:element name="metodologia">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>E) Metodologia (atividades realizadas)
-									</xhtml:label>
+									<xhtml:label>E) Metodologia (atividades realizadas)</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -166,8 +168,7 @@
 
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>2- Que opção você escolheria para avaliar o seu
-							desempenho no projeto:</xhtml:label>
+						<xhtml:label>2- Que opção você escolheria para avaliar o seu desempenho no projeto:</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -176,8 +177,7 @@
 						<xs:element name="desempenhoProjeto">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Seu desempenho
-									</xhtml:label>
+									<xhtml:label>Seu desempenho</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -202,8 +202,7 @@
 			<xs:element name="dadosJovem3">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>3- Como você avalia o espaço onde o núcleo é sediado:
-						</xhtml:label>
+						<xhtml:label>3- Como você avalia o espaço onde o núcleo é sediado:</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -211,8 +210,7 @@
 						<xs:element name="espacoNucleo">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Espaço do núcleo
-									</xhtml:label>
+									<xhtml:label>Espaço do núcleo</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -237,8 +235,7 @@
 			<xs:element name="dadosJovem4">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>4- Quanto ao seu relacionamento com as educadoras:
-						</xhtml:label>
+						<xhtml:label>4- Quanto ao seu relacionamento com as educadoras:</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -246,8 +243,7 @@
 						<xs:element name="relacionamentoProfessor">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Relacionamento com educador
-									</xhtml:label>
+									<xhtml:label>Relacionamento com educador</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -265,9 +261,7 @@
 			<xs:element name="dadosJovem5">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>5- Quanto ao seu desempenho e participação no
-							projeto: 
-						</xhtml:label>
+						<xhtml:label>5- Quanto ao seu desempenho e participação no projeto:</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -275,8 +269,7 @@
 						<xs:element name="desempenhoProjeto">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Seu desempenho
-									</xhtml:label>
+									<xhtml:label>Seu desempenho</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -303,8 +296,7 @@
 						<xs:element name="integracaoGrupo">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Sua integração
-									</xhtml:label>
+									<xhtml:label>Sua integração</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -329,8 +321,7 @@
 			<xs:element name="dadosJovem7">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>7- Como você avalia sua freqüência ao longo do
-							Protejo</xhtml:label>
+						<xhtml:label>7- Como você avalia sua freqüência ao longo do Protejo</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -338,8 +329,7 @@
 						<xs:element name="avaliacaoFrequencia">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Sua freqüência
-									</xhtml:label>
+									<xhtml:label>Sua freqüência</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -369,7 +359,7 @@
 									<xs:element name="numeroInscricao">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Nº Inscrição ou identificação</xhtml:label>
+												<xhtml:label>Número inscrição</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:complexType>
@@ -390,8 +380,7 @@
 										</xs:complexType>
 									</xs:element>
 
-									<xhtml:label>Suas atividades externas
-									</xhtml:label>
+									<xhtml:label>Suas atividades externas</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -414,6 +403,7 @@
 				</xs:annotation>
 				<xs:complexType>
 					<xs:sequence>
+
 						<xs:element name="serigrafia">
 							<xs:annotation>
 								<xs:appinfo>
@@ -430,6 +420,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
+
 						<xs:element name="grafite">
 							<xs:annotation>
 								<xs:appinfo>
@@ -446,6 +437,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
+
 						<xs:element name="informatica">
 							<xs:annotation>
 								<xs:appinfo>
@@ -461,6 +453,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
+
 						<xs:element name="break">
 							<xs:annotation>
 								<xs:appinfo>
@@ -473,10 +466,10 @@
 									<xs:enumeration value="Bom" />
 									<xs:enumeration value="Ruim" />
 									<xs:enumeration value="Não fiz esse curso" />
-
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
+
 						<xs:element name="rap">
 							<xs:annotation>
 								<xs:appinfo>
@@ -489,7 +482,6 @@
 									<xs:enumeration value="Bom" />
 									<xs:enumeration value="Ruim" />
 									<xs:enumeration value="Não fiz esse curso" />
-
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
@@ -510,37 +502,14 @@
 							</xs:simpleType>
 						</xs:element>
 					</xs:sequence>
+
 				</xs:complexType>
 			</xs:element>
+
 			<xs:element name="dadosJovem10">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>10- O projeto fez alguma diferença na sua vida
-						</xhtml:label>
-						<xs:element name="numeroInscricao">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Nº Inscrição ou identificação</xhtml:label>
-								</xs:appinfo>
-							</xs:annotation>
-							<xs:complexType>
-								<xs:sequence>
-									<xs:element name="numeroInscricao" minOccurs="0">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label></xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-										<xs:simpleType>
-											<xs:restriction base="xs:string">
-												<xs:maxLength value="255" />
-											</xs:restriction>
-										</xs:simpleType>
-									</xs:element>
-								</xs:sequence>
-							</xs:complexType>
-						</xs:element>
-
+						<xhtml:label>10- O projeto fez alguma diferença na sua vida</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -548,8 +517,7 @@
 						<xs:element name="projetoNaVida">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Diferença em sua vida
-									</xhtml:label>
+									<xhtml:label>Diferença em sua vida</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -601,8 +569,7 @@
 			<xs:element name="dadosJovem12">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>12- Como está sua relação com a comunidade
-						</xhtml:label>
+						<xhtml:label>12- Como está sua relação com a comunidade</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -610,8 +577,7 @@
 						<xs:element name="relacaoComunidade">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Relação comunitária
-									</xhtml:label>
+									<xhtml:label>Relação comunitária</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -629,8 +595,7 @@
 			<xs:element name="dadosJovem13">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>13- Qual sua avaliação sobre as Mulheres da Paz
-						</xhtml:label>
+						<xhtml:label>13- Qual sua avaliação sobre as Mulheres da Paz</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -638,8 +603,7 @@
 						<xs:element name="avaliacaoMulheresPaz">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Avaliação mulheres da paz
-									</xhtml:label>
+									<xhtml:label>Avaliação mulheres da paz</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -666,8 +630,7 @@
 						<xs:element name="avaliacaoPoliciamento">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Avaliação policiamento
-									</xhtml:label>
+									<xhtml:label>Avaliação policiamento</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -685,8 +648,7 @@
 			<xs:element name="dadosJovem15">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>15- Como você avalia o Protejo de forma geral
-						</xhtml:label>
+						<xhtml:label>15- Como você avalia o Protejo de forma geral</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -694,8 +656,7 @@
 						<xs:element name="avaliacaoProjeto">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Avaliação do projeto
-									</xhtml:label>
+									<xhtml:label>Avaliação do projeto</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>

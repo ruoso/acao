@@ -1,29 +1,39 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
-	xmlns="http://schemas.fortaleza.ce.gov.br/acao/gmfprotejo-instrumentalCaracterizacaoJovens.xsd"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-protejoInstrumentalCaracterizacaoJovens.xsd"
 	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
 	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
-	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/gmfprotejo-instrumentalCaracterizacaoJovens.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-protejoInstrumentalCaracterizacaoJovens.xsd"
 	elementFormDefault="qualified">
 
-	<xs:element name="form" type="formInstrumentalCaracterizacaoJovem">
+	<xs:element name="form" type="formProtejoInstrumentalCaracterizacaoJovem">
 		<xs:annotation>
 			<xs:appinfo>
-				<xhtml:label>PESQUISA POPULAR SOBRE O PERFIL DOS ADOLESCENTES E
-					JOVENS – PRONASCI</xhtml:label>
+				<xhtml:label>PESQUISA POPULAR SOBRE O PERFIL DOS ADOLESCENTES E JOVENS – PRONASCI</xhtml:label>
 				<class:classificacoes>
 					<class:classificacao>cn=Mulheres da Paz,cn=Direitos Humanos</class:classificacao>
 				</class:classificacoes>
+				<idx:index>
+				    <idx:hint key="protejo.numeroInscricao" xpath="formProtejoInstrumentalCaracterizacaoJovem/dadosInscricao/numeroInscricao" />
+				    <idx:hint key="protejo.dataEntrevista" xpath="formProtejoInstrumentalCaracterizacaoJovem/dadosInscricao/dataEntrevista" />
+				    <idx:hint key="protejo.nomeEntrevistador" xpath="formProtejoInstrumentalCaracterizacaoJovem/dadosInscricao/nomeEntrevistador" />
+				    <idx:hint key="protejo.nomeEntrevistado" xpath="formProtejoInstrumentalCaracterizacaoJovem/identificacaoDadosSocioeconimicos/nomeEntrevistado"/>
+				    <idx:hint key="protejo.bairro" xpath="formProtejoInstrumentalCaracterizacaoJovem/identificacaoDadosSocioeconimicos/bairro"/>
+				    <idx:hint key="protejo.endereco" xpath="formProtejoInstrumentalCaracterizacaoJovem/identificacaoDadosSocioeconimicos/endereco"/>
+				    <idx:hint key="protejo.idade" xpath="formProtejoInstrumentalCaracterizacaoJovem/identificacaoDadosSocioeconimicos/idade"/>
+				    <idx:hint key="protejo.naturalidade" xpath="formProtejoInstrumentalCaracterizacaoJovem/identificacaoDadosSocioeconimicos/naturalidade"/>
+				    <idx:hint key="protejo.estadoCivil" xpath="formProtejoInstrumentalCaracterizacaoJovem/identificacaoDadosSocioeconimicos/estadoCivil"/>
+				</idx:index>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
 
-	<xs:complexType name="formInstrumentalCaracterizacaoJovem">
+	<xs:complexType name="formProtejoInstrumentalCaracterizacaoJovem">
 
 		<xs:sequence>
 
-			<xs:element name="identificacao">
+			<xs:element name="dadosInscricao">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Identificação</xhtml:label>
@@ -43,15 +53,14 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="dataEntrevista" type="xs:date"
-							minOccurs="0">
+						<xs:element name="dataEntrevista" type="xs:date" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Data da entrevista</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
-						<xs:element name="entrevistador" minOccurs="0">
+						<xs:element name="nomeEntrevistador" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Responsável pela entrevista</xhtml:label>
@@ -127,7 +136,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="bairroLocal" minOccurs="0">
+						<xs:element name="bairro" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Bairro/local</xhtml:label>

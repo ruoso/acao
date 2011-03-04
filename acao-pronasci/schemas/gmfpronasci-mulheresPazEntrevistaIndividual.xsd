@@ -1,29 +1,37 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
-	xmlns="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-entrevista-individual.xsd"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-mulheresDaPazEntrevistaIndividual.xsd"
 	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
-	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-entrevista-individual.xsd"
+	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-mulheresDaPazEntrevistaIndividual.xsd"
 	elementFormDefault="qualified">
 
-	<xs:element name="form" type="formEntrevistaIndividual">
+	<xs:element name="form" type="formMulheresDaPazEntrevistaIndividual">
 		<xs:annotation>
 			<xs:appinfo>
 				<xhtml:label>ENTREVISTA INDIVIDUAL MULHERES DA PAZ</xhtml:label>
 				<class:classificacoes>
 					<class:classificacao>cn=Mulheres da Paz,cn=Direitos Humanos</class:classificacao>
 				</class:classificacoes>
+				<idx:index>
+				    <idx:hint key="mulheresdapaz.numeroInscricao" xpath="formMulheresDaPazAvaliacaoDinamica/numeroInscricao" />
+				    <idx:hint key="mulheresdapaz.nome" xpath="formMulheresDaPazAvaliacaoDinamica/estabilidade/nome" />
+				    <idx:hint key="mulheresdapaz.idade" xpath="formMulheresDaPazAvaliacaoDinamica/estabilidade/idade" />
+				    <idx:hint key="mulheresdapaz.estadocivil" xpath="formMulheresDaPazAvaliacaoDinamica/estabilidade/estadoCivil" />
+				    <idx:hint key="mulheresdapaz.moradia" xpath="formMulheresDaPazAvaliacaoDinamica/estabilidade/moradia" />
+				</idx:index>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
 
-	<xs:complexType name="formEntrevistaIndividual">
+	<xs:complexType name="formMulheresDaPazEntrevistaIndividual">
 		<xs:sequence>
 		
 			<xs:element name="numeroInscricao" minOccurs="1">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Nº Inscrição:</xhtml:label>
+						<xhtml:label>Número de Inscrição:</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -41,7 +49,7 @@
 				</xs:annotation>
 				<xs:complexType>
 					<xs:sequence>
-					
+
 						<xs:element name="nome" minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
@@ -77,7 +85,7 @@
 						<xs:element name="estadoCivil" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Estado Civil
+									<xhtml:label>Estado civil
 									</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
@@ -126,7 +134,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="ajudaAsCriancas" type="xs:string" minOccurs="0">
+						<xs:element name="ajudaCriancas" type="xs:string" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Quem ajuda a cuidar das criancas?</xhtml:label>
@@ -168,17 +176,14 @@
 						<xs:element name="tempoMoradiaAtual" type="xs:string" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Há quanto tempo mora no bairro?
-									</xhtml:label>
+									<xhtml:label>Há quanto tempo mora no bairro?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
 						<xs:element name="pretendePermanecerNobairro" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Pretende permanecer no bairro pelos próximos 12 ou
-										2 meses?
-									</xhtml:label>
+									<xhtml:label>Pretende permanecer no bairro pelos próximos 12 ou 2 meses?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -191,16 +196,14 @@
 						<xs:element name="parenteNoBairro" type="xs:string" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Quem da família mora do bairro?
-									</xhtml:label>
+									<xhtml:label>Quem da família mora do bairro?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
 						<xs:element name="quemTrabalha" type="xs:string" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Quem trabalha na sua família e quanto ganha?
-									</xhtml:label>
+									<xhtml:label>Quem trabalha na sua família e quanto ganha?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -245,8 +248,7 @@
 										</xs:annotation>
 									</xs:element>
 
-									<xs:element name="conheceConselhosTutelares"
-										minOccurs="0">
+									<xs:element name="conheceConselhosTutelares" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Você conhece conselhos tutelares?</xhtml:label>
@@ -438,8 +440,7 @@
 										</xs:annotation>
 										<xs:complexType>
 											<xs:sequence>
-												<xs:element name="participaAssociacaoComunitaria"
-													minOccurs="0">
+												<xs:element name="participaAssociacaoComunitaria" minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label>Associação comunitária
@@ -487,9 +488,7 @@
 												<xs:element name="participaConselhos" minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
-															<xhtml:label>Conselhos(comunitários, de defesa social,
-																escolares, outros)
-												</xhtml:label>
+															<xhtml:label>Conselhos(comunitários, de defesa social, escolares, outros)</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 													<xs:simpleType>
@@ -552,8 +551,7 @@
 													</xs:annotation>
 												</xs:element>
 
-												<xs:element name="participaCentrosDefesa"
-													minOccurs="0">
+												<xs:element name="participaCentrosDefesa" minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label>Centros de defesa</xhtml:label>
@@ -575,8 +573,7 @@
 													</xs:annotation>
 												</xs:element>
 
-												<xs:element name="participaMovimentosSaudeMental"
-													minOccurs="0">
+												<xs:element name="participaMovimentosSaudeMental" minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
 															<xhtml:label>Movimentos de saúde mental</xhtml:label>
@@ -671,8 +668,7 @@
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Quando há uma briga na sua rua, você sabe como
-													as
-													pessoas resolvem?</xhtml:label>
+													as pessoas resolvem?</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:simpleType>
@@ -762,16 +758,14 @@
 										</xs:annotation>
 										<xs:simpleType>
 											<xs:restriction base="xs:string">
-												<xs:enumeration value="Ensino Básico (1ª a 4ª série) completo" />
-												<xs:enumeration value="Ensino Básico (1ª a 4ª série) incompleto" />
-												<xs:enumeration
-													value="Ensino Fundamental (5ª a 8ª série) completo" />
-												<xs:enumeration
-													value="Ensino Fundamental (5ª a 8ª série) incompleto" />
-												<xs:enumeration value="Ensino Médio (2º grau) completo" />
-												<xs:enumeration value="Ensino Médio (2º grau) incompleto" />
-												<xs:enumeration value="Ensino Superior completo" />
-												<xs:enumeration value="Ensino Superior incompleto" />
+												<xs:enumeration value="Ensino básico (1ª a 4ª série) completo" />
+												<xs:enumeration value="Ensino básico (1ª a 4ª série) incompleto" />
+												<xs:enumeration	value="Ensino fundamental (5ª a 8ª série) completo" />
+												<xs:enumeration value="Ensino fundamental (5ª a 8ª série) incompleto" />
+												<xs:enumeration value="Ensino médio (2º grau) completo" />
+												<xs:enumeration value="Ensino médio (2º grau) incompleto" />
+												<xs:enumeration value="Ensino superior completo" />
+												<xs:enumeration value="Ensino superior incompleto" />
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:element>
@@ -920,8 +914,7 @@
 													type="xs:boolean">
 													<xs:annotation>
 														<xs:appinfo>
-															<xhtml:label>Relações sociais do adolescente
-															</xhtml:label>
+															<xhtml:label>Relações sociais do adolescente</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
@@ -937,8 +930,7 @@
 													type="xs:boolean">
 													<xs:annotation>
 														<xs:appinfo>
-															<xhtml:label>Problemas de relacionamento escola
-															</xhtml:label>
+															<xhtml:label>Problemas de relacionamento escolar</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
@@ -988,7 +980,7 @@
 									<xs:element name="manha" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Manha</xhtml:label>
+												<xhtml:label>Manhã</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -1021,7 +1013,7 @@
 									<xs:element name="manha" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Manha</xhtml:label>
+												<xhtml:label>Manhã</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -1087,7 +1079,7 @@
 									<xs:element name="manha" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Manha</xhtml:label>
+												<xhtml:label>Manhã</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -1120,7 +1112,7 @@
 									<xs:element name="manha" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Manha</xhtml:label>
+												<xhtml:label>Manhã</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -1153,7 +1145,7 @@
 									<xs:element name="manha" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Manha</xhtml:label>
+												<xhtml:label>Manhã</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -1313,8 +1305,7 @@
 									<xs:element name="naoSeImporta">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Pimenta nos olhos dos outros, pra mim, é
-													refresco</xhtml:label>
+												<xhtml:label>Pimenta nos olhos dos outros, pra mim, é refresco</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:complexType>
@@ -1423,8 +1414,7 @@
 									<xs:element name="melhorCalarReinidicar">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Em boca fechada não se entra mosca(se não é com
-													ela não se importa)</xhtml:label>
+												<xhtml:label>Em boca fechada não se entra mosca(se não é com ela não se importa)</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:complexType>
@@ -1479,8 +1469,7 @@
 									<xs:element name="melhoraSeAdaptar">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Em terra de sapos, de cócoras com eles(é melhor
-													se adaptar)</xhtml:label>
+												<xhtml:label>Em terra de sapos, de cócoras com eles(é melhor se adaptar)</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:complexType>
@@ -1534,8 +1523,7 @@
 									<xs:element name="sobreInfluencias">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Diga-me com quem andas que e eu te direi quem
-													és(sobre influẽncias)</xhtml:label>
+												<xhtml:label>Diga-me com quem andas que e eu te direi quem és(sobre influẽncias)</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:complexType>
@@ -1590,8 +1578,7 @@
 									<xs:element name="violenciaCrianca">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Escreveu não leu, o pau comeu(violência criança
-													e adolescente)</xhtml:label>
+												<xhtml:label>Escreveu não leu, o pau comeu(violência criança e adolescente)</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:complexType>
@@ -1645,8 +1632,7 @@
 									<xs:element name="capacidadeFinalizacao">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Quem não pode com o pote, não pega na
-													rodia(capacidade de finalizar um trabalho)</xhtml:label>
+												<xhtml:label>Quem não pode com o pote, não pega na rodia(capacidade de finalizar um trabalho)</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:complexType>
@@ -1704,12 +1690,6 @@
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
-			
-			
-			
-			
-			
-			
 
 		</xs:sequence>
 	</xs:complexType>

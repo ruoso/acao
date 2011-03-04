@@ -1,32 +1,35 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
-	xmlns="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-avaliacao-entrevista-individual.xsd"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-mulheresDaPazAvaliacaoEntrevistaIndividual.xsd"
 	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
-	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-avaliacao-entrevista-individual.xsd"
+	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-mulheresDaPazAvaliacaoEntrevistaIndividual.xsd"
 	elementFormDefault="qualified">
 
-	<xs:element name="form" type="formAvaliacaoEntrevistaIndividual">
+	<xs:element name="form" type="formMulhesDaPazAvaliacaoEntrevistaIndividual">
 		<xs:annotation>
 			<xs:appinfo>
-				<xhtml:label>AVALIAÇÃO ENTREVISTA INDIVIDUAL MULHERES DA PAZ
-				</xhtml:label>
+				<xhtml:label>AVALIAÇÃO ENTREVISTA INDIVIDUAL MULHERES DA PAZ</xhtml:label>
 				<class:classificacoes>
 					<class:classificacao>cn=Mulheres da Paz,cn=Direitos Humanos</class:classificacao>
 				</class:classificacoes>
-
+				<idx:index>
+				    <idx:hint key="mulheresdapaz.numeroInscricao" xpath="formMulhesDaPazAvaliacaoEntrevistaIndividual/numeroInscricao" />
+				    <idx:hint key="mulheresdapaz.escolaridade" xpath="formMulhesDaPazAvaliacaoEntrevistaIndividual/escolaridade" />
+				</idx:index>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
 
-	<xs:complexType name="formAvaliacaoEntrevistaIndividual">
+	<xs:complexType name="formMulhesDaPazAvaliacaoEntrevistaIndividual">
 
 		<xs:sequence>
 
 			<xs:element name="numeroInscricao" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Nº Inscrição:</xhtml:label>
+						<xhtml:label>Número de inscrição:</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>

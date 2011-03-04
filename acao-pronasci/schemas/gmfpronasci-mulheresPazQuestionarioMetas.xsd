@@ -1,23 +1,32 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
-	xmlns="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-questionario-metas.xsd"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-mulheresDaPazQuestionarioMetas.xsd"
 	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
-	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-questionario-metas.xsd"
+	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-mulheresDaPazQuestionarioMetas.xsd"
 	elementFormDefault="qualified">
 
-	<xs:element name="form" type="formQuestionarioDeMetas">
+	<xs:element name="form" type="formMulheresDaPazQuestionarioMetas">
 		<xs:annotation>
 			<xs:appinfo>
 				<xhtml:label>QUESTIONÁRIO DE METAS MULHERES DA PAZ</xhtml:label>
 				<class:classificacoes>
 					<class:classificacao>cn=Mulheres da Paz,cn=Direitos Humanos</class:classificacao>
 				</class:classificacoes>
+				<idx:index>
+				    <idx:hint key="mulheresdapaz.numeroInscricao" xpath="formMulheresDaPazQuestionarioMetas/numeroInscricao" />
+				    <idx:hint key="mulheresdapaz.nomemulher" xpath="formMulheresDaPazQuestionarioMetas/dadosDaMulher/nome" />
+				    <idx:hint key="mulheresdapaz.nucleo" xpath="formMulheresDaPazQuestionarioMetas/dadosDaMulher/nucleo" />
+				    <idx:hint key="mulheresdapaz.nomejovem" xpath="formMulheresDaPazQuestionarioMetas/dadosDoJovem/nomeJovem" />
+				    <idx:hint key="mulheresdapaz.idadejovem" xpath="formMulheresDaPazQuestionarioMetas/dadosDoJovem/idadeJovem" />
+				    <idx:hint key="mulheresdapaz.endereco" xpath="formMulheresDaPazQuestionarioMetas/dadosDoJovem/enderecoJovem" />
+				</idx:index>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
 
-	<xs:complexType name="formQuestionarioDeMetas">
+	<xs:complexType name="formMulheresDaPazQuestionarioMetas">
 		<xs:sequence>
 			<xs:element name="nomeProjeto">
 				<xs:annotation>
@@ -30,7 +39,7 @@
 						<xs:element name="numeroInscricao" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Nº Inscrição:</xhtml:label>
+									<xhtml:label>Número de inscrição:</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -39,7 +48,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="dadosMulher">
+						<xs:element name="dadosdaMulher">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>1. Dados da Mulher</xhtml:label>
@@ -47,7 +56,7 @@
 							</xs:annotation>
 							<xs:complexType>
 								<xs:sequence>
-									<xs:element name="nomeMulher" minOccurs="0">
+									<xs:element name="nome" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Mulher da paz</xhtml:label>
@@ -67,7 +76,7 @@
 										</xs:annotation>
 										<xs:simpleType>
 											<xs:restriction base="xs:string">
-												<xs:enumeration value="INSERIR NÚCLEOS ....." />
+												<xs:maxLength value="255" />
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:element>
@@ -165,8 +174,7 @@
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:element>
-									<xs:element name="motivoParouEstudar" minOccurs="0"
-										type="xs:string">
+									<xs:element name="motivoParouEstudar" minOccurs="0" type="xs:string">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Se não está estudando qual motivo</xhtml:label>
@@ -195,7 +203,7 @@
 										</xs:annotation>
 										<xs:simpleType>
 											<xs:restriction base="xs:string">
-												<xs:enumeration value="INSERIR ESCOLAS ...." />
+												<xs:maxLength value="255" />
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:element>
