@@ -267,7 +267,7 @@ q|declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";
                     concat($x/ns:estado/text()," "),
                     concat($x/ns:criacao/text()," "),
                     concat($x/ns:representaVolumeFisico/text()," "))|;
-warn $xq;
+
     $self->sedna->execute($xq);
 
     my $vol = {};
