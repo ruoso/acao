@@ -22,6 +22,8 @@ use Encode;
 use XML::Compile::Schema;
 use XML::Compile::Util;
 use Data::Dumper;
+use warnings;
+use strict;
 
 use constant IDX_NS => 'http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd';
 
@@ -66,12 +68,11 @@ sub insert_indices {
 
     #Constrói o resumo do índice inserido
     my $resumo = "$nm_volume - $nm_prontuario - $label";
-    my $indices =
-      $self->extract_xml_keys( $xsd, $idx_data, $id_volume, $controle,
-        $id_documento );
+    my $indices = $self->extract_xml_keys( $xsd, $idx_data, $id_volume, $controle, $id_documento );
     my $autorizacoes_vol = $self->extract_autorizacoes_volume($id_volume);
-    my ( $autorizacoes_dos, $herda_dos ) =
-      $self->extract_autorizacoes_dossie( $id_volume, $controle );
+
+    my ( $autorizacoes_dos, $herda_dos ) = $self->extract_autorizacoes_dossie( $id_volume, $controle );
+
     my $v = $self->dbic->resultset('Volume')->find_or_create(
         {
             id_volume         => $id_volume,
@@ -79,6 +80,7 @@ sub insert_indices {
             permissao_volumes => $autorizacoes_vol
         }
     );
+
     my $dossie = $v->dossies->find_or_create(
         {
             id_dossie         => $controle,
@@ -87,6 +89,7 @@ sub insert_indices {
             herda_permissoes  => $herda_dos
         }
     );
+
     my $doc = $dossie->entries->find_or_create(
         {
             documento        => $id_documento,
@@ -132,10 +135,14 @@ sub update_autorizacoes_vol {
     $self->dbic->resultset('PermissaoVolume')->search({
         id_volume => $id_volume
     })->delete();
-    my $volprs = $self->dbic->resultset('Volume')->find({
-        id_volume => $id_volume
-    })->permissao_volumes;
-    $volprs->create($_) for @$auth_list;
+
+    for my $hash_ref (@{$auth_list}) {
+        my $volprs = $self->dbic->resultset('PermissaoVolume')->create({
+            id_volume => $id_volume,
+            dn => $hash_ref->{dn}
+        });
+    }
+
 }
 
 =item update_autorizacoes_dos()
@@ -154,12 +161,13 @@ sub update_autorizacoes_dos {
         id_dossie => $controle
     })->delete();
 
-    my $dosprs = $self->dbic->resultset('Dossie')->find({
-        id_volume => $id_volume,
-        id_dossie => $controle
-    })->permissao_dossies;
-
-    $dosprs->create($_) for @$auth_list;
+    for my $hash_ref (@{$auth_list}) {
+        my $dosprs = $self->dbic->resultset('PermissaoDossie')->create({
+            id_volume => $id_volume,
+            id_dossie => $controle,
+            dn => $hash_ref->{dn}
+        });
+    }
 }
 
 =item find_for_name_index()
