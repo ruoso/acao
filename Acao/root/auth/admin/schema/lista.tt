@@ -18,23 +18,44 @@
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
 %]
 [% INCLUDE 'auth/admin/schema/header.tt' %]
+[% INCLUDE 'errosucesso.tt' %]
+[% SET num_por_pagina = 30 %]
+
+[% SET interval_ini = c.req.param('interval_ini') %]
+[% IF !interval_ini %]
+  [% SET interval_ini = 0 %]
+[% END %]
+[%     xqueryret = PROCESS 'auth/admin/schema/lista_xqueryret.tt' %]
+
+<h1 class="titulo-form">Gerenciar Schemas XSD |
+  <span style="font-size:13px; font-weight:normal;">
+       <a class="criar" href="[% c.uri_for_action('/auth/admin/schema/form') %]">Inserir Schema</a>
+  </span>
+</h1>
+
 <div class="caixa_consulta">
   <fieldset>
     <legend>Filtros</legend>
     Classificações <br/>
-      <select id="busca" onchange="buscar('[% c.uri_for_action('/auth/admin/schema/buscar') %]')" >
+    <form name=""  action="[% c.uri_for_action('/auth/admin/schema/buscar') %]" method="post" >
+      <select name="busca"   >
+        <option value="" selected="selected"> Todos </option>
         [% c.model('Schema').options_classificacao_xsd() %]
       </select>
+      <input type="submit" value="buscar">
+    </form>
     </fieldset>
 
 
 </div>
 <div id="grid-table">
+
 <table>
 <thead>
  <tr>
   <th width="20%">Schemas XSD</th>
   <th>Classificação</th>
+  <th>Versão</th>
   <th>Operações</th>
  </tr>
 </thead>
@@ -44,10 +65,15 @@
 
    [%
 
-    xqueryret = PROCESS 'auth/admin/schema/lista_xqueryret.tt';
+
 
     xquery = c.model('Schema').listar_schemas({
                               'grid' => xqueryret,
+                              'ip' => c.req.address,
+                              'interval_ini' => interval_ini,
+                              'template'	=> template,
+                              'busca'		=> busca
+                              'num_por_pagina' => num_por_pagina
                             });
     c.model('Sedna').begin;
 
@@ -60,10 +86,10 @@
     END;
 
 
-     # c.model('Sedna').execute( xquery.count );
-     # WHILE (contador = c.model('Sedna').get_item);
-     #   count = contador;
-     # END;
+     c.model('Sedna').execute( xquery.count );
+     WHILE (contador = c.model('Sedna').get_item);
+       count = contador;
+     END;
 
     c.model('Sedna').commit; %]
 
@@ -99,3 +125,6 @@ var template = $("input[name='template']").val();
 }
 </script>
 [% INCLUDE 'footer.tt' %]
+[% paginacao = PROCESS 'auth/admin/schema/paginacao.tt' %]
+[% paginacao %]
+</div>
