@@ -1,12 +1,17 @@
 (
 <tr>
   <td>
-    {replace($x/@targetNamespace/string(), "http://schemas.fortaleza.ce.gov.br/acao/", "")}
+    {replace($x/@targetNamespace/string(), "^.*/(.*)\..*$", "$1")}
   </td>
   <td>
     {replace($x/xs:element/xs:annotation/xs:appinfo/class:classificacoes/class:classificacao/text(),"cn=","")}
   </td>
-    <td>
+  <td>
+
+    { replace($x/@targetNamespace/string(), "^.*?_*v*(\d*)\.xsd.*$" , "$1")  }
+  </td>
+  <td>
+
 
   </td>
 </tr>
