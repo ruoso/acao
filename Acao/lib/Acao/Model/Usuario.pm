@@ -8,14 +8,13 @@ use List::MoreUtils qw{uniq};
 
 use Carp qw(croak);
 extends 'Acao::Model::LDAP';
-my $base_user_acao =
-"ou=Ação,dc=sistemas,dc=diretorio,dc=intranet,dc=cti,dc=fortaleza,dc=ce,dc=gov,dc=br";
+
 
 sub buscar_usuarios_ {
     my ($self) = @_;
 
     my $mesg = $self->ldap->search(
-        base   => $base_user_acao,
+        base   => $self->base_acao,
         filter => "(&(member=*))",
         scope  => 'one'
 
@@ -27,7 +26,7 @@ sub buscar_usuarios_ {
 sub buscar_usuarios {
     my $self = shift;
     my $mesg = $self->ldap->search(
-        base   => $base_user_acao,
+        base   => $self->base_acao,
         filter => "(&(member=*))",
         scope  => 'sub',
         attrs  => ['member'],
