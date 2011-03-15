@@ -1,4 +1,5 @@
-package Acao::Model;
+package Acao::Model::Escolas;
+
 
 # Copyright 2010 - Prefeitura Municipal de Fortaleza
 #
@@ -17,43 +18,31 @@ package Acao::Model;
 # Você deve ter recebido uma cópia da Licença Pública Geral GNU, sob o
 # título "LICENCA.txt", junto com este programa, se não, escreva para a
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
+
 use Moose;
+extends 'Acao::Model';
+use Data::Dumper;
+use Encode;
+use strict;
+use warnings;
 
-with 'Catalyst::Component::InstancePerContext';
-has 'user'  => ( is => 'rw' );
-has 'dbic'  => ( is => 'rw' );
-has 'sedna' => ( is => 'rw' );
+sub listaEscolas {
+	my ($self, $nm_escola ) = @_;
 
-=head1 NAME
+	my @escolas;
 
-Acao::Model - Superclasse para os modelos de regra de negócio.
+	my @result = $self->dbic->resultset('Escolas')->search(
+		{ nome => { ilike => '%'.$nm_escola.'%' } },
+		{columns => ['nome']}
+	);
 
-=head1 DESCRIPTION
+	for my $rset (@result) {
+		#gambiarra para evitar o encode do encode feito pelo JSON
+		push @escolas, decode("utf-8", $rset->nome);
+#		push @escolas, $rset->nome;
+	}
 
-Essa classe define o comportamento de que ao acessar um modelo de
-negócios, será levado como informação para a classe modelo qual o
-usuário autenticado, além de levar uma referência para o dbic e para o
-sedna.
-
-=cut
-
-sub build_per_context_instance {
-    my ( $self, $c ) = @_;
-    $self->new(
-        user  => $c->user,
-        dbic  => $c->model('DB')->schema,
-        sedna => $c->model('Sedna')
-    );
+	return \@escolas;
 }
-
-
-
-
-=head1 COPYRIGHT AND LICENSING
-
-Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
-sob a GPL versão 2.
-
-=cut
 
 1;

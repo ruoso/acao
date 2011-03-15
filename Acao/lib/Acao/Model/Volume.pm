@@ -94,7 +94,8 @@ txn_method 'listar_volumes' => authorized $role_listar => sub {
       . 'subsequence('
       . 'for $x in collection("volume")/ns:volume[ns:autorizacoes/author:autorizacao[('
       . $grupos . ')'
-      . 'and @role="listar"]]'
+      . 'and @role="listar"]] '
+      . 'let $alterar := count(collection("volume")/ns:volume[ns:collection = $x/ns:collection]/ns:autorizacoes/author:autorizacao[('.$grupos.') and @role = "alterar"])'
       . 'return ($x/ns:collection/text(), '
       . $args->{xqueryret} . '),' . '('
       . $args->{interval_ini} * $args->{num_por_pagina}
@@ -239,8 +240,8 @@ txn_method 'getDadosVolumeId' => authorized $role_listar => sub {
 
     my $xq = q|declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";
               declare namespace cl="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";
-              for $x in collection("volume")/ns:volume[ns:collection="|.$id_volume.q|"] 
-                 return (concat($x/ns:nome/text()," "), 
+              for $x in collection("volume")/ns:volume[ns:collection="|. $id_volume . q|"]
+                 return (concat($x/ns:nome/text()," "),
                     string-join(
                         for $c in $x/ns:classificacoes/cl:classificacao/text()
                             return (if (ends-with($c,",|.$assuntos_dn.q|")) then (string-join(reverse(for $i in tokenize(substring-before($c,",|.$assuntos_dn.q|"),',')
@@ -251,10 +252,10 @@ txn_method 'getDadosVolumeId' => authorized $role_listar => sub {
                             return (if (ends-with($d,",|.$local_dn.q|")) then (string-join(reverse(for $j in tokenize(substring-before($d,",|.$local_dn.q|"),',')
                                  return (tokenize($j,'='))[2]),' - ')
                                ) else ($d)),', '),
-                    concat($x/ns:estado/text()," "), 
+                    concat($x/ns:estado/text()," "),
                     concat($x/ns:criacao/text()," "),
                     concat($x/ns:representaVolumeFisico/text()," "))|;
-warn $xq;
+
     $self->sedna->execute($xq);
 
     my $vol = {};
@@ -463,6 +464,8 @@ sub store_altera_volume {
 
     $self->sedna->commit;
 
+    $self->update_autorizacoes_vol($args->{id_volume},$self->desserialize_autorizacoes($args->{autorizacoes}));
+
 }
 
 sub localizacao_do_volume {
@@ -473,7 +476,7 @@ sub localizacao_do_volume {
 q|declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";
              declare namespace cl="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";
              for $x in collection("volume")/ns:volume[ns:collection="|
-      . $id_volume . q|"] 
+      . $id_volume . q|"]
              return $x/ns:localizacao/text()|;
 
     $self->sedna->begin;
@@ -481,6 +484,49 @@ q|declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";
     my $local = $self->sedna->get_item;
     $self->sedna->commit;
     return $local;
+}
+
+sub buscar_no_indice {
+    my $self = shift;
+    my $hashClause = shift;
+    return $self->find_for_index($hashClause);
+}
+
+sub find_key_indexes {
+    my ($self, $c) = @_;
+    my $classificacao;
+    my @indexes;
+    my $grupos = join ' or ',
+      map { '@principal = "' . $_ . '"' } @{ $self->user->memberof };
+
+    # Query para listagem
+    my $list =
+        'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";'
+      . 'declare namespace author = "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";'
+      . 'declare namespace cl = "http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";'
+      . 'for $x in collection("volume")/ns:volume[ns:autorizacoes/author:autorizacao[('
+      . $grupos . ')'
+      . 'and @role="listar"]] '
+      . 'return tokenize($x/ns:classificacoes/cl:classificacao/text(),",")[1]';
+    $self->sedna->begin;
+    $self->sedna->execute($list);
+    $classificacao = $self->sedna->get_item();
+    $self->sedna->commit;
+
+    my $xq_indexes = 'declare namespace cl = "http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";
+                      declare namespace idx = "http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd";
+                      for $x in collection("acao-schemas")/*/*/*/*/cl:classificacoes[cl:classificacao="'.$classificacao.'"]
+                      return $x/../../../../*/*/*/idx:index/idx:hint/@key/string()';
+    $self->sedna->begin;
+    $self->sedna->execute($xq_indexes);
+    while (my $item=$self->sedna->get_item ) {
+        $item =~ s/^\s+//;
+    	$item =~ s/\s+$//;
+        push(@indexes, $item);
+    }
+    $self->sedna->commit;
+    return @indexes;
+
 }
 
 =cut

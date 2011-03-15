@@ -1,5 +1,4 @@
-package Acao::Model;
-
+[%#
 # Copyright 2010 - Prefeitura Municipal de Fortaleza
 #
 # Este arquivo é parte do programa Ação - Sistema de Acompanhamento de
@@ -17,43 +16,38 @@ package Acao::Model;
 # Você deve ter recebido uma cópia da Licença Pública Geral GNU, sob o
 # título "LICENCA.txt", junto com este programa, se não, escreva para a
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
-use Moose;
+%]
+[% META title = 'Lista de Leituras para o Digitador'%]
+[% INCLUDE 'auth/registros/volume/header.tt' %]
+[% INCLUDE 'errosucesso.tt' %]
 
-with 'Catalyst::Component::InstancePerContext';
-has 'user'  => ( is => 'rw' );
-has 'dbic'  => ( is => 'rw' );
-has 'sedna' => ( is => 'rw' );
+[% SET num_por_pagina = 30 %]
 
-=head1 NAME
+[% SET interval_ini = c.req.param('interval_ini') %]
+[% IF !interval_ini %]
+  [% SET interval_ini = 0 %]
+[% END %]
 
-Acao::Model - Superclasse para os modelos de regra de negócio.
+<table>
+<thead>
+ <tr>
+  <th width="20%">Documentos</th>
+ </tr>
+</thead>
+<TBODY>
+ [% FOREACH entrie IN entries.all %]
+    <tr>
+        <td>
+            <a href="[% c.uri_for_action('/auth/registros/volume/dossie/documento/visualizar', [ entrie.volume.id_volume, entrie.dossie.id_dossie, entrie.documento ])%]" >
+                [% entrie.resumo %]
+            </a>
+        </td>
+    </tr>
+ [% END %]
+</TBODY>
+</table>
 
-=head1 DESCRIPTION
+[% paginacao = PROCESS 'auth/registros/volume/paginacao.tt' %]
+[% paginacao %]
 
-Essa classe define o comportamento de que ao acessar um modelo de
-negócios, será levado como informação para a classe modelo qual o
-usuário autenticado, além de levar uma referência para o dbic e para o
-sedna.
-
-=cut
-
-sub build_per_context_instance {
-    my ( $self, $c ) = @_;
-    $self->new(
-        user  => $c->user,
-        dbic  => $c->model('DB')->schema,
-        sedna => $c->model('Sedna')
-    );
-}
-
-
-
-
-=head1 COPYRIGHT AND LICENSING
-
-Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
-sob a GPL versão 2.
-
-=cut
-
-1;
+[% INCLUDE 'footer.tt' %]

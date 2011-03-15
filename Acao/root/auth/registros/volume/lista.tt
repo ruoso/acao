@@ -51,6 +51,12 @@
   </span>
 </h1>
 
+<h1 class="titulo-form">Busca Índices |
+  <span style="font-size:13px; font-weight:normal;">
+      <a class="buscar" href="[% c.uri_for_action('/auth/registros/volume/index/formIndexes') %]">Buscar por índices</a>
+  </span>
+</h1>
+
 <table>
 <thead>
  <tr>
@@ -69,7 +75,9 @@
 
 [% TRY %]
 
-   [% xqueryret = PROCESS 'auth/registros/volume/lista_xqueryret.tt';
+   [%
+
+   xqueryret = PROCESS 'auth/registros/volume/lista_xqueryret.tt';
         #c.model('Sedna').conn.setConnectionAttr_CONCURRENCY_TYPE(c.model('Sedna').conn.SEDNA_READONLY_TRANSACTION);
         xquery = c.model('Volume').listar_volumes({
                               'xqueryret' => xqueryret,

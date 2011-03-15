@@ -70,21 +70,6 @@ __PACKAGE__->has_many(
     { cascade_copy        => 0, cascade_delete => 0 },
 );
 
-=head2 permissao_dossies
-
-Type: has_many
-
-Related object: L<Acao::Schema::Result::PermissaoDossie>
-
-=cut
-
-#__PACKAGE__->has_many(
-#  "permissao_dossies",
-#  "Acao::Schema::Result::PermissaoDossie",
-#  { "foreign.id_volume" => "self.id_volume" },
-#  { cascade_copy => 0, cascade_delete => 0 },
-#);
-
 =head2 entries
 
 Type: has_many

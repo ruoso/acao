@@ -16,4 +16,7 @@ perl -MAcao::Plugins::VilaDoMar::DimSchema -e'my $schema = Acao::Plugins::VilaDo
 perl -Ilib -MAcao -e 'Acao->model("DB")->schema->deploy'
 
 
+perl -MDBIx::Class::Schema::Loader=dump_to_dir:"/tmp/bla" -e 'DBIx::Class::Schema::Loader->connection("dbi:SQLite:dbname=acao.db")'
 
+#gera as tabela a partir das classes do dbixclass sem estar no MODEL
+perl -MAcao::Schema -e'my $schema = Acao::Schema->connect("dbi:Pg:host=127.0.0.1;dbname=acao",'acao', '12345'); $schema->deploy();'

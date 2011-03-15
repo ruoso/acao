@@ -1,4 +1,4 @@
-package Acao::Model;
+package Acao::Schema::Result::Escolas;
 
 # Copyright 2010 - Prefeitura Municipal de Fortaleza
 #
@@ -17,36 +17,41 @@ package Acao::Model;
 # Você deve ter recebido uma cópia da Licença Pública Geral GNU, sob o
 # título "LICENCA.txt", junto com este programa, se não, escreva para a
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
-use Moose;
 
-with 'Catalyst::Component::InstancePerContext';
-has 'user'  => ( is => 'rw' );
-has 'dbic'  => ( is => 'rw' );
-has 'sedna' => ( is => 'rw' );
+use strict;
+use warnings;
+use Moose;
+use base 'DBIx::Class::Core';
 
 =head1 NAME
 
-Acao::Model - Superclasse para os modelos de regra de negócio.
+Acao::Schema::Result::Escolas - Resultsource da tabela escolas
 
 =head1 DESCRIPTION
 
-Essa classe define o comportamento de que ao acessar um modelo de
-negócios, será levado como informação para a classe modelo qual o
-usuário autenticado, além de levar uma referência para o dbic e para o
-sedna.
+Este objeto define a lsita de escolas do autocomplete
 
 =cut
 
-sub build_per_context_instance {
-    my ( $self, $c ) = @_;
-    $self->new(
-        user  => $c->user,
-        dbic  => $c->model('DB')->schema,
-        sedna => $c->model('Sedna')
-    );
-}
+__PACKAGE__->table("escolas");
 
 
+__PACKAGE__->add_columns(
+    "nome",
+    {
+        data_type         => "varchar",
+        default_value     => undef,
+        is_nullable       => 0,
+        size              => undef,
+    },
+    "bairro",
+    {
+        data_type     => "varchar",
+        default_value => undef,
+        is_nullable   => 0,
+        size          => undef,
+    },
+);
 
 
 =head1 COPYRIGHT AND LICENSING

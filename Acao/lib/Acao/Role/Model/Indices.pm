@@ -22,8 +22,11 @@ use Encode;
 use XML::Compile::Schema;
 use XML::Compile::Util;
 use Data::Dumper;
+use warnings;
+use strict;
 
 use constant IDX_NS => 'http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd';
+
 my $controle =
   XML::Compile::Schema->new( Acao->path_to('schemas/indexhint.xsd') );
 my $controle_w = $controle->compile(
@@ -31,6 +34,8 @@ my $controle_w = $controle->compile(
     use_default_namespace => 1
 );
 my $controle_r = $controle->compile( READER => pack_type( IDX_NS, 'index' ) );
+
+
 
 =head1 NAME
 
@@ -63,12 +68,11 @@ sub insert_indices {
 
     #Constrói o resumo do índice inserido
     my $resumo = "$nm_volume - $nm_prontuario - $label";
-    my $indices =
-      $self->extract_xml_keys( $xsd, $idx_data, $id_volume, $controle,
-        $id_documento );
+    my $indices = $self->extract_xml_keys( $xsd, $idx_data, $id_volume, $controle, $id_documento );
     my $autorizacoes_vol = $self->extract_autorizacoes_volume($id_volume);
-    my ( $autorizacoes_dos, $herda_dos ) =
-      $self->extract_autorizacoes_dossie( $id_volume, $controle );
+
+    my ( $autorizacoes_dos, $herda_dos ) = $self->extract_autorizacoes_dossie( $id_volume, $controle );
+
     my $v = $self->dbic->resultset('Volume')->find_or_create(
         {
             id_volume         => $id_volume,
@@ -76,6 +80,7 @@ sub insert_indices {
             permissao_volumes => $autorizacoes_vol
         }
     );
+
     my $dossie = $v->dossies->find_or_create(
         {
             id_dossie         => $controle,
@@ -84,6 +89,7 @@ sub insert_indices {
             herda_permissoes  => $herda_dos
         }
     );
+
     my $doc = $dossie->entries->find_or_create(
         {
             documento        => $id_documento,
@@ -113,6 +119,82 @@ sub drop_indices {
     $entry->gin_indexes->delete();
     $entry->permissoes->delete();
     $entry->delete();
+}
+
+=item update_autorizacoes_vol()
+
+Altera as autorizações do volume no banco de indexação
+
+=cut
+
+sub update_autorizacoes_vol {
+    my ($self, $id_volume, $autorizacoes) = @_;
+
+    my $auth_list = [ map { { dn => $_->{principal} }} grep { $_->{role} eq 'listar'} @{$autorizacoes->{'autorizacao'}} ];
+
+    $self->dbic->resultset('PermissaoVolume')->search({
+        id_volume => $id_volume
+    })->delete();
+
+    for my $hash_ref (@{$auth_list}) {
+        my $volprs = $self->dbic->resultset('PermissaoVolume')->create({
+            id_volume => $id_volume,
+            dn => $hash_ref->{dn}
+        });
+    }
+
+}
+
+=item update_autorizacoes_dos()
+
+Altera as autorizações do prontuário no banco de indexação
+
+=cut
+
+sub update_autorizacoes_dos {
+    my ($self, $id_volume, $controle, $autorizacoes) = @_;
+
+    my $auth_list = [ map { { dn => $_->{principal} }} grep { $_->{role} eq 'listar'} @{$autorizacoes->{'autorizacao'}} ];
+
+    $self->dbic->resultset('PermissaoDossie')->search({
+        id_volume => $id_volume,
+        id_dossie => $controle
+    })->delete();
+
+    for my $hash_ref (@{$auth_list}) {
+        my $dosprs = $self->dbic->resultset('PermissaoDossie')->create({
+            id_volume => $id_volume,
+            id_dossie => $controle,
+            dn => $hash_ref->{dn}
+        });
+    }
+}
+
+=item find_for_name_index()
+
+Realiza as buscas através do nome passado, utilizando os índices
+
+=cut
+
+sub find_for_index {
+    my ($self, $hashClause) = @_;
+
+    my @busca;
+    for my $k (keys %{$hashClause}) {
+        if ($hashClause->{$k} ne '') {
+            push @busca, {
+                'gin_indexes.key' => $k,
+                'gin_indexes.value' => { like => '%'.$hashClause->{$k}.'%' }
+            };
+        }
+    }
+    my $entries = $self->dbic->resultset('Entry')->search(
+    [@busca],
+    {join => 'gin_indexes',
+     distinct => 1});
+
+    return $entries;
+    
 }
 
 =item get_xsd_info()
@@ -176,10 +258,15 @@ sub extract_xml_keys {
 
     my @xmldata;
     $self->sedna->execute($xquery);
+    my @data;
     while ( my $key = $self->sedna->get_item ) {
         my $val = $self->sedna->get_item;
         $key =~ s/^\s+|\s+$//gs;
         $val =~ s/^\s+|\s+$//gs;
+        if ($key eq 'pessoa.datanascimento') {
+            @data = split('-',$val);
+            $val = $data[2].'/'.$data[1].'/'.$data[0];
+        }
         next unless $val;
         push @xmldata, { key => $key, value => $val };
     }

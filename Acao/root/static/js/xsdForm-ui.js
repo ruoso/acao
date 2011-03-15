@@ -232,7 +232,15 @@ function generateXsdFormUI() {
     });
     $('input.xsdForm__float.inflated').regexMask('float-ptbr');
 
-     $('input.xsdForm__integer').regexMask('integer');
+    $('input.xsdForm__integer').regexMask('integer');
 
+    $('input.autoComplete').each(
+	function(i,elemento) {
+		alert('teste');
+		$(this).autocomplete({
+                	source: $(elemento).attr('rel'),
+			minLength: 2	                
+	        });
+	});
 
 }

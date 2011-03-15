@@ -18,8 +18,8 @@
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
 %]
 [% INCLUDE 'auth/registros/volume/dossie/documento/header_contexto.tt' %]
-[% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume, c.model('LDAP').assuntos_dn, c.model('LDAP').local_dn) ) %]
-[% SET dos = ( c.model('Dossie').getDadosDossie(id_volume, controle, c.model('LDAP').assuntos_dn, c.model('LDAP').local_dn) ) %]
+[% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume) ) %]
+[% SET dos = ( c.model('Dossie').getDadosDossie(id_volume, controle) ) %]
 
 <script SRC="[% c.uri_for('/static/js/input.deflate.plugin.js') %]" language="Javascript" ></script>
 <script SRC="[% c.uri_for('/static/js/regex-mask-plugin.js') %]" language="Javascript" ></script>
@@ -82,8 +82,8 @@
         <dt>Classificação:</dt>
         <dd><span>[% dos.classificacoes %]</span></dd>
 
-        <!--<dt>Localização:</dt>
-        <dd><span>[% dos.localizacao %]</span></dd>-->
+        <dt>Localização:</dt>
+        <dd><span>[% dos.localizacao %]</span></dd>
 
         <dt>Estado:</dt>
         <dd><span>[% dos.estado %]</span></dd>
@@ -112,15 +112,15 @@
  <div id="form_container"></div>
   <input type="hidden" name="view" value="visualizar">
   [% IF c.model('Documento').pode_alterar_documento(id_volume,controle,id_documento) %]
-
+    [% INCLUDE 'auth/registros/volume/dossie/documento/_formPermissoes.tt' %]
   [% END %]
 
 [% # IF c.user.roles.grep('digitador') %]
 [%# IF c.config.roles.dossie.criar %]
     [%# IF invalidacao == '1970-01-01T00:00:00Z' %]
-      [% IF c.model('Documento').pode_alterar_documento(id_volume,controle,id_documento) %]
+
          <input type="submit" value="Submeter alterações como novo documento">
-         [% END %]
+
     [%# END %]
 [%# END %]
 
@@ -152,7 +152,9 @@
   }
 </style>
 
+
  <script language="javascript" type="text/javascript">
+
    generateForm("[% c.uri_for_action('/auth/registros/xsd/raw', { ns => xsdDocumento }) %]", "form_container");
    fillValues  ("[% c.uri_for_action('/auth/registros/volume/dossie/documento/xml', [ id_volume, controle, id_documento ]) %]");
    generateXsdFormUI();

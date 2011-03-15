@@ -1,4 +1,4 @@
-package Acao::Model;
+package Acao::Controller::Public::Servicos;
 
 # Copyright 2010 - Prefeitura Municipal de Fortaleza
 #
@@ -17,37 +17,40 @@ package Acao::Model;
 # Você deve ter recebido uma cópia da Licença Pública Geral GNU, sob o
 # título "LICENCA.txt", junto com este programa, se não, escreva para a
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
-use Moose;
 
-with 'Catalyst::Component::InstancePerContext';
-has 'user'  => ( is => 'rw' );
-has 'dbic'  => ( is => 'rw' );
-has 'sedna' => ( is => 'rw' );
+use strict;
+use warnings;
+use utf8;
+use parent 'Catalyst::Controller';
+use Data::Dumper;
 
 =head1 NAME
 
-Acao::Model - Superclasse para os modelos de regra de negócio.
+Acao::Controller::Public::Login - Implementa a chamada para o início
+de uma sessão de usuário.
 
-=head1 DESCRIPTION
+=head1 ACTIONS
 
-Essa classe define o comportamento de que ao acessar um modelo de
-negócios, será levado como informação para a classe modelo qual o
-usuário autenticado, além de levar uma referência para o dbic e para o
-sedna.
+=over
+
+
+Faz a chamada para a lista de escolas
 
 =cut
 
-sub build_per_context_instance {
-    my ( $self, $c ) = @_;
-    $self->new(
-        user  => $c->user,
-        dbic  => $c->model('DB')->schema,
-        sedna => $c->model('Sedna')
-    );
+sub escolas : Chained('/') : PathPart('escolas') : Args(0) {
+  
+	my ($self, $c) = @_;
+	my $nm_escola = $c->req->param('term');
+	my $result = $c->model('Escolas')->listaEscolas($nm_escola);
+	$c->stash->{json} = $result;
+	
+	warn Dumper($result);
+
+	$c->forward('View::JSON');
 }
 
-
-
+=back
 
 =head1 COPYRIGHT AND LICENSING
 

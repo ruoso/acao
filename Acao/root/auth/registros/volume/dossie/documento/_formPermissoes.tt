@@ -1,0 +1,214 @@
+[%#
+# Copyright 2010 - Prefeitura Municipal de Fortaleza
+#
+# Este arquivo é parte do programa Ação - Sistema de Acompanhamento de
+# Projetos Sociais
+#
+# O Ação é um software livre; você pode redistribui-lo e/ou modifica-lo
+# dentro dos termos da Licença Pública Geral GNU como publicada pela
+# Fundação do Software Livre (FSF); na versão 2 da Licença.
+#
+# Este programa é distribuido na esperança que possa ser util, mas SEM
+# NENHUMA GARANTIA; sem uma garantia implicita de ADEQUAÇÂO a qualquer
+# MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a Licença Pública Geral GNU
+# para maiores detalhes.
+#
+# Você deve ter recebido uma cópia da Licença Pública Geral GNU, sob o
+# título "LICENCA.txt", junto com este programa, se não, escreva para a
+# Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
+%]
+<style>
+#acoes_ {
+  left: 240px;
+  position: relative;
+  top: -145px;
+}
+
+.consultaLdap {
+
+  position: relative;
+  height: 220px;
+  width: 200px;
+  border-right: 1px dotted #cccccc;
+
+}
+
+#borderAutorizacao {
+  border: 1px solid;
+  border-color: #cccccc;
+  padding: 20px;
+  height: 200px;
+
+}
+
+.consultaLdap_ {
+  height: 200px;
+  overflow-y: scroll !important ;
+  position: relative;
+  width: 200px;
+
+}
+
+.consultaLdap .base {
+  border-bottom: 1px dotted #cccccc;
+  margin-bottom: -6px;
+}
+
+
+
+
+
+
+</style>
+
+ <fieldset id="grupos">
+    <legend> Autorizações: </legend>
+     <input type="hidden" id ="author" name="autorizacoes" value="[% autorizacoes | html %]" />
+     <input type="hidden" name="basedn" value="[% basedn %]" />
+     <dt><input type="checkbox" name="herdar_author" [% IF herdar == 1 %] checked [% END %] /> Herdar Autorizações do Prontuário</dt>
+[% SET labels_roles = {
+        "alterar" => "Alterar este Documento",
+        "listar" => "Listar este Documento",
+        "visualizar" => "Ver este Documento",
+        "transferir" => "Transferir este Documento",
+   } %]
+
+<br/>
+  [% IF c.model('Documento').pode_alterar_documento(id_volume,controle,id_documento) %]
+    <a href="javascript:void(0);"  name="visualizar_autorizacoes" onclick="ver_autorizacoes('[% c.uri_for_action('/auth/registros/volume/dossie/documento/ver_autorizacoes_grid', [ id_volume, controle, id_documento ]) %]')" >
+  Visualizar Autorizações</a>
+  [% END %]
+<br/>
+
+  <div id="grid-autorizacoes"></div>
+<div id="borderAutorizacao">
+  <div class="consultaLdap">
+
+  <div class='base' >
+     [%  FOREACH group IN c.model('LDAP').buscar_dn_adm(basedn) %]
+
+        <input type="checkbox" name="grupos_ldap[]" value="[% group.dn %]"/>
+        <a  href="javascript:void(0);" name="grupos" onclick="navega_ldap('[% c.uri_for_action('/auth/registros/volume/dossie/documento/navega_ldap', [ id_volume, controle ]) %]','[% group.dn %]')" >
+           [% group.get_value('o') || group.get_value('ou') %]
+        </a>
+
+     [% END %]
+ </div>
+</div>
+
+  <div id="acoes_">
+      <input type="checkbox" name="checkAllAcoes" id="checkAllAcoes" />
+      Marcar Todas
+      [% FOREACH r IN labels_roles.keys %]
+         <li>
+            <input type="checkbox" name="acoes_autorizacoes[]" value="[% r %]"/>
+      [% labels_roles.item(r) %]
+         </li>
+      [% END %]
+      <a href="javascript:void(0);"  name="adicionar" onclick="add_autorizacoes('[% c.uri_for_action('/auth/registros/volume/dossie/documento/add_autorizacoes_grid', [ id_volume, controle ]) %]')" >Adicionar</a>
+  </div>
+</div>
+ </fieldset>
+
+
+<script type="text/javascript">
+
+
+
+$('#checkAllAcoes').click(function() {
+  if ($("input[name='checkAllAcoes']").is(':checked') ) {
+    $("input[name='acoes_autorizacoes[]']").attr('checked', true);
+  } else {
+    $("input[name='acoes_autorizacoes[]']").attr('checked', false);
+  }
+});
+
+function navega_ldap(action,grupos) {
+  $.ajax({
+       type: "POST",
+       url: action,
+       data: "grupos=" + grupos ,
+       success: function(msg){
+        $('.consultaLdap').html(msg);
+
+       }
+
+  });
+}
+
+function add_autorizacoes(action) {
+
+  var autorizacoes_add = $("input[name='autorizacoes']").val();
+  var acoes_autorizacoes = [];
+  var grupos_ldap = [];
+
+  $("input[name='acoes_autorizacoes[]']:checked").each(function(){acoes_autorizacoes.push($(this).val());});
+  $("input[name='grupos_ldap[]']:checked").each(function(){grupos_ldap.push($(this).val());});
+
+  if ( ($("input[name='acoes_autorizacoes[]']:checked").length > 0) &&
+       ($("input[name='grupos_ldap[]']:checked").length))
+       {
+       $("#author").remove();
+
+      $.ajax({
+           type: "POST",
+           url: action,
+
+           data: {
+             'autorizacoes_ldap':  autorizacoes_add,
+             'grupos': grupos_ldap.join(" - "),
+             'role':  acoes_autorizacoes
+             },
+           success: function(msg){
+             $('#grid-autorizacoes').html(msg);
+             $("input[name='acoes_autorizacoes[]']").attr('checked', false);
+             $("input[name='grupos_ldap[]']").attr('checked', false);
+             $("input[name='checkAllAcoes']").attr('checked', false);
+
+           }
+
+      });
+  }
+}
+
+function remover_autorizacoes(action,posicao) {
+
+  var autorizacoes_ldap = $("input[name='autorizacoes']").val();
+      $.ajax({
+           type: "POST",
+           url: action,
+
+           data: {
+             'autorizacoes_ldap':  autorizacoes_ldap,
+             'posicao': posicao,
+             },
+          success: function(msg){
+             $('#grid-autorizacoes').html(msg);
+             $("input[name='acoes_autorizacoes[]']").attr('checked', false);
+             $("input[name='grupos_ldap[]']").attr('checked', false);
+             $("input[name='checkAllAcoes']").attr('checked', false);
+           }
+
+      });
+
+}
+
+function ver_autorizacoes(action) {
+
+
+      $.ajax({
+           type: "POST",
+           url: action,
+           data: {},
+          success: function(msg){
+             $('#grid-autorizacoes').html(msg);
+             $("#author").remove();
+           }
+
+      });
+
+}
+
+
+
+   </script>

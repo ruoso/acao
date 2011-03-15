@@ -151,32 +151,42 @@ com a ação passada como parametro.
         $self->sedna->execute($query);
         my $xml = $self->sedna->get_item();
 
+
         $self->sedna->commit;
         return $xml;
     };
+=item _checa_autorizacao_dossie()
 
-    method _checa_autorizacao_volume_dossie => sub {
+Este método retorna/checa as autorização de Dossie de acordo com a ação
+passada como parametro.
+Também verifica se o volume a qual o Dossie pertence permite realizar
+a ação desejada, como: 'transferir' e 'criar'.
+
+
+=cut
+
+    method _checa_autorizacao_dossie => sub {
         my ( $self, $id_volume, $acao, $controle ) = @_;
         my $grupos = join ' or ',
           map { '@principal = "' . $_ . '"' } @{ $self->user->memberof };
         my $check = '(' . $grupos . ') and @role="' . $acao . '"';
         my $herdar =
-            '((' 
+            '(author:autorizacao[('
           . $check
-          . ') or (../@herdar=1 and (collection("volume")/vol:volume[vol:collection="'
+          . ')] or (@herdar=1 and (collection("volume")/vol:volume[vol:collection="'
           . $id_volume
           . '"]/vol:autorizacoes/author:autorizacao['
           . $check . '])))';
 
         my $query =
-'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";'
+    'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";'
           . 'declare namespace vol = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";'
           . 'declare namespace author = "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";'
           . 'for $x in collection("'
           . $id_volume
           . '")/ns:dossie[ns:controle = "'
           . $controle . '"] '
-          . 'where $x/ns:autorizacoes/author:autorizacao['
+          . 'where $x/ns:autorizacoes['
           . $herdar . '] '
           . 'return 1';
 

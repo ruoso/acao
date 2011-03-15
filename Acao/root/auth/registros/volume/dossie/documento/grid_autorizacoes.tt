@@ -1,0 +1,32 @@
+[% SET labels_roles = {
+        "alterar" => "Alterar este Documento",
+        "listar" => "Listar este Documento",
+        "visualizar" => "Ver este Documento",
+        "transferir" => "Transferir este Documento",
+   } %]
+<input type="hidden" value="[% autorizacoes | html %]" name="autorizacoes">
+     <table id="grid_autorizacoes">
+      <thead>
+        <th>Grupo</th>
+        <th>Permissão</th>
+        <th>
+      </thead>
+      <tbody>
+        [% SET count = 0 %]
+        [% IF autorizacoes %]
+          [% FOREACH a IN c.model('Documento').desserialize_autorizacoes(autorizacoes).autorizacao %]
+          <tr>
+            <td>[% c.model('LDAP').decompose_dn_grupos(a.principal).reverse.join(' - ') %]</td>
+            <td>[% labels_roles.item(a.role) %]</td>
+            <td>
+               <a href="javascript:void(0);"  name="remover"
+                onclick="remover_autorizacoes('[% c.uri_for_action('/auth/registros/volume/dossie/documento/remover_autorizacoes_grid', [ id_volume, controle ]) %]','[% count %]')" >
+                Remover</a>
+
+            </td>
+          </tr>
+          [% SET count = count + 1 %]
+          [% END %]
+        [% END %]
+      </tbody>
+     </table>
