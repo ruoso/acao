@@ -21,15 +21,17 @@
 <html xmlns='http://www.w3.org/1999/xhtml'>
     <head onload="document.focus()">
 
-  <script type="text/javascript">
-    function onload_focus(){
-      document.getElementById('user').focus();
-    }
-  </script>
+  	<script type="text/javascript">
+    		function onload_focus(){
+      			document.getElementById('user').focus();
+    		}
+  	</script>
         <meta http-equiv="Content-Type" content="text/xhtml; charset=UTF-8" />
         <title>Ação - Sistema de Acompanhamentos de Projetos Sociais</title>
         <link href='[% c.uri_for('/static/css/ui-lightness/jquery-ui-1.7.2.custom.css') %]' rel='stylesheet' type='text/css' />
         <link href='[% c.uri_for('/static/css/estilo.css') %]' rel='stylesheet' type='text/css' />
+        
+
     </head>
 
     <body onload="onload_focus();">
