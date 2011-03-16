@@ -4,7 +4,13 @@
     {replace($x/@targetNamespace/string(), "^.*/(.*)\..*$", "$1")}
   </td>
   <td>
+    {$x/xs:element/xs:annotation/xs:appinfo/*/text()}
+  </td>
+  <td>
     {replace($x/xs:element/xs:annotation/xs:appinfo/class:classificacoes/class:classificacao/text(),"cn=","")}
+  </td>
+  <td>
+    {replace($x/@targetNamespace/string(), "^.*?_*v*(\d*)\.xsd.*$" , "$1")}
   </td>
   <td>
     {if ($x/xs:element/xs:annotation/xs:appinfo/class:classificacoes/@validacao/string() eq 'inativo') then (
@@ -13,10 +19,9 @@
     else (
         <a href="[% c.uri_for_action('/auth/admin/schema/validacao', 'inativo', {XSDtargetNamespace => '___XSDtargetNamespace___'}).replace('___XSDtargetNamespace___','{$x
 /@targetNamespace/string()}')%]" >Inativar</a>)}
-    {$x/xs:element/xs:annotation/xs:appinfo/class:classificacoes/@validacao/string()}
-    { replace($x/@targetNamespace/string(), "^.*?_*v*(\d*)\.xsd.*$" , "$1")  }
   </td>
   <td>
+    {$x/xs:element/xs:annotation/xs:appinfo/class:classificacoes/@validacao/string()}
   </td>
 </tr>
 )

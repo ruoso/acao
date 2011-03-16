@@ -25,7 +25,7 @@ sub listar_schemas {
 'declare namespace class = "http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";'
       . 'subsequence('
       . 'for $x in collection("acao-schemas")/xs:schema '.$busca
-      . 'order by $x/@targetNamespace/string() '
+      . 'order by $x/@targetNamespace/string(), $x/xs:element/xs:annotation/xs:appinfo/class:classificacoes/@validacao/string() '
       . ' return ($x,'
       . $args->{grid}
       . '  ), ('
@@ -90,11 +90,9 @@ sub insere_schema {
       $self->sedna->commit;
     };
 
-
-
     return;
 }
-1;
+
 
 sub altera_validacao_schemas {
     my ($self, $XSDtargetNamespace, $validacao) = @_;
