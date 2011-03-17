@@ -1,0 +1,26 @@
+
+[% IF basedn.size > 1; basedn = basedn.shift; END %]
+  [% IF basedn != c.model('LDAP').grupos_dn %]
+
+
+  [% c.model('LDAP').decompose_dn_grupos(c.view('LDAPUtil').voltar_grupos(basedn)).reverse.join(' - ') %]
+<div class="voltar" >
+  <a  href="javascript:void(0);" onclick="navega_ldap('[% c.uri_for_action('/auth/admin/usuario/navega_ldap') %]','[%  c.view('LDAPUtil').voltar_grupos(basedn) %]')"  >
+    voltar
+  </a>
+</div>
+  [% END %]
+ <div class="consultaLdap_">
+[%  FOREACH group IN c.model('LDAP').buscar_dn_adm(basedn) %]
+  <div class='base' >
+
+      <input type="checkbox" name="grupos_ldap[]" value="[% group.dn %]"/>
+      <a  href="javascript:void(0);" name="grupos" onclick="navega_ldap('[% c.uri_for_action('/auth/admin/usuario/navega_ldap') %]','[% group.dn %]')" >
+         [% group.get_value('o') || group.get_value('ou') %]
+      </a>
+    </li>
+  </div>
+[%  END %]
+</div>
+
+
