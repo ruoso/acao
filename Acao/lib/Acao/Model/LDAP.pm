@@ -4,12 +4,16 @@ use Moose;
 use Data::Dumper;
 use strict;
 use warnings;
+use Net::LDAP::Entry;
+use Net::LDAPS;
+use IO::Socket::SSL;
 
 use Carp qw(croak);
 extends 'Acao::Model';
 
 has ldap_config => ( is => 'ro', required => 1 );
-has ldap        => ( is => 'rw', lazy     => 1, builder => '_bind_ldap' );
+has ldap_admin_config => ( is => 'ro', required => 1 );
+has ldap => ( is => 'rw', lazy => 1, builder => '_bind_ldap' );
 has dominios_dn => ( is => 'ro', required => 1 );
 has grupos_dn   => ( is => 'ro', required => 1 );
 has assuntos_dn => ( is => 'ro', required => 1 );
@@ -32,6 +36,16 @@ sub _bind_ldap {
     my $conn = Net::LDAP->new( $host, %{ $self->{ldap_config} } )
       or die "$@";
     my $mesg = $conn->bind;
+    croak 'LDAP error: ' . $mesg->error if $mesg->is_error;
+    return $conn;
+}
+
+sub _bind_ldap_admin {
+    my $self = shift;
+    my $host = $self->ldap_admin_config->{host};
+    my $conn = Net::LDAP->new( $host, %{ $self->ldap_admin_config } )
+      or die "$@";
+    my $mesg = $conn->bind( $self->ldap_admin_config->{dn}, %{ $self->ldap_admin_config } );
     croak 'LDAP error: ' . $mesg->error if $mesg->is_error;
     return $conn;
 }
@@ -116,5 +130,22 @@ sub buscar_dn_assuntos {
     return $mesg->sorted('o');
 }
 
+sub LDAPentryCreate {
+    my ( $self, $dn, $whatToCreate ) = @_;
+    my $ldapS  = _bind_ldap_admin($self);
+    my $result = $ldapS->add( $dn, attrs => [@$whatToCreate] );
+    return $result;
+}
+
+sub LDAPInsertMemberEntry {
+    my ( $self, $dn, $member ) = @_;
+    my $ldapS  = _bind_ldap_admin($self);
+    my $result = $ldapS->modify(
+        $dn,
+        add => { member => [$member] }
+    );
+
+    return $result;
+}
 1;
 

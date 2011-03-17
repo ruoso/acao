@@ -24,39 +24,19 @@
        <a class="criar" href="[% c.uri_for_action('/auth/admin/usuario/adicionar_usuario') %]">Cadastrar Usuário</a>
   </span>
 </h1>
-
-<div class="caixa_consulta">
-  <fieldset>
-    <legend>Consulta</legend>
-     <br/>
-    <form name=""  action="[% # c.uri_for_action('/auth/admin/schema/buscar') %]" method="post" >
-      <select name="busca"   >
-        <option value="" selected="selected"> Todos </option>
-        <option value="" selected="selected"> Usuário do Sistema </option>
-        <option value="" selected="selected"> Super Administradores </option>
-      </select>
-      <input type="submit" value="buscar">
-    </form>
-    </fieldset>
-</div>
 <table>
 <thead>
  <tr>
   <th width="20%">Usuário</th>
-  <th>Ações</th>
+  <th>DN</th>
 
  </tr>
 </thead>
 <TBODY>
     [% FOREACH user IN usuarios %]
     <tr>
-     <td><img src="[% c.uri_for('/static/img/user/user.png') %]" alt="Usuário" />  <a href="[% c.uri_for_action('/auth/admin/usuario/ver_user',[ user.dn ])%]" rel="[% user.dn | url %]"> [% user.nome%]</a>	</td>
-     <td>
-       <a href="[% user.dn %]" class="pass_edit" >Alterar Senha</a>
-       <a href="[% user.dn %]" class="user_edit">Alterar Dados </a>
-       <a href="[% user.dn %]" class="workplace_edit">Alterar Lotação </a>
-
-     </td>
+     <td><a href="[% c.uri_for_action('/auth/admin/usuario/ver_user',[user.dn])%]" rel="[% user.dn %]"> [% user.nome%]</a>	</td>
+     <td>[% user.dn %]	</td>
    </tr>
     [% END %]
 </TBODY>

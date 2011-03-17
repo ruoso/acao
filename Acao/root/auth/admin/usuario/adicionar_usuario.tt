@@ -1,0 +1,200 @@
+[%#
+# Copyright 2010 - Prefeitura Municipal de Fortaleza
+#
+# Este arquivo é parte do programa Ação - Sistema de Acompanhamento de
+# Projetos Sociais
+#
+# O Ação é um software livre; você pode redistribui-lo e/ou modifica-lo
+# dentro dos termos da Licença Pública Geral GNU como publicada pela
+# Fundação do Software Livre (FSF); na versão 2 da Licença.
+#
+# Este programa é distribuido na esperança que possa ser util, mas SEM
+# NENHUMA GARANTIA; sem uma garantia implicita de ADEQUAÇÂO a qualquer
+# MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a Licença Pública Geral GNU
+# para maiores detalhes.
+#
+# Você deve ter recebido uma cópia da Licença Pública Geral GNU, sob o
+# título "LICENCA.txt", junto com este programa, se não, escreva para a
+# Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
+%]
+[% INCLUDE 'auth/admin/usuario/header.tt' %]
+[% INCLUDE 'errosucesso.tt' %]
+
+<form name="formAddUserLdap" id="formAddUserLdap" action="[% c.uri_for_action('/auth/admin/usuario/store') %]" method="post" >
+<fieldset >
+  <legend></legend>
+
+       <fieldset class="cadInfoUser">
+         <legend><img src="[% c.uri_for('/static/img/user/user.png') %]" alt=" Informação de Usuário" /> Informação de Usuário</legend>
+          <dl>
+            <dt>Nome:</dt>
+              <dd><input type="text" name="nome" value="" ></dd>
+            <dt>Sobrenome:</dt>
+              <dd><input type="text" name="sobrenome" value="" ></dd>
+            <dt>Email:</dt>
+              <dd><input type="text" name="email" value="" ></dd>
+            <dt>Telefone:</dt>
+              <dd><input type="text" name="fone" value="" ></dd>
+         </dl>
+      </fieldset>
+      <fieldset class="cadInfoLogin" >
+           <legend><img src="[% c.uri_for('/static/img/user/user_go.png') %]" alt="Informação de acesso ao sistema" /> Informação de acesso ao sistema</legend>
+           <dl>
+             <dt>Domínio:</dt>
+               <dd>
+            <select name="dominio" id="dominio">
+              [% FOREACH dom IN c.model('LDAP').buscar_dominios_auth -%]
+                <option value="[% dom.dn %]">[% dom.get_value('o') %]</option>
+              [% END -%]
+             </select>
+                </dd>
+             <dt>Usuário:<span class="checkUserLdap" ><img onmouseover="dica_show()" onmouseout="dica_hide()" src="[% c.uri_for('/static/img/magnifier.png') %]" alt="Checar Usuário"></span></dt>
+                <dd><input type="text" name="uid" value="" ></dd>
+             <dt>Senha:</dt>
+               <dd><input type="password" name="senha" value="" ></dd>
+            </dl>
+          </fieldset>
+      </fieldset>
+  <fieldset  class="autorizacao">
+     <legend><img src="[% c.uri_for('/static/img/pass/lock_add.png') %]" alt="Autorizações no Sistema" /> Autorizações no Sistema</legend>
+
+     <dl><dt><input type="checkbox" value="" id="checkAllRegistros" name="checkAllRegistros"> Marcar Todos   </dt>  </dl>
+     <fieldset class="registro">
+        <legend>Volume</legend>
+        <dl>
+          <dt><input type="checkbox" value="listar" name="volume[]"> </dt>
+          <dd>Listar</dd>
+          <dt><input type="checkbox" value="visualizar" name="volume[]"> </dt>
+          <dd>Visulizar</dd>
+          <dt><input type="checkbox" value="criar" name="volume[]"> </dt>
+          <dd>Criar</dd>
+          <dt><input type="checkbox" value="alterar" name="volume[]"> </dt>
+          <dd>Alterar</dd>
+          <dt><input type="checkbox" value="transferir" name="volume[]"> </dt>
+          <dd>Transferir</dd>
+        </dl>
+     </fieldset>
+     <fieldset class="registro">
+        <legend>Prontuário</legend>
+        <dl>
+          <dt><input type="checkbox" value="listar" name="dossie[]"> </dt>
+          <dd>Listar</dd>
+          <dt><input type="checkbox" value="visualizar" name="dossie[]"> </dt>
+          <dd>Visulizar</dd>
+          <dt><input type="checkbox" value="criar" name="dossie[]"> </dt>
+          <dd>Criar</dd>
+          <dt><input type="checkbox" value="alterar" name="dossie[]"> </dt>
+          <dd>Alterar</dd>
+          <dt><input type="checkbox" value="trasnferir" name="dossie[]"> </dt>
+          <dd>Transferir</dd>
+        </dl>
+     </fieldset>
+     <fieldset class="registro">
+        <legend>Documento</legend>
+        <dl>
+          <dt><input type="checkbox" value="listar" name="documento[]"> </dt>
+          <dd>Listar</dd>
+          <dt><input type="checkbox" value="visualizar" name="documento[]"> </dt>
+          <dd>Visulizar</dd>
+          <dt><input type="checkbox" value="criar" name="documento[]"> </dt>
+          <dd>Criar</dd>
+          <dt><input type="checkbox" value="alterar" name="documento[]"> </dt>
+          <dd>Alterar</dd>
+          <dt><input type="checkbox" value="trasnferir" name="documento[]"> </dt>
+          <dd>Transferir</dd>
+        </dl>
+     </fieldset>
+
+       <input type="checkbox" value="super" name="super"><img src="[% c.uri_for('/static/img/user/user_suit.png') %]" alt=" Super Administrador" /> Poderes de Super Administrador
+
+  </fieldset>
+
+  <fieldset class="navegaLDAP">
+        <legend><img src="[% c.uri_for('/static/img/workplace/building_go.png') %]" alt="Adicionar Lotação" /> Adicionar Lotação</legend>
+            [% INCLUDE 'auth/admin/usuario/_ldap.tt' %]
+
+          <a href="javascript:void(0);"  name="Adicionar" onclick="add('[% c.uri_for_action('/auth/admin/usuario/add') %]')" class="workplace_add" >
+               Adicionar Lotação
+             </a>
+
+  </fieldset>
+
+ <fieldset class="lotacao">
+     <legend><img src="[% c.uri_for('/static/img/workplace/building.png') %]" alt="Lista de Lotação" /> Lotação</legend>
+     <div id="gridLotacao">
+     <input type="hidden" value="[% lotacao | html %]" name="lotacao">
+     </div>
+
+  </fieldset>
+
+
+
+
+</fieldset>
+<input type="submit" value="Criar">
+<input type="reset" value="Cancelar">
+
+</form>
+
+<script type="text/javascript">
+
+
+$('#checkAllRegistros').click(function() {
+  if ($("input[name='checkAllRegistros']").is(':checked') ) {
+    $("input[name='volume[]']").attr('checked', true);
+    $("input[name='dossie[]']").attr('checked', true);
+    $("input[name='documento[]']").attr('checked', true);
+  } else {
+    $("input[name='volume[]']").attr('checked', false);
+    $("input[name='dossie[]']").attr('checked', false);
+    $("input[name='documento[]']").attr('checked', false);
+  }
+});
+
+function add(action) {
+  var xmlLotacao = $("input[name='lotacao']").val();
+  var grupos_ldap = [];
+  $("input[name='grupos_ldap[]']:checked").each(function(){grupos_ldap.push($(this).val());});
+
+  if ($("input[name='grupos_ldap[]']:checked").length)
+       {
+        $.ajax({
+             type: "POST",
+             url: action,
+
+             data: {
+               'grupos': grupos_ldap.join(" - "),
+               'lotacao': xmlLotacao,
+               },
+             success: function(msg){
+               $('#gridLotacao').html(msg);
+               $("input[name='grupos_ldap[]']").attr('checked', false);
+             }
+
+        });
+  }
+}
+
+function remove(action, posicao) {
+  var xmlLotacao = $("input[name='lotacao']").val();
+        $.ajax({
+             type: "POST",
+             url: action,
+
+             data: {
+               'posicao': posicao,
+               'xmllotacao': xmlLotacao,
+               },
+             success: function(msg){
+               $('#gridLotacao').html(msg);
+               $("input[name='grupos_ldap[]']").attr('checked', false);
+             }
+
+        });
+
+}
+
+
+
+</script>
+[% INCLUDE 'footer.tt' %]
