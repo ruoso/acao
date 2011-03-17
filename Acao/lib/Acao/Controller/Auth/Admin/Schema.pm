@@ -90,6 +90,13 @@ sub store : Chained('base') : PathPart('store_upload') : Args(0) {
     return;
 }
 
+sub validacao : Chained('base') : PathPart('validar')  : Args(1) {
+    my ( $self, $c, $validacao ) = @_;
+    my $XSDtargetNamespace = $c->req->param('XSDtargetNamespace');
+    $c->model('Schema')->altera_validacao_schemas( $XSDtargetNamespace, $validacao );
+    $c->stash->{template} = 'auth/admin/schema/lista.tt';
+    return;
+}
 1;
 
 

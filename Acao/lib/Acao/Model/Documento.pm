@@ -211,7 +211,7 @@ txn_method 'inserir_documento' => authorized $role_criar => sub {
             nome                      => '',
             criacao                   => DateTime->now(),
             invalidacao               => '',
-            motivoInvalidacao         => '',
+            motivoInvalidacao         => {},
             representaDocumentoFisico => $representaDocumentoFisico,
             autorizacoes           => {
                 ref $autorizacoes eq 'HASH' ? %$autorizacoes : (),

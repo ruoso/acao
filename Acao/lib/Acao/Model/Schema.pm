@@ -25,7 +25,7 @@ sub listar_schemas {
 'declare namespace class = "http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";'
       . 'subsequence('
       . 'for $x in collection("acao-schemas")/xs:schema '.$busca
-      . 'order by $x/@targetNamespace/string() '
+      . 'order by $x/@targetNamespace/string(), $x/xs:element/xs:annotation/xs:appinfo/class:classificacoes/@validacao/string() '
       . ' return ($x,'
       . $args->{grid}
       . '  ), ('
@@ -78,7 +78,6 @@ sub options_classificacao_xsd {
 
 }
 
-
 sub insere_schema {
     my ($self, $collection,$target,$documentoXsd) = @_;
 
@@ -91,9 +90,22 @@ sub insere_schema {
       $self->sedna->commit;
     };
 
+    return;
+}
 
+
+sub altera_validacao_schemas {
+    my ($self, $XSDtargetNamespace, $validacao) = @_;
+
+    my $query = ' declare namespace class = "http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"; '
+              . ' update replace $x in collection("acao-schemas")[xs:schema/@targetNamespace/string()="'.$XSDtargetNamespace.'"] '
+              . ' /xs:schema/xs:element/xs:annotation/xs:appinfo/class:classificacoes '
+              . ' with <class:classificacoes validacao="'.$validacao.'">{$x/class:classificacao}</class:classificacoes> ';
+
+    $self->sedna->begin();
+    $self->sedna->execute($query);
+    $self->sedna->commit;
 
     return;
 }
 1;
-

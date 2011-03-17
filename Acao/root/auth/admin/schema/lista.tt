@@ -52,9 +52,11 @@
 <thead>
  <tr>
   <th width="20%">Schemas XSD</th>
+  <th>Label</th>
   <th>Classificação</th>
   <th>Versão</th>
   <th>Operações</th>
+  <th>Status</th>
  </tr>
 </thead>
 <TBODY>
@@ -102,8 +104,26 @@
 </TBODY>
 </table>
 
+<input type="hidden" name="template" value="[% xqueryret | html %]" >
+<script type="text/javascript">
+function buscar(action) {
+var busca = $("#busca").val();
+var template = $("input[name='template']").val();
+  $.ajax({
+       type: "POST",
+       url: action,
+       data: {
+          'busca':  busca,
+          'template':  template,
+       },
+       success: function(msg){
+        $('#grid-table').html(msg);
+
+       }
+  });
+}
+</script>
+[% INCLUDE 'footer.tt' %]
 [% paginacao = PROCESS 'auth/admin/schema/paginacao.tt' %]
 [% paginacao %]
 </div>
-
-[% INCLUDE 'footer.tt' %]
