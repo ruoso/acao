@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns="http://schemas.fortaleza.ce.gov.br/acao/proesf-saude_da_familia.xsd"
+  targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/proesf-saude_da_familia.xsd" elementFormDefault="qualified">
+
+  <xs:element name="proesf" type="proesf">
+    <xs:annotation>
+      <xs:appinfo>
+        <xhtml:label>PROESF - Saúde da família</xhtml:label>
+        <class:classificacoes>
+          <class:classificacao>cn=Saúde</class:classificacao>
+        </class:classificacoes>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="proesf">
+    <xs:sequence>
+
+      <xs:element name="saude_da_familia">
+        <xs:annotation>
+          <xs:appinfo>
+            <xhtml:label>Saúde da família</xhtml:label>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="informacoes_nasf">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Informações - NASF</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="existe_nasf" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Existe NASF vinculada à equipe?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="qual_nasf">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Qual o NASF?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="planejamento_e_avaliacao_das_acoes">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Planejamento e avaliação das ações</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="a_esf_se_reune_com_o_nasf_para_planejar_e_avaliar" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>A ESF se reúne com o NASF para planejar e avaliar as ações?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="com_que_frequencia">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Com que frequência?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="referencia_entre_esf_nasf">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Refêrencia entre ESF e NASF</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="fluxo_de_referencia_realizado_de_que_forma">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Como é realizado o fluxo de referência entre as ESF e os NASF?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="fluxo_de_contrareferencia_realizado_de_que_forma">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Como é realizado o fluxo de CONTRA-referência entre as ESF e os NASF?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="atividades_realizadas_em_conjunto">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Atividades realizadas em conjunto</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="atividades">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Quais atividades são realizadas em conjunto?
+                        </xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:enumeration value="Atividades coletivas" />
+                        <xs:enumeration value="Visitas domiciliares" />
+                        <xs:enumeration value="Atendimentos individuais" />
+                        <xs:enumeration value="Atividades do PSE" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="outras_atividades">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Outras:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="atividades_registradas_de_que_maneira">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Como são registradas estas atividades?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="dificuldades_encontradas">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Quais as dificuldades encontradas?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="relacoes_interpessoais">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Relações interpessoais</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="como_estao">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Identifique como estão as relações interpessoais entre os membros das equipes
+                        </xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:enumeration value="Ruim" />
+                        <xs:enumeration value="Regular" />
+                        <xs:enumeration value="Bom" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="justificativa">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Justifique:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

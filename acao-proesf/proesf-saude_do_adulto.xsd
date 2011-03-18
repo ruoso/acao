@@ -1,0 +1,658 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns="http://schemas.fortaleza.ce.gov.br/acao/proesf-saude_do_adulto.xsd"
+  targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/proesf-saude_do_adulto.xsd" elementFormDefault="qualified">
+
+  <xs:element name="proesf" type="proesf">
+    <xs:annotation>
+      <xs:appinfo>
+        <xhtml:label>PROESF - Saúde do adulto</xhtml:label>
+        <class:classificacoes>
+          <class:classificacao>cn=Saúde</class:classificacao>
+        </class:classificacoes>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="proesf">
+    <xs:sequence>
+
+      <xs:element name="saude_do_adulto">
+        <xs:annotation>
+          <xs:appinfo>
+            <xhtml:label>Saúde do adulto</xhtml:label>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="hipertensao_diabetes_mellitus">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Hipertensão e diabetes mellitus</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="quantidade_de_pacientes_com_diabete">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Quantidade de pacientes com diabete</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="cadastrados" type="xs:integer" minOccurs="0">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Cadastrados:</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element name="acompanhados" type="xs:integer" minOccurs="0">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Acompanhados:</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="quantidade_de_pacientes_com_hipertensao">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Quantidade de pacientes com hipertensão</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="cadastrados" type="xs:integer" minOccurs="0">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Cadastrados:</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element name="acompanhados" type="xs:integer" minOccurs="0">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Acompanhados:</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="atividades_educativas_em_promocao_da_saude">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Atividades educativas em promoção da saúde</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="esf_realiza_acoes_educativas_com_hipertensos_diabeticos" type="xs:boolean">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>A ESF realiza ações educativas coletivas com os hipertensos e diabéticos?
+                              </xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element name="quais_os_temas_abordados">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Em caso positivo; quais os temas abordados?</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="255" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="motivo_acoes_educativas_nao_realizadas">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Em caso negativo; por quê?</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="255" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="protocolo_de_atendimento">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Protocolo de atendimento</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="a_esf_segue_algum_protocolo" type="xs:boolean">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>A ESF segue algum protocolo de atendimento de HAS e DM?</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element name="qual_protocolo">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Em caso positivo; qual protocolo?</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="255" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="dificuldades_para_operacionalizacao_das_acoes">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Quais as dificuldades identificadas para operacionalização das ações?
+                        </xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="tuberculose_hanseniase">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Tuberculose e hanseníase</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="quantidade_de_pacientes_com_tuberculose">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Quantidade de pacientes com tuberculose</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="cadastrados" type="xs:integer" minOccurs="0">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Cadastrados:</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element name="acompanhados" type="xs:integer" minOccurs="0">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Acompanhados:</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="quantidade_de_pacientes_com_hanseniase">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Quantidade de pacientes com hanseníase</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="cadastrados" type="xs:integer" minOccurs="0">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Cadastrados:</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element name="acompanhados" type="xs:integer" minOccurs="0">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Acompanhados:</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="casos_esperados_de_sintomaticos_respiratorios">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Casos esperados de sintomáticos respiratórios</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="a_equipe_conhece_sua_meta" type="xs:boolean">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>A equipe conhece sua meta de casos esperados de sintomáticos respiratórios?
+                              </xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element name="qual_meta">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Em caso positivo; qual?</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="255" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="busca_do_sintomatico_respiratorio_realizada" type="xs:boolean">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>É realizada busca do sintomático respiratório (SR)?</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element name="realizada_de_que_maneira">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Como é realizada?</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="255" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="casos_esperados_de_tuberculose">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Casos esperados de tuberculose</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="a_equipe_conhece_sua_meta-casos_esperados_de_tuberculose" type="xs:boolean">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>A equipe conhece sua meta para casos de tuberculose?</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element name="qual_meta-casos_esperados_de_tuberculose">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Em caso positivo; qual?</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="255" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="livro_de_registro_de_sintomatico_respiratorio">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Livro de registro de sintomático respiratório</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="a_equipe_utiliza" type="xs:boolean">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>A equipe utiliza o livro de registro de SR?</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element name="responsavel_por_este_registro">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Em caso positivo; quem é o responsável por este registro?</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="255" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="coleta_da_amostra">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Coleta da amostra</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="se_realiza_no_momento_da_primeira_consulta" type="xs:boolean">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>A coleta da amostra é realizada no momento da primeira consulta?
+                              </xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element name="onde_se_realiza">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Em caso positivo; onde é realizada a coleta?</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="255" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="encaminhamento_das_amostras_de_escarro_ao_laboratorio">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Encaminhamento das amostras de escarro ao laboratório</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                          <xs:complexType>
+                            <xs:sequence>
+                              <xs:element name="qual_o_fluxo_de_encaminhamento_das_amostras">
+                                <xs:annotation>
+                                  <xs:appinfo>
+                                    <xhtml:label>Qual o fluxo de encaminhamento das amostras de escarro ao laboratório?
+                                    </xhtml:label>
+                                  </xs:appinfo>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:string">
+                                    <xs:maxLength value="255" />
+                                  </xs:restriction>
+                                </xs:simpleType>
+                              </xs:element>
+                              <xs:element name="tempo_decorrido_de_recebimento_na_unidade_saude">
+                                <xs:annotation>
+                                  <xs:appinfo>
+                                    <xhtml:label>Qual o tempo decorrido de recebimento na unidade de saúde dos
+                                      resultados da baciloscopia encaminhados pelo laboratório?</xhtml:label>
+                                  </xs:appinfo>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:string">
+                                    <xs:maxLength value="255" />
+                                  </xs:restriction>
+                                </xs:simpleType>
+                              </xs:element>
+                            </xs:sequence>
+                          </xs:complexType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="teste_sorologico_anti_hiv">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Teste sorológico anti-HIV</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="se_solicita" type="xs:boolean">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>É solicitado o teste sorológico anti-HIV para o paciente com diagnóstico de
+                                tuberculose?</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element name="motivo">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Por quê?</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="255" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="supervisao_da_tomada_de_medicacao_dos_casos_de_tuberculose">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Supervisão da tomada de medicação dos casos de tuberculose</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="esf_supervisiona_tomada_de_medicacao" type="xs:boolean">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>A ESF realiza supervisão da tomada de medicação dos casos de tuberculose?
+                              </xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element name="quem_observa_a_tomada_da_dose">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Quem observa a tomada da dose (descreva em ordem de maior frequência)?
+                              </xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="255" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="contatos_domiciliares_dos_casos_de_tuberculose_diagnosticados">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Contatos domiciliares dos casos de tuberculose diagnosticados</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="se_realiza" type="xs:boolean">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>A ESF realiza a rotina de investigação dos contatos domiciliares dos casos de
+                                tuberculose diagnosticados?</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element name="de_que_maneira">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Em caso positivo; como?</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="255" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="informacao_registrada_onde">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Onde é registrada a informação?</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="255" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="reacoes_adversas_aos_medicamentos_da_tuberculose">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Reações adversas aos medicamentos da tuberculose</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="qual_a_conduta_frente_aos_casos">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Qual a conduta frente aos casos de reações adversas aos medicamentos da
+                                tuberculose?</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="255" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="contatos_domiciliares_dos_casos_de_hanseniase_diagnosticados">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Contatos domiciliares dos casos de hanseniase diagnosticados</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="se_realiza" type="xs:boolean">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>A ESF realiza de rotina a investigação dos contatos domiciliares dos casos de
+                                hanseníase diagnosticados?</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element name="de_que_maneira">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Em caso positivo; como?</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="255" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="informacao_registrada_onde">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Onde é registrada a informação?</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="255" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="reacoes_adversas_aos_medicamentos_da_hanseniase">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Reações adversas aos medicamentos da hanseníase</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="qual_a_conduta_frente_aos_casos">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Qual a conduta frente aos casos de reações adversas aos medicamentos da
+                                hanseníase?</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="255" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="busca_ativa_e_diagnostico_de_hanseniase">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Busca ativa e diagnóstico de hanseníase</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="como_se_realiza">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Como é feita a busca ativa e diagnóstico de hanseníase?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="operacionalizacao_das_acoes">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Operacionalização das ações</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="quais_as_dificuldades_identificadas" type="xs:string" minOccurs="0">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Quais as dificuldades identificadas para operacionalização das ações?
+                              </xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
