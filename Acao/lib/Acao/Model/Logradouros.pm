@@ -31,8 +31,10 @@ sub listaLogradouros {
 
 	my @logradouros;
 
+	$dsc_logra = uc($dsc_logra);
+
 	my @result = $self->dbic->resultset('Logradouros')->search(
-		{ nome => { ilike => '%'.$dsc_logra.'%' } },
+		{ nome => { like => '%'.$dsc_logra.'%' } },
 		{ columns => ['nome']},
 		{ rows => 30},
 	);

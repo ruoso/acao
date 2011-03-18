@@ -29,10 +29,14 @@ use warnings;
 sub listaBairros {
 	my ($self, $dsc_bairro ) = @_;
 
+	$dsc_bairro = uc($dsc_bairro);
+	
+	warn  "UPPERCASE".$dsc_bairro;
+
 	my @bairros;
 
 	my @result = $self->dbic->resultset('Bairros')->search(
-		{ nome => { ilike => '%'.$dsc_bairro.'%' } },
+		{ nome => { like => '%'.$dsc_bairro.'%' } },
 		{ columns => ['nome']},
 		{ rows => 30},
 	);
