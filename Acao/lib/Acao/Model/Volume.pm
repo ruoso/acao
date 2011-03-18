@@ -520,14 +520,17 @@ sub find_key_indexes {
       . $grupos . ')'
       . 'and @role="listar"]] '
       . 'return tokenize($x/ns:classificacoes/cl:classificacao/text(),",")[1]';
+
     $self->sedna->begin;
     $self->sedna->execute($list);
     $classificacao = $self->sedna->get_item();
+    
     $self->sedna->commit;
 
     my $xq_indexes = 'declare namespace cl = "http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";
                       declare namespace idx = "http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd";
-                      for $x in collection("acao-schemas")/*/*/*/*/cl:classificacoes[cl:classificacao="'.$classificacao.'"]
+                      for $x in collection("acao-schemas")/*/*/*/*/cl:classificacoes
+                      where $x/cl:classificacao="'.$classificacao.'" 
                       return $x/../../../../*/*/*/idx:index/idx:hint/@key/string()';
     $self->sedna->begin;
     $self->sedna->execute($xq_indexes);

@@ -32,9 +32,11 @@
 
      <table>
       <thead>
-        <th>Grupo</th>
-        <th>Permissão</th>
-        <th><input type="submit" name="opcao" value="Remover"></th>
+        <tr>
+            <th>Grupo</th>
+            <th>Permissão</th>
+            <th><input type="submit" name="opcao" value="Remover"></th>
+        </tr>
       </thead>
       <tbody>
         [% SET count = 0 %]

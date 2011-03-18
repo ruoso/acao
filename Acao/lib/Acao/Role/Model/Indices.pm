@@ -259,7 +259,7 @@ sub extract_xml_keys {
       . $id_documento
       . '"]/dc:documento/dc:conteudo
                   return (' . $xqueryret . ')';
-
+    warn $xquery;
     my @xmldata;
     $self->sedna->execute($xquery);
     my @data;
