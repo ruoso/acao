@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd"
+  targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd"
+  elementFormDefault="qualified">
+
+  <xs:complexType name="doc">
+    <xs:sequence>
+      <xs:element name="documento" type="documento"
+        minOccurs="0" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="documento" type="documento" />
+
+  <xs:complexType name="documento">
+    <xs:sequence>
+      <xs:element name="id" type="xs:string" minOccurs="0" />
+      <xs:element name="nome" type="xs:string" minOccurs="0" />
+      <xs:element name="criacao" type="xs:dateTime" minOccurs="0" />
+      <xs:element name="invalidacao" type="xs:dateTime" minOccurs="0" />
+      <xs:element name="motivoInvalidacao" type="xs:string" minOccurs="0" />
+      <xs:element name="representaDocumentoFisico" type="xs:boolean" minOccurs="0" />
+      <xs:element name="autorizacao" minOccurs="0">
+        <xs:complexType>
+          <xs:attribute name="principal" type="xs:string" use="required" />
+          <xs:attribute name="role" type="xs:string" use="required" />
+          <xs:attribute name="dataIni" type="xs:string" use="required" />
+          <xs:attribute name="dataFim" type="xs:string" use="optional" />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="documento" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="conteudo">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:any minOccurs="1" maxOccurs="unbounded" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
