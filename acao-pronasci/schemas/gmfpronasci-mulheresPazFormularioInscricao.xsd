@@ -4,10 +4,11 @@
 	xmlns="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-mulheresDaPazFormularioInscricao.xsd"
 	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
 	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
+	xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
 	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-mulheresDaPazFormularioInscricao.xsd"
 	elementFormDefault="qualified">
 
-	<xs:element name="form" type="formMulheresDaPazFormularioInscricao">
+	<xs:element name="formMulheresDaPazFormularioInscricao" type="formMulheresDaPazFormularioInscricao">
 		<xs:annotation>
 			<xs:appinfo>
 				<xhtml:label>FORMULÁRIO INSCRIÇÃO MULHERES DA PAZ</xhtml:label>
@@ -136,6 +137,10 @@
 								<xs:appinfo>
 									<xhtml:label>Endereço</xhtml:label>
 								</xs:appinfo>
+								<xsdext:extensions>
+									<xsdext:engine>autoComplete</xsdext:engine>
+									<xsdext:service>/enderecos</xsdext:service>
+								</xsdext:extensions>
 							</xs:annotation>
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
@@ -148,6 +153,10 @@
 								<xs:appinfo>
 									<xhtml:label>Bairro</xhtml:label>
 								</xs:appinfo>
+								<xsdext:extensions>
+									<xsdext:engine>autoComplete</xsdext:engine>
+									<xsdext:service>/bairros</xsdext:service>
+								</xsdext:extensions>
 							</xs:annotation>
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
@@ -304,8 +313,7 @@
 						<xs:element name="estudaAtualmente" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>2.2 Estuda atualmente(escola, curso,
-										profissionalizante etc.)?</xhtml:label>
+									<xhtml:label>2.2 Estuda atualmente(escola, curso, profissionalizante etc.)?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -319,8 +327,7 @@
 						<xs:element name="turno" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>2.3 Em que turno você estuda atualmente?
-									</xhtml:label>
+									<xhtml:label>2.3 Em que turno você estuda atualmente?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -349,8 +356,7 @@
 						<xs:element name="estadoCivil" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Estado civil
-									</xhtml:label>
+									<xhtml:label>Estado civil</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -484,8 +490,7 @@
 						<xs:element name="quemTrabalha" type="xs:string" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Quem trabalha na sua família e quanto ganha?
-									</xhtml:label>
+									<xhtml:label>Quem trabalha na sua família e quanto ganha?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -493,8 +498,7 @@
 						<xs:element name="cadastroUnicoGoverno" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Você/sua família estão no Cadastro Único do
-										Governo Federal?</xhtml:label>
+									<xhtml:label>Você/sua família estão no Cadastro Único do Governo Federal?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -508,8 +512,7 @@
 						<xs:element name="recebemBeneficios" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Você/sua família recebem benefício social?
-									</xhtml:label>
+									<xhtml:label>Você/sua família recebem benefício social?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -536,8 +539,7 @@
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>4.1 Se você não está trabalhando atualmente,
-													qual foi
-													sua última experiência profissional?</xhtml:label>
+													qual foi sua última experiência profissional?</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 
@@ -548,9 +550,7 @@
 											<xs:appinfo>
 												<xhtml:label>4.2 Você confirma que a renda média da sua
 													família é menor ou igual a 2 salários mínimos
-													(R$930,00 –
-													Novecentos e
-													trinta reais)?</xhtml:label>
+													(R$930,00 – Novecentos e trinta reais)?</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 
@@ -587,8 +587,7 @@
 											<xs:appinfo>
 												<xhtml:label>Participa de movimento/organização comunitária
 													(Conselhos, Comissões, Comitês, Grupos de
-													Trabalho, Fóruns,
-													Associações, trabalho voluntário)?
+													Trabalho, Fóruns, Associações, trabalho voluntário)?
 												</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
@@ -606,8 +605,7 @@
 									<xs:element name="participaMovimentos" type="xs:string" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Quais?
-												</xhtml:label>
+												<xhtml:label>Quais?</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -615,8 +613,7 @@
 									<xs:element name="tempoParticipacao">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Há quanto tempo?
-												</xhtml:label>
+												<xhtml:label>Há quanto tempo?</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:simpleType>
