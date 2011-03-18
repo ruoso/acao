@@ -24,10 +24,12 @@ use XML::LibXML;
 use XML::Compile::Schema;
 use XML::Compile::Util;
 use DateTime;
+use utf8;
 use Encode;
 use Data::UUID;
 use Data::Dumper;
 use List::MoreUtils 'pairwise';
+
 
 with 'Acao::Role::Model::Indices';
 
