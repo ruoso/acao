@@ -31,8 +31,10 @@ sub listaNucleos {
 
 	my @nucleos;
 
+	$dsc_nucleo = uc($dsc_nucleo);
+
 	my @result = $self->dbic->resultset('Nucleos')->search(
-		{ nome => { ilike => '%'.$dsc_nucleo.'%' } },
+		{ nome => { like => '%'.$dsc_nucleo.'%' } },
 		{ columns => ['nome']},
 		{ rows => 30},
 	);

@@ -38,7 +38,7 @@ Faz a chamada para a lista de escolas
 
 =cut
 
-# lista as escolas fazendo a busca na view Escolas
+# lista as escolas fazendo a busca na model Escolas
 sub escolas : Chained('/') : PathPart('escolas') : Args(0) {
   
 	my ($self, $c) = @_;
@@ -49,7 +49,7 @@ sub escolas : Chained('/') : PathPart('escolas') : Args(0) {
 	$c->forward('View::JSON');
 }
 
-# lista os logradouros fazendo a busca na view Logradouros
+# lista os logradouros fazendo a busca na model Logradouros
 sub enderecos : Chained('/') : PathPart('enderecos') : Args(0) {
   
 	my ($self, $c) = @_;
@@ -61,7 +61,7 @@ sub enderecos : Chained('/') : PathPart('enderecos') : Args(0) {
 }
 
 
-# lista os bairros fazendo a busca na view bairros
+# lista os bairros fazendo a busca na model bairros
 sub bairros : Chained('/') : PathPart('bairros') : Args(0) {
   
 	my ($self, $c) = @_;
@@ -72,7 +72,7 @@ sub bairros : Chained('/') : PathPart('bairros') : Args(0) {
 	$c->forward('View::JSON');
 }
 
-# lista os municipios fazendo a busca na view municipios
+# lista os municipios fazendo a busca na model municipios
 sub municipios : Chained('/') : PathPart('municipios') : Args(0) {
   
 	my ($self, $c) = @_;
@@ -83,12 +83,23 @@ sub municipios : Chained('/') : PathPart('municipios') : Args(0) {
 	$c->forward('View::JSON');
 }
 
-# lista os nucleos fazendo a busca na view nucleos
+# lista os nucleos fazendo a busca na model nucleos
 sub nucleos : Chained('/') : PathPart('nucleos') : Args(0) {
   
 	my ($self, $c) = @_;
 	my $nuc = $c->req->param('term');
 	my $result = $c->model('Nucleos')->listaNucleos($nuc);
+	$c->stash->{json} = $result;
+	warn Dumper($result);
+	$c->forward('View::JSON');
+}
+
+# lista os municipios fazendo a busca no model municipios
+sub municipios : Chained('/') : PathPart('municipios') : Args(0) {
+  
+	my ($self, $c) = @_;
+	my $munic = $c->req->param('term');
+	my $result = $c->model('Municipios')->listaMunicipios($munic);
 	$c->stash->{json} = $result;
 	warn Dumper($result);
 	$c->forward('View::JSON');
