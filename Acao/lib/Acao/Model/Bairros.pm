@@ -1,4 +1,4 @@
-package Acao::Model::Escolas;
+package Acao::Model::Bairros;
 
 
 # Copyright 2010 - Prefeitura Municipal de Fortaleza
@@ -26,24 +26,22 @@ use Encode;
 use strict;
 use warnings;
 
-sub listaEscolas {
-	my ($self, $nm_escola ) = @_;
+sub listaBairros {
+	my ($self, $dsc_bairro ) = @_;
 
-	my @escolas;
+	my @bairros;
 
-	my @result = $self->dbic->resultset('Escolas')->search(
-		{ nome => { ilike => '%'.$nm_escola.'%' } },
+	my @result = $self->dbic->resultset('Bairros')->search(
+		{ nome => { ilike => '%'.$dsc_bairro.'%' } },
 		{ columns => ['nome']},
-		{ rows => 30}
+		{ rows => 30},
 	);
 
 	for my $rset (@result) {
-		#gambiarra para evitar o encode do encode feito pelo JSON
-		push @escolas, decode("utf-8", $rset->nome);
-#		push @escolas, $rset->nome;
+		push @bairros, decode("utf-8", $rset->nome);
 	}
 
-	return \@escolas;
+	return \@bairros;
 }
 
 1;
