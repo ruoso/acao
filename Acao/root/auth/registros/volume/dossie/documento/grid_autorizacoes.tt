@@ -7,9 +7,10 @@
 <input type="hidden" value="[% autorizacoes | html %]" name="autorizacoes">
      <table id="grid_autorizacoes">
       <thead>
-        <th>Grupo</th>
-        <th>Permissão</th>
-        <th>
+        <tr>
+            <th>Grupo</th>
+            <th>Permissão</th>
+        </tr>       
       </thead>
       <tbody>
         [% SET count = 0 %]

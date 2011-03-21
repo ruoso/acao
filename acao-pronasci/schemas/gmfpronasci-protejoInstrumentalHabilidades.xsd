@@ -4,10 +4,11 @@
 	xmlns="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-protejoInstrumentalHabilidades.xsd"
 	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
 	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
+	xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
 	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-protejoInstrumentalHabilidades.xsd"
 	elementFormDefault="qualified">
 
-	<xs:element name="form" type="formProtejoInstrumentalHabilidades">
+	<xs:element name="formProtejoInstrumentalHabilidades" type="formProtejoInstrumentalHabilidades">
 		<xs:annotation>
 			<xs:appinfo>
 				<xhtml:label>INSTRUMENTAL PARA IDENTIFICAÇÃO DE INTERESSES E
@@ -127,6 +128,10 @@
 								<xs:appinfo>
 									<xhtml:label>Núcleo</xhtml:label>
 								</xs:appinfo>
+								<xsdext:extensions>
+										<xsdext:engine>autoComplete</xsdext:engine>
+										<xsdext:service>/nucleos</xsdext:service>
+								</xsdext:extensions>
 							</xs:annotation>
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
@@ -376,6 +381,10 @@
 								<xs:appinfo>
 									<xhtml:label>Qual o nome da escola?</xhtml:label>
 								</xs:appinfo>
+								<xsdext:extensions>
+									<xsdext:engine>autoComplete</xsdext:engine>
+									<xsdext:service>/escolas</xsdext:service>
+								</xsdext:extensions>
 							</xs:annotation>
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
@@ -799,7 +808,7 @@
 
 								</xs:sequence>
 							</xs:complexType>
-						</xs:element>					<class:classificacao>cn=Segurança Pública</class:classificacao>
+						</xs:element>
 						<!-- INTRERESSES -->
 
 						<xs:element name="interesses">

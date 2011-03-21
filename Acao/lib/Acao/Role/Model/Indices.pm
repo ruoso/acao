@@ -72,6 +72,9 @@ sub insert_indices {
     my $autorizacoes_vol = $self->extract_autorizacoes_volume($id_volume);
 
     my ( $autorizacoes_dos, $herda_dos ) = $self->extract_autorizacoes_dossie( $id_volume, $controle );
+    my ( $autorizacoes_doc, $herda_doc ) = $self->extract_autorizacoes_documento($id_volume, $controle, $id_documento);
+    warn Dumper $autorizacoes_doc;
+    warn $herda_doc;
 
     my $v = $self->dbic->resultset('Volume')->find_or_create(
         {
@@ -80,7 +83,7 @@ sub insert_indices {
             permissao_volumes => $autorizacoes_vol
         }
     );
-
+    
     my $dossie = $v->dossies->find_or_create(
         {
             id_dossie         => $controle,
@@ -95,7 +98,8 @@ sub insert_indices {
             documento        => $id_documento,
             resumo           => $resumo,
             gin_indexes      => $indices,
-            herda_permissoes => 1
+            permissoes       => $autorizacoes_doc,
+            herda_permissoes => $herda_doc
         }
     );
 }
@@ -255,7 +259,7 @@ sub extract_xml_keys {
       . $id_documento
       . '"]/dc:documento/dc:conteudo
                   return (' . $xqueryret . ')';
-
+    warn $xquery;
     my @xmldata;
     $self->sedna->execute($xquery);
     my @data;
@@ -320,6 +324,41 @@ sub extract_autorizacoes_dossie {
                                  then ($x/ns:autorizacoes/@herdar/string())
                                  else ("0"),
                                  $x/ns:autorizacoes/author:autorizacao[@role="listar"]/@principal/string() )';
+    my %dns;
+    $self->sedna->execute($xquery);
+    my $herda = $self->sedna->get_item;
+
+    while ( my $autorizacao = $self->sedna->get_item ) {
+        $autorizacao =~ s/^\s+|\s+$//gs;
+        $dns{$autorizacao} = 1;
+    }
+    return [ map { { dn => $_ } } keys %dns ], $herda;
+}
+
+=item extract_autorizacoes_documento()
+
+Extrai os valores do parâmetro principal das tags de autorizacao
+do documento relacionado com os índices em inclusão
+
+=cut
+
+sub extract_autorizacoes_documento {
+    my $self = shift;
+    my ( $id_volume, $controle, $id_documento ) = @_;
+    my $xquery =
+'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
+                  declare namespace dc = "http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";
+                  declare namespace author = "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";
+                  for $x in collection("'
+      . $id_volume
+      . '")/ns:dossie[ns:controle = "'
+      . $controle . '"]/ns:doc
+                /dc:documento[dc:id="'
+      . $id_documento. 
+                        '"] return ( if ($x/dc:autorizacoes/@herdar/string())
+                                 then ($x/dc:autorizacoes/@herdar/string())
+                                 else ("0"),
+                                 $x/dc:autorizacoes/author:autorizacao[@role="listar"]/@principal/string() )';
     my %dns;
     $self->sedna->execute($xquery);
     my $herda = $self->sedna->get_item;

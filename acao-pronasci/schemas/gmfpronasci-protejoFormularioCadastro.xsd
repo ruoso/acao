@@ -4,10 +4,11 @@
 	xmlns="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-protejoFormularioCadastro.xsd"
 	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
 	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
+	xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
 	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-protejoFormularioCadastro.xsd"
 	elementFormDefault="qualified">
 
-	<xs:element name="form" type="formProtejoFormularioCadastro">
+	<xs:element name="formProtejoFormularioCadastro" type="formProtejoFormularioCadastro">
 		<xs:annotation>
 			<xs:appinfo>
 				<xhtml:label>FICHA CADASTRAL DO JOVEM INGRESSANTE NO PROJETO PROTEJO</xhtml:label>
@@ -161,6 +162,10 @@
 											<xs:appinfo>
 												<xhtml:label>Logradouro*</xhtml:label>
 											</xs:appinfo>
+											<xsdext:extensions>
+												<xsdext:engine>autoComplete</xsdext:engine>
+												<xsdext:service>/enderecos</xsdext:service>
+											</xsdext:extensions>								
 										</xs:annotation>
 										<xs:simpleType>
 											<xs:restriction base="xs:string">
@@ -192,7 +197,10 @@
 											<xs:appinfo>
 												<xhtml:label>Bairro</xhtml:label>
 											</xs:appinfo>
-										</xs:annotation>
+											<xsdext:extensions>
+												<xsdext:engine>autoComplete</xsdext:engine>
+												<xsdext:service>/bairros</xsdext:service>
+											</xsdext:extensions>											</xs:annotation>
 										<xs:simpleType>
 											<xs:restriction base="xs:string">
 												<xs:maxLength value="255" />
@@ -216,6 +224,10 @@
 											<xs:appinfo>
 												<xhtml:label>Município</xhtml:label>
 											</xs:appinfo>
+											<xsdext:extensions>
+												<xsdext:engine>autoComplete</xsdext:engine>
+												<xsdext:service>/municipios</xsdext:service>
+											</xsdext:extensions>								
 										</xs:annotation>
 										<xs:simpleType>
 											<xs:restriction base="xs:string">
@@ -237,7 +249,6 @@
 							</xs:annotation>
 							<xs:complexType>
 								<xs:sequence>
-
 									<xs:element name="telefone1" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
@@ -310,6 +321,10 @@
 														<xs:appinfo>
 															<xhtml:label>Município Nacionalidade**</xhtml:label>
 														</xs:appinfo>
+														<xsdext:extensions>
+																<xsdext:engine>autoComplete</xsdext:engine>
+																<xsdext:service>/municipios</xsdext:service>
+														</xsdext:extensions>								
 													</xs:annotation>
 													<xs:simpleType>
 														<xs:restriction base="xs:string">
@@ -671,11 +686,6 @@
 												<xs:enumeration value="1ª" />
 												<xs:enumeration value="2ª" />
 												<xs:enumeration value="3ª" />
-												<xs:enumeration value="4ª" />
-												<xs:enumeration value="5ª" />
-												<xs:enumeration value="6ª" />
-												<xs:enumeration value="7ª" />
-												<xs:enumeration value="8ª" />
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:element>
@@ -861,8 +871,7 @@
 									<xs:element name="principalMotivoParticipacao">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Qual o principal motivo que o levou a
-													participar do programa?</xhtml:label>
+												<xhtml:label>Qual o principal motivo que o levou a participar do programa?</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:complexType>
@@ -921,18 +930,15 @@
 						<xs:element name="dadosResponsavel">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Dados da mãe ou principal responsável
-									</xhtml:label>
+									<xhtml:label>Dados da mãe ou principal responsável</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
 								<xs:sequence>
-
 									<xs:element name="moraMaeResponsavel">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Mora com a mãe ou outro responsável?*
-												</xhtml:label>
+												<xhtml:label>Mora com a mãe ou outro responsável?*</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:simpleType>
@@ -946,8 +952,7 @@
 									<xs:element name="escolaridadeMaeResponsavel">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Qual a escolaridade da mãe ou principal
-													responsável? (curso e série mais elevado)</xhtml:label>
+												<xhtml:label>Qual a escolaridade da mãe ou principal responsável? (curso e série mais elevado)</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:complexType>
@@ -963,8 +968,7 @@
 															<xs:element name="ensinoMedioEscolha">
 																<xs:annotation>
 																	<xs:appinfo>
-																		<xhtml:label>Ensino Fundamental ou 1o grau:
-																		</xhtml:label>
+																		<xhtml:label>Ensino Fundamental ou 1o grau:</xhtml:label>
 																	</xs:appinfo>
 																</xs:annotation>
 																<xs:simpleType>
@@ -1013,8 +1017,7 @@
 													type="xs:boolean">
 													<xs:annotation>
 														<xs:appinfo>
-															<xhtml:label>Supletivo de Ensino Fundamental ou de 1º
-																grau:</xhtml:label>
+															<xhtml:label>Supletivo de Ensino Fundamental ou de 1º grau:</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
@@ -1112,8 +1115,7 @@
 									<xs:element name="viveComFilhos">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Vive com os filhos no mesmo domicílio?*
-												</xhtml:label>
+												<xhtml:label>Vive com os filhos no mesmo domicílio?*</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:simpleType>
@@ -1127,8 +1129,7 @@
 									<xs:element name="principalResponsavel">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>É o principal responsável pelo sustento da
-													família?*</xhtml:label>
+												<xhtml:label>É o principal responsável pelo sustento da	família?*</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:simpleType>
@@ -1142,8 +1143,7 @@
 										type="xs:integer">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Número de membros da família que moram no mesmo
-													domicílio*</xhtml:label>
+												<xhtml:label>Número de membros da família que moram no mesmo domicílio*</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -1158,8 +1158,7 @@
 									<xs:element name="recebeAuxilioGoverno">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Alguém da família recebe algum auxílio do
-													governo?*</xhtml:label>
+												<xhtml:label>Alguém da família recebe algum auxílio do governo?*</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:simpleType>
@@ -1521,6 +1520,10 @@
 											<xs:appinfo>
 												<xhtml:label>Município</xhtml:label>
 											</xs:appinfo>
+											<xsdext:extensions>
+													<xsdext:engine>autoComplete</xsdext:engine>
+													<xsdext:service>/municipios</xsdext:service>
+											</xsdext:extensions>								
 										</xs:annotation>
 										<xs:simpleType>
 											<xs:restriction base="xs:string">

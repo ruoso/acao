@@ -1,5 +1,4 @@
-package Acao::Model::Escolas;
-
+package Acao::Schema::Result::Nucleos;
 
 # Copyright 2010 - Prefeitura Municipal de Fortaleza
 #
@@ -19,33 +18,40 @@ package Acao::Model::Escolas;
 # título "LICENCA.txt", junto com este programa, se não, escreva para a
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
 
-use Moose;
-extends 'Acao::Model';
-use Data::Dumper;
-use Encode;
 use strict;
 use warnings;
+use Moose;
+use base 'DBIx::Class::Core';
 
-sub listaEscolas {
-	my ($self, $nm_escola ) = @_;
+=head1 NAME
 
-	my @escolas;
+Acao::Schema::Result::Escolas - Resultsource da tabela escolas
 
-	$nm_escola = uc($nm_escola);
+=head1 DESCRIPTION
 
-	my @result = $self->dbic->resultset('Escolas')->search(
-		{ nome => { like => '%'.$nm_escola.'%' } },
-		{ columns => ['nome']},
-		{ rows => 30}
-	);
+Este objeto define a lsita de escolas do autocomplete
 
-	for my $rset (@result) {
-		#gambiarra para evitar o encode do encode feito pelo JSON
-		push @escolas, decode("utf-8", $rset->nome);
-#		push @escolas, $rset->nome;
-	}
+=cut
 
-	return \@escolas;
-}
+__PACKAGE__->table("nucleos");
+
+
+__PACKAGE__->add_columns(
+    "nome",
+    {
+        data_type         => "varchar",
+        default_value     => undef,
+        is_nullable       => 0,
+        size              => undef,
+    },
+);
+
+
+=head1 COPYRIGHT AND LICENSING
+
+Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
+sob a GPL versão 2.
+
+=cut
 
 1;
