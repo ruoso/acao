@@ -523,14 +523,19 @@ sub find_key_indexes {
 
     $self->sedna->begin;
     $self->sedna->execute($list);
-    $classificacao = $self->sedna->get_item();
-    
+    my $clause;
+    while (my $cn = $self->sedna->get_item)  {
+        $clause .= '$x/cl:classificacao="'.$cn.'" or ';
+        $clause =~ s/\n//;
+    }
+    my $length = length $clause;
+    $clause = substr $clause, 0, $length-4;
     $self->sedna->commit;
 
     my $xq_indexes = 'declare namespace cl = "http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";
                       declare namespace idx = "http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd";
                       for $x in collection("acao-schemas")/*/*/*/*/cl:classificacoes
-                      where $x/cl:classificacao="'.$classificacao.'" 
+                      where '.$clause.' 
                       return $x/../../../../*/*/*/idx:index/idx:hint/@key/string()';
     $self->sedna->begin;
     $self->sedna->execute($xq_indexes);
