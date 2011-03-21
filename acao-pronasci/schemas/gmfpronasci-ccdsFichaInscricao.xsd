@@ -16,12 +16,7 @@
 					<class:classificacao>cn=Segurança Pública</class:classificacao>
 				</class:classificacoes>
 				<idx:index>
-				    <idx:hint key="ccds.inscricao.numeroInscricao" xpath="formCcdsFichaInscricao/numeroInscricao" />
-				    <idx:hint key="ccds.inscricao.rg" xpath="formCcdsFichaInscricao/dadosPessoais/rg" />
-				    <idx:hint key="ccds.inscricao.cpf" xpath="formCcdsFichaInscricao/dadosPessoais/cpf" />
-				    <idx:hint key="ccds.inscricao.nome" xpath="formCcdsFichaInscricao/dadosPessoais/nome" />
-				    <idx:hint key="ccds.inscricao.endereco" xpath="formCcdsFichaInscricao/dadosPessoais/endereco" />
-				    <idx:hint key="ccds.inscricao.bairro" xpath="formCcdsFichaInscricao/dadosPessoais/bairro" />
+				    <idx:hint key="ccds.numeroInscricao" xpath="formCcdsFichaInscricao/numeroInscricao" />
 				</idx:index>
 			</xs:appinfo>
 		</xs:annotation>
@@ -738,16 +733,22 @@
 						<xhtml:label>6. Em geral, como você descreveria a segurança da sua comunidade?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:enumeration value="Muito insegura"/>
-						<xs:enumeration value="Insegura"/>
-						<xs:enumeration value="Mais ou menos segura"/>
-						<xs:enumeration value="Segura"/>
-						<xs:enumeration value="Muito segura"/>
-						<xs:enumeration value="Não sei"/>
-					</xs:restriction>
-				</xs:simpleType>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="segurancaComunidadeOpcoes">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Muito insegura"/>
+									<xs:enumeration value="Insegura"/>
+									<xs:enumeration value="Mais ou menos segura"/>
+									<xs:enumeration value="Segura"/>
+									<xs:enumeration value="Muito segura"/>
+									<xs:enumeration value="Não sei"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
 			</xs:element>
 			
 			<xs:element name="situacoesSeguranca">
@@ -803,6 +804,14 @@
 					</xs:sequence>				
 				</xs:complexType>
 				
+			</xs:element>
+			
+			<xs:element name="comentarios" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Comentários</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
 			</xs:element>
 
 		</xs:sequence>
