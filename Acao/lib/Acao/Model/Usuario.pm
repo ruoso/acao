@@ -3,9 +3,12 @@ use Net::LDAP;
 use Moose;
 use Data::Dumper;
 use strict;
+use utf8;
 use warnings;
 use Digest::SHA qw(sha1_base64 sha1);
 use List::MoreUtils qw{uniq};
+use Net::LDAP::Control::Paged;
+use Net::LDAP::Constant qw( LDAP_CONTROL_PAGED );
 
 use Carp qw(croak);
 extends 'Acao::Model::LDAP';
@@ -24,52 +27,84 @@ sub buscar_usuarios_ {
 }
 
 sub buscar_usuarios {
-    my $self = shift;
-    my $mesg = $self->ldap->search(
-        base   => $self->base_acao,
-        filter => "(&(member=*))",
-        scope  => 'sub',
-        attrs  => ['member'],
+    my ( $self, $args ) = @_;
+    my $pesquisa;
+    my $campo = $args->{campo} || 'uid=*';
+    if ( !$args->{pesquisa} ) {
+        $pesquisa = '';
 
-    );
+    }
+    else {
+        $pesquisa = $args->{pesquisa} . '*';
+    }
+
+    my $attrs  = $args->{attrs} || qw(*);
+    my $filter = $campo . $pesquisa;
+    my $base   = $self->dominios_dn;
+    my $mesg   =
+      $self->searchLDAP(
+        { attrs => $attrs, filter => $filter, base => $base } );
+
     my $i;
     my @dn_s;
+    my %dados;
     my @nome;
     my @usuarios;
+    my @arrayMemberOf;
+    my $memberOf;
+    my $base_acao = $self->base_acao;
 
-    # HELP http://search.cpan.org/~gbarr/perl-ldap-0.4001/lib/Net/LDAP/Entry.pod
+    #isto é necessário pois, por alguma razão, o ConfigLoader não seta a flag de unicode na string //sikora
+    utf8::decode($base_acao);
+
+    #warn "XXXXX: ".utf8::is_utf8($base_acao);
+
+
+
     my $max = $mesg->count;
     for ( $i = 0 ; $i < $max ; $i++ ) {
         my $entry = $mesg->entry($i);
-        foreach my $attr ( $entry->attributes ) {
-            push @dn_s, $entry->get_value($attr);
+
+        $memberOf = $self->getDadosUsuarioLdap( $entry->dn )->{memberOf};
+
+        if ( ref($memberOf) eq 'ARRAY' ) {
+           $memberOf = join( ',', @$memberOf );
         }
-    }
+        else {
+            $memberOf = '';
+        }
+        $memberOf =~ s/çã/ca/go;
+        $base_acao =~ s/çã/ca/go;
+        if ($memberOf =~ /$base_acao/i) {
+            warn 'deu certo';
+            %dados = (
+                %dados,
+                (
+                    $entry->dn => {
+                        nome     => $entry->get_value('cn'),
+                        uid      => $entry->get_value('uid'),
+                        memberOf => $memberOf
+                    }
+                )
+            );
+        }
 
-    foreach my $dn ( uniq @dn_s ) {
-        my $dn_user = $dn;
-        $dn =~ s/uid=//go;
-        @nome = split /,/, $dn;
-        push @usuarios,
-          {
-            nome => $nome[0],
-            dn   => $dn_user
-          };
     }
-
     croak 'LDAP error: ' . $mesg->error if $mesg->is_error;
-    return @usuarios;
+    return %dados;
 }
 
 sub getDadosUsuarioLdap {
     my ( $self, $dn ) = @_;
-    my $mesg = $self->ldap->search(
+    my $ldap = $self->_bind_ldap_admin($self);
+    my @args = (
         base   => $self->dominios_dn,
         filter => "(&(entryDN=" . $dn . "))",
         scope  => 'sub',
         attrs  =>
           [qw/cn sn uid givenName email mobile telephoneNumber memberOf/],
     );
+    my $mesg = $ldap->search(@args);
 
     return {
         uid       => $mesg->entry->get_value('uid'),
@@ -85,9 +120,58 @@ sub getDadosUsuarioLdap {
 
 }
 
+sub searchLDAP {
+    my ( $self, $args ) = @_;
+    my $ldap = $self->_bind_ldap_admin($self);
+    my $page = Net::LDAP::Control::Paged->new( size => 5 );
+    my @args = (
+        base   => $args->{base},
+        filter => "(&(" . $args->{filter} . "))",
+        scope  => 'sub',
+        attrs  => [ $args->{attrs} ],
+
+        #   control => [$page]
+    );
+
+    my $mesg = $ldap->search(@args);
+
+=coments    my $cookie;
+
+    while (1) {
+
+        # Perform search
+        my $mesg = $ldap->search(@args);
+
+        # Only continue on LDAP_SUCCESS
+        $mesg->code and last;
+
+
+        # Get cookie from paged control
+        my ($resp) = $mesg->control(LDAP_CONTROL_PAGED) or last;
+
+        $cookie = $resp->cookie and last;
+
+
+        # Set cookie in paged control
+        my $page->cookie($cookie);
+
+    }
+    if ($cookie) {
+
+       # We had an abnormal exit, so let the server know we do not want any more
+        $page->cookie($cookie);
+        $page->size();
+        $mesg = $ldap->search(@args);
+    }
+=cut
+
+    return $mesg;
+
+}
+
 sub storeUsuario {
     my ( $self, $args ) = @_;
-    my $host     = $self->ldap_config->{host};
+    my $host     = $self->ldap_admin_config->{host};
     my $DNbranch = $args->{dominio};
     my $senha    = sha1_base64( $args->{senha} );
     $senha .= '=' while ( length($senha) % 4 );
@@ -114,11 +198,10 @@ sub storeUsuario {
     my $lotacaoArray   = $args->{lotacao};
     my $super          = $args->{super};
 
-    my $NewDN = @$createArray[4] . '=' . @$createArray[5] . ',' . $DNbranch;
+    my $NewDN  = @$createArray[4] . '=' . @$createArray[5] . ',' . $DNbranch;
     my $result = $self->LDAPentryCreate( $NewDN, $createArray );
 
-    if ($result->{resultCode} ne '0') { return $result; }
-
+    if ( $result->{resultCode} ne '0' ) { return $result; }
 
     foreach my $acao (@$volumeArray) {
         $self->LDAPInsertMemberEntry(
@@ -138,7 +221,7 @@ sub storeUsuario {
 
     if ($super) {
         $self->LDAPInsertMemberEntry(
-            Acao->config->{'Model::LDAP'}->{'admin_super'}, $NewDN ) ;
+            Acao->config->{'Model::LDAP'}->{'admin_super'}, $NewDN );
     }
 
     return $result;

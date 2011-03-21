@@ -7,6 +7,7 @@ use warnings;
 use Net::LDAP::Entry;
 use Net::LDAPS;
 use IO::Socket::SSL;
+use utf8;
 
 use Carp qw(croak);
 extends 'Acao::Model';
@@ -18,7 +19,7 @@ has dominios_dn => ( is => 'ro', required => 1 );
 has grupos_dn   => ( is => 'ro', required => 1 );
 has assuntos_dn => ( is => 'ro', required => 1 );
 has local_dn    => ( is => 'ro', required => 1 );
-has base_acao   => ( is => 'ro', required => 1 );
+has base_acao   => ( is => 'ro', required => 1, isa =>'Str' );
 
 sub build_per_context_instance {
     my ( $self, $c ) = @_;
@@ -147,5 +148,11 @@ sub LDAPInsertMemberEntry {
 
     return $result;
 }
+
+sub dnSistemaAcao {
+
+
+}
+
 1;
 

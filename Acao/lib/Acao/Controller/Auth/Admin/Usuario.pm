@@ -38,8 +38,9 @@ sub getUsuario : Chained('base') : PathPart('') : CaptureArgs(1) {
 
 sub lista : Chained('base') : PathPart('') : Args(0) {
     my ( $self, $c ) = @_;
-    my @usuarios = $c->model('Usuario')->buscar_usuarios();
-    $c->stash->{usuarios} = \@usuarios;
+    my %usuarios = $c->model('Usuario')->buscar_usuarios();
+
+    $c->stash->{usuarios} = \%usuarios;
 
     return;
 }
@@ -59,17 +60,29 @@ sub navega_ldap : Chained('base') : PathPart('navega_ldap') : Args(0) {
 
 }
 
-sub ver_user : Chained('getUsuario') : PathPart('') : Args(0) {
+sub ver_user : Chained('getUsuario') : PathPart('ver') : Args(0) {
     my ( $self, $c ) = @_;
     $c->stash->{template} = 'auth/admin/usuario/usuario.tt';
     $c->stash->{usuario}  =
-      $c->model('Usuario')->getDadosUsuarioLdap( $c->stash->{dn_usuario} );
-    warn Dumper( $c->stash->{usuario} );
+    $c->model('Usuario')->getDadosUsuarioLdap( $c->stash->{dn_usuario} );
+
 
 }
 
+
+
 sub alterar : Chained('getUsuario') : PathPart('alterar') : Args(0) {
     my ( $self, $c ) = @_;
+
+}
+
+
+sub searchUser : Chained('base') : PathPart('buscar') : Args(0) {
+    my ( $self, $c ) = @_;
+    $c->stash->{template} = 'auth/admin/usuario/lista.tt';
+    my $pesquisa = $c->req->param('buscar');
+    my %usuarios = $c->model('Usuario')->buscar_usuarios({pesquisa => $pesquisa});
+    $c->stash->{usuarios} = \%usuarios;
 
 }
 
@@ -105,7 +118,7 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
             }
         );
     };
-    warn Dumper($result);
+
 
     if ( $result->{resultCode} ne '0' ) {
         $c->flash->{erro} = 'ldap-' .$result->{resultCode};

@@ -17,11 +17,11 @@
 # título "LICENCA.txt", junto com este programa, se não, escreva para a
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
 %]
-[% INCLUDE 'auth/admin/header.tt' %]
+[% INCLUDE 'auth/admin/usuario/header.tt' %]
 [% INCLUDE 'errosucesso.tt' %]
 <h1 class="titulo-form">Gerenciar usuário do LDAP |
   <span style="font-size:13px; font-weight:normal;">
-       <a class="criar" href="[% c.uri_for_action('/auth/admin/usuario/adicionar_usuario') %]">Cadastrar Usuário</a>
+       <a class="criar" href="[% c.uri_for_action('/auth/admin/usuario/adicionar_usuario', buscar) %]">Cadastrar Usuário</a>
   </span>
 </h1>
 
@@ -29,12 +29,8 @@
   <fieldset>
     <legend>Consulta</legend>
      <br/>
-    <form name=""  action="[% # c.uri_for_action('/auth/admin/schema/buscar') %]" method="post" >
-      <select name="busca"   >
-        <option value="" selected="selected"> Todos </option>
-        <option value="" selected="selected"> Usuário do Sistema </option>
-        <option value="" selected="selected"> Super Administradores </option>
-      </select>
+    <form name="buscarUserLdap"  action="[% c.uri_for_action('/auth/admin/usuario/searchUser') %]" method="get" >
+      <input name="buscar"  value=""  />
       <input type="submit" value="buscar">
     </form>
     </fieldset>
@@ -42,15 +38,17 @@
 <table>
 <thead>
  <tr>
+  <th width="20%">Nome</th>
   <th width="20%">Usuário</th>
-  <th>Ações</th>
+  <th>Operações</th>
 
  </tr>
 </thead>
 <TBODY>
-    [% FOREACH user IN usuarios %]
+    [% FOREACH key IN usuarios.keys %]
     <tr>
-     <td><img src="[% c.uri_for('/static/img/user/user.png') %]" alt="Usuário" />  <a href="[% c.uri_for_action('/auth/admin/usuario/ver_user',[ user.dn ])%]" rel="[% user.dn | url %]"> [% user.nome%]</a>	</td>
+     <td><img src="[% c.uri_for('/static/img/user/user.png') %]" alt="Usuário" />  <a href="[% c.uri_for_action('/auth/admin/usuario/ver_user',[ key ])%]" rel="[% key | url %]"> [% usuarios.$key.nome %]</a>	</td>
+     <td>  <a href="[% c.uri_for_action('/auth/admin/usuario/ver_user',[ key ])%]" rel="[% key | url %]"> [% usuarios.$key.uid %]</a>	</td>
      <td>
        <a href="[% user.dn %]" class="pass_edit" >Alterar Senha</a>
        <a href="[% user.dn %]" class="user_edit">Alterar Dados </a>
