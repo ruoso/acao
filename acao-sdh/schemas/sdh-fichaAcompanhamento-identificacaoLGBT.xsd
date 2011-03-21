@@ -9,7 +9,7 @@
 	<xs:element name="formIdentificacao" type="formIdentificacao">
 		<xs:annotation>
 			<xs:appinfo>
-				<xhtml:label>1. IDENTIFICAÇÃO LGBT</xhtml:label>
+				<xhtml:label>01. IDENTIFICAÇÃO LGBT</xhtml:label>
 				<class:classificacoes>
 					<class:classificacao>cn=Diversidade Sexual,cn=Direitos Humanos</class:classificacao>
 				</class:classificacoes>
@@ -31,6 +31,14 @@
 						<xs:maxLength value="255" />
 					</xs:restriction>
 				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="data" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Data</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
 			</xs:element>
 
 			<xs:element name="nomeRegistro" minOccurs="0">

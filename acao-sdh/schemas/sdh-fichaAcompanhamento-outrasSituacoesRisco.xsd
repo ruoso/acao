@@ -1,0 +1,244 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-outrasSituacoesRiscoApresentadas.xsd"
+	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
+	xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-outrasSituacoesRiscoApresentadas.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="formOutrasSituacoesRiscoApresentadas"
+		type="formOutrasSituacoesRiscoApresentadas">
+		<xs:annotation>
+			<xs:appinfo>
+				<xhtml:label>04. OUTRAS SITUAÇÕES DE RISCO LGBT</xhtml:label>
+				<class:classificacoes>
+					<class:classificacao>cn=Diversidade Sexual,cn=Direitos Humanos</class:classificacao>
+				</class:classificacoes>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="formOutrasSituacoesRiscoApresentadas">
+		<xs:sequence>
+
+			<xs:element name="numeroAtendimento" minOccurs="1">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Número de atendimento
+						</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="abusoExploracaoSexualCriancasAdolescentes"
+				type="xs:boolean">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Abuso/exploração sexual de crianças e adolescentes
+						</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="riscoHabitacional" type="xs:boolean">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Risco habitacional</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="trabalhoInfantoJuvenil" type="xs:boolean">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Trabalho infanto-juvenil</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="mendicancia" type="xs:boolean">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Mendicância</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="jovensEmConflitoComLei" type="xs:boolean">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Jovens em conflito com a lei</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="pessoaEmSituacaoDeRua" type="xs:boolean">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Pessoa em situação de rua</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="negligenciaViolenciaMausTratosContraCriancas"
+				type="xs:boolean">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Negligência, violência ou maus tratos contra crianças
+						</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="drogadicaoAlcoolismo" type="xs:boolean">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Drogadição/alcoolismo</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="negligenciaViolenciaMausTratosContraPessoaIdosa"
+				type="xs:boolean">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Negligência, violência, maus tratos ou abuso
+							financeiro contra a pessoa idosa</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="carcerePrivado" type="xs:boolean">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Cárcere privado</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element
+				name="negligenciaViolenciaMausTratosContraPessoaComDeficienciaOuTranstornoMental"
+				type="xs:boolean">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Negligência, violência, maus tratos ou abuso
+							financeiro contra pessoa com deficiência ou com transtorno mental
+						</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="pessoaSemDocumentacaoCivil" type="xs:boolean">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Pessoa sem documentação civil</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="pessoasComDeficienciaAfastadasDoConvivioSocial"
+				type="xs:boolean">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Pessoas com deficiência afastadas do convívio social
+						</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="traficoSeresHumanos" type="xs:boolean">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Tráfico de seres humanos</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="pessoasComTranstornoMentalAfastadasDoConvivioSocial"
+				type="xs:boolean">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Pessoas com transtorno mental afastadas do convívio
+							social</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="traficoSeresHumanosParaFinsSexuais"
+				type="xs:boolean">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Tráfico de seres humanos para fins sexuais
+						</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="familiasEmSituacaoDeInsegurancaAlimentar"
+				type="xs:boolean">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Famílias em situação de insegurança alimentar
+						</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="criancaAdolescenteForaDaEscola" type="xs:boolean">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Criança e/ou adolescente fora da escola</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="violenciaDomesticaContraMulher" type="xs:boolean">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Violência doméstica contra a mulher</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="turismoSexual" type="xs:boolean">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Turismo sexual</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="Outros" type="xs:boolean">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Outros</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="especifiqueOutrasSituacoesDeRisco"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Especifique outros</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+		</xs:sequence>
+	</xs:complexType>
+
+
+</xs:schema>
