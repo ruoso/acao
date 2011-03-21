@@ -1,4 +1,4 @@
-package Acao::Model::DB;
+package Acao::Schema::Result::Bairros;
 
 # Copyright 2010 - Prefeitura Municipal de Fortaleza
 #
@@ -19,22 +19,33 @@ package Acao::Model::DB;
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
 
 use strict;
-use base 'Catalyst::Model::DBIC::Schema';
+use warnings;
+use Moose;
+use base 'DBIx::Class::Core';
 
 =head1 NAME
 
-Acao::Model::DB - Modelo de acesso ao DBIx::Class::Schema
+Acao::Schema::Result::Escolas - Resultsource da tabela escolas
 
 =head1 DESCRIPTION
 
-Essa classe registra a classe de schema para acesso ao DBIx::Class.
+Este objeto define a lsita de escolas do autocomplete
 
 =cut
 
-__PACKAGE__->config(
-    schema_class => 'Acao::Schema',
-    connect_info => [ 'dbi:pg:dbname=acao', 'acao', '12345', ]
+__PACKAGE__->table("bairros");
+
+
+__PACKAGE__->add_columns(
+    "nome",
+    {
+        data_type         => "varchar",
+        default_value     => undef,
+        is_nullable       => 0,
+        size              => undef,
+    },
 );
+
 
 =head1 COPYRIGHT AND LICENSING
 

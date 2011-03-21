@@ -22,6 +22,8 @@ use Encode;
 use XML::Compile::Schema;
 use XML::Compile::Util;
 use Data::Dumper;
+use warnings;
+use strict;
 
 use constant IDX_NS => 'http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd';
 
@@ -66,12 +68,14 @@ sub insert_indices {
 
     #Constrói o resumo do índice inserido
     my $resumo = "$nm_volume - $nm_prontuario - $label";
-    my $indices =
-      $self->extract_xml_keys( $xsd, $idx_data, $id_volume, $controle,
-        $id_documento );
+    my $indices = $self->extract_xml_keys( $xsd, $idx_data, $id_volume, $controle, $id_documento );
     my $autorizacoes_vol = $self->extract_autorizacoes_volume($id_volume);
-    my ( $autorizacoes_dos, $herda_dos ) =
-      $self->extract_autorizacoes_dossie( $id_volume, $controle );
+
+    my ( $autorizacoes_dos, $herda_dos ) = $self->extract_autorizacoes_dossie( $id_volume, $controle );
+    my ( $autorizacoes_doc, $herda_doc ) = $self->extract_autorizacoes_documento($id_volume, $controle, $id_documento);
+    warn Dumper $autorizacoes_doc;
+    warn $herda_doc;
+
     my $v = $self->dbic->resultset('Volume')->find_or_create(
         {
             id_volume         => $id_volume,
@@ -79,6 +83,7 @@ sub insert_indices {
             permissao_volumes => $autorizacoes_vol
         }
     );
+    
     my $dossie = $v->dossies->find_or_create(
         {
             id_dossie         => $controle,
@@ -87,12 +92,14 @@ sub insert_indices {
             herda_permissoes  => $herda_dos
         }
     );
+
     my $doc = $dossie->entries->find_or_create(
         {
             documento        => $id_documento,
             resumo           => $resumo,
             gin_indexes      => $indices,
-            herda_permissoes => 1
+            permissoes       => $autorizacoes_doc,
+            herda_permissoes => $herda_doc
         }
     );
 }
@@ -132,10 +139,39 @@ sub update_autorizacoes_vol {
     $self->dbic->resultset('PermissaoVolume')->search({
         id_volume => $id_volume
     })->delete();
-    my $volprs = $self->dbic->resultset('Volume')->find({
-        id_volume => $id_volume
-    })->permissao_volumes;
-    $volprs->create($_) for @$auth_list;
+
+    for my $hash_ref (@{$auth_list}) {
+        my $volprs = $self->dbic->resultset('PermissaoVolume')->create({
+            id_volume => $id_volume,
+            dn => $hash_ref->{dn}
+        });
+    }
+
+}
+
+=item update_autorizacoes_dos()
+
+Altera as autorizações do prontuário no banco de indexação
+
+=cut
+
+sub update_autorizacoes_dos {
+    my ($self, $id_volume, $controle, $autorizacoes) = @_;
+
+    my $auth_list = [ map { { dn => $_->{principal} }} grep { $_->{role} eq 'listar'} @{$autorizacoes->{'autorizacao'}} ];
+
+    $self->dbic->resultset('PermissaoDossie')->search({
+        id_volume => $id_volume,
+        id_dossie => $controle
+    })->delete();
+
+    for my $hash_ref (@{$auth_list}) {
+        my $dosprs = $self->dbic->resultset('PermissaoDossie')->create({
+            id_volume => $id_volume,
+            id_dossie => $controle,
+            dn => $hash_ref->{dn}
+        });
+    }
 }
 
 =item find_for_name_index()
@@ -156,7 +192,6 @@ sub find_for_index {
             };
         }
     }
-    warn Dumper @busca;
     my $entries = $self->dbic->resultset('Entry')->search(
     [@busca],
     {join => 'gin_indexes',
@@ -224,17 +259,22 @@ sub extract_xml_keys {
       . $id_documento
       . '"]/dc:documento/dc:conteudo
                   return (' . $xqueryret . ')';
-
+    warn $xquery;
     my @xmldata;
     $self->sedna->execute($xquery);
+    my @data;
     while ( my $key = $self->sedna->get_item ) {
         my $val = $self->sedna->get_item;
         $key =~ s/^\s+|\s+$//gs;
         $val =~ s/^\s+|\s+$//gs;
+        if ($key eq 'pessoa.datanascimento') {
+            @data = split('-',$val);
+            $val = $data[2].'/'.$data[1].'/'.$data[0];
+        }
         next unless $val;
         push @xmldata, { key => $key, value => $val };
     }
-    warn Dumper @xmldata;
+
     return \@xmldata;
 }
 
@@ -284,6 +324,41 @@ sub extract_autorizacoes_dossie {
                                  then ($x/ns:autorizacoes/@herdar/string())
                                  else ("0"),
                                  $x/ns:autorizacoes/author:autorizacao[@role="listar"]/@principal/string() )';
+    my %dns;
+    $self->sedna->execute($xquery);
+    my $herda = $self->sedna->get_item;
+
+    while ( my $autorizacao = $self->sedna->get_item ) {
+        $autorizacao =~ s/^\s+|\s+$//gs;
+        $dns{$autorizacao} = 1;
+    }
+    return [ map { { dn => $_ } } keys %dns ], $herda;
+}
+
+=item extract_autorizacoes_documento()
+
+Extrai os valores do parâmetro principal das tags de autorizacao
+do documento relacionado com os índices em inclusão
+
+=cut
+
+sub extract_autorizacoes_documento {
+    my $self = shift;
+    my ( $id_volume, $controle, $id_documento ) = @_;
+    my $xquery =
+'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
+                  declare namespace dc = "http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";
+                  declare namespace author = "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";
+                  for $x in collection("'
+      . $id_volume
+      . '")/ns:dossie[ns:controle = "'
+      . $controle . '"]/ns:doc
+                /dc:documento[dc:id="'
+      . $id_documento. 
+                        '"] return ( if ($x/dc:autorizacoes/@herdar/string())
+                                 then ($x/dc:autorizacoes/@herdar/string())
+                                 else ("0"),
+                                 $x/dc:autorizacoes/author:autorizacao[@role="listar"]/@principal/string() )';
     my %dns;
     $self->sedna->execute($xquery);
     my $herda = $self->sedna->get_item;

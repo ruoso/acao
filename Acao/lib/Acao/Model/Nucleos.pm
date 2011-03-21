@@ -1,4 +1,5 @@
-package Acao::Model::DB;
+package Acao::Model::Nucleos;
+
 
 # Copyright 2010 - Prefeitura Municipal de Fortaleza
 #
@@ -18,29 +19,31 @@ package Acao::Model::DB;
 # título "LICENCA.txt", junto com este programa, se não, escreva para a
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
 
+use Moose;
+extends 'Acao::Model';
+use Data::Dumper;
+use Encode;
 use strict;
-use base 'Catalyst::Model::DBIC::Schema';
+use warnings;
 
-=head1 NAME
+sub listaNucleos {
+	my ($self, $dsc_nucleo ) = @_;
 
-Acao::Model::DB - Modelo de acesso ao DBIx::Class::Schema
+	my @nucleos;
 
-=head1 DESCRIPTION
+	$dsc_nucleo = uc($dsc_nucleo);
 
-Essa classe registra a classe de schema para acesso ao DBIx::Class.
+	my @result = $self->dbic->resultset('Nucleos')->search(
+		{ nome => { like => '%'.$dsc_nucleo.'%' } },
+		{ columns => ['nome']},
+		{ rows => 30},
+	);
 
-=cut
+	for my $rset (@result) {
+		push @nucleos, decode("utf-8", $rset->nome);
+	}
 
-__PACKAGE__->config(
-    schema_class => 'Acao::Schema',
-    connect_info => [ 'dbi:pg:dbname=acao', 'acao', '12345', ]
-);
-
-=head1 COPYRIGHT AND LICENSING
-
-Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
-sob a GPL versão 2.
-
-=cut
+	return \@nucleos;
+}
 
 1;

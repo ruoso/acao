@@ -88,12 +88,6 @@ Related object: L<Acao::Schema::Result::Volume>
 
 =cut
 
-__PACKAGE__->belongs_to(
-    "id_volume",
-    "Acao::Schema::Result::Dossie",
-    { id_volume     => "id_volume" },
-    { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
 
 # Created by DBIx::Class::Schema::Loader v0.07005 @ 2011-02-08 15:10:11
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:k6WJ4m1zcdVSItnQ5kbl2g

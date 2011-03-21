@@ -128,16 +128,17 @@ function getTextByIndex(xmlNode,index) {
 }
 
 function getTextByTagName(xmlNode,tagName) {
-    var node;
-    for (var i = 0; i < xmlNode.childNodes.length; i++) {
-        if ( xmlNode.childNodes[i].nodeType == 1 ) {
-            if ( xmlNode.childNodes[i].nodeName == tagName ) {
-                node = xmlNode.childNodes[i];
-                break;
-            }
-        }
-    }
-    return getText(node);
+	var node;
+	if (!xmlNode) return ""; 
+	for (var i = 0; i < xmlNode.childNodes.length; i++) {
+		if ( xmlNode.childNodes[i].nodeType == 1 ) {
+			if ( xmlNode.childNodes[i].nodeName == tagName ) {
+				node = xmlNode.childNodes[i];
+				break;
+			}
+		}
+	}
+	return getText(node);
 }
 // Retorna o atributo 'attributeName' do no xmlNode
 function getValueAttributeByName(xmlNode,attributeName) {
@@ -186,6 +187,8 @@ function static_type(type) {
 
 function generateFormFromNode(tagRaiz, xmlNode, namePattern) {
     var label;
+    var engine;
+    var service;
     var type = getValueAttributeByName(xmlNode, "type");
     var minOccurs = getValueAttributeByName(xmlNode, "minOccurs");
     var maxOccurs = getValueAttributeByName(xmlNode, "maxOccurs");
@@ -197,6 +200,8 @@ function generateFormFromNode(tagRaiz, xmlNode, namePattern) {
         for (var i = 0; i < xmlNode.childNodes.length; i++) {
             if (xmlNode.childNodes[i].nodeType == 1 && xmlNode.childNodes[i].nodeName == 'xs:annotation' ) {
                 label = getTextTagInAnnotationAppinfo(xmlNode.childNodes[i], 'xhtml:label', true);
+                engine = getTextTagInAnnotationExtensions(xmlNode.childNodes[i], 'xsdext:engine');
+                service = getTextTagInAnnotationExtensions(xmlNode.childNodes[i], 'xsdext:service');
                 break;
             }
         }
@@ -204,7 +209,7 @@ function generateFormFromNode(tagRaiz, xmlNode, namePattern) {
             var inner = tagRaiz.childNodes[i];
             if (inner.nodeType == 1 && inner.nodeName == 'xs:complexType' &&
                 getValueAttributeByName(inner, "name") == type) {
-                return generateFormFromComplexTypeNode(tagRaiz, inner, namePattern, getValueAttributeByName(xmlNode, "name"), label, minOccurs, maxOccurs );
+                return generateFormFromComplexTypeNode(tagRaiz, inner, namePattern, getValueAttributeByName(xmlNode, "name"), label, minOccurs, maxOccurs, engine, service );
             }
         }
     } else {
@@ -212,12 +217,13 @@ function generateFormFromNode(tagRaiz, xmlNode, namePattern) {
         for (var i = 0; i < xmlNode.childNodes.length; i++) {
             if (xmlNode.childNodes[i].nodeType == 1 && xmlNode.childNodes[i].nodeName == 'xs:annotation' ) {
                 label = getTextTagInAnnotationAppinfo(xmlNode.childNodes[i], 'xhtml:label', true);
-
+                engine = getTextTagInAnnotationExtensions(xmlNode.childNodes[i], 'xsdext:engine');
+                service = getTextTagInAnnotationExtensions(xmlNode.childNodes[i], 'xsdext:service');
             } else if (xmlNode.childNodes[i].nodeType == 1 && xmlNode.childNodes[i].nodeName == 'xs:complexType') {
-                return generateFormFromComplexTypeNode(tagRaiz, xmlNode.childNodes[i], namePattern, getValueAttributeByName(xmlNode, "name"), label, minOccurs, maxOccurs );
+                return generateFormFromComplexTypeNode(tagRaiz, xmlNode.childNodes[i], namePattern, getValueAttributeByName(xmlNode, "name"), label, minOccurs, maxOccurs, engine, service );
 
             } else if (xmlNode.childNodes[i].nodeType == 1 && xmlNode.childNodes[i].nodeName == 'xs:simpleType') {
-                return generateFormFromSimpleTypeNode(tagRaiz, xmlNode.childNodes[i], namePattern, getValueAttributeByName(xmlNode, "name"), label, minOccurs);
+                return generateFormFromSimpleTypeNode(tagRaiz, xmlNode.childNodes[i], namePattern, getValueAttributeByName(xmlNode, "name"), label, minOccurs,  engine, service);
 
             }
         }
@@ -405,7 +411,7 @@ function generateXmlFromComplexTypeNodeNoRepeat(odoc, namespace, tagRaiz, xmlNod
 
 }
 
-function generateFormFromSimpleTypeNode(tagRaiz, xmlNode, namePattern, name, label, minOccurs) {
+function generateFormFromSimpleTypeNode(tagRaiz, xmlNode, namePattern, name, label, minOccurs, engine, service) {
 
     var restrictionNode = getNodeByTagName(xmlNode, 'xs:restriction');
 
@@ -415,7 +421,7 @@ function generateFormFromSimpleTypeNode(tagRaiz, xmlNode, namePattern, name, lab
         } else if (restrictionNode.childNodes[i].nodeType == 1 && restrictionNode.childNodes[i].nodeName == 'xs:enumeration'  ) {
             return generateFormFromSimpleTypeNodeRestrictionEnumeration(tagRaiz, xmlNode, namePattern, name, label, minOccurs);
         } else if (restrictionNode.childNodes[i].nodeType == 1 && restrictionNode.childNodes[i].nodeName == 'xs:maxLength'  ) {
-            return generateFormFromSimpleTypeNodeRestrictionMaxLength(tagRaiz, xmlNode, namePattern, name, label, minOccurs,restrictionNode.childNodes[i].getAttribute('value') );
+            return generateFormFromSimpleTypeNodeRestrictionMaxLength(tagRaiz, xmlNode, namePattern, name, label, minOccurs,restrictionNode.childNodes[i].getAttribute('value'), engine, service );
         } else if (restrictionNode.childNodes[i].nodeType == 1 && restrictionNode.childNodes[i].nodeName == 'xs:fractionDigits'  ) {
             return createFieldDecimal(namePattern, name, label);
         }
@@ -480,8 +486,9 @@ function generateFormFromSimpleTypeNodeRestrictionPattern(tagRaiz, xmlNode, name
     return frag;
 }
 
-function generateFormFromSimpleTypeNodeRestrictionMaxLength(tagRaiz, xmlNode, namePattern, name, label, minOccurs, maxLength){
+function generateFormFromSimpleTypeNodeRestrictionMaxLength(tagRaiz, xmlNode, namePattern, name, label, minOccurs, maxLength, engine, service){
     var inputName = namePattern + "__" + name;
+
 
     var newLabel = document.createElement("label");
     newLabel.innerHTML = label;
@@ -490,7 +497,20 @@ function generateFormFromSimpleTypeNodeRestrictionMaxLength(tagRaiz, xmlNode, na
     var dt = document.createElement('dt');
     var dd = document.createElement('dd');
     dt.appendChild(newLabel);
-    dd.appendChild(createInput('text' ,inputName, inputName, maxLength));
+    field = createInput('text' ,inputName, inputName, maxLength);
+
+    if (engine) {
+	if (field.getAttribute('class')) {
+		 field.setAttribute('class', field.getAttribute('class')+ ' '+ engine)
+	} else {
+		 field.setAttribute('class', engine)
+	}
+        field.setAttribute('rel', service);
+    }
+
+    dd.appendChild(field);
+
+
 
     var frag = document.createDocumentFragment();
     frag.appendChild(dt);
@@ -572,6 +592,13 @@ function generateXmlFromSimpleTypeNode(odoc, namespace, tagRaiz, xmlNode, namePa
     }
 
 }
+
+function getTextTagInAnnotationExtensions(xmlNode, strTag) {
+
+	var xmlNodeAux = getNodeByTagName(xmlNode, "xsdext:extensions");
+	return getTextByTagName(xmlNodeAux, strTag);
+}
+
 
 function getTextTagInAnnotationAppinfo(xmlNode, strTag, annotation) {
 
