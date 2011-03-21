@@ -1,0 +1,170 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-tipoHomofobiaLesbofobiaTransfobia.xsd"
+	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
+	xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-tipoHomofobiaLesbofobiaTransfobia.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="formTipoHomofobiaLesbofobiaTransfobia" type="formTipoHomofobiaLesbofobiaTransfobia">
+		<xs:annotation>
+			<xs:appinfo>
+				<xhtml:label>3. TIPO FOBIA LGBT</xhtml:label>
+				<class:classificacoes>
+					<class:classificacao>cn=Diversidade Sexual,cn=Direitos Humanos</class:classificacao>
+				</class:classificacoes>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="formTipoHomofobiaLesbofobiaTransfobia">
+
+		<xs:sequence>
+
+			<xs:element name="numeroInscricao" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Número atendimento</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="tipoHomofobiaLesbofobiaTransfobia">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>3.1 Qual foi o tipo de homofobia/lesbofobia/transfobia que vocÇe sofreu e que lhe motivou 
+						procurar o CRLGBT Janaína Dutra</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="violenciaFisica" type="xs:boolean" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>I. Violência física(qualquer agressão corporal que tenha ocasionado lesão ou grave)</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						
+						<xs:element name="violenciaPsicologica" type="xs:boolean" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>II. Violência psicológica/simbólica(qualquer conduta que cause dano emocional, diminuição da auto-estima, 
+									que vise degradar ou controlar suas ações, comportamentos, crenças e decisões, mediante ameaça constrangimento, humilhação
+									manipulação, isolamento, vigilância constante, perseguição contumaz, insulto, chantagem, exploração e limitação do direito
+									de ir e vir ou qualquer outro meio que cause prejuízo à saúde psicológica e à autodeterminação)</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						
+						<xs:element name="violenciaMoral" type="xs:boolean" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>III. Violência moral(qualquer violência psicológica agravada por constrangimento público, podendo configurar
+									calúnia, difamação ou injúria)</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						
+						<xs:element name="violenciaDomestica" type="xs:boolean" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>IV. Violência doméstica e familiar(qualquer violẽncia ocorrida no âmbito da relação familiar)</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						
+						<xs:element name="violenciaSexual" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>V. Violência sexual(qualquer conduta quen constranja a presenciar, a manter ou a participar de relação 
+									sexual não desejada, mediante intimidação, ameaça, coação ou uso da força; ou que limite ou anule o exercício de seus
+									direitos sexuais)</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="V.1 Estupro de vulnerável(qualquer ato libidinoso(abuso sexual) praticados contra menores de 14 anos 
+									ou contra quem, por enfermidade ou deficiência mental, não tem o necessário discernimento para a prática do ato, ou que, por 
+									qualquer outra causa, não pode oferecer resistência)"/>
+									<xs:enumeration value="V.2 Estupro(qualquer ato libidinoso, inclusive a conjunção carnal, praticado contra qualquer pessoa,
+									mediante violência ou ameaça)"/>
+									<xs:enumeration value="V.3 Exploração sexual(quaisquer atos que possam induzir pessoa a comercializar ou a utilizar, de qualquer
+									modo, a sua sexualidade, mediante coação, chantagem, suborno ou manipulação)"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						
+						<xs:element name="violenciaPatrimonial" type="xs:boolean" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>VI. Violência patrimonial(qualquer conduta que configure retençao, subtração, destruição parcial ou total de seus
+									objetos, instrumentos de trabalho, documentos pessoais, bens, valores e direitos ou recursos econômicos)</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="violenciaInstitucional" type="xs:boolean" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>VII. Violência institucional(qualquer violação aos direitos humanos(ação ou omissão) provida por instituições oficiais),
+									incluindo suas delegações ou empresas, considerando-se o atendimento diferenciado ou discriminatórioa LGBT</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="violenciaHomicidio" type="xs:boolean" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>VIII. Violência homicídio(quando ocorrida a morte de LGBT)</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="traficoHumanos" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>IX. Tráfico de seres humanos(caracteriza-se pelo recrutamento, transporte, transferência, abrigo ou recebimento de pessoas, 
+									por meio de ameaça ou qualquer outra forma de coerção, com ou sem força; podendo ocorrer através de rapto, fraude, engano, abuso de poder
+									ou de uma posição de vulnerabilidade, assim como na utilização de quaisquer pagamentos ou benefícios, para o propósito de exploração)</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="IX.1 Tráfico de órgãos"/>
+									<xs:enumeration value="IX.2 Tráfico para fins sexuais"/>
+									<xs:enumeration value="IX.3 Tráfico para fins de trabalho escravo"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="violenciaHomicidio" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>X. Outros</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
+
+			</xs:element>
+
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>
