@@ -11,12 +11,18 @@
 	<xs:element name="formCcdsFichaInscricao" type="formCcdsFichaInscricao">
 		<xs:annotation>
 			<xs:appinfo>
-				<xhtml:label>CCDS - FICHA DE INSCRIÇÃO</xhtml:label>
+				<xhtml:label>CCDS - Ficha de inscrição</xhtml:label>
 				<class:classificacoes>
 					<class:classificacao>cn=Segurança Pública</class:classificacao>
 				</class:classificacoes>
 				<idx:index>
-				    <idx:hint key="ccds.numeroInscricao" xpath="formCcdsFichaInscricao/numeroInscricao" />
+				    <idx:hint key="ccds.fichaInscricao.numeroInscricao" xpath="formCcdsFichaInscricao/numeroInscricao" />
+				    <idx:hint key="ccds.fichaInscricao.Nome" xpath="formCcdsFichaInscricao/dadosPessoais/nome" />
+				    <idx:hint key="ccds.fichaInscricao.endereco" xpath="formCcdsFichaInscricao/dadosPessoais/endereco" />
+				    <idx:hint key="ccds.fichaInscricao.bairro" xpath="formCcdsFichaInscricao/dadosPessoais/bairro" />
+				    <idx:hint key="ccds.fichaInscricao.sexo" xpath="formCcdsFichaInscricao/dadosPessoais/sexo" />
+				    <idx:hint key="ccds.fichaInscricao.escolaridade" xpath="formCcdsFichaInscricao/dadosSocioEconomicosFamiliares/escolaridade" />
+				     <idx:hint key="ccds.fichaInscricao.escola" xpath="formCcdsFichaInscricao/dadosSocioEconomicosFamiliares/nomeEscola" />
 				</idx:index>
 			</xs:appinfo>
 		</xs:annotation>
@@ -733,22 +739,16 @@
 						<xhtml:label>6. Em geral, como você descreveria a segurança da sua comunidade?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
-				<xs:complexType>
-					<xs:sequence>
-						<xs:element name="segurancaComunidadeOpcoes">
-							<xs:simpleType>
-								<xs:restriction base="xs:string">
-									<xs:enumeration value="Muito insegura"/>
-									<xs:enumeration value="Insegura"/>
-									<xs:enumeration value="Mais ou menos segura"/>
-									<xs:enumeration value="Segura"/>
-									<xs:enumeration value="Muito segura"/>
-									<xs:enumeration value="Não sei"/>
-								</xs:restriction>
-							</xs:simpleType>
-						</xs:element>
-					</xs:sequence>
-				</xs:complexType>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Muito insegura"/>
+						<xs:enumeration value="Insegura"/>
+						<xs:enumeration value="Mais ou menos segura"/>
+						<xs:enumeration value="Segura"/>
+						<xs:enumeration value="Muito segura"/>
+						<xs:enumeration value="Não sei"/>
+					</xs:restriction>
+				</xs:simpleType>
 			</xs:element>
 			
 			<xs:element name="situacoesSeguranca">
