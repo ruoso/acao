@@ -13,7 +13,8 @@
 			<xs:appinfo>
 				<xhtml:label>05. IDENTIFICAÇÃO DO/A AGRESSOR/A</xhtml:label>
 				<class:classificacoes>
-					<class:classificacao>cn=Diversidade Sexual,cn=Direitos Humanos</class:classificacao>
+					<class:classificacao>cn=Diversidade Sexual,cn=Direitos Humanos
+					</class:classificacao>
 				</class:classificacoes>
 			</xs:appinfo>
 		</xs:annotation>
@@ -33,7 +34,7 @@
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
-			
+
 			<xs:element name="quantidadeDeAgressores" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
@@ -43,11 +44,12 @@
 				<xs:simpleType>
 					<xs:restriction base="xs:string">
 						<xs:enumeration value="1" />
-						<xs:enumeration value="mais de 1 (no caso de mais de 1 pule para a questão xxxx)" />
+						<xs:enumeration
+							value="mais de 1 (no caso de mais de 1 pule para a questão xxxx)" />
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
-			
+
 			<xs:element name="identificacaoDoAgressor" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
@@ -62,7 +64,7 @@
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
-			
+
 			<xs:element name="sexoBiologico" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
@@ -76,7 +78,7 @@
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
-			
+
 			<xs:element name="resideNoMesmoDomicilio" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
@@ -90,7 +92,7 @@
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
-			
+
 			<xs:element name="idade" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
@@ -109,17 +111,189 @@
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
-			
-			<xs:element name="apresentaRelacaoParentescoComAVitima" minOccurs="0">
+
+			<xs:element name="apresentaRelacaoParentescoComAVitima"
+				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Apresenta relação de parentesco com a vítima</xhtml:label>
+						<xhtml:label>Apresenta relação de parentesco com a vítima
+						</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
 					<xs:restriction base="xs:string">
 						<xs:enumeration value="Sim" />
 						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="casoAfirmativoAssinalarAbaixo"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Caso afirmativo, assinalar abaixo</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Pai" />
+						<xs:enumeration value="Mãe" />
+						<xs:enumeration value="Padrasto" />
+						<xs:enumeration value="Madrasta" />
+						<xs:enumeration value="Irmão" />
+						<xs:enumeration value="Irmã" />
+						<xs:enumeration value="Filho" />
+						<xs:enumeration value="Filha" />
+						<xs:enumeration value="Companheiro" />
+						<xs:enumeration value="Companheira" />
+						<xs:enumeration value="Genro" />
+						<xs:enumeration value="Nora" />
+						<xs:enumeration value="Sobrinho" />
+						<xs:enumeration value="Sobrinha" />
+						<xs:enumeration value="Neto" />
+						<xs:enumeration value="Neta" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="casoNegativoAssinalarAbaixo" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Caso negativo, assinalar abaixo</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Vizinho/a" />
+						<xs:enumeration value="Agregado/a" />
+						<xs:enumeration value="Desconhecido/a" />
+						<xs:enumeration value="Empregador/a" />
+						<xs:enumeration value="Comunidade" />
+						<xs:enumeration value="Escola" />
+						<xs:enumeration value="Colega de Trabalho" />
+						<xs:enumeration value="Agente público" />
+						<xs:enumeration value="Outros" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			<xs:element name="tipoComunidade">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Caso tenha sido agredido por comunidade, assinale
+							abaixo o tipo</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType name="tipoDeComunidade">
+					<xs:sequence>
+						<xs:element name="religiosa" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Religiosa</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="cooperativa" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Cooperativa</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="territorio" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Território</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="outros" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Outros</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="outroTipoComunidade" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Outros tipos de comunidades</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="escola" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Caso tenha sido agredido na escola, quem o agrediu</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			<xs:element name="agentePublico" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Caso tenha sido agredido por agente público, quem o agrediu</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			<xs:element name="outroAgressor" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Caso os agressores não se encaixem nos tipos anteriores, quem o agrediu</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			<xs:element name="fazUsoDeAlcoolOuDrogas" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Faz uso de álcool/drogas</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+						<xs:enumeration value="Ignorado" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			<xs:element name="tipoDeDrogaQueUsa" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Caso afirmativo, que tipo</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
