@@ -1,14 +1,14 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
-	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-identificacaoDoAgressor.xsd"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-lgtb-identificacaoagressor.xsd"
 	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
 	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
 	xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
-	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-identificacaoDoAgressor.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-lgtb-identificacaoagressor.xsd"
 	elementFormDefault="qualified">
 
-	<xs:element name="formIdentificacaoDoAgressor" type="formIdentificacaoDoAgressor">
+	<xs:element name="formIdentificacaoAgressor" type="formIdentificacaoAgressor">
 		<xs:annotation>
 			<xs:appinfo>
 				<xhtml:label>05. IDENTIFICAÇÃO DO/A AGRESSOR/A</xhtml:label>
@@ -19,7 +19,7 @@
 		</xs:annotation>
 	</xs:element>
 
-	<xs:complexType name="formIdentificacaoDoAgressor">
+	<xs:complexType name="formIdentificacaoAgressor">
 		<xs:sequence>
 			<xs:element name="numeroAtendimento" minOccurs="1">
 				<xs:annotation>
