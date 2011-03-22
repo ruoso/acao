@@ -1,0 +1,129 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-identificacaoDoAgressor.xsd"
+	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
+	xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-identificacaoDoAgressor.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="formIdentificacaoDoAgressor" type="formIdentificacaoDoAgressor">
+		<xs:annotation>
+			<xs:appinfo>
+				<xhtml:label>5. IDENTIFICAÇÃO DO/A AGRESSOR/A</xhtml:label>
+				<class:classificacoes>
+					<class:classificacao>cn=Direitos Humanos</class:classificacao>
+				</class:classificacoes>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="formIdentificacaoDoAgressor">
+		<xs:sequence>
+			<xs:element name="numeroAtendimento" minOccurs="1">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Número de atendimento</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			<xs:element name="quantidadeDeAgressores" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Quantidade de agressores</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="1" />
+						<xs:enumeration value="mais de 1 (no caso de mais de 1 pule para a questão xxxx)" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			<xs:element name="identificacaoDoAgressor" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Identificação do(s) agressor(es)</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Identificado/a" />
+						<xs:enumeration value="Não identificado/a" />
+						<xs:enumeration value="Auto-negligente" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			<xs:element name="sexoBiologico" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Sexo biológico</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Macho" />
+						<xs:enumeration value="Fêmea" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			<xs:element name="resideNoMesmoDomicilio" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Reside no mesmo domicílio</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			<xs:element name="idade" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Idade</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="menor de 18 anos" />
+						<xs:enumeration value="18 a 29 anos" />
+						<xs:enumeration value="30 a 39 anos" />
+						<xs:enumeration value="40 a 49 anos" />
+						<xs:enumeration value="50 a 59 anos" />
+						<xs:enumeration value="60 ou mais" />
+						<xs:enumeration value="Não informado" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			<xs:element name="apresentaRelacaoParentescoComAVitima" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Apresenta relação de parentesco com a vítima</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>
