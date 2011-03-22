@@ -1,15 +1,15 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
-	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-tipoHomofobiaLesbofobiaTransfobia.xsd"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-lgbt-fobialgbt.xsd"
 	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
 	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
 	xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
-	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-tipoHomofobiaLesbofobiaTransfobia.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-lgbt-fobialgbt.xsd"
 	elementFormDefault="qualified">
 
-	<xs:element name="formTipoHomofobiaLesbofobiaTransfobia"
-		type="formTipoHomofobiaLesbofobiaTransfobia">
+	<xs:element name="formFobiaLGBT"
+		type="formFobiaLGBT">
 		<xs:annotation>
 			<xs:appinfo>
 				<xhtml:label>03. TIPO FOBIA</xhtml:label>
@@ -20,7 +20,7 @@
 		</xs:annotation>
 	</xs:element>
 
-	<xs:complexType name="formTipoHomofobiaLesbofobiaTransfobia">
+	<xs:complexType name="formFobiaLGBT">
 
 		<xs:sequence>
 
