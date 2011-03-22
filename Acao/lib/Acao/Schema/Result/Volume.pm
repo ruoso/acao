@@ -35,6 +35,7 @@ __PACKAGE__->table("volume");
 __PACKAGE__->add_columns(
     "id_volume", { data_type => "varchar", is_nullable => 0, size => 255 },
     "nome",      { data_type => "varchar", is_nullable => 1, size => 255 },
+    "invalidado",      { data_type => "integer", is_nullable => 0 },
 );
 __PACKAGE__->set_primary_key("id_volume");
 
