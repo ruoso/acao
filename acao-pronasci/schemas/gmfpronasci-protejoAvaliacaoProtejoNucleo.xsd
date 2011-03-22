@@ -11,9 +11,9 @@
 	<xs:element name="formProtejoAvaliacaoProtejoNucleo" type="formProtejoAvaliacaoProtejoNucleo">
 		<xs:annotation>
 			<xs:appinfo>
-				<xhtml:label>PROTEJO - Avaliação núcleos</xhtml:label>
+				<xhtml:label>Avaliação núcleos</xhtml:label>
 				<class:classificacoes>
-					<class:classificacao>cn=Segurança Pública</class:classificacao>
+					<class:classificacao>cn=Segurança Pública,cn=protejo</class:classificacao>
 				</class:classificacoes>
 				<idx:index>
 				    <idx:hint key="protejo.numeroInscricao" xpath="formProtejoAvaliacaoProtejoNucleo/dadosInscricao/numeroInscricao" />

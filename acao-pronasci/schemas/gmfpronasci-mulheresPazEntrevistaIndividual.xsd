@@ -10,9 +10,9 @@
 	<xs:element name="formMulheresDaPazEntrevistaIndividual" type="formMulheresDaPazEntrevistaIndividual">
 		<xs:annotation>
 			<xs:appinfo>
-				<xhtml:label>MULHERES DA PAZ - Entevista individual</xhtml:label>
+				<xhtml:label>Entevista individual</xhtml:label>
 				<class:classificacoes>
-					<class:classificacao>cn=Segurança Pública</class:classificacao>
+					<class:classificacao>cn=Segurança Pública,cn=Mulheres da paz</class:classificacao>
 				</class:classificacoes>
 				<idx:index>
 				    <idx:hint key="mulheresdapaz.numeroInscricao" xpath="formMulheresDaPazAvaliacaoDinamica/numeroInscricao" />
@@ -31,7 +31,7 @@
 			<xs:element name="numeroInscricao" minOccurs="1">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Número de Inscrição:</xhtml:label>
+						<xhtml:label>Número de inscrição:</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>

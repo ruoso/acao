@@ -11,9 +11,9 @@
 	<xs:element name="formProtejoFormularioCadastro" type="formProtejoFormularioCadastro">
 		<xs:annotation>
 			<xs:appinfo>
-				<xhtml:label>PROTEJO - Ficha cadastral do jovem ingressante</xhtml:label>
+				<xhtml:label>Ficha cadastral do jovem ingressante</xhtml:label>
 				<class:classificacoes>
-					<class:classificacao>cn=Segurança Pública</class:classificacao>
+					<class:classificacao>cn=Segurança Pública, cn=protejo</class:classificacao>
 				</class:classificacoes>
 				<idx:index>
 				    <idx:hint key="protejo.numeroInscricao" xpath="formProtejoFormularioCadastro/dadosInscricao/numeroInscricao" />
