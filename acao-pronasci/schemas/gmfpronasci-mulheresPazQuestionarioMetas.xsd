@@ -1,19 +1,19 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
-	xmlns="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-mulheresDaPazQuestionarioMetas.xsd"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-mulheresdapaz-questionariometas.xsd"
 	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
 	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
 	xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
-	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-mulheresDaPazQuestionarioMetas.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-mulheresdapaz-questionariometas.xsd"
 	elementFormDefault="qualified">
 
 	<xs:element name="formMulheresDaPazQuestionarioMetas" type="formMulheresDaPazQuestionarioMetas">
 		<xs:annotation>
 			<xs:appinfo>
-				<xhtml:label>MULHERES DA PAZ - Questionário de metas</xhtml:label>
+				<xhtml:label>06. QUESTIONÁRIO DE METAS</xhtml:label>
 				<class:classificacoes>
-					<class:classificacao>cn=Segurança Pública</class:classificacao>
+					<class:classificacao>cn=Mulheres da Paz,cn=Infância e Adolescência,cn=Segurança Pública</class:classificacao>
 				</class:classificacoes>
 				<idx:index>
 				    <idx:hint key="mulheresdapaz.numeroInscricao" xpath="formMulheresDaPazQuestionarioMetas/numeroInscricao" />
