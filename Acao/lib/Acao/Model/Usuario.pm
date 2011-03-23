@@ -9,22 +9,10 @@ use Digest::SHA qw(sha1_base64 sha1);
 use List::MoreUtils qw{uniq};
 use Net::LDAP::Control::Paged;
 use Net::LDAP::Constant qw( LDAP_CONTROL_PAGED );
+use Switch;
 
 use Carp qw(croak);
 extends 'Acao::Model::LDAP';
-
-sub buscar_usuarios_ {
-    my ($self) = @_;
-
-    my $mesg = $self->ldap->search(
-        base   => $self->base_acao,
-        filter => "(&(member=*))",
-        scope  => 'one'
-
-    );
-    croak 'LDAP error: ' . $mesg->error if $mesg->is_error;
-    return $mesg->sorted('o');
-}
 
 sub buscar_usuarios {
     my ( $self, $args ) = @_;
@@ -40,8 +28,9 @@ sub buscar_usuarios {
 
     my $attrs  = $args->{attrs} || qw(*);
     my $filter = $campo . $pesquisa;
-    my $base   = $self->dominios_dn;
-    my $mesg   =
+
+    my $base = $self->dominios_dn;
+    my $mesg =
       $self->searchLDAP(
         { attrs => $attrs, filter => $filter, base => $base } );
 
@@ -54,12 +43,10 @@ sub buscar_usuarios {
     my $memberOf;
     my $base_acao = $self->base_acao;
 
-    #isto é necessário pois, por alguma razão, o ConfigLoader não seta a flag de unicode na string //sikora
+#isto é necessário pois, por alguma razão, o ConfigLoader não seta a flag de unicode na string //sikora
     utf8::decode($base_acao);
 
     #warn "XXXXX: ".utf8::is_utf8($base_acao);
-
-
 
     my $max = $mesg->count;
     for ( $i = 0 ; $i < $max ; $i++ ) {
@@ -67,16 +54,20 @@ sub buscar_usuarios {
 
         $memberOf = $self->getDadosUsuarioLdap( $entry->dn )->{memberOf};
 
+
+
         if ( ref($memberOf) eq 'ARRAY' ) {
-           $memberOf = join( ',', @$memberOf );
+            $memberOf = join( ',', @$memberOf );
         }
         else {
             $memberOf = '';
+
         }
-        $memberOf =~ s/çã/ca/go;
+        $memberOf  =~ s/çã/ca/go;
         $base_acao =~ s/çã/ca/go;
-        if ($memberOf =~ /$base_acao/i) {
-            warn 'deu certo';
+
+        if ( $memberOf =~ /$base_acao/ ) {
+
             %dados = (
                 %dados,
                 (
@@ -94,8 +85,14 @@ sub buscar_usuarios {
     return %dados;
 }
 
+=item getDadosUsuarioLdap
+Coleta os dados do usuario no LDAP, passando como parametro a DN e FILTRO como opcional.
+O Filtro serve para filtrar os memberOf como: 'acao', 'adm';
+
+=cut
+
 sub getDadosUsuarioLdap {
-    my ( $self, $dn ) = @_;
+    my ( $self, $dn, $filtro ) = @_;
     my $ldap = $self->_bind_ldap_admin($self);
     my @args = (
         base   => $self->dominios_dn,
@@ -105,6 +102,39 @@ sub getDadosUsuarioLdap {
           [qw/cn sn uid givenName email mobile telephoneNumber memberOf/],
     );
     my $mesg = $ldap->search(@args);
+    my $memberOf;
+    my @memberOfArray;
+    my $base_acao = $self->base_acao;
+    my $base_adm  = $self->base_adm;
+    utf8::decode($base_adm);
+    switch ($filtro) {
+        case "acao" {
+            $memberOf = [ $mesg->entry->get_value('memberOf') ];
+            foreach my $mOf (@$memberOf) {
+                if ( ( $mOf =~ /$base_acao/ ) ) {
+                    push @memberOfArray, $mOf;
+                }
+            }
+            $memberOf = \@memberOfArray;
+        }
+        case "adm" {
+            $memberOf = [ $mesg->entry->get_value('memberOf') ];
+            foreach my $mOf (@$memberOf) {
+                if ( ( $mOf =~ /$base_adm/ ) ) {
+                    push @memberOfArray, $mOf;
+                }
+            }
+            $memberOf = \@memberOfArray;
+        }
+        else {
+
+            $memberOf = [ $mesg->entry->get_value('memberOf') ];
+        }
+    }
+
+    my $super = join( ',', @$memberOf );
+    my $admin_super = $self->admin_super;
+    $super =~ s/$admin_super/1/go;
 
     return {
         uid       => $mesg->entry->get_value('uid'),
@@ -113,9 +143,10 @@ sub getDadosUsuarioLdap {
         apelido   => $mesg->entry->get_value('givenName'),
         email     => [ $mesg->entry->get_value('email') ],
         celular   => [ $mesg->entry->get_value('mobile') ],
-        fone      => $mesg->entry->get_value('telephoneNumber'),
+        fone      => [ $mesg->entry->get_value('telephoneNumber') ],
+        admin     => $super,
         dn        => $dn,
-        memberOf  => [ $mesg->entry->get_value('memberOf') ],
+        memberOf  => $memberOf,
     };
 
 }

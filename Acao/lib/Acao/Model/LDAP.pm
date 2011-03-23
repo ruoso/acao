@@ -20,6 +20,8 @@ has grupos_dn   => ( is => 'ro', required => 1 );
 has assuntos_dn => ( is => 'ro', required => 1 );
 has local_dn    => ( is => 'ro', required => 1 );
 has base_acao   => ( is => 'ro', required => 1, isa =>'Str' );
+has base_adm   => ( is => 'ro', required => 1 );
+has admin_super   => ( is => 'ro', required => 1 );
 
 sub build_per_context_instance {
     my ( $self, $c ) = @_;

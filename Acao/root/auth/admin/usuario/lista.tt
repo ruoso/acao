@@ -27,7 +27,7 @@
 
 <div class="caixa_consulta">
   <fieldset>
-    <legend>Consulta</legend>
+    <legend>Buscar Usuários</legend>
      <br/>
     <form name="buscarUserLdap"  action="[% c.uri_for_action('/auth/admin/usuario/searchUser') %]" method="get" >
       <input name="buscar"  value=""  />
@@ -51,8 +51,8 @@
      <td>  <a href="[% c.uri_for_action('/auth/admin/usuario/ver_user',[ key ])%]" rel="[% key | url %]"> [% usuarios.$key.uid %]</a>	</td>
      <td>
        <a href="[% user.dn %]" class="pass_edit" >Alterar Senha</a>
-       <a href="[% user.dn %]" class="user_edit">Alterar Dados </a>
-       <a href="[% user.dn %]" class="workplace_edit">Alterar Lotação </a>
+       <a href="[% c.uri_for_action('/auth/admin/usuario/alterar',[ key ])%]" class="user_edit">Alterar Dados </a>
+       <a href="[% c.uri_for_action('/auth/admin/usuario/alterar_lotacao',[ key ])%]" class="workplace_edit">Alterar Lotação </a>
 
      </td>
    </tr>
@@ -62,3 +62,4 @@
 
 
 [% INCLUDE 'footer.tt' %]
+

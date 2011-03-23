@@ -1,0 +1,139 @@
+[%#
+# Copyright 2010 - Prefeitura Municipal de Fortaleza
+#
+# Este arquivo é parte do programa Ação - Sistema de Acompanhamento de
+# Projetos Sociais
+#
+# O Ação é um software livre; você pode redistribui-lo e/ou modifica-lo
+# dentro dos termos da Licença Pública Geral GNU como publicada pela
+# Fundação do Software Livre (FSF); na versão 2 da Licença.
+#
+# Este programa é distribuido na esperança que possa ser util, mas SEM
+# NENHUMA GARANTIA; sem uma garantia implicita de ADEQUAÇÂO a qualquer
+# MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a Licença Pública Geral GNU
+# para maiores detalhes.
+#
+# Você deve ter recebido uma cópia da Licença Pública Geral GNU, sob o
+# título "LICENCA.txt", junto com este programa, se não, escreva para a
+# Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
+%]
+[% INCLUDE 'auth/admin/usuario/header.tt' %]
+[% INCLUDE 'errosucesso.tt' %]
+<h1 class="titulo-form">Gerenciar usuário do LDAP |
+  <span style="font-size:13px; font-weight:normal;">
+       <a class="criar" href="[% c.uri_for_action('/auth/admin/usuario/alterar') %]">Alterar Usuário</a>
+  </span>
+</h1>
+<form name="" action="" method="post">
+<fieldset class="dadosUsuario">
+  <legend>Dados do Usuário</legend>
+  <dl>
+    <dt>Nome:</dt>
+    <dd>  [% usuario.nome %]</dd>
+    <dt>Sobrenome:</dt>
+    <dd>  [% usuario.sobrenome  %]</dd>
+    <dt>Apelido:</dt>
+    <dd>  [% usuario.apelido %]</dd>
+    <dt>Fone:</dt>
+    <dd>
+      [% FOREACH fone IN usuario.fone %]
+        [% fone  %]
+      [% END %]
+    </dd>
+    <dt>Celular</dt>
+    <dd>
+    [% FOREACH celular IN usuario.celular %]
+      [% celular %]
+    [% END %]
+    </dd	>
+    <dt>Email:</dt>
+    <dd>
+    [% FOREACH email IN usuario.email %]
+      [%email %]
+    [% END %]
+    </dd>
+  </dl>
+
+ <div class="floatAndMargem">
+ [% INCLUDE 'auth/admin/usuario/include_navegador_ldap.tt' %]
+ </div>
+  [% INCLUDE 'auth/admin/usuario/include_grid_lotacao.tt' %]
+
+
+
+
+
+</fieldset>
+<input type="submit" value="Alterar">
+<input type="reset" value="Cancelar">
+</form>
+
+<script type="text/javascript">
+
+
+$('#checkAllRegistros').click(function() {
+  if ($("input[name='checkAllRegistros']").is(':checked') ) {
+    $("input[name='volume[]']").attr('checked', true);
+    $("input[name='dossie[]']").attr('checked', true);
+    $("input[name='documento[]']").attr('checked', true);
+  } else {
+    $("input[name='volume[]']").attr('checked', false);
+    $("input[name='dossie[]']").attr('checked', false);
+    $("input[name='documento[]']").attr('checked', false);
+  }
+});
+
+function add(action) {
+  var xmlLotacao = $("input[name='lotacao']").val();
+  var grupos_ldap = [];
+  $("input[name='grupos_ldap[]']:checked").each(function(){grupos_ldap.push($(this).val());});
+
+  if ($("input[name='grupos_ldap[]']:checked").length)
+       {
+        $.ajax({
+             type: "POST",
+             url: action,
+
+             data: {
+               'grupos': grupos_ldap.join(" - "),
+               'lotacao': xmlLotacao,
+               },
+             success: function(msg){
+               $('#gridLotacao').html(msg);
+               $("input[name='grupos_ldap[]']").attr('checked', false);
+
+             }
+
+        });
+  }
+}
+
+function remove(action, posicao) {
+  var xmlLotacao = $("input[name='lotacao']").val();
+        $.ajax({
+             type: "POST",
+             url: action,
+
+             data: {
+               'posicao': posicao,
+               'xmllotacao': xmlLotacao,
+               },
+             success: function(msg){
+               $('#gridLotacao').html(msg);
+               $("input[name='grupos_ldap[]']").attr('checked', false);
+             }
+
+        });
+
+}
+
+
+
+</script>
+
+
+
+
+
+
+[% INCLUDE 'footer.tt' %]

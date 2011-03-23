@@ -38,9 +38,10 @@ sub getUsuario : Chained('base') : PathPart('') : CaptureArgs(1) {
 
 sub lista : Chained('base') : PathPart('') : Args(0) {
     my ( $self, $c ) = @_;
-    my %usuarios = $c->model('Usuario')->buscar_usuarios();
 
-    $c->stash->{usuarios} = \%usuarios;
+    #my %usuarios = $c->model('Usuario')->buscar_usuarios();
+
+    #$c->stash->{usuarios} = \%usuarios;
 
     return;
 }
@@ -64,24 +65,35 @@ sub ver_user : Chained('getUsuario') : PathPart('ver') : Args(0) {
     my ( $self, $c ) = @_;
     $c->stash->{template} = 'auth/admin/usuario/usuario.tt';
     $c->stash->{usuario}  =
-    $c->model('Usuario')->getDadosUsuarioLdap( $c->stash->{dn_usuario} );
-
+      $c->model('Usuario')->getDadosUsuarioLdap( $c->stash->{dn_usuario} );
 
 }
 
+sub alterar_lotacao : Chained('getUsuario') : PathPart('alterar_lotacao')
+  : Args(0)
+{
+    my ( $self, $c ) = @_;
 
+    $c->stash->{usuario} =
+      $c->model('Usuario')
+      ->getDadosUsuarioLdap( $c->stash->{dn_usuario}, 'adm' );
+    my @lotacoes = $c->stash->{usuario}->{memberOf};
+    $c->stash->{lotacoes} = ( { value => @lotacoes } );
+    $c->stash->{lotacao} = serialize($c->stash->{lotacoes});
+
+}
 
 sub alterar : Chained('getUsuario') : PathPart('alterar') : Args(0) {
     my ( $self, $c ) = @_;
 
 }
 
-
 sub searchUser : Chained('base') : PathPart('buscar') : Args(0) {
     my ( $self, $c ) = @_;
     $c->stash->{template} = 'auth/admin/usuario/lista.tt';
     my $pesquisa = $c->req->param('buscar');
-    my %usuarios = $c->model('Usuario')->buscar_usuarios({pesquisa => $pesquisa});
+    my %usuarios =
+      $c->model('Usuario')->buscar_usuarios( { pesquisa => $pesquisa } );
     $c->stash->{usuarios} = \%usuarios;
 
 }
@@ -98,8 +110,6 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
     }
     my $super = $c->req->param('super');
 
-
-
     eval {
         $result = $c->model('Usuario')->storeUsuario(
             {
@@ -114,14 +124,13 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
                 'dossie'    => $dossieArray,
                 'documento' => $documentoArray,
                 'lotacao'   => $lotacaoArray,
-                'super'   => $super,
+                'super'     => $super,
             }
         );
     };
 
-
     if ( $result->{resultCode} ne '0' ) {
-        $c->flash->{erro} = 'ldap-' .$result->{resultCode};
+        $c->flash->{erro} = 'ldap-' . $result->{resultCode};
         $c->res->redirect(
             $c->uri_for_action('/auth/admin/usuario/adicionar_usuario') );
         return;
@@ -135,7 +144,7 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
 }
 
 sub add : Chained('base') : PathPart('add') : Args(0) {
-    my ( $self, $c, ) = @_;
+    my ( $self, $c ) = @_;
     $c->stash->{template} = 'auth/admin/usuario/grid_lotacao.tt';
     my @principal = split /-/, $c->req->param('grupos');
     my $hash_old = desserialize( $c->req->param('lotacao') );

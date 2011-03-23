@@ -108,29 +108,15 @@
        <input type="checkbox" value="super" name="super"><img src="[% c.uri_for('/static/img/user/user_suit.png') %]" alt=" Super Administrador" /> Poderes de Super Administrador
 
   </fieldset>
-
-  <fieldset class="navegaLDAP">
-        <legend><img src="[% c.uri_for('/static/img/workplace/building_go.png') %]" alt="Adicionar Lotação" /> Adicionar Lotação</legend>
-            [% INCLUDE 'auth/admin/usuario/_ldap.tt' %]
-
-          <a href="javascript:void(0);"  name="Adicionar" onclick="add('[% c.uri_for_action('/auth/admin/usuario/add') %]')" class="workplace_add" >
-               Adicionar Lotação
-             </a>
-
-  </fieldset>
-
- <fieldset class="lotacao">
-     <legend><img src="[% c.uri_for('/static/img/workplace/building.png') %]" alt="Lista de Lotação" /> Lotação</legend>
-     <div id="gridLotacao">
-     <input type="hidden" value="[% lotacao | html %]" name="lotacao">
-     </div>
-
-  </fieldset>
+[% INCLUDE 'auth/admin/usuario/include_navegador_ldap.tt' %]
+[% INCLUDE 'auth/admin/usuario/include_grid_lotacao.tt' %]
 
 
 
 
-</fieldset>
+
+
+
 <input type="submit" value="Criar">
 <input type="reset" value="Cancelar">
 
