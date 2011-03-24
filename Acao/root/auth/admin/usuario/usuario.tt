@@ -21,11 +21,8 @@
 [% INCLUDE 'errosucesso.tt' %]
 <h1 class="titulo-form">Gerenciar usuário do LDAP |
   <span style="font-size:13px; font-weight:normal;">
-<<<<<<< HEAD
        <a class="criar" href="[% c.uri_for_action('/auth/admin/usuario/alterar_lotacao',[ dn_usuario ]) %]">Alterar Lotação</a>
-=======
-       <a class="criar" href="[% c.uri_for_action('/auth/admin/usuario/alterar_lotacao',[ dn_usuario ]) %]">Alterar Usuário</a>
->>>>>>> ac07f6b126e9b5ea008eb724b0390bd5d7e5824d
+
   </span>
 </h1>
 
@@ -33,28 +30,28 @@
   <legend>Dados do Usuário</legend>
   <dl>
     <dt>Usuário:</dt>
-    <dd>  [% usuario.uid %]</dd>
+    <dd>  [% usuario_lotacao.uid %]</dd>
     <dt>Nome:</dt>
-    <dd>  [% usuario.nome %]</dd>
+    <dd>  [% usuario_lotacao.nome %]</dd>
     <dt>Sobrenome:</dt>
-    <dd>  [% usuario.sobrenome %]</dd>
+    <dd>  [% usuario_lotacao.sobrenome %]</dd>
     <dt>Apelido:</dt>
-    <dd>  [% usuario.apelido %]</dd>
+    <dd>  [% usuario_lotacao.apelido %]</dd>
     <dt>Fone:</dt>
     <dd>
-      [% FOREACH fone IN usuario.fone %]
+      [% FOREACH fone IN usuario_lotacao.fone %]
         [% fone %]
       [% END %]
     </dd>
     <dt>Celular</dt>
     <dd>
-    [% FOREACH celular IN usuario.celular %]
+    [% FOREACH celular IN usuario_lotacao.celular %]
       [% celular %]
     [% END %]
     </dd	>
     <dt>Email:</dt>
     <dd>
-    [% FOREACH email IN usuario.email %]
+    [% FOREACH email IN usuario_lotacao.email %]
       [% email %]
     [% END %]
     </dd>
