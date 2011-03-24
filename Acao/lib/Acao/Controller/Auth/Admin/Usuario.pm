@@ -65,7 +65,7 @@ sub ver_user : Chained('getUsuario') : PathPart('ver') : Args(0) {
     my ( $self, $c ) = @_;
     $c->stash->{template}        = 'auth/admin/usuario/usuario.tt';
 
-    $c->stash->{usuario_lotacao} =
+    $c->stash->{usuario} =
       $c->model('Usuario')
       ->getDadosUsuarioLdap( $c->stash->{dn_usuario}, 'adm' );
 
