@@ -21,7 +21,7 @@
 [% INCLUDE 'errosucesso.tt' %]
 <h1 class="titulo-form">Gerenciar usuário do LDAP |
   <span style="font-size:13px; font-weight:normal;">
-       <a class="criar" href="[% c.uri_for_action('/auth/admin/usuario/alterar') %]">Alterar Usuário</a>
+       <a class="criar" href="[% c.uri_for_action('/auth/admin/usuario/alterar_lotacao',[ dn_usuario ]) %]">Alterar Lotação</a>
   </span>
 </h1>
 
@@ -54,12 +54,22 @@
       [% email %]
     [% END %]
     </dd>
+    <dt>Super Administrador:</dt>
+    <dd>
+
+      [% IF usuario_sistema.admin == '1' %]
+        Sim
+      [% ELSE %]
+        Não
+      [% END %]
+
+    </dd>
   </dl>
 
 
 
   <fieldset>
-    <legend>Membro de</legend>
+    <legend>Lotação</legend>
     <div>
     <table>
     <thead>
@@ -70,8 +80,30 @@
      </tr>
   </thead>
     <TBODY>
-       [% FOREACH member IN usuario.memberOf %]
-        <tr><td> [% c.model('LDAP').decompose_dn_grupos(member).reverse.join(' - ') %] <a src="" class=excluir></a></td>        </tr>
+       [% FOREACH member IN usuario_lotacao.memberOf %]
+        <tr><td> [% c.model('LDAP').decompose_dn_grupos(member).reverse.join(' - ') %] </td>        </tr>
+       [% END %]
+
+    </TBODY>
+   </table>
+   </div>
+
+  </fieldset>
+
+   <fieldset>
+    <legend>Permissões do Sistema</legend>
+    <div>
+    <table>
+    <thead>
+     <tr>
+      <th width="20%">Usuário</th>
+
+
+     </tr>
+  </thead>
+    <TBODY>
+       [% FOREACH member IN usuario_sistema.memberOf %]
+        <tr><td> [% c.model('LDAP').decompose_dn_grupos(member).reverse.join(' - ') %] </td>        </tr>
        [% END %]
 
     </TBODY>
