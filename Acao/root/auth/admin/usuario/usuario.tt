@@ -30,28 +30,28 @@
   <legend>Dados do Usuário</legend>
   <dl>
     <dt>Usuário:</dt>
-    <dd>  [% usuario_lotacao.uid %]</dd>
+    <dd>  [% usuario.uid %]</dd>
     <dt>Nome:</dt>
-    <dd>  [% usuario_lotacao.nome %]</dd>
+    <dd>  [% usuario.nome %]</dd>
     <dt>Sobrenome:</dt>
-    <dd>  [% usuario_lotacao.sobrenome %]</dd>
+    <dd>  [% usuario.sobrenome %]</dd>
     <dt>Apelido:</dt>
-    <dd>  [% usuario_lotacao.apelido %]</dd>
+    <dd>  [% usuario.apelido %]</dd>
     <dt>Fone:</dt>
     <dd>
-      [% FOREACH fone IN usuario_lotacao.fone %]
+      [% FOREACH fone IN usuario.fone %]
         [% fone %]
       [% END %]
     </dd>
     <dt>Celular</dt>
     <dd>
-    [% FOREACH celular IN usuario_lotacao.celular %]
+    [% FOREACH celular IN usuario.celular %]
       [% celular %]
     [% END %]
     </dd	>
     <dt>Email:</dt>
     <dd>
-    [% FOREACH email IN usuario_lotacao.email %]
+    [% FOREACH email IN usuario.email %]
       [% email %]
     [% END %]
     </dd>
@@ -75,13 +75,13 @@
     <table>
     <thead>
      <tr>
-      <th width="20%">Usuário</th>
+      <th width="20%">Grupo</th>
 
 
      </tr>
   </thead>
     <TBODY>
-       [% FOREACH member IN usuario_lotacao.memberOf %]
+       [% FOREACH member IN usuario.memberOf %]
         <tr><td> [% c.model('LDAP').decompose_dn_grupos(member).reverse.join(' - ') %] </td>        </tr>
        [% END %]
 
@@ -97,7 +97,7 @@
     <table>
     <thead>
      <tr>
-      <th width="20%">Usuário</th>
+      <th width="20%">Grupo</th>
 
 
      </tr>
