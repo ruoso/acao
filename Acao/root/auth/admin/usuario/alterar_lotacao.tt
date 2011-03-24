@@ -17,17 +17,19 @@
 # título "LICENCA.txt", junto com este programa, se não, escreva para a
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
 %]
-[% INCLUDE 'auth/admin/usuario/header.tt' %]
+[% INCLUDE 'auth/admin/usuario/header_usuario.tt' %]
 [% INCLUDE 'errosucesso.tt' %]
 <h1 class="titulo-form">Gerenciar usuário do LDAP |
   <span style="font-size:13px; font-weight:normal;">
        <a class="criar" href="[% c.uri_for_action('/auth/admin/usuario/alterar') %]">Alterar Usuário</a>
   </span>
 </h1>
-<form name="" action="" method="post">
+<form name="Form" action="[% c.uri_for_action('/auth/admin/usuario/store_lotacao',[ dn_usuario ]) %]" method="post">
 <fieldset class="dadosUsuario">
   <legend>Dados do Usuário</legend>
   <dl>
+    <dt>Usuário:</dt>
+    <dd>  [% usuario.uid %]</dd>
     <dt>Nome:</dt>
     <dd>  [% usuario.nome %]</dd>
     <dt>Sobrenome:</dt>
@@ -64,13 +66,13 @@
 
 
 </fieldset>
-<input type="submit" value="Alterar">
+<input type="submit" value="Salvar">
 <input type="reset" value="Cancelar">
+<input type="hidden" name="dn" value="[% usuario.dn %]">
+<input type="hidden" name="lotacaoAnterior" value="[% lotacao | html %]">
 </form>
 
 <script type="text/javascript">
-
-
 $('#checkAllRegistros').click(function() {
   if ($("input[name='checkAllRegistros']").is(':checked') ) {
     $("input[name='volume[]']").attr('checked', true);

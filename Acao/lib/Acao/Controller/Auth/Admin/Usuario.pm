@@ -79,7 +79,7 @@ sub alterar_lotacao : Chained('getUsuario') : PathPart('alterar_lotacao')
       ->getDadosUsuarioLdap( $c->stash->{dn_usuario}, 'adm' );
     my @lotacoes = $c->stash->{usuario}->{memberOf};
     $c->stash->{lotacoes} = ( { value => @lotacoes } );
-    $c->stash->{lotacao} = serialize($c->stash->{lotacoes});
+    $c->stash->{lotacao}  = serialize( $c->stash->{lotacoes} );
 
 }
 
@@ -88,12 +88,22 @@ sub alterar : Chained('getUsuario') : PathPart('alterar') : Args(0) {
 
 }
 
+sub alterar_senha : Chained('getUsuario') : PathPart('alterar_senha') : Args(0)
+{
+    my ( $self, $c ) = @_;
+    $c->stash->{usuario} =
+      $c->model('Usuario')
+      ->getDadosUsuarioLdap( $c->stash->{dn_usuario}, 'acao' );
+}
+
 sub searchUser : Chained('base') : PathPart('buscar') : Args(0) {
     my ( $self, $c ) = @_;
     $c->stash->{template} = 'auth/admin/usuario/lista.tt';
     my $pesquisa = $c->req->param('buscar');
+    my $campo    = $c->req->param('campo');
     my %usuarios =
-      $c->model('Usuario')->buscar_usuarios( { pesquisa => $pesquisa } );
+      $c->model('Usuario')
+      ->buscar_usuarios( { pesquisa => $pesquisa, campo => $campo } );
     $c->stash->{usuarios} = \%usuarios;
 
 }
@@ -191,6 +201,44 @@ sub remove : Chained('base') : PathPart('remover') : Args(0) {
     my $lotacao = serialize( { value => [@$array] } );
     $c->stash->{lotacao}  = $lotacao;
     $c->stash->{lotacoes} = { value => [@$array] };
+
+}
+
+sub store_lotacao : Chained('getUsuario') : PathPart('store_lotacao') : Args(0)
+{
+    my ( $self, $c ) = @_;
+    my $lotacaoDelete =
+      desserialize( $c->req->param('lotacaoAnterior') )->{value};
+
+    if ( ref($lotacaoDelete) ne 'ARRAY' ) {
+        $lotacaoDelete = [$lotacaoDelete];
+    }
+
+    my $lotacao = desserialize( $c->req->param('lotacao') )->{value};
+
+    if ( ( ref($lotacao) ne 'ARRAY' ) ) {
+        $lotacao = [$lotacao];
+    }
+
+    my $result =
+      $c->model('LDAP')
+      ->LDAPChangeMemberEntry( $c->req->param('dn'), $lotacao, $lotacaoDelete );
+
+    if ( $result->{resultCode} ne '0' ) {
+        $c->flash->{erro} = 'ldap-' . $result->{resultCode};
+        $c->res->redirect( $c->uri_for_action('/auth/admin/usuario/lista') );
+        return;
+    }
+    else {
+        $c->flash->{sucesso} = 'Adicionado';
+
+    }
+    $c->res->redirect(
+        $c->uri_for_action(
+            '/auth/admin/usuario/ver_user',
+            [ $c->stash->{dn_usuario} ]
+        )
+    );
 
 }
 

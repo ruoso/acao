@@ -17,44 +17,51 @@ extends 'Acao::Model::LDAP';
 sub buscar_usuarios {
     my ( $self, $args ) = @_;
     my $pesquisa;
-    my $campo = $args->{campo} || 'uid=*';
-    if ( !$args->{pesquisa} ) {
-        $pesquisa = '';
-
-    }
-    else {
-        $pesquisa = $args->{pesquisa} . '*';
-    }
-
-    my $attrs  = $args->{attrs} || qw(*);
-    my $filter = $campo . $pesquisa;
-
-    my $base = $self->dominios_dn;
-    my $mesg =
-      $self->searchLDAP(
-        { attrs => $attrs, filter => $filter, base => $base } );
-
     my $i;
     my @dn_s;
     my %dados;
     my @nome;
     my @usuarios;
     my @arrayMemberOf;
+    my $userData;
     my $memberOf;
-    my $base_acao = $self->base_acao;
+    my $base_acao  = $self->base_acao;
+    my $admin_acao = $self->admin_super;
+    utf8::decode($admin_acao);
 
-#isto é necessário pois, por alguma razão, o ConfigLoader não seta a flag de unicode na string //sikora
+#   isto é necessário pois, por alguma razão, o ConfigLoader não seta a flag de unicode na string //sikora
     utf8::decode($base_acao);
 
     #warn "XXXXX: ".utf8::is_utf8($base_acao);
+
+    my $campo = $args->{campo} || 'uid=*';
+    if ( !$args->{pesquisa} ) {
+        $pesquisa = '';
+    }
+    else {
+        $pesquisa = $args->{pesquisa} . '*)(' . $campo . $args->{pesquisa};
+    }
+    switch ($campo) {
+        case 'admin' { $campo = 'memberOf='; $pesquisa = $admin_acao; }
+
+        else {
+        }
+    }
+
+    my $attrs = $args->{attrs} || qw(*);
+    my $filter = $campo . $pesquisa;
+    warn $filter;
+    my $base = $self->dominios_dn;
+    my $mesg =
+      $self->searchLDAP(
+        { attrs => $attrs, filter => $filter, base => $base } );
 
     my $max = $mesg->count;
     for ( $i = 0 ; $i < $max ; $i++ ) {
         my $entry = $mesg->entry($i);
 
-        $memberOf = $self->getDadosUsuarioLdap( $entry->dn )->{memberOf};
-
-
+        $userData = $self->getDadosUsuarioLdap( $entry->dn );
+        $memberOf = $userData->{memberOf};
 
         if ( ref($memberOf) eq 'ARRAY' ) {
             $memberOf = join( ',', @$memberOf );
@@ -74,7 +81,8 @@ sub buscar_usuarios {
                     $entry->dn => {
                         nome     => $entry->get_value('cn'),
                         uid      => $entry->get_value('uid'),
-                        memberOf => $memberOf
+                        memberOf => $memberOf,
+                        admin    => $userData->{admin}
                     }
                 )
             );
@@ -88,7 +96,8 @@ sub buscar_usuarios {
 =item getDadosUsuarioLdap
 Coleta os dados do usuario no LDAP, passando como parametro a DN e FILTRO como opcional.
 O Filtro serve para filtrar os memberOf como: 'acao', 'adm';
-
+acao => mostrará os memberOf somente dos usuários quem possui algum vínculo com o sistema ação.
+adm => mostrará os memberOf somente da estrutura administrativa, ou seja de onde o usuário é lotado
 =cut
 
 sub getDadosUsuarioLdap {
@@ -104,9 +113,12 @@ sub getDadosUsuarioLdap {
     my $mesg = $ldap->search(@args);
     my $memberOf;
     my @memberOfArray;
-    my $base_acao = $self->base_acao;
-    my $base_adm  = $self->base_adm;
+    my $base_acao   = $self->base_acao;
+    my $base_adm    = $self->base_adm;
+    my $admin_super = $self->admin_super;
     utf8::decode($base_adm);
+    utf8::decode($base_acao);
+    utf8::decode($admin_super);
     switch ($filtro) {
         case "acao" {
             $memberOf = [ $mesg->entry->get_value('memberOf') ];
@@ -133,8 +145,7 @@ sub getDadosUsuarioLdap {
     }
 
     my $super = join( ',', @$memberOf );
-    my $admin_super = $self->admin_super;
-    $super =~ s/$admin_super/1/go;
+    $super =~ s/.*$admin_super.*/1/go or $super = 0;
 
     return {
         uid       => $mesg->entry->get_value('uid'),
@@ -151,58 +162,8 @@ sub getDadosUsuarioLdap {
 
 }
 
-sub searchLDAP {
-    my ( $self, $args ) = @_;
-    my $ldap = $self->_bind_ldap_admin($self);
-    my $page = Net::LDAP::Control::Paged->new( size => 5 );
-    my @args = (
-        base   => $args->{base},
-        filter => "(&(" . $args->{filter} . "))",
-        scope  => 'sub',
-        attrs  => [ $args->{attrs} ],
-
-        #   control => [$page]
-    );
-
-    my $mesg = $ldap->search(@args);
-
-=coments    my $cookie;
-
-    while (1) {
-
-        # Perform search
-        my $mesg = $ldap->search(@args);
-
-        # Only continue on LDAP_SUCCESS
-        $mesg->code and last;
-
-
-        # Get cookie from paged control
-        my ($resp) = $mesg->control(LDAP_CONTROL_PAGED) or last;
-
-        $cookie = $resp->cookie and last;
-
-
-        # Set cookie in paged control
-        my $page->cookie($cookie);
-
-    }
-    if ($cookie) {
-
-       # We had an abnormal exit, so let the server know we do not want any more
-        $page->cookie($cookie);
-        $page->size();
-        $mesg = $ldap->search(@args);
-    }
-=cut
-
-    return $mesg;
-
-}
-
 sub storeUsuario {
     my ( $self, $args ) = @_;
-    my $host     = $self->ldap_admin_config->{host};
     my $DNbranch = $args->{dominio};
     my $senha    = sha1_base64( $args->{senha} );
     $senha .= '=' while ( length($senha) % 4 );

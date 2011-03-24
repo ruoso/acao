@@ -32,6 +32,12 @@
     <form name="buscarUserLdap"  action="[% c.uri_for_action('/auth/admin/usuario/searchUser') %]" method="get" >
       <input name="buscar"  value=""  />
       <input type="submit" value="buscar">
+      <select name="campo">
+        <option value="" selected="selected">------------------------</option>
+        <option value="admin">Administradores</option>
+
+      </select>
+      <input type="submit" value="filtrar">
     </form>
     </fieldset>
 </div>
@@ -47,11 +53,18 @@
 <TBODY>
     [% FOREACH key IN usuarios.keys %]
     <tr>
-     <td><img src="[% c.uri_for('/static/img/user/user.png') %]" alt="Usuário" />  <a href="[% c.uri_for_action('/auth/admin/usuario/ver_user',[ key ])%]" rel="[% key | url %]"> [% usuarios.$key.nome %]</a>	</td>
+     <td>
+        [% IF usuarios.$key.admin == '1' %]
+             <img src="[% c.uri_for('/static/img/user/user_gray.png') %]" alt="Super Administrador" />
+        [% ELSE %]
+           <img src="[% c.uri_for('/static/img/user/user_green.png') %]" alt="Usuário" />
+        [% END %]
+        <a href="[% c.uri_for_action('/auth/admin/usuario/ver_user',[ key ])%]" rel="[% key | url %]"> [% usuarios.$key.nome FILTER upper %]</a>
+     </td>
      <td>  <a href="[% c.uri_for_action('/auth/admin/usuario/ver_user',[ key ])%]" rel="[% key | url %]"> [% usuarios.$key.uid %]</a>	</td>
      <td>
-       <a href="[% user.dn %]" class="pass_edit" >Alterar Senha</a>
-       <a href="[% c.uri_for_action('/auth/admin/usuario/alterar',[ key ])%]" class="user_edit">Alterar Dados </a>
+<!--       <a href="[% c.uri_for_action('/auth/admin/usuario/alterar_senha',[ key ])%]" class="pass_edit" >Alterar Senha</a>-->
+<!--       <a href="[% c.uri_for_action('/auth/admin/usuario/alterar',[ key ])%]" class="user_edit">Alterar Dados </a>-->
        <a href="[% c.uri_for_action('/auth/admin/usuario/alterar_lotacao',[ key ])%]" class="workplace_edit">Alterar Lotação </a>
 
      </td>
