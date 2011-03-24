@@ -63,9 +63,18 @@ sub navega_ldap : Chained('base') : PathPart('navega_ldap') : Args(0) {
 
 sub ver_user : Chained('getUsuario') : PathPart('ver') : Args(0) {
     my ( $self, $c ) = @_;
-    $c->stash->{template} = 'auth/admin/usuario/usuario.tt';
-    $c->stash->{usuario}  =
-      $c->model('Usuario')->getDadosUsuarioLdap( $c->stash->{dn_usuario} );
+    $c->stash->{template}        = 'auth/admin/usuario/usuario.tt';
+
+    $c->stash->{usuario_lotacao} =
+      $c->model('Usuario')
+      ->getDadosUsuarioLdap( $c->stash->{dn_usuario}, 'adm' );
+
+    $c->stash->{usuario_sistema} =
+      $c->model('Usuario')
+      ->getDadosUsuarioLdap( $c->stash->{dn_usuario}, 'acao' );
+
+
+
 
 }
 
