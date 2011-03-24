@@ -21,7 +21,11 @@
 [% INCLUDE 'errosucesso.tt' %]
 <h1 class="titulo-form">Gerenciar usuário do LDAP |
   <span style="font-size:13px; font-weight:normal;">
+<<<<<<< HEAD
        <a class="criar" href="[% c.uri_for_action('/auth/admin/usuario/alterar_lotacao',[ dn_usuario ]) %]">Alterar Lotação</a>
+=======
+       <a class="criar" href="[% c.uri_for_action('/auth/admin/usuario/alterar_lotacao',[ dn_usuario ]) %]">Alterar Usuário</a>
+>>>>>>> ac07f6b126e9b5ea008eb724b0390bd5d7e5824d
   </span>
 </h1>
 
