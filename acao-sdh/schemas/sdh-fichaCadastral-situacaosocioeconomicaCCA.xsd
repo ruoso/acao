@@ -1,0 +1,120 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-fichaCadastral-situacaosocioeconomicaCCA.xsd"
+	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
+	xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-fichaCadastral-situacaosocioeconomicaCCA.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="formSituacaoSocioEconomica" type="formSituacaoSocioEconomica">
+		<xs:annotation>
+			<xs:appinfo>
+				<xhtml:label>03. SITUAÇÃO SÓCIOECONÔMICA</xhtml:label>
+				<class:classificacoes>
+					<class:classificacao>cn=Direitos Humanos</class:classificacao>
+				</class:classificacoes>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="formSituacaoSocioEconomica">
+		<xs:sequence>
+
+			<xs:element name="numeroAtendimento" minOccurs="1">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Número atendimento
+						</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+            <xs:element name="atividadeLaboral" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Atividade laboral</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+    
+            <xs:element name="casoRespostaSimQual" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Caso a resposta seja sim, qual?</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Ajudante" />
+						<xs:enumeration value="Borracheiro" />
+						<xs:enumeration value="Catador(a)" />
+                        <xs:enumeration value="Doméstica" />
+                        <xs:enumeration value="Engraxate" />
+                        <xs:enumeration value="Flanelinha" />
+                        <xs:enumeration value="Garçom" />
+                        <xs:enumeration value="Jardineiro" />
+                        <xs:enumeration value="Jornaleiro" />
+                        <xs:enumeration value="Manicure" />
+                        <xs:enumeration value="Pedinte" />
+                        <xs:enumeration value="Vendedor" />
+                        <xs:enumeration value="Outros" />
+                	</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+            <xs:element name="casoRespostaSejaOutros" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Caso tenha assinalado outros, preencha qual.</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+            <xs:element name="quantasRefeicoesDiariasSaoRealizadasEmSuaResidencia" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Quantas refeições diárias são realizadas em sua residência?</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="café da manhã" />
+						<xs:enumeration value="lanche" />
+						<xs:enumeration value="almoço" />
+                        <xs:enumeration value="lanche da tarde" />
+                        <xs:enumeration value="jantar" />
+                	</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+            <xs:element name="observacao" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Obs.</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+		</xs:sequence>
+
+	</xs:complexType>
+
+</xs:schema>

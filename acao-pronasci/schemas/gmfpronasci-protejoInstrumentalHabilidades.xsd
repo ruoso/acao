@@ -1,19 +1,19 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
-	xmlns="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-protejoInstrumentalHabilidades.xsd"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-protejo-instrumentalhabilidades.xsd"
 	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
 	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
 	xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
-	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-protejoInstrumentalHabilidades.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-protejo-instrumentalhabilidades.xsd"
 	elementFormDefault="qualified">
 
 	<xs:element name="formProtejoInstrumentalHabilidades" type="formProtejoInstrumentalHabilidades">
 		<xs:annotation>
 			<xs:appinfo>
-				<xhtml:label>PROTEJO - Instrumental para identificação de interesses e disponibilidade para atividades</xhtml:label>
+				<xhtml:label>03. INTERESSES E DISPONIBILIDADES</xhtml:label>
 				<class:classificacoes>
-					<class:classificacao>cn=Segurança Pública</class:classificacao>
+					<class:classificacao>cn=Protejo,cn=Infância e Adolescência,cn=Segurança Pública</class:classificacao>
 				</class:classificacoes>
 				<idx:index>
 				    <idx:hint key="protejo.numeroInscricao" xpath="formProtejoInstrumentalHabilidades/dadosInscricao/numeroInscricao" />

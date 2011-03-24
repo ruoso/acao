@@ -1,31 +1,30 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
-	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-lgtb-identificacaoagressor.xsd"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-lgtb-informacaoagressao.xsd"
 	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
 	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
 	xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
-	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-lgtb-identificacaoagressor.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-lgtb-informacaoagressao.xsd"
 	elementFormDefault="qualified">
 
-	<xs:element name="formIdentificacaoAgressor" type="formIdentificacaoAgressor">
+	<xs:element name="formInformacaoAgressao" type="formInformacaoAgressao">
 		<xs:annotation>
 			<xs:appinfo>
-				<xhtml:label>05. IDENTIFICAÇÃO DO/A AGRESSOR/A</xhtml:label>
+				<xhtml:label>05. INFORMAÇÃO DA AGRESSÃO</xhtml:label>
 				<class:classificacoes>
-					<class:classificacao>cn=Diversidade Sexual,cn=Direitos Humanos
-					</class:classificacao>
+					<class:classificacao>cn=Diversidade Sexual,cn=Direitos Humanos</class:classificacao>
 				</class:classificacoes>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
 
-	<xs:complexType name="formIdentificacaoAgressor">
+	<xs:complexType name="formInformacaoAgressao">
 		<xs:sequence>
 			<xs:element name="numeroAtendimento" minOccurs="1">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Número de atendimento</xhtml:label>
+						<xhtml:label>Número atendimento</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -297,6 +296,40 @@
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
+
+			<xs:element name="origemDenuncia" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Origem da denúncia</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Fala Fortaleza" />
+						<xs:enumeration value="SEMAS" />
+						<xs:enumeration value="DAR/SER" />
+						<xs:enumeration value="CRAS" />
+						<xs:enumeration value="Ministério Público" />
+						<xs:enumeration value="CREAS" />
+						<xs:enumeration value="Outros" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+            <xs:element name="especifiqueOutraOrigemDenuncia" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Especifique outro</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+
 		</xs:sequence>
 	</xs:complexType>
 

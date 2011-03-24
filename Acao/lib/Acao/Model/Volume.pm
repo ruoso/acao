@@ -509,47 +509,51 @@ sub buscar_no_indice {
 }
 
 sub find_key_indexes {
-    my ($self, $c) = @_;
-    my $classificacao;
-    my @indexes;
-    my $grupos = join ' or ',
-      map { '@principal = "' . $_ . '"' } @{ $self->user->memberof };
+	my ($self, $c) = @_;
+	my $classificacao;
+	my @indexes;
+	my $grupos = join ' or ', map { '@principal = "' . $_ . '"' } @{ $self->user->memberof };
 
-    # Query para listagem
-    my $list =
-        'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";'
-      . 'declare namespace author = "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";'
-      . 'declare namespace cl = "http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";'
-      . 'for $x in collection("volume")/ns:volume[ns:autorizacoes/author:autorizacao[('
-      . $grupos . ')'
-      . 'and @role="listar"]] '
-      . 'return $x/ns:classificacoes/cl:classificacao/text()';
+# Query para listagem
+	my $list = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";'
+		. 'declare namespace author = "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";'
+		. 'declare namespace cl = "http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";'
+		. 'for $x in collection("volume")/ns:volume[ns:autorizacoes/author:autorizacao[('
+		. $grupos . ')'
+		. 'and @role="listar"]] '
+		. 'return $x/ns:classificacoes/cl:classificacao/text()';
 
-    $self->sedna->begin;
-    $self->sedna->execute($list);
-    my $clause;
-    while (my $cn = $self->sedna->get_item)  {
-        $clause .= '$x/cl:classificacao="'.$cn.'" or ';
-        $clause =~ s/\n//;
-    }
-    my $length = length $clause;
-    $clause = substr $clause, 0, $length-4;
-    $self->sedna->commit;
+	$self->sedna->begin;
+	$self->sedna->execute($list);
 
-    my $xq_indexes = 'declare namespace cl = "http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";
-                      declare namespace idx = "http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd";
-                      for $x in collection("acao-schemas")/*/*/*/*/cl:classificacoes
-                      where '.$clause.' 
-                      return $x/../../../../*/*/*/idx:index/idx:hint/@key/string()';
-    $self->sedna->begin;
-    $self->sedna->execute($xq_indexes);
-    while (my $item=$self->sedna->get_item ) {
-        $item =~ s/^\s+//;
-    	$item =~ s/\s+$//;
-        push(@indexes, $item);
-    }
-    $self->sedna->commit;
-    return @indexes;
+	my $clause;
+
+	while (my $cn = $self->sedna->get_item)  {
+		$cn =~ s/\n//o;
+		$cn =~ s/^.*?(cn=.*?),dc.*/$1/gso;
+		$clause .= '$x/cl:classificacao="'.$cn.'" or ';
+	}
+
+	my $length = length $clause;
+	$clause = substr $clause, 0, $length-4;
+	$self->sedna->commit;
+
+	my $xq_indexes = qq|declare namespace cl = "http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";
+        declare namespace idx = "http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd";
+        for \$x in collection("acao-schemas")/*/*/*/*/cl:classificacoes 
+        where $clause
+        return \$x/../../../../*/*/*/idx:index/idx:hint/\@key/string()|;
+
+	$self->sedna->begin;
+	$self->sedna->execute($xq_indexes);
+
+	while (my $item=$self->sedna->get_item ) {
+        	$item =~ s/^\s+//;
+	    	$item =~ s/\s+$//;
+		push(@indexes, $item);
+	}
+	$self->sedna->commit;
+	return @indexes;
 
 }
 
