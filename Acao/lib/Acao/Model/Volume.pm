@@ -208,6 +208,7 @@ txn_method 'alterar_estado' => authorized $role_alterar => sub {
           . DateTime->now()
           . '</ns:arquivamento>';
         $self->sedna->execute($xq);
+        $self->invalidate_indices($id_volume);
     }
 
     if ( $estado eq 'aberto' ) {
@@ -226,6 +227,7 @@ txn_method 'alterar_estado' => authorized $role_alterar => sub {
           . $id_volume . '"]';
         $xq .= '/ns:fechamento with <ns:fechamento></ns:fechamento>';
         $self->sedna->execute($xq);
+        $self->revalidate_indices($id_volume);
     }
 
 };
@@ -521,7 +523,7 @@ sub find_key_indexes {
       . 'for $x in collection("volume")/ns:volume[ns:autorizacoes/author:autorizacao[('
       . $grupos . ')'
       . 'and @role="listar"]] '
-      . 'return tokenize($x/ns:classificacoes/cl:classificacao/text(),",")[1]';
+      . 'return $x/ns:classificacoes/cl:classificacao/text()';
 
     $self->sedna->begin;
     $self->sedna->execute($list);

@@ -104,6 +104,52 @@ sub insert_indices {
     );
 }
 
+=item invalidate_indices()
+
+Este método marca o volume indicado como invalidado, assim como
+todos os prontuários e documentos a ele atrelados, tudo isso no 
+bando de dados relacional, de indexação.
+
+=cut
+
+sub invalidate_indices {
+    my ( $self, $id_volume ) = @_;
+    
+    my $volume = $self->dbic->resultset('Volume')->find({
+        id_volume => $id_volume,
+    });
+
+    my $dossies = $volume->dossies;
+    my $entries = $volume->entries;
+    
+    $entries->update({ invalidado=>1 });
+    $dossies->update({ invalidado=>1 });
+    $volume->update({ invalidado=>1 });
+}
+
+=item revalidate_indices()
+
+Este método marca o volume indicado como validado, assim como
+todos os prontuários e documentos a ele atrelados, tudo isso no 
+bando de dados relacional, de indexação.
+
+=cut
+
+sub revalidate_indices {
+    my ( $self, $id_volume ) = @_;
+    
+    my $volume = $self->dbic->resultset('Volume')->find({
+        id_volume => $id_volume,
+    });
+
+    my $dossies = $volume->dossies;
+    my $entries = $volume->entries;
+    
+    $entries->update({ invalidado=>0 });
+    $dossies->update({ invalidado=>0 });
+    $volume->update({ invalidado=>0 });
+}
+
 =item drop_indices()
 
 Este método realiza a remoção dos índices reladionados a um documento no
@@ -141,10 +187,15 @@ sub update_autorizacoes_vol {
     })->delete();
 
     for my $hash_ref (@{$auth_list}) {
-        my $volprs = $self->dbic->resultset('PermissaoVolume')->create({
-            id_volume => $id_volume,
-            dn => $hash_ref->{dn}
+        my $vol = $self->dbic->resultset('Volume')->find({
+            id_volume => $id_volume
         });
+        if ($vol) {
+            my $volprs = $self->dbic->resultset('PermissaoVolume')->create({
+                id_volume => $id_volume,
+                dn => $hash_ref->{dn}
+            });
+        }
     }
 
 }
