@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!--
+		# Copyright 2010 - Prefeitura Municipal de Fortaleza # # Este arquivo
+		é parte do programa xsdform-js # # O xsdform-js é um software livre;
+		você pode redistribui-lo e/ou # modifica-lo dentro dos termos da
+		Licença Pública Geral GNU como # publicada pela Fundação do Software
+		Livre (FSF); na versão 2 da # Licença. # # Este programa é distribuido
+		na esperança que possa ser util, mas SEM # NENHUMA GARANTIA; sem uma
+		garantia implicita de ADEQUAÇÂO a qualquer # MERCADO ou APLICAÇÃO EM
+		PARTICULAR. Veja a Licença Pública Geral GNU # para maiores detalhes.
+		# # Você deve ter recebido uma cópia da Licença Pública Geral GNU, sob
+		o # título "LICENCA.txt", junto com este programa, se não, escreva
+		para a # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth
+		Floor,
+	-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml" targetNamespace="test:ns"
+	elementFormDefault="qualified">
+    <xs:element name="dadosFamilia" type="dadosFamilia">
+        <xs:annotation>
+            <xs:appinfo>
+                <xhtml:label>Sample Form</xhtml:label>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
+    <xs:complexType name="dadosFamilia">
+        <xs:sequence>
+            <xs:element name="dadosFamilia">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <xhtml:label>5 - DADOS DA FAMÍLIA</xhtml:label>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                    	<xs:element name="vinculoFamiliar" minOccurs="0">
+                            <xs:annotation>
+                                <xs:appinfo>
+                                    <xhtml:label>Vinculo Familiar</xhtml:label>
+                                </xs:appinfo>
+                            </xs:annotation>
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:enumeration value="Com vinculo" />
+                                    <xs:enumeration value="Sem vinculo" />
+                                    <xs:enumeration value="Vinculo Fragilizado" />
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="obs" type="xs:string">
+                            <xs:annotation>
+                                <xs:appinfo>
+                                    <xhtml:label>Observação</xhtml:label>
+                                </xs:appinfo>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="integrantes" minOccurs="1" maxOccurs="9">
+                            <xs:annotation>
+                                <xs:appinfo>
+                                    <xhtml:label>Integrantes</xhtml:label>
+                                </xs:appinfo>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="nome">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Nome</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                        <xs:simpleType>
+						                    <xs:restriction base="xs:string">
+						                        <xs:maxLength value="255" />
+						                    </xs:restriction>
+						                </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="grauParentesco">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Grau de parentesco</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                        <xs:simpleType>
+							                <xs:restriction base="xs:string">
+							                    <xs:maxLength value="255" />
+							                </xs:restriction>
+							            </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="sexo">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Sexo</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                        <xs:simpleType>
+						                    <xs:restriction base="xs:string">
+						                        <xs:enumeration value="Masculino" />
+						                        <xs:enumeration value="Feminino" />
+						                    </xs:restriction>
+						                </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="idade" type="xs:integer">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Idade</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="estudaSeria">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Estuda/Série</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                        <xs:simpleType>
+							                <xs:restriction base="xs:string">
+							                    <xs:maxLength value="255" />
+							                </xs:restriction>
+							            </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="trabalhando">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Trabalhando</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                        <xs:simpleType>
+						                    <xs:restriction base="xs:string">
+						                        <xs:enumeration value="Sim" />
+						                        <xs:enumeration value="Não" />
+						                    </xs:restriction>
+						                </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="renda" type="xs:float">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Renda</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="numIntegrantes" type="xs:integer">
+                            <xs:annotation>
+                                <xs:appinfo>
+                                    <xhtml:label>Número de integrantes</xhtml:label>
+                                </xs:appinfo>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="rendaFamiliar" type="xs:float">
+                            <xs:annotation>
+                                <xs:appinfo>
+                                    <xhtml:label>Renda familiar</xhtml:label>
+                                </xs:appinfo>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="beneficioFamilia" minOccurs="0">
+                            <xs:annotation>
+                                <xs:appinfo>
+                                    <xhtml:label>Familía recebe Beneficio?</xhtml:label>
+                                </xs:appinfo>
+                            </xs:annotation>
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:enumeration value="Sim" />
+                                    <xs:enumeration value="Não" />
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="qualBeneficio" minOccurs="0">
+                            <xs:annotation>
+                                <xs:appinfo>
+                                    <xhtml:label>Qual benecifio?</xhtml:label>
+                                </xs:appinfo>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="bolsaFamilia" type="xs:boolean">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Bolsa familia / NIS</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="bolsaFamiliaDesc">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Bolsa familia / NIS</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                        <xs:simpleType>
+							                <xs:restriction base="xs:string">
+							                    <xs:maxLength value="255" />
+							                </xs:restriction>
+							            </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="bolsaAprendizagem" type="xs:boolean">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Bolsa Aprendizagem</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="bolsaAprendizagemDesc">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Bolsa Aprendizagem</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                        <xs:simpleType>
+							                <xs:restriction base="xs:string">
+							                    <xs:maxLength value="255" />
+							                </xs:restriction>
+							            </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="crediAmigo" type="xs:boolean">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Credi Amigo</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="pensao" type="xs:boolean">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Pensão</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="bpc" type="xs:boolean">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>BPC - Beneficio de Prestação Continuada</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="aposentadoria" type="xs:boolean">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Aposentadoria</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="outros" type="xs:boolean">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Outros</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="outrosDesc">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Outros</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                        <xs:simpleType>
+							                <xs:restriction base="xs:string">
+							                    <xs:maxLength value="255" />
+							                </xs:restriction>
+							            </xs:simpleType>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
