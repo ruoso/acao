@@ -239,7 +239,8 @@ sub find_for_index {
         if ($hashClause->{$k} ne '') {
             push @busca, {
                 'gin_indexes.key' => $k,
-                'gin_indexes.value' => { like => '%'.$hashClause->{$k}.'%' }
+                'gin_indexes.value' => { like => '%'.$hashClause->{$k}.'%' },
+                'invalidado' => 0
             };
         }
     }
