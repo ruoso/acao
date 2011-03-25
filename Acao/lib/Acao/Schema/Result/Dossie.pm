@@ -57,7 +57,9 @@ __PACKAGE__->add_columns(
     "nome",
     { data_type => "varchar", is_nullable => 1, size => 255 },
     "herda_permissoes",
-    { data_type => "boolean", is_nullable => 0 },
+    { data_type => "integer", is_nullable => 0 },
+    "invalidado",
+    { data_type => "integer", is_nullable => 0 },
 );
 __PACKAGE__->set_primary_key( "id_volume", "id_dossie" );
 

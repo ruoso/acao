@@ -68,6 +68,9 @@ apt-get install make gcc cmake flex postgresql-server-dev-8.4
             LOAD "acao-sdh/schemas/sdh-relatoriosEncaminhados.xsd" "sdh-relatoriosEncaminhados.xsd" "acao-schemas" &
             LOAD "acao-sdh/schemas/sdh-planoIndividualDeAtendimento.xsd" "sdh-planoIndividualDeAtendimento.xsd" "acao-schemas" &
 
+
+ 		LOAD "acao-pronasci/schemas/sdh-planoIndividualDeAtendimento.xsd" "sdh-planoIndividualDeAtendimento.xsd" "acao-schemas" &
+
         5.9.4 - Cole os comando acima no cosole do SEDNA e cetifique do sucesso da persistencia de TODOS os arquivos.
 
 
@@ -159,8 +162,39 @@ CREATE USER "acao" WITH PASSWORD "12345" &
 # Carregar documentos no banco
 LOAD "devel/acao-viladomar/trunk/schemas/viladomar-cadernoa.xsd" "viladomar-cadernoa.xsd" &
 
+LOAD "/home/edilson/devel-programa-acao/acao/acao-pronasci/schemas/gmfpronasci-mulheresPazAvaliacaoDinamica.xsd" "gmfpronasci-mulheresPazAvaliacaoDinamica.xsd" "acao-schemas" &
+LOAD "/home/edilson/devel-programa-acao/acao/acao-pronasci/schemas/gmfpronasci-mulheresPazAvaliacaoEntrevistaIndividual.xsd" "gmfpronasci-mulheresPazAvaliacaoEntrevistaIndividual.xsd" "acao-schemas" &
+LOAD "/home/edilson/devel-programa-acao/acao/acao-pronasci/schemas/gmfpronasci-mulheresPazAvaliacaoFormularioInscricao.xsd" "gmfpronasci-mulheresPazAvaliacaoFormularioInscricao.xsd" "acao-schemas" &
+LOAD "/home/edilson/devel-programa-acao/acao/acao-pronasci/schemas/gmfpronasci-mulheresPazEntrevistaIndividual.xsd" "gmfpronasci-mulheresPazEntrevistaIndividual.xsd" "acao-schemas" &
+LOAD "/home/edilson/devel-programa-acao/acao/acao-pronasci/schemas/gmfpronasci-mulheresPazFormularioInscricao.xsd" "gmfpronasci-mulheresPazFormularioInscricao.xsd" "acao-schemas" &
+LOAD "/home/edilson/devel-programa-acao/acao/acao-pronasci/schemas/gmfpronasci-mulheresPazQuestionarioMetas.xsd" "gmfpronasci-mulheresPazQuestionarioMetas.xsd" "acao-schemas" &
+LOAD "/home/edilson/devel-programa-acao/acao/acao-pronasci/schemas/gmfpronasci-protejoAvaliacaoProtejoNucleo.xsd" "gmfpronasci-protejoAvaliacaoProtejoNucleo.xsd" "acao-schemas" &
+LOAD "/home/edilson/devel-programa-acao/acao/acao-pronasci/schemas/gmfpronasci-protejoFormularioCadastro.xsd" "gmfpronasci-protejoFormularioCadastro.xsd" "acao-schemas" &
+LOAD "/home/edilson/devel-programa-acao/acao/acao-pronasci/schemas/gmfpronasci-protejoInstrumentalCaracterizacaoJovens.xsd" "gmfpronasci-protejoInstrumentalCaracterizacaoJovens.xsd" "acao-schemas" &
+LOAD "/home/edilson/devel-programa-acao/acao/acao-pronasci/schemas/gmfpronasci-protejoInstrumentalHabilidades.xsd" "gmfpronasci-protejoInstrumentalHabilidades.xsd" "acao-schemas" &
+LOAD "/home/edilson/devel-programa-acao/acao/acao-pronasci/schemas/gmfpronasci-ccdsFichaInscricao.xsd" "gmfpronasci-ccdsFichaInscricao.xsd" "acao-schemas" &
+LOAD "/home/edilson/devel-programa-acao/acao/acao-pronasci/schemas/gmfpronasci-ccdsFichaPreInscricao.xsd" "gmfpronasci-ccdsFichaPreInscricao.xsd" "acao-schemas" &
+LOAD "/home/edilson/devel-programa-acao/acao/acao-pronasci/schemas/gmfpronasci-ccdsFichaInscricaoCursoFormacaoSegurancaPublica.xsd" "gmfpronasci-ccdsFichaInscricaoCursoFormacaoSegurancaPublica.xsd" "acao-schemas" &
+LOAD "/home/edilson/devel-programa-acao/acao/acao-pronasci/schemas/gmfpronasci-ccdsFichaInscricaoCursoFormacaoSegurancaPublica.xsd" "gmfpronasci-ccdsFichaInscricaoCursoFormacaoSegurancaPublica.xsd" "acao-schemas" &
+
+
 # Deletar documentos no banco
-drop document 'viladomar-cadernoa.xsd'
+drop document 'viladomar-cadernoa.xsd' OR
+
+drop document 'gmfpronasci-mulheresPazAvaliacaoDinamica.xsd' in collection('acao-schemas') &
+drop document 'gmfpronasci-mulheresPazAvaliacaoEntrevistaIndividual.xsd' in collection('acao-schemas') &
+drop document 'gmfpronasci-mulheresPazAvaliacaoFormularioInscricao.xsd' in collection('acao-schemas') &
+drop document 'gmfpronasci-mulheresPazEntrevistaIndividual.xsd' in collection('acao-schemas') &
+drop document 'gmfpronasci-mulheresPazFormularioInscricao.xsd' in collection('acao-schemas') &
+drop document 'gmfpronasci-mulheresPazQuestionarioMetas.xsd' in collection('acao-schemas') &
+drop document 'gmfpronasci-protejoAvaliacaoProtejoNucleo.xsd' in collection('acao-schemas') &
+drop document 'gmfpronasci-protejoFormularioCadastro.xsd' in collection('acao-schemas') &
+drop document 'gmfpronasci-protejoInstrumentalCaracterizacaoJovens.xsd' in collection('acao-schemas') &
+drop document 'gmfpronasci-protejoInstrumentalHabilidades.xsd' in collection('acao-schemas') &
+drop document 'gmfpronasci-ccdsFichaInscricao.xsd' in collection('acao-schemas') &
+drop document 'gmfpronasci-ccdsFichaPreInscricao.xsd' in collection('acao-schemas') &
+drop document 'gmfpronasci-ccdsFichaInscricaoCursoFormacaoSegurancaPublica.xsd' in collection('acao-schemas') &
+drop document 'gmfpronasci-ccdsFichaInscricaoCursoFormacaoSegurancaPublica.xsd' in collection('acao-schemas') &
 
 # Criar collection
 CREATE COLLECTION "leitura-1" &

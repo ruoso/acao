@@ -79,10 +79,10 @@ sub lista : Chained('base') : PathPart('') : Args(0) {
 
 sub form : Chained('base') : PathPart('criardossie') : Args(0) {
     my ( $self, $c ) = @_;
-    my $initial_principals = $c->model('LDAP')->memberof_grupos_dn();
     $c->stash->{autorizacoes} = $c->model("Dossie")->new_autorizacao();
-    $c->stash->{classificacoes} =
-      $c->model("Dossie")->new_classificacao($initial_principals);
+    my $xml_class_vol = $c->model('Volume')->classificacoes_do_volume($c->stash->{id_volume});
+    my $hash_class_vol = $c->model('Volume')->desserialize_classificacoes($xml_class_vol);
+    $c->stash->{classificacoes} = $c->model("Dossie")->new_classificacao($hash_class_vol);
     $c->stash->{basedn}       = $c->model("LDAP")->grupos_dn;
     $c->stash->{class_basedn} = $c->model("LDAP")->assuntos_dn;
     $c->stash->{herdar} or $c->stash->{herdar} = 1;

@@ -31,9 +31,12 @@ sub listaEscolas {
 
 	my @escolas;
 
+	$nm_escola = uc($nm_escola);
+
 	my @result = $self->dbic->resultset('Escolas')->search(
-		{ nome => { ilike => '%'.$nm_escola.'%' } },
-		{columns => ['nome']}
+		{ nome => { like => '%'.$nm_escola.'%' } },
+		{ columns => ['nome']},
+		{ rows => 30}
 	);
 
 	for my $rset (@result) {

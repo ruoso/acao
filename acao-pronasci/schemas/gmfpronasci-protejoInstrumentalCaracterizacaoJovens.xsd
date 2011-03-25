@@ -1,18 +1,19 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
-	xmlns="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-protejoInstrumentalCaracterizacaoJovens.xsd"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-protejo-instrumentalcaracterizacaojovens.xsd"
 	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
 	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
-	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-protejoInstrumentalCaracterizacaoJovens.xsd"
+	xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-protejo-instrumentalcaracterizacaojovens.xsd"
 	elementFormDefault="qualified">
 
-	<xs:element name="form" type="formProtejoInstrumentalCaracterizacaoJovem">
+	<xs:element name="formProtejoInstrumentalCaracterizacaoJovem" type="formProtejoInstrumentalCaracterizacaoJovem">
 		<xs:annotation>
 			<xs:appinfo>
-				<xhtml:label>PESQUISA POPULAR SOBRE O PERFIL DOS ADOLESCENTES E JOVENS – PRONASCI</xhtml:label>
+				<xhtml:label>02. PERFIL DO ADOLESCENTE/JOVEM</xhtml:label>
 				<class:classificacoes>
-					<class:classificacao>cn=Segurança Pública</class:classificacao>
+					<class:classificacao>cn=Protejo,cn=Infância e Adolescência,cn=Segurança Pública</class:classificacao>
 				</class:classificacoes>
 				<idx:index>
 				    <idx:hint key="protejo.numeroInscricao" xpath="formProtejoInstrumentalCaracterizacaoJovem/dadosInscricao/numeroInscricao" />
@@ -129,6 +130,10 @@
 								<xs:appinfo>
 									<xhtml:label>Endereço</xhtml:label>
 								</xs:appinfo>
+								<xsdext:extensions>
+										<xsdext:engine>autoComplete</xsdext:engine>
+										<xsdext:service>/enderecos</xsdext:service>
+								</xsdext:extensions>								
 							</xs:annotation>
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
@@ -141,6 +146,10 @@
 								<xs:appinfo>
 									<xhtml:label>Bairro/local</xhtml:label>
 								</xs:appinfo>
+								<xsdext:extensions>
+										<xsdext:engine>autoComplete</xsdext:engine>
+										<xsdext:service>/bairros</xsdext:service>
+								</xsdext:extensions>
 							</xs:annotation>
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
@@ -185,6 +194,11 @@
 								<xs:appinfo>
 									<xhtml:label>Naturalidade</xhtml:label>
 								</xs:appinfo>
+
+								<xsdext:extensions>
+									<xsdext:engine>autoComplete</xsdext:engine>
+									<xsdext:service>/municipios</xsdext:service>
+								</xsdext:extensions>							
 							</xs:annotation>
 							<xs:simpleType>
 								<xs:restriction base="xs:string">

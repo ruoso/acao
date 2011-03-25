@@ -1,18 +1,18 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
-	xmlns="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-mulheresDaPazAvaliacaoDinamica.xsd"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-mulheresdapaz-avaliacaodinamica.xsd"
 	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
 	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
-	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-mulheresDaPazAvaliacaoDinamica.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-mulheresdapaz-avaliacaodinamica.xsd"
 	elementFormDefault="qualified">
 
-	<xs:element name="form" type="formMulheresDaPazAvaliacaoDinamica">
+	<xs:element name="formMulheresDaPazAvaliacaoDinamica" type="formMulheresDaPazAvaliacaoDinamica">
 		<xs:annotation>
 			<xs:appinfo>
-				<xhtml:label>AVALIAÇÃO DA DINÂMICA MULHERES DA PAZ</xhtml:label>
+				<xhtml:label>05. AVALIAÇÃO DINÂMICA</xhtml:label>
 				<class:classificacoes>
-					<class:classificacao>cn=Segurança Pública</class:classificacao>
+					<class:classificacao>cn=Mulheres da Paz,cn=Infância e Adolescência,cn=Segurança Pública</class:classificacao>
 				</class:classificacoes>
 				<idx:index>
 				    <idx:hint key="mulheresdapaz.numeroInscricao" xpath="formMulheresDaPazAvaliacaoDinamica/numeroInscricao" />

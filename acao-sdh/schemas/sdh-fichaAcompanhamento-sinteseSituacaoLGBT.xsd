@@ -1,0 +1,54 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-lgbt-sintesesituacao.xsd"
+	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-lgbt-sintesesituacao.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="formSinteseSituacao" type="formSinteseSituacao">
+		<xs:annotation>
+			<xs:appinfo>
+				<xhtml:label>11. SÍNTESE SITUAÇÃO APRESENTADA</xhtml:label>
+				<class:classificacoes>
+					<class:classificacao>cn=Diversidade Sexual,cn=Direitos Humanos</class:classificacao>
+				</class:classificacoes>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="formSinteseSituacao">
+
+		<xs:sequence>
+			<xs:element name="numeroAtendimento" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Número atendimento</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="sintese" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Síntese</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="sobreAgressor" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Anotações complementares sobre agressor</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

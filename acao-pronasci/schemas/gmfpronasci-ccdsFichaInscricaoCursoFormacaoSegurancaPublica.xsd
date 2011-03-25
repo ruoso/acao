@@ -1,0 +1,171 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-ccdsFichaInscricaoCursoFormacaoSegurancaPublica.xsd"
+	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
+	xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-ccdsFichaInscricaoCursoFormacaoSegurancaPublica.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="formCcdsInscricaoCursoFormacaoSegurancaPublica" type="formCcdsInscricaoCursoFormacaoSegurancaPublica">
+		<xs:annotation>
+			<xs:appinfo>
+				<xhtml:label>03. INSCRIÇÃO NO CURSO DE FORMAÇÃO</xhtml:label>
+				<class:classificacoes>
+					<class:classificacao>cn=CCDS,cn=Defesa Social,cn=Segurança Pública</class:classificacao>
+				</class:classificacoes>
+				<idx:index>
+				    <idx:hint key="ccds.cursoformacao.inscricao.numeroInscricao" xpath="fformCcdsInscricaoCursoFormacaoSegurancaPublica/numeroInscricao" />
+				</idx:index>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="formCcdsInscricaoCursoFormacaoSegurancaPublica">
+
+		<xs:sequence>
+
+			<xs:element name="numeroInscricao" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Número inscrição</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			<xs:element name="periodo" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Período</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="inicio" type="xs:date" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Início</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="fim" type="xs:date" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Término</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>					
+
+			</xs:element>
+			
+			<xs:element name="turma" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Turma</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			<xs:element name="nome" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Nome</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			<xs:element name="horario" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Horário</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			<xs:element name="orgaoEntidade" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Órgão/entidade</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			<xs:element name="matricula" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Matrícula</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			<xs:element name="telefoneContato" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Fones p/ contato</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			<xs:element name="email" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>E-mail</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			<xs:element name="data" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Data inscrição</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

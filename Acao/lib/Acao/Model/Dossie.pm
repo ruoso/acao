@@ -24,6 +24,7 @@ use XML::LibXML;
 use XML::Compile::Schema;
 use XML::Compile::Util;
 use DateTime;
+use utf8;
 use Encode;
 use Data::UUID;
 use Data::Dumper;
@@ -461,9 +462,9 @@ txn_method 'getDadosDossie' => authorized $role_listar => sub {
                         concat($x/ns:estado/text(),""), concat($x/ns:criacao/text(),""), concat($x/ns:representaDossieFisico/text(),""))|;
     $self->sedna->execute($xq);
 
-    my $vol = {};
+    my $dos = {};
     while ( my $nome = $self->sedna->get_item ) {
-        $vol = {
+        $dos = {
             nome           => $nome,
             classificacoes => $self->sedna->get_item,
             localizacao    => $self->sedna->get_item,
@@ -473,7 +474,7 @@ txn_method 'getDadosDossie' => authorized $role_listar => sub {
         };
     }
 
-    return $vol;
+    return $dos;
 };
 
 =item autorizacoes_do_dossie()
@@ -612,7 +613,7 @@ sub store_altera_dossie {
     $self->sedna->execute($query_localizacao);
 
     $self->sedna->commit;
-    
+
     $self->update_autorizacoes_dos($args->{id_volume}, $args->{controle}, $self->desserialize_autorizacoes($args->{autorizacoes}));
 }
 

@@ -27,6 +27,7 @@
 <script SRC="[% c.uri_for('/static/js/xsdForm.js') %]" language="Javascript" ></script>
 <script SRC="[% c.uri_for('/static/js/xsdForm-ui.js') %]" language="Javascript" ></script>
 
+
 <form action="" id="form" name="form" method="post" onsubmit="return generateXml('[% c.uri_for_action('/auth/registros/xsd/raw', { ns => c.req.param('xsdDocumento') } ) %]', this.processed_xml);">
  <input type="hidden" name="processed_xml">
  <input type="hidden" name="id_volume" value="[% id_volume %]">

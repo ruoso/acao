@@ -44,7 +44,7 @@ role {
     method new_classificacao => sub {
         my ( $self, $initial_principals ) = @_;
         my $doc = XML::LibXML::Document->new( '1.0', 'UTF-8' );
-        return $writer->( $doc, {} )->toString;
+        return $writer->( $doc, $initial_principals )->toString;
     };
 
     method add_classificacoes => sub {
