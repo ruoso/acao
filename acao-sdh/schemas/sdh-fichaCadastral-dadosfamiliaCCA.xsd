@@ -1,38 +1,40 @@
-<?xml version="1.0" encoding="UTF-8"?>
-	<!--
-		# Copyright 2010 - Prefeitura Municipal de Fortaleza # # Este arquivo
-		é parte do programa xsdform-js # # O xsdform-js é um software livre;
-		você pode redistribui-lo e/ou # modifica-lo dentro dos termos da
-		Licença Pública Geral GNU como # publicada pela Fundação do Software
-		Livre (FSF); na versão 2 da # Licença. # # Este programa é distribuido
-		na esperança que possa ser util, mas SEM # NENHUMA GARANTIA; sem uma
-		garantia implicita de ADEQUAÇÂO a qualquer # MERCADO ou APLICAÇÃO EM
-		PARTICULAR. Veja a Licença Pública Geral GNU # para maiores detalhes.
-		# # Você deve ter recebido uma cópia da Licença Pública Geral GNU, sob
-		o # título "LICENCA.txt", junto com este programa, se não, escreva
-		para a # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth
-		Floor,
-	-->
+<?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns:xhtml="http://www.w3.org/1999/xhtml" targetNamespace="test:ns"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-cca-dadosfamilia.xsd"
+	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
+	xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-cca-dadosfamilia.xsd"
 	elementFormDefault="qualified">
-    <xs:element name="dadosFamilia" type="dadosFamilia">
-        <xs:annotation>
-            <xs:appinfo>
-                <xhtml:label>Sample Form</xhtml:label>
-            </xs:appinfo>
-        </xs:annotation>
-    </xs:element>
-    <xs:complexType name="dadosFamilia">
-        <xs:sequence>
-            <xs:element name="dadosFamilia">
-                <xs:annotation>
-                    <xs:appinfo>
-                        <xhtml:label>5 - DADOS DA FAMÍLIA</xhtml:label>
-                    </xs:appinfo>
-                </xs:annotation>
-                <xs:complexType>
-                    <xs:sequence>
+
+	<xs:element name="formDadosFamilia" type="formDadosFamilia">
+		<xs:annotation>
+			<xs:appinfo>
+				<xhtml:label>05. DADOS FAMÍLIA</xhtml:label>
+				<class:classificacoes>
+					<class:classificacao>cn=Educação e Arte,cn=Direitos Humanos</class:classificacao>
+				</class:classificacoes>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="formDadosFamilia">
+
+		<xs:sequence>
+			<xs:element name="numeroInscricao" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Número atendimento</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
                     	<xs:element name="vinculoFamiliar" minOccurs="0">
                             <xs:annotation>
                                 <xs:appinfo>
@@ -62,7 +64,7 @@
                             </xs:annotation>
                             <xs:complexType>
                                 <xs:sequence>
-                                    <xs:element name="nome">
+                                    <xs:element name="nome" minOccurs="0">
                                         <xs:annotation>
                                             <xs:appinfo>
                                                 <xhtml:label>Nome</xhtml:label>
@@ -74,7 +76,7 @@
 						                    </xs:restriction>
 						                </xs:simpleType>
                                     </xs:element>
-                                    <xs:element name="grauParentesco">
+                                    <xs:element name="grauParentesco" minOccurs="0">
                                         <xs:annotation>
                                             <xs:appinfo>
                                                 <xhtml:label>Grau de parentesco</xhtml:label>
@@ -86,7 +88,7 @@
 							                </xs:restriction>
 							            </xs:simpleType>
                                     </xs:element>
-                                    <xs:element name="sexo">
+                                    <xs:element name="sexo" minOccurs="0">
                                         <xs:annotation>
                                             <xs:appinfo>
                                                 <xhtml:label>Sexo</xhtml:label>
@@ -106,7 +108,7 @@
                                             </xs:appinfo>
                                         </xs:annotation>
                                     </xs:element>
-                                    <xs:element name="estudaSeria">
+                                    <xs:element name="estudaSeria" minOccurs="0">
                                         <xs:annotation>
                                             <xs:appinfo>
                                                 <xhtml:label>Estuda/Série</xhtml:label>
@@ -118,7 +120,7 @@
 							                </xs:restriction>
 							            </xs:simpleType>
                                     </xs:element>
-                                    <xs:element name="trabalhando">
+                                    <xs:element name="trabalhando" minOccurs="0">
                                         <xs:annotation>
                                             <xs:appinfo>
                                                 <xhtml:label>Trabalhando</xhtml:label>
@@ -131,7 +133,7 @@
 						                    </xs:restriction>
 						                </xs:simpleType>
                                     </xs:element>
-                                    <xs:element name="renda" type="xs:float">
+                                    <xs:element name="renda" type="xs:float" minOccurs="0">
                                         <xs:annotation>
                                             <xs:appinfo>
                                                 <xhtml:label>Renda</xhtml:label>
@@ -141,14 +143,14 @@
                                 </xs:sequence>
                             </xs:complexType>
                         </xs:element>
-                        <xs:element name="numIntegrantes" type="xs:integer">
+                        <xs:element name="numIntegrantes" type="xs:integer" minOccurs="0">
                             <xs:annotation>
                                 <xs:appinfo>
                                     <xhtml:label>Número de integrantes</xhtml:label>
                                 </xs:appinfo>
                             </xs:annotation>
                         </xs:element>
-                        <xs:element name="rendaFamiliar" type="xs:float">
+                        <xs:element name="rendaFamiliar" type="xs:float" minOccurs="0">
                             <xs:annotation>
                                 <xs:appinfo>
                                     <xhtml:label>Renda familiar</xhtml:label>
@@ -176,14 +178,14 @@
                             </xs:annotation>
                             <xs:complexType>
                                 <xs:sequence>
-                                    <xs:element name="bolsaFamilia" type="xs:boolean">
+                                    <xs:element name="bolsaFamilia" type="xs:boolean" minOccurs="0">
                                         <xs:annotation>
                                             <xs:appinfo>
                                                 <xhtml:label>Bolsa familia / NIS</xhtml:label>
                                             </xs:appinfo>
                                         </xs:annotation>
                                     </xs:element>
-                                    <xs:element name="bolsaFamiliaDesc">
+                                    <xs:element name="bolsaFamiliaDesc" minOccurs="0">
                                         <xs:annotation>
                                             <xs:appinfo>
                                                 <xhtml:label>Bolsa familia / NIS</xhtml:label>
@@ -195,14 +197,14 @@
 							                </xs:restriction>
 							            </xs:simpleType>
                                     </xs:element>
-                                    <xs:element name="bolsaAprendizagem" type="xs:boolean">
+                                    <xs:element name="bolsaAprendizagem" type="xs:boolean" minOccurs="0">
                                         <xs:annotation>
                                             <xs:appinfo>
                                                 <xhtml:label>Bolsa Aprendizagem</xhtml:label>
                                             </xs:appinfo>
                                         </xs:annotation>
                                     </xs:element>
-                                    <xs:element name="bolsaAprendizagemDesc">
+                                    <xs:element name="bolsaAprendizagemDesc" minOccurs="0">
                                         <xs:annotation>
                                             <xs:appinfo>
                                                 <xhtml:label>Bolsa Aprendizagem</xhtml:label>
@@ -266,7 +268,5 @@
                         </xs:element>
                     </xs:sequence>
                 </xs:complexType>
-            </xs:element>
-        </xs:sequence>
-    </xs:complexType>
+
 </xs:schema>
