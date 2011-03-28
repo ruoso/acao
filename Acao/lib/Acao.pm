@@ -45,7 +45,7 @@ use Catalyst qw/
   StackTrace
   Authentication
   Session
-  Session::Store::FastMmap
+  Session::Store::DBIC
   Session::State::Cookie/;
 
 our $VERSION = '0.01';
