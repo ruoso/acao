@@ -82,10 +82,9 @@ sub lista : Chained('base') : PathPart('') : Args(0) {
 sub form : Chained('base') : PathPart('criarvolume') : Args(0) {
     my ( $self, $c ) = @_;
     my $initial_principals = $c->model('LDAP')->memberof_grupos_dn();
-    $c->stash->{autorizacoes} =
-      $c->model("Volume")->new_autorizacao($initial_principals);
-    $c->stash->{classificacoes} =
-      $c->model("Volume")->new_classificacao($initial_principals);
+	warn Dumper($initial_principals);
+    $c->stash->{autorizacoes} = $c->model("Volume")->new_autorizacao($initial_principals);
+    $c->stash->{classificacoes} = $c->model("Volume")->new_classificacao({});
     $c->stash->{basedn}       = $c->model("LDAP")->grupos_dn;
     $c->stash->{class_basedn} = $c->model("LDAP")->assuntos_dn;
 

@@ -265,6 +265,8 @@ txn_method 'inserir_documento' => authorized $role_criar => sub {
           . '"]/dc:motivoInvalidacao
                                                          with <dc:motivoInvalidacao documentoOriginal="'.$id_documento.'">replace</dc:motivoInvalidacao>';
         $self->sedna->execute($xq_motivo_invalidacao);
+        
+        $self->drop_indices( $id_volume, $controle, $id_documento );
 
     }
 
@@ -368,7 +370,7 @@ txn_method 'invalidar_documento' => authorized $role_alterar => sub {
       . '</dc:invalidacao>';
 
     $self->sedna->execute($xq_invalidacao);
-    #$self->drop_indices( $id_volume, $controle, $id_documento );
+    $self->drop_indices( $id_volume, $controle, $id_documento );
 
     my $xq_motivo_invalidacao =
 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";

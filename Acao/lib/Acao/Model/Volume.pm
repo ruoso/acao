@@ -208,6 +208,7 @@ txn_method 'alterar_estado' => authorized $role_alterar => sub {
           . DateTime->now()
           . '</ns:arquivamento>';
         $self->sedna->execute($xq);
+        $self->invalidate_indices($id_volume);
     }
 
     if ( $estado eq 'aberto' ) {
@@ -226,6 +227,7 @@ txn_method 'alterar_estado' => authorized $role_alterar => sub {
           . $id_volume . '"]';
         $xq .= '/ns:fechamento with <ns:fechamento></ns:fechamento>';
         $self->sedna->execute($xq);
+        $self->revalidate_indices($id_volume);
     }
 
 };
@@ -509,18 +511,14 @@ sub find_key_indexes {
 		. 'and @role="listar"]] '
 		. 'return $x/ns:classificacoes/cl:classificacao/text()';
 
-	warn $list;
-
 	$self->sedna->begin;
 	$self->sedna->execute($list);
 
 	my $clause;
 
 	while (my $cn = $self->sedna->get_item)  {
-		warn "CN PRE: ".$cn;
 		$cn =~ s/\n//o;
 		$cn =~ s/^.*?(cn=.*?),dc.*/$1/gso;
-		warn "CN: ".$cn;
 		$clause .= '$x/cl:classificacao="'.$cn.'" or ';
 	}
 
@@ -529,12 +527,10 @@ sub find_key_indexes {
 	$self->sedna->commit;
 
 	my $xq_indexes = qq|declare namespace cl = "http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";
-declare namespace idx = "http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd";
-for \$x in collection("acao-schemas")/*/*/*/*/cl:classificacoes 
-where $clause
-return \$x/../../../../*/*/*/idx:index/idx:hint/\@key/string()|;
-
-	warn $xq_indexes;
+        declare namespace idx = "http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd";
+        for \$x in collection("acao-schemas")/*/*/*/*/cl:classificacoes 
+        where $clause
+        return \$x/../../../../*/*/*/idx:index/idx:hint/\@key/string()|;
 
 	$self->sedna->begin;
 	$self->sedna->execute($xq_indexes);
