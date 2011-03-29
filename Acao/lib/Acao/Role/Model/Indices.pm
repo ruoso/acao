@@ -57,7 +57,7 @@ associados ao documento que está sendo incluído no sedna
 =cut
 
 sub insert_indices {
-    my ( $self, $id_volume, $controle, $id_documento, $xsd, $xml ) = @_;
+    my ( $self, $id_volume, $controle, $id_documento, $xsd ) = @_;
 
     #Obtém o nome do volume ao qual pertecem o prontuário e o documento
     my $nm_volume = $self->get_nm_volume($id_volume);
@@ -73,8 +73,6 @@ sub insert_indices {
 
     my ( $autorizacoes_dos, $herda_dos ) = $self->extract_autorizacoes_dossie( $id_volume, $controle );
     my ( $autorizacoes_doc, $herda_doc ) = $self->extract_autorizacoes_documento($id_volume, $controle, $id_documento);
-    warn Dumper $autorizacoes_doc;
-    warn $herda_doc;
 
     my $v = $self->dbic->resultset('Volume')->find_or_create(
         {
@@ -239,7 +237,8 @@ sub find_for_index {
         if ($hashClause->{$k} ne '') {
             push @busca, {
                 'gin_indexes.key' => $k,
-                'gin_indexes.value' => { like => '%'.$hashClause->{$k}.'%' }
+                'gin_indexes.value' => { like => '%'.$hashClause->{$k}.'%' },
+                'invalidado' => 0
             };
         }
     }
