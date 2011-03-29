@@ -1,11 +1,11 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
-	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-cca-dadosfamilia.xsd"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-cca-fichacadastral-dadosfamilia.xsd"
 	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
 	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
 	xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
-	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-cca-dadosfamilia.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-cca-fichacadastral-dadosfamilia.xsd"
 	elementFormDefault="qualified">
 
 	<xs:element name="formDadosFamilia" type="formDadosFamilia">
@@ -49,7 +49,7 @@
                                 </xs:restriction>
                             </xs:simpleType>
                         </xs:element>
-                        <xs:element name="obs" type="xs:string">
+                        <xs:element name="obs" type="xs:string" minOccurs="0">
                             <xs:annotation>
                                 <xs:appinfo>
                                     <xhtml:label>Observação</xhtml:label>
@@ -101,7 +101,7 @@
 						                    </xs:restriction>
 						                </xs:simpleType>
                                     </xs:element>
-                                    <xs:element name="idade" type="xs:integer">
+                                    <xs:element name="idade" type="xs:integer" minOccurs="0">
                                         <xs:annotation>
                                             <xs:appinfo>
                                                 <xhtml:label>Idade</xhtml:label>
