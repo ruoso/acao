@@ -75,17 +75,12 @@
 											</xs:restriction>				
 										</xs:simpleType>	
 									</xs:element>
-									<xs:element name="dataAssistenciaSocial">
+									<xs:element name="dataAssistenciaSocial" type="xs:date" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Data</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
-										<xs:simpleType>
-											<xs:restriction base="xs:string">
-												<xs:maxLength value="255" />
-											</xs:restriction>				
-										</xs:simpleType>	
 									</xs:element>
 								</xs:sequence>
 							</xs:complexType>
@@ -122,17 +117,12 @@
 											</xs:restriction>				
 										</xs:simpleType>	
 									</xs:element>
-									<xs:element name="dataAtendPsicoterapico">
+									<xs:element name="dataAtendPsicoterapico" type="xs:date" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Data</xhtml:label>
 											</xs:appinfo>
-										</xs:annotation>
-										<xs:simpleType>
-											<xs:restriction base="xs:string">
-												<xs:maxLength value="255" />
-											</xs:restriction>				
-										</xs:simpleType>	
+										</xs:annotation>	
 									</xs:element>
 								</xs:sequence>
 							</xs:complexType>
@@ -169,17 +159,12 @@
 											</xs:restriction>				
 										</xs:simpleType>	
 									</xs:element>
-									<xs:element name="dataEscola">
+									<xs:element name="dataEscola" type="xs:date" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Data</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
-										<xs:simpleType>
-											<xs:restriction base="xs:string">
-												<xs:maxLength value="255" />
-											</xs:restriction>				
-										</xs:simpleType>	
 									</xs:element>
 								</xs:sequence>
 							</xs:complexType>
@@ -216,17 +201,12 @@
 											</xs:restriction>				
 										</xs:simpleType>	
 									</xs:element>
-									<xs:element name="dataAtivGeracaoTrabalhoRenda">
+									<xs:element name="dataAtivGeracaoTrabalhoRenda" type="xs:date" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Data</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
-										<xs:simpleType>
-											<xs:restriction base="xs:string">
-												<xs:maxLength value="255" />
-											</xs:restriction>				
-										</xs:simpleType>	
 									</xs:element>
 								</xs:sequence>
 							</xs:complexType>
@@ -263,17 +243,12 @@
 											</xs:restriction>				
 										</xs:simpleType>	
 									</xs:element>
-									<xs:element name="dataLazer">
+									<xs:element name="dataLazer" type="xs:date" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Data</xhtml:label>
 											</xs:appinfo>
-										</xs:annotation>
-										<xs:simpleType>
-											<xs:restriction base="xs:string">
-												<xs:maxLength value="255" />
-											</xs:restriction>				
-										</xs:simpleType>	
+										</xs:annotation>	
 									</xs:element>
 								</xs:sequence>
 							</xs:complexType>
@@ -310,17 +285,12 @@
 											</xs:restriction>				
 										</xs:simpleType>	
 									</xs:element>
-									<xs:element name="dataEsporte">
+									<xs:element name="dataEsporte" type="xs:date" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Data</xhtml:label>
 											</xs:appinfo>
-										</xs:annotation>
-										<xs:simpleType>
-											<xs:restriction base="xs:string">
-												<xs:maxLength value="255" />
-											</xs:restriction>				
-										</xs:simpleType>	
+										</xs:annotation>	
 									</xs:element>
 								</xs:sequence>
 							</xs:complexType>
@@ -357,17 +327,12 @@
 											</xs:restriction>				
 										</xs:simpleType>	
 									</xs:element>
-									<xs:element name="dataOutroEspacoAcolhimento">
+									<xs:element name="dataOutroEspacoAcolhimento" type="xs:date" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Data</xhtml:label>
 											</xs:appinfo>
-										</xs:annotation>
-										<xs:simpleType>
-											<xs:restriction base="xs:string">
-												<xs:maxLength value="255" />
-											</xs:restriction>				
-										</xs:simpleType>	
+										</xs:annotation>	
 									</xs:element>
 								</xs:sequence>
 							</xs:complexType>
@@ -404,17 +369,12 @@
 											</xs:restriction>				
 										</xs:simpleType>	
 									</xs:element>
-									<xs:element name="dataOutrosEncaminhamentos">
+									<xs:element name="dataOutrosEncaminhamentos" type="xs:date" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Data</xhtml:label>
 											</xs:appinfo>
-										</xs:annotation>
-										<xs:simpleType>
-											<xs:restriction base="xs:string">
-												<xs:maxLength value="255" />
-											</xs:restriction>				
-										</xs:simpleType>	
+										</xs:annotation>	
 									</xs:element>
 								</xs:sequence>
 							</xs:complexType>
