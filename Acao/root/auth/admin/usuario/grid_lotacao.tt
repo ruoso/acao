@@ -3,7 +3,7 @@
   <thead>
   <tr>
     <th>Grupo</th>
-      <th>Operações</th>
+      <th></th>
   </tr>
   </thead>
   <tbody>
@@ -11,7 +11,7 @@
     lotacoes.value %]
     <tr>
       <td>[% c.model('LDAP').decompose_dn_grupos(lot).reverse.join(' - ') %]</td>
-      <td><a href="javascript:void(0);" name="remover"
+      <td><a <a class="excluir href="javascript:void(0);" name="remover"
         onclick="remove('[% c.uri_for_action('/auth/admin/usuario/remove') %]','[% posicao %]')">
       Remover</a></td>
     </tr>

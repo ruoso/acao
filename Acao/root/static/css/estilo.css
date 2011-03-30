@@ -842,7 +842,8 @@ body.relatorio thead th { background-color: white; color: black; }
 .autorizacao {
   width: 36.5em !important;
   float: left;
-  height: 21em;
+  height: 25em;
+  margin-right: 10px;
 }
 
 .navegaLDAP {
@@ -870,6 +871,12 @@ body.relatorio thead th { background-color: white; color: black; }
   color: #ffffff;
   padding-left: 10px;
   z-index: 4;
+}
+
+.floatAndMargem {
+  float: left;
+  width: 450px;
+  margin-right: 20px;
 }
 
 /* END Adicionar Usuário e Navegação LDAP by Carlos Wherbet */
@@ -957,10 +964,23 @@ a.excluir {
   overflow: hidden;
   border: none;
   position: relative;
-  top : 7px;
+  top : 0px;
   padding: 0px;
     float: right;
 
 }
 /* END * icones ,Botões e Links by Carlos Wherbet */
 
+/* Correção. Sobrescrevendo CSS que estão quebrando a aplicação  Carlos Wherbet*/
+
+.dadosUsuario  dd {
+    height: 20px ;
+    left: 30em;
+    padding-bottom: 0;
+    top: -1.2em !important;
+    width: 40em ;
+}
+
+/* END Correção. Sobrescrevendo CSS que estão quebrando a aplicação  Carlos Wherbet
+Sr. Desinger, fique a vontade pra mudar!
+*/

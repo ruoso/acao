@@ -3,73 +3,149 @@ use Net::LDAP;
 use Moose;
 use Data::Dumper;
 use strict;
+use utf8;
 use warnings;
 use Digest::SHA qw(sha1_base64 sha1);
 use List::MoreUtils qw{uniq};
+use Net::LDAP::Control::Paged;
+use Net::LDAP::Constant qw( LDAP_CONTROL_PAGED );
+use Switch;
 
 use Carp qw(croak);
 extends 'Acao::Model::LDAP';
 
-sub buscar_usuarios_ {
-    my ($self) = @_;
-
-    my $mesg = $self->ldap->search(
-        base   => $self->base_acao,
-        filter => "(&(member=*))",
-        scope  => 'one'
-
-    );
-    croak 'LDAP error: ' . $mesg->error if $mesg->is_error;
-    return $mesg->sorted('o');
-}
-
 sub buscar_usuarios {
-    my $self = shift;
-    my $mesg = $self->ldap->search(
-        base   => $self->base_acao,
-        filter => "(&(member=*))",
-        scope  => 'sub',
-        attrs  => ['member'],
-
-    );
+    my ( $self, $args ) = @_;
+    my $pesquisa;
     my $i;
     my @dn_s;
+    my %dados;
     my @nome;
     my @usuarios;
+    my @arrayMemberOf;
+    my $userData;
+    my $memberOf;
+    my $base_acao  = $self->base_acao;
+    my $admin_acao = $self->admin_super;
+    utf8::decode($admin_acao);
 
-    # HELP http://search.cpan.org/~gbarr/perl-ldap-0.4001/lib/Net/LDAP/Entry.pod
-    my $max = $mesg->count;
-    for ( $i = 0 ; $i < $max ; $i++ ) {
-        my $entry = $mesg->entry($i);
-        foreach my $attr ( $entry->attributes ) {
-            push @dn_s, $entry->get_value($attr);
+#   isto é necessário pois, por alguma razão, o ConfigLoader não seta a flag de unicode na string //sikora
+    utf8::decode($base_acao);
+
+    #warn "XXXXX: ".utf8::is_utf8($base_acao);
+
+    my $campo = $args->{campo} || 'uid=*';
+    if ( !$args->{pesquisa} ) {
+        $pesquisa = '';
+    }
+    else {
+        $pesquisa = $args->{pesquisa} . '*)(' . $campo . $args->{pesquisa};
+    }
+    switch ($campo) {
+        case 'admin' { $campo = 'memberOf='; $pesquisa = $admin_acao; }
+
+        else {
         }
     }
 
-    foreach my $dn ( uniq @dn_s ) {
-        my $dn_user = $dn;
-        $dn =~ s/uid=//go;
-        @nome = split /,/, $dn;
-        push @usuarios,
-          {
-            nome => $nome[0],
-            dn   => $dn_user
-          };
-    }
+    my $attrs = $args->{attrs} || qw(*);
+    my $filter = $campo . $pesquisa;
+    warn $filter;
+    my $base = $self->dominios_dn;
+    my $mesg =
+      $self->searchLDAP(
+        { attrs => $attrs, filter => $filter, base => $base } );
 
+    my $max = $mesg->count;
+    for ( $i = 0 ; $i < $max ; $i++ ) {
+        my $entry = $mesg->entry($i);
+
+        $userData = $self->getDadosUsuarioLdap( $entry->dn );
+        $memberOf = $userData->{memberOf};
+
+        if ( ref($memberOf) eq 'ARRAY' ) {
+            $memberOf = join( ',', @$memberOf );
+        }
+        else {
+            $memberOf = '';
+
+        }
+        $memberOf  =~ s/çã/ca/go;
+        $base_acao =~ s/çã/ca/go;
+
+        if ( $memberOf =~ /$base_acao/ ) {
+
+            %dados = (
+                %dados,
+                (
+                    $entry->dn => {
+                        nome     => $entry->get_value('cn'),
+                        uid      => $entry->get_value('uid'),
+                        memberOf => $memberOf,
+                        admin    => $userData->{admin}
+                    }
+                )
+            );
+        }
+
+    }
     croak 'LDAP error: ' . $mesg->error if $mesg->is_error;
-    return @usuarios;
+    return %dados;
 }
 
+=item getDadosUsuarioLdap
+Coleta os dados do usuario no LDAP, passando como parametro a DN e FILTRO como opcional.
+O Filtro serve para filtrar os memberOf como: 'acao', 'adm';
+acao => mostrará os memberOf somente dos usuários quem possui algum vínculo com o sistema ação.
+adm => mostrará os memberOf somente da estrutura administrativa, ou seja de onde o usuário é lotado
+=cut
+
 sub getDadosUsuarioLdap {
-    my ( $self, $dn ) = @_;
-    my $mesg = $self->ldap->search(
+    my ( $self, $dn, $filtro ) = @_;
+    my $ldap = $self->_bind_ldap_admin($self);
+    my @args = (
         base   => $self->dominios_dn,
         filter => "(&(entryDN=" . $dn . "))",
         scope  => 'sub',
         attrs  =>
           [qw/cn sn uid givenName email mobile telephoneNumber memberOf/],
     );
+    my $mesg = $ldap->search(@args);
+    my $memberOf;
+    my @memberOfArray;
+    my $base_acao   = $self->base_acao;
+    my $base_adm    = $self->base_adm;
+    my $admin_super = $self->admin_super;
+    utf8::decode($base_adm);
+    utf8::decode($base_acao);
+    utf8::decode($admin_super);
+    switch ($filtro) {
+        case "acao" {
+            $memberOf = [ $mesg->entry->get_value('memberOf') ];
+            foreach my $mOf (@$memberOf) {
+                if ( ( $mOf =~ /$base_acao/ ) ) {
+                    push @memberOfArray, $mOf;
+                }
+            }
+            $memberOf = \@memberOfArray;
+        }
+        case "adm" {
+            $memberOf = [ $mesg->entry->get_value('memberOf') ];
+            foreach my $mOf (@$memberOf) {
+                if ( ( $mOf =~ /$base_adm/ ) ) {
+                    push @memberOfArray, $mOf;
+                }
+            }
+            $memberOf = \@memberOfArray;
+        }
+        else {
+
+            $memberOf = [ $mesg->entry->get_value('memberOf') ];
+        }
+    }
+
+    my $super = join( ',', @$memberOf );
+    $super =~ s/.*$admin_super.*/1/go or $super = 0;
 
     return {
         uid       => $mesg->entry->get_value('uid'),
@@ -78,16 +154,16 @@ sub getDadosUsuarioLdap {
         apelido   => $mesg->entry->get_value('givenName'),
         email     => [ $mesg->entry->get_value('email') ],
         celular   => [ $mesg->entry->get_value('mobile') ],
-        fone      => $mesg->entry->get_value('telephoneNumber'),
+        fone      => [ $mesg->entry->get_value('telephoneNumber') ],
+        admin     => $super,
         dn        => $dn,
-        memberOf  => [ $mesg->entry->get_value('memberOf') ],
+        memberOf  => $memberOf,
     };
 
 }
 
 sub storeUsuario {
     my ( $self, $args ) = @_;
-    my $host     = $self->ldap_config->{host};
     my $DNbranch = $args->{dominio};
     my $senha    = sha1_base64( $args->{senha} );
     $senha .= '=' while ( length($senha) % 4 );
@@ -114,11 +190,10 @@ sub storeUsuario {
     my $lotacaoArray   = $args->{lotacao};
     my $super          = $args->{super};
 
-    my $NewDN = @$createArray[4] . '=' . @$createArray[5] . ',' . $DNbranch;
+    my $NewDN  = @$createArray[4] . '=' . @$createArray[5] . ',' . $DNbranch;
     my $result = $self->LDAPentryCreate( $NewDN, $createArray );
 
-    if ($result->{resultCode} ne '0') { return $result; }
-
+    if ( $result->{resultCode} ne '0' ) { return $result; }
 
     foreach my $acao (@$volumeArray) {
         $self->LDAPInsertMemberEntry(
@@ -138,7 +213,7 @@ sub storeUsuario {
 
     if ($super) {
         $self->LDAPInsertMemberEntry(
-            Acao->config->{'Model::LDAP'}->{'admin_super'}, $NewDN ) ;
+            Acao->config->{'Model::LDAP'}->{'admin_super'}, $NewDN );
     }
 
     return $result;

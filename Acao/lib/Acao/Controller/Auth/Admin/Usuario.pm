@@ -38,8 +38,10 @@ sub getUsuario : Chained('base') : PathPart('') : CaptureArgs(1) {
 
 sub lista : Chained('base') : PathPart('') : Args(0) {
     my ( $self, $c ) = @_;
-    my @usuarios = $c->model('Usuario')->buscar_usuarios();
-    $c->stash->{usuarios} = \@usuarios;
+
+    #my %usuarios = $c->model('Usuario')->buscar_usuarios();
+
+    #$c->stash->{usuarios} = \%usuarios;
 
     return;
 }
@@ -59,17 +61,59 @@ sub navega_ldap : Chained('base') : PathPart('navega_ldap') : Args(0) {
 
 }
 
-sub ver_user : Chained('getUsuario') : PathPart('') : Args(0) {
+sub ver_user : Chained('getUsuario') : PathPart('ver') : Args(0) {
     my ( $self, $c ) = @_;
-    $c->stash->{template} = 'auth/admin/usuario/usuario.tt';
-    $c->stash->{usuario}  =
-      $c->model('Usuario')->getDadosUsuarioLdap( $c->stash->{dn_usuario} );
-    warn Dumper( $c->stash->{usuario} );
+    $c->stash->{template}        = 'auth/admin/usuario/usuario.tt';
+
+    $c->stash->{usuario} =
+      $c->model('Usuario')
+      ->getDadosUsuarioLdap( $c->stash->{dn_usuario}, 'adm' );
+
+    $c->stash->{usuario_sistema} =
+      $c->model('Usuario')
+      ->getDadosUsuarioLdap( $c->stash->{dn_usuario}, 'acao' );
+
+
+
+
+}
+
+sub alterar_lotacao : Chained('getUsuario') : PathPart('alterar_lotacao')
+  : Args(0)
+{
+    my ( $self, $c ) = @_;
+
+    $c->stash->{usuario} =
+      $c->model('Usuario')
+      ->getDadosUsuarioLdap( $c->stash->{dn_usuario}, 'adm' );
+    my @lotacoes = $c->stash->{usuario}->{memberOf};
+    $c->stash->{lotacoes} = ( { value => @lotacoes } );
+    $c->stash->{lotacao}  = serialize( $c->stash->{lotacoes} );
 
 }
 
 sub alterar : Chained('getUsuario') : PathPart('alterar') : Args(0) {
     my ( $self, $c ) = @_;
+
+}
+
+sub alterar_senha : Chained('getUsuario') : PathPart('alterar_senha') : Args(0)
+{
+    my ( $self, $c ) = @_;
+    $c->stash->{usuario} =
+      $c->model('Usuario')
+      ->getDadosUsuarioLdap( $c->stash->{dn_usuario}, 'acao' );
+}
+
+sub searchUser : Chained('base') : PathPart('buscar') : Args(0) {
+    my ( $self, $c ) = @_;
+    $c->stash->{template} = 'auth/admin/usuario/lista.tt';
+    my $pesquisa = $c->req->param('buscar');
+    my $campo    = $c->req->param('campo');
+    my %usuarios =
+      $c->model('Usuario')
+      ->buscar_usuarios( { pesquisa => $pesquisa, campo => $campo } );
+    $c->stash->{usuarios} = \%usuarios;
 
 }
 
@@ -85,8 +129,6 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
     }
     my $super = $c->req->param('super');
 
-
-
     eval {
         $result = $c->model('Usuario')->storeUsuario(
             {
@@ -101,14 +143,13 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
                 'dossie'    => $dossieArray,
                 'documento' => $documentoArray,
                 'lotacao'   => $lotacaoArray,
-                'super'   => $super,
+                'super'     => $super,
             }
         );
     };
-    warn Dumper($result);
 
     if ( $result->{resultCode} ne '0' ) {
-        $c->flash->{erro} = 'ldap-' .$result->{resultCode};
+        $c->flash->{erro} = 'ldap-' . $result->{resultCode};
         $c->res->redirect(
             $c->uri_for_action('/auth/admin/usuario/adicionar_usuario') );
         return;
@@ -122,7 +163,7 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
 }
 
 sub add : Chained('base') : PathPart('add') : Args(0) {
-    my ( $self, $c, ) = @_;
+    my ( $self, $c ) = @_;
     $c->stash->{template} = 'auth/admin/usuario/grid_lotacao.tt';
     my @principal = split /-/, $c->req->param('grupos');
     my $hash_old = desserialize( $c->req->param('lotacao') );
@@ -169,6 +210,44 @@ sub remove : Chained('base') : PathPart('remover') : Args(0) {
     my $lotacao = serialize( { value => [@$array] } );
     $c->stash->{lotacao}  = $lotacao;
     $c->stash->{lotacoes} = { value => [@$array] };
+
+}
+
+sub store_lotacao : Chained('getUsuario') : PathPart('store_lotacao') : Args(0)
+{
+    my ( $self, $c ) = @_;
+    my $lotacaoDelete =
+      desserialize( $c->req->param('lotacaoAnterior') )->{value};
+
+    if ( ref($lotacaoDelete) ne 'ARRAY' ) {
+        $lotacaoDelete = [$lotacaoDelete];
+    }
+
+    my $lotacao = desserialize( $c->req->param('lotacao') )->{value};
+
+    if ( ( ref($lotacao) ne 'ARRAY' ) ) {
+        $lotacao = [$lotacao];
+    }
+
+    my $result =
+      $c->model('LDAP')
+      ->LDAPChangeMemberEntry( $c->req->param('dn'), $lotacao, $lotacaoDelete );
+
+    if ( $result->{resultCode} ne '0' ) {
+        $c->flash->{erro} = 'ldap-' . $result->{resultCode};
+        $c->res->redirect( $c->uri_for_action('/auth/admin/usuario/lista') );
+        return;
+    }
+    else {
+        $c->flash->{sucesso} = 'Adicionado';
+
+    }
+    $c->res->redirect(
+        $c->uri_for_action(
+            '/auth/admin/usuario/ver_user',
+            [ $c->stash->{dn_usuario} ]
+        )
+    );
 
 }
 

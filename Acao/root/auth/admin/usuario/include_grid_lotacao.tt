@@ -1,0 +1,32 @@
+
+<fieldset class="lotacao"><legend><img
+  src="[% c.uri_for('/static/img/workplace/building.png') %]"
+  alt="Lista de Lotação" />Lotação</legend>
+<div id="gridLotacao"><input type="hidden"
+  value="[% lotacao | html %]" name="lotacao">
+  [% IF usuario %]
+<table id="grid_lotacao">
+  <thead>
+    <tr>
+      <th>Grupo</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    [% SET posicao = 0 %]
+    [% IF lotacoes %]
+       [% FOREACH lot IN lotacoes.value %]
+      <tr>
+        <td>[% c.model('LDAP').decompose_dn_grupos(lot).reverse.join(' - ') %]</td>
+        <td><a class="excluir "href="javascript:void(0);" name="remover"
+          onclick="remove('[% c.uri_for_action('/auth/admin/usuario/remove') %]','[% posicao %]')">
+        Remover</a></td>
+      </tr>
+      [% SET posicao = posicao + 1 %]
+      [% END %]
+    [% END %]
+  </tbody>
+</table>
+[% END %]</div>
+
+</fieldset>
