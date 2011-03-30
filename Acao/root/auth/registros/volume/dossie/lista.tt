@@ -21,7 +21,7 @@
 [% INCLUDE 'auth/registros/volume/dossie/header.tt' %]
 [% INCLUDE 'errosucesso.tt' %]
 
-[% SET num_por_pagina = 30 %]
+[% SET num_por_pagina = 2 %]
 
 [% SET interval_ini = c.req.param('interval_ini') %]
 [% IF !interval_ini %]

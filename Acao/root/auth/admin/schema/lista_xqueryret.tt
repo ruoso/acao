@@ -19,6 +19,9 @@
     else (
         <a href="[% c.uri_for_action('/auth/admin/schema/validacao', 'inativo', {XSDtargetNamespace => '___XSDtargetNamespace___'}).replace('___XSDtargetNamespace___','{$x
 /@targetNamespace/string()}')%]" >Inativar</a>)}
+    |
+    <a href="[% c.uri_for_action('/auth/admin/schema/form_substituir', {XSDtargetNamespace => '___XSDtargetNamespace___'}).replace('___XSDtargetNamespace___','{$x
+/@targetNamespace/string()}')%]" >Substituir</a>
   </td>
   <td>
     {$x/xs:element/xs:annotation/xs:appinfo/class:classificacoes/@validacao/string()}

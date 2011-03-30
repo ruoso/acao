@@ -178,7 +178,7 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
       . $args->{num_por_pagina}
       . ') + 1), '
       . $args->{num_por_pagina} . '' . ')';
-
+warn $list;
     # Contrução da query de contagem para contrução da paginação
     my $count =
         $declarens

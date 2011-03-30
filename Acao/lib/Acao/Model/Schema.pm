@@ -21,23 +21,21 @@ sub listar_schemas {
           . '"'. $args->{busca} . '"';
     }
 
-    my $list =
-'declare namespace class = "http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";'
-      . 'subsequence('
-      . 'for $x in collection("acao-schemas")/xs:schema '.$busca
-      . 'order by $x/@targetNamespace/string(), $x/xs:element/xs:annotation/xs:appinfo/class:classificacoes/@validacao/string() '
-      . ' return ($x,'
-      . $args->{grid}
-      . '  ), ('
-      . $args->{interval_ini} * $args->{num_por_pagina}
-      . ') + 1 ,'
-      . $args->{num_por_pagina} . '' . ')';
-
-    my $count =
-'declare namespace class = "http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";'
-      . 'count('
-      . 'for $x in collection("acao-schemas")/xs:schema '.$busca
-      . ' return "")';
+    my $list = 'declare namespace class = "http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";'
+             . 'subsequence('
+             . 'for $x in collection("acao-schemas")/xs:schema '.$busca
+             . 'order by $x/@targetNamespace/string(), $x/xs:element/xs:annotation/xs:appinfo/class:classificacoes/@validacao/string() '
+             . ' return ($x,'
+             . $args->{grid}
+             . '  ), ('
+             . $args->{interval_ini} * $args->{num_por_pagina}
+             . ') + 1 ,'
+             . $args->{num_por_pagina} . '' . ')';
+warn $list;
+    my $count = 'declare namespace class = "http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";'
+              . 'count('
+              . 'for $x in collection("acao-schemas")/xs:schema '.$busca
+              . ' return "")';
 
     return {
         list  => $list,
@@ -46,7 +44,6 @@ sub listar_schemas {
     };
 
 }
-
 
 sub options_classificacao_xsd {
     my ($self) = @_;
@@ -88,9 +85,9 @@ sub insere_schema {
     eval {
       $self->sedna->execute($query);
       $self->sedna->commit;
+      return 1;
     };
 
-    return;
 }
 
 
@@ -107,5 +104,57 @@ sub altera_validacao_schemas {
     $self->sedna->commit;
 
     return;
+}
+
+sub verifica_schemas {
+    my ($self, $XSDtargetNamespace) = @_;
+    my @id_volumes;
+    my $countTNS = 0;
+    my $query = ' declare namespace xs = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd"; '
+              . ' declare namespace audt="http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd"; '
+              . ' for $x in collection("volume") '
+              . ' return $x/xs:volume/xs:collection/text() ';
+
+    $self->sedna->begin();
+    $self->sedna->execute($query);
+    
+    while ( my $item = $self->sedna->get_item() ) {
+        $item =~ s/^\s+//go;
+        push @id_volumes, $item;
+    }
+
+    for my $id_volume ( @id_volumes ) { 
+        my $xq = ' declare namespace dos = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; '
+               . ' declare namespace doc = "http://schemas.fortaleza.ce.gov.br/acao/documento.xsd"; '
+               . ' count(for $x in collection("'.$id_volume.'")/dos:dossie/dos:doc/doc:documento/doc:documento/doc:conteudo/* '
+               . ' where namespace-uri($x) eq "'.$XSDtargetNamespace.'"'
+               . ' return "") ';
+
+        $self->sedna->execute($xq);
+        $countTNS = $self->sedna->get_item();
+        warn $countTNS;
+        last if $countTNS;
+        
+    }
+
+    $self->sedna->commit;    
+    
+    return $countTNS;
+}
+
+sub substituir_schema {
+    my ($self, $collection, $target, $documentoXsd) = @_;
+
+    $documentoXsd =~ s/^.*\///go;
+    my $query = 'DROP DOCUMENT "'.$documentoXsd.'" IN COLLECTION "'.$collection.'"';
+
+    $self->sedna->begin();
+    eval {
+      $self->sedna->execute($query);
+      $self->sedna->commit;
+      $self->insere_schema( $collection, $target, $documentoXsd );
+      return 1;
+    };
+
 }
 1;
