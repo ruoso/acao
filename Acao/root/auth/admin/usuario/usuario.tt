@@ -19,9 +19,10 @@
 %]
 [% INCLUDE 'auth/admin/usuario/header_usuario.tt' %]
 [% INCLUDE 'errosucesso.tt' %]
-<h1 class="titulo-form">Gerenciar usuário do LDAP |
+<h1 class="titulo-form">Gerenciar Usuário: [% usuario.uid %] |
   <span style="font-size:13px; font-weight:normal;">
-       <a class="criar" href="[% c.uri_for_action('/auth/admin/usuario/alterar_lotacao',[ dn_usuario ]) %]">Alterar Lotação</a>
+       <a class="lotacao_alterar" href="[% c.uri_for_action('/auth/admin/usuario/alterar_lotacao',[ dn_usuario ]) %]">Alterar Lotação</a>
+       <a class="alterar_permissoes" href="[% c.uri_for_action('/auth/admin/usuario/alterar_permissoes',[ dn_usuario ]) %]">Alterar Permissões</a>
 
   </span>
 </h1>
@@ -29,8 +30,12 @@
 <fieldset  class="dadosUsuario">
   <legend>Dados do Usuário</legend>
   <dl>
-    <dt>Usuário:</dt>
+    <dt>Usuário</dt>
     <dd>  [% usuario.uid %]</dd>
+<!--    <dt>Senha:</dt>-->
+<!--    <dd>-->
+<!--        <div id="alter_pass"><a href="javascript:void(0)" class="alterar_pass" onclick="alter_password()">Alterar Senha</a></div>-->
+<!--    </dd>-->
     <dt>Nome:</dt>
     <dd>  [% usuario.nome %]</dd>
     <dt>Sobrenome:</dt>
@@ -120,7 +125,15 @@
 </fieldset>
 
 
+<script type="text/javascript">
 
+function alter_password() {
+
+  $("#alter_pass").html('<input type="password"  name="senha" value="" /><input type="submit" value="Salvar"/>');
+
+}
+
+</script>
 
 
 

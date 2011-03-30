@@ -23,9 +23,8 @@
 <form name="formAddUserLdap" id="formAddUserLdap" action="[% c.uri_for_action('/auth/admin/usuario/store') %]" method="post" >
 <fieldset >
   <legend></legend>
-
        <fieldset class="cadInfoUser">
-         <legend><img src="[% c.uri_for('/static/img/user/user.png') %]" alt=" Informação de Usuário" /> Informação de Usuário</legend>
+         <legend><img src="[% c.uri_for('/static/img/user/user.png') %]" alt="Informação de Usuário" /> Informação de Usuário</legend>
           <dl>
             <dt>Nome:</dt>
               <dd><input type="text" name="nome" value="" ></dd>
@@ -65,7 +64,7 @@
           <dt><input type="checkbox" value="listar" name="volume[]"> </dt>
           <dd>Listar</dd>
           <dt><input type="checkbox" value="visualizar" name="volume[]"> </dt>
-          <dd>Visulizar</dd>
+          <dd>Visualizar</dd>
           <dt><input type="checkbox" value="criar" name="volume[]"> </dt>
           <dd>Criar</dd>
           <dt><input type="checkbox" value="alterar" name="volume[]"> </dt>
@@ -80,12 +79,12 @@
           <dt><input type="checkbox" value="listar" name="dossie[]"> </dt>
           <dd>Listar</dd>
           <dt><input type="checkbox" value="visualizar" name="dossie[]"> </dt>
-          <dd>Visulizar</dd>
+          <dd>Visualizar</dd>
           <dt><input type="checkbox" value="criar" name="dossie[]"> </dt>
           <dd>Criar</dd>
           <dt><input type="checkbox" value="alterar" name="dossie[]"> </dt>
           <dd>Alterar</dd>
-          <dt><input type="checkbox" value="trasnferir" name="dossie[]"> </dt>
+          <dt><input type="checkbox" value="transferir" name="dossie[]"> </dt>
           <dd>Transferir</dd>
         </dl>
      </fieldset>
@@ -95,12 +94,12 @@
           <dt><input type="checkbox" value="listar" name="documento[]"> </dt>
           <dd>Listar</dd>
           <dt><input type="checkbox" value="visualizar" name="documento[]"> </dt>
-          <dd>Visulizar</dd>
+          <dd>Visualizar</dd>
           <dt><input type="checkbox" value="criar" name="documento[]"> </dt>
           <dd>Criar</dd>
           <dt><input type="checkbox" value="alterar" name="documento[]"> </dt>
           <dd>Alterar</dd>
-          <dt><input type="checkbox" value="trasnferir" name="documento[]"> </dt>
+          <dt><input type="checkbox" value="transferir" name="documento[]"> </dt>
           <dd>Transferir</dd>
         </dl>
      </fieldset>

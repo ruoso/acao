@@ -28,11 +28,9 @@ sub buscar_usuarios {
     my $base_acao  = $self->base_acao;
     my $admin_acao = $self->admin_super;
     utf8::decode($admin_acao);
-
-#   isto é necessário pois, por alguma razão, o ConfigLoader não seta a flag de unicode na string //sikora
     utf8::decode($base_acao);
 
-    #warn "XXXXX: ".utf8::is_utf8($base_acao);
+#   isto é necessário pois, por alguma razão, o ConfigLoader não seta a flag de unicode na string //sikora
 
     my $campo = $args->{campo} || 'uid=*';
     if ( !$args->{pesquisa} ) {
@@ -49,9 +47,11 @@ sub buscar_usuarios {
     }
 
     my $attrs = $args->{attrs} || qw(*);
+
     my $filter = $campo . $pesquisa;
-    warn $filter;
+
     my $base = $self->dominios_dn;
+
     my $mesg =
       $self->searchLDAP(
         { attrs => $attrs, filter => $filter, base => $base } );
@@ -82,7 +82,23 @@ sub buscar_usuarios {
                         nome     => $entry->get_value('cn'),
                         uid      => $entry->get_value('uid'),
                         memberOf => $memberOf,
-                        admin    => $userData->{admin}
+                        admin    => $userData->{admin},
+                        acao     => 1
+                    }
+                )
+            );
+
+        }
+        else {
+            %dados = (
+                %dados,
+                (
+                    $entry->dn => {
+                        nome     => $entry->get_value('cn'),
+                        uid      => $entry->get_value('uid'),
+                        memberOf => $memberOf,
+                        admin    => $userData->{admin},
+                        acao     => 0
                     }
                 )
             );
@@ -111,6 +127,7 @@ sub getDadosUsuarioLdap {
           [qw/cn sn uid givenName email mobile telephoneNumber memberOf/],
     );
     my $mesg = $ldap->search(@args);
+
     my $memberOf;
     my @memberOfArray;
     my $base_acao   = $self->base_acao;
@@ -150,11 +167,11 @@ sub getDadosUsuarioLdap {
     return {
         uid       => $mesg->entry->get_value('uid'),
         nome      => $mesg->entry->get_value('cn'),
-        sobrenome => $mesg->entry->get_value('sn'),
-        apelido   => $mesg->entry->get_value('givenName'),
-        email     => [ $mesg->entry->get_value('email') ],
-        celular   => [ $mesg->entry->get_value('mobile') ],
-        fone      => [ $mesg->entry->get_value('telephoneNumber') ],
+        sobrenome => $mesg->entry->get_value('sn') || '',
+        apelido   => $mesg->entry->get_value('givenName') || '',
+        email     => [ $mesg->entry->get_value('email') ] || [],
+        celular   => [ $mesg->entry->get_value('mobile') ] || [],
+        fone      => [ $mesg->entry->get_value('telephoneNumber') ] || [],
         admin     => $super,
         dn        => $dn,
         memberOf  => $memberOf,
@@ -167,7 +184,6 @@ sub storeUsuario {
     my $DNbranch = $args->{dominio};
     my $senha    = sha1_base64( $args->{senha} );
     $senha .= '=' while ( length($senha) % 4 );
-
     my $createArray = [
         objectClass => [
             qw/top person organizationalPerson
@@ -183,15 +199,15 @@ sub storeUsuario {
         userPassword    => '{SHA}' . $senha,
 
     ];
-
     my $volumeArray    = $args->{volume};
     my $dossieArray    = $args->{dossie};
     my $documentoArray = $args->{documento};
     my $lotacaoArray   = $args->{lotacao};
     my $super          = $args->{super};
+    my $result;
 
-    my $NewDN  = @$createArray[4] . '=' . @$createArray[5] . ',' . $DNbranch;
-    my $result = $self->LDAPentryCreate( $NewDN, $createArray );
+    my $NewDN = @$createArray[4] . '=' . @$createArray[5] . ',' . $DNbranch;
+    $result = $self->LDAPentryCreate( $NewDN, $createArray );
 
     if ( $result->{resultCode} ne '0' ) { return $result; }
 
@@ -218,7 +234,79 @@ sub storeUsuario {
 
     return $result;
 
-    #
+}
+
+sub storeAlterarUsuario {
+    my ( $self, $args ) = @_;
+
+    my $volumeArray    = $args->{volume};
+    my $dossieArray    = $args->{dossie};
+    my $documentoArray = $args->{documento};
+    my $super          = $args->{super};
+
+    my $result;
+
+    foreach my $acao (@$volumeArray) {
+        $self->LDAPInsertMemberEntry(
+            Acao->config->{'roles'}->{'volume'}->{$acao},
+            $args->{dn} );
+
+    }
+    foreach my $acao (@$dossieArray) {
+        $self->LDAPInsertMemberEntry(
+            Acao->config->{'roles'}->{'dossie'}->{$acao},
+            $args->{dn} );
+    }
+    foreach my $acao (@$documentoArray) {
+        $self->LDAPInsertMemberEntry(
+            Acao->config->{'roles'}->{'documento'}->{$acao},
+            $args->{dn} );
+    }
+
+    if ($super) {
+        my $teste =
+          $self->LDAPInsertMemberEntry(
+            Acao->config->{'Model::LDAP'}->{'admin_super'},
+            $args->{dn} );
+    }
+
+    return { resultCode => 0 };
+
+}
+
+sub validaUser {
+    my ( $self, $dn ) = @_;
+    my $result = getDadosUsuarioLdap( $self, $dn, 'acao' )->{memberOf};
+    return scalar(@$result) > 1 or 0;
+
+}
+
+sub recebePermissoesAcao {
+    my ( $self, $dn, $model ) = @_;
+
+    my $usuario = getDadosUsuarioLdap( $self, $dn )->{memberOf};
+
+    my $listar       = Acao->config->{'roles'}->{$model}->{'listar'};
+    my $visualizar   = Acao->config->{'roles'}->{$model}->{'visualizar'},
+    my $criar      = Acao->config->{'roles'}->{$model}->{'criar'},
+    my $alterar    = Acao->config->{'roles'}->{$model}->{'alterar'},
+    my $transferir = Acao->config->{'roles'}->{$model}->{'transferir'},
+
+    utf8::decode($listar);
+    utf8::decode($visualizar);
+    utf8::decode($criar);
+    utf8::decode($alterar);
+    utf8::decode($transferir);
+
+    my $result = {
+        'listar'     => $listar ~~@$usuario,
+        'visualizar' => $visualizar ~~@$usuario,
+        'criar'      => $criar ~~@$usuario,
+        'alterar'    => $alterar ~~@$usuario,
+        'transferir' => $transferir ~~@$usuario,
+
+    };
+    return $result;
 
 }
 

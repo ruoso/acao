@@ -1,0 +1,163 @@
+[%#
+# Copyright 2010 - Prefeitura Municipal de Fortaleza
+#
+# Este arquivo é parte do programa Ação - Sistema de Acompanhamento de
+# Projetos Sociais
+#
+# O Ação é um software livre; você pode redistribui-lo e/ou modifica-lo
+# dentro dos termos da Licença Pública Geral GNU como publicada pela
+# Fundação do Software Livre (FSF); na versão 2 da Licença.
+#
+# Este programa é distribuido na esperança que possa ser util, mas SEM
+# NENHUMA GARANTIA; sem uma garantia implicita de ADEQUAÇÂO a qualquer
+# MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a Licença Pública Geral GNU
+# para maiores detalhes.
+#
+# Você deve ter recebido uma cópia da Licença Pública Geral GNU, sob o
+# título "LICENCA.txt", junto com este programa, se não, escreva para a
+# Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
+%]
+[% INCLUDE 'auth/admin/usuario/header.tt' %]
+[% INCLUDE 'errosucesso.tt' %]
+<h1 class="titulo-form">Gerenciar usuário do LDAP |
+  <span style="font-size:13px; font-weight:normal;">
+       <a class="criar" href="[% c.uri_for_action('/auth/admin/usuario/adicionar_usuario') %]">Cadastrar Usuário</a>
+  </span>
+</h1>
+
+<form name="formAddUserLdap" id="formAddUserLdap" action="[% c.uri_for_action('/auth/admin/usuario/store_alterar',[ dn_usuario ]) %]" method="post" >
+<fieldset  class="dadosUsuario">
+  <legend>Dados do Usuário</legend>
+  <dl>
+    <dt>Usuário</dt>
+    <dd>  [% usuario.uid %]</dd>
+
+    <dt>Nome:</dt>
+    <dd>  [% usuario.nome %]</dd>
+    <dt>Sobrenome:</dt>
+    <dd>  [% usuario.sobrenome %]</dd>
+    <dt>Apelido:</dt>
+    <dd>  [% usuario.apelido %]</dd>
+    <dt>Fone:</dt>
+    <dd>
+      [% FOREACH fone IN usuario.fone %]
+        [% fone %]
+      [% END %]
+    </dd>
+    <dt>Celular</dt>
+    <dd>
+    [% FOREACH celular IN usuario.celular %]
+      [% celular %]
+    [% END %]
+    </dd	>
+    <dt>Email:</dt>
+    <dd>
+    [% FOREACH email IN usuario.email %]
+      [% email %]
+    [% END %]
+    </dd>
+    <dt>Super Administrador:</dt>
+    <dd>
+
+      [% IF usuario_sistema.admin == '1' %]
+        Sim
+      [% ELSE %]
+        Não
+      [% END %]
+
+    </dd>
+  </dl>
+  </fieldset>
+<!--<fieldset >-->
+<!--  <legend></legend>-->
+<!--       <fieldset class="">-->
+<!--         <legend><img src="[% c.uri_for('/static/img/user/user.png') %]" alt="Informação de Usuário" /> Informação de Usuário</legend>-->
+<!--          <dl>-->
+<!--            <dt>Usuário:</dt>-->
+<!--              <dd><input type="text" name="nome" value="[% usuario.uid %]" ></dd>-->
+<!--            <dt>Nome:</dt>-->
+<!--              <dd><input type="text" name="nome" value="[% usuario.nome %]" ></dd>-->
+<!--            <dt>Sobrenome:</dt>-->
+<!--              <dd><input type="text" name="sobrenome" value="[% usuario.sobrenome %]" ></dd>-->
+<!--            <dt>Email:</dt>-->
+<!--              <dd><input type="text" name="email" value="[% usuario.email %]" ></dd>-->
+<!--            <dt>Telefone:</dt>-->
+<!--              <dd><input type="text" name="fone" value="[% usuario.fone %]" ></dd>-->
+<!--         </dl>-->
+<!--      </fieldset>-->
+
+  <fieldset  class="">
+     <legend><img src="[% c.uri_for('/static/img/pass/lock_add.png') %]" alt="Autorizações no Sistema" /> Autorizações no Sistema Ação</legend>
+
+     <dl><dt><input type="checkbox" value="" id="checkAllRegistros" name="checkAllRegistros"> Marcar Todos   </dt>  </dl>
+     <fieldset class="registro">
+        <legend>Volume</legend>
+        <dl>
+          <dt><input type="checkbox" value="listar" name="volume[]" > </dt>
+          <dd>Listar</dd>
+          <dt><input type="checkbox" value="visualizar" name="volume[]"> </dt>
+          <dd>Visualizar</dd>
+          <dt><input type="checkbox" value="criar" name="volume[]" > </dt>
+          <dd>Criar</dd>
+          <dt><input type="checkbox" value="alterar" name="volume[]"> </dt>
+          <dd>Alterar</dd>
+          <dt><input type="checkbox" value="transferir" name="volume[]" > </dt>
+          <dd>Transferir</dd>
+        </dl>
+     </fieldset>
+     <fieldset class="registro">
+        <legend>Prontuário</legend>
+        <dl>
+          <dt><input type="checkbox" value="listar" name="dossie[]" > </dt>
+          <dd>Listar</dd>
+          <dt><input type="checkbox" value="visualizar" name="dossie[]" > </dt>
+          <dd>Visualizar</dd>
+          <dt><input type="checkbox" value="criar" name="dossie[]"> </dt>
+          <dd>Criar</dd>
+          <dt><input type="checkbox" value="alterar" name="dossie[]" > </dt>
+          <dd>Alterar</dd>
+          <dt><input type="checkbox" value="transferir" name="dossie[]" > </dt>
+          <dd>Transferir</dd>
+        </dl>
+     </fieldset>
+     <fieldset class="registro">
+        <legend>Documento</legend>
+        <dl>
+          <dt><input type="checkbox" value="listar" name="documento[]" > </dt>
+          <dd>Listar</dd>
+          <dt><input type="checkbox" value="visualizar" name="documento[]" > </dt>
+          <dd>Visualizar</dd>
+          <dt><input type="checkbox" value="criar" name="documento[]"> </dt>
+          <dd>Criar</dd>
+          <dt><input type="checkbox" value="alterar" name="documento[]" > </dt>
+          <dd>Alterar</dd>
+          <dt><input type="checkbox" value="trasnferir" name="documento[]" > </dt>
+          <dd>Transferir</dd>
+        </dl>
+     </fieldset>
+  </fieldset>
+
+<input type="checkbox" value="super" name="super" ><img src="[% c.uri_for('/static/img/user/user_suit.png') %]" alt=" Super Administrador" /> Poderes de Super Administrador
+<br/><br/>
+<input type="submit" value="Confimar">
+<input type="reset" value="Cancelar">
+
+</form>
+
+<script type="text/javascript">
+
+
+$('#checkAllRegistros').click(function() {
+  if ($("input[name='checkAllRegistros']").is(':checked') ) {
+    $("input[name='volume[]']").attr('checked', true);
+    $("input[name='dossie[]']").attr('checked', true);
+    $("input[name='documento[]']").attr('checked', true);
+  } else {
+    $("input[name='volume[]']").attr('checked', false);
+    $("input[name='dossie[]']").attr('checked', false);
+    $("input[name='documento[]']").attr('checked', false);
+  }
+});
+
+</script>
+[% INCLUDE 'footer.tt' %]

@@ -8,6 +8,7 @@ use Net::LDAP::Entry;
 use Net::LDAPS;
 use IO::Socket::SSL;
 use utf8;
+use Digest::SHA qw(sha1_base64);
 
 use Carp qw(croak);
 extends 'Acao::Model';
@@ -149,17 +150,40 @@ sub LDAPInsertMemberEntry {
     return $result;
 }
 
+sub LDAPDeleteMemberEntry {
+    my ( $self, $dn, $memberA ) = @_;
+    my $ldapS  = _bind_ldap_admin($self);
+    my $result = $ldapS->modify( $dn, delete => { member => [$memberA] } );
+
+
+    return $result;
+}
+
 sub LDAPChangeMemberEntry {
     my ( $self, $dn, $memberOfA, $memberOfDeleteA ) = @_;
-    my $ldapS  = _bind_ldap_admin($self);
-    my $result = $ldapS->modify(
-        $dn,
-        changes =>  [
-            delete => [ memberOf => $memberOfDeleteA ],
-            add    => [ memberOf => $memberOfA ],
-          ]
+    my $ldapS = _bind_ldap_admin($self);
+    my $result;
 
-    );
+
+    if ( !$memberOfDeleteA or !$memberOfA ) {
+        !$memberOfA
+          or $result = $ldapS->modify( $dn, add => { memberOf => $memberOfA } );
+
+        !$memberOfDeleteA
+          or $result =
+          $ldapS->modify( $dn, delete => { memberOf => $memberOfDeleteA } )
+          ;
+    }
+    else {
+
+        $result = $ldapS->modify(
+            $dn,
+            changes => [
+                delete => [ memberOf => $memberOfDeleteA ],
+                add    => [ memberOf => $memberOfA ],
+            ]
+        );
+    }
 
     return $result;
 }
@@ -177,9 +201,7 @@ sub searchLDAP {
         #   control => [$page]
     );
 
-
     my $mesg = $ldap->search(@args);
-
 
 =coments    my $cookie;
 
@@ -214,5 +236,20 @@ sub searchLDAP {
     return $mesg;
 
 }
+
+sub changeMemberPassword {
+  my ($self, $args) = @_;
+  my $ldap = $self->_bind_ldap_admin($self);
+  $args->{new_pass} or $args->{new_pass} = 'default';
+  my $encrypted = sha1_base64($args->{new_pass});
+  $encrypted .= '=' while (length($encrypted) % 4);
+  my $mesg = $ldap->modify($args->{dn}, replace => { userpassword => '{SHA}'.$encrypted });
+  return $mesg;
+}
+
+
+
+
+
 1;
 

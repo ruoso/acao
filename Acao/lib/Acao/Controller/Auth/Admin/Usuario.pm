@@ -63,7 +63,7 @@ sub navega_ldap : Chained('base') : PathPart('navega_ldap') : Args(0) {
 
 sub ver_user : Chained('getUsuario') : PathPart('ver') : Args(0) {
     my ( $self, $c ) = @_;
-    $c->stash->{template}        = 'auth/admin/usuario/usuario.tt';
+    $c->stash->{template} = 'auth/admin/usuario/usuario.tt';
 
     $c->stash->{usuario} =
       $c->model('Usuario')
@@ -73,15 +73,15 @@ sub ver_user : Chained('getUsuario') : PathPart('ver') : Args(0) {
       $c->model('Usuario')
       ->getDadosUsuarioLdap( $c->stash->{dn_usuario}, 'acao' );
 
-
-
-
 }
 
 sub alterar_lotacao : Chained('getUsuario') : PathPart('alterar_lotacao')
   : Args(0)
 {
     my ( $self, $c ) = @_;
+
+    $c->model('Usuario')->validaUser( $c->stash->{dn_usuario} )
+      or $c->detach('/public/default');
 
     $c->stash->{usuario} =
       $c->model('Usuario')
@@ -92,8 +92,11 @@ sub alterar_lotacao : Chained('getUsuario') : PathPart('alterar_lotacao')
 
 }
 
-sub alterar : Chained('getUsuario') : PathPart('alterar') : Args(0) {
+sub trazer_user : Chained('getUsuario') : PathPart('alterar') : Args(0) {
     my ( $self, $c ) = @_;
+    $c->stash->{usuario} =
+      $c->model('Usuario')
+      ->getDadosUsuarioLdap( $c->stash->{dn_usuario}, 'acao' );
 
 }
 
@@ -110,9 +113,11 @@ sub searchUser : Chained('base') : PathPart('buscar') : Args(0) {
     $c->stash->{template} = 'auth/admin/usuario/lista.tt';
     my $pesquisa = $c->req->param('buscar');
     my $campo    = $c->req->param('campo');
+
     my %usuarios =
       $c->model('Usuario')
-      ->buscar_usuarios( { pesquisa => $pesquisa, campo => $campo } );
+      ->buscar_usuarios(
+        { pesquisa => $pesquisa, campo => $campo, filtro => $campo } );
     $c->stash->{usuarios} = \%usuarios;
 
 }
@@ -124,9 +129,11 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
     my $dossieArray    = [ $c->req->param('dossie[]') ];
     my $documentoArray = [ $c->req->param('documento[]') ];
     my $lotacaoArray   = desserialize( $c->req->param('lotacao') )->{value};
+
     if ( ref($lotacaoArray) ne 'ARRAY' ) {
         $lotacaoArray = [ desserialize( $c->req->param('lotacao') )->{value} ];
     }
+
     my $super = $c->req->param('super');
 
     eval {
@@ -158,8 +165,7 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
         $c->flash->{sucesso} = 'Adicionado';
 
     }
-    $c->res->redirect( $c->uri_for_action('/auth/admin/usuario/lista') );
-
+    $c->res->redirect( $c->uri_for_action('/auth/admin/usuario/lista'));
 }
 
 sub add : Chained('base') : PathPart('add') : Args(0) {
@@ -216,18 +222,36 @@ sub remove : Chained('base') : PathPart('remover') : Args(0) {
 sub store_lotacao : Chained('getUsuario') : PathPart('store_lotacao') : Args(0)
 {
     my ( $self, $c ) = @_;
+
+    $c->model('Usuario')->validaUser( $c->stash->{dn_usuario} )
+      or $c->detach('/public/default');
+
     my $lotacaoDelete =
       desserialize( $c->req->param('lotacaoAnterior') )->{value};
 
-    if ( ref($lotacaoDelete) ne 'ARRAY' ) {
-        $lotacaoDelete = [$lotacaoDelete];
+    if ( ( ref($lotacaoDelete) ne 'ARRAY' ) ) {
+        if ( $lotacaoDelete eq '' ) {
+            $lotacaoDelete = '';
+        }
+        else {
+            $lotacaoDelete = [$lotacaoDelete];
+        }
     }
 
     my $lotacao = desserialize( $c->req->param('lotacao') )->{value};
 
     if ( ( ref($lotacao) ne 'ARRAY' ) ) {
-        $lotacao = [$lotacao];
+        if ( $lotacao eq '' ) {
+            $lotacao = '';
+        }
+        else {
+            $lotacao = [$lotacao];
+        }
     }
+
+    #   if ( ref($lotacao) ne 'ARRAY' ) {
+    #       $lotacao = [$lotacao];
+    #   }
 
     my $result =
       $c->model('LDAP')
@@ -248,6 +272,121 @@ sub store_lotacao : Chained('getUsuario') : PathPart('store_lotacao') : Args(0)
             [ $c->stash->{dn_usuario} ]
         )
     );
+
+}
+
+sub delete : Chained('getUsuario') : PathPart('delete') : Args(0) {
+    my ( $self, $c ) = @_;
+
+    $c->model('Usuario')->validaUser( $c->stash->{dn_usuario} )
+      or $c->detach('/public/default');
+
+    my $result;
+    my $memberOf =
+      $c->model('Usuario')
+      ->getDadosUsuarioLdap( $c->stash->{dn_usuario}, 'acao' )->{memberOf};
+
+    foreach my $dnAcao (@$memberOf) {
+        $result =
+          $c->model('LDAP')
+          ->LDAPDeleteMemberEntry( $dnAcao, $c->stash->{dn_usuario} );
+    }
+
+    if ( $result->{resultCode} ne '0' ) {
+        $c->flash->{erro} = 'ldap-' . $result->{resultCode};
+        $c->res->redirect( $c->uri_for_action('/auth/admin/usuario/lista') );
+        return;
+    }
+    else {
+        $c->flash->{sucesso} = 'Removido';
+
+    }
+    $c->res->redirect( $c->uri_for_action('/auth/admin/usuario/lista') );
+
+}
+
+sub store_alterar : Chained('getUsuario') : PathPart('store_alterar') : Args(0)
+{
+    my ( $self, $c ) = @_;
+    my $result;
+    my $delete         = $c->req->param('delete');
+    my $volumeArray    = [ $c->req->param('volume[]') ];
+    my $dossieArray    = [ $c->req->param('dossie[]') ];
+    my $documentoArray = [ $c->req->param('documento[]') ];
+    my $super          = $c->req->param('super');
+
+    if ($delete) {
+
+        my $memberOf =
+          $c->model('Usuario')
+          ->getDadosUsuarioLdap( $c->stash->{dn_usuario}, 'acao' )->{memberOf};
+
+        foreach my $dnAcao (@$memberOf) {
+            $c->model('LDAP')
+              ->LDAPDeleteMemberEntry( $dnAcao, $c->stash->{dn_usuario} );
+        }
+        warn '******************************';
+
+    }
+
+    eval {
+        $result = $c->model('Usuario')->storeAlterarUsuario(
+            {
+                'volume'    => $volumeArray,
+                'dossie'    => $dossieArray,
+                'documento' => $documentoArray,
+                'super'     => $super,
+                'dn'        => $c->stash->{dn_usuario},
+            }
+        );
+    };
+
+    if ( $result->{resultCode} ne '0' ) {
+        $c->flash->{erro} = 'ldap-' . $result->{resultCode};
+        $c->res->redirect( $c->uri_for_action('/auth/admin/usuario/lista') );
+        return;
+    }
+    else {
+        $c->flash->{sucesso} = 'Adicionado';
+        $c->res->redirect( $c->uri_for_action('/auth/admin/usuario/lista') );
+
+    }
+
+}
+
+sub store_alterar_senha : Chained('getUsuario')
+  : PathPart('store_alterar_senha') : Args(0)
+{
+    my ( $self, $c ) = @_;
+
+    my $result = $c->model('LDAP')->changeMemberPassword(
+        {
+            'new_pass' => $c->req->param('new_pass'),
+            'dn'       => $c->req->param('dn')
+        }
+    );
+
+    $c->stash->{resultado} = $result->{resultCode};
+
+    $c->stash->{template} = 'auth/admin/usuario/sucesso_alter_pass.tt';
+
+}
+
+sub alterar_permissoes : Chained('getUsuario') : PathPart('alterar_permissoes')
+  : Args(0)
+{
+    my ( $self, $c ) = @_;
+    $c->stash->{usuario} =
+      $c->model('Usuario')->getDadosUsuarioLdap( $c->stash->{dn_usuario} );
+    $c->stash->{volume} =
+      $c->model('Usuario')
+      ->recebePermissoesAcao( $c->stash->{dn_usuario}, 'volume' );
+    $c->stash->{dossie} =
+      $c->model('Usuario')
+      ->recebePermissoesAcao( $c->stash->{dn_usuario}, 'dossie' );
+    $c->stash->{documento} =
+      $c->model('Usuario')
+      ->recebePermissoesAcao( $c->stash->{dn_usuario}, 'documento' );
 
 }
 

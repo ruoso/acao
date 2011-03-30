@@ -1,0 +1,5 @@
+[% IF resultado == '0' %]
+<img src="[% c.uri_for('/static/img/accept.png') %]" alt="Atualizado com Sucesso" /> Atualizado com Sucesso!
+[% ELSE %]
+<img src="[% c.uri_for('/static/img/cancel.png') %]" alt="Erro ao atualizar" /> Tente Novamente.
+[% END %]
