@@ -54,16 +54,24 @@ sub login : Chained('base') : PathPart('') : Args(0) {
     my $password = $c->request->params->{password};
 
     if ( defined $user && defined $password ) {
-        $c->get_auth_realm(
-            Acao->config->{'Plugin::Authentication'}{default_realm} )
-          ->store->user_basedn( $c->req->param('dominio') );
-        if ( $c->authenticate( { id => $user, password => $password } ) ) {
+        
+        if ($c->authenticate( { id => $user, password => $password })) {
             $c->flash->{erro} = '';
+            if (ref($c->user->memberof) ne 'ARRAY' or !($c->model('Usuario')->validaUser($c->user->dn))) {
+                $c->flash->{erro} = 'usuario-nao-acao';
+                $c->res->redirect( $c->uri_for_action('/auth/logout'));
+                return;
+            }
+
             $c->res->redirect( $c->uri_for_action('/auth/principal') );
             return;
+
         }
         else {
-            $c->flash->{erro} = 'Usuário Inválido';
+            # Tratar a mensagem de usuário inválido
+            $c->flash->{erro} = 'user_failed';
+            $c->res->redirect( $c->uri_for_action('/auth/logout'));
+            return;
         }
     }
 }

@@ -36,15 +36,16 @@
     <a title="{$x/dc:motivoInvalidacao/@documentoOriginal}" href="[% c.uri_for_action('/auth/registros/volume/dossie/documento/visualizar', [ id_volume, controle, '___id_documento___' ]).replace('___id_documento___', '{$x/dc:motivoInvalidacao/@documentoOriginal}') %]">Original</a>
 ) else ( ) }
     </td>
-    <td>
-      {if ($x/dc:invalidacao/text() eq '1970-01-01T00:00:00Z') then (
+    {if ($x/dc:invalidacao/text() eq '1970-01-01T00:00:00Z') then (
+      <td>
         <a href="[% c.uri_for_action('/auth/registros/volume/dossie/documento/invalidar_documento', [ id_volume, controle, '___id_documento___' ]).replace('___id_documento___','{$x/dc:id/text()}') %]" class="fechar" title="Invalidar" onclick="javascript:if(!confirm('Deseja realmente INVALIDAR o documento?'))return false" id="invalidar"> Invalidar </a>
-       ) else ( ) }
+      </td>
+    ) else (
+      <td></td> ) }
+    <td>
         <a href="[% c.uri_for_action('/auth/registros/volume/dossie/documento/alterar', [ id_volume,controle,'___id_documento___' ]).replace('___id_documento___','{$x/dc:id/text()}') %]"  class="editar" title="Alterar Documento" >Alterar Documento</a>
+    </td>
 
-
-
-        </td>
     <input type="hidden" id="id_dossie" nome="id_dossie" value="{$x/ns:dossie/ns:collection/text()}"/>
   </tr>
 )

@@ -27,8 +27,7 @@
 <script SRC="[% c.uri_for('/static/js/xsdForm.js') %]" language="Javascript" ></script>
 <script SRC="[% c.uri_for('/static/js/xsdForm-ui.js') %]" language="Javascript" ></script>
 
-<form action="[% c.uri_for_action('/auth/registros/volume/dossie/documento/store', [ id_volume , controle ]) %]" method="post"
-    onsubmit="return generateXml('[% c.uri_for_action('/auth/registros/xsd/raw', { ns => xsdDocumento } ) %]', this.processed_xml);">
+ 
  <input type="hidden" name="processed_xml">
  <input type="hidden" name="id_volume" value="[% id_volume %]">
  <input type="hidden" name="xsdDocumento" value="[% xsdDocumento %]">
@@ -36,46 +35,44 @@
  <input type="hidden" name="invalidacao"  value="[% invalidacao %]">
  <input type="hidden" name="representaDocumentoFisico" value="[% representaDocumentoFisico %]">
 
-
-
 <div id="accordion">
   <h3><a href="#">Dados do Volume: [% vol.nome %]</a></h3>
   <div>
     <fieldset class="fieldsetBorderNone">
       <dl class="form15">
         <dt>Volume:</dt>
-      <dd><span>[% vol.nome %]</span></dd>
+        <dd><span>[% vol.nome %]</span></dd>
 
-      <dt>Classificação:</dt>
-      <dd><span>[% vol.classificacoes %]</span></dd>
+        <dt>Classificação:</dt>
+        <dd><span>[% vol.classificacoes %]</span></dd>
 
-      <dt>Localização:</dt>
-      <dd><span>[% vol.localizacao %]</span></dd>
+        <dt>Localização:</dt>
+        <dd><span>[% vol.localizacao %]</span></dd>
 
-      <dt>Estado:</dt>
-      <dd><span>[% vol.estado %]</span></dd>
+        <dt>Estado:</dt>
+        <dd><span>[% vol.estado %]</span></dd>
 
-      <dt>Data Criação:</dt>
-      <dd><span class="longDateFormat">[% vol.criacao %]</span></dd>
+        <dt>Data Criação:</dt>
+        <dd><span class="longDateFormat">[% vol.criacao %]</span></dd>
 
-      <dt>Vol. Físico:</dt>
-      <dd><span>[% vol.volume_fisico %]</span></dd>
+        <dt>Vol. Físico:</dt>
+        <dd><span>[% vol.volume_fisico %]</span></dd>
 
-      <dd>
-        <div name="xsdFormValidation">
-        <input type="hidden" name="controle" value = "[% controle %]"/>
+        <dd>
+          <div name="xsdFormValidation">
+          <input type="hidden" name="controle" value = "[% controle %]"/>
 
-        <div name="requiredField" style="display: none;">true</div>
-        </div>
-      </dd>
+          <div name="requiredField" style="display: none;">true</div>
+          </div>
+        </dd>
       </dl>
-   </fieldset>
-
+    </fieldset>
   </div>
+
   <h3><a href="#">Dados do Prontuário: [% dos.nome %]</a></h3>
-    <div>
-      <fieldset class="fieldsetBorderNone">
-        <dl class="form15">
+  <div>
+    <fieldset class="fieldsetBorderNone">
+      <dl class="form15">
         <dt> <label> Prontuário: </label> </dt>
         <dd> <span> [% dos.nome %] </span> </dd>
 
@@ -93,15 +90,15 @@
 
         <dt>Pront. Físico:</dt>
         <dd><span>[% dos.dossie_fisico %]</span></dd>
-        <dl>
+      <dl>
       </fieldset>
-
     </div>
 </div>
 <br>
 
  <fieldset>
-   <a href="[% c.uri_for_action('/auth/registros/volume/dossie/documento/visualizar_por_tipo', [ id_volume, controle, id_documento ])%]"> Visualizar Todos Deste Tipo </a>
+   <a href="[% c.uri_for_action('/auth/registros/volume/dossie/documento/visualizar_por_tipo', [ id_volume, controle, id_documento ])%]"> Visualizar Todos Deste Tipo </a> <br/>
+   <a href="[% c.uri_for_action('/auth/registros/volume/dossie/documento/alterar', [ id_volume, controle, id_documento ]) %]" >  Alterar Documento </a>
  </fieldset>
 
 [% IF invalidacao == '1970-01-01T00:00:00Z' %]
@@ -119,12 +116,12 @@
 [%# IF c.config.roles.dossie.criar %]
     [%# IF invalidacao == '1970-01-01T00:00:00Z' %]
       [% IF c.model('Documento').pode_alterar_documento(id_volume,controle,id_documento) %]
-         <input type="submit" value="Submeter alterações como novo documento">
+
          [% END %]
     [%# END %]
 [%# END %]
 
- </form>
+
 
 <style rel="stylesheet" type="text/css">
   .text {

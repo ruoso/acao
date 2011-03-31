@@ -1,0 +1,281 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml"
+  xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-cca-fichacadastral-dadosresidencia.xsd"
+  xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+  targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-cca-fichacadastral-dadosresidencia.xsd"
+  elementFormDefault="qualified">
+
+  <xs:element name="formDadosDeResidencia" type="formDadosDeResidencia">
+    <xs:annotation>
+      <xs:appinfo>
+        <xhtml:label>06. DADOS DA RESIDÊNCIA</xhtml:label>
+        <class:classificacoes>
+          <class:classificacao>cn=Educação e Arte,cn=Direitos Humanos</class:classificacao>
+        </class:classificacoes>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="formDadosDeResidencia">
+    <xs:sequence>
+
+      <xs:element name="dadosResidencia" minOccurs="0">
+        <xs:annotation>
+          <xs:appinfo>
+            <xhtml:label>Dados da Residência</xhtml:label>
+          </xs:appinfo>
+        </xs:annotation>
+
+        <xs:complexType name="formDadosResidencia">
+          <xs:sequence>
+
+           <xs:element name="situacaoMoradia"
+              minOccurs="0">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>
+                    Situação da Moradia:
+                  </xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="Próprio" />
+                  <xs:enumeration value="Alugada" />
+                  <xs:enumeration value="Ocupação" />
+                  <xs:enumeration value="Cedida" />
+                  <xs:enumeration value="Conjunto Habitacional" />
+                  <xs:enumeration value="Outros" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+
+             <xs:element name="situacaoMoradiaOutro"
+              minOccurs="0">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>
+                    Se Outros epecifique o tipo:
+                  </xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="255" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+
+            <xs:element name="tipoConstrucao"
+              minOccurs="0">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>
+                    Tipo de Contrução:
+                  </xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="Tijolo/Alvenaria" />
+                  <xs:enumeration value="Taipa com Reboco" />
+                  <xs:enumeration value="Taipa sem Reboco" />
+                  <xs:enumeration value="Madeira" />
+                  <xs:enumeration value="Material Aproveitado" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+
+            <xs:element name="tipoAbastecimentoAgua"
+              minOccurs="0">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>
+                    Tiop do Abastecimento da Água
+                  </xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="Rede Pública" />
+                  <xs:enumeration value="Poço/Nascimento" />
+                  <xs:enumeration value="Carro pipa" />
+                  <xs:enumeration value="Outros" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+
+             <xs:element name="tipoAbastecimentoAguaOutro"
+              minOccurs="0">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>
+                    Se Outros epecifique o tipo:
+                  </xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="255" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+
+            <xs:element name="tipoTratamentoAgua"
+              minOccurs="0">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>
+                    Tratamento da Água:
+                  </xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="Filtração" />
+                  <xs:enumeration value="Fervura" />
+                  <xs:enumeration value="Cloração" />
+                  <xs:enumeration value="Sem Tratamento" />
+                  <xs:enumeration value="Outros" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+
+             <xs:element name="tipoTratamentoAguaOutro"
+              minOccurs="0">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>
+                    Se Outros epecifique o tipo:
+                  </xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="255" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+
+            <xs:element name="tipoIluminacao"
+              minOccurs="0">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>
+                    Tipo da Iluminação
+                  </xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+             <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="Energia Elétrica Formal" />
+                  <xs:enumeration value="Energia Elétrica Informal/Sem Relógio" />
+                  <xs:enumeration value="Energia Elétrica Comunitária" />
+                  <xs:enumeration value="Lampião" />
+                  <xs:enumeration value="Vela" />
+                  <xs:enumeration value="Outros" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+
+            <xs:element name="tipoIluminacaoOutro"
+              minOccurs="0">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>
+                    Se Outros epecifique o tipo:
+                  </xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="255" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+
+            <xs:element name="escoamentoSanitario" minOccurs="0">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Escoamento Sanitário</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="Rede Pública" />
+                  <xs:enumeration value="Fossa Rudimentar/Buraco" />
+                  <xs:enumeration value="Fossa Séptica" />
+                  <xs:enumeration value="Céu Aberto" />
+                  <xs:enumeration value="Vala" />
+                  <xs:enumeration value="Outros" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+
+            <xs:element name="escoamentoSanitarioOutro"
+              minOccurs="0">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>
+                    Se Outros epecifique o tipo:
+                  </xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="255" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+
+            <xs:element name="destinoLixo"
+              minOccurs="0">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Destino do Lixo Domiciliar</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="Coletado" />
+                  <xs:enumeration value="Queimado" />
+                  <xs:enumeration value="Enterrado" />
+                  <xs:enumeration value="Céu Aberto" />
+                  <xs:enumeration value="Outros" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+
+            <xs:element name="destinoLixoOutro"
+              minOccurs="0">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>
+                    Se Outros epecifique o tipo:
+                  </xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="255" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+
+              <xs:element name="dataCadastro" type="xs:date" minOccurs="0">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <xhtml:label>Data de Cadastro</xhtml:label>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+
+          </xs:sequence>
+        </xs:complexType>
+
+      </xs:element>
+    </xs:sequence>
+
+  </xs:complexType>
+</xs:schema>

@@ -205,8 +205,11 @@ doc("$collections")/collections/collection
 # Lista todos os documentos
 doc("$documents")/documents/document  
 
-# Lista todos os documentos em uma determinada collection
-doc("$documents")/documents/collection[@name="acao-schemas"] &
+# Lista todos os documentos em todas as collections
+doc("$documents")/documents 
+
+#Lista documentos em uma collection determinada
+doc("$documents")/documents/collection[@name="nome da collection"]
 
 # backup
 sudo LD_LIBRARY_PATH=/usr/lib/sedna/driver/c/ /usr/lib/sedna/bin/se_exp export acao /home/"SEU DIRETORIO"
