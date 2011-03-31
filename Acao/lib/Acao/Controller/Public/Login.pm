@@ -54,30 +54,15 @@ sub login : Chained('base') : PathPart('') : Args(0) {
     my $password = $c->request->params->{password};
 
     if ( defined $user && defined $password ) {
-<<<<<<< HEAD
-        if ( $c->authenticate( { id => $user, password => $password } ) ) {
-            $c->flash->{erro} = '';
-=======
-        # Set o direitorio base de autenticação para o valor do atributo definido no acon.conf
-        # my $base_rh =  Acao->config->{'Model::LDAP'}{base_rh};
-        # $c->get_auth_realm(
-            # Acao->config->{'Plugin::Authentication'}{default_realm} )
-          # ->store->user_basedn( $base_rh );       
-# 
-        # $c->get_auth_realm(
-            # Acao->config->{'Plugin::Authentication'}{default_realm} )
-          # ->store->user_scope( "sub" );
-
         
         if ($c->authenticate( { id => $user, password => $password })) {
-                
+            $c->flash->{erro} = '';
             if (ref($c->user->memberof) ne 'ARRAY' or !($c->model('Usuario')->validaUser($c->user->dn))) {
                 $c->flash->{erro} = 'usuario-nao-acao';
                 $c->res->redirect( $c->uri_for_action('/auth/logout'));
                 return;
             }
 
->>>>>>> area_administrativa
             $c->res->redirect( $c->uri_for_action('/auth/principal') );
             return;
 
