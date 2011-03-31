@@ -51,11 +51,11 @@
 <table>
 <thead>
  <tr>
-  <th width="20%">Schemas XSD</th>
+  <th width="30%">Schemas XSD</th>
   <th>Label</th>
   <th>Classificação</th>
   <th>Versão</th>
-  <th>Operações</th>
+  <th colspan="2">Operações</th>
   <th>Status</th>
  </tr>
 </thead>
@@ -63,11 +63,9 @@
 
 [% TRY %]
 
-   [%
-
-
-
-    xquery = c.model('Schema').listar_schemas({
+[%  xqueryret = PROCESS 'auth/admin/schema/lista_xqueryret.tt';
+        #c.model('Sedna').conn.setConnectionAttr_CONCURRENCY_TYPE(c.model('Sedna').conn.SEDNA_READONLY_TRANSACTION);
+        xquery = c.model('Schema').listar_schemas({
                               'grid' => xqueryret,
                               'ip' => c.req.address,
                               'interval_ini' => interval_ini,
@@ -75,31 +73,30 @@
                               'busca'		=> busca
                               'num_por_pagina' => num_por_pagina
                             });
-    c.model('Sedna').begin;
+        c.model('Sedna').begin;
 
-    c.model('Sedna').execute( xquery.list );
+      c.model('Sedna').execute( xquery.list );
 
-    WHILE (item = c.model('Sedna').get_item);
-        CALL c.controller.audit_listar(item,' - ' _ c.user);
+      WHILE (volumeid = c.model('Sedna').get_item);
+        CALL c.controller.audit_listar(volumeid);
         SET html = c.model('Sedna').get_item;
         html;
-    END;
+      END;
 
 
-     c.model('Sedna').execute( xquery.count );
-     WHILE (contador = c.model('Sedna').get_item);
-       count = contador;
-     END;
+      c.model('Sedna').execute( xquery.count );
+      WHILE (contador = c.model('Sedna').get_item);
+        count = contador;
+      END;
 
-    c.model('Sedna').commit; %]
+      c.model('Sedna').commit; %]
 
 
 [% CATCH %]
     <div class="erro">ERRO AO PROCESSAR CONSULTA:
      <PRE>[% error.info %]</PRE>
-    </div>
 [% END %]
-
+</div>
 
 </TBODY>
 </table>

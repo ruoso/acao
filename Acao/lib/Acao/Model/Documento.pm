@@ -115,47 +115,27 @@ txn_method 'listar_documentos' => authorized $role_listar => sub {
       . ' or (@herdar/string() = "1" and '.$herdar_author_dossie.')'
       .' or (@herdar/string() = "1" and ('.$herdar_dossie.') = "1" and '.$herdar_author_volume.')';
 
+      my $for = 'collection("'
+              . $args->{id_volume}
+              . '")/ns:dossie[ns:controle = "'
+              . $args->{controle}.'"]';
 
 
+    my $xquery_for  = 'for $x at $i in ' . $for . '/ns:doc/*, ';
+       $xquery_for .= '$y in collection("acao-schemas")/xss:schema/xss:element/xss:annotation/xss:appinfo/xhtml:label/text() ';
 
-      ####################################################################***
-    my $for =
-        'collection("'
-      . $args->{id_volume}
-      . '")/ns:dossie[ns:controle = "'
-      . $args->{controle}.'"]';
+    my $xquery_where = 'where $y/../../../../../@targetNamespace = namespace-uri($x/dc:documento/*/*) ';
+       $xquery_where .= 'and ' . $args->{where_documentos_validos} . ' ';
+       $xquery_where .= 'and ' . $args->{where_tipo_documento} . ' ';
+       $xquery_where .= 'and $x/dc:autorizacoes['.$herdar.']';
 
+    my $list = $declare_namespace . ' subsequence(' . $xquery_for . $xquery_where . ' ';
+       $list .= ' order by $x/dc:criacao descending';
+       $list .= ' return ($i , ' . $args->{xqueryret} . '), ';
+       $list .= '(('.$args->{interval_ini}.' * '.$args->{num_por_pagina}.') + 1), '.$args->{num_por_pagina}.')';
 
-    my $xquery_for = 'for $x at $i in ' . $for . '/ns:doc/*, ';
-
-    $xquery_for .=
-'$y in collection("acao-schemas")/xss:schema/xss:element/xss:annotation/xss:appinfo/xhtml:label/text() ';
-
-    my $xquery_where =
-'where $y/../../../../../@targetNamespace = namespace-uri($x/dc:documento/*/*) ';
-    $xquery_where .= 'and ' . $args->{where_documentos_validos} . ' ';
-    $xquery_where .= 'and ' . $args->{where_tipo_documento} . ' ';
-    $xquery_where .= 'and $x/dc:autorizacoes['.$herdar.']';
-
-
-
-
-    my $list =
-      $declare_namespace . ' subsequence(' . $xquery_for . $xquery_where . ' ';
-    $list .= ' order by $x/dc:criacao descending';
-    $list .= ' return ($i , ' . $args->{xqueryret} . '), ';
-    $list .= '(('
-      . $args->{interval_ini} . ' * '
-      . $args->{num_por_pagina}
-      . ') + 1), '
-      . $args->{num_por_pagina} . ')';
-
-    my $count =
-        $declare_namespace
-      . 'count('
-      . $xquery_for
-      . $xquery_where
-      . ' return "")';
+    my $count = $declare_namespace
+              . 'count('.$xquery_for.$xquery_where.' return "")';
 
     return {
         list  => $list,

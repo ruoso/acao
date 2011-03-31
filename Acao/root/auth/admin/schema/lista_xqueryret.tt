@@ -21,6 +21,9 @@
 /@targetNamespace/string()}')%]" >Inativar</a>)}
   </td>
   <td>
+    <a href="[% c.uri_for_action('/auth/admin/schema/form_substituir', {XSDtargetNamespace => '___XSDtargetNamespace___'}).replace('___XSDtargetNamespace___','{$x/@targetNamespace/string()}')%]"> Substituir</a>
+  </td>
+  <td>
     {$x/xs:element/xs:annotation/xs:appinfo/class:classificacoes/@validacao/string()}
   </td>
 </tr>

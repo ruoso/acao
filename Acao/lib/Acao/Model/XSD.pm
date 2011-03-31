@@ -93,8 +93,7 @@ txn_method 'link_xsd' => authorized $role_listar => sub {
                  or not(boolean($x/xs:schema/xs:element/xs:annotation/xs:appinfo/cl:classificacoes/@validacao/string()))
               order by $x/xs:schema/xs:element/xs:annotation/xs:appinfo/xhtml:label/text()
               return ' . $xqueryret;
-    warn $xq;
-    warn 'é aqui mesmooooooooooooooooOOOOOOOOOOOOOOOOOOOoooooooooOOOOOOOOOOOOOOOOOOOOooooooOOOoooOOOOoooOOOooooOOOOooooOOOooooOOOooooOOOOoooOOOOoooooOOOoooOO';
+ 
     $self->sedna->execute($xq);
     my $ret;
     while ( my $item = $self->sedna->get_item() ) {

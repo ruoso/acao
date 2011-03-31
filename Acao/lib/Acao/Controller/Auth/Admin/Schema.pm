@@ -82,11 +82,6 @@ sub store : Chained('base') : PathPart('store_upload') : Args(0) {
 
     }
 
-
-
-
-
-
     return;
 }
 
@@ -97,6 +92,54 @@ sub validacao : Chained('base') : PathPart('validar')  : Args(1) {
     $c->stash->{template} = 'auth/admin/schema/lista.tt';
     return;
 }
+
+sub form_substituir : Chained('base') : PathPart('form_substituir') : Args(0) {
+    my ( $self, $c ) = @_;
+    my $XSDtargetNamespace = $c->req->param('XSDtargetNamespace');
+    my $countTNS = $c->model('Schema')->verifica_schemas( $XSDtargetNamespace );
+    
+    if ($countTNS != 0 ) {
+        $c->res->redirect( $c->uri_for_action('/auth/admin/schema/lista') );
+        $c->flash->{erro} = 'Existe(m) '.$countTNS.' documento(s) deste tipo persistido(s) no banco.';
+        return;
+    }
+
+    return;
+}
+
+sub substituir_xsd : Chained('base') : PathPart('substituir_xsd') : Args(0) {
+    my ( $self, $c ) = @_;
+    my $XSDtargetNamespace = $c->req->param('XSDtargetNamespace');
+    
+    if ( $c->request->parameters->{form_submit} eq 'yes' ) {
+        $c->stash->{template} = 'auth/admin/schema/form_substituir.tt';
+        if ( my $upload = $c->req->upload('uploadSchema') ) {
+
+            my $filename = $upload->filename;
+            my $target = $diretorio.$filename;
+
+            if (!($upload->type eq 'application/xml')) {
+
+                $c->flash->{erro} = 'upload-arquivo';
+                return;
+            }
+
+            unless ( $upload->link_to($target) || $upload->copy_to($target) ) {
+                die("Failed to copy '$filename' to '$target': $!");
+            }
+            my $res = $c->model('Schema')->substituir_schema('acao-schemas',$target,$filename);
+            if (!$res) {
+                $c->flash->{erro} = 'xsd_duplicado';
+
+            } else {
+                $c->res->redirect( $c->uri_for_action('/auth/admin/schema/lista') );
+                $c->flash->{sucesso} = 'Schema XSD enviado com com sucesso';
+            }
+        }
+
+    }
+
+    return;
+
+}
 1;
-
-
