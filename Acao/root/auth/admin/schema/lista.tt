@@ -55,7 +55,7 @@
   <th>Label</th>
   <th>Classificação</th>
   <th>Versão</th>
-  <th>Operações</th>
+  <th colspan="2">Operações</th>
   <th>Status</th>
  </tr>
 </thead>
@@ -95,9 +95,8 @@
 [% CATCH %]
     <div class="erro">ERRO AO PROCESSAR CONSULTA:
      <PRE>[% error.info %]</PRE>
-    </div>
 [% END %]
-
+</div>
 
 </TBODY>
 </table>

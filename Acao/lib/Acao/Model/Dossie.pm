@@ -151,46 +151,40 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
       . $check . ']])))';
 
     # Query para listagem
-    my $list =
-        $declarens
-      . 'subsequence('
-      . 'for $x in collection("'
-      . $args->{id_volume}
-      . '")/ns:dossie[ns:autorizacoes['
-      . $herdar . ']] '
-      . $where
-      . ' let $alterar := if ($x/ns:autorizacoes/@herdar = "1") then ('
-      . '  count(collection("volume")/vol:volume[vol:collection = "'.$args->{id_volume}.'"]/vol:autorizacoes/author:autorizacao[('.$grupos.') and @role = "alterar"]) '
-      . ' + count(collection("'.$args->{id_volume}.'")/ns:dossie[ns:controle = $x/ns:controle]/ns:autorizacoes/author:autorizacao[('.$grupos.') and @role = "alterar"]) '
-      . ') else ( '
-      . ' count(collection("'.$args->{id_volume}.'")/ns:dossie[ns:controle = $x/ns:controle]/ns:autorizacoes/author:autorizacao[('.$grupos.') and @role = "alterar"]) '
-      . ')'
-      . ' let $transferir := if ($x/ns:autorizacoes/@herdar = "1") then ('
-      . '  count(collection("volume")/vol:volume[vol:collection = "'.$args->{id_volume}.'"]/vol:autorizacoes/author:autorizacao[('.$grupos.') and @role = "transferir"]) '
-      . ' + count(collection("'.$args->{id_volume}.'")/ns:dossie[ns:controle = $x/ns:controle]/ns:autorizacoes/author:autorizacao[('.$grupos.') and @role = "transferir"]) '
-      . ') else ( '
-      . ' count(collection("'.$args->{id_volume}.'")/ns:dossie[ns:controle = $x/ns:controle]/ns:autorizacoes/author:autorizacao[('.$grupos.') and @role = "transferir"]) '
-      . ')'
-            . ' order by $x/ns:criacao descending '
-      . 'return ($x/ns:controle/text() , '
-      . $args->{xqueryret} . '), ' . '(('
-      . $args->{interval_ini} . ' * '
-      . $args->{num_por_pagina}
-      . ') + 1), '
-      . $args->{num_por_pagina} . '' . ')';
-warn $list;
-    # Contrução da query de contagem para contrução da paginação
-    my $count =
-        $declarens
-      . 'count('
-      . ' for $x in collection("'
-      . $args->{id_volume}
-      . '")/ns:dossie[ns:autorizacoes/author:autorizacao[('
-      . $grupos . ')'
-      . 'and @role="listar"]]  '
-      . $where
-      . ' return "" )';
+    my $list = $declarens
+             . 'subsequence('
+             . 'for $x in collection("'
+             . $args->{id_volume}
+             . '")/ns:dossie[ns:autorizacoes['
+             . $herdar . ']] '
+             . $where
+             . ' let $alterar := if ($x/ns:autorizacoes/@herdar = "1") then ('
+             . '  count(collection("volume")/vol:volume[vol:collection = "'.$args->{id_volume}.'"]/vol:autorizacoes/author:autorizacao[('.$grupos.') and @role = "alterar"]) '
+             . ' + count(collection("'.$args->{id_volume}.'")/ns:dossie[ns:controle = $x/ns:controle]/ns:autorizacoes/author:autorizacao[('.$grupos.') and @role = "alterar"]) '
+             . ') else ( '
+             . ' count(collection("'.$args->{id_volume}.'")/ns:dossie[ns:controle = $x/ns:controle]/ns:autorizacoes/author:autorizacao[('.$grupos.') and @role = "alterar"]) '
+             . ')'
+             . ' let $transferir := if ($x/ns:autorizacoes/@herdar = "1") then ('
+             . '  count(collection("volume")/vol:volume[vol:collection = "'.$args->{id_volume}.'"]/vol:autorizacoes/author:autorizacao[('.$grupos.') and @role = "transferir"]) '
+             . ' + count(collection("'.$args->{id_volume}.'")/ns:dossie[ns:controle = $x/ns:controle]/ns:autorizacoes/author:autorizacao[('.$grupos.') and @role = "transferir"]) '
+             . ') else ( '
+             . ' count(collection("'.$args->{id_volume}.'")/ns:dossie[ns:controle = $x/ns:controle]/ns:autorizacoes/author:autorizacao[('.$grupos.') and @role = "transferir"]) '
+             . ')'
+             . 'order by $x/ns:criacao descending '
+             . 'return ($x/ns:controle/text() , '
+             . $args->{xqueryret} . '),' . '('
+             . $args->{interval_ini} * $args->{num_por_pagina}
+             . ') + 1 ,'
+             . $args->{num_por_pagina} . '' . ')';
 
+
+    # Contrução da query de contagem para contrução da paginação
+    my $count = $declarens
+              #. ' count( for $x in collection("'.$args->{id_volume}.'")/ns:dossie[ns:autorizacoes/author:autorizacao[('.$grupos.') and @role="listar"]] '
+              . ' count( for $x in collection("'.$args->{id_volume}.'")/ns:dossie/ns:autorizacoes ' 
+              . $where
+              . ' return "" )';
+warn $count;
     return {
         list     => $list,
         count    => $count,

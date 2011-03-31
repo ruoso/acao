@@ -101,7 +101,7 @@ txn_method 'listar_volumes' => authorized $role_listar => sub {
              . $args->{interval_ini} * $args->{num_por_pagina}
              . ') + 1 ,'
              . $args->{num_por_pagina} . '' . ')';
-warn $list;
+
     # Contrução da query de contagem para contrução da paginação
 
     my $count = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";'
