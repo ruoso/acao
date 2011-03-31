@@ -7,6 +7,8 @@ use Sedna;
 use warnings;
 use lib '/home/pauloneto/devel/acao/Acao/lib';
 use Acao;
+use utf8;
+
 
 my $sedna = Sedna->connect('172.30.116.22', 'AcaoDb', 'acao', '12345');
 $sedna->setConnectionAttr(AUTOCOMMIT => Sedna::SEDNA_AUTOCOMMIT_OFF() );
@@ -25,6 +27,8 @@ my %auth = (
         role => [qw(alterar criar listar visualizar)]
     }
 );
+
+my $model = Acao::Model::Dossie->new(user => DumbUser->new(), sedna => Acao->model('Sedna'), dbic => Acao->model('DB')->schema);
 
 sub extract{
     my $parser   = Spreadsheet::ParseExcel->new();
@@ -49,7 +53,10 @@ sub extract{
     #               print "Value       = ", $cell->value(),       "\n";
     #               print "Unformatted = ", $cell->unformatted(), "\n";
     #               print "\n";
-                    load($cell->value());
+                    warn "Preparando ". $cell->value();
+                    my $value = $cell->value;
+                    utf8::encode($value);
+                    load($value);
             }
         }
     }
@@ -58,17 +65,16 @@ sub extract{
 sub transform{}
 
 sub load{
-    my $nomeProntuario;
+    my $nomeProntuario = shift;
     criarPrntuario($nomeProntuario);
 }
 
 sub criarPrntuario(){
-     my $nome = @_;
+     my $nome = shift;
      my($representaDossieFisico, $classificacao, $localizacao,$autorizacoes, $ip, $herdar_author, $id_volume) = 
        (0, {'classificacao' => ["cn=Protejo,cn=Infância e Adolescência,cn=Segurança Pública"]}, 'SERCEFOR', \%auth , '127.0.0.1', 1, 'volume-4D9D2944-5485-11E0-A3EB-A024E72DC907');
-     my $model = Acao::Model::Dossie->new(user => DumbUser->new(), sedna => Acao->model('Sedna'), dbic => Acao->model('DB')->schema);
      my $prontuario = $model->criar_dossie($ip, $nome, $id_volume, $representaDossieFisico, $classificacao, $localizacao, $herdar_author, $autorizacoes);
-        warn "Prontuario $prontuario criado com sucesso!";
+     warn "Prontuario $nome criado com sucesso!";
 }
 
 extract();

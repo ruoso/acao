@@ -2,6 +2,8 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
 	xmlns="http://schemas.fortaleza.ce.gov.br/habitafor/aldeiadapraia-cadernob.xsd"
+	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
+	xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
 	targetNamespace="http://schemas.fortaleza.ce.gov.br/habitafor/aldeiadapraia-cadernob.xsd"
 	elementFormDefault="qualified">
 
@@ -275,7 +277,6 @@
 								<xs:appinfo>
 									<xhtml:label>18 - Tipo de Escola</xhtml:label>
 								</xs:appinfo>
-
 							</xs:annotation>
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
@@ -300,14 +301,21 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="nomeDaEscola" type="xs:string"
-							minOccurs="0">
+						<xs:element name="nomeDaEscola" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>20 - Nome da Escola que frequenta</xhtml:label>
-
 								</xs:appinfo>
+								<xsdext:extensions>
+									<xsdext:engine>autoComplete</xsdext:engine>
+									<xsdext:service>/escolas</xsdext:service>
+								</xsdext:extensions>
 							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="100" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 						<xs:element name="motivoDeParaDeEstudar" minOccurs="0">
 							<xs:annotation>
@@ -827,14 +835,21 @@
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
-			<xs:element name="postoSaudeTratamento" type="xs:string"
-				minOccurs="0">
+			<xs:element name="postoSaudeTratamento" minOccurs="0">
 				<xs:annotation>
-
 					<xs:appinfo>
 						<xhtml:label>36 - Que posto de saúde frequenta?</xhtml:label>
 					</xs:appinfo>
+					<xsdext:extensions>
+						<xsdext:engine>autoComplete</xsdext:engine>
+						<xsdext:service>/unidadessaude</xsdext:service>
+					</xsdext:extensions>
 				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="100" />
+					</xs:restriction>
+				</xs:simpleType>
 			</xs:element>
 			<xs:element name="unidadeMedicaProcurada" minOccurs="0">
 				<xs:annotation>
@@ -876,7 +891,6 @@
 									<xs:enumeration value="Empregado c/ Carteira Assinada" />
 									<xs:enumeration value="Empregado sem carteira" />
 									<xs:enumeration value="Aposentado(a)" />
-
 									<xs:enumeration value="Pensionista" />
 									<xs:enumeration value="Autônomo" />
 									<xs:enumeration value="Cooperado(a)" />
