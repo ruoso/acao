@@ -558,6 +558,12 @@ sub find_key_indexes {
 	return @indexes;
 }
 
+sub reindexa {
+    my $self = shift;
+    my ($id_volume) = @_;
+    $self->reindexar($id_volume);
+}
+
 =cut
 
 =item
