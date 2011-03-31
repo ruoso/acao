@@ -2,6 +2,8 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
 	xmlns="http://schemas.fortaleza.ce.gov.br/habitafor/aldeiadapraia-cadernoa.xsd"
+	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
+	xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
 	targetNamespace="http://schemas.fortaleza.ce.gov.br/habitafor/aldeiadapraia-cadernoa.xsd"
 	elementFormDefault="qualified">
 
@@ -107,14 +109,21 @@
 				</xs:annotation>
 				<xs:complexType>
 					<xs:sequence>
-						<xs:element name="logradouro" type="xs:string"
-							minOccurs="0">
+						<xs:element name="logradouro" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-
 									<xhtml:label>8 - Logradouro</xhtml:label>
 								</xs:appinfo>
+								<xsdext:extensions>
+									<xsdext:engine>autoComplete</xsdext:engine>
+									<xsdext:service>/enderecos</xsdext:service>
+								</xsdext:extensions>
 							</xs:annotation>
+							  <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:maxLength value="100" />
+                                </xs:restriction>
+                            </xs:simpleType>
 						</xs:element>
 						<xs:element name="numero" type="xs:integer" minOccurs="0">
 							<xs:annotation>
@@ -508,14 +517,21 @@
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
-						<xs:element name="enderecoProprietario" type="xs:string"
-							minOccurs="0">
+						<xs:element name="enderecoProprietario" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-
 									<xhtml:label>34 - Endereço do Proprietário</xhtml:label>
 								</xs:appinfo>
+								<xsdext:extensions>
+									<xsdext:engine>autoComplete</xsdext:engine>
+									<xsdext:service>/enderecos</xsdext:service>
+								</xsdext:extensions>
 							</xs:annotation>
+							  <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:maxLength value="100" />
+                                </xs:restriction>
+                            </xs:simpleType>
 						</xs:element>
 						<xs:element name="telefoneProprietario" type="xs:string"
 							minOccurs="0">
@@ -938,7 +954,8 @@
 
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="tratamentoAguaConsumida" minOccurs="0">
+									<xs:element name="tratamentoAguaConsumida"
+										minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>45 - Tratamento da água consumida
@@ -954,8 +971,8 @@
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:element>
-									<xs:element name="tratamentoAguaConsumidaOutro" type="xs:string"
-										minOccurs="0">
+									<xs:element name="tratamentoAguaConsumidaOutro"
+										type="xs:string" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Especifique</xhtml:label>
