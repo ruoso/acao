@@ -54,9 +54,6 @@ sub login : Chained('base') : PathPart('') : Args(0) {
     my $password = $c->request->params->{password};
 
     if ( defined $user && defined $password ) {
-        $c->get_auth_realm(
-            Acao->config->{'Plugin::Authentication'}{default_realm} )
-          ->store->user_basedn( $c->req->param('dominio') );
         if ( $c->authenticate( { id => $user, password => $password } ) ) {
             $c->flash->{erro} = '';
             $c->res->redirect( $c->uri_for_action('/auth/principal') );
