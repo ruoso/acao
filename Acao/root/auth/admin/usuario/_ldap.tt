@@ -1,0 +1,54 @@
+[%#
+# Copyright 2010 - Prefeitura Municipal de Fortaleza
+#
+# Este arquivo Ã© parte do programa AÃ§Ã£o - Sistema de Acompanhamento de
+# Projetos Sociais
+#
+# O AÃ§Ã£o Ã© um software livre; vocÃª pode redistribui-lo e/ou modifica-lo
+# dentro dos termos da LicenÃ§a PÃºblica Geral GNU como publicada pela
+# FundaÃ§Ã£o do Software Livre (FSF); na versÃ£o 2 da LicenÃ§a.
+#
+# Este programa Ã© distribuido na esperanÃ§a que possa ser util, mas SEM
+# NENHUMA GARANTIA; sem uma garantia implicita de ADEQUAÃÃO a qualquer
+# MERCADO ou APLICAÃÃO EM PARTICULAR. Veja a LicenÃ§a PÃºblica Geral GNU
+# para maiores detalhes.
+#
+# VocÃª deve ter recebido uma cÃ³pia da LicenÃ§a PÃºblica Geral GNU, sob o
+# tÃ­tulo "LICENCA.txt", junto com este programa, se nÃ£o, escreva para a
+# FundaÃ§Ã£o do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
+%]
+<input type="hidden" name="basedn" value="[% basedn %]" />
+<div id="grid-autorizacoes"></div>
+<div id="borderAutorizacao">
+  <div class="consultaLdap">
+
+  <div class='base' >
+     [%  FOREACH group IN c.model('LDAP').buscar_dn_adm(basedn) %]
+
+        <input type="checkbox" name="grupos_ldap[]" value="[% group.dn %]"/>
+        <a  href="javascript:void(0);" name="grupos" onclick="navega_ldap('[% c.uri_for_action('/auth/admin/usuario/navega_ldap') %]','[% group.dn %]')" >
+           [% group.get_value('o') || group.get_value('ou') %]
+        </a>
+
+     [% END %]
+ </div>
+</div>
+
+
+
+<script type="text/javascript">
+
+function navega_ldap(action,grupos) {
+  $.ajax({
+       type: "POST",
+       url: action,
+       data: "grupos=" + grupos ,
+       success: function(msg){
+        $('.consultaLdap').html(msg);
+
+       }
+
+  });
+}
+
+   </script>

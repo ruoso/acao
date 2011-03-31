@@ -70,8 +70,9 @@ sub insert_indices {
     my $resumo = "$nm_volume - $nm_prontuario - $label";
     my $indices = $self->extract_xml_keys( $xsd, $idx_data, $id_volume, $controle, $id_documento );
     my $autorizacoes_vol = $self->extract_autorizacoes_volume($id_volume);
-
+    warn Dumper $indices;
     my ( $autorizacoes_dos, $herda_dos ) = $self->extract_autorizacoes_dossie( $id_volume, $controle );
+    
     my ( $autorizacoes_doc, $herda_doc ) = $self->extract_autorizacoes_documento($id_volume, $controle, $id_documento);
 
     my $v = $self->dbic->resultset('Volume')->find_or_create(
@@ -269,6 +270,7 @@ sub get_xsd_info {
       . $ns . '"] 
               return ( $x/xs:element[1]/xs:annotation/xs:appinfo/xhtml:label/text(),
                        $x/xs:element[1]/xs:annotation/xs:appinfo/idx:index )';
+    $xq =~ s/\n//gis;
     $self->sedna->execute($xq);
     my $label = $self->sedna->get_item;
     $label =~ s/^\s+|\s+$//gs;
@@ -311,8 +313,8 @@ sub extract_xml_keys {
       . $id_documento
       . '"]/dc:documento/dc:conteudo
                   return (' . $xqueryret . ')';
-    warn $xquery;
     my @xmldata;
+    $xquery =~ s/\n//gis;
     $self->sedna->execute($xquery);
     my @data;
     while ( my $key = $self->sedna->get_item ) {
@@ -412,6 +414,7 @@ sub extract_autorizacoes_documento {
                                  else ("0"),
                                  $x/dc:autorizacoes/author:autorizacao[@role="listar"]/@principal/string() )';
     my %dns;
+    $xquery =~ s/\n//gis;
     $self->sedna->execute($xquery);
     my $herda = $self->sedna->get_item;
 
@@ -474,6 +477,67 @@ sub get_nm_prontuario {
     $self->sedna->execute($xquery);
     my $nm_prontuario = $self->sedna->get_item;
     return $nm_prontuario;
+}
+
+=item
+
+=cut
+
+sub reindexar {
+    my $self = shift;
+    my ($id_volume) = @_;
+
+    my $id_dossie;
+    my $id_documento;
+    my $xsd;
+    my @dossies;
+
+    my $xq = 'declare namespace vol = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";
+          declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";
+          declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
+          declare namespace adt = "http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd";
+          declare namespace xhtml="http://www.w3.org/1999/xhtml";
+          declare namespace xss="http://www.w3.org/2001/XMLSchema";
+            for $x in collection("'.$id_volume.'")/ns:dossie
+            return ($x/ns:controle/text())';
+
+    #inicia a conexão com o sedna
+    $self->sedna->begin;
+
+    #executa a consulta
+    $self->sedna->execute($xq);
+
+    while ($id_dossie = $self->sedna->get_item) {
+        $id_dossie =~ s/\n//gis;
+        push @dossies, $id_dossie;
+    }
+    for my $id_dos (@dossies) {
+        my @data;
+        my $xquery = 'declare namespace vol = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";
+              declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";
+              declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
+              declare namespace adt = "http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd";
+              declare namespace xhtml="http://www.w3.org/1999/xhtml";
+              declare namespace xss="http://www.w3.org/2001/XMLSchema";
+                for $x in collection("'.$id_volume.'")/ns:dossie[ns:controle = "' . $id_dos . '" ]/ns:doc
+                /dc:documento/dc:documento/dc:conteudo/*
+                return ($x/../../../dc:id/text(), namespace-uri($x))';
+
+        $self->sedna->execute($xquery);
+        while ($id_documento = $self->sedna->get_item) {
+            $xsd = $self->sedna->get_item;
+            $id_documento =~ s/\n//gis;
+            $xsd =~ s/\n//gis;
+            push @data, {id_doc => $id_documento, xsd => $xsd};
+
+        }
+
+        for my $hash (@data) {
+            $self->insert_indices($id_volume, $id_dos, $hash->{id_doc}, $hash->{xsd});
+        }
+    }
+
+    $self->sedna->commit;
 }
 
 =head1 COPYRIGHT AND LICENSING
