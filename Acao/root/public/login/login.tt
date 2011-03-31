@@ -21,22 +21,14 @@
 [% INCLUDE 'errosucesso.tt' %]
 
 <form id="form" method="post" action="[%c.uri_for_action('/public/login/login')%]">
- <fieldset><legend>Dados de Autenticação</legend>
-  <DL>
-   <DT>Usuário:</DT>
-   <DD><input type="text" id="user" name="user" /></DD>
-   <DT>Domínio:</DT>
-   <DD>
-     <select name="dominio" id="dominio">
-[% FOREACH dom IN c.model('LDAP').buscar_dominios_auth -%]
-       <option value="[% dom.dn %]">[% dom.get_value('o') %]</option>
-[% END -%]
-     </select>
-   </DD>
-   <DT>Senha:</DT>
-   <DD><input type="password" id="name" name="password" /></DD>
+ <fieldset class="login"><legend>Dados de Autenticação</legend>
+  <dl>
+   <dt>Usuário:</dt>
+   <dd><input type="text" id="user" name="user" /></dd>
+   <dt>Senha:</dt>
+   <dd><input type="password" id="name" name="password" /></dd>
    <input type="submit" name="submit" value="Entrar" />
-  </DL>
+  </dl>
  </fieldset>
 </form>
 

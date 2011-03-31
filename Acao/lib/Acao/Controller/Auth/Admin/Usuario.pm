@@ -145,7 +145,7 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
                 'sobrenome' => $c->req->param('sobrenome'),
                 'email'     => $c->req->param('email'),
                 'fone'      => $c->req->param('fone'),
-                'dominio'   => $c->req->param('dominio'),
+                # 'dominio'   => $c->req->param('dominio'),
                 'volume'    => $volumeArray,
                 'dossie'    => $dossieArray,
                 'documento' => $documentoArray,

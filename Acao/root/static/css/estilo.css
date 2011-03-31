@@ -1005,6 +1005,23 @@ a.lotacao_alterar {
     text-indent: 1em;
 }
 
+a.remover_do_acap {
+    -moz-background-clip: border;
+    -moz-background-origin: padding;
+    -moz-background-size: auto auto;
+    background-attachment: scroll;
+    background-color: transparent;
+    background-image: url("../img/user/user_delete.png");
+    background-position: 0 1px;
+    background-repeat: no-repeat;
+    line-height: 18px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 2px;
+    padding-top: 2px;
+    text-indent: 1em;
+}
+
 a.alterar_permissoes {
     -moz-background-clip: border;
     -moz-background-origin: padding;
@@ -1081,7 +1098,15 @@ width: auto !important;
 
 
 }
+
+#alter_pass {
+  
+  
+}
+
+
 /* END div com input para alterar senha Carlos Wherbet */
+
 /*  div de legenda, em buscar usuários. Carlos Wherbet */
 #legenda {
     bottom: -25px;
@@ -1098,3 +1123,24 @@ width: auto !important;
   width: 90px;
   }
 /*  div de legenda, em buscar usuários. Carlos Wherbet */
+
+/*  Fieldset Login. Carlos Wherbet */
+.login {
+  width: 350px;
+  margin: 0 auto;
+}
+.login input[type="text"],.login input[type="password"] {
+  width: 200px;
+}
+
+.login dl dd  {
+  width: 200px !important;
+  left: 120px;
+}
+
+.login dl dt  {
+  width: 100px !important;
+}
+
+
+/* END Fieldset Login. Carlos Wherbet */

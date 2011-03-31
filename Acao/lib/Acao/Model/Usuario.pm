@@ -181,7 +181,7 @@ sub getDadosUsuarioLdap {
 
 sub storeUsuario {
     my ( $self, $args ) = @_;
-    my $DNbranch = $args->{dominio};
+    my $DNbranch = $self->base_rh;
     my $senha    = sha1_base64( $args->{senha} );
     $senha .= '=' while ( length($senha) % 4 );
     my $createArray = [
@@ -276,8 +276,8 @@ sub storeAlterarUsuario {
 
 sub validaUser {
     my ( $self, $dn ) = @_;
-    my $result = getDadosUsuarioLdap( $self, $dn, 'acao' )->{memberOf};
-    return scalar(@$result) > 1 or 0;
+    my $result = getDadosUsuarioLdap( $self, $dn, 'acao' )->{memberOf};    
+    return scalar(@$result) > 0 or 0;
 
 }
 

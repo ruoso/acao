@@ -19,9 +19,9 @@
 %]
 [% INCLUDE 'auth/admin/usuario/header_usuario.tt' %]
 [% INCLUDE 'errosucesso.tt' %]
-<h1 class="titulo-form">Gerenciar usuário do LDAP |
+<h1 class="titulo-form">Alterar Lotação do Usuário |
   <span style="font-size:13px; font-weight:normal;">
-       <a class="criar" href="[% c.uri_for_action('/auth/admin/usuario/lista') %]">Alterar Usuário</a>
+
   </span>
 </h1>
 <form name="Form" action="[% c.uri_for_action('/auth/admin/usuario/store_lotacao',[ dn_usuario ]) %]" method="post">

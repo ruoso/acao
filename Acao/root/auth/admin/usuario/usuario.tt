@@ -23,6 +23,7 @@
   <span style="font-size:13px; font-weight:normal;">
        <a class="lotacao_alterar" href="[% c.uri_for_action('/auth/admin/usuario/alterar_lotacao',[ dn_usuario ]) %]">Alterar Lotação</a>
        <a class="alterar_permissoes" href="[% c.uri_for_action('/auth/admin/usuario/alterar_permissoes',[ dn_usuario ]) %]">Alterar Permissões</a>
+       <a href="[% c.uri_for_action('/auth/admin/usuario/delete',[ dn_usuario ])%]" class="remover_do_acap" > Retirar do Ação</a>
 
   </span>
 </h1>
@@ -32,10 +33,16 @@
   <dl>
     <dt>Usuário</dt>
     <dd>  [% usuario.uid %]</dd>
-<!--    <dt>Senha:</dt>-->
-<!--    <dd>-->
-<!--        <div id="alter_pass"><a href="javascript:void(0)" class="alterar_pass" onclick="alter_password()">Alterar Senha</a></div>-->
-<!--    </dd>-->
+    <dt>Senha:</dt>
+    <dd>        
+        <div class="alterar_senha" ><a href="javascript:void(0)" class="bt_alter_pass alterar_pass"   >Alterar Senha</a></div>
+        <div id="alter_pass" class="alter_pass_div"  alt="[% c.user.dn %]">
+          <input type="password" class="senha_pass inputsenha" alt="[% c.uri_for_action('/auth/admin/usuario/store_alterar_senha',[ c.user.dn ])%]"  name="senha" />
+          <input type="button" class="submit_button" id="submit"   value="ok">
+        </div>
+        <div id="msg"></div>
+        
+    </dd>
     <dt>Nome:</dt>
     <dd>  [% usuario.nome %]</dd>
     <dt>Sobrenome:</dt>
@@ -97,7 +104,7 @@
   </fieldset>
 
    <fieldset>
-    <legend>Permissões do Sistema</legend>
+    <legend>Autorizações no Sistema</legend>
     <div>
     <table>
     <thead>
@@ -127,11 +134,44 @@
 
 <script type="text/javascript">
 
-function alter_password() {
+  $("documment").ready(function(){
+    $(".alter_pass_div").hide();
 
-  $("#alter_pass").html('<input type="password"  name="senha" value="" /><input type="submit" value="Salvar"/>');
+    $(".bt_alter_pass").click(function(){
+      $(".alterar_senha").hide();
+      $("#alter_pass").show('fast');
+      $("#msg").html("");
+    })
 
-}
+    $(".submit_button").click(function(){
+
+      var new_pass = $(".senha_pass").val();
+      var action = $(".senha_pass").attr("alt");      
+      var dn = $("#alter_pass").attr("alt");
+
+
+       $.ajax({
+             type: "POST",
+             url: action,
+
+             data: {
+               'new_pass': new_pass,
+               'dn'	     : dn,
+
+               },
+             beforeSend: function() {
+             $("#alter_pass").hide("slow");
+             },
+             success: function(msg){
+               $("#msg").html(msg);
+
+             }
+
+        });
+
+    })
+  });
+
 
 </script>
 

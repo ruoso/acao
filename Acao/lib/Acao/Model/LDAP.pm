@@ -17,6 +17,7 @@ has ldap_config       => ( is => 'ro', required => 1 );
 has ldap_admin_config => ( is => 'ro', required => 1 );
 has ldap => ( is => 'rw', lazy => 1, builder => '_bind_ldap' );
 has dominios_dn => ( is => 'ro', required => 1 );
+has base_rh => ( is => 'ro', required => 1 );
 has grupos_dn   => ( is => 'ro', required => 1 );
 has assuntos_dn => ( is => 'ro', required => 1 );
 has local_dn    => ( is => 'ro', required => 1 );

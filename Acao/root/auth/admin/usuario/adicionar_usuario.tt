@@ -39,14 +39,7 @@
       <fieldset class="cadInfoLogin" >
            <legend><img src="[% c.uri_for('/static/img/user/user_go.png') %]" alt="Informação de acesso ao sistema" /> Informação de acesso ao sistema</legend>
            <dl>
-             <dt>Domínio:</dt>
-               <dd>
-            <select name="dominio" id="dominio">
-              [% FOREACH dom IN c.model('LDAP').buscar_dominios_auth -%]
-                <option value="[% dom.dn %]">[% dom.get_value('o') %]</option>
-              [% END -%]
-             </select>
-                </dd>
+            
              <dt>Usuário:<span class="checkUserLdap" ><img onmouseover="dica_show()" onmouseout="dica_hide()" src="[% c.uri_for('/static/img/magnifier.png') %]" alt="Checar Usuário"></span></dt>
                 <dd><input type="text" name="uid" value="" ></dd>
              <dt>Senha:</dt>
