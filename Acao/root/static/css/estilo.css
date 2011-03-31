@@ -818,7 +818,7 @@ body.relatorio thead th { background-color: white; color: black; }
 }
 
 .navegaLDAP .consultaLdap_ {
-  height: 200px;
+  height: 180px;
   overflow-y: scroll !important ;
   position: relative;
   width: 280px;
@@ -969,6 +969,111 @@ a.excluir {
     float: right;
 
 }
+
+
+a.criar_user {
+    -moz-background-clip: border;
+    -moz-background-origin: padding;
+    -moz-background-size: auto auto;
+    background-attachment: scroll;
+    background-color: transparent;
+    background-image: url("../img/user/user_add.png");
+    background-position: 0 1px;
+    background-repeat: no-repeat;
+    line-height: 18px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 2px;
+    padding-top: 2px;
+    text-indent: 1em;
+}
+
+a.lotacao_alterar {
+    -moz-background-clip: border;
+    -moz-background-origin: padding;
+    -moz-background-size: auto auto;
+    background-attachment: scroll;
+    background-color: transparent;
+    background-image: url("../img/workplace/building_edit.png");
+    background-position: 0 1px;
+    background-repeat: no-repeat;
+    line-height: 18px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 2px;
+    padding-top: 2px;
+    text-indent: 1em;
+}
+
+a.remover_do_acap {
+    -moz-background-clip: border;
+    -moz-background-origin: padding;
+    -moz-background-size: auto auto;
+    background-attachment: scroll;
+    background-color: transparent;
+    background-image: url("../img/user/user_delete.png");
+    background-position: 0 1px;
+    background-repeat: no-repeat;
+    line-height: 18px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 2px;
+    padding-top: 2px;
+    text-indent: 1em;
+}
+
+a.alterar_permissoes {
+    -moz-background-clip: border;
+    -moz-background-origin: padding;
+    -moz-background-size: auto auto;
+    background-attachment: scroll;
+    background-color: transparent;
+    background-image: url("../img/user/user_edit.png");
+    background-position: 0 1px;
+    background-repeat: no-repeat;
+    line-height: 18px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 2px;
+    padding-top: 2px;
+    text-indent: 1em;
+}
+
+
+a.alterar_pass {
+    -moz-background-clip: border;
+    -moz-background-origin: padding;
+    -moz-background-size: auto auto;
+    background-attachment: scroll;
+    background-color: transparent;
+    background-image: url("../img/pass/lock_edit.png");
+    background-position: 0 1px;
+    background-repeat: no-repeat;
+    line-height: 18px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 2px;
+    padding-top: 2px;
+    text-indent: 1em;
+}
+
+a.retirar_acao {
+  display: block;
+  height: 14px;
+  text-indent: 0px;
+  text-decoration: none;
+  background: url(../img/user/user_delete.png) no-repeat center center;
+  overflow: hidden;
+  border: none;
+  padding-top: 18px;
+  margin-top: 0px !important;
+  float: left;
+  text-align: center !important;
+  margin-right: 10px;
+  background-position: top;
+  float: right;
+}
+
 /* END * icones ,Botões e Links by Carlos Wherbet */
 
 /* Correção. Sobrescrevendo CSS que estão quebrando a aplicação  Carlos Wherbet*/
@@ -984,3 +1089,58 @@ a.excluir {
 /* END Correção. Sobrescrevendo CSS que estão quebrando a aplicação  Carlos Wherbet
 Sr. Desinger, fique a vontade pra mudar!
 */
+
+/* div com input para alterar senha.  Carlos Wherbet */
+#alter_pass input {
+
+display: inline !important;
+width: auto !important;
+
+
+}
+
+#alter_pass {
+  
+  
+}
+
+
+/* END div com input para alterar senha Carlos Wherbet */
+
+/*  div de legenda, em buscar usuários. Carlos Wherbet */
+#legenda {
+    bottom: -25px;
+    height: 50px;
+    position: fixed;
+    right: 20px;
+    text-align: right;
+    width: 100%;
+    z-index: 999999;
+
+}
+
+.inputsenha {
+  width: 90px;
+  }
+/*  div de legenda, em buscar usuários. Carlos Wherbet */
+
+/*  Fieldset Login. Carlos Wherbet */
+.login {
+  width: 350px;
+  margin: 0 auto;
+}
+.login input[type="text"],.login input[type="password"] {
+  width: 200px;
+}
+
+.login dl dd  {
+  width: 200px !important;
+  left: 120px;
+}
+
+.login dl dt  {
+  width: 100px !important;
+}
+
+
+/* END Fieldset Login. Carlos Wherbet */

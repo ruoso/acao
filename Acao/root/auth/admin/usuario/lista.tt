@@ -19,9 +19,10 @@
 %]
 [% INCLUDE 'auth/admin/usuario/header.tt' %]
 [% INCLUDE 'errosucesso.tt' %]
-<h1 class="titulo-form">Gerenciar usuário do LDAP |
+[% SET cont = 0%]
+<h1 class="titulo-form">Gerenciar Usuários |
   <span style="font-size:13px; font-weight:normal;">
-       <a class="criar" href="[% c.uri_for_action('/auth/admin/usuario/adicionar_usuario', buscar) %]">Cadastrar Usuário</a>
+       <a class="criar_user" href="[% c.uri_for_action('/auth/admin/usuario/adicionar_usuario', buscar) %]">Cadastrar Usuário</a>
   </span>
 </h1>
 
@@ -29,16 +30,19 @@
   <fieldset>
     <legend>Buscar Usuários</legend>
      <br/>
-    <form name="buscarUserLdap"  action="[% c.uri_for_action('/auth/admin/usuario/searchUser') %]" method="get" >
+    <form name="buscarUserLdap"  action="[% c.uri_for_action('/auth/admin/usuario/searchUser') %]" method="post" >
       <input name="buscar"  value=""  />
-      <input type="submit" value="buscar">
+    ou
       <select name="campo">
-        <option value="" selected="selected">------------------------</option>
+        <option value="" selected="selected">Todos</option>
         <option value="admin">Administradores</option>
 
+        <input type="submit" value="buscar">
+
       </select>
-      <input type="submit" value="filtrar">
+
     </form>
+
     </fieldset>
 </div>
 <table>
@@ -52,26 +56,91 @@
 </thead>
 <TBODY>
     [% FOREACH key IN usuarios.keys %]
+    [% cont = cont + 1%]
+
     <tr>
      <td>
         [% IF usuarios.$key.admin == '1' %]
-             <img src="[% c.uri_for('/static/img/user/user_gray.png') %]" alt="Super Administrador" />
+           <img src="[% c.uri_for('/static/img/user/user_suit.png') %]" alt="Super Administrador" />
+        [% ELSIF usuarios.$key.acao == '0'  %]
+           <img src="[% c.uri_for('/static/img/user/user_gray.png') %]" alt="Usuário LDAP" />
         [% ELSE %]
-           <img src="[% c.uri_for('/static/img/user/user_green.png') %]" alt="Usuário" />
+           <img src="[% c.uri_for('/static/img/user/user_green.png') %]" alt="Usuário do Ação" />
         [% END %]
-        <a href="[% c.uri_for_action('/auth/admin/usuario/ver_user',[ key ])%]" rel="[% key | url %]"> [% usuarios.$key.nome FILTER upper %]</a>
+        <a href="[% IF usuarios.$key.acao == '1' %][% c.uri_for_action('/auth/admin/usuario/ver_user',[ key ])%][% ELSE %]#[% END %]" > [% usuarios.$key.nome FILTER upper %]</a>
+
      </td>
-     <td>  <a href="[% c.uri_for_action('/auth/admin/usuario/ver_user',[ key ])%]" rel="[% key | url %]"> [% usuarios.$key.uid %]</a>	</td>
+     <td>  <a href="[% IF usuarios.$key.acao == '1' %][% c.uri_for_action('/auth/admin/usuario/ver_user',[ key ])%][% ELSE %]#[% END %]" "> [% usuarios.$key.uid %]</a>	</td>
      <td>
-<!--       <a href="[% c.uri_for_action('/auth/admin/usuario/alterar_senha',[ key ])%]" class="pass_edit" >Alterar Senha</a>-->
-<!--       <a href="[% c.uri_for_action('/auth/admin/usuario/alterar',[ key ])%]" class="user_edit">Alterar Dados </a>-->
-       <a href="[% c.uri_for_action('/auth/admin/usuario/alterar_lotacao',[ key ])%]" class="workplace_edit">Alterar Lotação </a>
+      [%# Checa se o usuário faz parte do Sistema Ação %]
+         [% IF usuarios.$key.acao == '1' %]
+       <a href="[% c.uri_for_action('/auth/admin/usuario/alterar_permissoes',[ key ])%]" class="user_edit" >Alterar Permissões </a>
+       <a href="[% c.uri_for_action('/auth/admin/usuario/alterar_lotacao',[ key ])%]" class="workplace_edit" >Alterar Lotação </a>
+       <a href="javascript:void(0)" class="bt_alter_pass pass_edit" alt="[% cont %]"  >Alterar Senha</a>
+       <div id="alter_pass_[% cont %]" class="alter_pass_div"  alt="[% key %]">
+           <input type="password" class="senha_[% cont %] inputsenha" alt="[% c.uri_for_action('/auth/admin/usuario/store_alterar_senha',[ key ])%]"  name="senha" />
+           <input type="button" class="submit_button" id="submit_[% cont %]" alt="[% cont %]"  value="ok">
+       </div>
+       <div id="msg_[% cont %]"></div>
+              <a href="[% c.uri_for_action('/auth/admin/usuario/delete',[ key ])%]" rel="[% key %]" class="retirar_acao" > Retirar do Ação</a>
+
+       [% ELSE %]
+       <a href="[% c.uri_for_action('/auth/admin/usuario/trazer_user',[ key ])%]" class="user_edit">Trazer para o Ação </a>
+       [% END %]
 
      </td>
    </tr>
     [% END %]
 </TBODY>
 </table>
+
+<div id="legenda">
+   <b>Legenda:</b>
+   <img src="[% c.uri_for('/static/img/user/user_suit.png') %]" alt="Super Administrador" /> Super Administrador
+   <img src="[% c.uri_for('/static/img/user/user_gray.png') %]" alt="Usuário LDAP" /> Usuários de outros sistemas
+   <img src="[% c.uri_for('/static/img/user/user_green.png') %]" alt="Usuário do Ação" /> Usuários do Sistema Ação
+</div>
+<script type="text/javascript">
+
+  $("documment").ready(function(){
+    $(".alter_pass_div").hide();
+
+    $(".bt_alter_pass").click(function(){
+      $("#alter_pass_" + $(this).attr("alt")).show('fast');
+      $("#msg_" + $(this).attr("alt")).html("");
+    })
+
+    $(".submit_button").click(function(){
+
+      var new_pass = $(".senha_" + $(this).attr("alt")).val();
+      var action = $(".senha_" + $(this).attr("alt")).attr("alt");
+      var cont = $(this).attr("alt");
+      var dn = $("#alter_pass_" + cont).attr("alt");
+
+       $.ajax({
+             type: "POST",
+             url: action,
+
+             data: {
+               'new_pass': new_pass,
+               'dn'	     : dn,
+
+               },
+             beforeSend: function() {
+             $("#alter_pass_" + cont).hide("slow");
+             },
+             success: function(msg){
+               $("#msg_" + cont).html(msg);
+
+             }
+
+        });
+
+    })
+  });
+
+
+</script>
 
 
 [% INCLUDE 'footer.tt' %]

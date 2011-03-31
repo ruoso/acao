@@ -53,6 +53,7 @@ lista das sub-áreas da área de registros.
 
 sub principal : Chained('base') : PathPart('') : Args(0) {
     my ( $self, $c ) = @_;
+    my $memberOf;
     my @roles = @{ $c->user->memberof };
 
     if ( ( grep { $revisor eq $_ } @roles )
