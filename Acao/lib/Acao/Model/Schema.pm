@@ -31,7 +31,6 @@ sub listar_schemas {
              . $args->{interval_ini} * $args->{num_por_pagina}
              . ') + 1 ,'
              . $args->{num_por_pagina} . '' . ')';
-warn $list;
     my $count = 'declare namespace class = "http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";'
               . 'count('
               . 'for $x in collection("acao-schemas")/xs:schema '.$busca
@@ -132,7 +131,6 @@ sub verifica_schemas {
 
         $self->sedna->execute($xq);
         $countTNS = $self->sedna->get_item();
-        warn $countTNS;
         last if $countTNS;
         
     }
