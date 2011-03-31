@@ -164,9 +164,11 @@ sub drop_indices {
             documento => $id_documento,
         }
     );
-    $entry->gin_indexes->delete();
-    $entry->permissoes->delete();
-    $entry->delete();
+    if($entry){
+        $entry->gin_indexes->delete();
+        $entry->permissoes->delete();
+        $entry->delete();
+    }
 }
 
 =item update_autorizacoes_vol()
