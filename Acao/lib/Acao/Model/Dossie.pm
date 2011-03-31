@@ -68,7 +68,7 @@ my $role_listar = Acao->config->{'roles'}->{'dossie'}->{'listar'};
 
 my $role_transferir = Acao->config->{'roles'}->{'dossie'}->{'transferir'};
 my $role_ver        = Acao->config->{'roles'}->{'dossie'}->{'visualizar'};
-
+my $admin_super = Acao->config->{'Model::LDAP'}->{admin_super};
 =head1 NAME
 
 Acao::Model::Dossie - Implementa as regras de negócio do papel volume
@@ -152,46 +152,40 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
       . $check . ']])))';
 
     # Query para listagem
-    my $list =
-        $declarens
-      . 'subsequence('
-      . 'for $x in collection("'
-      . $args->{id_volume}
-      . '")/ns:dossie[ns:autorizacoes['
-      . $herdar . ']] '
-      . $where
-      . ' let $alterar := if ($x/ns:autorizacoes/@herdar = "1") then ('
-      . '  count(collection("volume")/vol:volume[vol:collection = "'.$args->{id_volume}.'"]/vol:autorizacoes/author:autorizacao[('.$grupos.') and @role = "alterar"]) '
-      . ' + count(collection("'.$args->{id_volume}.'")/ns:dossie[ns:controle = $x/ns:controle]/ns:autorizacoes/author:autorizacao[('.$grupos.') and @role = "alterar"]) '
-      . ') else ( '
-      . ' count(collection("'.$args->{id_volume}.'")/ns:dossie[ns:controle = $x/ns:controle]/ns:autorizacoes/author:autorizacao[('.$grupos.') and @role = "alterar"]) '
-      . ')'
-      . ' let $transferir := if ($x/ns:autorizacoes/@herdar = "1") then ('
-      . '  count(collection("volume")/vol:volume[vol:collection = "'.$args->{id_volume}.'"]/vol:autorizacoes/author:autorizacao[('.$grupos.') and @role = "transferir"]) '
-      . ' + count(collection("'.$args->{id_volume}.'")/ns:dossie[ns:controle = $x/ns:controle]/ns:autorizacoes/author:autorizacao[('.$grupos.') and @role = "transferir"]) '
-      . ') else ( '
-      . ' count(collection("'.$args->{id_volume}.'")/ns:dossie[ns:controle = $x/ns:controle]/ns:autorizacoes/author:autorizacao[('.$grupos.') and @role = "transferir"]) '
-      . ')'
-            . ' order by $x/ns:criacao descending '
-      . 'return ($x/ns:controle/text() , '
-      . $args->{xqueryret} . '), ' . '(('
-      . $args->{interval_ini} . ' * '
-      . $args->{num_por_pagina}
-      . ') + 1), '
-      . $args->{num_por_pagina} . '' . ')';
+    my $list = $declarens
+             . 'subsequence('
+             . 'for $x in collection("'
+             . $args->{id_volume}
+             . '")/ns:dossie[ns:autorizacoes['
+             . $herdar . ']] '
+             . $where
+             . ' let $alterar := if ($x/ns:autorizacoes/@herdar = "1") then ('
+             . '  count(collection("volume")/vol:volume[vol:collection = "'.$args->{id_volume}.'"]/vol:autorizacoes/author:autorizacao[('.$grupos.') and @role = "alterar"]) '
+             . ' + count(collection("'.$args->{id_volume}.'")/ns:dossie[ns:controle = $x/ns:controle]/ns:autorizacoes/author:autorizacao[('.$grupos.') and @role = "alterar"]) '
+             . ') else ( '
+             . ' count(collection("'.$args->{id_volume}.'")/ns:dossie[ns:controle = $x/ns:controle]/ns:autorizacoes/author:autorizacao[('.$grupos.') and @role = "alterar"]) '
+             . ')'
+             . ' let $transferir := if ($x/ns:autorizacoes/@herdar = "1") then ('
+             . '  count(collection("volume")/vol:volume[vol:collection = "'.$args->{id_volume}.'"]/vol:autorizacoes/author:autorizacao[('.$grupos.') and @role = "transferir"]) '
+             . ' + count(collection("'.$args->{id_volume}.'")/ns:dossie[ns:controle = $x/ns:controle]/ns:autorizacoes/author:autorizacao[('.$grupos.') and @role = "transferir"]) '
+             . ') else ( '
+             . ' count(collection("'.$args->{id_volume}.'")/ns:dossie[ns:controle = $x/ns:controle]/ns:autorizacoes/author:autorizacao[('.$grupos.') and @role = "transferir"]) '
+             . ')'
+             . 'order by $x/ns:criacao descending '
+             . 'return ($x/ns:controle/text() , '
+             . $args->{xqueryret} . '),' . '('
+             . $args->{interval_ini} * $args->{num_por_pagina}
+             . ') + 1 ,'
+             . $args->{num_por_pagina} . '' . ')';
+
 
     # Contrução da query de contagem para contrução da paginação
-    my $count =
-        $declarens
-      . 'count('
-      . ' for $x in collection("'
-      . $args->{id_volume}
-      . '")/ns:dossie[ns:autorizacoes/author:autorizacao[('
-      . $grupos . ')'
-      . 'and @role="listar"]]  '
-      . $where
-      . ' return "" )';
-
+    my $count = $declarens
+              #. ' count( for $x in collection("'.$args->{id_volume}.'")/ns:dossie[ns:autorizacoes/author:autorizacao[('.$grupos.') and @role="listar"]] '
+              . ' count( for $x in collection("'.$args->{id_volume}.'")/ns:dossie/ns:autorizacoes ' 
+              . $where
+              . ' return "" )';
+warn $count;
     return {
         list     => $list,
         count    => $count,
@@ -373,7 +367,8 @@ user logado pode CRIAR Dossies
 
 sub pode_criar_dossie {
     my ( $self, $id_volume ) = @_;
-    return $self->_checa_autorizacao_volume( $id_volume, 'criar' )
+    return $admin_super ~~ @{$self->user->memberof} ||
+        $self->_checa_autorizacao_volume( $id_volume, 'criar' )
       && $role_criar ~~ @{ $self->user->memberof };
 }
 
@@ -387,7 +382,8 @@ user logado pode ALTERAR Dossie(s)
 
 sub pode_alterar_dossie {
     my ( $self, $id_volume, $controle ) = @_;
-    return $self->_checa_autorizacao_dossie( $id_volume, 'alterar', $controle )
+    return $admin_super ~~ @{$self->user->memberof} ||
+         $self->_checa_autorizacao_dossie( $id_volume, 'alterar', $controle )
       && $role_alterar ~~ @{ $self->user->memberof };
 }
 
@@ -401,7 +397,8 @@ user logado pode TRANSFERIR Dossie(s)
 sub pode_transferir_dossie {
     my ( $self, $id_volume, $controle ) = @_;
 
-    return $self->_checa_autorizacao_dossie( $id_volume, 'transferir',
+    return $admin_super ~~ @{$self->user->memberof} ||
+         $self->_checa_autorizacao_dossie( $id_volume, 'transferir',
         $controle )
       && $role_transferir ~~ @{ $self->user->memberof };
 }
@@ -415,7 +412,8 @@ user logado pode LISTAR Dossies
 
 sub pode_listar_dossie {
     my ( $self, $id_volume ) = @_;
-    return $self->_checa_autorizacao_dossie( $id_volume, 'listar' )
+    return $admin_super ~~ @{$self->user->memberof} ||
+        $self->_checa_autorizacao_dossie( $id_volume, 'listar' )
       && $role_listar ~~ @{ $self->user->memberof };
 }
 
@@ -428,11 +426,11 @@ user logado pode LISTAR Dossies
 
 sub pode_ver_dossie {
     my ( $self, $id_volume, $controle ) = @_;
-    return $self->_checa_autorizacao_dossie( $id_volume, 'visualizar',
+    return $admin_super ~~ @{$self->user->memberof} ||
+    $self->_checa_autorizacao_dossie( $id_volume, 'visualizar',
         $controle )
       && $role_ver ~~ @{ $self->user->memberof };
 }
-
 
 
 =item getDadosDossie()

@@ -32,6 +32,7 @@ serem carregados e a versão da aplicação.
 =cut
 
 use strict;
+use utf8;
 use warnings;
 
 use Catalyst::Runtime 5.70;
@@ -56,7 +57,9 @@ __PACKAGE__->log(
     Catalyst::Log::Log4perl->new( __PACKAGE__->path_to('Log4perl.conf') . '' )
 );
 
+
 __PACKAGE__->setup();
+
 
 =over
 
