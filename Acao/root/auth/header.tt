@@ -28,7 +28,7 @@
       	<script language='javascript' src='[% c.uri_for('/static/js/plugins/jquery.ui-1.8.6.custom.min.js') %]'></script>
       	<script language='javascript' src='[% c.uri_for('/static/js/funcoes.js') %]'></script>
 
-		<!--Instituto Atlântico-->
+    <!--Instituto Atlântico-->
         <link href='[% c.uri_for('/static/css/estilo_ia.css') %]' rel='stylesheet' type='text/css' />
 
 		<!--Scripts IA-->
@@ -58,9 +58,9 @@
             </ul>
         </div>
         <div id='barraTopoCaminho'>
-        	<a href="[%c.uri_for_action('/public/entrada')%]" title='Início'>Início</a> »
+          <a href="[%c.uri_for_action('/public/entrada')%]" title='Início'>Início</a> »
 [% FOREACH item IN breadcrumb %]
-        	<a href="[% item.url %]" title='[% item.title %]'>[% item.text %]</a> »
+          <a href="[% item.url %]" title='[% item.title %]'>[% item.text %]</a> »
 [% END %]
         </div>
         <div id="conteudo">

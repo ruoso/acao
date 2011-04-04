@@ -1,0 +1,41 @@
+<div id="grid-table">
+<table>
+<thead>
+ <tr>
+  <th width="20%">Schemas XSD</th>
+  <th>Classificação</th>
+ </tr>
+</thead>
+<TBODY>
+
+[% TRY %]
+
+   [%
+    c.model('Sedna').begin;
+    c.model('Sedna').execute( schemas.list );
+    WHILE (item = c.model('Sedna').get_item);
+        #CALL c.controller.audit_listar(item);
+        SET html = c.model('Sedna').get_item;
+        html;
+    END;
+
+     # c.model('Sedna').execute( xquery.count );
+     # WHILE (contador = c.model('Sedna').get_item);
+     #   count = contador;
+     # END;
+
+    c.model('Sedna').commit; %]
+
+
+[% CATCH %]
+    <div class="erro">ERRO AO PROCESSAR CONSULTA:
+     <PRE>[% error.info %]</PRE>
+    </div>
+
+[% END %]
+
+
+</TBODY>
+</table>
+<input type="hidden" name="template" value="[% xqueryret | html %]" >
+</div>

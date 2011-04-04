@@ -18,8 +18,9 @@
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
 %]
 [% INCLUDE 'auth/registros/volume/dossie/documento/header_contexto.tt' %]
-[% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume) ) %]
-[% SET dos = ( c.model('Dossie').getDadosDossie(id_volume, controle) ) %]
+[% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume, c.model('LDAP').assuntos_dn, c.model('LDAP').local_dn) ) %]
+[% SET dos = ( c.model('Dossie').getDadosDossie(id_volume, controle, c.model('LDAP').assuntos_dn, c.model('LDAP').local_dn) ) %]
+
 
 <script SRC="[% c.uri_for('/static/js/input.deflate.plugin.js') %]" language="Javascript" ></script>
 <script SRC="[% c.uri_for('/static/js/regex-mask-plugin.js') %]" language="Javascript" ></script>
@@ -35,46 +36,44 @@
  <input type="hidden" name="invalidacao"  value="[% invalidacao %]">
  <input type="hidden" name="representaDocumentoFisico" value="[% representaDocumentoFisico %]">
 
-
-
 <div id="accordion">
   <h3><a href="#">Dados do Volume: [% vol.nome %]</a></h3>
   <div>
     <fieldset class="fieldsetBorderNone">
       <dl class="form15">
         <dt>Volume:</dt>
-      <dd><span>[% vol.nome %]</span></dd>
+        <dd><span>[% vol.nome %]</span></dd>
 
-      <dt>Classificação:</dt>
-      <dd><span>[% vol.classificacoes %]</span></dd>
+        <dt>Classificação:</dt>
+        <dd><span>[% vol.classificacoes %]</span></dd>
 
-      <dt>Localização:</dt>
-      <dd><span>[% vol.localizacao %]</span></dd>
+        <dt>Localização:</dt>
+        <dd><span>[% vol.localizacao %]</span></dd>
 
-      <dt>Estado:</dt>
-      <dd><span>[% vol.estado %]</span></dd>
+        <dt>Estado:</dt>
+        <dd><span>[% vol.estado %]</span></dd>
 
-      <dt>Data Criação:</dt>
-      <dd><span class="longDateFormat">[% vol.criacao %]</span></dd>
+        <dt>Data Criação:</dt>
+        <dd><span class="longDateFormat">[% vol.criacao %]</span></dd>
 
-      <dt>Vol. Físico:</dt>
-      <dd><span>[% vol.volume_fisico %]</span></dd>
+        <dt>Vol. Físico:</dt>
+        <dd><span>[% vol.volume_fisico %]</span></dd>
 
-      <dd>
-        <div name="xsdFormValidation">
-        <input type="hidden" name="controle" value = "[% controle %]"/>
+        <dd>
+          <div name="xsdFormValidation">
+          <input type="hidden" name="controle" value = "[% controle %]"/>
 
-        <div name="requiredField" style="display: none;">true</div>
-        </div>
-      </dd>
+          <div name="requiredField" style="display: none;">true</div>
+          </div>
+        </dd>
       </dl>
-   </fieldset>
-
+    </fieldset>
   </div>
+
   <h3><a href="#">Dados do Prontuário: [% dos.nome %]</a></h3>
-    <div>
-      <fieldset class="fieldsetBorderNone">
-        <dl class="form15">
+  <div>
+    <fieldset class="fieldsetBorderNone">
+      <dl class="form15">
         <dt> <label> Prontuário: </label> </dt>
         <dd> <span> [% dos.nome %] </span> </dd>
 
@@ -92,9 +91,8 @@
 
         <dt>Pront. Físico:</dt>
         <dd><span>[% dos.dossie_fisico %]</span></dd>
-        <dl>
+      <dl>
       </fieldset>
-
     </div>
 </div>
 <br>

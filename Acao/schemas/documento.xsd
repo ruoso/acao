@@ -20,7 +20,11 @@
       <xs:element name="nome" type="xs:string" minOccurs="0" />
       <xs:element name="criacao" type="xs:dateTime" minOccurs="0" />
       <xs:element name="invalidacao" type="xs:dateTime" minOccurs="0" />
-      <xs:element name="motivoInvalidacao" type="xs:string" minOccurs="0" />
+      <xs:element name="motivoInvalidacao" minOccurs="0" >
+        <xs:complexType>
+          <xs:attribute name="documentoOriginal" type="xs:string" use="optional"/>
+        </xs:complexType>
+      </xs:element>
       <xs:element name="representaDocumentoFisico" type="xs:boolean" minOccurs="0" />
       <xs:element name="autorizacoes" type="author:autorizacoes"/>
       <xs:element name="documento" maxOccurs="unbounded">

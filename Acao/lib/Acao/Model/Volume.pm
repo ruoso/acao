@@ -53,7 +53,7 @@ my $role_criar   = Acao->config->{'roles'}->{'volume'}->{'criar'};
 my $role_alterar = Acao->config->{'roles'}->{'volume'}->{'alterar'};
 my $role_listar  = Acao->config->{'roles'}->{'volume'}->{'listar'};
 my $role_ver     = Acao->config->{'roles'}->{'volume'}->{'visualizar'};
-
+my $admin_super = Acao->config->{'Model::LDAP'}->{admin_super};
 use constant CLASSIFICACOES_NS =>
   'http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd';
 my $controle_class =
@@ -89,31 +89,30 @@ txn_method 'listar_volumes' => authorized $role_listar => sub {
       map { '@principal = "' . $_ . '"' } @{ $self->user->memberof };
 
     # Query para listagem
-    my $list =
-'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";'
-      . 'declare namespace author = "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";'
-      . 'declare namespace cl = "http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";'
-      . 'subsequence('
-      . 'for $x in collection("volume")/ns:volume[ns:autorizacoes/author:autorizacao[('
-      . $grupos . ')'
-      . 'and @role="listar"]] '
-      . 'let $alterar := count(collection("volume")/ns:volume[ns:collection = $x/ns:collection]/ns:autorizacoes/author:autorizacao[('.$grupos.') and @role = "alterar"])'
-      . 'return ($x/ns:collection/text(), '
-      . $args->{xqueryret} . '),' . '('
-      . $args->{interval_ini} * $args->{num_por_pagina}
-      . ') + 1 ,'
-      . $args->{num_por_pagina} . '' . ')';
+    my $list = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";'
+             . 'declare namespace author = "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";'
+             . 'declare namespace cl = "http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";'
+             . 'subsequence('
+             . 'for $x in collection("volume")/ns:volume[ns:autorizacoes/author:autorizacao[('
+             . $grupos . ')'
+             . 'and @role="listar"]] '
+             . 'let $alterar := count(collection("volume")/ns:volume[ns:collection = $x/ns:collection]/ns:autorizacoes/author:autorizacao[('.$grupos.')'
+             . 'and @role = "alterar"])'
+             . 'return ($x/ns:collection/text(), '
+             . $args->{xqueryret} . '),' . '('
+             . $args->{interval_ini} * $args->{num_por_pagina}
+             . ') + 1 ,'
+             . $args->{num_por_pagina} . '' . ')';
 
     # Contrução da query de contagem para contrução da paginação
 
-    my $count =
-'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";'
-      . 'declare namespace author = "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";'
-      . 'count('
-      . 'for $x in collection("volume")/ns:volume[ns:autorizacoes/author:autorizacao[('
-      . $grupos . ')'
-      . 'and @role="listar"]]'
-      . 'return "")';
+    my $count = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";'
+              . 'declare namespace author = "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";'
+              . 'count('
+              . 'for $x in collection("volume")/ns:volume[ns:autorizacoes/author:autorizacao[('
+              . $grupos . ')'
+              . 'and @role="listar"]]'
+              . 'return "")';
 
     return {
         list  => $list,
@@ -358,7 +357,8 @@ user logado pode CRIAR Volumes
 
 sub pode_criar_volume {
     my ($self) = @_;
-    return $role_criar ~~ @{ $self->user->memberof };
+    return $admin_super ~~ @{$self->user->memberof} ||
+    $role_criar ~~ @{ $self->user->memberof };
 
 }
 
@@ -371,7 +371,8 @@ user logado pode ALTERAR Volume(s)
 
 sub pode_alterar_volume {
     my ( $self, $id_volume ) = @_;
-    return $self->_checa_autorizacao_volume( $id_volume, 'alterar' )
+    return $admin_super ~~ @{$self->user->memberof} ||
+    $self->_checa_autorizacao_volume( $id_volume, 'alterar' )
       && $role_alterar ~~ @{ $self->user->memberof };
 }
 
@@ -384,7 +385,8 @@ user logado pode VER o conteúdo do Volume
 
 sub pode_ver_volume {
     my ( $self, $id_volume ) = @_;
-    return $self->_checa_autorizacao_volume( $id_volume, 'visualizar' )
+    return $admin_super ~~ @{$self->user->memberof} ||
+    $self->_checa_autorizacao_volume( $id_volume, 'visualizar' )
       && $role_ver ~~ @{ $self->user->memberof };
 
 }
@@ -554,7 +556,6 @@ sub find_key_indexes {
 	}
 	$self->sedna->commit;
 	return @indexes;
-
 }
 
 sub reindexa {

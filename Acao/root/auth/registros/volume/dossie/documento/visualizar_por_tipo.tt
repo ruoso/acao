@@ -18,8 +18,8 @@
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
 %]
 [% INCLUDE 'auth/registros/volume/dossie/documento/header_contexto.tt' %]
-[% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume) ) %]
-[% SET dos = ( c.model('Dossie').getDadosDossie(id_volume, controle) ) %]
+[% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume, c.model('LDAP').assuntos_dn, c.model('LDAP').local_dn) ) %]
+[% SET dos = ( c.model('Dossie').getDadosDossie(id_volume, controle, c.model('LDAP').assuntos_dn, c.model('LDAP').local_dn) ) %]
 [% SET iteration = 0 %]
 
 <script SRC="[% c.uri_for('/static/js/input.deflate.plugin.js') %]" language="Javascript" ></script>
@@ -35,65 +35,65 @@
  <input type="hidden" name="xsdDocumento" value="[% xsdDocumento %]">
  <input type="hidden" name="id_documento" value="[% id_documento %]">
 
+<div id="accordion">
+  <h3><a href="#">Dados do Volume: [% vol.nome %]</a></h3>
+  <div>
+    <fieldset class="fieldsetBorderNone">
+      <dl class="form15">
+        <dt>Volume:</dt>
+        <dd><span>[% vol.nome %]</span></dd>
 
- <fieldset>
-  <legend>Dados do Volume</legend>
-  <dl class="form15">
-         <dt>Volume:</dt>
-    <dd><span>[% vol.nome %]</span></dd>
+        <dt>Classificação:</dt>
+        <dd><span>[% vol.classificacoes %]</span></dd>
 
-    <dt>Classificação:</dt>
-    <dd><span>[% vol.classificacao %]</span></dd>
+        <dt>Localização:</dt>
+        <dd><span>[% vol.localizacao %]</span></dd>
 
-    <dt>Localização:</dt>
-    <dd><span>[% vol.localizacao %]</span></dd>
+        <dt>Estado:</dt>
+        <dd><span>[% vol.estado %]</span></dd>
 
-    <dt>Estado:</dt>
-    <dd><span>[% vol.estado %]</span></dd>
+        <dt>Data Criação:</dt>
+        <dd><span class="longDateFormat">[% vol.criacao %]</span></dd>
 
-    <dt>Data Criação:</dt>
-    <dd><span>[% vol.criacao %]</span></dd>
+        <dt>Vol. Físico:</dt>
+        <dd><span>[% vol.volume_fisico %]</span></dd>
 
-    <dt>Vol. Físico:</dt>
-    <dd><span>[% vol.volume_fisico %]</span></dd>
-    <dd>
-    <div name="xsdFormValidation">
-    <input type="hidden" name="controle" value = "[% controle %]"/>
+        <dd>
+          <div name="xsdFormValidation">
+          <input type="hidden" name="controle" value = "[% controle %]"/>
 
-    <div name="requiredField" style="display: none;">true</div>
+          <div name="requiredField" style="display: none;">true</div>
+          </div>
+        </dd>
+      </dl>
+    </fieldset>
+  </div>
+
+  <h3><a href="#">Dados do Prontuário: [% dos.nome %]</a></h3>
+  <div>
+    <fieldset class="fieldsetBorderNone">
+      <dl class="form15">
+        <dt> <label> Prontuário: </label> </dt>
+        <dd> <span> [% dos.nome %] </span> </dd>
+
+        <dt>Classificação:</dt>
+        <dd><span>[% dos.classificacoes %]</span></dd>
+
+        <dt>Localização:</dt>
+        <dd><span>[% dos.localizacao %]</span></dd>
+
+        <dt>Estado:</dt>
+        <dd><span>[% dos.estado %]</span></dd>
+
+        <dt>Data Criação:</dt>
+        <dd><span class="longDateFormat">[% dos.criacao %]</span></dd>
+
+        <dt>Pront. Físico:</dt>
+        <dd><span>[% dos.dossie_fisico %]</span></dd>
+      <dl>
+      </fieldset>
     </div>
-    </dd>
-  </dl>
- </fieldset>
-
- <fieldset>
-  <legend>Dados do Prontuário</legend>
-  <dl class="form15">
-    <dt> <label> Prontuário: </label> </dt>
-    <dd> <span> [% dos.nome %] </span> </dd>
-
-    <dt>Classificação:</dt>
-    <dd><span>[% dos.classificacao %]</span></dd>
-
-    <dt>Localização:</dt>
-    <dd><span>[% dos.localizacao %]</span></dd>
-
-    <dt>Estado:</dt>
-    <dd><span>[% dos.estado %]</span></dd>
-
-    <dt>Data Criação:</dt>
-    <dd><span>[% dos.criacao %]</span></dd>
-
-    <dt>Pront. Físico:</dt>
-    <dd><span>[% dos.dossie_fisico %]</span></dd>
-   <!-- [% #IF invalidacao == '1970-01-01T00:00:00Z' %]
-    <div>
-        <input type="checkbox" id="representaDocumentoFisico" name="representaDocumentoFisico" evt="representaDocumentoFisico" [% # IF representaDocumentoFisico == 'true' %] checked [% # END %]>
-        <label for="representaDocumentoFisico"> Representa Documento Físico </label>
-    </div>
-   [% # END %] -->
-  </dl>
- </fieldset>
+</div>
 
  <fieldset>
    <a href="[% c.uri_for_action('/auth/registros/volume/dossie/documento/visualizar', [ id_volume, controle, id_documento ] ) %]"> Voltar ao Documento Selecionado </a>
