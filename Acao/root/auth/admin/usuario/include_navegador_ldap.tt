@@ -1,0 +1,12 @@
+ <fieldset>
+    <legend>Membro de</legend>
+  <fieldset class="navegaLDAP">
+        <legend><img src="[% c.uri_for('/static/img/workplace/building_go.png') %]" alt="Adicionar Lotação" /> Adicionar Lotação</legend>
+            [% INCLUDE 'auth/admin/usuario/_ldap.tt' %]
+
+          <a href="javascript:void(0);"  name="Adicionar" onclick="add('[% c.uri_for_action('/auth/admin/usuario/add') %]')" class="workplace_add" >
+               Adicionar Lotação
+             </a>
+
+  </fieldset>
+  </fieldset>

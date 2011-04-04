@@ -15,13 +15,13 @@
 #
 # Você deve ter recebido uma cópia da Licença Pública Geral GNU, sob o
 # título "LICENCA.txt", junto com este programa, se não, escreva para a
-# Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
-%]
+# Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,%]
 
 [% META title = 'Lista de Leituras para o Digitador'%]
 [% INCLUDE 'auth/registros/volume/header.tt' %]
 [% INCLUDE 'errosucesso.tt' %]
 
+[% #A variavel num_por_pagina deve ser um numero PAR%]
 [% SET num_por_pagina = 30 %]
 
 [% SET interval_ini = c.req.param('interval_ini') %]
@@ -68,7 +68,7 @@
   <th width="110px">Fechamento</th>
   <th width="110px">Arquivamento</th>
   <th width="40px">Estado</th>
-  <th width="120px" colspan="4" align="center">Ação</th>
+  <th width="120px" colspan="5" align="center">Ação</th>
  </tr>
 </thead>
 <TBODY>
@@ -77,24 +77,22 @@
 
    [%
 
-   xqueryret = PROCESS 'auth/registros/volume/lista_xqueryret.tt';
-        #c.model('Sedna').conn.setConnectionAttr_CONCURRENCY_TYPE(c.model('Sedna').conn.SEDNA_READONLY_TRANSACTION);
-        xquery = c.model('Volume').listar_volumes({
-                              'xqueryret' => xqueryret,
-                             'ip' => c.req.address,
-                             'interval_ini' => interval_ini,
-                             'num_por_pagina' => num_por_pagina
-                            });
-        c.model('Sedna').begin;
+       xqueryret = PROCESS 'auth/registros/volume/lista_xqueryret.tt';
+       #c.model('Sedna').conn.setConnectionAttr_CONCURRENCY_TYPE(c.model('Sedna').conn.SEDNA_READONLY_TRANSACTION);
+       xquery = c.model('Volume').listar_volumes({
+                                                 'xqueryret' => xqueryret,
+                                                 'ip' => c.req.address,
+                                                 'interval_ini' => interval_ini,
+                                                 'num_por_pagina' => num_por_pagina
+                                                 });
+       c.model('Sedna').begin;
+       c.model('Sedna').execute( xquery.list );
 
-      c.model('Sedna').execute( xquery.list );
-
-      WHILE (volumeid = c.model('Sedna').get_item);
-        CALL c.controller.audit_listar(volumeid);
-        SET html = c.model('Sedna').get_item;
-        html;
-      END;
-
+       WHILE (volumeid = c.model('Sedna').get_item);
+         CALL c.controller.audit_listar(volumeid);
+         SET html = c.model('Sedna').get_item;
+         html;
+       END;
 
       c.model('Sedna').execute( xquery.count );
       WHILE (contador = c.model('Sedna').get_item);
