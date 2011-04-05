@@ -276,7 +276,7 @@ sub storeAlterarUsuario {
 
 sub validaUser {
     my ( $self, $dn ) = @_;
-    my $result = getDadosUsuarioLdap( $self, $dn, 'acao' )->{memberOf};    
+    my $result = getDadosUsuarioLdap( $self, $dn, 'acao' )->{memberOf};
     return scalar(@$result) > 0 or 0;
 
 }
@@ -287,10 +287,10 @@ sub recebePermissoesAcao {
     my $usuario = getDadosUsuarioLdap( $self, $dn )->{memberOf};
 
     my $listar       = Acao->config->{'roles'}->{$model}->{'listar'};
-    my $visualizar   = Acao->config->{'roles'}->{$model}->{'visualizar'},
-    my $criar      = Acao->config->{'roles'}->{$model}->{'criar'},
-    my $alterar    = Acao->config->{'roles'}->{$model}->{'alterar'},
-    my $transferir = Acao->config->{'roles'}->{$model}->{'transferir'},
+    my $visualizar   = Acao->config->{'roles'}->{$model}->{'visualizar'};
+    my $criar      = Acao->config->{'roles'}->{$model}->{'criar'};
+    my $alterar    = Acao->config->{'roles'}->{$model}->{'alterar'};
+    my $transferir = Acao->config->{'roles'}->{$model}->{'transferir'};
 
     utf8::decode($listar);
     utf8::decode($visualizar);

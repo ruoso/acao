@@ -16,15 +16,10 @@
 					<class:classificacao>cn=Protejo,cn=Infância e Adolescência,cn=Segurança Pública</class:classificacao>
 				</class:classificacoes>
 				<idx:index>
-				    <idx:hint key="protejo.numeroInscricao" xpath="formProtejoFormularioCadastro/dadosInscricao/numeroInscricao" />
-				    <idx:hint key="protejo.nomeCompleto" xpath="formProtejoFormularioCadastro/dadosPessoais/dadosGerais/nomeCompleto" />
-				    <idx:hint key="protejo.cpf" xpath="formProtejoFormularioCadastro/dadosPessoais/dadosGerais/cpf" />
-				    <idx:hint key="protejo.dataNascimento" xpath="formProtejoFormularioCadastro/dadosPessoais/dadosGerais/dataNascimento" />
-				    <idx:hint key="protejo.endereco" xpath="formProtejoFormularioCadastro/dadosPessoais/endereco/logradouro" />
-				    <idx:hint key="protejo.bairro" xpath="formProtejoFormularioCadastro/dadosPessoais/endereco/bairro" />
-				    <idx:hint key="protejo.municipio.nacionalidade" xpath="formProtejoFormularioCadastro/dadosPessoais/dadosPessoalContato/nacionalidade/municNacionalidade" />
-				    <idx:hint key="protejo.uf.nacionalidade" xpath="formProtejoFormularioCadastro/dadosPessoais/dadosPessoalContato/nacionalidade/ufNacionalidade" />
-				    <idx:hint key="protejo.estadocivil" xpath="formProtejoFormularioCadastro/dadosPessoais/dadosPessoalContato/estadoCivil" />
+				    <idx:hint key="pessoa.nome" xpath="formProtejoFormularioCadastro/dadosPessoais/dadosGerais/nomeCompleto" />
+				    <idx:hint key="pessoa.dataNascimento" xpath="formProtejoFormularioCadastro/dadosPessoais/dadosGerais/dataNascimento" />
+				    <idx:hint key="pessoa.bairro" xpath="formProtejoFormularioCadastro/dadosPessoais/endereco/bairro" />
+				    <idx:hint key="pessoa.estadocivil" xpath="formProtejoFormularioCadastro/dadosPessoais/dadosPessoalContato/estadoCivil" />
 				</idx:index>
 			</xs:appinfo>
 		</xs:annotation>
