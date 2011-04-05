@@ -1,0 +1,412 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-fichaAtendimento-situacaosocioeconomicaCCA.xsd"
+    xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-fichaAtendimento-situacaosocioeconomicaCCA.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="formSituacaoSocioEconomicoFamiliar" type="formSituacaoSocioEconomicoFamiliar">
+		<xs:annotation>
+			<xs:appinfo>
+				<xhtml:label>02. SITUAÇÃO SÓCIO-ECONÔMICA E FAMILIAR</xhtml:label>
+                <class:classificacoes>
+                    <class:classificacao>cn=Exploração Sexual,cn=Direitos Humanos</class:classificacao>
+                </class:classificacoes>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="formSituacaoSocioEconomicoFamiliar">
+
+		<xs:sequence>
+		
+			<xs:element name="numeroAtendimento" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Número atendimento</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="composicaoFamiliar">
+				
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Dados do componente familiar</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				
+				<xs:complexType>
+
+					<xs:sequence>
+
+						<xs:element name="nomeComponente" minOccurs="0" maxOccurs="3">
+
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Componente familiar</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="nome">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Nome</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									
+									<xs:element name="idade" type="xs:integer" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Idade</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									
+									<xs:element name="parentesco">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Parentesco</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									
+									<xs:element name="ocupacao">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Ocupação</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
+									<xs:element name="renda" type="xs:float" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Renda</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="escolaridade" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Escolaridade</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="Ensino básico (1ª a 4ª série) completo" />
+												<xs:enumeration value="Ensino básico (1ª a 4ª série) incompleto" />
+												<xs:enumeration value="Ensino fundamental (5ª a 8ª série) completo" />
+												<xs:enumeration value="Ensino fundamental (5ª a 8ª série) incompleto" />
+												<xs:enumeration value="Ensino médio (2º grau) completo" />
+												<xs:enumeration value="Ensino médio (2º grau) incompleto" />
+												<xs:enumeration value="Ensino superior completo" />
+												<xs:enumeration value="Ensino superior incompleto" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+								
+								</xs:sequence>
+							</xs:complexType>
+						
+						</xs:element>
+
+					</xs:sequence>
+
+				</xs:complexType>
+
+			</xs:element>
+			
+
+			<xs:element name="totalPessoa" type="xs:integer" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Total de pessoa que residem na casa</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="totalRenda" minOccurs="0">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <xhtml:label>Total renda familiar</xhtml:label>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:decimal">
+                        <xs:fractionDigits value='2'/>
+                        <xs:maxExclusive value="1000000"/>
+                        <xs:minInclusive value="-1000000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+			<xs:element name="participaProjeto" minOccurs="0">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <xhtml:label>Participação em programas/projetos sociais</xhtml:label>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+				<xs:enumeration value="Sim"/>
+				<xs:enumeration value="Não"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+			<xs:element name="especificaProjeto" minOccurs="0">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <xhtml:label>Se sim, qual</xhtml:label>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+				<xs:maxLength value="255"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+                     
+			<xs:element name="condicaoMoradia" minOccurs="0">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <xhtml:label>Condição de moradia</xhtml:label>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+				<xs:enumeration value="Própria"/>
+				<xs:enumeration value="Alugada"/>
+				<xs:enumeration value="Cedida"/>
+				<xs:enumeration value="Invasão"/>
+				<xs:enumeration value="Outra"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+                     
+			<xs:element name="outraMoradia" minOccurs="0">
+                 <xs:annotation>
+                     <xs:appinfo>
+                         <xhtml:label>Se outra, qual</xhtml:label>
+                     </xs:appinfo>
+                 </xs:annotation>
+                 <xs:simpleType>
+                     <xs:restriction base="xs:string">
+						<xs:maxLength value="255"/>
+                     </xs:restriction>
+                 </xs:simpleType>
+            </xs:element>
+                     
+			<xs:element name="tipoCasa" minOccurs="0">
+                 <xs:annotation>
+                     <xs:appinfo>
+                         <xhtml:label>Tipo casa</xhtml:label>
+                     </xs:appinfo>
+                 </xs:annotation>
+                 <xs:simpleType>
+                     <xs:restriction base="xs:string">
+						<xs:enumeration value="Alvenaria"/>
+						<xs:enumeration value="Maderia"/>
+						<xs:enumeration value="Taipa"/>
+						<xs:enumeration value="Lona"/>
+						<xs:enumeration value="Outra"/>
+                     </xs:restriction>
+                 </xs:simpleType>
+            </xs:element>
+                     
+			<xs:element name="outroTipoCasa" minOccurs="0">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <xhtml:label>Se outra, qual</xhtml:label>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+						<xs:maxLength value="255"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+                     
+			<xs:element name="saneamento" minOccurs="0">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <xhtml:label>Saneamento</xhtml:label>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+						<xs:enumeration value="Água encanada"/>
+						<xs:enumeration value="Poço"/>
+						<xs:enumeration value="Cisterna"/>
+						<xs:enumeration value="Outra"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+                     
+			<xs:element name="outroSaneamento" minOccurs="0">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <xhtml:label>Se outra, qual</xhtml:label>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+						<xs:maxLength value="255"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+                     
+			<xs:element name="energiaEletrica" minOccurs="0">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <xhtml:label>Há energia elétrica?</xhtml:label>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+						<xs:enumeration value="Sim"/>
+						<xs:enumeration value="Não"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+			<xs:element name="moraComFamilia" minOccurs="0">
+                 <xs:annotation>
+                     <xs:appinfo>
+                         <xhtml:label>A adolescente mora com a familia?</xhtml:label>
+                     </xs:appinfo>
+                 </xs:annotation>
+                 <xs:simpleType>
+                     <xs:restriction base="xs:string">
+						<xs:enumeration value="Sim"/>
+						<xs:enumeration value="Não"/>
+                     </xs:restriction>
+                 </xs:simpleType>
+             </xs:element>
+                     
+			<xs:element name="naoMoraFamilia" minOccurs="0">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <xhtml:label>Se não, com quem?</xhtml:label>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+						<xs:maxLength value="255"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+                     
+			<xs:element name="contribuiRendaFamilia" minOccurs="0">
+                 <xs:annotation>
+                     <xs:appinfo>
+                         <xhtml:label>A adolescente contribui para a renda familiar?</xhtml:label>
+                     </xs:appinfo>
+                 </xs:annotation>
+                 <xs:simpleType>
+                     <xs:restriction base="xs:string">
+							<xs:enumeration value="Sim"/>
+							<xs:enumeration value="Não"/>
+                     </xs:restriction>
+                 </xs:simpleType>
+             </xs:element>
+                     
+			<xs:element name="formaContribuiRenda" minOccurs="0">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <xhtml:label>Se sim, de qual forma?</xhtml:label>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+				<xs:maxLength value="255"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+                     
+			<xs:element name="relacionamentoFamiliar" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <xhtml:label>Como é o relacionamento familiar? Quais os sentimentos em relação aos membros da família?</xhtml:label>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+
+			<xs:element name="potencialidadesFamiliar" type="xs:string" minOccurs="0">
+               <xs:annotation>
+                   <xs:appinfo>
+                       <xhtml:label>Quais as potencialidades e fragilidades identificadas na família?</xhtml:label>
+                   </xs:appinfo>
+               </xs:annotation>
+           </xs:element>
+
+			<xs:element name="fazUsoDrogra" minOccurs="0">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <xhtml:label>Algum familiar faz uso de droga?</xhtml:label>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+						<xs:enumeration value="Sim"/>
+						<xs:enumeration value="Não"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+			<xs:element name="quemUsaDroga" minOccurs="0">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <xhtml:label>Se sim, quem?</xhtml:label>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+						<xs:maxLength value="255"/>
+                    </xs:restriction>
+                </xs:simpleType>
+           </xs:element>
+
+			<xs:element name="tipoDroga" minOccurs="0">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <xhtml:label>Qual tipo de droga</xhtml:label>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+						<xs:maxLength value="255"/>
+                    </xs:restriction>
+                </xs:simpleType>
+           </xs:element>
+
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>
