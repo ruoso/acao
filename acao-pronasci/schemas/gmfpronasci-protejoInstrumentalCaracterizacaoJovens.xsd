@@ -16,15 +16,10 @@
 					<class:classificacao>cn=Protejo,cn=Infância e Adolescência,cn=Segurança Pública</class:classificacao>
 				</class:classificacoes>
 				<idx:index>
-				    <idx:hint key="protejo.numeroInscricao" xpath="formProtejoInstrumentalCaracterizacaoJovem/dadosInscricao/numeroInscricao" />
-				    <idx:hint key="protejo.dataEntrevista" xpath="formProtejoInstrumentalCaracterizacaoJovem/dadosInscricao/dataEntrevista" />
-				    <idx:hint key="protejo.nomeEntrevistador" xpath="formProtejoInstrumentalCaracterizacaoJovem/dadosInscricao/nomeEntrevistador" />
-				    <idx:hint key="protejo.nomeEntrevistado" xpath="formProtejoInstrumentalCaracterizacaoJovem/identificacaoDadosSocioeconimicos/nomeEntrevistado"/>
-				    <idx:hint key="protejo.bairro" xpath="formProtejoInstrumentalCaracterizacaoJovem/identificacaoDadosSocioeconimicos/bairro"/>
-				    <idx:hint key="protejo.endereco" xpath="formProtejoInstrumentalCaracterizacaoJovem/identificacaoDadosSocioeconimicos/endereco"/>
-				    <idx:hint key="protejo.idade" xpath="formProtejoInstrumentalCaracterizacaoJovem/identificacaoDadosSocioeconimicos/idade"/>
-				    <idx:hint key="protejo.naturalidade" xpath="formProtejoInstrumentalCaracterizacaoJovem/identificacaoDadosSocioeconimicos/naturalidade"/>
-				    <idx:hint key="protejo.estadoCivil" xpath="formProtejoInstrumentalCaracterizacaoJovem/identificacaoDadosSocioeconimicos/estadoCivil"/>
+				    <idx:hint key="pessoa.nome" xpath="formProtejoInstrumentalCaracterizacaoJovem/dadosInscricao/nomeEntrevistador" />
+				    <idx:hint key="pessoa.nome" xpath="formProtejoInstrumentalCaracterizacaoJovem/identificacaoDadosSocioeconimicos/nomeEntrevistado"/>
+				    <idx:hint key="pessoa.bairro" xpath="formProtejoInstrumentalCaracterizacaoJovem/identificacaoDadosSocioeconimicos/bairro"/>
+				    <idx:hint key="pessoa.estadoCivil" xpath="formProtejoInstrumentalCaracterizacaoJovem/identificacaoDadosSocioeconimicos/estadoCivil"/>
 				</idx:index>
 			</xs:appinfo>
 		</xs:annotation>
