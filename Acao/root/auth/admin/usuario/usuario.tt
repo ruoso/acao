@@ -34,14 +34,14 @@
     <dt>Usuário</dt>
     <dd>  [% usuario.uid %]</dd>
     <dt>Senha:</dt>
-    <dd>        
+    <dd>
         <div class="alterar_senha" ><a href="javascript:void(0)" class="bt_alter_pass alterar_pass"   >Alterar Senha</a></div>
-        <div id="alter_pass" class="alter_pass_div"  alt="[% c.user.dn %]">
-          <input type="password" class="senha_pass inputsenha" alt="[% c.uri_for_action('/auth/admin/usuario/store_alterar_senha',[ c.user.dn ])%]"  name="senha" />
+        <div id="alter_pass" class="alter_pass_div"  alt="[% dn_usuario %]">
+          <input type="password" class="senha_pass inputsenha" alt="[% c.uri_for_action('/auth/admin/usuario/store_alterar_senha',[ dn_usuario ])%]"  name="senha" />
           <input type="button" class="submit_button" id="submit"   value="ok">
         </div>
         <div id="msg"></div>
-        
+
     </dd>
     <dt>Nome:</dt>
     <dd>  [% usuario.nome %]</dd>
@@ -146,7 +146,7 @@
     $(".submit_button").click(function(){
 
       var new_pass = $(".senha_pass").val();
-      var action = $(".senha_pass").attr("alt");      
+      var action = $(".senha_pass").attr("alt");
       var dn = $("#alter_pass").attr("alt");
 
 
