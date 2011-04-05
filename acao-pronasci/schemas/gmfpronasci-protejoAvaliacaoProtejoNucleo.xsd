@@ -3,7 +3,6 @@
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
 	xmlns="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-protejo-avaliacaoprotejonucleo.xsd"
 	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
-	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
 	xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
 	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-protejo-avaliacaoprotejonucleo.xsd"
 	elementFormDefault="qualified">
@@ -15,10 +14,6 @@
 				<class:classificacoes>
 					<class:classificacao>cn=Protejo,cn=Infância e Adolescência,cn=Segurança Pública</class:classificacao>
 				</class:classificacoes>
-				<idx:index>
-				    <idx:hint key="protejo.numeroInscricao" xpath="formProtejoAvaliacaoProtejoNucleo/dadosInscricao/numeroInscricao" />
-				    <idx:hint key="protejo.nucleo" xpath="formProtejoAvaliacaoProtejoNucleo/dadosInscricao/nucleo" />
-				</idx:index>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
