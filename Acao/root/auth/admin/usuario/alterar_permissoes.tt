@@ -21,7 +21,7 @@
 [% INCLUDE 'errosucesso.tt' %]
 <h1 class="titulo-form">Alterar Permissões do Usuário |
   <span style="font-size:13px; font-weight:normal;">
-       
+
   </span>
 </h1>
 
@@ -56,16 +56,7 @@
       [% email %]
     [% END %]
     </dd>
-    <dt>Super Administrador:</dt>
-    <dd>
 
-      [% IF usuario_sistema.admin == '1' %]
-        Sim
-      [% ELSE %]
-        Não
-      [% END %]
-
-    </dd>
   </dl>
   </fieldset>
 <!--<fieldset >-->
