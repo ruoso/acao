@@ -155,6 +155,7 @@
 
    generateForm("[% c.uri_for_action('/auth/registros/xsd/raw', { ns => xsdDocumento }) %]", "form_container");
    fillValues  ("[% c.uri_for_action('/auth/registros/volume/dossie/documento/xml', [ id_volume, controle, id_documento ]) %]");
+
    generateXsdFormUI();
  </script>
 
