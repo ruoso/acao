@@ -1,0 +1,685 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-protejo-avaliacaoprotejonucleo.xsd"
+	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+	xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-protejo-avaliacaoprotejonucleo.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="formProtejoAvaliacaoProtejoNucleo" type="formProtejoAvaliacaoProtejoNucleo">
+		<xs:annotation>
+			<xs:appinfo>
+				<xhtml:label>04. AVALIAÇÃO DOS NÚCLEOS</xhtml:label>
+				<class:classificacoes>
+					<class:classificacao>cn=Protejo,cn=Infância e Adolescência,cn=Segurança Pública</class:classificacao>
+				</class:classificacoes>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="formProtejoAvaliacaoProtejoNucleo">
+		<xs:sequence>
+			<xs:element name="dadosInscricao">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Dados de inscrição</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="numeroInscricao" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Número de inscrição</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="nucleo" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Núcleo</xhtml:label>
+								</xs:appinfo>
+								<xsdext:extensions>
+									<xsdext:engine>autoComplete</xsdext:engine>
+									<xsdext:service>/nucleos</xsdext:service>
+								</xsdext:extensions>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="dadosJovem1">
+
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>1- Que opção você escolheria para avaliar o desempenho dos seus educadores, quanto a(o):</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="pontualidade">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>A) Pontualidade</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Ótimo" />
+									<xs:enumeration value="Bom" />
+									<xs:enumeration value="Ruim" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="dinamicaSala">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>B) Dinâmica em sala</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Ótimo" />
+									<xs:enumeration value="Bom" />
+									<xs:enumeration value="Ruim" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="comunicaoGrupo">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>C) Comunicação com o grupo</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Ótimo" />
+									<xs:enumeration value="Bom" />
+									<xs:enumeration value="Ruim" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="integracaoGrupo">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>D) Integração com o grupo</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Ótimo" />
+									<xs:enumeration value="Bom" />
+									<xs:enumeration value="Ruim" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="metodologia">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>E) Metodologia (atividades realizadas)</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Ótimo" />
+									<xs:enumeration value="Bom" />
+									<xs:enumeration value="Ruim" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="conteudo">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>F) Conteúdo</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Ótimo" />
+									<xs:enumeration value="Bom" />
+									<xs:enumeration value="Ruim" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="dadosJovem2">
+
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>2- Que opção você escolheria para avaliar o seu desempenho no projeto:</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="desempenhoProjeto">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Seu desempenho</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Ótimo" />
+									<xs:enumeration value="Bom" />
+									<xs:enumeration value="Ruim" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="justificativa" minOccurs="0" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Justifique</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="dadosJovem3">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>3- Como você avalia o espaço onde o núcleo é sediado:</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="espacoNucleo">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Espaço do núcleo</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Ótimo" />
+									<xs:enumeration value="Bom" />
+									<xs:enumeration value="Ruim" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="porque" minOccurs="0" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Por que</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="dadosJovem4">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>4- Quanto ao seu relacionamento com as educadoras:</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="relacionamentoProfessor">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Relacionamento com educador</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Ótimo" />
+									<xs:enumeration value="Bom" />
+									<xs:enumeration value="Ruim" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="dadosJovem5">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>5- Quanto ao seu desempenho e participação no projeto:</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="desempenhoProjeto">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Seu desempenho</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Ótimo" />
+									<xs:enumeration value="Bom" />
+									<xs:enumeration value="Ruim" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="dadosJovem6">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>6- Quanto a sua integração com o grupo:
+						</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="integracaoGrupo">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Sua integração</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Ótimo" />
+									<xs:enumeration value="Bom" />
+									<xs:enumeration value="Ruim" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="justificativa6" minOccurs="0" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Por que</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="dadosJovem7">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>7- Como você avalia sua freqüência ao longo do Protejo</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="avaliacaoFrequencia">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Sua freqüência</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Ótimo" />
+									<xs:enumeration value="Bom" />
+									<xs:enumeration value="Ruim" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="dadosJovem8">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>8- Como você avalia as atividades externas (passeios,
+							visitas)</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="avaliacaoAtividades">
+							<xs:annotation>
+								<xs:appinfo>
+									<xs:element name="numeroInscricao">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Número inscrição</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="numeroInscricao" minOccurs="0">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label></xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="255" />
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+
+									<xhtml:label>Suas atividades externas</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Ótimo" />
+									<xs:enumeration value="Bom" />
+									<xs:enumeration value="Ruim" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="dadosJovem9">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>9- Quanto aos cursos oferecidos</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="serigrafia">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Serigrafia</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Ótimo" />
+									<xs:enumeration value="Bom" />
+									<xs:enumeration value="Ruim" />
+									<xs:enumeration value="Não fiz esse curso" />
+
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="grafite">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Grafite</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Ótimo" />
+									<xs:enumeration value="Bom" />
+									<xs:enumeration value="Ruim" />
+									<xs:enumeration value="Não fiz esse curso" />
+
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="informatica">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Informática </xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Ótimo" />
+									<xs:enumeration value="Bom" />
+									<xs:enumeration value="Ruim" />
+									<xs:enumeration value="Não fiz esse curso" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="break">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Break</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Ótimo" />
+									<xs:enumeration value="Bom" />
+									<xs:enumeration value="Ruim" />
+									<xs:enumeration value="Não fiz esse curso" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="rap">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Rap </xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Ótimo" />
+									<xs:enumeration value="Bom" />
+									<xs:enumeration value="Ruim" />
+									<xs:enumeration value="Não fiz esse curso" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="audivisual">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Audiovisual</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Ótimo" />
+									<xs:enumeration value="Bom" />
+									<xs:enumeration value="Ruim" />
+									<xs:enumeration value="Não fiz esse curso" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="dadosJovem10">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>10- O projeto fez alguma diferença na sua vida</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="projetoNaVida">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Diferença em sua vida</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Ótimo" />
+									<xs:enumeration value="Bom" />
+									<xs:enumeration value="Ruim" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="justificativa6" minOccurs="0" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Em que?</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="dadosJovem11">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>11- Como está a relação com sua família 
+						</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="relacaoFamilia">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Relação familiar
+									</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Ótimo" />
+									<xs:enumeration value="Bom" />
+									<xs:enumeration value="Ruim" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="dadosJovem12">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>12- Como está sua relação com a comunidade</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="relacaoComunidade">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Relação comunitária</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Ótimo" />
+									<xs:enumeration value="Bom" />
+									<xs:enumeration value="Ruim" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="dadosJovem13">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>13- Qual sua avaliação sobre as Mulheres da Paz</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="avaliacaoMulheresPaz">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Avaliação mulheres da paz</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Ótimo" />
+									<xs:enumeration value="Bom" />
+									<xs:enumeration value="Ruim" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="dadosJovem14">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>14- Como você avalia o policiamento no seu bairro
+						</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="avaliacaoPoliciamento">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Avaliação policiamento</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Ótimo" />
+									<xs:enumeration value="Bom" />
+									<xs:enumeration value="Ruim" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="dadosJovem15">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>15- Como você avalia o Protejo de forma geral</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="avaliacaoProjeto">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Avaliação do projeto</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Ótimo" />
+									<xs:enumeration value="Bom" />
+									<xs:enumeration value="Ruim" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="justificativa15" minOccurs="0"
+							type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Justifique/Críticas</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+
+			</xs:element>
+
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>
