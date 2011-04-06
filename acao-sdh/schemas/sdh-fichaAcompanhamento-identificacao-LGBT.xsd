@@ -3,6 +3,7 @@
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
 	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-lgbt-fichaacompanhamento-identificacao.xsd"
 	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+    xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
 	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-lgbt-fichaacompanhamento-identificacao.xsd"
 	elementFormDefault="qualified">
 
@@ -13,6 +14,13 @@
 				<class:classificacoes>
 					<class:classificacao>cn=Diversidade Sexual,cn=Direitos Humanos</class:classificacao>
 				</class:classificacoes>
+                <idx:index>
+                    <idx:hint key="pessoa.nome" xpath="formIdentificacao/nomeRegistro" />
+                    <idx:hint key="pessoa.nome" xpath="formIdentificacao/nomeSocial" />
+                    <idx:hint key="pessoa.nome" xpath="formIdentificacao/filiacao" />
+                    <idx:hint key="pessoa.rg" xpath="formIdentificacao/rg" />
+                    <idx:hint key="pessoa.cpf" xpath="formIdentificacao/cpf" />
+                </idx:index>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>

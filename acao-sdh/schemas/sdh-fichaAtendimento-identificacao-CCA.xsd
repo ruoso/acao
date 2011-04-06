@@ -15,6 +15,11 @@
 				<class:classificacoes>
 					<class:classificacao>cn=Exploração Sexual,cn=Direitos Humanos</class:classificacao>
 				</class:classificacoes>
+                <idx:index>
+                    <idx:hint key="pessoa.nome" xpath="formIdentificacaoAdolescente/nome" />
+                    <idx:hint key="pessoa.apelido" xpath="formIdentificacaoAdolescente/apelido" />
+                    <idx:hint key="pessoa.datanascimento" xpath="formIdentificacaoAdolescente/dataNascimento" />
+                </idx:index>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>

@@ -17,12 +17,10 @@
 				</class:classificacoes>
 				<idx:index>
 					<idx:hint key="pessoa.nome" xpath="formMulheresDaPazFormularioInscricao/dadosPessoais/nome" />
-					<idx:hint key="pessoa.dataNascimento" xpath="formMulheresDaPazFormularioInscricao/dadosPessoais/dataNascimento" />
-					<idx:hint key="pessoa.bairro" xpath="formMulheresDaPazFormularioInscricao/dadosPessoais/bairro" />
-					<idx:hint key="pessoa.escolaridade" xpath="formMulheresDaPazFormularioInscricao/dadosEscolaridade/escolaridade" />
-					<idx:hint key="pessoa.turno" xpath="formMulheresDaPazFormularioInscricao/dadosEscolaridade/turno" />
-					<idx:hint key="pessoa.valorsalario" xpath="formMulheresDaPazFormularioInscricao/dadosTrabalho/valorSalario" />
-					<idx:hint key="pessoa.estadocivil" xpath="formMulheresDaPazFormularioInscricao/configuracaoFamiliar/estadoCivil" />
+                    <idx:hint key="pessoa.rg" xpath="formMulheresDaPazFormularioInscricao/dadosPessoais/registroGeral" />
+                    <idx:hint key="pessoa.cpf" xpath="formMulheresDaPazFormularioInscricao/dadosPessoais/cpf" />
+                    <idx:hint key="pessoa.nome" xpath="formMulheresDaPazFormularioInscricao/dadosPessoais/referenciasPessoais/referenciaVizinho/nome" />
+                    <idx:hint key="pessoa.nome" xpath="formMulheresDaPazFormularioInscricao/dadosPessoais/referenciasPessoais/referenciaTrabalho/nome" />
 				</idx:index>
 			</xs:appinfo>
 		</xs:annotation>
@@ -195,7 +193,7 @@
 				</xs:annotation>
 				<xs:complexType>
 					<xs:sequence>
-						<xs:element name="referenciaVisinho" minOccurs="0"
+						<xs:element name="referenciaVizinho" minOccurs="0"
 							maxOccurs="3">
 							<xs:annotation>
 								<xs:appinfo>

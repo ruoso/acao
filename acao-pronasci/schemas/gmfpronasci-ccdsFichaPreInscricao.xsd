@@ -16,9 +16,9 @@
 					<class:classificacao>cn=CCDS,cn=Defesa Social,cn=Segurança Pública</class:classificacao>
 				</class:classificacoes>
 				<idx:index>
-				    <idx:hint key="pessoa.bairro" xpath="formCcdsFichaPreInscricao/bairro" />
-				    <idx:hint key="pessoa.comunidade" xpath="formCcdsFichaPreInscricao/comunidade" />
 				    <idx:hint key="pessoa.nome" xpath="formCcdsFichaPreInscricao/dadosPessoais/nome" />
+                    <idx:hint key="pessoa.cpf" xpath="formCcdsFichaPreInscricao/dadosPessoais/cpf" />
+                    <idx:hint key="pessoa.rg" xpath="formCcdsFichaPreInscricao/dadosPessoais/rg" />
 				</idx:index>
 			</xs:appinfo>
 		</xs:annotation>

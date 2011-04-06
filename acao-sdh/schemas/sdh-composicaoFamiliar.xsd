@@ -2,6 +2,7 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-composicaoFamiliar.xsd"
     xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+    xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
 	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-composicaoFamiliar.xsd"
 	elementFormDefault="qualified">
@@ -13,6 +14,9 @@
                 <class:classificacoes>
                     <class:classificacao>cn=Direitos Humanos</class:classificacao>
                 </class:classificacoes>
+                <idx:index>
+                    <idx:hint key="pessoa.nome" xpath="formComposicaoFamiliar/composicaoFamiliar/nome" />
+                </idx:index>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>

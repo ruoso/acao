@@ -17,7 +17,6 @@
 				</class:classificacoes>
 				<idx:index>
 				    <idx:hint key="pessoa.nome" xpath="formMulheresDaPazQuestionarioMetas/dadosDaMulher/nome" />
-				    <idx:hint key="pessoa.nucleo" xpath="formMulheresDaPazQuestionarioMetas/dadosDaMulher/nucleo" />
 				    <idx:hint key="pessoa.nome" xpath="formMulheresDaPazQuestionarioMetas/dadosDoJovem/nomeJovem" />
 				</idx:index>
 			</xs:appinfo>
@@ -169,7 +168,7 @@
 									<xs:element name="estudando" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Esta estudando?</xhtml:label>
+												<xhtml:label>Está estudando?</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:simpleType>
@@ -382,7 +381,7 @@
 									<xs:element name="frequenciaProjeto1" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Como esta a frequência do jovem?</xhtml:label>
+												<xhtml:label>Como está a frequência do jovem?</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:simpleType>
@@ -415,7 +414,7 @@
 												<xs:element name="trilhosUrbanos" type="xs:boolean">
 													<xs:annotation>
 														<xs:appinfo>
-															<xhtml:label>Trilhos Urbanos</xhtml:label>
+															<xhtml:label>Trilhos urbanos</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
@@ -447,7 +446,7 @@
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
-												<xs:element name="inforamatica" type="xs:boolean">
+												<xs:element name="informatica" type="xs:boolean">
 
 													<xs:annotation>
 														<xs:appinfo>
@@ -472,8 +471,7 @@
 												<xs:element name="lugarDoProjeto" type="xs:string" minOccurs="0">
 													<xs:annotation>
 														<xs:appinfo>
-															<xhtml:label>Lugar onde participa do Projeto
-															</xhtml:label>
+															<xhtml:label>Lugar onde participa do Projeto</xhtml:label>
 														</xs:appinfo>
 													</xs:annotation>
 												</xs:element>
@@ -499,7 +497,7 @@
 									<xs:element name="frequenciaProjeto2" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Como esta a frequência do jovem?</xhtml:label>
+												<xhtml:label>Como está a frequência do jovem?</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:simpleType>
