@@ -54,8 +54,14 @@ sub form : Chained('base') : PathPart('inserir') : Args(0) {
 sub store : Chained('base') : PathPart('store_upload') : Args(0) {
     my ( $self, $c ) = @_;
 
+    my $dir = '/tmp/acao';
+    unless(-d $dir){
+        mkdir $dir or die "Diretório /tmp/acao não existe e não pode ser criado";
+    }
+
     if ( $c->request->parameters->{form_submit} eq 'yes' ) {
         $c->stash->{template} = 'auth/admin/schema/form.tt';
+
         if ( my $upload = $c->req->upload('uploadSchema') ) {
 
             my $filename = $upload->filename;
@@ -110,7 +116,12 @@ sub form_substituir : Chained('base') : PathPart('form_substituir') : Args(0) {
 sub substituir_xsd : Chained('base') : PathPart('substituir_xsd') : Args(0) {
     my ( $self, $c ) = @_;
     my $XSDtargetNamespace = $c->req->param('XSDtargetNamespace');
-    
+
+    my $dir = '/tmp/acao';
+    unless(-d $dir){
+        mkdir $dir or die "Diretório /tmp/acao nao existe e nao pode ser criado";
+    }
+
     if ( $c->request->parameters->{form_submit} eq 'yes' ) {
         $c->stash->{template} = 'auth/admin/schema/form_substituir.tt';
         if ( my $upload = $c->req->upload('uploadSchema') ) {
