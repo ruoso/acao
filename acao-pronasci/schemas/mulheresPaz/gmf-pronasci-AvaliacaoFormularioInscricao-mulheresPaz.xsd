@@ -1,0 +1,216 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-mulheresdapaz-avaliacaoformularioinscricao.xsd"
+	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-mulheresdapaz-avaliacaoformularioinscricao.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="formMulheresDaPazAvaliacaoFormularioInscricao" type="formMulheresDaPazAvaliacaoFormularioInscricao">
+		<xs:annotation>
+			<xs:appinfo>
+				<xhtml:label>02. AVALIAÇÃO FORMULÁRIOS INSCRIÇÃO</xhtml:label>
+				<class:classificacoes>
+					<class:classificacao>cn=Mulheres da Paz,cn=Infância e Adolescência,cn=Segurança Pública</class:classificacao>
+				</class:classificacoes>
+				<idx:index>
+					<idx:hint key="pessoa.nome" xpath="formMulheresDaPazAvaliacaoFormularioInscricao/candidata" />
+				</idx:index>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="formMulheresDaPazAvaliacaoFormularioInscricao">
+		<xs:sequence>
+			<xs:element name="numeroInscricao" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Número de inscrição:</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="candidata" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Candidata:</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="dadosJovem">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>1. Critérios de Habilitação</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="maiorde18anos" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Possui idade igual ou superior a 18 anos?
+									</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Sim" />
+									<xs:enumeration value="Não" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="moraBomJardim" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>É moradora do Grande Bom Jardim (Bairros:
+										Siqueira, Canidezinho, Bom Jardim, Granja Lisboa e Granja
+										Portugal)</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Sim" />
+									<xs:enumeration value="Não" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="comprovouRendaFamiliar" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Declarou ou comprovou ter renda familiar
+										inferior
+										ou igual a dois salários mínimos?</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Sim" />
+									<xs:enumeration value="Não" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="criteriosClassificatorios">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>2. Critérios Classificatórios</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="tempoBairro" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>2.1 Tempo no bairro (Para quem mora no bairro
+										há
+										mais de 5 anos)?</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="+1" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="dominoLinguagem" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>2.2 Domínio da Linguagem (Para quem apresentou
+										muita dificuldades no preenchimento do formulário ou muitos
+										erros graves de português, a ponto de prejudicar
+										a
+										compreensão
+										do que foi escrito)</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="-1" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="disponibilidadeTempo" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>2.3 Disponibilidade de tempo (Para quem tem
+										pelo
+										menos um mesmo turno livre durante cinco dias por
+										semana,
+										exceto noite)</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="+2" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="atuaComunidade" minOccurs="0" type="xs:float">
+
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>2.4 Atuação na comunidade realiza ou realizou
+										algum
+										trabalho comunitário, voluntário ou não, com
+										continuidade;
+										Possui experiência em trabalho com juventude
+										Possui
+										experiência em trabalho com drogadição.(0 a 10)
+									</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="porqueSerMulherdapaz" minOccurs="0"
+							type="xs:float">
+
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>2.5 Resposta à questão Nº, 08 ("Por que razão
+										você
+										deve ser uma Mulher da Paz?") Demonstrou
+										interesse/vontade
+										de
+										trabalhar pelos objetivos do Projeto;
+										Demostrou
+										sensibilidade em
+										ralação á temática; Demostrou
+										conhecimento
+										quanto à ralidade do
+										bairro; Vivência, na
+										família ou no seu
+										meio social, situações de
+										risco social
+										(drogas,crime,rua,violência)</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="total" minOccurs="0" type="xs:float">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Total:</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+
+</xs:schema>

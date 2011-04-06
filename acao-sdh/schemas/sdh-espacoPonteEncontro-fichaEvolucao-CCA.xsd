@@ -1,0 +1,55 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-espacopontedeencontro-fichaevolucaoCCA.xsd"
+	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-espacopontedeencontro-fichaevolucaoCCA.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="fromFichaEvolucao" type="fromFichaEvolucao">
+		<xs:annotation>
+			<xs:appinfo>
+				<xhtml:label>07. FICHA DE EVOLUÇÃO</xhtml:label>
+				<class:classificacoes>
+					<class:classificacao>cn=Programa Ponte de Encontro,cn=Criança e Adolescente,cn=Direitos Humanos</class:classificacao>
+				</class:classificacoes>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="fromFichaEvolucao">
+		<xs:sequence>
+		
+			<xs:element name="numeroAtendimento" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Número atendimento</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			<xs:element name="data" type="xs:date"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Data</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			
+			<xs:element name="registroDeAcompanhamento" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Registro de acompanhamento</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

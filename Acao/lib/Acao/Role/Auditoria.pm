@@ -57,6 +57,11 @@ role {
         my ( $self, @info ) = @_;
         $logger->info( 'alterar: ', @info );
     };
+
+    method 'audit_remover' => sub {
+        my ( $self, @info ) = @_;
+        $logger->info( 'remover: ', @info );
+    };
 };
 
 1;

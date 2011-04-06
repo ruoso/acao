@@ -511,6 +511,7 @@ sub reindexar {
         $id_dossie =~ s/\n//gis;
         push @dossies, $id_dossie;
     }
+
     for my $id_dos (@dossies) {
         my @data;
         my $xquery = 'declare namespace vol = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";

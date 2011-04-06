@@ -144,17 +144,22 @@ sub LDAPentryCreate {
 }
 
 sub LDAPInsertMemberEntry {
-    my ( $self, $dn, $memberA ) = @_;
+    my ( $self, $lotacao, $memberA ) = @_;
     my $ldapS  = _bind_ldap_admin($self);
-    my $result = $ldapS->modify( $dn, add => { member => [$memberA] } );
+    my $result = $ldapS->modify( $lotacao, add => { member => [$memberA] } );
+    # Se Existe o usuário, apague e adicione novamente.
+    if ($result->{resultCode} eq '20' ) {
+        LDAPDeleteMemberEntry($self,$lotacao,$memberA);
+        $result = $ldapS->modify( $lotacao, add => { member => [$memberA] } );
+    }
 
     return $result;
 }
 
 sub LDAPDeleteMemberEntry {
-    my ( $self, $dn, $memberA ) = @_;
+    my ( $self, $lotacao, $memberA ) = @_;
     my $ldapS  = _bind_ldap_admin($self);
-    my $result = $ldapS->modify( $dn, delete => { member => [$memberA] } );
+    my $result = $ldapS->modify( $lotacao, delete => { member => [$memberA] } );
 
 
     return $result;
