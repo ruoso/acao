@@ -13,7 +13,7 @@
 			<xs:appinfo>
 				<xhtml:label>02. SAÚDE</xhtml:label>
 				<class:classificacoes>
-					<class:classificacao>cn=Criança e Adolescente,cn=Direitos Humanos</class:classificacao>
+					<class:classificacao>cn=Programa Ponte de Encontro,cn=Criança e Adolescente,cn=Direitos Humanos</class:classificacao>
 				</class:classificacoes>
 			</xs:appinfo>
 		</xs:annotation>
@@ -82,7 +82,8 @@
 				</xs:annotation>
 				<xs:simpleType>
 					<xs:restriction base="xs:string">
-						<xs:maxLength value="255" />
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
@@ -100,18 +101,33 @@
 				</xs:simpleType>
 			</xs:element>
 
-            <xs:element name="jaFezExameDePrevencao" minOccurs="0">
+            <xs:element name="jaFezExameDePrevencao">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Já fez exames de prevenção</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:enumeration value="DST's" />
-						<xs:enumeration value="AIDS" />
-					</xs:restriction>
-				</xs:simpleType>
+				<xs:complexType>
+                    <xs:sequence>
+
+				        <xs:element name="dst" minOccurs="0" type="xs:boolean">
+			                <xs:annotation>
+				                <xs:appinfo>
+					                <xhtml:label>DST</xhtml:label>
+				                </xs:appinfo>
+			                </xs:annotation>
+		                </xs:element>
+
+				        <xs:element name="aids" minOccurs="0" type="xs:boolean">
+			                <xs:annotation>
+				                <xs:appinfo>
+					                <xhtml:label>AIDS</xhtml:label>
+				                </xs:appinfo>
+			                </xs:annotation>
+		                </xs:element>
+
+                    </xs:sequence>
+				</xs:complexType>
 			</xs:element>
 
             <xs:element name="usaAlgumTipoMedicamento" minOccurs="0">

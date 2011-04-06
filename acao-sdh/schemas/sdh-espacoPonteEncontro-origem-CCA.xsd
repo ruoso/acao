@@ -11,9 +11,9 @@
 	<xs:element name="formEspacoPontoEncontroOrigem" type="formEspacoPontoEncontroOrigem">
 		<xs:annotation>
 			<xs:appinfo>
-				<xhtml:label>01. ESPAÇO PONTO DE ENCONTRO - ORIGEM </xhtml:label>
+				<xhtml:label>01. ORIGEM </xhtml:label>
 				<class:classificacoes>
-					<class:classificacao>cn=Educação e Arte,cn=Direitos Humanos</class:classificacao>
+					<class:classificacao>cn=Programa Ponte de Encontro,cn=Criança e Adolescente,cn=Direitos Humanos</class:classificacao>
 				</class:classificacoes>
 			</xs:appinfo>
 		</xs:annotation>
@@ -227,17 +227,18 @@
 								<xs:appinfo>
 									<xhtml:label>Regional</xhtml:label>
 								</xs:appinfo>
-								<xsdext:extensions>
-									<xsdext:engine>autoComplete</xsdext:engine>
-									<xsdext:service>/regionais</xsdext:service>
-								</xsdext:extensions>
 							</xs:annotation>
-							<xs:simpleType>
-								<xs:restriction base="xs:string">
-									<xs:maxLength value="255" />
-								</xs:restriction>
-							</xs:simpleType>
-						</xs:element>
+				            <xs:simpleType>
+					            <xs:restriction base="xs:string">
+						            <xs:enumeration value="1" />
+						            <xs:enumeration value="2" />
+                                    <xs:enumeration value="3" />
+                                    <xs:enumeration value="4" />
+                                    <xs:enumeration value="5" />
+                                    <xs:enumeration value="6" />
+					            </xs:restriction>
+				            </xs:simpleType>
+			            </xs:element>
 
 					</xs:sequence>
 				</xs:complexType>
