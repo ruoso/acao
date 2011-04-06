@@ -3,6 +3,7 @@
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
 	xmlns="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-ccdsFichaInscricaoCursoFormacaoSegurancaPublica.xsd"
 	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+    xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
 	xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
 	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-ccdsFichaInscricaoCursoFormacaoSegurancaPublica.xsd"
 	elementFormDefault="qualified">
@@ -14,6 +15,9 @@
 				<class:classificacoes>
 					<class:classificacao>cn=CCDS,cn=Defesa Social,cn=Segurança Pública</class:classificacao>
 				</class:classificacoes>
+                <idx:index>
+                    <idx:hing key="pessoa.nome" xpath="formCcdsInscricaoCursoFormacaoSegurancaPublica/nome" />
+                </idx:index>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>

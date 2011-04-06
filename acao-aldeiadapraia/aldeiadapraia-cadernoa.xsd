@@ -14,6 +14,11 @@
 				<class:classificacoes>
 					<class:classificacao>cn=Aldeia da Praia,cn=Habitação</class:classificacao>
 				</class:classificacoes>
+				<idx:index>
+					<idx:hint key="pessoa.nome" xpath="formCadernoA/identificacao/entrevistador" />
+					<idx:hint key="pessoa.nome" xpath="formCadernoA/identificacao/titularBeneficiario" />
+				</idx:index>
+
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
@@ -169,7 +174,6 @@
 								<xs:restriction base="xs:string">
 									<xs:enumeration value="Presente" />
 									<xs:enumeration value="Ausente" />
-
 									<xs:enumeration value="Recusou-se" />
 									<xs:enumeration value="Terreno" />
 									<xs:enumeration value="Casa desocupada" />
