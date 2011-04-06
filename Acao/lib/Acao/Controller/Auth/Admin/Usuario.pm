@@ -49,7 +49,13 @@ sub lista : Chained('base') : PathPart('') : Args(0) {
 
 sub adicionar_usuario : Chained('base') : PathPart('cadastrar') : Args(0) {
     my ( $self, $c ) = @_;
-    $c->stash->{lotacao} = '<opt> </opt>';
+    $c->stash->{lotacao}   = '<opt> </opt>';
+
+    $c->stash->{uid}       = $c->req->param('uid');
+    $c->stash->{nome}      = $c->req->param('nome');
+    $c->stash->{sobrenome} = $c->req->param('sobrenome');
+    $c->stash->{email}     = $c->req->param('email');
+    $c->stash->{fone}      = $c->req->param('fone');
 
 }
 
@@ -126,6 +132,24 @@ sub searchUser : Chained('base') : PathPart('buscar') : Args(0) {
 sub store : Chained('base') : PathPart('store') : Args(0) {
     my ( $self, $c ) = @_;
     my $result;
+    if (!$c->req->param('senha')) {
+        $c->flash->{erro} = 'ldap-100';
+        $c->res->redirect(
+            $c->uri_for_action(
+                '/auth/admin/usuario/adicionar_usuario',
+                {
+
+                    uid       => $c->req->param('uid'),
+                    nome      => $c->req->param('nome'),
+                    sobrenome => $c->req->param('sobrenome'),
+                    email     => $c->req->param('email'),
+                    fone      => $c->req->param('fone')
+                }
+
+            )
+        );
+        return;
+    }
     my $volumeArray    = [ $c->req->param('volume[]') ];
     my $dossieArray    = [ $c->req->param('dossie[]') ];
     my $documentoArray = [ $c->req->param('documento[]') ];
@@ -160,7 +184,19 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
     if ( $result->{resultCode} ne '0' ) {
         $c->flash->{erro} = 'ldap-' . $result->{resultCode};
         $c->res->redirect(
-            $c->uri_for_action('/auth/admin/usuario/adicionar_usuario') );
+            $c->uri_for_action(
+                '/auth/admin/usuario/adicionar_usuario',
+                {
+
+                    uid       => $c->req->param('uid'),
+                    nome      => $c->req->param('nome'),
+                    sobrenome => $c->req->param('sobrenome'),
+                    email     => $c->req->param('email'),
+                    fone      => $c->req->param('fone')
+                }
+
+            )
+        );
         return;
     }
     else {
@@ -168,8 +204,10 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
         $self->audit_criar(
             'Usuário : ' . $c->req->param('uid') . ' POR : ' . $c->user->uid );
 
+        $c->res->redirect( $c->uri_for_action('/auth/admin/usuario/searchUser',{ buscar => $c->req->param('uid') }) );
+
     }
-    $c->res->redirect( $c->uri_for_action('/auth/admin/usuario/lista') );
+
 }
 
 sub add : Chained('base') : PathPart('add') : Args(0) {
@@ -255,11 +293,13 @@ sub store_lotacao : Chained('getUsuario') : PathPart('store_lotacao') : Args(0)
         }
     }
 
-    my $result =
-      $c->model('Usuario')
-      ->storeAlterarLotacao( { dn => $c->stash->{dn_usuario}, lotacao => $lotacao,lotacaoD => $lotacaoDelete });
-
-
+    my $result = $c->model('Usuario')->storeAlterarLotacao(
+        {
+            dn       => $c->stash->{dn_usuario},
+            lotacao  => $lotacao,
+            lotacaoD => $lotacaoDelete
+        }
+    );
 
     if ( $result->{resultCode} ne '0' ) {
         $c->flash->{erro} = 'ldap-' . $result->{resultCode};
@@ -307,9 +347,11 @@ sub delete : Chained('getUsuario') : PathPart('delete') : Args(0) {
               . $c->stash->{dn_usuario}
               . ' POR : '
               . $c->user->uid );
-
+        my $uid = $c->stash->{dn_usuario};
+        $uid =~ s/^uid=(.*?),.*/$1/o;
+        $c->res->redirect( $c->uri_for_action('/auth/admin/usuario/searchUser',{ buscar => $uid }) );
     }
-    $c->res->redirect( $c->uri_for_action('/auth/admin/usuario/lista') );
+
 
 }
 
@@ -359,7 +401,9 @@ sub store_alterar : Chained('getUsuario') : PathPart('store_alterar') : Args(0)
     }
     else {
         $c->flash->{sucesso} = 'Adicionado';
-        $c->res->redirect( $c->uri_for_action('/auth/admin/usuario/lista') );
+        my $uid = $c->stash->{dn_usuario};
+        $uid =~ s/^uid=(.*?),.*/$1/o;
+        $c->res->redirect( $c->uri_for_action('/auth/admin/usuario/searchUser',{ buscar => $uid }) );
 
     }
 

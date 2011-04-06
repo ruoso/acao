@@ -27,23 +27,23 @@
          <legend><img src="[% c.uri_for('/static/img/user/user.png') %]" alt="Informação de Usuário" /> Informação de Usuário</legend>
           <dl>
             <dt>Nome:</dt>
-              <dd><input type="text" name="nome" value="" ></dd>
+              <dd><input type="text" name="nome" value="[% nome %]" ></dd>
             <dt>Sobrenome:</dt>
-              <dd><input type="text" name="sobrenome" value="" ></dd>
+              <dd><input type="text" name="sobrenome" value="[% sobrenome %]" ></dd>
             <dt>Email:</dt>
-              <dd><input type="text" name="email" value="" ></dd>
+              <dd><input type="text" name="email" value="[% email %]" ></dd>
             <dt>Telefone:</dt>
-              <dd><input type="text" name="fone" value="" ></dd>
+              <dd><input type="text" name="fone" value="[% fone %]" ></dd>
          </dl>
       </fieldset>
       <fieldset class="cadInfoLogin" >
            <legend><img src="[% c.uri_for('/static/img/user/user_go.png') %]" alt="Informação de acesso ao sistema" /> Informação de acesso ao sistema</legend>
            <dl>
-            
-             <dt>Usuário:<span class="checkUserLdap" ><img onmouseover="dica_show()" onmouseout="dica_hide()" src="[% c.uri_for('/static/img/magnifier.png') %]" alt="Checar Usuário"></span></dt>
-                <dd><input type="text" name="uid" value="" ></dd>
+
+             <dt>Usuário:</dt>
+                <dd><input type="text" name="uid" value="[% uid %]" ></dd>
              <dt>Senha:</dt>
-               <dd><input type="password" name="senha" value="" ></dd>
+               <dd><input type="password" name="senha" value="[% senha %]" ></dd>
             </dl>
           </fieldset>
       </fieldset>
