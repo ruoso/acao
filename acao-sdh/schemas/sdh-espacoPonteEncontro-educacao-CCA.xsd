@@ -1,11 +1,11 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
   xmlns:xhtml="http://www.w3.org/1999/xhtml"
-  xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-cca-dadosresidencia.xsd"
+  xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-espacoponteencontro-educacao-cca.xsd"
   xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
   xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
   xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
-  targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-educacao.xsd"
+  targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-espacoponteencontro-educacao-cca.xsd"
   elementFormDefault="qualified">
 
   <xs:element name="formEducacao" type="formEducacao">
@@ -13,9 +13,7 @@
       <xs:appinfo>
         <xhtml:label>05. EDUCAÇÃO</xhtml:label>
         <class:classificacoes>
-          <class:classificacao>
-            cn=Direitos Humanos,cn=Criança Adolescente
-          </class:classificacao>
+					<class:classificacao>cn=Programa Ponte de Encontro,cn=Criança e Adolescente,cn=Direitos Humanos</class:classificacao>
         </class:classificacoes>
       </xs:appinfo>
     </xs:annotation>
@@ -23,6 +21,20 @@
 
   <xs:complexType name="formEducacao">
     <xs:sequence>
+
+			<xs:element name="numeroAtendimento" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Número atendimento</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
       <xs:element name="educacao" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
@@ -31,7 +43,7 @@
         </xs:annotation>
         <xs:simpleType>
           <xs:restriction base="xs:string">
-            <xs:enumeration value="Esá Estudando" />
+            <xs:enumeration value="Está Estudando" />
             <xs:enumeration value="Estudou" />
             <xs:enumeration value="Nunca Estudou" />
           </xs:restriction>
@@ -69,17 +81,12 @@
 
       </xs:element>
 
-      <xs:element name="ultimoAnoEstudo" minOccurs="0">
+      <xs:element name="ultimoAnoEstudo" minOccurs="0" type="xs:integer">
         <xs:annotation>
           <xs:appinfo>
             <xhtml:label>Qual o último ano que estudou?:</xhtml:label>
           </xs:appinfo>
         </xs:annotation>
-        <xs:simpleType>
-          <xs:restriction base="xs:integer">
-            <xs:maxLength value="4" />
-          </xs:restriction>
-        </xs:simpleType>
       </xs:element>
 
       <xs:element name="motivoForaEscola" minOccurs="0">

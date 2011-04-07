@@ -1,22 +1,17 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
   xmlns:xhtml="http://www.w3.org/1999/xhtml"
-  xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-cca-dadosresidencia.xsd"
+  xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-espacoponteencontro-convivenciafamiliarcomunitaria-cca.xsd"
   xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
-  targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-educacao.xsd"
+  targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-espacoponteencontro-convivenciafamiliarcomunitaria-cca.xsd"
   elementFormDefault="qualified">
 
-  <xs:element name="formConvivenviaFamiliarComunitaria"
-    type="formConvivenviaFamiliarComunitaria">
+  <xs:element name="formConvivenviaFamiliarComunitaria" type="formConvivenviaFamiliarComunitaria">
     <xs:annotation>
       <xs:appinfo>
-        <xhtml:label>
-          04. CONVIVÊNCIA FAMILIAR E COMUNITÁRIA
-        </xhtml:label>
+        <xhtml:label>04. CONVIVÊNCIA FAMILIAR E COMUNITÁRIA</xhtml:label>
         <class:classificacoes>
-          <class:classificacao>
-            cn=Direitos Humanos,cn=Criança Adolescente
-          </class:classificacao>
+			<class:classificacao>cn=Programa Ponte de Encontro,cn=Criança e Adolescente,cn=Direitos Humanos</class:classificacao>
         </class:classificacoes>
       </xs:appinfo>
     </xs:annotation>
@@ -24,6 +19,19 @@
 
   <xs:complexType name="formConvivenviaFamiliarComunitaria">
     <xs:sequence>
+			<xs:element name="numeroAtendimento" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Número atendimento</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
       <xs:element name="mae" minOccurs="0">
         <xs:annotation>
           <xs:appinfo>
@@ -97,10 +105,12 @@
             <xhtml:label>Renda Familiar:</xhtml:label>
           </xs:appinfo>
         </xs:annotation>
-        <xs:simpleType>
-          <xs:restriction base="xs:string">
-            <xs:maxLength value="255" />
-          </xs:restriction>
+         <xs:simpleType>
+            <xs:restriction base="xs:decimal">
+                <xs:fractionDigits value='2'/>
+                <xs:maxExclusive value="1000000"/>
+                <xs:minInclusive value="-1000000"/>
+            </xs:restriction>
         </xs:simpleType>
       </xs:element>
 
