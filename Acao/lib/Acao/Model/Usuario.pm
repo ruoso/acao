@@ -27,11 +27,8 @@ sub buscar_usuarios {
     my $memberOf;
     my $base_acao  = $self->base_acao;
     my $admin_acao = $self->admin_super;
-    utf8::decode($admin_acao);
-    utf8::decode($base_acao);
-
-#   isto é necessário pois, por alguma razão, o ConfigLoader não seta a flag de unicode na string //sikora
-
+    #utf8::decode($admin_acao);
+    #utf8::decode($base_acao);
     my $campo = $args->{campo} || 'uid=*';
     if ( !$args->{pesquisa} ) {
         $pesquisa = '';
@@ -133,9 +130,9 @@ sub getDadosUsuarioLdap {
     my $base_acao   = $self->base_acao;
     my $base_adm    = $self->base_adm;
     my $admin_super = $self->admin_super;
-    utf8::decode($base_adm);
-    utf8::decode($base_acao);
-    utf8::decode($admin_super);
+    #utf8::decode($base_adm);
+    #utf8::decode($base_acao);
+    #utf8::decode($admin_super);
     switch ($filtro) {
         case "acao" {
             $memberOf = [ $mesg->entry->get_value('memberOf') ];
@@ -292,11 +289,11 @@ sub recebePermissoesAcao {
     my $alterar    = Acao->config->{'roles'}->{$model}->{'alterar'};
     my $transferir = Acao->config->{'roles'}->{$model}->{'transferir'};
 
-    utf8::decode($listar);
-    utf8::decode($visualizar);
-    utf8::decode($criar);
-    utf8::decode($alterar);
-    utf8::decode($transferir);
+    #utf8::decode($listar);
+    #utf8::decode($visualizar);
+    #utf8::decode($criar);
+    #utf8::decode($alterar);
+    #utf8::decode($transferir);
 
     my $result = {
         'listar'     => $listar ~~@$usuario,
@@ -310,5 +307,32 @@ sub recebePermissoesAcao {
 
 }
 
+sub storeAlterarLotacao {
+    my ( $self, $args ) = @_;
+    my $lotacaoArrayInsert   = $args->{lotacao};
+    my $lotacaoArrayDelete   = $args->{lotacaoD};
+    my $super          = $args->{super};
+    my $result;
+
+    foreach my $lotacao (@$lotacaoArrayDelete) {
+        $result = $self->LDAPDeleteMemberEntry( $lotacao, $args->{dn} );
+        if ($result->{resultCode} ne '0') {
+            return $result;
+        }
+    }
+
+
+    foreach my $lotacao (@$lotacaoArrayInsert) {
+        $result = $self->LDAPInsertMemberEntry( $lotacao, $args->{dn} );
+        if ($result->{resultCode} ne '0') {
+            return $result;
+        }
+    }
+
+
+
+    return $result;
+
+}
 1;
 

@@ -24,6 +24,7 @@ BEGIN { extends 'Catalyst::Controller'; }
 use Data::Dumper;
 use utf8;
 use XML::Simple;
+with 'Acao::Role::Auditoria' => { category => 'Admin.Usuario' };
 
 #with 'Acao::Role::Controller::Requisicao';
 
@@ -48,7 +49,13 @@ sub lista : Chained('base') : PathPart('') : Args(0) {
 
 sub adicionar_usuario : Chained('base') : PathPart('cadastrar') : Args(0) {
     my ( $self, $c ) = @_;
-    $c->stash->{lotacao} = '<opt> </opt>';
+    $c->stash->{lotacao}   = '<opt> </opt>';
+
+    $c->stash->{uid}       = $c->req->param('uid');
+    $c->stash->{nome}      = $c->req->param('nome');
+    $c->stash->{sobrenome} = $c->req->param('sobrenome');
+    $c->stash->{email}     = $c->req->param('email');
+    $c->stash->{fone}      = $c->req->param('fone');
 
 }
 
@@ -125,6 +132,24 @@ sub searchUser : Chained('base') : PathPart('buscar') : Args(0) {
 sub store : Chained('base') : PathPart('store') : Args(0) {
     my ( $self, $c ) = @_;
     my $result;
+    if (!$c->req->param('senha')) {
+        $c->flash->{erro} = 'ldap-100';
+        $c->res->redirect(
+            $c->uri_for_action(
+                '/auth/admin/usuario/adicionar_usuario',
+                {
+
+                    uid       => $c->req->param('uid'),
+                    nome      => $c->req->param('nome'),
+                    sobrenome => $c->req->param('sobrenome'),
+                    email     => $c->req->param('email'),
+                    fone      => $c->req->param('fone')
+                }
+
+            )
+        );
+        return;
+    }
     my $volumeArray    = [ $c->req->param('volume[]') ];
     my $dossieArray    = [ $c->req->param('dossie[]') ];
     my $documentoArray = [ $c->req->param('documento[]') ];
@@ -145,6 +170,7 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
                 'sobrenome' => $c->req->param('sobrenome'),
                 'email'     => $c->req->param('email'),
                 'fone'      => $c->req->param('fone'),
+
                 # 'dominio'   => $c->req->param('dominio'),
                 'volume'    => $volumeArray,
                 'dossie'    => $dossieArray,
@@ -158,14 +184,30 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
     if ( $result->{resultCode} ne '0' ) {
         $c->flash->{erro} = 'ldap-' . $result->{resultCode};
         $c->res->redirect(
-            $c->uri_for_action('/auth/admin/usuario/adicionar_usuario') );
+            $c->uri_for_action(
+                '/auth/admin/usuario/adicionar_usuario',
+                {
+
+                    uid       => $c->req->param('uid'),
+                    nome      => $c->req->param('nome'),
+                    sobrenome => $c->req->param('sobrenome'),
+                    email     => $c->req->param('email'),
+                    fone      => $c->req->param('fone')
+                }
+
+            )
+        );
         return;
     }
     else {
         $c->flash->{sucesso} = 'Adicionado';
+        $self->audit_criar(
+            'Usuário : ' . $c->req->param('uid') . ' POR : ' . $c->user->uid );
+
+        $c->res->redirect( $c->uri_for_action('/auth/admin/usuario/searchUser',{ buscar => $c->req->param('uid') }) );
 
     }
-    $c->res->redirect( $c->uri_for_action('/auth/admin/usuario/lista'));
+
 }
 
 sub add : Chained('base') : PathPart('add') : Args(0) {
@@ -225,13 +267,15 @@ sub store_lotacao : Chained('getUsuario') : PathPart('store_lotacao') : Args(0)
 
     $c->model('Usuario')->validaUser( $c->stash->{dn_usuario} )
       or $c->detach('/public/default');
+    $self->audit_alterar(
+        'LOTACAO DE : ' . $c->stash->{dn_usuario} . ' POR : ' . $c->user->uid );
 
     my $lotacaoDelete =
       desserialize( $c->req->param('lotacaoAnterior') )->{value};
 
     if ( ( ref($lotacaoDelete) ne 'ARRAY' ) ) {
         if ( $lotacaoDelete eq '' ) {
-            $lotacaoDelete = '';
+            $lotacaoDelete = [];
         }
         else {
             $lotacaoDelete = [$lotacaoDelete];
@@ -242,20 +286,20 @@ sub store_lotacao : Chained('getUsuario') : PathPart('store_lotacao') : Args(0)
 
     if ( ( ref($lotacao) ne 'ARRAY' ) ) {
         if ( $lotacao eq '' ) {
-            $lotacao = '';
+            $lotacao = [];
         }
         else {
             $lotacao = [$lotacao];
         }
     }
 
-    #   if ( ref($lotacao) ne 'ARRAY' ) {
-    #       $lotacao = [$lotacao];
-    #   }
-
-    my $result =
-      $c->model('LDAP')
-      ->LDAPChangeMemberEntry( $c->req->param('dn'), $lotacao, $lotacaoDelete );
+    my $result = $c->model('Usuario')->storeAlterarLotacao(
+        {
+            dn       => $c->stash->{dn_usuario},
+            lotacao  => $lotacao,
+            lotacaoD => $lotacaoDelete
+        }
+    );
 
     if ( $result->{resultCode} ne '0' ) {
         $c->flash->{erro} = 'ldap-' . $result->{resultCode};
@@ -299,9 +343,15 @@ sub delete : Chained('getUsuario') : PathPart('delete') : Args(0) {
     }
     else {
         $c->flash->{sucesso} = 'Removido';
-
+        $self->audit_remover( 'Usuário do ação : '
+              . $c->stash->{dn_usuario}
+              . ' POR : '
+              . $c->user->uid );
+        my $uid = $c->stash->{dn_usuario};
+        $uid =~ s/^uid=(.*?),.*/$1/o;
+        $c->res->redirect( $c->uri_for_action('/auth/admin/usuario/searchUser',{ buscar => $uid }) );
     }
-    $c->res->redirect( $c->uri_for_action('/auth/admin/usuario/lista') );
+
 
 }
 
@@ -314,6 +364,10 @@ sub store_alterar : Chained('getUsuario') : PathPart('store_alterar') : Args(0)
     my $dossieArray    = [ $c->req->param('dossie[]') ];
     my $documentoArray = [ $c->req->param('documento[]') ];
     my $super          = $c->req->param('super');
+    $self->audit_alterar( 'PERMISSOES DE : '
+          . $c->stash->{dn_usuario}
+          . ' POR : '
+          . $c->user->uid );
 
     if ($delete) {
 
@@ -325,7 +379,6 @@ sub store_alterar : Chained('getUsuario') : PathPart('store_alterar') : Args(0)
             $c->model('LDAP')
               ->LDAPDeleteMemberEntry( $dnAcao, $c->stash->{dn_usuario} );
         }
-        warn '******************************';
 
     }
 
@@ -348,7 +401,9 @@ sub store_alterar : Chained('getUsuario') : PathPart('store_alterar') : Args(0)
     }
     else {
         $c->flash->{sucesso} = 'Adicionado';
-        $c->res->redirect( $c->uri_for_action('/auth/admin/usuario/lista') );
+        my $uid = $c->stash->{dn_usuario};
+        $uid =~ s/^uid=(.*?),.*/$1/o;
+        $c->res->redirect( $c->uri_for_action('/auth/admin/usuario/searchUser',{ buscar => $uid }) );
 
     }
 
@@ -367,7 +422,8 @@ sub store_alterar_senha : Chained('getUsuario')
     );
 
     $c->stash->{resultado} = $result->{resultCode};
-
+    $self->audit_alterar(
+        'SENHA DE : ' . $c->stash->{dn_usuario} . ': POR: ' . $c->user->uid );
     $c->stash->{template} = 'auth/admin/usuario/sucesso_alter_pass.tt';
 
 }

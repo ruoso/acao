@@ -15,6 +15,9 @@
 				<class:classificacoes>
 					<class:classificacao>cn=Diversidade Sexual,cn=Direitos Humanos</class:classificacao>
 				</class:classificacoes>
+                <idx:index>
+                    <idx:hint key="pessoa.nome" xpath="formcomposicaoFamiliar/composicaoFamiliar/nome" />
+                </idx:index>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
