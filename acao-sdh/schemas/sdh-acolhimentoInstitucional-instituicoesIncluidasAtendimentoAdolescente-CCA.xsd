@@ -1,0 +1,393 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-espacoPonteEncontro-instituicoesIncluidasAtendimentoAdolescente-CCA.xsd"
+	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
+	xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-cca-espacoponteencontro-instituicoesincluidasatendimentoadolescente.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="formInstituicoesAtendimentoAdolescente" type="formInstituicoesAtendimentoAdolescente">
+		<xs:annotation>
+			<xs:appinfo>
+				<xhtml:label>09. INSTITUIÇÕES INCLUÍDAS NO ATENDIMENTO DO ADOLESCENTE E DA FAMÍLIA</xhtml:label>
+				<class:classificacoes>
+					<class:classificacao>cn=Exploração Sexual,cn=Direitos Humanos </class:classificacao>
+				</class:classificacoes>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="formInstituicoesAtendimentoAdolescente">
+		<xs:sequence>
+
+			<xs:element name="numeroAtendimento" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Número do atendimento:</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			<xs:element name="conselhoTutelar" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Conselho tutelar</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="delegaciaCombateExploracao" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Delegacia de combate a exploração da criança e adolescente - DEDECA</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="delegaciasComunsEspecializadas" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Delegacias comuns e especializadas</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="assistenciaSocial" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Assistência social</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="protecaoSocialBasica">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Proteção social básica</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="centroReferenciaAssistenciaSocial" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Centro de referência de assitência social(CRAS)</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="servicoProtecaoAtendimentoIntegralFamilia" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Serviço de proteção e atendimento à família</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="servicoConvivenciaFortalecimentoVinculos" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Serviço de convivência e fortalecimento de vínculos</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="servicoProtecaoBasicaDomicilioPessoasDeficientes" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Serviço de proteção social básica no domicílio para pessoas com deficiência e idosas</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="observacoesProtecaoSocialBasica">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Observações</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction>
+												<xs:maxLength value="255"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="protecaoSocialEspecial">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Proteção social especial</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="centroReferenciaEspecializado" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Centro de referência especializado de assistência social(CREAS)</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="servicoProtecaoAtendimentoEspecializadoFamilia" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Serviço de proteção e atendimento especializado a famílias indivíduos(PAEFI)</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="servicoEspecializadoAbordagemSocial" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Serviço especializado em abordagem social</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="servicoProtecaoSocialAdolescente" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Serviço de proteção social e adolescente em cumprimento de medida socioeducativa de liberdade assistida(LA) e de prestação de serviços à comunidade (PSC)</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="servicProtecaoSocialEspecial" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Serviço de proteção social especial para pessoas com deficiência, idosas e suas famílias</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="servicoEspecializadoPessoasSituacaoRua" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Serviço especializado para pessoas em situação de rua</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="servicoAcolhimentoInstitucional" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Serviço de acolhimento institucional, serviço de acolhimento em república</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="servicoAcolhimentoFamiliaAcolhedora" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Serviço de acolhimento em família acolhedora</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="servicoProtecaoSituacoesCalamidadeEmergencias" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Serviço de proteção em situações de calamidades públicas e de emergências</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="outrosServicosSocioFamiliar">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Outros serviços de apoio sócio-familiar</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction>
+									<xs:maxLength value="255"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="saude">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Saúde</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="redeAtencaoBasica">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Rede de atenção básica</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction>
+									<xs:maxLength value="255"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="redeAtencaoEspecializada">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Rede de atenção especializada</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction>
+									<xs:maxLength value="255"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="redeSaudeMental">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Rede de saúde mental</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction>
+									<xs:maxLength value="255"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="educacao">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Educação</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="crechesEscolaInfantil">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Creches/escolas de educação infantil</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction>
+									<xs:maxLength value="255"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="escolasEnsinoFundamentalMedio">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Escolas de ensino fundamental e médio</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction>
+									<xs:maxLength value="255"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="habitacao">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Habitação</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction>
+									<xs:maxLength value="255"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="profissionalizacaoTrabalho">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Profissionalização/Trabalho</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction>
+									<xs:maxLength value="255"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="outrosEducacao">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Outros</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction>
+									<xs:maxLength value="255"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="acompanhadoConselho">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Acompanhado pelo conselho</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction>
+						<xs:enumeration value="Conselho tutelar I"/>
+						<xs:enumeration value="Conselho tutelar II"/>
+						<xs:enumeration value="Conselho tutelar III"/>
+						<xs:enumeration value="Conselho tutelar IV"/>
+						<xs:enumeration value="Conselho tutelar V"/>
+						<xs:enumeration value="Conselho tutelar VI"/>
+						<xs:enumeration value="Conselho tutelar do município de origem"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="seCumprimentoMedidaSocioEducativa">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Se em cumprimento de medida socio educativa, acompanhado por</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction>
+						<xs:enumeration value="PSC"/>
+						<xs:enumeration value="LAM núcleo I Jacarecanga"/>
+						<xs:enumeration value="LAM núcleo II Mucuripe"/>
+						<xs:enumeration value="LAM núcleo I João Arruda"/>
+						<xs:enumeration value="LAM núcleo IV (não implantado)"/>
+						<xs:enumeration value="LAM núcleo V Conjunto Ceará"/>
+						<xs:enumeration value="LAM núcleo VI Dias Macedo"/>
+						<xs:enumeration value="Núcleo do juizado - LAJ"/>
+						<xs:enumeration value="Núcleo do município de origem"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="acompanhamentoSaudeMental">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Acompanhamento de saúde mental</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction>
+						<xs:enumeration value="CAPS I"/>
+						<xs:enumeration value="CAPS GERAL"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
