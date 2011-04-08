@@ -1,0 +1,152 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml"
+  xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-espacoponteencontro-convivenciafamiliarcomunitaria-cca.xsd"
+  xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+  targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-espacoponteencontro-convivenciafamiliarcomunitaria-cca.xsd"
+  elementFormDefault="qualified">
+
+  <xs:element name="formConvivenviaFamiliarComunitaria" type="formConvivenviaFamiliarComunitaria">
+    <xs:annotation>
+      <xs:appinfo>
+        <xhtml:label>04. CONVIVÊNCIA FAMILIAR E COMUNITÁRIA</xhtml:label>
+        <class:classificacoes>
+			<class:classificacao>cn=Programa Ponte de Encontro,cn=Criança e Adolescente,cn=Direitos Humanos</class:classificacao>
+        </class:classificacoes>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="formConvivenviaFamiliarComunitaria">
+    <xs:sequence>
+			<xs:element name="numeroAtendimento" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Número atendimento</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+      <xs:element name="mae" minOccurs="0">
+        <xs:annotation>
+          <xs:appinfo>
+            <xhtml:label>Mãe:</xhtml:label>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="255" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+
+      <xs:element name="pai" minOccurs="0">
+        <xs:annotation>
+          <xs:appinfo>
+            <xhtml:label>Pai:</xhtml:label>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="255" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+
+      <xs:element name="responsável" minOccurs="0">
+        <xs:annotation>
+          <xs:appinfo>
+            <xhtml:label>Responsável:</xhtml:label>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="255" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+
+      <xs:element name="grauParentesco" minOccurs="0">
+        <xs:annotation>
+          <xs:appinfo>
+            <xhtml:label>Grau de Parentesco:</xhtml:label>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="255" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+
+      <xs:element name="ocupacaoResponsavel" minOccurs="0">
+        <xs:annotation>
+          <xs:appinfo>
+            <xhtml:label>
+              Ocupação do Responsável:
+            </xhtml:label>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="255" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+
+      <xs:element name="rendaFamiliar" minOccurs="0">
+        <xs:annotation>
+          <xs:appinfo>
+            <xhtml:label>Renda Familiar:</xhtml:label>
+          </xs:appinfo>
+        </xs:annotation>
+         <xs:simpleType>
+            <xs:restriction base="xs:decimal">
+                <xs:fractionDigits value='2'/>
+                <xs:maxExclusive value="1000000"/>
+                <xs:minInclusive value="-1000000"/>
+            </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+
+      <xs:element name="beneficioSocial" minOccurs="0">
+        <xs:annotation>
+          <xs:appinfo>
+            <xhtml:label>
+              Recebe algum benefício social?
+            </xhtml:label>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Sim" />
+            <xs:enumeration value="Não" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+
+      <xs:element name="abrigadoInstituicao" minOccurs="0">
+        <xs:annotation>
+          <xs:appinfo>
+            <xhtml:label>
+              Já esteve abrigado em alguma instituição?
+            </xhtml:label>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Sim" />
+            <xs:enumeration value="Não" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+
+    </xs:sequence>
+
+  </xs:complexType>
+</xs:schema>

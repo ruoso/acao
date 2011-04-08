@@ -1,27 +1,25 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
-	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-acolhimentoInstitucional-documentosApresentados-CasaMeninas.xsd"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-acolhimentoinstitucional-documentos-casameninosmeninas.xsd"
 	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
 	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
 	xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
-	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-acolhimentoInstitucional-documentosApresentados-CasaMeninas.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-acolhimentoinstitucional-documentos-casameninosmeninas.xsd"
 	elementFormDefault="qualified">
 
-	<xs:element name="formDocumentosApresentados" type="formDocumentosApresentados">
+	<xs:element name="formDocumentos" type="formDocumentos">
 		<xs:annotation>
 			<xs:appinfo>
-				<xhtml:label>02. DOCUMENTOS APRESENTADOS</xhtml:label>
+				<xhtml:label>02. DOCUMENTAÇÃO</xhtml:label>
 				<class:classificacoes>
-					<class:classificacao>
-                        cn=Programa Casa das Meninas,cn=Programa Casa dos Meninos,cn=Criança e Adolescente,cn=Direitos Humanos
-                    </class:classificacao>
+					<class:classificacao>cn=Acolhimento Institucional,cn=Criança e Adolescente,cn=Direitos Humanos</class:classificacao>
 				</class:classificacoes>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
 
-	<xs:complexType name="formDocumentosApresentados">
+	<xs:complexType name="formDocumentos">
 		<xs:sequence>
 			<xs:element name="numeroAtendimento" minOccurs="1">
 				<xs:annotation>

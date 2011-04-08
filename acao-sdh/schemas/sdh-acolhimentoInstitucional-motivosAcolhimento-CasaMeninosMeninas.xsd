@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!--
+		# Copyright 2010 - Prefeitura Municipal de Fortaleza # # Este arquivo
+		é parte do programa xsdform-js # # O xsdform-js é um software livre;
+		você pode redistribui-lo e/ou # modifica-lo dentro dos termos da
+		Licença Pública Geral GNU como # publicada pela Fundação do Software
+		Livre (FSF); na versão 2 da # Licença. # # Este programa é distribuido
+		na esperança que possa ser util, mas SEM # NENHUMA GARANTIA; sem uma
+		garantia implicita de ADEQUAÇÂO a qualquer # MERCADO ou APLICAÇÃO EM
+		PARTICULAR. Veja a Licença Pública Geral GNU # para maiores detalhes.
+		# # Você deve ter recebido uma cópia da Licença Pública Geral GNU, sob
+		o # título "LICENCA.txt", junto com este programa, se não, escreva
+		para a # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth
+		Floor,
+	-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml" targetNamespace="test:ns"
+	elementFormDefault="qualified">
+    <xs:element name="formCadernoA" type="formCadernoA">
+        <xs:annotation>
+            <xs:appinfo>
+                <xhtml:label>Sample Form</xhtml:label>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
+    <xs:complexType name="formCadernoA">
+        <xs:sequence>
+            <xs:element name="dadosFamilia">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <xhtml:label>8 - MOTIVOS DO ACOLHIMENTO INSTITUCIONAL OU FAMILIAR</xhtml:label>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                    	<xs:element name="faltaRecurso" minOccurs="0">
+                            <xs:annotation>
+                                <xs:appinfo>
+                                    <xhtml:label>Falta de recursos materiais por parte dos pais e/ou responsáveis.</xhtml:label>
+                                </xs:appinfo>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="condicoesHabitacionais" type="xs:boolean">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Condições habitacionais</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="desemprego" type="xs:boolean">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Desemprego</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="mendicancia" type="xs:boolean">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Mendicância/situação de rua</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="rendaInsuficiente" type="xs:boolean">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Renda insuficiente</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="outro" type="xs:boolean">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Outro</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="faltaRecursoOutro" type="xs:string"
+										minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Outro</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="orfandadeAbandono" minOccurs="0">
+                            <xs:annotation>
+                                <xs:appinfo>
+                                    <xhtml:label>Orfandade ou Abandono, sem identificação de familia extensa ou pessoas significativas da rede social de apoio.</xhtml:label>
+                                </xs:appinfo>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="morte" type="xs:boolean">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Morte de pais e/ou responsáveis</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="abandono" type="xs:boolean">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Abandono pelos pais ou responsaveis</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="outro" type="xs:boolean">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Outro</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="orfandadeAbandonoOutro" type="xs:string"
+										minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Outro</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="ausencia" minOccurs="0">
+                            <xs:annotation>
+                                <xs:appinfo>
+                                    <xhtml:label>Ausência temporária de pais e/ou responsáveis, sem identificação de familia extensa ou pessoas significativas da rede social de apoio.</xhtml:label>
+                                </xs:appinfo>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="prisao" type="xs:boolean">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Prisão</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="internacao" type="xs:boolean">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Internação médica/problemas de saúde</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="outro" type="xs:boolean">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Outro</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="ausenciaOutro" type="xs:string"
+										minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Outro</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="condicoesDesfavoraveis" minOccurs="0">
+                            <xs:annotation>
+                                <xs:appinfo>
+                                    <xhtml:label>Condições desfavoráveis dos pais e/ou responsáveis para cuidar do(s) filho(s).</xhtml:label>
+                                </xs:appinfo>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="dependencia" type="xs:boolean">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Dependência química</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="alcoolismo" type="xs:boolean">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Alcoolismo</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="problemasSaude" type="xs:boolean">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Problemas de saúde fisica</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="problemasPsiquiatricos" type="xs:boolean">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Problemas psiquiátricos</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="problemasPsicologicos" type="xs:boolean">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Problemas psicológicos: (ansiedade, stress, apatia)</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="faltaApoio" type="xs:boolean">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Falta de apoio da rede parental ou relacional</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="maesAdolecentes" type="xs:boolean">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Mães adolecentes</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="conflitos" type="xs:boolean">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Conlitos familiares/relacionamentos violentos</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="deficiencia" type="xs:boolean">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Pessoas com deficiência(s)</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="incapacidade" type="xs:boolean">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Incapacidade dos pais em lidar com a conduta filho(s)</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="outro" type="xs:boolean">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Outro</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="ausenciaOutro" type="xs:string" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Outro</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="faltaGarantia" minOccurs="0">
+                            <xs:annotation>
+                                <xs:appinfo>
+                                    <xhtml:label>Falta de garantia de acesso a direitos sociais.</xhtml:label>
+                                </xs:appinfo>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="ausenciaProgramas" type="xs:boolean">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Ausência de programas públicos e comunitários (assistência social, educação, saúde, trabalho, habitação etc).</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="ausenciaProgramasQuais" type="xs:string" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Quais</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="ineficiencia" type="xs:boolean">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Ineficiência ou inadequação dos programas públicos e comunitários (assistência social, educação, saúde, trabalho, habitação etc).</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="ineficienciaQuais" type="xs:string" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Quais</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="outro" type="xs:boolean">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Outro</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="ausenciaOutro" type="xs:string" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Outro</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="ameaca" minOccurs="0">
+                            <xs:annotation>
+                                <xs:appinfo>
+                                    <xhtml:label>Ameaça ou violação à integridade fisica e psíquica.</xhtml:label>
+                                </xs:appinfo>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="violencia" type="xs:boolean">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Violência ou abuso sexual</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="abusoSexual" type="xs:boolean">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Abuso sexual</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="exploracaoSexual" type="xs:boolean">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Exploração sexual</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="violenciaPsicologica" type="xs:boolean">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Violência psicológica</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="negligenciaPais" type="xs:boolean">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Negligência por parte pais e responsáveis</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="negligenciaInstitucional" type="xs:boolean">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Violência e/ou negligência institucional</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="outro" type="xs:boolean">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Outro</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="ausenciaOutro" type="xs:string"
+										minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Outro</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="situacaoCrianca" minOccurs="0">
+                            <xs:annotation>
+                                <xs:appinfo>
+                                    <xhtml:label>Situação das crianças e dos adolecentes.</xhtml:label>
+                                </xs:appinfo>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="perdido" type="xs:boolean">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Perdido ou em fuga</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="situacao" type="xs:boolean">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Em situação de rua/mendicância</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="conflitoFamiliar" type="xs:boolean">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Conflitos familiares</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="ameacadoMorte" type="xs:boolean">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Ameaçado de morte</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="exploracaoTrabalho" type="xs:boolean">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Submetido à exploração no trabalho</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="dependente" type="xs:boolean">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Dependente químico ou dependente de álcool</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="problemasSaude" type="xs:boolean">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Em razão de problemas de saúde.</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="problemasSaudeQuais" type="xs:string" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Quais?</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="adocao" type="xs:boolean">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Adoção mal sucedida.</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="outro" type="xs:boolean">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Outro</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="ausenciaOutro" type="xs:string" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <xhtml:label>Outro</xhtml:label>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="motivoPrincipal" minOccurs="1">
+                            <xs:annotation>
+                                <xs:appinfo>
+                                    <xhtml:label>Motivo principal para o acolhimento</xhtml:label>
+                                </xs:appinfo>
+                            </xs:annotation>
+                            <xs:simpleType>
+			                    <xs:restriction base="xs:string">
+			                        <xs:enumeration value="Abandono" />
+			                        <xs:enumeration value="Ameaça na familia" />
+			                        <xs:enumeration value="Ameaça na comunidade" />
+			                        <xs:enumeration value="Ameaça por policiais" />
+			                        <xs:enumeration value="Ameaça por traficantes" />
+			                        <xs:enumeration value="Abuso sexual" />
+			                        <xs:enumeration value="Assédio sexual" />
+			                        <xs:enumeration value="Ato infracional" />
+			                        <xs:enumeration value="Cárcere privado" />
+			                        <xs:enumeration value="Conflito familiar" />
+			                        <xs:enumeration value="Depenência química (usuário)" />
+			                        <xs:enumeration value="Descumprimento de medida sócio-educativa" />
+			                        <xs:enumeration value="DPF - Destituição do Poder Familiar" />
+			                        <xs:enumeration value="Tratamento para dependência química" />
+			                        <xs:enumeration value="Exploração sexual" />
+			                        <xs:enumeration value="Envolvimento com trafico de drogas" />
+			                        <xs:enumeration value="Maus tratos" />
+			                        <xs:enumeration value="Mendicância" />
+			                        <xs:enumeration value="Negligência" />
+			                        <xs:enumeration value="Situação de rua" />
+			                        <xs:enumeration value="Trabalho infantil" />
+			                        <xs:enumeration value="Transferência dos centros educacionais" />
+			                        <xs:enumeration value="Transferência de outros abrigos" />
+			                        <xs:enumeration value="Vínculos familiares fragilizados" />
+			                        <xs:enumeration value="Violência física" />
+			                        <xs:enumeration value="Violência simbólica" />
+			                        <xs:enumeration value="Outros" />
+			                    </xs:restriction>
+			                </xs:simpleType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

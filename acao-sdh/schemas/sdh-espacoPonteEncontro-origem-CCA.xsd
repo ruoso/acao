@@ -1,11 +1,11 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
-	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-cca-espacoPontoEncontro-origem.xsd"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-espacopontoencontro-origem-cca.xsd"
 	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
 	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
 	xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
-	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-cca-espacoPontoEncontro-origem.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-espacopontoencontro-origem-cca.xsd"
 	elementFormDefault="qualified">
 
 	<xs:element name="formEspacoPontoEncontroOrigem" type="formEspacoPontoEncontroOrigem">
@@ -22,7 +22,20 @@
 	<xs:complexType name="formEspacoPontoEncontroOrigem">
 	
 		<xs:sequence>
-		
+
+			<xs:element name="numeroAtendimento" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Número atendimento</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>		
+
 			<xs:element name="dadosDocumento">
 			
 				<xs:annotation>
