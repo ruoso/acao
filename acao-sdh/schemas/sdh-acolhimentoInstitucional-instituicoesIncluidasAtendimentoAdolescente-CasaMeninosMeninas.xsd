@@ -1,11 +1,11 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
-	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-espacoPonteEncontro-instituicoesIncluidasAtendimentoAdolescente-CCA.xsd"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-acolhimentoinstitucional-instituicoesincluidasatendimentoadolescente-casameninosmeninas.xsd"
 	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
 	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
 	xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
-	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-cca-espacoponteencontro-instituicoesincluidasatendimentoadolescente.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-acolhimentoinstitucional-instituicoesincluidasatendimentoadolescente-casameninosmeninas.xsd"
 	elementFormDefault="qualified">
 
 	<xs:element name="formInstituicoesAtendimentoAdolescente" type="formInstituicoesAtendimentoAdolescente">
@@ -13,7 +13,7 @@
 			<xs:appinfo>
 				<xhtml:label>09. INSTITUIÇÕES INCLUÍDAS NO ATENDIMENTO DO ADOLESCENTE E DA FAMÍLIA</xhtml:label>
 				<class:classificacoes>
-					<class:classificacao>cn=Exploração Sexual,cn=Direitos Humanos </class:classificacao>
+					<class:classificacao>cn=Acolhimento Institucional,cn=Criança e Adolescente,cn=Direitos Humanos</class:classificacao>
 				</class:classificacoes>
 			</xs:appinfo>
 		</xs:annotation>
@@ -115,16 +115,16 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="observacoesProtecaoSocialBasica">
+									<xs:element name="observacoesProtecaoSocialBasica" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Observações</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:simpleType>
-											<xs:restriction>
-												<xs:maxLength value="255"/>
-											</xs:restriction>
+					                        <xs:restriction base="xs:string">
+						                        <xs:maxLength value="255" />
+					                        </xs:restriction>
 										</xs:simpleType>
 									</xs:element>
 								</xs:sequence>
@@ -204,16 +204,16 @@
 								</xs:sequence>
 							</xs:complexType>
 						</xs:element>
-						<xs:element name="outrosServicosSocioFamiliar">
+						<xs:element name="outrosServicosSocioFamiliar" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Outros serviços de apoio sócio-familiar</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
-								<xs:restriction>
-									<xs:maxLength value="255"/>
-								</xs:restriction>
+				                <xs:restriction base="xs:string">
+					                <xs:maxLength value="255" />
+				                </xs:restriction>
 							</xs:simpleType>
 						</xs:element>
 					</xs:sequence>
@@ -234,9 +234,9 @@
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
-								<xs:restriction>
-									<xs:maxLength value="255"/>
-								</xs:restriction>
+					            <xs:restriction base="xs:string">
+						            <xs:maxLength value="255" />
+					            </xs:restriction>
 							</xs:simpleType>
 						</xs:element>
 						<xs:element name="redeAtencaoEspecializada">
@@ -246,9 +246,9 @@
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
-								<xs:restriction>
-									<xs:maxLength value="255"/>
-								</xs:restriction>
+					            <xs:restriction base="xs:string">
+						            <xs:maxLength value="255" />
+					            </xs:restriction>
 							</xs:simpleType>
 						</xs:element>
 						<xs:element name="redeSaudeMental">
@@ -258,9 +258,9 @@
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
-								<xs:restriction>
-									<xs:maxLength value="255"/>
-								</xs:restriction>
+					            <xs:restriction base="xs:string">
+						            <xs:maxLength value="255" />
+					            </xs:restriction>
 							</xs:simpleType>
 						</xs:element>
 					</xs:sequence>
@@ -281,9 +281,9 @@
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
-								<xs:restriction>
-									<xs:maxLength value="255"/>
-								</xs:restriction>
+					            <xs:restriction base="xs:string">
+						            <xs:maxLength value="255" />
+					            </xs:restriction>
 							</xs:simpleType>
 						</xs:element>
 						<xs:element name="escolasEnsinoFundamentalMedio">
@@ -293,9 +293,9 @@
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
-								<xs:restriction>
-									<xs:maxLength value="255"/>
-								</xs:restriction>
+					            <xs:restriction base="xs:string">
+						            <xs:maxLength value="255" />
+					            </xs:restriction>
 							</xs:simpleType>
 						</xs:element>
 						<xs:element name="habitacao">
@@ -305,9 +305,9 @@
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
-								<xs:restriction>
-									<xs:maxLength value="255"/>
-								</xs:restriction>
+					            <xs:restriction base="xs:string">
+						            <xs:maxLength value="255" />
+					            </xs:restriction>
 							</xs:simpleType>
 						</xs:element>
 						<xs:element name="profissionalizacaoTrabalho">
@@ -317,9 +317,9 @@
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
-								<xs:restriction>
-									<xs:maxLength value="255"/>
-								</xs:restriction>
+					            <xs:restriction base="xs:string">
+						            <xs:maxLength value="255" />
+					            </xs:restriction>
 							</xs:simpleType>
 						</xs:element>
 						<xs:element name="outrosEducacao">
@@ -329,22 +329,22 @@
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
-								<xs:restriction>
-									<xs:maxLength value="255"/>
-								</xs:restriction>
+					            <xs:restriction base="xs:string">
+						            <xs:maxLength value="255" />
+					            </xs:restriction>
 							</xs:simpleType>
 						</xs:element>
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
-			<xs:element name="acompanhadoConselho">
+			<xs:element name="acompanhadoConselho" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Acompanhado pelo conselho</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
-					<xs:restriction>
+					<xs:restriction base="xs:string">
 						<xs:enumeration value="Conselho tutelar I"/>
 						<xs:enumeration value="Conselho tutelar II"/>
 						<xs:enumeration value="Conselho tutelar III"/>
@@ -355,14 +355,14 @@
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
-			<xs:element name="seCumprimentoMedidaSocioEducativa">
+			<xs:element name="seCumprimentoMedidaSocioEducativa" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Se em cumprimento de medida socio educativa, acompanhado por</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
-					<xs:restriction>
+					<xs:restriction base="xs:string">
 						<xs:enumeration value="PSC"/>
 						<xs:enumeration value="LAM núcleo I Jacarecanga"/>
 						<xs:enumeration value="LAM núcleo II Mucuripe"/>
@@ -375,14 +375,14 @@
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
-			<xs:element name="acompanhamentoSaudeMental">
+			<xs:element name="acompanhamentoSaudeMental" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Acompanhamento de saúde mental</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
-					<xs:restriction>
+					<xs:restriction base="xs:string">
 						<xs:enumeration value="CAPS I"/>
 						<xs:enumeration value="CAPS GERAL"/>
 					</xs:restriction>
