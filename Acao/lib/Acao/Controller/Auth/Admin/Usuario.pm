@@ -422,8 +422,7 @@ sub store_alterar_senha : Chained('getUsuario')
     );
 
     $c->stash->{resultado} = $result->{resultCode};
-    $self->audit_alterar(
-        'SENHA DE : ' . $c->stash->{dn_usuario} . ': POR: ' . $c->user->uid );
+    $self->audit_alterar('SENHA DE : ' . $c->stash->{dn_usuario} . ': POR: ' . $c->user->uid );
     $c->stash->{template} = 'auth/admin/usuario/sucesso_alter_pass.tt';
 
 }

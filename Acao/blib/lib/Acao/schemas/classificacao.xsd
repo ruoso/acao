@@ -8,6 +8,7 @@
        <xs:sequence>
            <xs:element name="classificacao" minOccurs="0" maxOccurs="unbounded" type="xs:string" />
        </xs:sequence>
+       <xs:attribute name="validacao" type="xs:string" use="optional" />
     </xs:complexType>
 
     <xs:element name="classificacao" type="classificacoes" />
