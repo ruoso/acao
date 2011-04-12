@@ -119,7 +119,121 @@
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
+			
+			<xs:element name="situacaoDoImovel" minOccurs="0">
+				<xs:annotation>
+				    <xs:appinfo>
+					<xhtml:label>12.1 Situação do imóvel</xhtml:label>                    
+				    </xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+				    <xs:sequence>
+					<xs:element name="alugado" type="xs:boolean">
+					    <xs:annotation>
+					        <xs:appinfo>
+					            <xhtml:label>Alugado</xhtml:label>
+					        </xs:appinfo>
+					    </xs:annotation>
+					</xs:element>
 
+					<xs:element name="arrendado" type="xs:boolean">
+					    <xs:annotation>
+					        <xs:appinfo>
+					            <xhtml:label>Arrendado</xhtml:label>
+					        </xs:appinfo>
+					    </xs:annotation>
+					</xs:element>
+
+					<xs:element name="cedido" type="xs:boolean">
+					    <xs:annotation>
+					        <xs:appinfo>
+					            <xhtml:label>Cedido</xhtml:label>
+					        </xs:appinfo>
+					    </xs:annotation>
+					</xs:element>
+		
+					<xs:element name="financiado" type="xs:boolean">
+					    <xs:annotation>
+					        <xs:appinfo>
+					            <xhtml:label>Financiado</xhtml:label>
+					        </xs:appinfo>
+					    </xs:annotation>
+					</xs:element>
+
+					<xs:element name="invadido" type="xs:boolean">
+					    <xs:annotation>
+					        <xs:appinfo>
+					            <xhtml:label>Invadido</xhtml:label>
+					        </xs:appinfo>
+					    </xs:annotation>
+					</xs:element>
+
+					<xs:element name="proprio" type="xs:boolean">
+					    <xs:annotation>
+					        <xs:appinfo>
+					            <xhtml:label>Próprio</xhtml:label>
+					        </xs:appinfo>
+					    </xs:annotation>
+					</xs:element>
+
+					<xs:element name="naoSeAplica" type="xs:boolean">
+					    <xs:annotation>
+					        <xs:appinfo>
+					            <xhtml:label>Não se aplica</xhtml:label>
+					        </xs:appinfo>
+					    </xs:annotation>
+					</xs:element>
+	
+					<xs:element name="outrosSituacao" type="xs:boolean">
+				            <xs:annotation>
+				                <xs:appinfo>
+				                    <xhtml:label>Outros</xhtml:label>
+				                </xs:appinfo>
+				            </xs:annotation>
+				        </xs:element>
+
+				        <xs:element name="outrosSituacaoEspecificar" minOccurs="1">
+						<xs:annotation>
+							<xs:appinfo>
+								<xhtml:label>Outros especificar:</xhtml:label>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="255" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+				    </xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="areaDoImovel" minOccurs="0">
+				<xs:annotation>
+				    <xs:appinfo>
+					<xhtml:label>12.2 Área do imóvel</xhtml:label>                    
+				    </xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+				    <xs:sequence>
+					<xs:element name="areaUrbana" type="xs:boolean">
+					    <xs:annotation>
+					        <xs:appinfo>
+					            <xhtml:label>Área urbana</xhtml:label>
+					        </xs:appinfo>
+					    </xs:annotation>
+					</xs:element>
+
+					<xs:element name="areaRural" type="xs:boolean">
+					    <xs:annotation>
+					        <xs:appinfo>
+					            <xhtml:label>Área rural</xhtml:label>
+					        </xs:appinfo>
+					    </xs:annotation>
+					</xs:element>
+				    </xs:sequence>
+				</xs:complexType>
+			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
 
