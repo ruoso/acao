@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns="http://schemas.fortaleza.ce.gov.br/acao/proesf-saude_bucal.xsd"
+  targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/proesf-saude_bucal.xsd" elementFormDefault="qualified">
+
+  <xs:element name="proesf" type="proesf">
+    <xs:annotation>
+      <xs:appinfo>
+        <xhtml:label>PROESF - Saúde bucal</xhtml:label>
+        <class:classificacoes>
+          <class:classificacao>cn=Saúde</class:classificacao>
+        </class:classificacoes>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="proesf">
+    <xs:sequence>
+
+      <xs:element name="saude_bucal">
+        <xs:annotation>
+          <xs:appinfo>
+            <xhtml:label>Saúde bucal</xhtml:label>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="acoes_planejamento">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Ações de planejamento</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="dentista_participa_junto_as_esf" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>O dentista participa das ações/planejamento juntos às ESF?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="comentarios">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Comentários:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="consulta_odontologica">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Consulta odontológica</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="quais_sao_os_criterios_para_agendamento">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Quais são os critérios para o agendamento da primeira consulta odontológica?
+                        </xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="frequencia_de_conclusao_dos_tratamentos">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Com que frequência os tratamentos iniciados são concluídos?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:enumeration value="Sempre" />
+                        <xs:enumeration value="Poucas vezes" />
+                        <xs:enumeration value="Maioria das vezes" />
+                        <xs:enumeration value="Nunca" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="atendimentos_por_turno">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Atendimentos por turno</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="profissional_atende_quantos_pacientes_por_turno" type="xs:integer"
+                    minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>O profissional atende quantos pacientes por turno?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="emergencia_odontologica_realizada_de_que_forma">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Como é realizado o atendimento de urgência e emergência odontológica?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="acoes_coletivas_de_saude_bucal">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Ações coletivas de saúde bucal</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="sao_realizadas" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>O profissional realiza ações coletivas de saúde bucal?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="acontecem_em_escolas_do_pse" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>As ações coletivas são em escolas do PSE?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="encaminhamentos_para_o_csf">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Encaminhamentos para o CSF</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="sao_gerados_pelas_acoes_coletivas" type="xs:boolean">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>As ações coletivas geram encaminhamentos para o CSF?</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element name="comentarios">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Comentários:</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="255" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="pacientes_das_esf">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Pacientes das ESF</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="como_sao_referenciados">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Como são referenciados os pacientes das ESF para as equipes de saúde bucal?
+                        </xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="como_sao_contra_referenciados">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Como são CONTRA-referenciados os pacientes das ESF para as equipes de saúde bucal?
+                        </xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="dificuldades_encontradas">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Quais as dificuldades?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

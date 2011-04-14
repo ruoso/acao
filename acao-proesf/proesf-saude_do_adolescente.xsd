@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns="http://schemas.fortaleza.ce.gov.br/acao/proesf-saude_do_adolescente.xsd"
+  targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/proesf-saude_do_adolescente.xsd" elementFormDefault="qualified">
+
+  <xs:element name="proesf" type="proesf">
+    <xs:annotation>
+      <xs:appinfo>
+        <xhtml:label>PROESF - Saúde do adolescente</xhtml:label>
+        <class:classificacoes>
+          <class:classificacao>cn=Saúde</class:classificacao>
+        </class:classificacoes>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="proesf">
+    <xs:sequence>
+
+      <xs:element name="saude_do_adolescente">
+        <xs:annotation>
+          <xs:appinfo>
+            <xhtml:label>Saúde do adolescente</xhtml:label>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="acoes_em_atencao_ao_adolescente">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Ações em atenção ao adolescente</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="quais_acoes_sao_executadas">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Quais ações são executadas em atenção ao adolescente?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="caderneta_do_adolescente">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Caderneta do adolescente</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="utilizada_em_todas_as_situacoes_de_atendimento" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>A caderneta do adolescente é utilizada em todas as situações de procura por
+                          atendimento?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="casos_de_violencia_contra_o_adolescente">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Casos de violência contra o adolescente</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="casos_sao_notificados" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Existe a prática de notificar os casos de violência contra o adolescente?
+                        </xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="qual_a_conduta_diante_dos_casos">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Qual a conduta diante dos casos de violência?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="adolescentes_cadastrados">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Adolescentes cadastrados</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="entre_dez_e_dezenove_anos" type="xs:integer" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Número de adolescentes cadastrados de 10 a 19 anos:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="adolescentes_com_vacinacao_em_dia" type="xs:integer" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Número de adolescentes da área que estão com esquema de vacinação em dia:
+                        </xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="atividades_educativas_em_promocao_da_saude">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Atividades educativas em promocao da saúde</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="atividades_coletivas_e_individuais">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Atividades coletivas e individuais</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="esf_realiza_atividades_prevencao_saude_adolescente" type="xs:boolean">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>A ESF realiza atividades coletivas e individuais de prevenção e promoção da
+                                saúde
+                                dos adolescentes?</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element name="observacoes">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Observações:</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="255" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="que_estimulam_protagonismo_juvenil">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Quais as atividades realizadas pela ESF que estimulam o protagonismo juvenil?
+                        </xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="adolescente_com_risco_adquirido_associado">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Adolescente com risco adquirido associado</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="esf_identifica_adolescentes" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>A ESF identifica os adolescentes com risco adquirido/associado?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="conduta_adotada">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Qual a conduta adotada?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

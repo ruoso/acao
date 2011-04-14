@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns="http://schemas.fortaleza.ce.gov.br/acao/proesf-saude_do_idoso.xsd"
+  targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/proesf-saude_do_idoso.xsd" elementFormDefault="qualified">
+
+  <xs:element name="proesf" type="proesf">
+    <xs:annotation>
+      <xs:appinfo>
+        <xhtml:label>PROESF - Saúde do idoso</xhtml:label>
+        <class:classificacoes>
+          <class:classificacao>cn=Saúde</class:classificacao>
+        </class:classificacoes>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="proesf">
+    <xs:sequence>
+
+      <xs:element name="saude_do_idoso">
+        <xs:annotation>
+          <xs:appinfo>
+            <xhtml:label>Saúde do idoso</xhtml:label>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="referencias_estatisticas">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Referencias estatísticas</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="quantidade_de_idosos_cadastrados" type="xs:integer" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Número de idosos cadastrados:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="quantidade_de_idosos_acompanhados" type="xs:integer" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Número de idosos acompanhados:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="quantidade_de_idosos_acamados" type="xs:integer" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Número de idosos acamados:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="quantidade_de_idosos_com_vacina_em_dia" type="xs:integer" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Número de idosos com esquema vacinal em dia:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="cronograma_de_atendimento">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Cronograma de atendimento</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="existe_cronograma_especifico_para_o_atendimento" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Existe cronograma específico para o atendimento?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="de_que_maneira_se_realiza">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Em caso positivo; como é realizado?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="grupo_especifico">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Grupo específico</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="existe_grupo_especifico_para_esta_faixa_etaria" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Existe grupo específico para esta faixa etária?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="como_ocorre">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Em caso positivo; como ocorre?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="acoes_coletivas">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Ações coletivas</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="quais_as_acoes_coletivas_realizadas">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Quais as ações coletivas realizadas com este grupo?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="quais_os_temas_abordados">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Quais os temas abordados com este grupo?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="caderneta_do_idoso">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Caderneta do idoso</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="qual_a_quantidade_recebida" type="xs:integer" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Quantidade de caderneta do idoso recebida:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="qual_a_quantidade_dispensada" type="xs:integer" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Quantidade de caderneta do idoso dispensada:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="se_implementa_de_que_forma">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Como é realizada a implementação da caderneta do idoso?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="operacionalizacao_das_acoes">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Operacionalização das ações</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="quais_as_dificuldades_identificadas">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Quais as dificuldades identificadas para operacionalização das ações?
+                        </xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

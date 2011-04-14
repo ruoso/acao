@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns="http://schemas.fortaleza.ce.gov.br/acao/proesf-processo_de_trabalho.xsd"
+  targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/proesf-processo_de_trabalho.xsd" elementFormDefault="qualified">
+
+  <xs:element name="proesf" type="proesf">
+    <xs:annotation>
+      <xs:appinfo>
+        <xhtml:label>PROESF - Processo de trabalho</xhtml:label>
+        <class:classificacoes>
+          <class:classificacao>cn=Saúde</class:classificacao>
+        </class:classificacoes>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="proesf">
+    <xs:sequence>
+
+      <xs:element name="processo_de_trabalho">
+        <xs:annotation>
+          <xs:appinfo>
+            <xhtml:label>Processo de trabalho</xhtml:label>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="organizacao_demanda_programas_ministerio_da_saude">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Organização e demanda de programas do ministério da saúde
+                  </xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="equipe_realiza" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>A equipe realiza organização da demanda de acordo com os
+                          programas preconizados
+                          pelo
+                          ministerio da saúde?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="observacoes" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Observações:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="carga_horaria">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Carga horária</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="profissionais_cumprem" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Os profissionais da equipe cumprem carga horária de 40 horas
+                          semanais?
+                        </xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="motivo_carga_horaria_deficiente" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Em caso negativo; por qual motivo?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="atendimento_de_pessoas">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Atendimento de pessoas</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="media_de_atendimento">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Quantas pessoas, em media, são atendidas em um turno de
+                          trabalho típico?
+                        </xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="medico" type="xs:integer" minOccurs="0">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Médico(a):</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element name="enfermeiro" type="xs:integer" minOccurs="0">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Enfermeiro(a):</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element name="dentista" type="xs:integer" minOccurs="0">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Dentista:</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="dificuldade_de_atendimento">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Quais as dificuldades encontradas para realizar o atendimento?
+                        </xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="medico" minOccurs="0">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Médico(a):</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="255" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="enfermeiro" minOccurs="0">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Enfermeiro(a):</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="255" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="dentista" minOccurs="0">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Dentista:</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="255" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="cadastro_das_familias">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Cadastro das famílias</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="equipe_reconheceu_seu_territorio" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>A equipe reconheceu seu território através do cadastramento das
+                          famílias?
+                        </xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="atualizado_semestralmente" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>O cadastramento das famílias é atualizado semestralmente?
+                        </xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="dificuldades_encontradas" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Quais as dificuldades?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="dados_do_siab">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>A equipe utiliza os dados do SIAB para planejar suas ações?
+                  </xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="sao_utilizados" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>A equipe utiliza os dados do SIAB para planejar suas ações?
+                        </xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="justificativa" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Justificativa</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="visitas_domiciliares">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Visitas domiciliares</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="dificuldades">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Quais são as dificuldades que a ESF encontra para realizar as
+                          visitas
+                          domiciliares?
+                        </xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="planejamento_e_avaliacao_de_acoes_da_equipe">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Planejamento e avaliação de ações da equipe</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="como_se_planeja" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Como se planeja e avalia as ações da equipe?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="com_que_frequencia" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Com que frequência?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="atividades_educativas_em_promocao_da_saude">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Atividades educativas em promoção da saúde</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="sao_realizadas" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>A equipe realiza atividades educativas em promoção da saúde
+                          voltadas para
+                          populações
+                          com fatores de risco?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="tipos_de_atividades" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Quais atividades?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="monitoramento_atividade">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Monitoramento das atividades</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="realizado_de_que_forma" minOccurs="0">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Como e realizado o monitoramento das atividades
+                                desenvolvidas pelos ACS?
+                              </xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="255" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="profissional_monitor">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Quem faz esse monitoramento?</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:enumeration value="Médico(a)" />
+                              <xs:enumeration value="Coordenador(a)" />
+                              <xs:enumeration value="dentista" />
+                              <xs:enumeration value="Enfermeiro(a)" />
+                              <xs:enumeration value="Outros" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                          <!-- Em caso de opção múltipla de seleção, descomentar o seguinte trecho: <xs:complexType> <xs:sequence> 
+                            <xs:element name="medico" type="xs:boolean"> <xs:annotation> <xs:appinfo> <xhtml:label>Médico(a)</xhtml:label> </xs:appinfo> 
+                            </xs:annotation> </xs:element> <xs:element name="coordenador" type="xs:boolean"> <xs:annotation> <xs:appinfo> <xhtml:label>Coordenador(a)</xhtml:label> 
+                            </xs:appinfo> </xs:annotation> </xs:element> <xs:element name="dentista" type="xs:boolean"> <xs:annotation> <xs:appinfo> 
+                            <xhtml:label>Dentista</xhtml:label> </xs:appinfo> </xs:annotation> <xs:complexType /> </xs:element> <xs:element name="enfermeiro" 
+                            type="xs:boolean"> <xs:annotation> <xs:appinfo> <xhtml:label>Enfermeiro(a)</xhtml:label> </xs:appinfo> </xs:annotation> </xs:element> 
+                            <xs:element name="outros" type="xs:boolean"> <xs:annotation> <xs:appinfo> <xhtml:label>Outros</xhtml:label> </xs:appinfo> 
+                            </xs:annotation> </xs:element> </xs:sequence> </xs:complexType> -->
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="acolhimento">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Acolhimento</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="se_realiza" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>O acolhimento e realizado pela ESF no CSF?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="profissionais_envolvidos" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Quais os profissionais envolvidos?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="tempo_utilizado" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Qual o tempo utilizado?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="frequencia" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Qual a frequência?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="dificuldades_encontradas" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Quais as dificuldades encontradas para realizar esta atividade?
+                        </xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="sugestao_de_melhorias" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Quais as sugestões para melhorar a realização desta atividade?
+                        </xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="experiencia_inovadora_realizada" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Mencione as experiências inovadoras em acolhimento realizadas
+                        </xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="motivo_acolhimento_nao_ocorrido" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Caso não ocorra acolhimento; qual o motivo?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

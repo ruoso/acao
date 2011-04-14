@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns="http://schemas.fortaleza.ce.gov.br/acao/proesf-identificacao_equipe_supervisao.xsd"
+  targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/proesf-identificacao_equipe_supervisao.xsd"
+  elementFormDefault="qualified">
+
+
+  <xs:element name="proesf" type="proesf">
+    <xs:annotation>
+      <xs:appinfo>
+        <xhtml:label>PROESF - Identificação da equipe de supervisão</xhtml:label>
+  <class:classificacoes>
+    <class:classificacao>cn=Saúde</class:classificacao>
+  </class:classificacoes>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="proesf">
+    <xs:sequence>
+      <xs:element name="identificacao_equipe_de_supervisao">
+        <xs:annotation>
+          <xs:appinfo>
+            <xhtml:label>Identificação da equipe de supervisão</xhtml:label>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType name="nomes-assinaturas">
+          <xs:sequence>
+            <xs:element name="nome_1">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Nome:</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="255" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="nome_2">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Nome:</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="255" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="nome_3">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Nome:</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="255" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="nome_4">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Nome:</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="255" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="nome_5">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Nome:</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="255" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="nome_6">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Nome:</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="255" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,719 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns="http://schemas.fortaleza.ce.gov.br/acao/proesf-saude_da_mulher.xsd"
+  targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/proesf-saude_da_mulher.xsd" elementFormDefault="qualified">
+
+  <xs:element name="proesf" type="proesf">
+    <xs:annotation>
+      <xs:appinfo>
+        <xhtml:label>PROESF - Saúde da mulher</xhtml:label>
+        <class:classificacoes>
+          <class:classificacao>cn=Saúde</class:classificacao>
+        </class:classificacoes>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="proesf">
+    <xs:sequence>
+
+      <xs:element name="saude_da_mulher">
+        <xs:annotation>
+          <xs:appinfo>
+            <xhtml:label>Saúde da mulher</xhtml:label>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="mulheres_acompanhadas">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Mulheres acompanhadas</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="numero_de_mulheres_acompanhadas" type="xs:integer" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Número de mulheres acompanhadas:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="numero_de_gestantes_acompanhadas" type="xs:integer" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Número de gestantes acompanhadas:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="mulheres_cadastradas">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Mulheres cadastradas</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="numero_de_mulheres_cadastradas" type="xs:integer" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Número de mulheres cadastradas:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="numero_de_gestantes_cadastradas" type="xs:integer" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Número de gestantes cadastradas:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="estrategias_de_captacao_precoce_das_gestantes">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Estratégias de captação precoce das gestantes</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="a_esf_desenvolve_estrategias" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>A ESF desenvolve estratégias de captação precoce das gestantes?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="quais_estrategias">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Quais estratégias?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="consultas_semanais_no_ultimo_mes_de_gestacao">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Consultas semanais no último mês de gestação</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="ha_garantia_de_consultas" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Há garantia de consultas semanais no último mês de gestação?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="relatorio_do_sisprenatal">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Relatório do SISPRENATAL</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="planejamento_de_acoes">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Planejamento de ações</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="equipe_utiliza_no_planejamento_de_suas_acoes" type="xs:boolean">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>A equipe utiliza o relatório do SISPRENATAL no planejamento de suas ações?
+                              </xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element name="de_qual_maneira">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Como?</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="255" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="motivo">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Por quê?</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="255" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="utilizacao_sistematica_do_sisprenatal">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>A equipe utiliza sistematicamente o SISPRENATAL?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="cadastramento" type="xs:boolean">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Cadastramento</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ficha_de_acompanhamento_dos_atendimentos" type="xs:boolean">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Ficha de acompanhamento dos atendimentos</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element name="motivo">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Em caso negativo; por quê?</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="255" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="ficha_perinatal">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Ficha perinatal</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="se_utiliza_ficha_perinatal" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>É utilizada a ficha perinatal?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="gestantes_possuem_sete_ou_mais_consultas_prenatal" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>As gestantes de baixo risco da área de abrangência da ESF possuem 7 ou mais
+                          consultas de pré-natal?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="busca_ativa_das_gestantes_faltosas_realizada" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>É realizada busca ativa das gestantes faltosas?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="quem_realiza_a_busca_ativa">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Quem realiza a busca ativa?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="dificuldades_encontradas">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Quais as dificuldades encontradas?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="cartao_da_gestante">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Cartão da gestante</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="utiliza_como_referencia" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>A equipe utiliza o cartão da gestante como referência?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="utiliza_como_contra_referencia" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>A equipe utiliza o cartão da gestante como contra-referência?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="grupos_de_gestantes">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Grupos de gestantes</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="o_csf_tem_instituido_grupos_de_gestantes" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>No CSF têm se instituído grupos de gestantes?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="quais_os_temas_abordados">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Quais os temas abordados?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="ha_acoes_de_incentivo_ao_parto_humanizado" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Realizam-se ações educativas com vista ao incentivo do parto humanizado?
+                        </xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="ha_salas_de_espera_para_as_gestantes" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Realizam-se salas de espera para as gestantes?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="observacoes-grupos_de_gestantes">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Observações:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="exames_laboratoriais">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Exames laboratoriais</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="sao_solicitados" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>A equipe solicita exames laboratoriais de rotina durante a gestação? (HC, VDRL,
+                          EAS, ABO, RH, sumário de urina, glicemia, HIV)</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="qual_o_tempo_entrega">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Qual o tempo de entrega dos resultados?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="dificuldades_encontradas">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Quais as dificuldades encontradas?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="diagnostico_precoce_e_tratamento_da_sifilis_durante_a_gestacao">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Diagnóstico precoce e tratamento da sífilis durante a gestação</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="quais_as_dificuldades_para_o_diagnostico">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>quais as dificuldades encontradas para o diagnóstico precoce e tratamento da
+                          sífilis durante a gestação?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="numero_de_mulheres_com_diagnostico" type="xs:integer" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Número de mulheres com diagnóstico de sífilis:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="se_realiza_convocacao_e_tratamento_do_parceiro" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>É realizada a convocação e tratamento do parceiro?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="exame_citopatologico">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Exame citopatológico</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="se_realiza_o_exame_na_gestante" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>A equipe realiza exame citopatológico na gestante?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="dificuldades_encontradas">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Quais as dificuldades?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="gestantes_de_alto_risco">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Gestantes de alto risco</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="sao_referenciadas_as_gestantes_de_alto_risco" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>A equipe referencia gestantes de alto risco?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="para_que_instituicao">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Para que instituição?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="gestantes_para_o_parto">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Gestantes para o parto</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="sao_referenciadas_as_gestantes_para_o_parto" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>A equipe referencia gestantes para o parto?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="para_que_instituicao">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Para que instituição?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="consulta_de_puerperio">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Consulta de puerpério</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="se_realiza_consulta_de_puerperio" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>A ESF realiza consulta de puerpério até 45 dias após o parto?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="observacoes">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Observações:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="prevencao_do_cancer_de_colo_uterino_e_controle_do_cancer_de_mama">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Prevenção do câncer de colo uterino e controle do câncer de mama</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="a_esf_desenvolve_acoes_de_prevencao" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>A ESF desenvolve ações de prevenção do câncer de colo uterino e controle do câncer
+                          de mama?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="qual_acao">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Quais?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="citologia_de_colo_positivas">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Citologia de colo positivas</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="a_esf_acompanha_utilizando_a_ficha_de_seguimento" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Nos casos de citologia de colo positivas a ESF acompanha a mulher utilizando a
+                          ficha de seguimento?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="como_se_realiza_a_busca_ativa">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Como é realizada a busca ativa nos casos de citologia oncótica positiva?
+                        </xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="qual_o_tempo_medio_entrega_de_resultados">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Qual o tempo médio para entrega dos resultados das citologias?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="planejamento_familiar">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Planejamento familiar</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="a_esf_fornece_orientacao" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>A ESF orienta sobre o planejamento familiar?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="se_realiza_notificacao_compulsoria_nos_casos_de_dst" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>A ESF realiza notificação compulsória nos casos de DST?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="se_realiza_busca_de_contatos" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>A ESF realiza busca de contatos?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="os_casos_mais_complexos_sao_referenciados" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>A ESF referencia os casos mais complexos?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="observacoes">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Observações:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="casos_de_violencia_contra_a_mulher">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Casos de violência contra a mulher</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="os_casos_de_violencia_sao_notificados" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Existe a prática de notificar os casos de violência contra a mulher?
+                        </xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="diante_dos_casos_de_violencia_qual_a_conduta">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Qual a conduta diante dos casos de violência?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns="http://schemas.fortaleza.ce.gov.br/acao/proesf-bioseguranca.xsd"
+  targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/proesf-bioseguranca.xsd" elementFormDefault="qualified">
+
+
+  <xs:element name="proesf" type="proesf">
+    <xs:annotation>
+      <xs:appinfo>
+        <xhtml:label>PROESF - Biosegurança</xhtml:label>
+	<class:classificacoes>
+	       <class:classificacao>cn=Saúde</class:classificacao>
+        </class:classificacoes>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="proesf">
+    <xs:sequence>
+      <xs:element name="bioseguranca">
+        <xs:annotation>
+          <xs:appinfo>
+            <xhtml:label>Biosegurança</xhtml:label>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+
+            <xs:element name="esterilizacao-descontaminacao_de_materiais">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Esterilização e descontaminação de materiais</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="existe_espaco_especifico_para_esterilizacao" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Existe espaço específico para a esterilização?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+
+                  <xs:element name="profissionais_obedecem_fluxo_esterilizacao" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Os profissionais obedecem o fluxo de esterilização?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="existe_espaco_especifico_para_expurgo" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Existe espaço específico para o expurgo?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="observacoes">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>observações:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+
+            <xs:element name="equipamentos_protecao">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Equipamentos de proteção</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="trabalhador_faz_uso_de_equipamentos_protecao" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>O trabalhador que realiza a limpeza/descontaminação de materiais e artigos, faz uso
+                          de equipamentos de proteção individual?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="motivo">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Em caso negativo; por qual motivo?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

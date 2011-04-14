@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns="http://schemas.fortaleza.ce.gov.br/acao/proesf-saude_na_escola.xsd"
+  targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/proesf-saude_na_escola.xsd" elementFormDefault="qualified">
+
+  <xs:element name="proesf" type="proesf">
+    <xs:annotation>
+      <xs:appinfo>
+        <xhtml:label>PROESF - Saúde na escola</xhtml:label>
+        <class:classificacoes>
+          <class:classificacao>cn=Saúde</class:classificacao>
+        </class:classificacoes>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="proesf">
+    <xs:sequence>
+
+      <xs:element name="saude_na_escola">
+        <xs:annotation>
+          <xs:appinfo>
+            <xhtml:label>Saúde na escola</xhtml:label>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="escola_integrante_do_pse">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Escola integrante do PSE</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="equipe_se_encontra_vinculada" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>A equipe está vinculada a escola integrante do PSE?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="nome_da_escola">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Nome da escola:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="numero_de_alunos" type="xs:integer" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Número de alunos:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="numero_de_alunos_do_mais_educacao" type="xs:integer" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Número de alunos do mais educação:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="atividades">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Quais as atividades desenvolvidas?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="avaliacao_das_condicoes_da_saude" type="xs:boolean">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Avaliação das condições da saúde</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element name="promocao_da_saude_e_prevencao" type="xs:boolean">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Promoção da saúde e prevenção</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element name="capacitacao_de_profissionais_da_saude" type="xs:boolean">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Capacitacao de profissionais da saúde</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element name="capacitacao_de_alunos" type="xs:boolean">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Capacitação de alunos</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element name="implantacao_da_caderneta_de_adolescentes" type="xs:boolean">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Implantação da caderneta de adolescentes</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="cronograma_das_atividades">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Cronograma das atividades</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="cronograma">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Cronograma</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="existe_cronograma_das_atividades" type="xs:boolean">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Existe plano de ação com cronograma das atividades?</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element name="motivo">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Por quê?</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="255" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="dificuldades_encontradas">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Quais são as dificuldades encontradas para realizar estas atividades?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="integracao_dos_membros_com_os_profissionais_e_direcao_escolar">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Integração dos membros com os profissionais e direção escolar</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="como_se_encontra_a_integracao">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Como está a integração dos membros da equipe com os profissionais e direção
+                          escolar?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="atividades_sao_registradas_de_que_forma">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Como são registradas estas atividades?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
