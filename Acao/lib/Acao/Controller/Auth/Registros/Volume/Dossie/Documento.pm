@@ -124,6 +124,15 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
         return;
     }
 
+    if ($id_documento ne '') {
+        my $date_invalidation = $c->model('Documento')->get_invalidation_doc($id_volume, $controle, $id_documento);
+        if ($date_invalidation ne '1970-01-01T00:00:00Z') {
+            $c->flash->{erro} = 'Documento original já foi invalidado!';
+            $c->res->redirect($c->uri_for_action('/auth/registros/volume/dossie/documento/lista',[$id_volume,$controle] ));
+            return;
+        }
+    }
+
     if ( $c->req->param('representaDocumentoFisico') eq 'on' ) {
         $representaDocumentoFisico = '1';
     }
