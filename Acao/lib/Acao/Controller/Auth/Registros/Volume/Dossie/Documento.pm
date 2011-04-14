@@ -85,11 +85,16 @@ sub lista : Chained('base') : PathPart('') : Args(0) {
 
 sub form : Chained('base') : PathPart('inserirdocumento') : Args(0) {
     my ( $self, $c ) = @_;
-      #   Checa se user logado tem autorização para Criar Documento
+    #   Checa se user logado tem autorização para Criar Documento
     if (!$c->model('Documento')->pode_criar_documento($c->stash->{id_volume},$c->stash->{controle})) {
       $c->flash->{autorizacao} = 'dossie-criar';
       $c->res->redirect( $c->uri_for_action('/auth/registros/volume/dossie/documento/lista',[$c->stash->{id_volume},$c->stash->{controle}] ));
       return;
+    } 
+    if ($c->model('Volume')->get_estado_volume($c->stash->{id_volume}) ne 'aberto') {        
+        $c->flash->{erro} = 'Volume fechado!';
+        $c->res->redirect( $c->uri_for_action('/auth/registros/volume/lista'));
+        return;
     }
 
 
@@ -111,6 +116,13 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
     my $xsdDocumento = $c->req->param('xsdDocumento');
     my $herdar_author;
     $c->stash->{autorizacoes} = $c->req->param('autorizacoes');
+    
+    # Se o volume for fechado após a iniciação da criação ou edição de documento ele não permite que o documento seja inserido
+    if ($c->model('Volume')->get_estado_volume($id_volume) ne 'aberto') {
+        $c->flash->{erro} = 'Volume fechado!';
+        $c->res->redirect( $c->uri_for_action('/auth/registros/volume/lista'));
+        return;
+    }
 
     if ( $c->req->param('representaDocumentoFisico') eq 'on' ) {
         $representaDocumentoFisico = '1';
