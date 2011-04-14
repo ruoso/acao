@@ -564,6 +564,20 @@ sub reindexa {
     $self->reindexar($id_volume);
 }
 
+sub get_estado_volume {
+    my $self = shift;
+    my ($id_volume) = @_;
+    my $xquery = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";
+                  declare namespace cl="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";
+                    for $x in collection("volume")/ns:volume[ns:collection="'.$id_volume.'"]
+                        return $x/ns:estado/text()';
+    $self->sedna->begin;
+    $self->sedna->execute($xquery);
+    my $estado = $self->sedna->get_item();
+    $self->sedna->commit;
+    return $estado;
+}
+
 =cut
 
 =item

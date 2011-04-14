@@ -140,13 +140,15 @@ sub revalidate_indices {
     my $volume = $self->dbic->resultset('Volume')->find({
         id_volume => $id_volume,
     });
-
-    my $dossies = $volume->dossies;
-    my $entries = $volume->entries;
     
-    $entries->update({ invalidado=>0 });
-    $dossies->update({ invalidado=>0 });
-    $volume->update({ invalidado=>0 });
+    if ($volume) {
+	    my $dossies = $volume->dossies;
+        my $entries = $volume->entries;
+    
+        $entries->update({ invalidado=>0 });
+        $dossies->update({ invalidado=>0 });
+        $volume->update({ invalidado=>0 });
+	}
 }
 
 =item drop_indices()

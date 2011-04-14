@@ -1,0 +1,251 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-acolhimentoinstitucional-participacaofamiliaorigemvidacriancaadolescente-casameninosmeninas.xsd"
+	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
+	xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-acolhimentoinstitucional-participacaofamiliaorigemvidacriancaadolescente-casameninosmeninas.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="formParticipacaoFamilia" type="formParticipacaoFamilia">
+		<xs:annotation>
+			<xs:appinfo>
+				<xhtml:label>13. PARTICIPAÇÃO DA FAMÍLIA DE ORIGEM NA VIDA DA CRIANÇA OU ADOLESCENTE</xhtml:label>
+				<class:classificacoes>
+					<class:classificacao>cn=Acolhimento Institucional,cn=Criança e Adolescente,cn=Direitos Humanos</class:classificacao>
+				</class:classificacoes>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="formParticipacaoFamilia">
+		<xs:sequence>
+			<xs:element name="numeroAtendimento" minOccurs="1">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Número atendimento</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			<xs:element name="visitasRecebidasPelasCriancasEAdolescentes" minOccurs="0">
+				<xs:annotation>
+				    <xs:appinfo>
+					<xhtml:label>13.1 Visitas recebidas pelas crianças e adolescentes</xhtml:label>                    
+				    </xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+				    <xs:sequence>
+					<xs:element name="sim" type="xs:boolean">
+					    <xs:annotation>
+					        <xs:appinfo>
+					            <xhtml:label>Sim</xhtml:label>
+					        </xs:appinfo>
+					    </xs:annotation>
+					</xs:element>
+
+					<xs:element name="nao" type="xs:boolean">
+					    <xs:annotation>
+					        <xs:appinfo>
+					            <xhtml:label>Não</xhtml:label>
+					        </xs:appinfo>
+					    </xs:annotation>
+					</xs:element>
+
+					<xs:element name="quem" minOccurs="1">
+						<xs:annotation>
+							<xs:appinfo>
+								<xhtml:label>
+									Quem?
+								</xhtml:label>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="255" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+
+					<xs:element name="frequencia" minOccurs="1">
+						<xs:annotation>
+							<xs:appinfo>
+								<xhtml:label>
+									Freqüência?
+								</xhtml:label>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="255" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+				    </xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="comoOcorreContatoFamiliarVisitas" minOccurs="1">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>13.2 Como ocorre o contato familiar nas visitas?</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="permaneceComFamiliaresNosFinsDeSemana" minOccurs="0">
+				<xs:annotation>
+				    <xs:appinfo>
+					<xhtml:label>13.3 Permanece com os familiares aos finais de semana</xhtml:label>                    
+				    </xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+				    <xs:sequence>
+					<xs:element name="sim" type="xs:boolean">
+					    <xs:annotation>
+					        <xs:appinfo>
+					            <xhtml:label>Sim</xhtml:label>
+					        </xs:appinfo>
+					    </xs:annotation>
+					</xs:element>
+
+					<xs:element name="nao" type="xs:boolean">
+					    <xs:annotation>
+					        <xs:appinfo>
+					            <xhtml:label>Não</xhtml:label>
+					        </xs:appinfo>
+					    </xs:annotation>
+					</xs:element>
+					<xs:element name="comQuem" minOccurs="1">
+						<xs:annotation>
+							<xs:appinfo>
+								<xhtml:label>
+									Com quem?
+								</xhtml:label>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="255" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+				    </xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="comoCriancaRetornaDasVisitas" minOccurs="1">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>
+							13.4 Como a criança e/ou adolescente retorna das visitas aos finais de semana (aspectos do comportamento)?
+						</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="ocorreramModificadoesNoRelacionamentoFamiliar" minOccurs="0">
+				<xs:annotation>
+				    <xs:appinfo>
+					<xhtml:label>
+						13.5 Ocorreram modificações no relacionamento familiar que justifiquem a retomada das visitas oua  probição das mesmas?
+					</xhtml:label>                    
+				    </xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+				    <xs:sequence>
+					<xs:element name="sim" type="xs:boolean">
+					    <xs:annotation>
+					        <xs:appinfo>
+					            <xhtml:label>Sim</xhtml:label>
+					        </xs:appinfo>
+					    </xs:annotation>
+					</xs:element>
+
+					<xs:element name="nao" type="xs:boolean">
+					    <xs:annotation>
+					        <xs:appinfo>
+					            <xhtml:label>Não</xhtml:label>
+					        </xs:appinfo>
+					    </xs:annotation>
+					</xs:element>
+					<xs:element name="quaisModificaoes" minOccurs="1">
+						<xs:annotation>
+							<xs:appinfo>
+								<xhtml:label>
+									Quais modificações?
+								</xhtml:label>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="255" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+				    </xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="familiaParticipaDaRotinaDaCrianca" minOccurs="0">
+				<xs:annotation>
+				    <xs:appinfo>
+					<xhtml:label>
+						13.6 A família participa da rotina da criança e do adolescente (escola, acompanhamento médico, festas, passeios etc)?
+					</xhtml:label>                    
+				    </xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+				    <xs:sequence>
+					<xs:element name="sim" type="xs:boolean">
+					    <xs:annotation>
+					        <xs:appinfo>
+					            <xhtml:label>Sim</xhtml:label>
+					        </xs:appinfo>
+					    </xs:annotation>
+					</xs:element>
+
+					<xs:element name="nao" type="xs:boolean">
+					    <xs:annotation>
+					        <xs:appinfo>
+					            <xhtml:label>Não</xhtml:label>
+					        </xs:appinfo>
+					    </xs:annotation>
+					</xs:element>
+					<xs:element name="comoParticipaDaRotina" minOccurs="1">
+						<xs:annotation>
+							<xs:appinfo>
+								<xhtml:label>
+									Como?
+								</xhtml:label>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="255" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+				    </xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

@@ -16,21 +16,21 @@ sub listar_schemas {
     my ( $self, $args ) = @_;
     my $busca;
     if ($args->{busca}) {
-        $busca =
-'where $x/xs:element/xs:annotation/xs:appinfo/class:classificacoes/class:classificacao/text() = '
-          . '"'. $args->{busca} . '"';
+        $busca = 'where $x/xs:element/xs:annotation/xs:appinfo/class:classificacoes/class:classificacao/text() = '
+               . '"'. $args->{busca} . '"';
     }
 
     my $list = 'declare namespace class = "http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";'
              . 'subsequence('
              . 'for $x in collection("acao-schemas")/xs:schema '.$busca
-             . 'order by $x/@targetNamespace/string(), $x/xs:element/xs:annotation/xs:appinfo/class:classificacoes/@validacao/string() '
+             . 'order by $x/xs:element/xs:annotation/xs:appinfo/class:classificacoes/@validacao/string() '
              . ' return ($x,'
              . $args->{grid}
              . '  ), ('
              . $args->{interval_ini} * $args->{num_por_pagina}
              . ') + 1 ,'
              . $args->{num_por_pagina} . '' . ')';
+
     my $count = 'declare namespace class = "http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";'
               . 'count('
               . 'for $x in collection("acao-schemas")/xs:schema '.$busca
@@ -39,7 +39,6 @@ sub listar_schemas {
     return {
         list  => $list,
         count => $count
-
     };
 
 }
@@ -47,31 +46,31 @@ sub listar_schemas {
 sub options_classificacao_xsd {
     my ($self) = @_;
 
-    my $query =
-'declare namespace class = "http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";'
-      . 'for $x in collection("acao-schemas")/xs:schema '
-      . 'order by $x/xs:element/xs:annotation/xs:appinfo/class:classificacoes/class:classificacao/text()'
-      . ' return     '
-      . '(<option value="{$x/xs:element/xs:annotation/xs:appinfo/class:classificacoes/class:classificacao/text()}">'
-      . '{replace($x/xs:element/xs:annotation/xs:appinfo/class:classificacoes/class:classificacao/text(),"cn=","")}'
-      . '</option>)';
+    my $query = q|declare namespace class = "http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";
+                  for $x in collection("acao-schemas")/xs:schema/xs:element/xs:annotation/xs:appinfo/class:classificacoes
+                  return  (for $x in ($x/class:classificacao) return $x/text())|;
 
     $self->sedna->begin();
     $self->sedna->execute($query);
+
+    my %hash;
     my $options;
-    my %anterior;
+
     while ( my $item = $self->sedna->get_item() ) {
         $item =~ s/^\s+//go;
-        unless ( $anterior{$item} ) {
-            $options .= $item;
-            $anterior{$item} = 1;
-        }
+        my $value = $item;
+        $value =~ s/cn=//go;
+        $hash{$item} = $value;
+    }
+
+    for my $k (sort keys %hash) {
+        
+        $options .= qq|<option value="$k">$hash{$k}</option>\n|;
     }
 
     $self->sedna->commit;
 
     return $options;
-
 }
 
 sub insere_schema {

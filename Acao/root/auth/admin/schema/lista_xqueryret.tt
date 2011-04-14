@@ -7,7 +7,7 @@
     {$x/xs:element/xs:annotation/xs:appinfo/*/text()}
   </td>
   <td>
-    {replace($x/xs:element/xs:annotation/xs:appinfo/class:classificacoes/class:classificacao/text(),"cn=","")}
+    {replace($x/xs:element/xs:annotation/xs:appinfo/class:classificacoes/class:classificacao/text(),"cn="," ")}
   </td>
   <td>
     {replace($x/@targetNamespace/string(), "^.*?_*v*(\d*)\.xsd.*$" , "$1")}

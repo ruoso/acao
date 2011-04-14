@@ -1,0 +1,240 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-acolhimentoinstitucional-condicoesdemoradia-casameninosmeninas.xsd"
+	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
+	xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-acolhimentoinstitucional-condicoesdemoradia-casameninosmeninas.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="formCondicoesDeMoradia" type="formCondicoesDeMoradia">
+		<xs:annotation>
+			<xs:appinfo>
+				<xhtml:label>12. CONDIÇÕES DE MORADIA</xhtml:label>
+				<class:classificacoes>
+					<class:classificacao>cn=Acolhimento Institucional,cn=Criança e Adolescente,cn=Direitos Humanos</class:classificacao>
+				</class:classificacoes>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="formCondicoesDeMoradia">
+		<xs:sequence>
+			<xs:element name="numeroAtendimento" minOccurs="1">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Número atendimento</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+            
+                        <xs:element name="apartamento" type="xs:boolean">
+                            <xs:annotation>
+                                <xs:appinfo>
+                                    <xhtml:label>apartamento</xhtml:label>
+                                </xs:appinfo>
+                            </xs:annotation>
+                        </xs:element>
+
+                        <xs:element name="casaIsolada" type="xs:boolean">
+                            <xs:annotation>
+                                <xs:appinfo>
+                                    <xhtml:label>Casa isolada</xhtml:label>
+                                </xs:appinfo>
+                            </xs:annotation>
+                        </xs:element>
+
+                        <xs:element name="casaEmFavela" type="xs:boolean">
+                            <xs:annotation>
+                                <xs:appinfo>
+                                    <xhtml:label>Casa em favela</xhtml:label>
+                                </xs:appinfo>
+                            </xs:annotation>
+                        </xs:element>
+
+                        <xs:element name="casaCompartilhada" type="xs:boolean">
+                            <xs:annotation>
+                                <xs:appinfo>
+                                    <xhtml:label>Casa compartilhada</xhtml:label>
+                                </xs:appinfo>
+                            </xs:annotation>
+                        </xs:element>
+
+                        <xs:element name="cortico" type="xs:boolean">
+                            <xs:annotation>
+                                <xs:appinfo>
+                                    <xhtml:label>Cortiço</xhtml:label>
+                                </xs:appinfo>
+                            </xs:annotation>
+                        </xs:element>
+
+                        <xs:element name="pensao" type="xs:boolean">
+                            <xs:annotation>
+                                <xs:appinfo>
+                                    <xhtml:label>Pensão</xhtml:label>
+                                </xs:appinfo>
+                            </xs:annotation>
+                        </xs:element>
+
+                        <xs:element name="moradorDeRua" type="xs:boolean">
+                            <xs:annotation>
+                                <xs:appinfo>
+                                    <xhtml:label>Morador de rua</xhtml:label>
+                                </xs:appinfo>
+                            </xs:annotation>
+                        </xs:element>
+
+                        <xs:element name="moradiaInstitucional" type="xs:boolean">
+                            <xs:annotation>
+                                <xs:appinfo>
+                                    <xhtml:label>Moradia institucional</xhtml:label>
+                                </xs:appinfo>
+                            </xs:annotation>
+                        </xs:element>
+
+                        <xs:element name="outros" type="xs:boolean">
+                            <xs:annotation>
+                                <xs:appinfo>
+                                    <xhtml:label>Outros</xhtml:label>
+                                </xs:appinfo>
+                            </xs:annotation>
+                        </xs:element>
+
+                        <xs:element name="outrosEspecificar" minOccurs="1">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Outros especificar:</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			<xs:element name="situacaoDoImovel" minOccurs="0">
+				<xs:annotation>
+				    <xs:appinfo>
+					<xhtml:label>12.1 Situação do imóvel</xhtml:label>                    
+				    </xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+				    <xs:sequence>
+					<xs:element name="alugado" type="xs:boolean">
+					    <xs:annotation>
+					        <xs:appinfo>
+					            <xhtml:label>Alugado</xhtml:label>
+					        </xs:appinfo>
+					    </xs:annotation>
+					</xs:element>
+
+					<xs:element name="arrendado" type="xs:boolean">
+					    <xs:annotation>
+					        <xs:appinfo>
+					            <xhtml:label>Arrendado</xhtml:label>
+					        </xs:appinfo>
+					    </xs:annotation>
+					</xs:element>
+
+					<xs:element name="cedido" type="xs:boolean">
+					    <xs:annotation>
+					        <xs:appinfo>
+					            <xhtml:label>Cedido</xhtml:label>
+					        </xs:appinfo>
+					    </xs:annotation>
+					</xs:element>
+		
+					<xs:element name="financiado" type="xs:boolean">
+					    <xs:annotation>
+					        <xs:appinfo>
+					            <xhtml:label>Financiado</xhtml:label>
+					        </xs:appinfo>
+					    </xs:annotation>
+					</xs:element>
+
+					<xs:element name="invadido" type="xs:boolean">
+					    <xs:annotation>
+					        <xs:appinfo>
+					            <xhtml:label>Invadido</xhtml:label>
+					        </xs:appinfo>
+					    </xs:annotation>
+					</xs:element>
+
+					<xs:element name="proprio" type="xs:boolean">
+					    <xs:annotation>
+					        <xs:appinfo>
+					            <xhtml:label>Próprio</xhtml:label>
+					        </xs:appinfo>
+					    </xs:annotation>
+					</xs:element>
+
+					<xs:element name="naoSeAplica" type="xs:boolean">
+					    <xs:annotation>
+					        <xs:appinfo>
+					            <xhtml:label>Não se aplica</xhtml:label>
+					        </xs:appinfo>
+					    </xs:annotation>
+					</xs:element>
+	
+					<xs:element name="outrosSituacao" type="xs:boolean">
+				            <xs:annotation>
+				                <xs:appinfo>
+				                    <xhtml:label>Outros</xhtml:label>
+				                </xs:appinfo>
+				            </xs:annotation>
+				        </xs:element>
+
+				        <xs:element name="outrosSituacaoEspecificar" minOccurs="1">
+						<xs:annotation>
+							<xs:appinfo>
+								<xhtml:label>Outros especificar:</xhtml:label>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="255" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+				    </xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="areaDoImovel" minOccurs="0">
+				<xs:annotation>
+				    <xs:appinfo>
+					<xhtml:label>12.2 Área do imóvel</xhtml:label>                    
+				    </xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+				    <xs:sequence>
+					<xs:element name="areaUrbana" type="xs:boolean">
+					    <xs:annotation>
+					        <xs:appinfo>
+					            <xhtml:label>Área urbana</xhtml:label>
+					        </xs:appinfo>
+					    </xs:annotation>
+					</xs:element>
+
+					<xs:element name="areaRural" type="xs:boolean">
+					    <xs:annotation>
+					        <xs:appinfo>
+					            <xhtml:label>Área rural</xhtml:label>
+					        </xs:appinfo>
+					    </xs:annotation>
+					</xs:element>
+				    </xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>
