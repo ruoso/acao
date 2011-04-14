@@ -484,6 +484,25 @@ sub autorizacoes_de_documento {
 
 }
 
+sub get_invalidation_doc {
+    my ($self, $id_volume, $controle, $id_documento) = @_;
+    
+    my $xquery = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
+                    declare namespace dc = "http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";
+                    declare namespace adt = "http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd";
+                    declare namespace xhtml="http://www.w3.org/1999/xhtml";
+                    declare namespace xss="http://www.w3.org/2001/XMLSchema";
+                        for $x at $i in collection("'.$id_volume.'")
+                        /ns:dossie[ns:controle = "'.$controle.'" ]/ns:doc
+                        /dc:documento[dc:id="'.$id_documento.'"]
+                    return $x/dc:invalidacao/text()';
+    $self->sedna->begin;
+    $self->sedna->execute($xquery);
+    my $invalidation = $self->sedna->get_item();
+    $self->sedna->commit;
+    return $invalidation;
+}
+
 =head1 COPYRIGHT AND LICENSING
 
 Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado
