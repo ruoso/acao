@@ -24,6 +24,19 @@
 	<xs:complexType name="formEducacao">
 
 		<xs:sequence>
+		
+			<xs:element name="numeroAtendimento" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Número atendimento</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
 
 			<xs:element name="anoEscolarAtual" minOccurs="0">
 
