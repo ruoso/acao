@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns="http://schemas.fortaleza.ce.gov.br/acao/proesf-relatorio_de_visita.xsd"
+  targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/proesf-relatorio_de_visita.xsd" elementFormDefault="qualified">
+
+  <xs:element name="proesf" type="proesf">
+    <xs:annotation>
+      <xs:appinfo>
+        <xhtml:label>PROESF - Relatório de visita</xhtml:label>
+        <class:classificacoes>
+          <class:classificacao>cn=Saúde</class:classificacao>
+        </class:classificacoes>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="proesf">
+    <xs:sequence>
+
+      <xs:element name="relatorio_de_visita">
+        <xs:annotation>
+          <xs:appinfo>
+            <xhtml:label>Relatório de visita</xhtml:label>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType name="opcoes">
+          <xs:sequence>
+            <xs:element name="csf">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>CSF:</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="255" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="coordenador">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Coordenador:</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="255" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="profissionais">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Profissionais</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType name="opcoes">
+                <xs:sequence>
+                  <xs:element name="profissional_1">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Profissional 1</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType name="opcoes">
+                      <xs:sequence>
+                        <xs:element name="nome_do_profissional">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Nome do profissional:</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="255" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="funcao">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Função:</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="255" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="profissional_2">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Profissional 2</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType name="opcoes">
+                      <xs:sequence>
+                        <xs:element name="nome_do_profissional">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Nome do profissional:</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="255" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="funcao">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Função:</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="255" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="profissional_3">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Profissional 3</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType name="opcoes">
+                      <xs:sequence>
+                        <xs:element name="nome_do_profissional">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Nome do profissional:</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="255" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="funcao">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Função:</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="255" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="profissional_4">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Profissional 4</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType name="opcoes">
+                      <xs:sequence>
+                        <xs:element name="nome_do_profissional">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Nome do profissional:</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="255" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="funcao">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Função:</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="255" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="profissional_5">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Profissional 5</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType name="opcoes">
+                      <xs:sequence>
+                        <xs:element name="nome_do_profissional">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Nome do profissional:</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="255" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="funcao">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Função:</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="255" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="data_visita_supervisao" type="xs:date">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Data da visita de supervisão:</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="supervisor">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Supervisor:</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="255" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="condicao_estrutural_da_unidade_de_saude" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Condições estruturais da unidade de saúde</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="percepcao_coordenacao_csf" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Percepção da coordenação do CSF</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="percepcao_equipe_saude_da_familia" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Percepção da equipe de saúde da família</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="encaminhamentos" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Encaminhamentos</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

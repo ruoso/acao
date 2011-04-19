@@ -241,30 +241,18 @@ txn_method 'getDadosVolumeId' => authorized $role_listar => sub {
     my $self = shift;
     my ( $id_volume, $assuntos_dn, $local_dn ) = @_;
 
-    my $xq =
-q|declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";
+    my $xq = q|declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";
               declare namespace cl="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";
-              for $x in collection("volume")/ns:volume[ns:collection="|
-      . $id_volume . q|"]
+              for $x in collection("volume")/ns:volume[ns:collection="|. $id_volume . q|"]
                  return (concat($x/ns:nome/text()," "),
                     string-join(
                         for $c in $x/ns:classificacoes/cl:classificacao/text()
-                            return (if (ends-with($c,",|
-      . $assuntos_dn
-      . q|")) then (
-                                string-join(reverse(for $i in tokenize(substring-before($c,",|
-      . $assuntos_dn
-      . q|"),',')
+                            return (if (ends-with($c,",|.$assuntos_dn.q|")) then (string-join(reverse(for $i in tokenize(substring-before($c,",|.$assuntos_dn.q|"),',')
                                  return (tokenize($i,'='))[2]),' - ')
                                ) else ($c)),', '),
                     string-join(
                         for $d in $x/ns:localizacao/text()
-                            return (if (ends-with($d,",|
-      . $local_dn
-      . q|")) then (
-                                string-join(reverse(for $j in tokenize(substring-before($d,",|
-      . $local_dn
-      . q|"),',')
+                            return (if (ends-with($d,",|.$local_dn.q|")) then (string-join(reverse(for $j in tokenize(substring-before($d,",|.$local_dn.q|"),',')
                                  return (tokenize($j,'='))[2]),' - ')
                                ) else ($d)),', '),
                     concat($x/ns:estado/text()," "),

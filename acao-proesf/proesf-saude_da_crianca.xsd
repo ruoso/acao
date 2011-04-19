@@ -1,0 +1,662 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns="http://schemas.fortaleza.ce.gov.br/acao/proesf-saude_da_crianca.xsd"
+  targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/proesf-saude_da_crianca.xsd" elementFormDefault="qualified">
+
+  <xs:element name="proesf" type="proesf">
+    <xs:annotation>
+      <xs:appinfo>
+        <xhtml:label>PROESF - Saúde da criança</xhtml:label>
+        <class:classificacoes>
+          <class:classificacao>cn=Saúde</class:classificacao>
+        </class:classificacoes>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="proesf">
+    <xs:sequence>
+
+      <xs:element name="saude_da_crianca">
+        <xs:annotation>
+          <xs:appinfo>
+            <xhtml:label>Saúde da criança</xhtml:label>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="caderneta_ou_cartao_da_crianca">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Caderneta ou cartão da criança</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="utilizado_em_todas_situacoes_atendimento" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>A caderneta ou cartão da criança é utilizado em todas as situações de procura por
+                          atendimento?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="sao_realizados_registros_necessarios" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>São realizados os registros necessários?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="criancas_registradas">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Crianças registradas</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="quantas_abaixo_percentil_tres" type="xs:integer" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Quantas crianças estão registradas abaixo do percentil 03(-02 escores e 02)?
+                        </xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="quantas_acima_p_97" type="xs:integer" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Quantas estão registradas e acima do p 97(+2 escores e 2)?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="observacoes">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Observações:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="acompanhamento_do_crescimento_e_desenvolvimento_da_crianca">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Acompanhamento do crescimento e desenvolvimento da criança</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="equipe_acompanha_criancas_menores_dois_anos" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>A equipe faz acompanhamento do crescimento e desenvolvimento das crianças menores
+                          de 02 anos?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="dificuldades_encontradas">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Quais as dificuldades?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="criancas_cadastradas">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Crianças cadastradas</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="no_criancas_cadastradas_ate_cinco_anos" type="xs:integer" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Número de crianças cadastradas, com até 05 anos de vida:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="no_criancas_ate_dois_anos_com_vacinacao_em_dia" type="xs:integer"
+                    minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Número de crianças da área, com até 02 anos de vida, que estão com esquema de
+                          vacinação em dia:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="incentivo_ao_aleitamento_materno">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Incentivo ao aleitamento materno</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="esf_incentiva_no_prenatal" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>A ESF realiza atividades coletivas e individuais de incentivo ao aleitamento
+                          materno no pré-natal?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="esf_incentiva_no_puerperio" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>A ESF realiza atividades coletivas e individuais de incentivo ao aleitamento
+                          materno no puerpério?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="esf_faz_orientacao_alimentar_de_complementacao" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>A ESF faz orientação alimentar para o processo de complementação do aleitamento
+                          materno?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="consultas_medicas_ou_de_enfermagem_no_primeiro_ano_de_vida">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>São realizadas no mínimo 07 consultas - médica ou de enfermagem - no primeiro ano de vida
+                    (15 dias, 1 mês, 2 meses, 4 meses, 6 meses, 9 meses, 12 meses)?</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="quinze_dias" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Consulta dos 15 dias realizada?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="um_mes" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Consulta de 1 mês realizada?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="dois_meses" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Consulta dos 2 meses realizada?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="quatro_meses" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Consulta dos 4 meses realizada?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="seis_meses" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Consulta dos 6 meses realizada?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="nove_meses" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Consulta dos 9 meses realizada?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="doze_meses" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Consulta dos 12 meses realizada?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="crianca_com_risco_adquirido_associado">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Criança com risco adquirido associado</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="esf_identifica" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>A ESF identifica a criança com risco adquirido/associado?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="condutas_realizadas">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Que condutas são realizadas nesses casos?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="observacoes">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Observações:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="protocolo_de_atendimento">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Protocolo de atendimento</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="esf_utiliza_protocolo_de_atendimento" type="xs:boolean">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>A ESF utiliza algum fluxograma ou protocolo de atendimento às crianças em
+                                situação de risco trazidas à unidade de saúde?</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element name="observacoes">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Observações:</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="255" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="criancas_com_asma">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Crianças com asma</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="esf_acompanha_criancas_com_asma" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>A ESF acompanha as crianças com asma?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="as_encaminha_pra_onde">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Em caso negativo, a ESF as encaminha para onde?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="comentarios">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Comentários:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="criancas_com_ira">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Crianças com ira</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="orienta_sobre_sinais_de_agravamento-criancas_com_ira" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>A ESF orienta sobre os sinais de agravamento de ira?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="orienta_sobre_retorno_ao_servico" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>A ESF orienta sobre o retorno ao serviço?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="no_de_criancas_internadas_por_ira" type="xs:integer" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Número de crianças da área de abrangência da ESF internadas por ira:
+                        </xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="observacoes">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Observações:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="criancas_com_diarreia">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Crianças com diárreia</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="no_de_criancas_internadas_por_diarreia" type="xs:integer" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Número de crianças da área de abrangência da ESF internadas por diarréia:
+                        </xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="observacoes">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Observações:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="criancas_com_desidratacao">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Crianças com desidratação</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="orienta_sobre_sinais_de_agravamento-criancas_com_desidratacao" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>A ESF orienta sobre prevenção e sinais de agravamento do quadro de desidratação?
+                        </xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="casos_graves_sao_referenciados" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>A ESF referencia os casos graves de desidratação?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="armazenamento_de_medicamentos">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Armazenamento de medicamentos</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="no_csf_ha_sro" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>No CSF há SRO?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="armazenamento_adequado_de_soro_e_medicamentos" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>O armazenamento do soro e medicamentos é adequado?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="observacoes">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Observações:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="desidratacao_infantil">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Desidratação infantil</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="membros_esf_orientam_administracao_soro_caseiro" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Os membros da ESF reconhecem e orientam a preparação e administração do soro
+                          caseiro, ou dos sais de reidratação oral, nos casos de desidratação infantil?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="obitos_infantis_e_fetais">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Óbitos infantis e fetais</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="investigacao_de_obitos">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Investigação de óbitos</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="esf_investiga_os_obitos_infantis_fetais" type="xs:boolean">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>A ESF investiga os óbitos infantis e fetais?</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element name="observacoes">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Observações:</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="255" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="ha_registro_adequado_dos_dados_obtidos" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Há registro adequado dos dados obtidos?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="vitamina_a">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Vitamina A</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="suplementacao_realizada" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>É realizada a suplementação de vitamina A?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="quem_alimenta_os_dados_do_mapa_de_administracao">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Quem alimenta os dados do mapa de administração da vitamina A?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="aprazamento_e_retorno">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Aprazamento e retorno</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="aprazamento_e_retorno_realizado" type="xs:boolean">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>É realizado o aprazamento e retorno da vitamina A?</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element name="motivo_aprazamento_nao_realizado">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Em caso negativo; por quê?</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="255" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="ferro">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Programa de suplementação do ferro</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="esf_implementa_programa_de_suplementacao" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>A ESF implementa o programa de suplementação do ferro?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="quem_alimenta_os_dados_do_mapa_mensal">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Quem alimenta os dados do mapa mensal do programa do ferro?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

@@ -92,9 +92,6 @@ sub authorized {
             $code->(@_);
         }
         else {
-            warn "*******************";
-            warn $role;
-            warn "*******************";
             die 'access-denied!';
         }
       }

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns="http://schemas.fortaleza.ce.gov.br/acao/proesf-medicamentos_insumos.xsd"
+  targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/proesf-medicamentos_insumos.xsd" elementFormDefault="qualified">
+
+  <xs:element name="proesf" type="proesf">
+    <xs:annotation>
+      <xs:appinfo>
+        <xhtml:label>PROESF - Medicamentos e insumos</xhtml:label>
+        <class:classificacoes>
+          <class:classificacao>cn=Saúde</class:classificacao>
+        </class:classificacoes>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="proesf">
+    <xs:sequence>
+
+      <xs:element name="medicamentos_insumos">
+        <xs:annotation>
+          <xs:appinfo>
+            <xhtml:label>Medicamentos e insumos</xhtml:label>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="monitoramento_de_medicamentos">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Monitoramento de medicamentos</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="quais_faltam_com_frequencia">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Quais os medicamentos que faltam com mais frequência?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="motivo">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Por quê?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="monitoramento_de_insumos">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Monitoramento de insumos</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="quais_faltam_com_frequencia">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Quais os insumos que faltam com mais frequência?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="motivo">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Por quê?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="posologia_das_medicacoes">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Posologia das medicações</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="populacao_orientada_quanto_a_posologia">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>População orientada quanto a posologia?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="comentarios">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Comentários:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="farmaceuticos_nasf">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Farmacêuticos NASF</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="farmaceutico_realiza_atividade_vinculada_a_esf" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>O farmacêutico do NASF realiza alguma atividade específica vinculada a ESF (caso
+                          a
+                          ESF seja vinculada ao NASF e exista farmacêutico na equipe do NASF)?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="realiza_qual_atividade_vinculada_a_esf">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Qual atividade?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="sem_farmaceutico" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Não há farmacêutico do NASF</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="armazenamento_de_medicamentos">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Armazenamento de medicamentos</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="armazenamento_insulina">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Armazenamento de insulina</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="geladeira_especifica_para_armazenamento" type="xs:boolean">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Existe geladeira especifica para o armazenamento de insulina?</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element name="motivo">
+                          <xs:annotation>
+                            <xs:appinfo>
+                              <xhtml:label>Se não; por quê?</xhtml:label>
+                            </xs:appinfo>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="255" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

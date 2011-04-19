@@ -85,7 +85,7 @@ sub municipios : Chained('/') : PathPart('municipios') : Args(0) {
 
 # lista os nucleos fazendo a busca na model nucleos
 sub nucleos : Chained('/') : PathPart('nucleos') : Args(0) {
-  
+
 	my ($self, $c) = @_;
 	my $nuc = $c->req->param('term');
 	my $result = $c->model('Nucleos')->listaNucleos($nuc);
@@ -94,12 +94,12 @@ sub nucleos : Chained('/') : PathPart('nucleos') : Args(0) {
 	$c->forward('View::JSON');
 }
 
-# lista os municipios fazendo a busca no model municipios
-sub municipios : Chained('/') : PathPart('municipios') : Args(0) {
-  
+# lista as unidades de saúde do município de Fortaleza
+sub unidadessaude : Chained('/') : PathPart('unidadessaude') : Args(0) {
+
 	my ($self, $c) = @_;
-	my $munic = $c->req->param('term');
-	my $result = $c->model('Municipios')->listaMunicipios($munic);
+	my $posto = $c->req->param('term');
+	my $result = $c->model('UnidadesSaude')->listaUnidadesSaude($posto);
 	$c->stash->{json} = $result;
 	warn Dumper($result);
 	$c->forward('View::JSON');

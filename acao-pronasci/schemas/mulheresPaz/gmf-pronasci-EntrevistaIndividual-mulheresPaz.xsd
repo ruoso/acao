@@ -25,7 +25,7 @@
 	<xs:complexType name="formMulheresDaPazEntrevistaIndividual">
 		<xs:sequence>
 		
-			<xs:element name="numeroInscricao" minOccurs="1">
+			<xs:element name="numeroInscricao" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Número de inscrição:</xhtml:label>
@@ -47,7 +47,7 @@
 				<xs:complexType>
 					<xs:sequence>
 
-						<xs:element name="nome" minOccurs="1">
+						<xs:element name="nome" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Nome</xhtml:label>

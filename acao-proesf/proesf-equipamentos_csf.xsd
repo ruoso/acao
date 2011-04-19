@@ -1,0 +1,574 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns="http://schemas.fortaleza.ce.gov.br/acao/proesf-equipamentos_csf.xsd"
+  targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/proesf-equipamentos_csf.xsd" elementFormDefault="qualified">
+
+  <xs:element name="proesf" type="proesf">
+    <xs:annotation>
+      <xs:appinfo>
+        <xhtml:label>PROESF - Equipamentos</xhtml:label>
+        <class:classificacoes>
+          <class:classificacao>cn=Saúde</class:classificacao>
+        </class:classificacoes>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="proesf">
+    <xs:sequence>
+
+      <xs:element name="consultorios">
+        <xs:annotation>
+          <xs:appinfo>
+            <xhtml:label>Consultórios</xhtml:label>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType name="opcoes">
+          <xs:sequence>
+            <xs:element name="consultorio_ginecologico">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Consultório ginecológico</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType name="questionamentos">
+                <xs:sequence>
+                  <xs:element name="contem_biombo_ou_banheiro" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>o consultório onde é realizado os exames ginecológicos contém, no mínimo,
+                          biombo ou
+                          banheiro para troca de roupas?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="se_encontra_adequado_para_exame_clinico" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>O CSF possui consultório adequado para exame clínico ginecológico?
+                                                </xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="conservacao_inadequada" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Conservação/manutenção inadequadas?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="comentarios">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Comentários:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+
+            <xs:element name="qual_a_quantidade_de_consultorios_no_csf" type="xs:integer" minOccurs="0">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Qual a quantidade de consultórios no CSF?</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+
+            <xs:element name="equipamentos_basicos">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Equipamentos básicos</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType name="questionamentos">
+                <xs:sequence>
+                  <xs:element name="os_consultorios_dispoem_de_equipamentos_basicos" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Os consultórios dispõem de equipamentos básicos para o atendimento à sua
+                          população?
+                        </xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="comentarios">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Comentários:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="unidade_de_saude">
+        <xs:annotation>
+          <xs:appinfo>
+            <xhtml:label>Unidade de saúde</xhtml:label>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType name="opcoes">
+          <xs:sequence>
+            <xs:element name="possui_condicoes_adequadas" type="xs:boolean">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>A unidade de saúde possui, em seus ambientes, condições adequadas para o
+                    desenvolvimento
+                    das ações básicas de saúde?</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="comentarios">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Comentários:</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="255" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="equipamentos_e_instrumentais_odontologicos">
+        <xs:annotation>
+          <xs:appinfo>
+            <xhtml:label>Equipamentos e instrumentais odontológicos</xhtml:label>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType name="opcoes">
+          <xs:sequence>
+            <xs:element name="csf_dispoe_de_instrumental_odontologico" type="xs:boolean">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>O CSF dispõe de equipamento completo e instrumentais odontológicos?
+                                    </xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="comentarios">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Comentários:</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="255" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="equipamentos_de_informatica">
+        <xs:annotation>
+          <xs:appinfo>
+            <xhtml:label>Equipamentos de informática</xhtml:label>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType name="opcoes">
+          <xs:sequence>
+            <xs:element name="comentarios" type="xs:boolean">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>O CSF possui equipamentos de informática?</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="conservacao_inadequada" type="xs:boolean">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Conservação/manutenção inadequadas?</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="sala_de_arquivo_e_registro">
+        <xs:annotation>
+          <xs:appinfo>
+            <xhtml:label>sala_de_arquivo_e_registro</xhtml:label>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType name="opcoes">
+          <xs:sequence>
+            <xs:element name="o_csf_possui_sala_de_arquivo_e_registro" type="xs:boolean">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>O CSF possui uma sala de arquivo e registro?</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="sala_de_acondicionamento_e_dispensacao_de_medicamentos">
+        <xs:annotation>
+          <xs:appinfo>
+            <xhtml:label>Sala de acondicionamento e dispensação de medicamentos</xhtml:label>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType name="opcoes">
+          <xs:sequence>
+            <xs:element name="se_encontra_em_condicoes_adequadas" type="xs:boolean">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>A sala de acondicionamento e dispensação de medicamentos encontra-se em
+                    condições
+                    adequadas?</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="comentarios">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>comentários:</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="255" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="sala_de_vacina">
+        <xs:annotation>
+          <xs:appinfo>
+            <xhtml:label>Sala de vacina</xhtml:label>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType name="opcoes">
+          <xs:sequence>
+            <xs:element name="se_encontra_em_condicoes_adequadas" type="xs:boolean">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>A sala de vacina encontra-se em condições adequadas?</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="conservacao_inadequada" type="xs:boolean">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Conservação/manutenção inadequadas?</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="comentarios">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>comentários:</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="255" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="sala_de_procedimentos">
+        <xs:annotation>
+          <xs:appinfo>
+            <xhtml:label>Sala de procedimentos</xhtml:label>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType name="opcoes">
+          <xs:sequence>
+            <xs:element name="se_encontra_em_condicoes_adequadas" type="xs:boolean">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>A sala de procedimentos encontra-se em condições e materiais adequados?
+                                    </xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="conservacao_inadequada" type="xs:boolean">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Conservação/manutenção inadequadas?</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="comentarios">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>comentários:</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="255" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="sala_de_coleta">
+        <xs:annotation>
+          <xs:appinfo>
+            <xhtml:label>Sala de coleta</xhtml:label>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType name="opcoes">
+          <xs:sequence>
+            <xs:element name="existe_sala_de_coleta" type="xs:boolean">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Existe sala de coleta no CSF?</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="possui_condicoes_adequadas" type="xs:boolean">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Possui condições adequadas?</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="comentarios">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>comentários:</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="255" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="sala_de_recepcao_lavagem_e_descontaminacao_de_material">
+        <xs:annotation>
+          <xs:appinfo>
+            <xhtml:label>Sala de recepção, lavagem e descontaminação de material</xhtml:label>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType name="opcoes">
+          <xs:sequence>
+            <xs:element name="possui_condicoes_adequadas" type="xs:boolean">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>A sala de recepção, lavagem e descontaminação de material possui condições
+                    adequadas?
+                  </xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="conservacao_inadequada" type="xs:boolean">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Conservação/manutenção inadequadas?</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="sala_de_acondicionamento_de_material_esterilizado">
+        <xs:annotation>
+          <xs:appinfo>
+            <xhtml:label>Sala de acondicionamento de material esterilizado</xhtml:label>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType name="opcoes">
+          <xs:sequence>
+            <xs:element name="se_encontra_em_condicoes_adequadas" type="xs:boolean">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>A sala de acondicionamento de material esterilizado encontra-se em condições
+                    adequadas?
+                  </xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="conservacao_inadequada" type="xs:boolean">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Conservação/manutenção inadequadas?</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="sanitarios_do_csf">
+        <xs:annotation>
+          <xs:appinfo>
+            <xhtml:label>Sanitários do CSF</xhtml:label>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType name="opcoes">
+          <xs:sequence>
+            <xs:element name="possuem_lixeira_com_tampa_e_pedal" type="xs:boolean">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Possuem lixeira com tampa e pedal?</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="possuem_porta_papel_toalha" type="xs:boolean">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Possuem porta-papel toalha?</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="possuem_porta_dispensador_de_sabao_liquido" type="xs:boolean">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Possuem porta-dispensador de sabão líquido?</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="possuem_porta_papel_higienico" type="xs:boolean">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Possuem porta-papel higiênico?</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="conservacao_inadequada" type="xs:boolean">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Conservação/manutenção inadequadas?</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="identificacao_equipe_supervisao">
+        <xs:annotation>
+          <xs:appinfo>
+            <xhtml:label>Identificação da equipe de supervisão</xhtml:label>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType name="opcoes">
+          <xs:sequence>
+            <xs:element name="data" type="xs:date">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Data da supervisão:</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="nome_1">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Nome:</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="255" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="nome_2">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Nome:</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="255" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="nome_3">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Nome:</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="255" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="nome_4">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Nome:</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="255" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="nome_5">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Nome:</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="255" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="nome_6">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Nome:</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="255" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
