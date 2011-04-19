@@ -5,6 +5,7 @@ declare namespace fb = "http://schemas.fortaleza.ce.gov.br/habitafor/viladomar-c
 declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
 declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";
 declare namespace audt="http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd";
+declare namespace class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";
 
 for $x in collection("leitura-1")[cc:registroDigitacao/cc:documento/cc:estado eq "Aprovado"]
  let $fainv := collection("leitura-1")[cc:registroDigitacao/cc:documento/cc:controle/text()=$x/cc:registroDigitacao/cc:documento/cc:controle/text() and cc:registroDigitacao/cc:documento/cc:estado/text() eq "Rejeitado"]
@@ -18,9 +19,11 @@ for $x in collection("leitura-1")[cc:registroDigitacao/cc:documento/cc:estado eq
    <estado>aberto</estado>
    <controle>{$x/cc:registroDigitacao/cc:documento/cc:controle/text()}</controle>
    <representaDossieFisico>1</representaDossieFisico>
-   <classificacoes/>
-   <localizacao/>
-   <autorizacao principal="paulo.neto" role="role" dataIni="2011-02-01T14:59:47" dataFim=""/>
+   <classificacoes>
+        <class:classificacao>cn=Vila do Mar,cn=Habitação,dc=assuntos,dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br</class:classificacao>
+   </classificacoes>
+   <localizacao>SERCEFOR</localizacao>
+   <autorizacoes herdar="1"/>
    <doc>
     <documento xmlns="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd">
       <id>{$x/cc:registroDigitacao/cc:documento/cc:controle/text()}</id>
@@ -29,7 +32,7 @@ for $x in collection("leitura-1")[cc:registroDigitacao/cc:documento/cc:estado eq
       <invalidacao>1970-01-01T00:00:00Z</invalidacao>
       <motivoInvalidacao/>
       <representaDocumentoFisico>1</representaDocumentoFisico>
-      <autorizacao principal="paulo.neto" role="role" dataIni="2011-02-01T15:08:25" dataFim=""/>
+      <autorizacoes herdar="1"/>
       <documento>
         <conteudo>
          { $x/cc:registroDigitacao/cc:documento/cc:conteudo/* }
@@ -59,7 +62,7 @@ for $x in collection("leitura-1")[cc:registroDigitacao/cc:documento/cc:estado eq
               <invalidacao>1970-01-01T00:00:00Z</invalidacao>
               <motivoInvalidacao/>
               <representaDocumentoFisico>1</representaDocumentoFisico>
-              <autorizacao principal="paulo.neto" role="role" dataIni="2011-02-01T15:08:25" dataFim=""/>
+              <autorizacoes herdar="1"/>
               <documento>
                 <conteudo>
                      { $y/cc:registroDigitacao/cc:documento/cc:conteudo/* }

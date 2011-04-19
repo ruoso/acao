@@ -185,7 +185,7 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
               . ' count( for $x in collection("'.$args->{id_volume}.'")/ns:dossie/ns:autorizacoes ' 
               . $where
               . ' return "" )';
-warn $count;
+
     return {
         list     => $list,
         count    => $count,
