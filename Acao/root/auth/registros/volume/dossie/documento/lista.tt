@@ -94,8 +94,8 @@
         <dt>Classificação:</dt>
         <dd><span>[% dos.classificacoes %]</span></dd>
 
-        <dt>Localização:</dt>
-        <dd><span>[% dos.localizacao %]</span></dd>
+        <!--<dt>Localização:</dt>
+        <dd><span>[% dos.localizacao %]</span></dd>-->
 
         <dt>Estado:</dt>
         <dd><span>[% dos.estado %]</span></dd>
@@ -128,9 +128,7 @@
   </form>
 
   <br/>
-<form action="[% c.uri_for_action('/auth/registros/volume/dossie/documento/form',[ id_volume, controle ]) %]" id="form" name="form" method="post" onSubmit="return validaDropDonw()">
-
-</form>
+<form action="[% c.uri_for_action('/auth/registros/volume/dossie/documento/form',[ id_volume, controle ]) %]" id="form" name="form" method="post" onSubmit="return validaDropDonw()"></form>
 <br>
   <table class="wide-table">
   <thead>

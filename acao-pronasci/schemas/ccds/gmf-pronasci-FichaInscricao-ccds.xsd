@@ -214,7 +214,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="racaEtnia">
+						<xs:element name="racaEtnia"  minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Raça/etnia</xhtml:label>
@@ -356,7 +356,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="escolaridade">
+						<xs:element name="escolaridade"  minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Escolaridade</xhtml:label>
@@ -634,19 +634,38 @@
 				<xs:complexType>
 					<xs:sequence>
 
+
 						<xs:element name="disponibilidadeSegunda">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Segunda</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
-							<xs:simpleType>
-								<xs:restriction base="xs:string">
-									<xs:enumeration value="Manhã"/>
-									<xs:enumeration value="Tarde"/>
-									<xs:enumeration value="Noite"/>
-								</xs:restriction>
-							</xs:simpleType>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="manha" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Manhã</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="tarde" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Tarde</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="noite" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Noite</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
 						</xs:element>
 
 						<xs:element name="disponibilidadeTerca">
@@ -655,13 +674,31 @@
 									<xhtml:label>Terça</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
-							<xs:simpleType>
-								<xs:restriction base="xs:string">
-									<xs:enumeration value="Manhã"/>
-									<xs:enumeration value="Tarde"/>
-									<xs:enumeration value="Noite"/>
-								</xs:restriction>
-							</xs:simpleType>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="manha" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Manhã</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="tarde" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Tarde</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="noite" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Noite</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
 						</xs:element>
 
 						<xs:element name="disponibilidadeQuarta">
@@ -670,13 +707,31 @@
 									<xhtml:label>Quarta</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
-							<xs:simpleType>
-								<xs:restriction base="xs:string">
-									<xs:enumeration value="Manhã"/>
-									<xs:enumeration value="Tarde"/>
-									<xs:enumeration value="Noite"/>
-								</xs:restriction>
-							</xs:simpleType>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="manha" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Manha</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="tarde" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Tarde</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="noite" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Noite</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
 						</xs:element>
 
 						<xs:element name="disponibilidadeQuinta">
@@ -685,13 +740,31 @@
 									<xhtml:label>Quinta</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
-							<xs:simpleType>
-								<xs:restriction base="xs:string">
-									<xs:enumeration value="Manhã"/>
-									<xs:enumeration value="Tarde"/>
-									<xs:enumeration value="Noite"/>
-								</xs:restriction>
-							</xs:simpleType>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="manha" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Manhã</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="tarde" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Tarde</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="noite" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Noite</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
 						</xs:element>
 
 						<xs:element name="disponibilidadeSexta">
@@ -700,13 +773,31 @@
 									<xhtml:label>Sexta</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
-							<xs:simpleType>
-								<xs:restriction base="xs:string">
-									<xs:enumeration value="Manhã"/>
-									<xs:enumeration value="Tarde"/>
-									<xs:enumeration value="Noite"/>
-								</xs:restriction>
-							</xs:simpleType>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="manha" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Manhã</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="tarde" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Tarde</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="noite" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Noite</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
 						</xs:element>
 
 						<xs:element name="disponibilidadeSabado">
@@ -715,13 +806,31 @@
 									<xhtml:label>Sábado</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
-							<xs:simpleType>
-								<xs:restriction base="xs:string">
-									<xs:enumeration value="Manhã"/>
-									<xs:enumeration value="Tarde"/>
-									<xs:enumeration value="Noite"/>
-								</xs:restriction>
-							</xs:simpleType>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="manha" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Manhã</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="tarde" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Tarde</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="noite" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Noite</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
 						</xs:element>
 
 					</xs:sequence>

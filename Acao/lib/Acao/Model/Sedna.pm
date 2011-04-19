@@ -42,6 +42,7 @@ Especializado para definir o atributo AUTOCOMMIT para OFF.
 
 =cut
 
+
 sub new {
     my $self = shift;
     $self = $self->SUPER::new(@_);
@@ -87,6 +88,54 @@ sub store_document {
     my ( $self, $xml, $doc_id, $collection ) = @_;
     $self->conn->loadData( $xml, $doc_id, $collection );
     $self->conn->endLoadData();
+}
+
+sub execute {
+	my $self = shift;
+
+	my $ret;
+	eval {
+		$ret = $self->SUPER::execute(@_);
+	};
+
+	if ($@) {
+		my $config = Acao->config->{'Model::Sedna'};
+		$self->{conn} =  Sedna->connect(
+				$config->{url},
+				$config->{db_name},
+				$config->{login},
+				$config->{password}
+		);
+
+		$self->{conn}->setConnectionAttr(%{$config->{attr}}) if exists $config->{attr} && ref $config->{attr} eq 'HASH';
+
+		$ret = $self->SUPER::execute(@_);
+	}
+	return $ret;
+}
+
+sub begin {
+	my $self = shift;
+
+	my $ret;
+	eval {
+		$ret = $self->SUPER::begin(@_);
+	};
+
+	if ($@) {
+		my $config = Acao->config->{'Model::Sedna'};
+		$self->{conn} =  Sedna->connect(
+				$config->{url},
+				$config->{db_name},
+				$config->{login},
+				$config->{password}
+		);
+
+		$self->{conn}->setConnectionAttr(%{$config->{attr}}) if exists $config->{attr} && ref $config->{attr} eq 'HASH';
+
+		$ret = $self->SUPER::begin(@_);
+	}
+	return $ret;
 }
 
 =back

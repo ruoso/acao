@@ -21,6 +21,18 @@
 
     <xs:complexType name="formMotivoAcolhimento">
         <xs:sequence>
+            <xs:element name="numeroAtendimento" minOccurs="0">
+                <xs:annotation>
+	                <xs:appinfo>
+		                <xhtml:label>Número atendimento:</xhtml:label>
+	                </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+	                <xs:restriction base="xs:string">
+		                <xs:maxLength value="255" />
+	                </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
 
         	<xs:element name="faltaRecurso" minOccurs="0">
                 <xs:annotation>
@@ -30,18 +42,6 @@
                 </xs:annotation>
                 <xs:complexType>
                     <xs:sequence>
-			            <xs:element name="numeroAtendimento" minOccurs="0">
-				            <xs:annotation>
-					            <xs:appinfo>
-						            <xhtml:label>Número atendimento:</xhtml:label>
-					            </xs:appinfo>
-				            </xs:annotation>
-				            <xs:simpleType>
-					            <xs:restriction base="xs:string">
-						            <xs:maxLength value="255" />
-					            </xs:restriction>
-				            </xs:simpleType>
-			            </xs:element>
                         <xs:element name="condicoesHabitacionais" type="xs:boolean">
                             <xs:annotation>
                                 <xs:appinfo>

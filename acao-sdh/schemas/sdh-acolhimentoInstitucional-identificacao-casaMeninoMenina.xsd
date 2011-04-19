@@ -510,7 +510,7 @@
 				<xs:complexType>
 					<xs:sequence>
 
-						<xs:element name="nome" type="xs:string">
+						<xs:element name="nome" type="xs:string" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Nome</xhtml:label>
@@ -518,7 +518,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="data" type="xs:date">
+						<xs:element name="data" type="xs:date" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Data</xhtml:label>

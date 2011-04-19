@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns="http://schemas.fortaleza.ce.gov.br/acao/proesf-ficha_de_diagnostico_situacional.xsd"
+  targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/proesf-ficha_de_diagnostico_situacional.xsd"
+  elementFormDefault="qualified">
+
+
+  <xs:element name="proesf" type="proesf">
+    <xs:annotation>
+      <xs:appinfo>
+        <xhtml:label>PROESF - Ficha de diagnóstico situacional</xhtml:label>
+	    <class:classificacoes>
+		   <class:classificacao>cn=Saúde</class:classificacao>
+	    </class:classificacoes>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="proesf">
+    <xs:sequence>
+      <xs:element name="ficha_de_diagnostico_situacional">
+        <xs:annotation>
+          <xs:appinfo>
+            <xhtml:label>Ficha de diagnóstico situacional</xhtml:label>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="identificacao">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Identificação</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="csf">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>CSF</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="coordenador">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Coordenador</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="equipe">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Equipe</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="data_visita_supervisao" type="xs:date" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Data da visita de supervisão</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="supervisor">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Supervisor</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

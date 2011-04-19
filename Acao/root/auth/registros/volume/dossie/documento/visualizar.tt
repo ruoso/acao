@@ -21,7 +21,6 @@
 [% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume, c.model('LDAP').assuntos_dn, c.model('LDAP').local_dn) ) %]
 [% SET dos = ( c.model('Dossie').getDadosDossie(id_volume, controle, c.model('LDAP').assuntos_dn, c.model('LDAP').local_dn) ) %]
 
-
 <script SRC="[% c.uri_for('/static/js/input.deflate.plugin.js') %]" language="Javascript" ></script>
 <script SRC="[% c.uri_for('/static/js/regex-mask-plugin.js') %]" language="Javascript" ></script>
 <script SRC="[% c.uri_for('/static/js/jquery.meio.mask.js') %]" language="Javascript" ></script>
@@ -80,8 +79,8 @@
         <dt>Classificação:</dt>
         <dd><span>[% dos.classificacoes %]</span></dd>
 
-        <dt>Localização:</dt>
-        <dd><span>[% dos.localizacao %]</span></dd>
+        <!--<dt>Localização:</dt>
+        <dd><span>[% dos.localizacao %]</span></dd>-->
 
         <dt>Estado:</dt>
         <dd><span>[% dos.estado %]</span></dd>
@@ -150,9 +149,7 @@
   }
 </style>
 
-
  <script language="javascript" type="text/javascript">
-
    generateForm("[% c.uri_for_action('/auth/registros/xsd/raw', { ns => xsdDocumento }) %]", "form_container");
    fillValues  ("[% c.uri_for_action('/auth/registros/volume/dossie/documento/xml', [ id_volume, controle, id_documento ]) %]");
 

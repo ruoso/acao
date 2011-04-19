@@ -1,0 +1,549 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns="http://schemas.fortaleza.ce.gov.br/acao/proesf-identificacao.xsd"
+  targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/proesf-identificacao.xsd" elementFormDefault="qualified">
+
+
+  <xs:element name="proesf" type="proesf">
+    <xs:annotation>
+      <xs:appinfo>
+        <xhtml:label>PROESF - Identificação</xhtml:label>
+  <class:classificacoes>
+    <class:classificacao>cn=Saúde</class:classificacao>
+  </class:classificacoes>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="proesf">
+    <xs:sequence>
+
+      <xs:element name="identificacao">
+        <xs:annotation>
+          <xs:appinfo>
+            <xhtml:label>Identificação</xhtml:label>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType name="profissionais">
+          <xs:sequence>
+            <xs:element name="medico">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Médico</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType name="informacoes">
+                <xs:sequence>
+                  <xs:element name="numero" type="xs:integer" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Número:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="nome_profissional">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Nome do profissional:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="ma">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>MA:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="risco">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Risco:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="pop">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>POP:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="presente" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Presente?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="observacoes">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Observações:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+
+            <xs:element name="enfermeiro">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Enfermeiro</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType name="informacoes">
+                <xs:sequence>
+                  <xs:element name="numero" type="xs:integer" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Número:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="nome_profissional">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Nome do profissional:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="ma">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>MA:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="risco">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Risco:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="pop">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>POP:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="presente" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Presente?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="observacoes">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Observações:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+
+            <xs:element name="auxiliar_enfermagem">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Auxiliar de enfermagem</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType name="informacoes">
+                <xs:sequence>
+                  <xs:element name="numero" type="xs:integer" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Número:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="nome_profissional">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Nome do profissional:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="ma">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>MA:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="risco">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Risco:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="pop">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>POP:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="presente" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Presente?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="observacoes">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Observações:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+
+            <xs:element name="agente_saude">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Agente de saúde</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType name="informacoes">
+                <xs:sequence>
+                  <xs:element name="numero" type="xs:integer" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Número:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="nome_profissional">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Nome do profissional:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="ma">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>MA:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="risco">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Risco:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="pop">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>POP:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="presente" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Presente?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="observacoes">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Observações:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+
+            <xs:element name="dentista">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>Dentista</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType name="informacoes">
+                <xs:sequence>
+                  <xs:element name="numero" type="xs:integer" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Número:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="nome_profissional">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Nome do profissional:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="ma">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>MA:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="risco">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Risco:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="pop">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>POP:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="presente" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Presente?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="observacoes">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Observações:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+
+            <xs:element name="acd">
+              <xs:annotation>
+                <xs:appinfo>
+                  <xhtml:label>ACD</xhtml:label>
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:complexType name="informacoes">
+                <xs:sequence>
+                  <xs:element name="numero" type="xs:integer" minOccurs="0">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Número:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="nome_profissional">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Nome do profissional:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="ma">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>MA:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="risco">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Risco:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="pop">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>POP:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="presente" type="xs:boolean">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Presente?</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="observacoes">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xhtml:label>Observações:</xhtml:label>
+                      </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
