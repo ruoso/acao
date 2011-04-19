@@ -1,0 +1,70 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-acolhimentoinstitucional-desligamento-casameninosmeninas.xsd"
+	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
+	xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-acolhimentoinstitucional-desligamento-casameninosmeninas.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="formDesligamento" type="formDesligamento">
+		<xs:annotation>
+			<xs:appinfo>
+				<xhtml:label>16. DESLIGAMENTO</xhtml:label>
+				<class:classificacoes>
+					<class:classificacao>cn=Programa Casa das Meninas,cn=Programa Casa dos Meninos,
+						cn=Criança e Adolescente,cn=Direitos Humanos</class:classificacao>
+				</class:classificacoes>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="formDesligamento">
+		<xs:sequence>
+			<xs:element name="numeroAtendimento" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Número do atendimento:</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="desligamentoEm" type="xs:date">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Desligamento em:</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="tipoDesligamento">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Tipo de desligamento</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction>
+						<xs:enumeration value="Retorno ao convívio familiar"/>
+						<xs:enumeration value="Encaminhamento para família ampliada ou substituta"/>
+						<xs:enumeration value="Encaminhamento para famílias acolhedoras"/>
+						<xs:enumeration value="Desistência do atendimento - Evasão"/>
+						<xs:enumeration value="Transferência para outros abrigos"/>
+						<xs:enumeration value="Transferência para comunidade terapêutica"/>
+						<xs:enumeration value="Encaminhamento para DCA"/>
+						<xs:enumeration value="Retorno para região ou cidade de origem"/>
+						<xs:enumeration value="Encaminhamento para ponte de encontro"/>
+						<xs:enumeration value="Encaminhamento para albergue"/>
+						<xs:enumeration value="Maioridade aos 18 anos"/>
+						<xs:enumeration value="Maioridade aos 21 anos"/>
+						<xs:enumeration value="Determinação judicial para o desligamento"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
