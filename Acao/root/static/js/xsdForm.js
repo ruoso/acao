@@ -453,7 +453,10 @@ function generateFormFromSimpleTypeNodeRestrictionEnumeration(tagRaiz, xmlNode, 
             newSelect.appendChild(newOption);
         }
     }
-
+    
+    if (minOccurs == '1') {
+        newSelect.setAttribute('class', 'required');
+    }
     var newLabel = document.createElement("label");
     newLabel.innerHTML = label;
     newLabel.htmlFor = inputName;
@@ -531,7 +534,8 @@ function generateXmlFromSimpleTypeNode(odoc, namespace, tagRaiz, xmlNode, namePa
 	    for (var i = 0; i < xmlNode.childNodes.length; i++) {
 	        var node = xmlNode.childNodes[i];
             if (node.nodeType == 1) {
-                if (node.nodeName == "xs:restriction" && (node.getAttribute('base') == "xs:string" || node.getAttribute('base') == "xs:decimal")) {
+                if (node.nodeName == "xs:restriction" &&
+                    node.getAttribute('base') == "xs:string") {
                     restriction = node;
                 } else {
                     throw "Unkown simple type";
@@ -569,19 +573,21 @@ function generateXmlFromSimpleTypeNode(odoc, namespace, tagRaiz, xmlNode, namePa
             if (fieldValue.length <= maxl) {
                 valid = 1;
             }
-	} else if (rdecl[0].nodeName == "xs:fractionDigits") {
-		valid = 1;
         } else {
             throw "Unkown restriction type: "+rdecl[0].nodeName;
         }
 
-        if (!valid) {
-            $('#'+inputName+"_input_deflate").addClass('xsd__validationfailed');
-            $('#'+inputName).addClass('xsd__validationfailed');
+        if (!valid && fieldValue != '') {
+            $('#'+inputName+"_input_deflate").addClass('required');
+            $('#'+inputName).addClass('required');
             throw "Erro de Validação";
+        } else if (fieldValue == '') {
+            $('#'+inputName+"_input_deflate").addClass('required');
+            $('#'+inputName).addClass('required');
+            throw "Campo obrigatório";
         } else {
-            $('#'+inputName+"_input_deflate").removeClass('xsd__validationfailed');
-            $('#'+inputName).removeClass('xsd__validationfailed');
+            $('#'+inputName+"_input_deflate").removeClass('required');
+            $('#'+inputName).removeClass('required');
         }
 
         var tag = odoc.createElementNS(namespace, name);
@@ -595,6 +601,7 @@ function generateXmlFromSimpleTypeNode(odoc, namespace, tagRaiz, xmlNode, namePa
 }
 
 function getTextTagInAnnotationExtensions(xmlNode, strTag) {
+
 	var xmlNodeAux = getNodeByTagName(xmlNode, "xsdext:extensions");
 	return getTextByTagName(xmlNodeAux, strTag);
 }
@@ -624,17 +631,17 @@ function generateXmlFromSimpleTextNode(odoc, namespace, tagRaiz, xmlNode, namePa
     var inputName = namePattern + "__" + name;
     var valueField = getById(inputName).value;
 
-    if ( minOccurs > 0 && valueField == '' ) {
+    if ( minOccurs > 0 && (valueField == '' || valueField == null)  ) {
         throw "Campo obrigatório";
     } else if ( valueField != '' ) {
-        // valida mandatorio
+        // valida mandatório
         if (!validateValue(type, valueField)) {
-            $('#'+inputName+"_input_deflate").addClass('xsd__validationfailed');
-            $('#'+inputName).addClass('xsd__validationfailed');
+            $('#'+inputName+"_input_deflate").addClass('required');
+            $('#'+inputName).addClass('required');
             throw "Erro de validação";
         } else {
-            $('#'+inputName+"_input_deflate").removeClass('xsd__validationfailed');
-            $('#'+inputName).removeClass('xsd__validationfailed');
+            $('#'+inputName+"_input_deflate").removeClass('required');
+            $('#'+inputName).removeClass('required');
             var tag = odoc.createElementNS(namespace, name);
             var content = odoc.createTextNode( valueField );
             tag.appendChild(content);
@@ -683,7 +690,7 @@ function generateFormIteration(xsdFile,containerId,Iteration) {
 
         //carrega o xml
         var xml = xmlLoader(xsdFile);
-        var tagRaiz  = xml.getElementsByTagNameNS('http://www.w3.org/2001/XMLSchema','schema')[0];
+        var tagRaiz  = xml.getElementsByTagName('xs:schema')[0];
         var elemRoot = getNodeByTagName(tagRaiz, 'xs:element'); // elemento raiz
         var elHtml = generateFormFromNode(tagRaiz, elemRoot, "xsdform___"+Iteration);
         getById(containerId).appendChild( elHtml );
@@ -710,7 +717,7 @@ function generateXml(xsdFile, input_to_set) {
         var tagRaiz  = xml.getElementsByTagNameNS('http://www.w3.org/2001/XMLSchema','schema')[0];
         var elemRoot = getNodeByTagName(tagRaiz, 'xs:element'); // elemento raiz
 
-        validateMandatory();
+        //validateMandatory();
         // adicionar xmlns="..." de acordo com o atributo 'targetNamespace' do
 	// xml schema.
         var namespace = getValueAttributeByName(tagRaiz,'targetNamespace');
@@ -735,7 +742,7 @@ function generateXml(xsdFile, input_to_set) {
 function createFieldString(name, minOccurs, maxOccurs) {
     var field = createTextArea(name);
     if (minOccurs > 0) {
-        field.setAttribute('class', 'xsdForm__mandatory')
+        field.setAttribute('class', 'required')
     }
     return field;
 }
@@ -745,7 +752,7 @@ function createFieldFloat(name, minOccurs) {
     field = createInput('text', name);
     field.setAttribute('class','xsdForm__float');
     if (minOccurs > 0) {
-        field.setAttribute('class', 'xsdForm__float xsdForm__mandatory')
+        field.setAttribute('class', 'required')
     }
     return field;
 }
@@ -755,7 +762,7 @@ function createFieldInteger(name, minOccurs) {
     field = createInput('text', name);
     field.setAttribute('class','xsdForm__integer');
     if (minOccurs > 0) {
-        field.setAttribute('class', 'xsdForm__integer xsdForm__mandatory')
+        field.setAttribute('class', 'xsdForm__integer required')
     }
     return field;
 }
@@ -767,7 +774,7 @@ function createFieldDate(name, minOccurs) {
     field.setAttribute('class', 'xsdForm__date');
     //field.setAttribute('onblur', 'validateValues()');
     if (minOccurs > 0) {
-        field.setAttribute('class', 'xsdForm__date xsdForm__mandatory')
+        field.setAttribute('class', 'xsdForm__date required')
     }
     return field;
 }
@@ -779,7 +786,7 @@ function createFieldDateTime(name, minOccurs) {
     field.setAttribute('class','xsdForm__dateTime');
     //field.setAttribute('onblur', 'validateValues()');
     if (minOccurs > 0) {
-        field.setAttribute('class', 'xsdForm__dateTime xsdForm__mandatory')
+        field.setAttribute('class', 'xsdForm__dateTime required')
     }
     return field;
 }
@@ -798,7 +805,7 @@ function createFieldDecimal(namePattern, name, label, minOccurs) {
     field.setAttribute('class','xsdForm__decimal');
 
     if (minOccurs > 0) {
-        field.setAttribute('class', 'xsdForm__decimal xsdForm__mandatory')
+        field.setAttribute('class', 'xsdForm__decimal required')
     }
     
     newLabel.innerHTML = label;
@@ -950,10 +957,10 @@ function validateMandatory() {
     $('.xsdForm__mandatory').each(function() {
         if ($(this).val() == null ||
             $(this).val() == "") {
-            $(this).addClass('xsd__validationfailed');
+            $(this).addClass('required');
             error = 1;
         } else {
-            $(this).removeClass('xsd__validationfailed');
+            $(this).removeClass('required');
         }
     });
     if (error) {
