@@ -1,0 +1,551 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-acolhimentoinstitucional-identificacaoPaisResponsaveis-casameninosmeninas.xsd"
+	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
+	xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-acolhimentoinstitucional-identificacaoPaisResponsaveis-casameninosmeninas.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="formIdentificacaoPaisResponsaveis" type="formIdentificacaoPaisResponsaveis">
+
+		<xs:annotation>
+			<xs:appinfo>
+				<xhtml:label>07. IDENTIFICAÇÃO DOS PAIS OU RESPONSAVEIS</xhtml:label>
+				<class:classificacoes>
+					<class:classificacao>cn=Acolhimento Institucional,cn=Criança e Adolescente,cn=Direitos Humanos</class:classificacao>
+				</class:classificacoes>
+			</xs:appinfo>
+		</xs:annotation>
+
+	</xs:element>
+	<xs:complexType name="formIdentificacaoPaisResponsaveis">
+		<xs:sequence>
+
+					      <xs:element name="numeroAtendimento" minOccurs="0">
+						<xs:annotation>
+						  <xs:appinfo>
+							<xhtml:label>Numero de Atendimento</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						  <xs:simpleType>
+						<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+						   </xs:restriction>
+						   </xs:simpleType>
+						</xs:element>			
+						<xs:element name="dadosPai" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Pai</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+
+									<xs:element name="nomePai" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Nome do Pai</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="filiacaoPai" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Filiação</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
+									<xs:element name="dataNasciemntoPai" minOccurs="0" type ="xs:date">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Data Nascimento</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="naturalidadePai" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Naturalidade</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="uFPai" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>UF</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="documentoRGPai" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Documento(RG)</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="enderecoPai" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Endereço</xhtml:label>
+											</xs:appinfo>
+											<xsdext:extensions>
+												<xsdext:engine>autoComplete</xsdext:engine>
+												<xsdext:service>/enderecos</xsdext:service>
+											</xsdext:extensions>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="bairroPai" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Bairro</xhtml:label>
+											</xs:appinfo>
+											<xsdext:extensions>
+												<xsdext:engine>autoComplete</xsdext:engine>
+												<xsdext:service>/bairros</xsdext:service>
+											</xsdext:extensions>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="cidadePai" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Cidade</xhtml:label>
+											</xs:appinfo>
+											<xsdext:extensions>
+												<xsdext:engine>autoComplete</xsdext:engine>
+												<xsdext:service>/municipios</xsdext:service>
+											</xsdext:extensions>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="telefonePai" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Telefone</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="pontoRefeciaResidenciaPai"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Ponto de Feferência</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="profissaoPai" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Profissão/Trabalho</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
+
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+
+						<xs:element name="dadosMae" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Mãe</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+
+
+									<xs:element name="nomeMae" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Nome da Mãe</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="filiacaoMae" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Filiação</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
+									<xs:element name="dataNasciemntoMae" minOccurs="0" type ="xs:date">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Data Nascimento</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+
+									</xs:element>
+
+									<xs:element name="naturalidadeMae" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Naturalidade</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="uFMae" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>UF</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="documentoRGMae" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Documento(RG)</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="enderecoMae" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Endereço</xhtml:label>
+											</xs:appinfo>
+											<xsdext:extensions>
+												<xsdext:engine>autoComplete</xsdext:engine>
+												<xsdext:service>/enderecos</xsdext:service>
+											</xsdext:extensions>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="bairroMae" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Bairro</xhtml:label>
+											</xs:appinfo>
+											<xsdext:extensions>
+												<xsdext:engine>autoComplete</xsdext:engine>
+												<xsdext:service>/bairros</xsdext:service>
+											</xsdext:extensions>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="cidadeMae" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Cidade</xhtml:label>
+											</xs:appinfo>
+											<xsdext:extensions>
+												<xsdext:engine>autoComplete</xsdext:engine>
+												<xsdext:service>/municipios</xsdext:service>
+											</xsdext:extensions>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="telefoneMae" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Telefone</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="pontoRefeciaResidenciaMae"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Ponto de Feferência</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="profissaoMae" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Profissão/Trabalho</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+
+
+
+						<xs:element name="dadosResponsavel" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Responsável</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="nomeResponsavel" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Nome do Responsavel</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="filiacaoResponsavel" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Filiação</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
+									<xs:element name="dataNasciemntoResponsavel" minOccurs="0" type ="xs:date">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Data Nascimento</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+
+									</xs:element>
+
+									<xs:element name="naturalidadeResponsavel"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Naturalidade</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="uFResponsavel" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>UF</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="documentoRGResponsavel" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Documento(RG)</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="enderecoResponsavel" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Endereço</xhtml:label>
+											</xs:appinfo>
+											<xsdext:extensions>
+												<xsdext:engine>autoComplete</xsdext:engine>
+												<xsdext:service>/enderecos</xsdext:service>
+											</xsdext:extensions>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="bairroResponsavel" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Bairro</xhtml:label>
+											</xs:appinfo>
+											<xsdext:extensions>
+												<xsdext:engine>autoComplete</xsdext:engine>
+												<xsdext:service>/bairros</xsdext:service>
+											</xsdext:extensions>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="cidadeResponsavel" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Cidade</xhtml:label>
+											</xs:appinfo>
+											<xsdext:extensions>
+												<xsdext:engine>autoComplete</xsdext:engine>
+												<xsdext:service>/municipios</xsdext:service>
+											</xsdext:extensions>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="telefoneResponsavel" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Telefone</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="pontoRefeciaResidenciaResponsavel"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Ponto de Feferência</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="profissaoResponsavel" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Profissão/Trabalho</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+				
+
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
