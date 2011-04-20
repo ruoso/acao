@@ -55,7 +55,7 @@ sub altera_dados_dossie {
           my $xq = q|declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
                  update replace $x in collection("|.$volumes[$i].q|")/ns:dossie/ns:classificacao with
                  <classificacoes xmlns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd" xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd">
-                    <class:classificacao>cn=Prestação de Serviços à Comunidade,cn=Programa SE GARANTA,cn=Criança e Adolescente,cn=Direitos Humanos,dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br</class:classificacao>
+                    <class:classificacao>cn=Prestação de Serviços à Comunidade,cn=Programa SE GARANTA,cn=Criança e Adolescente,cn=Direitos Humanos,dc=assuntos,dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br</class:classificacao>
                  </classificacoes>|;
 
           $sedna->execute($xq);
@@ -63,7 +63,7 @@ sub altera_dados_dossie {
           my $xqy = q|declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
                  update replace $x in collection("|.$volumes[$i].q|")/ns:dossie/ns:classificacoes with
                  <classificacoes xmlns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd" xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd">
-                    <class:classificacao>cn=Prestação de Serviços à Comunidade,cn=Programa SE GARANTA,cn=Criança e Adolescente,cn=Direitos Humanos,dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br</class:classificacao>
+                    <class:classificacao>cn=Prestação de Serviços à Comunidade,cn=Programa SE GARANTA,cn=Criança e Adolescente,cn=Direitos Humanos,dc=assuntos,dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br</class:classificacao>
                  </classificacoes>|;
 
           $sedna->execute($xqy);
@@ -73,7 +73,7 @@ sub altera_dados_dossie {
           my $xq =  q|declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
                       update replace $x in collection("|.$volumes[$i].q|")/ns:dossie/ns:classificacao with
                         <classificacoes xmlns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd" xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd">
-                            <class:classificacao>cn=Liberdade Assistida,cn=Programa SE GARANTA,cn=Criança e Adolescente,cn=Direitos Humanos,dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br</class:classificacao>
+                            <class:classificacao>cn=Liberdade Assistida,cn=Programa SE GARANTA,cn=Criança e Adolescente,cn=Direitos Humanos,dc=assuntos,dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br</class:classificacao>
                         </classificacoes>|;
 
           $sedna->execute($xq);
@@ -81,7 +81,7 @@ sub altera_dados_dossie {
           my $xqy =  q|declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
                       update replace $x in collection("|.$volumes[$i].q|")/ns:dossie/ns:classificacoes with
                         <classificacoes xmlns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd" xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd">
-                            <class:classificacao>cn=Liberdade Assistida,cn=Programa SE GARANTA,cn=Criança e Adolescente,cn=Direitos Humanos,dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br</class:classificacao>
+                            <class:classificacao>cn=Liberdade Assistida,cn=Programa SE GARANTA,cn=Criança e Adolescente,cn=Direitos Humanos,dc=assuntos,dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br</class:classificacao>
                         </classificacoes>|;
 
           $sedna->execute($xqy);
@@ -105,23 +105,23 @@ sub altera_dados_volume {
 
             my $xqc  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";
                         declare namespace class = "http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";
-                        update replace $x in collection("volume")/ns:volume/ns:classificacoes with 
+                        update replace $x in collection("volume")/ns:volume[ns:collection eq "'.$volumes[$i].'"]/ns:classificacoes with 
                         <classificacoes xmlns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd" xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd">
-                            <class:classificacao>cn=Prestação de Serviços à Comunidade,cn=Programa SE GARANTA,cn=Criança e Adolescente,cn=Direitos Humanos,dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br</class:classificacao>
+                            <class:classificacao>cn=Prestação de Serviços à Comunidade,cn=Programa SE GARANTA,cn=Criança e Adolescente,cn=Direitos Humanos,dc=assuntos,dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br</class:classificacao>
                         </classificacoes>';
             warn $xqc;
-            #$sedna->execute($xqc);
+            $sedna->execute($xqc);
 
         }
         else {
             my $xqc  = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";
                         declare namespace class = "http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";
-                        update replace $x in collection("volume")/ns:volume/ns:classificacoes with 
+                        update replace $x in collection("volume")/ns:volume[ns:collection eq "'.$volumes[$i].'"]/ns:classificacoes with 
                         <classificacoes xmlns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd" xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd">
-                            <class:classificacao>cn=Liberdade Assistida,cn=Programa SE GARANTA,cn=Criança e Adolescente,cn=Direitos Humanos,dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br</class:classificacao>
+                            <class:classificacao>cn=Liberdade Assistida,cn=Programa SE GARANTA,cn=Criança e Adolescente,cn=Direitos Humanos,dc=assuntos,dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br</class:classificacao>
                         </classificacoes>';
             warn $xqc;
-            #$sedna->execute($xqc);
+            $sedna->execute($xqc);
         }
 
     }
