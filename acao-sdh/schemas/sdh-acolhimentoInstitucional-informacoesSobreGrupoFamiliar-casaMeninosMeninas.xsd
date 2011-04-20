@@ -166,7 +166,8 @@
 									<xs:enumeration value="Aluguel" />
 									<xs:enumeration value="Seguro desemprego" />
 									<xs:enumeration value="Benefício de prestação contínua - BPC" />
-									<xs:enumeration	value="Benefícios de transferência de renda (bolsa família, renda mínima etc)" />
+									<xs:enumeration
+										value="Benefícios de transferência de renda (bolsa família, renda mínima etc)" />
 									<xs:enumeration value="Trabalho informal" />
 									<xs:enumeration value="Nenhuma" />
 									<xs:enumeration value="Sem informação" />
@@ -189,7 +190,8 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="participacaoAtividadesComunitarias" minOccurs="0">
+						<xs:element name="participacaoAtividadesComunitarias"
+							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Participação em atividades comunitárias
@@ -211,7 +213,8 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="especifiqueOutrosParticipacaoComunitaria"	minOccurs="0">
+						<xs:element name="especifiqueOutrosParticipacaoComunitaria"
+							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Especifique outros</xhtml:label>
@@ -224,27 +227,27 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="rendaFamiliar" minOccurs="0">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Renda familiar</xhtml:label>
-								</xs:appinfo>
-							</xs:annotation>
-							<xs:simpleType>
-								<xs:restriction base="xs:string">
-									<xs:enumeration value="Menos de meio salário mínimo" />
-									<xs:enumeration value="Entre meio e um salário mínimo" />
-									<xs:enumeration value="Entre 1 e 2 salários mínimos" />
-									<xs:enumeration value="Entre 2 e 5 salários mínimos" />
-									<xs:enumeration value="Mais de 5 salários mínimos" />
-									<xs:enumeration value="Desconheida" />
-									<xs:enumeration value="Sem informação" />
-								</xs:restriction>
-							</xs:simpleType>
-						</xs:element>
-
 					</xs:sequence>
 				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="rendaFamiliar" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Renda familiar</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Menos de meio salário mínimo" />
+						<xs:enumeration value="Entre meio e um salário mínimo" />
+						<xs:enumeration value="Entre 1 e 2 salários mínimos" />
+						<xs:enumeration value="Entre 2 e 5 salários mínimos" />
+						<xs:enumeration value="Mais de 5 salários mínimos" />
+						<xs:enumeration value="Desconheida" />
+						<xs:enumeration value="Sem informação" />
+					</xs:restriction>
+				</xs:simpleType>
 			</xs:element>
 
 		</xs:sequence>
