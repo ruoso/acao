@@ -140,9 +140,14 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
 
     my $where = join '', @where if @where;
 
+    # cria um array do tipo (@principal = dn, 'listar',@principal = dn, 'visualizar') dos memberOf do usuário logado
     my $grupos = join ' or ',
       map { '@principal = "' . $_ . '"' } @{ $self->user->memberof };
+
+    # monta parte da sintaxe de checagem de grupos e permissoes, neste caso  a  ação é LISTAR
     my $check = '(' . $grupos . ') and @role="listar"';
+
+    # monta a sintaxe de checagem de herança, para wser usado na xquery de listagem.
     my $herdar =
         '(author:autorizacao[('
       . $check
@@ -152,6 +157,11 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
       . $check . ']])))';
 
     # Query para listagem
+
+
+
+
+    my $count =
     my $list = $declarens
              . 'subsequence('
              . 'for $x in collection("'
@@ -159,17 +169,24 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
              . '")/ns:dossie[ns:autorizacoes['
              . $herdar . ']] '
              . $where
+             . ' let $volume := collection("volume")/vol:volume[vol:collection = "'.$args->{id_volume}.'"]/vol:autorizacoes/author:autorizacao '
+             . ' let $dossie := collection("'.$args->{id_volume}.'")/ns:dossie[ns:controle = $x/ns:controle]/ns:autorizacoes/author:autorizacao '
+             . ' return '
+
              . ' let $alterar := if ($x/ns:autorizacoes/@herdar = "1") then ('
-             . '  count(collection("volume")/vol:volume[vol:collection = "'.$args->{id_volume}.'"]/vol:autorizacoes/author:autorizacao[('.$grupos.') and @role = "alterar"]) '
-             . ' + count(collection("'.$args->{id_volume}.'")/ns:dossie[ns:controle = $x/ns:controle]/ns:autorizacoes/author:autorizacao[('.$grupos.') and @role = "alterar"]) '
+             . ' (some $verif in $volume satisfies ($verif[('.$grupos.') and @role = "alterar"])) '
+             . ' or '
+             . ' (some $verif in $dossie satisfies ($verif[('.$grupos.') and @role = "alterar"])) '
              . ') else ( '
-             . ' count(collection("'.$args->{id_volume}.'")/ns:dossie[ns:controle = $x/ns:controle]/ns:autorizacoes/author:autorizacao[('.$grupos.') and @role = "alterar"]) '
+             . ' some $verif in $dossie satisfies ($verif[('.$grupos.') and @role = "alterar"]) '
              . ')'
+
              . ' let $transferir := if ($x/ns:autorizacoes/@herdar = "1") then ('
-             . '  count(collection("volume")/vol:volume[vol:collection = "'.$args->{id_volume}.'"]/vol:autorizacoes/author:autorizacao[('.$grupos.') and @role = "transferir"]) '
-             . ' + count(collection("'.$args->{id_volume}.'")/ns:dossie[ns:controle = $x/ns:controle]/ns:autorizacoes/author:autorizacao[('.$grupos.') and @role = "transferir"]) '
+             . ' (some $verif in $volume satisfies ($verif[('.$grupos.') and @role = "transferir"])) '
+             . ' or '
+             . ' (some $verif in $dossie satisfies ($verif[('.$grupos.') and @role = "transferir"])) '
              . ') else ( '
-             . ' count(collection("'.$args->{id_volume}.'")/ns:dossie[ns:controle = $x/ns:controle]/ns:autorizacoes/author:autorizacao[('.$grupos.') and @role = "transferir"]) '
+             . ' (some $verif in $dossie satisfies ($verif[('.$grupos.') and @role = "transferir"])) '
              . ')'
              . 'order by $x/ns:criacao descending '
              . 'return ($x/ns:controle/text() , '
@@ -182,9 +199,11 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
     # Contrução da query de contagem para contrução da paginação
     my $count = $declarens
               #. ' count( for $x in collection("'.$args->{id_volume}.'")/ns:dossie[ns:autorizacoes/author:autorizacao[('.$grupos.') and @role="listar"]] '
-              . ' count( for $x in collection("'.$args->{id_volume}.'")/ns:dossie/ns:autorizacoes ' 
+              . ' count( for $x in collection("'.$args->{id_volume}.'")/ns:dossie/ns:autorizacoes '
               . $where
               . ' return "" )';
+
+             warn ($list);
 
     return {
         list     => $list,
