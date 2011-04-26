@@ -6,7 +6,7 @@ use strict;
 use utf8;
 
 local $/ = undef;
-open(FILE,"../consultas/prontuarios_viladomar.txt");
+open(FILE, "<:encoding(UTF-8)", "../consultas/prontuarios_viladomar.txt");
 my $xquery = <FILE>;
 close FILE;
 
@@ -58,9 +58,9 @@ sub init{
      while ($sedna->next){
         push(@documentos,$sedna->getItem());
         warn "consultando... ", $i++;
-        #if ($i > 50){
-        #    last;
-        #}
+       # if ($i > 50){
+       #     last;
+       # }
      }
     $sedna->commit;
     $sedna->begin;
