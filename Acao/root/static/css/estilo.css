@@ -800,6 +800,21 @@ body.relatorio thead th { background-color: white; color: black; }
   top: -145px;
 }
 
+.consultaLdap_new {
+  float: left;
+  margin-right: 5px;
+
+}
+
+.dnLdap {
+  width: 274px !important;
+}
+
+#grid-autorizacoes table {
+
+  width: 660px !important;
+  position: relative;
+}
 .navegaLDAP .consultaLdap {
 
   position: relative;
@@ -879,6 +894,44 @@ body.relatorio thead th { background-color: white; color: black; }
   width: 450px;
   margin-right: 20px;
 }
+
+#acoes_ {
+  left: 240px;
+  position: relative;
+  top: -145px;
+}
+
+.consultaLdap {
+
+  position: relative;
+  height: 220px;
+  width: 200px;
+  border-right: 1px dotted #cccccc;
+
+}
+
+#borderAutorizacao {
+  border: 1px solid;
+  border-color: #cccccc;
+  padding: 20px;
+  height: auto;
+
+}
+
+.consultaLdap_ {
+  height: 200px;
+  overflow-y: scroll !important ;
+  position: relative;
+  width: 200px;
+
+}
+
+.consultaLdap .base {
+  border-bottom: 1px dotted #cccccc;
+  margin-bottom: -6px;
+}
+
+
 
 /* END Adicionar Usuário e Navegação LDAP by Carlos Wherbet */
 
@@ -1101,8 +1154,8 @@ width: auto !important;
 }
 
 #alter_pass {
-  
-  
+
+
 }
 
 
@@ -1145,3 +1198,59 @@ width: auto !important;
 
 
 /* END Fieldset Login. Carlos Wherbet */
+
+/* ABAS Carlos Wherbet */
+
+#abas{
+  margin-top: -10px;
+  margin-bottom: -10px;
+  margin-right: -10px;
+  margin-left: 0px;
+  padding: 0;
+  width: 100%;
+}
+#abas li{
+  display: inline;
+}
+#abas li a{
+  display: block;
+  width: auto;
+  padding: 3px 8px;
+  margin: 0 1px 0 0;
+  width: 200px;
+  float: left;
+
+  color: #797979;
+  text-decoration: none;
+  text-indent: 5px;
+}
+#abas li a.selected{
+
+  cursor: default;
+  font-weight: bold;
+  text-decoration: underline;
+  display: inline;
+  background-color: #FFFFAF;
+}
+.contaba {
+  clear: both;
+
+}
+
+#formVolume table thead tr th {
+  background-color: #ffffff !important;
+  border: 0px !important;
+  color: #000000 !important;
+  text-shadow: -1px 1px 0 #ffffff;
+  }
+
+
+
+
+
+/* END  ABAS Carlos Wherbet */
+
+
+.ui-autocomplete {
+  font-size: 12px !important;
+}
