@@ -82,11 +82,13 @@ sub lista : Chained('base') : PathPart('') : Args(0) {
 sub form : Chained('base') : PathPart('criarvolume') : Args(0) {
     my ( $self, $c ) = @_;
     my $initial_principals = $c->model('LDAP')->memberof_grupos_dn();
-	warn Dumper($initial_principals);
+
     $c->stash->{autorizacoes} = $c->model("Volume")->new_autorizacao($initial_principals);
     $c->stash->{classificacoes} = $c->model("Volume")->new_classificacao({});
     $c->stash->{basedn}       = $c->model("LDAP")->grupos_dn;
     $c->stash->{class_basedn} = $c->model("LDAP")->assuntos_dn;
+    $c->stash->{local_basedn} = $c->model("LDAP")->local_dn;
+
 
       #   Checa se user logado tem autorização para criar volumes
     if (!$c->model('Volume')->pode_criar_volume()) {
@@ -115,6 +117,7 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
     $c->stash->{classificacoes} = $c->req->param('classificacoes');
     $c->stash->{autorizacoes}   = $c->req->param('autorizacoes');
     $c->stash->{localizacao}    = $c->req->param('localizacao');
+    $c->stash->{local_basedn} = $c->model("LDAP")->local_dn;
     if (   $self->_processa_autorizacao($c)
         || $self->_processa_classificacao($c)
         || $self->_processa_localizacao($c) )
@@ -143,6 +146,8 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
         );
         $self->audit_criar( $id, $c->req->param('nome') );
     };
+
+
 
     if   ($@) { $c->flash->{erro}    = $@ . ""; }
     else      { $c->flash->{sucesso} = 'Volume criado com sucesso'; }
@@ -267,6 +272,59 @@ sub store_alterar : Chained('get_volume') : PathPart('store_alterar') : Args(0)
             [ $c->stash->{id_volume} ]
         )
     );
+}
+
+sub navega_ldap : Chained('base') : PathPart('navega_ldap') : Args(0){
+    my ($self,$c) = @_;
+    $c->stash->{template} = 'auth/registros/volume/navega_ldap.tt';
+    $c->stash->{basedn}       = $c->req->param('grupos');
+    $c->stash->{autorizacoes} = $c->req->param('autorizacoes');
+    return 1;
+
+}
+
+sub add_autorizacoes_grid : Chained('base') : PathPart('add_autorizacoes') : Args(0){
+    my ($self,$c) = @_;
+    $c->stash->{template} = 'auth/registros/volume/grid_autorizacoes.tt';
+    my @principal = split /-/, $c->req->param('grupos');
+    my @role =  $c->req->param('role[]');
+    my $permissoes = $c->model('Volume')->build_autorizacao_AoH( \@principal, \@role );
+    $c->stash->{autorizacoes} = $c->model('Volume')->add_autorizacoes( $c->req->param('autorizacoes_ldap'), $permissoes );
+    return 1;
+
+}
+
+sub remover_autorizacoes_grid : Chained('base') : PathPart('remover_autorizacoes_ldap') : Args(0){
+    my ($self,$c) = @_;
+    $c->stash->{template} = 'auth/registros/volume/grid_autorizacoes.tt';
+    my ($pos) = $c->req->param('posicao');
+    if ($pos or $pos == 0 ) {
+        $c->stash->{autorizacoes} =
+        $c->model('Volume')->remove_autorizacoes( $c->req->param('autorizacoes_ldap'), $pos );
+    } else  {
+        $c->stash->{autorizacoes} = $c->req->param('autorizacoes_ldap');
+    }
+    return 1;
+
+}
+
+sub ver_autorizacoes_grid : Chained('base') : PathPart('autorizacoes') : Args(0){
+    my ($self,$c) = @_;
+    $c->stash->{template} = 'auth/registros/volume/grid_autorizacoes.tt';
+    my $initial_principals = $c->model('LDAP')->memberof_grupos_dn();
+    my $herdar = $c->model('Volume')->desserialize_autorizacoes(
+    $c->model('Volume')->autorizacoes_do_volume(
+        $c->stash->{id_volume}
+        )
+    );
+    $c->stash->{herdar} = $herdar->{herdar};
+    $c->stash->{autorizacoes} = $c->model('Volume')
+                                ->autorizacoes_do_volume( $c->stash->{id_volume}
+
+                                                             );
+    $c->stash->{basedn}       = $c->model("LDAP")->grupos_dn;
+    return 1;
+
 }
 
 =back

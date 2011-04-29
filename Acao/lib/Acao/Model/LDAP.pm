@@ -91,6 +91,43 @@ sub buscar_dn_adm {
     return $self->_buscar_dn($base);
 }
 
+sub buscar_adm {
+    my ($self,$term) = @_;
+    my $base = $self->grupos_dn;
+    return $self->_buscar_adm($base,$term);
+}
+
+
+sub _buscar_adm {
+    my ( $self, $base,$term ) = @_;
+    my $mesg = $self->ldap->search(
+        base   => $base,
+        filter => "(|(description=*".$term."*)(ou=*".$term."*)(o=*".$term."*))",
+        scope  => 'sub',
+
+    );
+
+    croak 'LDAP error: ' . $mesg->error if $mesg->is_error;
+
+  my $max = $mesg->count;
+  my @return;
+  my $dn_decompose;
+
+
+    for ( my $i = 0 ; $i < $max ; $i++ ) {
+        my $entry = $mesg->entry($i);
+        $dn_decompose = join '-', reverse @{$self->decompose_dn_grupos($entry->dn)};
+        push @return,   {
+                          label => $entry->get_value('description').' ('.$dn_decompose.')',
+                          value => $entry->dn
+        };
+     }
+
+
+
+    return \@return
+}
+
 sub _buscar_dn {
     my ( $self, $base ) = @_;
     my $mesg = $self->ldap->search(

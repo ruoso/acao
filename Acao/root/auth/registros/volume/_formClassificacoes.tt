@@ -18,13 +18,15 @@
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
 %]
  <fieldset id="grupos">
-    <label> Classificações: </label>
+    <legend> Classificações: </legend>
      <input type="hidden" name="classificacoes" id="classificacoes" value="[% classificacoes | html %]" />
      <input type="hidden" name="class_basedn" id="class_basedn" value="[% class_basedn %]" />
      <table>
       <thead>
+      <tr>
         <th>Grupo</th>
         <th><input type="submit" name="opcao_class" value="Remover"></th>
+        </tr>
       </thead>
       <tbody>
         [% SET count = 0 %]

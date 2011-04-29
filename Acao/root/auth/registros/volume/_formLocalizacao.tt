@@ -18,7 +18,7 @@
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
 %]
  <fieldset id="grupos">
-    <label> Localização: </label>
+    <legend> Localização: </legend>
      <input type="hidden" name="local_basedn" id="local_basedn" value="[% local_basedn %]" />
 
     [% # local_basedn = local_basedn.shift; %]
@@ -32,7 +32,8 @@
                    <option  value="[% c.view('LDAPUtil').voltar_grupos(local_basedn) %]"> ../</option>
                    [% END %]
                    [% FOREACH local IN c.model('LDAP').buscar_dn_local(local_basedn) %]
-                   <option value="[% local.dn %]"[% IF local.dn == localizacao %] selected="1"[% END %]> [% local.get_value('ser') || local.get_value('l') || local.get_value('cn') %] </option>
+                   <option value="[% local.dn %]"[% IF local.dn == local_basedn %] selected="1" [% END %]
+                           [% IF local_basedn == c.model('LDAP').local_dn %] selected="selected" [% END %]  > [% local.get_value('ser') || local.get_value('l') || local.get_value('cn') %] </option>
                    [% END %]
                 </select>
             </dt>

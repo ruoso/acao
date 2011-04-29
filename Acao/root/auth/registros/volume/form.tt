@@ -21,12 +21,33 @@
 <br>
 <h1 class="titulo-form">Criar Volume</h1>
 
- <form id="form" name="form" action="[% c.uri_for_action('/auth/registros/volume/store') %]" method="post" onsubmit="">
+ <form id="formVolume" name="form" action="[% c.uri_for_action('/auth/registros/volume/store') %]" method="post" onsubmit="">
 
-    [% INCLUDE 'auth/registros/volume/_formVolume.tt' %] 
- 	[% INCLUDE 'auth/registros/volume/_formPermissoes.tt' %]
- 	[% INCLUDE 'auth/registros/volume/_formClassificacoes.tt' %]
-	[% INCLUDE 'auth/registros/volume/_formLocalizacao.tt' %]
+    [% INCLUDE 'auth/registros/volume/_formVolume.tt' %]
+
+  <!-- a lista de abas -->
+  <ul id="abas">
+        <li><a href="#tab1">Classificação</a></li>
+        <li><a href="#tab2">Localização</a></li>
+        <li><a href="#tab3">Autorização</a></li>
+  </ul>
+<!-- conteudo das abas -->
+
+  <div id="tab1" class="contaba">
+         [% INCLUDE 'auth/registros/volume/_formClassificacoes.tt' %]
+  </div>
+  <div id="tab2" class="contaba">
+         [% INCLUDE 'auth/registros/volume/_formLocalizacao.tt' %]
+  </div>
+  <div id="tab3" class="contaba">
+           [% INCLUDE 'auth/registros/volume/_formPermissoes.tt' %]
+  </div>
+
+
+
+
+
+
 
   <input type="submit" name="opcao" onClick="javascript:return validaForm();" value="Criar">
 
@@ -63,6 +84,37 @@
     }
 
   }
+
+
+
+  $(function(){
+      // abas
+      // oculta todas as abas
+      $("div.contaba").hide();
+
+      // mostra somente  a primeira aba
+      $("div.contaba:first").show();
+
+      // seta a primeira aba como selecionada (na lista de abas)
+      $("#abas a:first").addClass("selected");
+      // quando clicar no link de uma aba
+
+      $("#abas a").click(function(){
+          // oculta todas as abas
+          $("div.contaba").hide();
+          // tira a seleção da aba atual
+          $("#abas a").removeClass("selected");
+          // adiciona a classe selected na selecionada atualmente
+          $(this).addClass("selected");
+          // mostra a aba clicada
+          $($(this).attr("href")).show();
+          // pra nao ir para o link
+          return false;
+    });
+ });
+
+
+
  </script>
 
 [% INCLUDE 'footer.tt' %]
