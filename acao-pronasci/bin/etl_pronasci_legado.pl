@@ -75,30 +75,19 @@ sub extract{
 
                     next unless $nome;
 
-    #               print "Row, Col    = ($row, $col)\n";
-    #               print "Value       = ", $cell->value(),       "\n";
-    #               print "Unformatted = ", $cell->unformatted(), "\n";
-    #               print "\n";
-    #                warn "Preparando ". $cell->value();
-    #                my $value = $cell->value;
-    #                utf8::encode($value);
-#warn $nome;
                     my %hash = ("nome" => $nome, "idade" => $idade, "endereco" => $endereco, "bairro" => $bairro, "fone" => $fone, "interesse" => $interesse);
                     load(%hash);
-#gera_xml(%hash);
-#            }
         }
     }
 }
 
 sub transform_interesse{
     my ($interesse, %interesses) = @_;
-    $interesse =~ tr/áéíóúçêôâãõ/aeiouceoaao/i;
+#    $interesse =~ tr/áéíóúçêôâãõ/aeiouceoaao/i;
     my @array = split(',',$interesse);
     my $complemento = pop(@array);
     push (@array,split(' e ', $complemento));
 
-#   my $outros = '';
     for my $valor (@array){
         $valor =~ s/^\s+//o;
         $valor =~ s/\s+$//o;
