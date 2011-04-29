@@ -13,7 +13,7 @@ use Data::Dumper;
 my $id_volume;
 my $sedna = Sedna->connect('127.0.0.1', 'AcaoDb', 'acao', '12345');
 $sedna->setConnectionAttr(AUTOCOMMIT => Sedna::SEDNA_AUTOCOMMIT_OFF() );
-$variavel =~ tr/áéíóúçêôâãõ/aeiouceoaao/i;
+
 {   package DumbUser;
     use Moose;
     sub memberof {[ Acao->config->{roles}{dossie}{criar}, Acao->config->{roles}{volume}{criar} , Acao->config->{roles}{documento}{criar}]}
@@ -59,7 +59,7 @@ sub extract{
     }
 
     for my $worksheet ( $workbook->worksheets() ) {
-#            my $worksheet = $workbook->worksheet(0);
+            my $worksheet = $workbook->worksheet(0);
             my ( $row_min, $row_max ) = $worksheet->row_range();
             my ( $col_min, $col_max ) = $worksheet->col_range();
 
@@ -90,38 +90,35 @@ sub extract{
     #                utf8::encode($value);
 #warn $nome;
                     my %hash = ("nome" => $nome, "idade" => $idade, "endereco" => $endereco, "bairro" => $bairro, "fone" => $fone, "interesse" => $interesse);
-#                    load(%hash);
-gera_xml(%hash);
+                    load(%hash);
+#gera_xml(%hash);
 #            }
         }
     }
 }
 
 sub transform_interesse{
-    my $interesse = shift;
-    $interesse =~ tr/áéíóúçêôâãõ/aeiouceoaao/i;
+    my ($interesse, %interesses) = @_;
+#    $interesse =~ tr/áéíóúçêôâãõ/aeiouceoaao/i;
     my @array = split(',',$interesse);
     my $complemento = pop(@array);
     push (@array,split(' e ', $complemento));
-    
-    my %hash = ("danca" => 0, 
-                "teatro" => 0, 
-                "maracatu" => 0, 
-                "violao" => 0, 
-                "cantoCoral" => 0, 
-                "percussao" => 0,
-                "customizacao" => 0,
-                "arteTecido" => 0,
-                "artesanato" => 0,
-                "reciclagem" => 0,
-                "informatica" => 0,
-                "fotografia" => 0,
-                "leituraInterpretacao" => 0,
-                "protejo" => 0,
-                "formacaoCidada" => 0
-                "outros" => "");
 
+    for my $valor (@array){
+        $valor =~ s/^\s+//;
+        $valor =~ s/\s+$//;
+        my $i = 0;
+         for my $key (keys %interesses){
+           if ($key eq $valor) { $interesses{$valor} = 1; $i = 0;}
+           $i++;
+           if ($i > 14){ $interesses{outros} = $valor . ' ,' . $interesses{outros};}
+my $a = 0;
+        warn $key .  ' ' . $a;
+$a++;
+         }
+    }
 
+    return %interesses;
 }
 
 sub load{
@@ -168,7 +165,26 @@ sub criaVolume{
 
 sub gera_xml{
     my %hash = @_;
-    my @interesse = transform_interesse($hash{interesse});
+
+    my %interesse = ("danca" => 0, 
+                    "teatro" => 0, 
+                    "maracatu" => 0, 
+                    "violao" => 0, 
+                    "cantoCoral" => 0, 
+                    "percussao" => 0,
+                    "customizacao" => 0,
+                    "arteTecido" => 0,
+                    "artesanato" => 0,
+                    "reciclagem" => 0,
+                    "informatica" => 0,
+                    "fotografia" => 0,
+                    "leituraInterpretacao" => 0,
+                    "protejo" => 0,
+                    "formacaoCidada" => 0,
+                    "outros" => "");
+
+    if($hash{interesse}){ %interesse = transform_interesse($hash{interesse}, %interesse) };
+
     my $xml = '<formProtejoInstrumentalCaracterizacaoJovem xmlns="http://schemas.fortaleza.ce.gov.br/acao/gmf-pronasci-instrumentalcaracterizacaojovens-protejo.xsd">
     <dadosInscricao/>
     <identificacaoDadosSocioeconimicos>
@@ -183,22 +199,22 @@ sub gera_xml{
     <participacaoProjetosSociais/>
     <interessesHabilidades>
       <atividadeGostariaDesenvolver>
-        <danca>0</danca>
-        <teatro>0</teatro>
-        <maracatu>0</maracatu>
-        <violao>0</violao>
-        <cantoCoral>1</cantoCoral>
-        <percussao>0</percussao>
-        <customizacao>0</customizacao>
-        <arteTecido>0</arteTecido>
-        <artesanato>0</artesanato>
-        <reciclagem>0</reciclagem>
-        <informatica>0</informatica>
-        <fotografia>0</fotografia>
-        <formacaoCidada>0</formacaoCidada>
-        <leituraInterpretacao>0</leituraInterpretacao>
-        <protejo>0</protejo>
-        <outros>outro</outros>
+        <danca>'.$interesse{danca}.'</danca>
+        <teatro>'.$interesse{teatro}.'</teatro>
+        <maracatu>'.$interesse{maracatu}.'</maracatu>
+        <violao>'.$interesse{violao}.'</violao>
+        <cantoCoral>'.$interesse{cantoCoral}.'</cantoCoral>
+        <percussao>'.$interesse{percussao}.'</percussao>
+        <customizacao>'.$interesse{customizacao}.'</customizacao>
+        <arteTecido>'.$interesse{arteTecido}.'</arteTecido>
+        <artesanato>'.$interesse{artesanato}.'</artesanato>
+        <reciclagem>'.$interesse{reciclagem}.'</reciclagem>
+        <informatica>'.$interesse{informatica}.'</informatica>
+        <fotografia>'.$interesse{fotografia}.'</fotografia>
+        <formacaoCidada>'.$interesse{formacaoCidada}.'</formacaoCidada>
+        <leituraInterpretacao>'.$interesse{leituraInterpretacao}.'</leituraInterpretacao>
+        <protejo>'.$interesse{protejo}.'</protejo>
+        <outros>'.$interesse{outros}.'</outros>
       </atividadeGostariaDesenvolver>
     </interessesHabilidades>
   </formProtejoInstrumentalCaracterizacaoJovem>';
