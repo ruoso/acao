@@ -59,7 +59,7 @@ sub extract{
     }
 
     for my $worksheet ( $workbook->worksheets() ) {
-            my $worksheet = $workbook->worksheet(0);
+#            my $worksheet = $workbook->worksheet(0);
             my ( $row_min, $row_max ) = $worksheet->row_range();
             my ( $col_min, $col_max ) = $worksheet->col_range();
 
@@ -72,12 +72,6 @@ sub extract{
                     my $bairro = $worksheet->get_cell( $row, $col + 3)->value || '';
                     my $fone = $worksheet->get_cell( $row, $col + 4)->value || '';
                     my $interesse = $worksheet->get_cell( $row, $col + 5)->value || '';
-#                    utf8::encode($nome);
-#                    utf8::encode($idade);
-#                    utf8::encode($endereco);
-#                    utf8::encode($bairro);
-#                    utf8::encode($fone);
-#                    utf8::encode($interesse);
 
                     next unless $nome;
 
@@ -99,25 +93,22 @@ sub extract{
 
 sub transform_interesse{
     my ($interesse, %interesses) = @_;
-#    $interesse =~ tr/áéíóúçêôâãõ/aeiouceoaao/i;
+    $interesse =~ tr/áéíóúçêôâãõ/aeiouceoaao/i;
     my @array = split(',',$interesse);
     my $complemento = pop(@array);
     push (@array,split(' e ', $complemento));
 
+#   my $outros = '';
     for my $valor (@array){
-        $valor =~ s/^\s+//;
-        $valor =~ s/\s+$//;
-        my $i = 0;
-         for my $key (keys %interesses){
-           if ($key eq $valor) { $interesses{$valor} = 1; $i = 0;}
-           $i++;
-           if ($i > 14){ $interesses{outros} = $valor . ' ,' . $interesses{outros};}
-my $a = 0;
-        warn $key .  ' ' . $a;
-$a++;
-         }
-    }
+        $valor =~ s/^\s+//o;
+        $valor =~ s/\s+$//o;
 
+        if (! exists $interesses{$valor}) {
+            $interesses{outros} .= $valor.',';
+        } else {
+            $interesses{$valor} = 1;
+        }
+    }
     return %interesses;
 }
 
@@ -131,8 +122,11 @@ sub criarProntuario{
      my $nome = shift;
      my ($representaDossieFisico, $classificacao, $localizacao,$autorizacoes, $ip, $herdar_author) = 
        (0, {'classificacao' => ["cn=Protejo,cn=Infância e Adolescência,cn=Segurança Pública"]}, 'SERCEFOR', $auth , '127.0.0.1', 1);
+    utf8::encode($nome);
+    warn "is utf ".utf8::is_utf8($nome);
+    print "criando prontuário $nome ...";
      my $prontuario = $model_dossie->criar_dossie($ip, $nome, $id_volume, $representaDossieFisico, $classificacao, $localizacao, $herdar_author, $autorizacoes);
-     warn "Prontuario criado com sucesso!";
+     print " done!\n";
      return $prontuario;
 }
 
@@ -141,9 +135,10 @@ sub criarDocumento{
      my $xml = gera_xml(%hash);
      my ($ip, $xsdDocumento, $representaDocumentoFisico,$herdar_author) = 
        ('127.0.0.1','http://schemas.fortaleza.ce.gov.br/acao/gmf-pronasci-instrumentalcaracterizacaojovens-protejo.xsd', 0, 1 );
+    print "criando documento...." . $hash{nome};
      my $id_documento = $model_documento->inserir_documento($ip, $xml, $id_volume, $controle, $xsdDocumento, $representaDocumentoFisico,$herdar_author, $auth);
                                                           
-     warn "Documento criado com sucesso!";
+     print "done!\n";
 }
 
 sub criaVolume{
@@ -155,7 +150,7 @@ sub criaVolume{
     if($id_volume){
         warn "Volume Protejo encontrada com id $id_volume";
     }else{
-        my($nome, $representaVolumeFisico, $classificacao, $localizacao,$autorizacoes, $ip) = ('PROTEJO' , 0, {'classificacao' => ["cn=Protejo,cn=Infância e Adolescência,cn=Segurança Pública,dc=assuntos,dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br"]}, '', $auth , '127.0.0.1');
+        my($nome, $representaVolumeFisico, $classificacao, $localizacao,$autorizacoes, $ip) = ('PROTEJO' , 0, {'classificacao' => ["cn=Protejo,cn=Infância e Adolescência,cn=Segurança Pública,dc=assuntos,dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br"]}, 'SERCEFOR', $auth , '127.0.0.1');
         my $model = Acao::Model::Volume->new(user => DumbUser->new(), sedna => Acao->model('Sedna'), dbic => Acao->model('DB')->schema);
         $id_volume = $model->criar_volume($nome, $representaVolumeFisico, $classificacao, $localizacao, $auth, $ip);
         warn "Volume $id_volume criada com sucesso!";
