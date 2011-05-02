@@ -1,11 +1,11 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
-	xmlns="http://schemas.fortaleza.ce.gov.br/acao/gmf-pronasci-fichainscricao-ccds.xsd"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-ccds-fichainscricao.xsd"
 	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
 	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
 	xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
-	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/gmf-pronasci-fichainscricao-ccds.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/gmfpronasci-ccds-fichainscricao.xsd"
 	elementFormDefault="qualified">
 
 	<xs:element name="formCcdsFichaInscricao" type="formCcdsFichaInscricao">
@@ -324,7 +324,7 @@
 							</xs:annotation>
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
-									<xs:enumeration value="Solteio(a)" />
+									<xs:enumeration value="Solteiro(a)" />
 									<xs:enumeration value="Casado(a)" />
 									<xs:enumeration value="União estável" />
 									<xs:enumeration value="Viúvo(a)" />
@@ -365,6 +365,7 @@
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
 									<xs:enumeration value="Não alfabetizado" />
+									<xs:enumeration value="Sem instrução" />
 									<xs:enumeration value="1ª série ensino fundamental" />
 									<xs:enumeration value="2ª série ensino fundamental" />
 									<xs:enumeration value="3ª série ensino fundamental" />
@@ -622,7 +623,7 @@
 				</xs:complexType>
 				
 			</xs:element>
-
+			
 			<xs:element name="disponibilidadeHorario">
 
 				<xs:annotation>
@@ -633,7 +634,6 @@
 
 				<xs:complexType>
 					<xs:sequence>
-
 
 						<xs:element name="disponibilidadeSegunda">
 							<xs:annotation>
