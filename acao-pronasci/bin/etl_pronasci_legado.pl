@@ -83,7 +83,7 @@ sub extract{
 
 sub transform_interesse{
     my ($interesse, %interesses) = @_;
-#    $interesse =~ tr/áéíóúçêôâãõ/aeiouceoaao/i;
+    $interesse =~ tr/áéíóúçêôâãõ/aeiouceoaao/;
     my @array = split(',',$interesse);
     my $complemento = pop(@array);
     push (@array,split(' e ', $complemento));
