@@ -86,7 +86,7 @@
   }
 
 
-
+  $("documment").ready(function(){
   $(function(){
       // abas
       // oculta todas as abas
@@ -112,6 +112,25 @@
           return false;
     });
  });
+
+
+
+
+    $('#help p').hide();
+
+    $('#help > img').click(function() {
+    var class = '.' + $(this).attr('class') + ' ~ p';
+
+    if ($(class).css('display') == 'block') {
+        $(class).slideToggle();
+     } else {
+       $(class).slideDown();
+
+     }
+
+  });
+});
+
 
 
 

@@ -79,7 +79,7 @@
     }
 
   }
-
+  $("documment").ready(function(){
     $(function(){
       // abas
       // oculta todas as abas
@@ -92,19 +92,34 @@
       $("#abas a:first").addClass("selected");
       // quando clicar no link de uma aba
 
-      $("#abas a").click(function(){
-          // oculta todas as abas
-          $("div.contaba").hide();
-          // tira a seleção da aba atual
-          $("#abas a").removeClass("selected");
-          // adiciona a classe selected na selecionada atualmente
-          $(this).addClass("selected");
-          // mostra a aba clicada
-          $($(this).attr("href")).show();
-          // pra nao ir para o link
-          return false;
-    });
- });
+        $("#abas a").click(function(){
+            // oculta todas as abas
+            $("div.contaba").hide();
+            // tira a seleção da aba atual
+            $("#abas a").removeClass("selected");
+            // adiciona a classe selected na selecionada atualmente
+            $(this).addClass("selected");
+            // mostra a aba clicada
+            $($(this).attr("href")).show();
+            // pra nao ir para o link
+            return false;
+      });
+   });
+
+     $('#help p').hide();
+
+    $('#help > img').click(function() {
+    var class = '.' + $(this).attr('class') + ' ~ p';
+
+    if ($(class).css('display') == 'block') {
+        $(class).slideToggle();
+     } else {
+       $(class).slideDown();
+
+     }
+
+  });
+});
  </script>
 
 [% INCLUDE 'footer.tt' %]

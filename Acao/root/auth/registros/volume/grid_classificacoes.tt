@@ -1,0 +1,51 @@
+ <input type="hidden" name="classificacoes" id="classificacoes" value="[% classificacoes | html %]" />
+ <table>
+  <thead>
+  <tr>
+    <th>Assunto</th>
+    <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    [% SET count = 0 %]
+    [% FOREACH a IN c.model('Volume').desserialize_classificacoes(classificacoes).classificacao %]
+    <tr>
+      <td>[% c.model('LDAP').decompose_dn_assuntos(a).reverse.join(' - ') %]</td>
+      <td>
+      <div id="remover"  rel="[% c.uri_for_action('/auth/registros/volume/remover_classificacoes_grid') %]" >
+          <a href="javascript:void(0);"  name="remover" class="removerClass"  rel="[% count %]" >
+           Remover</a>
+     </div>
+      </td>
+    </tr>
+    [% SET count = count + 1 %]
+    [% END %]
+  </tbody>
+ </table>
+
+  <script type="text/javascript">
+
+  $("documment").ready(function(){
+
+   $('.removerClass').click(function() {
+    var action = $("#remover").attr('rel');
+    var posicao = $(this).attr('rel');
+    var xmlClassificacoes = $("#classificacoes").val();
+    $.ajax({
+               type: "POST",
+               url: action,
+
+               data: {
+                 'classificacoes':  xmlClassificacoes,
+                 'posicao': posicao,
+                 },
+              success: function(msg){
+                 $('#gridClassificacao').html(msg);
+               }
+
+          });
+   });
+
+
+});
+ </script>

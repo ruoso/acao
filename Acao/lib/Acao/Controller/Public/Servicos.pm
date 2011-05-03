@@ -119,6 +119,20 @@ sub ldap : Chained('/auth/base') : PathPart('ldap') : Args(0) {
   $c->forward('View::JSON');
 }
 
+sub ldap_local : Chained('/auth/base') : PathPart('ldap_local') : Args(0) {
+
+  my ($self, $c) = @_;
+  my $term = $c->req->param('term');
+  my $result = $c->model('LDAP')->buscar_local($term);
+  if (ref($result) ne 'ARRAY') {
+      $result = [$result];
+  }
+
+  $c->stash->{json} = $result;
+
+  $c->forward('View::JSON');
+}
+
 =back
 
 =head1 COPYRIGHT AND LICENSING
