@@ -1,0 +1,61 @@
+         <input type="hidden" name="class_basedn" id="class_basedn" value="[% class_basedn %]" />
+          <dt class="grp"><b>Assuntos:</b> [% c.model('LDAP').decompose_dn_assuntos(class_basedn).reverse.join(' - ') %]</dt>
+            <dt>
+
+                <select multiple name="assuntos" id="assuntos"  style="height:100px;min-width:300px">
+                   [% IF class_basedn.size > 1; class_basedn = class_basedn.shift; END %]
+                   [% IF class_basedn != c.model('LDAP').assuntos_dn %]
+                   <option  value="[% c.view('LDAPUtil').voltar_grupos(class_basedn) %]"  class="opt_class"> ../</option>
+                   [% END %]
+                   [% FOREACH class IN c.model('LDAP').buscar_dn_assuntos(class_basedn) %]
+                   <option value="[% class.dn %]"  class="opt_class" > [% class.get_value('cn') %] </option>
+                   [% END %]
+                </select>
+
+            </dt>
+  <script type="text/javascript">
+
+  $("documment").ready(function(){
+
+    $('#opcao_class_nav').click(function() {
+
+    var action = $("#divClassificacao").attr('rel');
+    var assuntos = $("#assuntos").val();
+    var xmlClass = $("#classificacoes").val();
+        $.ajax({
+             type: "POST",
+             url: action,
+
+             data: {
+               'assuntos':  assuntos,
+               'classificacoes': xmlClass,
+               },
+            success: function(msg){
+               $('#divClassificacao').html(msg);
+             }
+
+        });
+   });
+
+   $('.opt_class').dblclick(function() {
+    var action = $("#divClassificacao").attr('rel');
+    var assuntos = $("#assuntos").val();
+        $.ajax({
+             type: "POST",
+             url: action,
+
+             data: {
+               'assuntos':  assuntos,
+               },
+            success: function(msg){
+               $('#divClassificacao').html(msg);
+             }
+
+        });
+   });
+
+
+});
+
+
+ </script>

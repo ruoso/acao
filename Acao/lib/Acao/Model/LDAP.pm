@@ -98,6 +98,13 @@ sub buscar_adm {
 }
 
 
+sub buscar_local {
+    my ($self,$term) = @_;
+    my $base = $self->local_dn;
+    return $self->_buscar_local($base,$term);
+}
+
+
 sub _buscar_adm {
     my ( $self, $base,$term ) = @_;
     my $mesg = $self->ldap->search(
@@ -128,6 +135,36 @@ sub _buscar_adm {
     return \@return
 }
 
+
+sub _buscar_local {
+    my ( $self, $base,$term ) = @_;
+    my $mesg = $self->ldap->search(
+        base   => $base,
+        filter => "(|(description=*".$term."*)(cn=*".$term."*)(o=*".$term."*))",
+        scope  => 'sub',
+
+    );
+
+    croak 'LDAP error: ' . $mesg->error if $mesg->is_error;
+
+  my $max = $mesg->count;
+  my @return;
+  my $dn_decompose;
+
+
+    for ( my $i = 0 ; $i < $max ; $i++ ) {
+        my $entry = $mesg->entry($i);
+        $dn_decompose = join '-', reverse @{$self->decompose_dn_local($entry->dn)};
+        push @return,   {
+                          label => $entry->get_value('cn').' ('.$dn_decompose.')',
+                          value => $entry->dn
+        };
+     }
+
+
+
+    return \@return
+}
 sub _buscar_dn {
     my ( $self, $base ) = @_;
     my $mesg = $self->ldap->search(

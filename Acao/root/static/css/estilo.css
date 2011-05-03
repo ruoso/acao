@@ -806,7 +806,7 @@ body.relatorio thead th { background-color: white; color: black; }
 
 }
 
-.dnLdap {
+.dnLdap, .dnAssunto, .dnLocal {
   width: 274px !important;
 }
 
@@ -936,7 +936,40 @@ body.relatorio thead th { background-color: white; color: black; }
 /* END Adicionar Usuário e Navegação LDAP by Carlos Wherbet */
 
 /* icones , Botões e Links */
+#help {
+  height: auto;
+  margin-right: 20px;
+  float: none;
+  margin-top: 10px;
 
+
+
+}
+#help img {
+  width: 16px;
+  height: 16px;
+  float: right;
+  top: -10px;
+  position:relative;
+  right: -40px;
+  cursor: pointer;
+
+
+}
+
+#help p {
+
+  float:none;
+  text-align: justify;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #cccccc;
+  margin-top: -10px;
+
+
+
+
+}
 a.workplace_add {
     background: url("../img/workplace/building_add.png") no-repeat scroll 0 1px transparent ;
     line-height: 18px !important;
@@ -1202,35 +1235,55 @@ width: auto !important;
 /* ABAS Carlos Wherbet */
 
 #abas{
-  margin-top: -10px;
-  margin-bottom: -10px;
-  margin-right: -10px;
-  margin-left: 0px;
-  padding: 0;
-  width: 100%;
+    color: #797979;
+    display: block;
+    float: left;
+    height: 27px;
+    margin-bottom: -13.3px;
+    background-color: #ffffff !important;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    padding-bottom: 11px;
+    background-color: #fffff;
+    text-decoration: none;
+    text-indent: 5px;
+    width: 483px;
+    border-top: 1px solid #cccccc;
+    border-left: 1px solid #cccccc;
+    border-left: 1px solid #cccccc;
+    padding-left: 0px;
+
 }
 #abas li{
   display: inline;
+
 }
 #abas li a{
   display: block;
   width: auto;
-  padding: 3px 8px;
-  margin: 0 1px 0 0;
-  width: 200px;
+  padding: 5px 8px;
+  width: 144px;
   float: left;
-
+  border-right: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
   color: #797979;
   text-decoration: none;
-  text-indent: 5px;
+  text-indent: 0px;
+  border-bottom: 1px solid #cccccc;
+  background-color: #E8E8E8;
+  float: left;
+  outline: none;
+
+
 }
 #abas li a.selected{
-
-  cursor: default;
-  font-weight: bold;
-  text-decoration: underline;
-  display: inline;
-  background-color: #FFFFAF;
+   background-color: #FFFFFF;
+   border-bottom: 0px solid #cccccc;
+   cursor: default;
+   display: inline;
+   font-weight: bold;
+   text-decoration: underline;
 }
 .contaba {
   clear: both;
@@ -1243,7 +1296,6 @@ width: auto !important;
   color: #000000 !important;
   text-shadow: -1px 1px 0 #ffffff;
   }
-
 
 
 
