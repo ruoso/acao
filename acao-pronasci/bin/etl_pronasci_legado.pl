@@ -10,7 +10,7 @@ use Acao;
 use utf8;
 use Data::Dumper;
 
-my $collection;
+my $id_volume;
 my $sedna = Sedna->connect('127.0.0.1', 'AcaoDb', 'acao', '12345');
 $sedna->setConnectionAttr(AUTOCOMMIT => Sedna::SEDNA_AUTOCOMMIT_OFF() );
 
@@ -47,7 +47,8 @@ my $auth = {
                          ]
         };
 
-my $model = Acao::Model::Dossie->new(user => DumbUser->new(), sedna => Acao->model('Sedna'), dbic => Acao->model('DB')->schema);
+my $model_dossie = Acao::Model::Dossie->new(user => DumbUser->new(), sedna => Acao->model('Sedna'), dbic => Acao->model('DB')->schema);
+my $model_documento = Acao::Model::Documento->new(user => DumbUser->new(), sedna => Acao->model('Sedna'), dbic => Acao->model('DB')->schema);
 
 sub extract{
     my $parser   = Spreadsheet::ParseExcel->new();
@@ -64,71 +65,148 @@ sub extract{
 
             for my $row ( $row_min +1 .. $row_max ) {
 #                for my $col ( $col_min .. $col_max ) {
-my $col = 0;
-                    my $nome = $worksheet->get_cell( $row, $col )->value;
-                    my $idade = $worksheet->get_cell( $row, $col + 1 );
-                    my $endereco = $worksheet->get_cell( $row, $col + 2);
-                    my $bairro = $worksheet->get_cell( $row, $col + 3);
-                    my $fone = $worksheet->get_cell( $row, $col + 4);
-                    my $interesse = $worksheet->get_cell( $row, $col + 5);
-                    utf8::encode($nome);
-                    utf8::encode($idade);
-                    utf8::encode($endereco);
-                    utf8::encode($bairro);
-                    utf8::encode($fone);
-                    utf8::encode($interesse);
+                    my $col = 0;
+                    my $nome = $worksheet->get_cell( $row, $col )->value || '';
+                    my $idade = $worksheet->get_cell( $row, $col + 1 )->value || '';
+                    my $endereco = $worksheet->get_cell( $row, $col + 2)->value || '';
+                    my $bairro = $worksheet->get_cell( $row, $col + 3)->value || '';
+                    my $fone = $worksheet->get_cell( $row, $col + 4)->value || '';
+                    my $interesse = $worksheet->get_cell( $row, $col + 5)->value || '';
 
                     next unless $nome;
 
-    #               print "Row, Col    = ($row, $col)\n";
-    #               print "Value       = ", $cell->value(),       "\n";
-    #               print "Unformatted = ", $cell->unformatted(), "\n";
-    #               print "\n";
-    #                warn "Preparando ". $cell->value();
-    #                my $value = $cell->value;
-    #                utf8::encode($value);
-warn $nome;
-                    load($nome);
-#            }
+                    my %hash = ("nome" => $nome, "idade" => $idade, "endereco" => $endereco, "bairro" => $bairro, "fone" => $fone, "interesse" => $interesse);
+                    load(%hash);
         }
     }
 }
 
-sub transform{}
+sub transform_interesse{
+    my ($interesse, %interesses) = @_;
+    $interesse =~ tr/áéíóúçêôâãõ/aeiouceoaao/;
+    my @array = split(',',$interesse);
+    my $complemento = pop(@array);
+    push (@array,split(' e ', $complemento));
 
-sub load{
-    my $nomeProntuario = shift;
-   # criarProntuario($nomeProntuario);
+    for my $valor (@array){
+        $valor =~ s/^\s+//o;
+        $valor =~ s/\s+$//o;
+
+        if (! exists $interesses{$valor}) {
+            $interesses{outros} .= $valor.',';
+        } else {
+            $interesses{$valor} = 1;
+        }
+    }
+    return %interesses;
 }
 
-sub criarProntuario(){
+sub load{
+    my %hash = @_;
+    my $prontuario =  criarProntuario($hash{nome});
+    criarDocumento($prontuario, %hash);
+}
+
+sub criarProntuario{
      my $nome = shift;
-     my($representaDossieFisico, $classificacao, $localizacao,$autorizacoes, $ip, $herdar_author, $id_volume) = 
-       (0, {'classificacao' => ["cn=Protejo,cn=Infância e Adolescência,cn=Segurança Pública"]}, 'SERCEFOR', $auth , '127.0.0.1', 1, $collection);
-     my $prontuario = $model->criar_dossie($ip, $nome, $id_volume, $representaDossieFisico, $classificacao, $localizacao, $herdar_author, $autorizacoes);
-     warn "Prontuario $nome criado com sucesso!";
+     my ($representaDossieFisico, $classificacao, $localizacao,$autorizacoes, $ip, $herdar_author) = 
+       (0, {'classificacao' => ["cn=Protejo,cn=Infância e Adolescência,cn=Segurança Pública"]}, 'SERCEFOR', $auth , '127.0.0.1', 1);
+    utf8::encode($nome);
+    warn "is utf ".utf8::is_utf8($nome);
+    print "criando prontuário $nome ...";
+     my $prontuario = $model_dossie->criar_dossie($ip, $nome, $id_volume, $representaDossieFisico, $classificacao, $localizacao, $herdar_author, $autorizacoes);
+     print " done!\n";
+     return $prontuario;
 }
 
 sub criarDocumento{
-
+     my ($controle, %hash) = @_;
+     my $xml = gera_xml(%hash);
+     my ($ip, $xsdDocumento, $representaDocumentoFisico,$herdar_author) = 
+       ('127.0.0.1','http://schemas.fortaleza.ce.gov.br/acao/gmf-pronasci-instrumentalcaracterizacaojovens-protejo.xsd', 0, 1 );
+    print "criando documento...." . $hash{nome};
+     my $id_documento = $model_documento->inserir_documento($ip, $xml, $id_volume, $controle, $xsdDocumento, $representaDocumentoFisico,$herdar_author, $auth);
+                                                          
+     print "done!\n";
 }
 
 sub criaVolume{
     my $xq = 'declare namespace vol = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd"; for $x in collection("volume")/vol:volume[vol:nome/text() eq "PROTEJO"]/vol:collection/text() return $x';
     $sedna->begin;
     $sedna->execute($xq);
-    $collection = $sedna->getItem();
+    $id_volume = $sedna->getItem();
     $sedna->commit;
-    if($collection){
-        warn "collection Protejo encontrada com id $collection";
+    if($id_volume){
+        warn "Volume Protejo encontrada com id $id_volume";
     }else{
-        my($nome, $representaVolumeFisico, $classificacao, $localizacao,$autorizacoes, $ip) = ('PROTEJO' , 0, {'classificacao' => ["cn=Protejo,cn=Infância e Adolescência,cn=Segurança Pública,dc=assuntos,dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br"]}, '', $auth , '127.0.0.1');
+        my($nome, $representaVolumeFisico, $classificacao, $localizacao,$autorizacoes, $ip) = ('PROTEJO' , 0, {'classificacao' => ["cn=Protejo,cn=Infância e Adolescência,cn=Segurança Pública,dc=assuntos,dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br"]}, 'SERCEFOR', $auth , '127.0.0.1');
         my $model = Acao::Model::Volume->new(user => DumbUser->new(), sedna => Acao->model('Sedna'), dbic => Acao->model('DB')->schema);
-        $collection = $model->criar_volume($nome, $representaVolumeFisico, $classificacao, $localizacao, $auth, $ip);
-        warn "collection $collection criada com sucesso!";
+        $id_volume = $model->criar_volume($nome, $representaVolumeFisico, $classificacao, $localizacao, $auth, $ip);
+        warn "Volume $id_volume criada com sucesso!";
     }
-    return $collection;
+    return $id_volume;
 }
+
+sub gera_xml{
+    my %hash = @_;
+
+    my %interesse = ("danca" => 0, 
+                    "teatro" => 0, 
+                    "maracatu" => 0, 
+                    "violao" => 0, 
+                    "cantoCoral" => 0, 
+                    "percussao" => 0,
+                    "customizacao" => 0,
+                    "arteTecido" => 0,
+                    "artesanato" => 0,
+                    "reciclagem" => 0,
+                    "informatica" => 0,
+                    "fotografia" => 0,
+                    "leituraInterpretacao" => 0,
+                    "protejo" => 0,
+                    "formacaoCidada" => 0,
+                    "outros" => "");
+
+    if($hash{interesse}){ %interesse = transform_interesse($hash{interesse}, %interesse) };
+
+    my $xml = '<formProtejoInstrumentalCaracterizacaoJovem xmlns="http://schemas.fortaleza.ce.gov.br/acao/gmf-pronasci-instrumentalcaracterizacaojovens-protejo.xsd">
+    <dadosInscricao/>
+    <identificacaoDadosSocioeconimicos>
+      <nomeEntrevistado>'.$hash{nome}.'</nomeEntrevistado>
+      <telefones>'.$hash{fone}.'</telefones>
+      <endereco>'.$hash{endereco}.'</endereco>
+      <bairro>'.$hash{bairro}.'</bairro>
+      <idade>'.$hash{idade}.'</idade>
+      <documentacao/>
+    </identificacaoDadosSocioeconimicos>
+    <situacaoRiscoSocial/>
+    <participacaoProjetosSociais/>
+    <interessesHabilidades>
+      <atividadeGostariaDesenvolver>
+        <danca>'.$interesse{danca}.'</danca>
+        <teatro>'.$interesse{teatro}.'</teatro>
+        <maracatu>'.$interesse{maracatu}.'</maracatu>
+        <violao>'.$interesse{violao}.'</violao>
+        <cantoCoral>'.$interesse{cantoCoral}.'</cantoCoral>
+        <percussao>'.$interesse{percussao}.'</percussao>
+        <customizacao>'.$interesse{customizacao}.'</customizacao>
+        <arteTecido>'.$interesse{arteTecido}.'</arteTecido>
+        <artesanato>'.$interesse{artesanato}.'</artesanato>
+        <reciclagem>'.$interesse{reciclagem}.'</reciclagem>
+        <informatica>'.$interesse{informatica}.'</informatica>
+        <fotografia>'.$interesse{fotografia}.'</fotografia>
+        <formacaoCidada>'.$interesse{formacaoCidada}.'</formacaoCidada>
+        <leituraInterpretacao>'.$interesse{leituraInterpretacao}.'</leituraInterpretacao>
+        <protejo>'.$interesse{protejo}.'</protejo>
+        <outros>'.$interesse{outros}.'</outros>
+      </atividadeGostariaDesenvolver>
+    </interessesHabilidades>
+  </formProtejoInstrumentalCaracterizacaoJovem>';
+
+    return $xml;
+}
+
+
 
 criaVolume();
 extract();

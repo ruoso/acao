@@ -176,12 +176,17 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="idade" minOccurs="0" type="xs:integer">
+						<xs:element name="idade" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Idade</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+							<xs:simpleType>
+							    <xs:restriction base="xs:string">
+								    <xs:maxLength value="255" />
+							    </xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 						<xs:element name="naturalidade" minOccurs="0">
 							<xs:annotation>
