@@ -31,9 +31,26 @@
 <form id="form" name="form" action="[% c.uri_for_action('/auth/registros/volume/dossie/store', [ id_volume ]) %]" method="post" onsubmit="">
   <input type="hidden" name="id_volume" value="[% id_volume %]">
 
-   [% INCLUDE 'auth/registros/volume/dossie/_formDossie.tt' %]
-   [% INCLUDE 'auth/registros/volume/dossie/_formPermissoes.tt' %]
-   [% INCLUDE 'auth/registros/volume/dossie/_formClassificacoes.tt' %]
+  [% INCLUDE 'auth/registros/volume/dossie/_formDossie.tt' %]
+
+  <!-- a lista de abas -->
+  <ul id="abas">
+        <li><a href="#tab1">Classificação</a></li>
+        <li><a href="#tab2">Localização</a></li>
+        <li><a href="#tab3">Autorização</a></li>
+  </ul>
+<!-- conteudo das abas -->
+
+  <div id="tab1" class="contaba">
+         [% INCLUDE 'auth/registros/volume/dossie/_formClassificacoes.tt' %]
+  </div>
+  <div id="tab2" class="contaba">
+         [% INCLUDE 'auth/registros/volume/dossie/_formLocalizacao.tt' %]
+  </div>
+  <div id="tab3" class="contaba">
+           [% INCLUDE 'auth/registros/volume/dossie/_formPermissoes.tt' %]
+  </div>
+
 
  <div id="form_container"></div>
 
@@ -45,7 +62,7 @@
 
  <script language="javascript">
   function validaForm(){
- 
+
     if(document.getElementById('nome').value == ''){
       alert('Informe o nome do Prontuário');
       document.getElementById('nome').focus();
@@ -64,9 +81,54 @@
       else {
         return false;
       }
-    }  
+    }
 
   }
+
+   $("documment").ready(function(){
+  $(function(){
+      // abas
+      // oculta todas as abas
+      $("div.contaba").hide();
+
+      // mostra somente  a primeira aba
+      $("div.contaba:first").show();
+
+      // seta a primeira aba como selecionada (na lista de abas)
+      $("#abas a:first").addClass("selected");
+      // quando clicar no link de uma aba
+
+      $("#abas a").click(function(){
+          // oculta todas as abas
+          $("div.contaba").hide();
+          // tira a seleção da aba atual
+          $("#abas a").removeClass("selected");
+          // adiciona a classe selected na selecionada atualmente
+          $(this).addClass("selected");
+          // mostra a aba clicada
+          $($(this).attr("href")).show();
+          // pra nao ir para o link
+          return false;
+    });
+ });
+
+
+
+
+    $('#help p').hide();
+
+    $('#help > img').click(function() {
+    var class = '.' + $(this).attr('class') + ' ~ p';
+
+    if ($(class).css('display') == 'block') {
+        $(class).slideToggle();
+     } else {
+       $(class).slideDown();
+
+     }
+
+  });
+});
  </script>
 
 [% INCLUDE 'footer.tt' %]

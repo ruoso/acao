@@ -203,7 +203,7 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
               . $where
               . ' return "" )';
 
-             warn ($list);
+
 
     return {
         list     => $list,
@@ -220,11 +220,10 @@ Este método realiza a persistencia das informações informadas no processo/aç
 =cut
 
 txn_method 'criar_dossie' => authorized $role_criar => sub {
-    my $self = shift;
-    my ( $ip, $nome, $id_volume, $representaDossieFisico, $classificacao,
-        $localizacao, $herdar_author, $autorizacoes, )
-      = @_;
+    my ($self, $args) = @_;
 
+
+    my $autorizacoes = $args->{autorizacoes};
     my $ug       = new Data::UUID;
     my $uuid     = $ug->create();
     my $controle = $ug->to_string($uuid);
@@ -237,25 +236,25 @@ txn_method 'criar_dossie' => authorized $role_criar => sub {
     my $res_xml = $controle_w->(
         $doc,
         {
-            nome                   => $nome,
+            nome                   => $args->{nome},
             criacao                => DateTime->now(),
             fechamento             => '',
             arquivamento           => '',
             estado                 => 'aberto',
             controle               => $controle,
-            representaDossieFisico => $representaDossieFisico,
-            classificacoes         => $classificacao,
-            localizacao            => $localizacao,
+            representaDossieFisico => $args->{dossie_fisico},
+            classificacoes         => $args->{classificacoes},
+            localizacao            => $args->{localizacao},
             autorizacoes           => {
                 ref $autorizacoes eq 'HASH' ? %$autorizacoes : (),
-                herdar => $herdar_author
+                herdar => $args->{herdar_author}
             },
 
             doc => {},
         }
     );
 
-    $self->sedna->conn->loadData( $res_xml->toString, $controle, $id_volume );
+    $self->sedna->conn->loadData( $res_xml->toString, $controle, $args->{id_volume} );
     $self->sedna->conn->endLoadData();
     return $controle;
 
@@ -550,6 +549,30 @@ sub classificacoes_do_dossie {
 
 }
 
+sub localizacao_do_dossie {
+    my ( $self, $id_volume, $controle ) = @_;
+
+    $self->sedna->begin;
+
+    my $query =
+'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
+                 declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";
+                 declare namespace cl="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";
+                 for $x in collection("'
+      . $id_volume
+      . '")/ns:dossie[ns:controle="'
+      . $controle . '"]
+                 return $x//ns:localizacao/text()';
+
+    $self->sedna->execute($query);
+    my $return = $self->sedna->get_item();
+    $self->sedna->commit;
+
+
+    return $return;
+
+}
+
 =item store_altera_dossie()
 
 Este método realiza a persistencia das alterações realizadas no Dossie.
@@ -560,6 +583,7 @@ sub store_altera_dossie {
     my ( $self, $args ) = @_;
 
     # Gambis provisória -  Fazendo Update de cada campo separadamente!
+
 
     my $query_autorizacao =
 ' declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd"; '

@@ -25,10 +25,11 @@
         </p>
      </div>
  <dl>
+   <div ><input type="checkbox" name="herdar_local" class="herdar_local"  >
+       <strong>Local:</strong> <span class="textLocal">[% c.model('LDAP').decompose_dn_local(local_basedn).reverse.join(' - ') %]<span/><br/><br/></div>
    <div id="divLocal" rel="[% c.uri_for_action('/auth/ajax/processa_localizacao') %]">
      <input type="hidden" name="local_basedn" id="local_basedn" value="[% local_basedn %]" />
-
-          <dt class="grp"><b>Local:</b> [% c.model('LDAP').decompose_dn_local(local_basedn).join(' - ') %]</dt>
+          <dt class="grp"><b>Local:</b> [% c.model('LDAP').decompose_dn_local(local_basedn).reverse.join(' - ') %]</dt>
             <dt>
                 <select multiple name="localizacao" id="localizacao"  style="height:100px;min-width:300px" >
                    [% IF local_basedn.size > 1; local_basedn = local_basedn.shift; END %]
@@ -36,8 +37,7 @@
                    <option  value="[% c.view('LDAPUtil').voltar_grupos(local_basedn) %]" class="opt"  > ../</option>
                    [% END %]
                    [% FOREACH local IN c.model('LDAP').buscar_dn_local(local_basedn) %]
-                   <option value="[% local.dn %]" class="opt" [% IF local.dn == local_basedn %] selected="1" [% END %]
-                           [% IF local_basedn == c.model('LDAP').local_dn %] selected="selected" [% END %]  > [% local.get_value('ser') || local.get_value('l') || local.get_value('cn') %] </option>
+                   <option value="[% local.dn %]" class="opt" [% IF local.dn == local_basedn %] selected="1" [% END %]> [% local.get_value('ser') || local.get_value('l') || local.get_value('cn') %] </option>
                    [% END %]
                 </select>
             </dt>
@@ -55,7 +55,7 @@
 
              data: {
                'localizacao':  localizacao,
-               'model'	 :  'volume',
+               'model'	 :  'dossie',
                },
             success: function(msg){
                $('#divLocal').html(msg);
@@ -75,7 +75,7 @@
 
              data: {
                'localizacao[]':  localizacao,
-               'model'	 :  'volume',
+               'model'	 :  'dossie',
                },
             success: function(msg){
                $('#divLocal').html(msg);
@@ -84,8 +84,24 @@
         });
 
    });
+  $('#divLocal').hide();
+  $('#opcao_local').hide();
+  $('.herdar_local').attr('checked',true);
+
+  $('.herdar_local').click(function() {
+
+   if ($(this).attr('checked')) {
+       $('#divLocal').hide();
+       $('#opcao_local').hide();
+       $('.textLocal').css('text-decoration','none');
+   } else {
+       $('#divLocal').show();
+       $('#opcao_local').show();
+         $('.textLocal').css('text-decoration','line-through');
+   }
 
 
+  });
 
 
 

@@ -17,13 +17,13 @@
       <tbody>
         [% SET count = 0 %]
         [% IF autorizacoes %]
-          [% FOREACH a IN c.model('Volume').desserialize_autorizacoes(autorizacoes).autorizacao %]
+          [% FOREACH a IN c.model(model).desserialize_autorizacoes(autorizacoes).autorizacao %]
           <tr>
             <td>[% c.model('LDAP').decompose_dn_grupos(a.principal).reverse.join(' - ') %]</td>
             <td>[% labels_roles.item(a.role) %]</td>
             <td>
                <a href="javascript:void(0);"  name="remover"
-                onclick="remover_autorizacoes('[% c.uri_for_action('/auth/registros/volume/remover_autorizacoes_grid') %]','[% count %]')" >
+                onclick="remover_autorizacoes('[% c.uri_for_action('/auth/ajax/remover_autorizacoes_grid') %]','[% count %]')" >
                 Remover</a>
 
             </td>

@@ -56,7 +56,7 @@
           [% labels_roles.item(r) %]
              </li>
           [% END %]
-          <a href="javascript:void(0);"  name="adicionar" onclick="add_autorizacoes('[% c.uri_for_action('/auth/registros/volume/add_autorizacoes_grid') %]')" >Atribuir Permissões</a>
+          <a href="javascript:void(0);"  name="adicionar" onclick="add_autorizacoes('[% c.uri_for_action('/auth/ajax/add_autorizacoes_grid') %]')" >Atribuir Permissões</a>
       </div>
      </div>
 
@@ -80,7 +80,7 @@
                 <td>[% labels_roles.item(a.role) %]</td>
                 <td>
                    <a href="javascript:void(0);"  name="remover"
-                    onclick="remover_autorizacoes('[% c.uri_for_action('/auth/registros/volume/remover_autorizacoes_grid') %]','[% count %]')" >
+                    onclick="remover_autorizacoes('[% c.uri_for_action('/auth/ajax/remover_autorizacoes_grid') %]','[% count %]')" >
                     Remover</a>
 
                 </td>
@@ -164,7 +164,8 @@ function add_autorizacoes(action) {
            data: {
              'autorizacoes_ldap':  autorizacoes_add,
              'grupos': grupo,
-             'role':  acoes_autorizacoes
+             'role':  acoes_autorizacoes,
+             'model'	 :  'volume',
              },
 
            success: function(msg){
@@ -190,6 +191,7 @@ function remover_autorizacoes(action,posicao) {
            data: {
              'autorizacoes_ldap':  autorizacoes_ldap,
              'posicao': posicao,
+             'model'	 :  'volume',
              },
           success: function(msg){
              $('#grid-autorizacoes').html(msg);

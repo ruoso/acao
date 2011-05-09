@@ -27,7 +27,7 @@
      </div>
 
 
-     <div id="gridClassificacao" rel="[% c.uri_for_action('/auth/registros/volume/add_classificacoes_grid') %]">
+     <div id="gridClassificacao" rel="[% c.uri_for_action('/auth/ajax/add_classificacoes_grid') %]">
      <input type="hidden" name="classificacoes" id="classificacoes" value="[% classificacoes | html %]" />
      <table>
       <thead>
@@ -42,7 +42,7 @@
         <tr>
           <td>[% c.model('LDAP').decompose_dn_assuntos(a).reverse.join(' - ') %]</td>
           <td>
-          <div id="remover"  rel="[% c.uri_for_action('/auth/registros/volume/remover_classificacoes_grid') %]" >
+          <div id="remover"  rel="[% c.uri_for_action('/auth/ajax/remover_classificacoes_grid') %]" >
               <a href="javascript:void(0);"  name="remover" class="removerClass"  rel="[% count %]" >
                Remover</a>
          </div>
@@ -55,7 +55,7 @@
      </div>
 
      <dl>
-     <div id="divClassificacao" rel="[% c.uri_for_action('/auth/registros/volume/processa_classificacao') %]">
+     <div id="divClassificacao" rel="[% c.uri_for_action('/auth/ajax/processa_classificacao') %]">
          <input type="hidden" name="class_basedn" id="class_basedn" value="[% class_basedn %]" />
 
           <dt class="grp"><b>Assuntos:</b> [% c.model('LDAP').decompose_dn_assuntos(class_basedn).reverse.join(' - ') %]</dt>
@@ -87,6 +87,7 @@
 
              data: {
                'assuntos':  assuntos,
+               'model'	 :  'volume',
                },
             success: function(msg){
                $('#divClassificacao').html(msg);
@@ -104,6 +105,7 @@
 
              data: {
                'assuntos':  assuntos,
+               'model'	 :  'volume',
                },
             success: function(msg){
                $('#divClassificacao').html(msg);
@@ -115,6 +117,8 @@
 
         });
    });
+
+
 
 
 });
@@ -139,6 +143,7 @@
              data: {
                'assuntos':  assuntos,
                'classificacoes':  xmlClassificacoes,
+               'model'	 :  'volume',
                },
             success: function(msg){
                $('#gridClassificacao').html(msg);
@@ -158,6 +163,7 @@
                data: {
                  'classificacoes':  xmlClassificacoes,
                  'posicao': posicao,
+                 'model' :  'volume',
                  },
               success: function(msg){
                  $('#gridClassificacao').html(msg);
@@ -165,6 +171,7 @@
 
           });
    });
+
 
 });
 </script>

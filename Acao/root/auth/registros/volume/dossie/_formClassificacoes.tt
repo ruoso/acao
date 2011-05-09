@@ -18,48 +18,158 @@
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
 %]
  <fieldset id="grupos">
-    <label> Classificações: </label>
-     <input type="hidden" name="classificacoes" id="classificacoes" value="[% classificacoes | html %]" />
-     <input type="hidden" name="class_basedn" id="class_basedn" value="[% class_basedn %]" />
+<!--    <legend> Classificações: </legend>-->
+     <div id="help">
+       <img src="[% c.uri_for('/static/img/Help_24x24.png') %]" class="help_class" /></br>
+         <p><strong>Classificação:</strong> São os assuntos que serão tratados por dossies e prontuários. Com isso, os dossies e prontuários terão acesso
+          a formulários/documentos referentes aos mesmos assuntos dos dossies e prontuários.
+        </p>
+     </div>
 
+
+     <div id="gridClassificacao" rel="[% c.uri_for_action('/auth/ajax/add_classificacoes_grid') %]">
+     <input type="hidden" name="classificacoes" id="classificacoes" value="[% classificacoes | html %]" />
      <table>
       <thead>
-        <th>Grupo</th>
-        <th><input type="submit" name="opcao_class" value="Remover"></th>
+      <tr>
+        <th>Assunto</th>
+        <th>Ações</th>
+        </tr>
       </thead>
       <tbody>
         [% SET count = 0 %]
-        [% FOREACH a IN c.model('Dossie').desserialize_classificacoes(classificacoes).classificacao %]
+        [% FOREACH a IN c.model('dossie').desserialize_classificacoes(classificacoes).classificacao %]
         <tr>
           <td>[% c.model('LDAP').decompose_dn_assuntos(a).reverse.join(' - ') %]</td>
-          <td><input type="checkbox" name="remover_classificacao_[% count %]" /></td>
+          <td>
+          <div id="remover"  rel="[% c.uri_for_action('/auth/ajax/remover_classificacoes_grid') %]" >
+              <a href="javascript:void(0);"  name="remover" class="removerClass"  rel="[% count %]" >
+               Remover</a>
+         </div>
+          </td>
         </tr>
         [% SET count = count + 1 %]
         [% END %]
       </tbody>
      </table>
+     </div>
 
      <dl>
+     <div id="divClassificacao" rel="[% c.uri_for_action('/auth/ajax/processa_classificacao') %]">
+         <input type="hidden" name="class_basedn" id="class_basedn" value="[% class_basedn %]" />
 
-          <dt class="grp">Assuntos:</dt>
+          <dt class="grp"><b>Assuntos:</b> [% c.model('LDAP').decompose_dn_assuntos(class_basedn).reverse.join(' - ') %]</dt>
 
             <dt>
 
-                <select multiple name="assuntos" id="classificacoes"  style="height:100px;min-width:300px">
+                <select multiple name="assuntos" id="assuntos"  style="height:100px;min-width:300px">
                    [% IF class_basedn.size > 1; class_basedn = class_basedn.shift; END %]
                    [% IF class_basedn != c.model('LDAP').assuntos_dn %]
-                   <option  value="[%  c.view('LDAPUtil').voltar_grupos(class_basedn) %]"> ../</option>
+                   <option  value="[% c.view('LDAPUtil').voltar_grupos(class_basedn) %]" class="opt_class"> ../</option>
                    [% END %]
-                   [%  FOREACH class IN c.model('LDAP').buscar_dn_assuntos(class_basedn) %]
-                   <option value="[% class.dn %]"> [% class.get_value('cn') %] </option>
-                   [%  END %]
+                   [% FOREACH class IN c.model('LDAP').buscar_dn_assuntos(class_basedn) %]
+                   <option value="[% class.dn %]"  class="opt_class" > [% class.get_value('cn') %] </option>
+                   [% END %]
                 </select>
 
             </dt>
+  <script type="text/javascript">
 
-        <input type="submit" name="opcao_class" value="Adicionar">
-        <input type="submit" name="opcao_class" value="Navegar"><br/>
+  $("documment").ready(function(){
 
-    </dl>
+    $('#opcao_class_nav').click(function() {
+
+    var action = $("#divClassificacao").attr('rel');
+    var assuntos = $("#assuntos").val();
+        $.ajax({
+             type: "POST",
+             url: action,
+
+             data: {
+               'assuntos':  assuntos,
+               'model'	 :  'dossie',
+               },
+            success: function(msg){
+               $('#divClassificacao').html(msg);
+             }
+
+        });
+   });
+
+   $('.opt_class').dblclick(function() {
+    var action = $("#divClassificacao").attr('rel');
+    var assuntos = $("#assuntos").val();
+        $.ajax({
+             type: "POST",
+             url: action,
+
+             data: {
+               'assuntos':  assuntos,
+               'model'	 :  'dossie',
+               },
+            success: function(msg){
+               $('#divClassificacao').html(msg);
+               $('#classificacoes"').html(msg);
+               $('#class_basedn').html(msg);
+
+
+             }
+
+        });
+   });
+
+
+});
+ </script>
+     </div>
+        <input type="button" name="add_class" id="add_class" value="Adicionar">
+        <input type="button" name="opcao_class_nav" id="opcao_class_nav" value="Navegar"><br/>
+     </dl>
 
  </fieldset>
+
+<script type="text/javascript">
+
+  $("documment").ready(function(){
+  $('#add_class').click(function() {
+    var action = $("#gridClassificacao").attr('rel');
+    var assuntos = $("#assuntos").val();
+    var xmlClassificacoes = $("#classificacoes").val();
+        $.ajax({
+             type: "POST",
+             url: action,
+             data: {
+               'assuntos':  assuntos,
+               'classificacoes':  xmlClassificacoes,
+               'model'	 :  'dossie',
+               },
+            success: function(msg){
+               $('#gridClassificacao').html(msg);
+             }
+
+        });
+   });
+
+   $('.removerClass').click(function() {
+    var action = $("#remover").attr('rel');
+    var posicao = $(this).attr('rel');
+    var xmlClassificacoes = $("#classificacoes").val();
+    $.ajax({
+               type: "POST",
+               url: action,
+
+               data: {
+                 'classificacoes':  xmlClassificacoes,
+                 'posicao': posicao,
+                 'model'	 :  'dossie',
+                 },
+              success: function(msg){
+                 $('#gridClassificacao').html(msg);
+               }
+
+          });
+   });
+
+});
+</script>
+
