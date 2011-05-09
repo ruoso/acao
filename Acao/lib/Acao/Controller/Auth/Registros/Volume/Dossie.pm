@@ -313,7 +313,10 @@ sub alterar_dossie : Chained('get_dossie') : PathPart('alterar') : Args(0) {
     $c->stash->{classificacoes} =
       $c->model('Dossie')->classificacoes_do_dossie( $c->stash->{id_volume},
         $c->stash->{controle} );
-    $c->stash->{local_basedn}   =   $c->model("Dossie")->localizacao_do_dossie($c->stash->{id_volume},$c->stash->{controle});
+    $c->stash->{local_basedn}  = $c->model("Dossie")->localizacao_do_dossie($c->stash->{id_volume},$c->stash->{controle}) ne '1' ?
+            $c->model("Dossie")->localizacao_do_dossie($c->stash->{id_volume},$c->stash->{controle}) :
+            $c->model("Volume")->getDadosVolumeId($c->stash->{id_volume})->{localizacao} ;
+
 
     $c->stash->{class_basedn} = $c->req->param('class_basedn')
       || $c->model("LDAP")->assuntos_dn;
