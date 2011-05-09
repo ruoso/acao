@@ -11,7 +11,7 @@ use utf8;
 use Data::Dumper;
 
 my $id_volume;
-my $sedna = Sedna->connect('127.0.0.1', 'AcaoDb', 'acao', '12345');
+my $sedna = Sedna->connect('172.30.116.22', 'AcaoDbHom', 'acao', 'acao');
 $sedna->setConnectionAttr(AUTOCOMMIT => Sedna::SEDNA_AUTOCOMMIT_OFF() );
 
 {   package DumbUser;
