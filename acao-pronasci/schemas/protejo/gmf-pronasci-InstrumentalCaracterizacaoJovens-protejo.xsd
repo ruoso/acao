@@ -176,12 +176,17 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="idade" minOccurs="0" type="xs:integer">
+						<xs:element name="idade" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Idade</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+							<xs:simpleType>
+							    <xs:restriction base="xs:string">
+								    <xs:maxLength value="255" />
+							    </xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 						<xs:element name="naturalidade" minOccurs="0">
 							<xs:annotation>
@@ -200,7 +205,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="estadoCivil">
+						<xs:element name="estadoCivil" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Estado civil</xhtml:label>
@@ -218,7 +223,7 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="temFilhos">
+						<xs:element name="temFilhos" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Têm de filhos?</xhtml:label>
@@ -239,7 +244,7 @@
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
-						<xs:element name="escolaridade">
+						<xs:element name="escolaridade" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Escolaridade</xhtml:label>
@@ -268,7 +273,7 @@
 							</xs:simpleType>
 
 						</xs:element>
-						<xs:element name="estudaAtualmente">
+						<xs:element name="estudaAtualmente" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Estuda atualmente?</xhtml:label>
@@ -293,7 +298,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="horario">
+						<xs:element name="horario" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Em qual horário?</xhtml:label>
@@ -307,7 +312,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="trabalha">
+						<xs:element name="trabalha" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Trabalha?</xhtml:label>

@@ -40,69 +40,97 @@ Faz a chamada para a lista de escolas
 
 # lista as escolas fazendo a busca na model Escolas
 sub escolas : Chained('/') : PathPart('escolas') : Args(0) {
-  
-	my ($self, $c) = @_;
-	my $nm_escola = $c->req->param('term');
-	my $result = $c->model('Escolas')->listaEscolas($nm_escola);
-	$c->stash->{json} = $result;
-	warn Dumper($result);
-	$c->forward('View::JSON');
+
+  my ($self, $c) = @_;
+  my $nm_escola = $c->req->param('term');
+  my $result = $c->model('Escolas')->listaEscolas($nm_escola);
+  $c->stash->{json} = $result;
+  warn Dumper($result);
+  $c->forward('View::JSON');
 }
 
 # lista os logradouros fazendo a busca na model Logradouros
 sub enderecos : Chained('/') : PathPart('enderecos') : Args(0) {
-  
-	my ($self, $c) = @_;
-	my $logra = $c->req->param('term');
-	my $result = $c->model('Logradouros')->listaLogradouros($logra);
-	$c->stash->{json} = $result;
-	warn Dumper($result);
-	$c->forward('View::JSON');
+
+  my ($self, $c) = @_;
+  my $logra = $c->req->param('term');
+  my $result = $c->model('Logradouros')->listaLogradouros($logra);
+  $c->stash->{json} = $result;
+  warn Dumper($result);
+  $c->forward('View::JSON');
 }
 
 
 # lista os bairros fazendo a busca na model bairros
 sub bairros : Chained('/') : PathPart('bairros') : Args(0) {
-  
-	my ($self, $c) = @_;
-	my $bairro = $c->req->param('term');
-	my $result = $c->model('Bairros')->listaBairros($bairro);
-	$c->stash->{json} = $result;
-	warn Dumper($result);
-	$c->forward('View::JSON');
+
+  my ($self, $c) = @_;
+  my $bairro = $c->req->param('term');
+  my $result = $c->model('Bairros')->listaBairros($bairro);
+  $c->stash->{json} = $result;
+  warn Dumper($result);
+  $c->forward('View::JSON');
 }
 
 # lista os municipios fazendo a busca na model municipios
 sub municipios : Chained('/') : PathPart('municipios') : Args(0) {
-  
-	my ($self, $c) = @_;
-	my $munic = $c->req->param('term');
-	my $result = $c->model('Municipios')->listaMunicipios($munic);
-	$c->stash->{json} = $result;
-	warn Dumper($result);
-	$c->forward('View::JSON');
+
+  my ($self, $c) = @_;
+  my $munic = $c->req->param('term');
+  my $result = $c->model('Municipios')->listaMunicipios($munic);
+  $c->stash->{json} = $result;
+  warn Dumper($result);
+  $c->forward('View::JSON');
 }
 
 # lista os nucleos fazendo a busca na model nucleos
 sub nucleos : Chained('/') : PathPart('nucleos') : Args(0) {
 
-	my ($self, $c) = @_;
-	my $nuc = $c->req->param('term');
-	my $result = $c->model('Nucleos')->listaNucleos($nuc);
-	$c->stash->{json} = $result;
-	warn Dumper($result);
-	$c->forward('View::JSON');
+  my ($self, $c) = @_;
+  my $nuc = $c->req->param('term');
+  my $result = $c->model('Nucleos')->listaNucleos($nuc);
+  $c->stash->{json} = $result;
+  warn Dumper($result);
+  $c->forward('View::JSON');
 }
 
 # lista as unidades de saúde do município de Fortaleza
 sub unidadessaude : Chained('/') : PathPart('unidadessaude') : Args(0) {
 
-	my ($self, $c) = @_;
-	my $posto = $c->req->param('term');
-	my $result = $c->model('UnidadesSaude')->listaUnidadesSaude($posto);
-	$c->stash->{json} = $result;
-	warn Dumper($result);
-	$c->forward('View::JSON');
+  my ($self, $c) = @_;
+  my $posto = $c->req->param('term');
+  my $result = $c->model('UnidadesSaude')->listaUnidadesSaude($posto);
+  $c->stash->{json} = $result;
+  warn Dumper($result);
+  $c->forward('View::JSON');
+}
+
+sub ldap : Chained('/auth/base') : PathPart('ldap') : Args(0) {
+
+  my ($self, $c) = @_;
+  my $term = $c->req->param('term');
+  my $result = $c->model('LDAP')->buscar_adm($term);
+  if (ref($result) ne 'ARRAY') {
+      $result = [$result];
+  }
+
+  $c->stash->{json} = $result;
+
+  $c->forward('View::JSON');
+}
+
+sub ldap_local : Chained('/auth/base') : PathPart('ldap_local') : Args(0) {
+
+  my ($self, $c) = @_;
+  my $term = $c->req->param('term');
+  my $result = $c->model('LDAP')->buscar_local($term);
+  if (ref($result) ne 'ARRAY') {
+      $result = [$result];
+  }
+
+  $c->stash->{json} = $result;
+
+  $c->forward('View::JSON');
 }
 
 =back

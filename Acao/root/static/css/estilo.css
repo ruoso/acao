@@ -800,6 +800,21 @@ body.relatorio thead th { background-color: white; color: black; }
   top: -145px;
 }
 
+.consultaLdap_new {
+  float: left;
+  margin-right: 5px;
+
+}
+
+.dnLdap, .dnAssunto, .dnLocal {
+  width: 274px !important;
+}
+
+#grid-autorizacoes table {
+
+  width: 660px !important;
+  position: relative;
+}
 .navegaLDAP .consultaLdap {
 
   position: relative;
@@ -880,10 +895,81 @@ body.relatorio thead th { background-color: white; color: black; }
   margin-right: 20px;
 }
 
+#acoes_ {
+  left: 240px;
+  position: relative;
+  top: -145px;
+}
+
+.consultaLdap {
+
+  position: relative;
+  height: 220px;
+  width: 200px;
+  border-right: 1px dotted #cccccc;
+
+}
+
+#borderAutorizacao {
+  border: 1px solid;
+  border-color: #cccccc;
+  padding: 20px;
+  height: auto;
+
+}
+
+.consultaLdap_ {
+  height: 200px;
+  overflow-y: scroll !important ;
+  position: relative;
+  width: 200px;
+
+}
+
+.consultaLdap .base {
+  border-bottom: 1px dotted #cccccc;
+  margin-bottom: -6px;
+}
+
+
+
 /* END Adicionar Usuário e Navegação LDAP by Carlos Wherbet */
 
 /* icones , Botões e Links */
+#help {
+  height: auto;
+  margin-right: 20px;
+  float: none;
+  margin-top: 12px;
 
+
+
+}
+#help img {
+  width: 16px;
+  height: 16px;
+  float: right;
+  top: -10px;
+  position:relative;
+  right: -40px;
+  cursor: pointer;
+
+
+}
+
+#help p {
+
+  float:none;
+  text-align: justify;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #cccccc;
+  margin-top: -10px;
+
+
+
+
+}
 a.workplace_add {
     background: url("../img/workplace/building_add.png") no-repeat scroll 0 1px transparent ;
     line-height: 18px !important;
@@ -1101,8 +1187,8 @@ width: auto !important;
 }
 
 #alter_pass {
-  
-  
+
+
 }
 
 
@@ -1145,3 +1231,78 @@ width: auto !important;
 
 
 /* END Fieldset Login. Carlos Wherbet */
+
+/* ABAS Carlos Wherbet */
+
+#abas{
+    color: #797979;
+    display: block;
+    float: left;
+    height: 27px;
+    margin-bottom: -13.3px;
+    background-color: #ffffff !important;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    padding-bottom: 11px;
+    background-color: #fffff;
+    text-decoration: none;
+    text-indent: 5px;
+    width: 483px;
+    border-top: 1px solid #cccccc;
+    border-left: 1px solid #cccccc;
+    border-left: 1px solid #cccccc;
+    padding-left: 0px;
+
+}
+#abas li{
+  display: inline;
+
+}
+#abas li a{
+  display: block;
+  width: auto;
+  padding: 5px 8px;
+  width: 144px;
+  float: left;
+  border-right: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
+  color: #797979;
+  text-decoration: none;
+  text-indent: 0px;
+  border-bottom: 1px solid #cccccc;
+  background-color: #E8E8E8;
+  float: left;
+  outline: none;
+
+
+}
+#abas li a.selected{
+   background-color: #FFFFFF;
+   border-bottom: 0px solid #cccccc;
+   cursor: default;
+   display: inline;
+   font-weight: bold;
+   text-decoration: underline;
+}
+.contaba {
+  clear: both;
+
+}
+
+#1formVolume table thead tr th {
+  background-color: #ffffff !important;
+  border: 0px !important;
+  color: #000000 !important;
+  text-shadow: -1px 1px 0 #ffffff;
+  }
+
+
+
+
+/* END  ABAS Carlos Wherbet */
+
+
+.ui-autocomplete {
+  font-size: 12px !important;
+}

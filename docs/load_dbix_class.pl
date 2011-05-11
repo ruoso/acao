@@ -5,6 +5,9 @@ perl -MDBIx::Class::Schema::Loader=dump_to_dir:"/home/paulo/devel/acao-viladomar
 #importa as tabelas do banco de dados e constroi as classe para o dbi class
 dbicdump Acao::Plugins::SDH::DimSchema "dbi:Pg:dbname=sdh;host=127.0.0.1;port=5432" acao blableblibloblu
 
+#importa as tabelas do banco de dados e constroi as classe para o dbi class setando o schema do banco
+dbicdump -o db_schema=pronasci_teste Acao::Plugins::Pronasci::DimSchema  "dbi:Pg:dbname=acao;host=127.0.0.1;port=5432" acao 12345
+
 #importa as tabelas do banco de dados e constroi as classe para o dbi class
 perl -MDBIx::Class::Schema::Loader=dump_to_dir:"/tmp/bla" -e 'DBIx::Class::Schema::Loader->connection("dbi:SQLite:dbname=acao.db")'
 
