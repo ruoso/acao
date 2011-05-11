@@ -5,13 +5,13 @@ use warnings;
 use Spreadsheet::ParseExcel;
 use Sedna;
 use warnings;
-use lib '/home/edilson/devel-programa-acao/acao/Acao/lib';
+use lib '/home/pauloneto/devel/acao/Acao/lib';
 use Acao;
 use utf8;
 use Data::Dumper;
 
 my $id_volume;
-my $sedna = Sedna->connect('172.30.116.22', 'AcaoDbHom', 'acao', 'acao');
+my $sedna = Sedna->connect('127.0.0.1', 'AcaoDb', 'acao', '12345');
 $sedna->setConnectionAttr(AUTOCOMMIT => Sedna::SEDNA_AUTOCOMMIT_OFF() );
 
 {   package DumbUser;
