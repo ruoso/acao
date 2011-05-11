@@ -1,0 +1,43 @@
+declare namespace cc = "http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd";
+declare namespace vc = "http://schemas.fortaleza.ce.gov.br/habitafor/viladomar-consolidado.xsd";
+declare namespace fa = "http://schemas.fortaleza.ce.gov.br/habitafor/viladomar-cadernoa.xsd";
+declare namespace fb = "http://schemas.fortaleza.ce.gov.br/habitafor/viladomar-cadernob.xsd";
+declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
+declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";
+declare namespace audt="http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd";
+declare namespace class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";
+
+for $x in collection("leitura-1")[cc:registroDigitacao/cc:documento/cc:estado eq "Aprovado"]
+ return ( $x/cc:registroDigitacao/cc:documento/cc:controle/text(), 
+  <dossie xmlns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd">
+   <nome>{$x/cc:registroDigitacao/cc:documento/cc:conteudo/fa:formCadernoA/fa:identificacao/fa:titularBeneficiario/text()}</nome>
+   <criacao>{$x/cc:registroDigitacao/cc:digitacao/cc:dataDigitacao/text()}</criacao>
+   <fechamento>1970-01-01T00:00:00Z</fechamento>
+   <arquivamento>1970-01-01T00:00:00Z</arquivamento>
+   <estado>aberto</estado>
+   <controle>{$x/cc:registroDigitacao/cc:documento/cc:controle/text()}</controle>
+   <representaDossieFisico>1</representaDossieFisico>
+   <classificacoes>
+        <class:classificacao>cn=Vila do Mar,cn=Habitação,dc=assuntos,dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br</class:classificacao>
+   </classificacoes>
+   <localizacao>SERCEFOR</localizacao>
+   <autorizacoes herdar="1"/>
+   <doc>
+    <documento xmlns="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd">
+      <id>{$x/cc:registroDigitacao/cc:documento/cc:controle/text()}</id>
+      <nome/>
+      <criacao>{$x/cc:registroDigitacao/cc:digitacao/cc:dataDigitacao/text()}</criacao>
+      <invalidacao>1970-01-01T00:00:00Z</invalidacao>
+      <motivoInvalidacao/>
+      <representaDocumentoFisico>1</representaDocumentoFisico>
+      <autorizacoes herdar="1"/>
+      <documento>
+        <conteudo>
+         { $x/cc:registroDigitacao/cc:documento/cc:conteudo/* }
+        </conteudo>
+      </documento>
+     </documento>
+	<invalidados />
+	<cadernob />
+   </doc>
+  </dossie>)
