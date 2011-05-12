@@ -11,7 +11,8 @@ function createInput(name) {
     var dt = document.createElement('dt');
     var dd = document.createElement('dd');
     var newLabel = document.createElement('label');
-
+	
+	
     newLabel.innerHTML = labelText[1];
     newLabel.htmlFor = name;
     
@@ -26,6 +27,6 @@ function createInput(name) {
     frag.appendChild(dt);
     frag.appendChild(dd);
     
-    document.getElementById('form').appendChild(frag);
+	document.getElementById('buscaIndices').appendChild(frag);	
 }
 
