@@ -236,7 +236,7 @@ txn_method 'criar_dossie' => authorized $role_criar => sub {
     my $res_xml = $controle_w->(
         $doc,
         {
-            nome                   => $args->{nome},
+            nome                   => uc $args->{nome},
             criacao                => DateTime->now(),
             fechamento             => '',
             arquivamento           => '',
