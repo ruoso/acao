@@ -147,10 +147,15 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
         $self->audit_criar( $id, $c->req->param('nome') );
     };
 
-    if ($@) { $c->flash->{erro} = $@ . ""; }
-    else { $c->flash->{sucesso} = 'Volume criado com sucesso'; }
-    $c->res->redirect(
-        $c->uri_for_action( '/auth/registros/volume/dossie/lista', [$id] ) );
+    if ($@) { 
+        $c->flash->{erro} = $@ . ""; 
+        $c->res->redirect( $c->uri_for_action( '/auth/registros/volume/lista' ) );
+    }
+    else { 
+        $c->flash->{sucesso} = 'Volume criado com sucesso'; 
+        $c->res->redirect( $c->uri_for_action( '/auth/registros/volume/dossie/lista', [$id] ) );
+    }
+
 }
 
 sub xsd : Chained('base') : PathPart('xsd') : Args(1) {
