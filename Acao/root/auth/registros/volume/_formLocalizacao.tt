@@ -44,7 +44,7 @@
                    [% FOREACH local IN c.model('LDAP').buscar_dn_local(local_basedn) %]
 <!--                   <option value="[% local.dn %]" class="opt" [% IF local.dn == local_basedn %] selected="1" [% END %]-->
 <!--                           [% IF local_basedn == c.model('LDAP').local_dn %] selected="selected" [% END %]  > [% local.get_value('ser') || local.get_value('l') || local.get_value('cn') %] </option>-->
-                   <option value="[% local.dn %]" class="opt" > [% local.get_value('ser') || local.get_value('l') || local.get_value('cn') %] </option>
+                    <option value="[% local.dn %]" class="opt" > [% local.get_value('ser') || local.get_value('l') || local.get_value('cn') %] </option>
                    [% END %]
                 </select>
             </dt>

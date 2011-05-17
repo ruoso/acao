@@ -273,7 +273,7 @@ txn_method 'getDadosVolumeId' => authorized $role_listar => sub {
         };
 
     }
-    warn Dumper($vol);
+
     return $vol;
 };
 
