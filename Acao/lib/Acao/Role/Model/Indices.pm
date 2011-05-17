@@ -70,7 +70,7 @@ sub insert_indices {
     my $resumo = "$nm_volume - $nm_prontuario - $label";
     my $indices = $self->extract_xml_keys( $xsd, $idx_data, $id_volume, $controle, $id_documento );
     my $autorizacoes_vol = $self->extract_autorizacoes_volume($id_volume);
-    warn Dumper $indices;
+
     my ( $autorizacoes_dos, $herda_dos ) = $self->extract_autorizacoes_dossie( $id_volume, $controle );
     
     my ( $autorizacoes_doc, $herda_doc ) = $self->extract_autorizacoes_documento($id_volume, $controle, $id_documento);
@@ -273,6 +273,7 @@ sub get_xsd_info {
               return ( $x/xs:element[1]/xs:annotation/xs:appinfo/xhtml:label/text(),
                        $x/xs:element[1]/xs:annotation/xs:appinfo/idx:index )';
     $xq =~ s/\n//gis;
+
     $self->sedna->execute($xq);
     my $label = $self->sedna->get_item;
     $label =~ s/^\s+|\s+$//gs;
