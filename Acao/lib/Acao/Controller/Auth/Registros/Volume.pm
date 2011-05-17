@@ -116,21 +116,16 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
     $c->stash->{nome}           = $c->req->param('nome');
     $c->stash->{classificacoes} = $c->req->param('classificacoes');
     $c->stash->{autorizacoes}   = $c->req->param('autorizacoes');
-    $c->stash->{localizacao}    = $c->req->param('localizacao');
+    $c->stash->{localizacao}    = $c->req->param('localizacao') || $c->model("LDAP")->local_dn; ;
     $c->stash->{local_basedn}   = $c->model("LDAP")->local_dn;
-#    if (   $self->_processa_autorizacao($c)
-#        || $self->_processa_classificacao($c)
-#        || $self->_processa_localizacao($c) )
-#    {
-#        $c->stash->{template} = 'auth/registros/volume/form.tt';
-#        return;
-#    }
 
     if ( $c->req->param('representaVolumeFisico') eq 'on' ) {
         $representaVolumeFisico = '1';
+
     }
     else {
         $representaVolumeFisico = '0';
+
     }
     my $id;
     eval {
@@ -139,7 +134,7 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
             $representaVolumeFisico,
             $c->model('Volume')
               ->desserialize_classificacoes( $c->req->param('classificacoes') ),
-            $c->req->param('localizacao'),
+            $c->stash->{localizacao},
             $c->model('Volume')
               ->desserialize_autorizacoes( $c->req->param('autorizacoes') ),
             $c->req->address,
@@ -198,8 +193,9 @@ sub alterar_volume : Chained('get_volume') : PathPart('alterar') : Args(0) {
       $c->model("Volume")->classificacoes_do_volume( $c->stash->{id_volume} );
     $c->stash->{localizacao} =
       $c->model("Volume")->localizacao_do_volume( $c->stash->{id_volume} );
-    $c->stash->{local_basedn} = $c->stash->{localizacao};
-    $c->stash->{local_basedn} =~ s/^.+?,//;
+    $c->stash->{local_basedn} = ($c->stash->{localizacao} eq $c->model('LDAP')->local_dn or
+                                $c->stash->{localizacao} eq '') ? $c->model('LDAP')->local_dn : $c->stash->{localizacao} ;
+    #$c->stash->{local_basedn} =~ s/^.+?,//;
 
     $c->stash->{basedn}       = $c->model("LDAP")->grupos_dn;
     $c->stash->{class_basedn} = $c->req->param('class_basedn')
@@ -232,20 +228,17 @@ sub store_alterar : Chained('get_volume') : PathPart('store_alterar') : Args(0)
 
     $c->stash->{classificacoes} = $c->req->param('classificacoes');
     $c->stash->{autorizacoes}   = $c->req->param('autorizacoes');
-    $c->stash->{localizacao}    = $c->req->param('localizacao');
-
-#    if (   $self->_processa_autorizacao($c)
-#        || $self->_processa_classificacao($c)
-#        || $self->_processa_localizacao($c) )
-#    {
-#        return;
-#    }
+    $c->stash->{localizacao}    = $c->req->param('localizacao') || $c->model('Volume')->getDadosVolumeId($c->stash->{id_volume})->{localizacao} ;
 
     if ( $c->req->param('representaVolumeFisico') eq 'on' ) {
         $representaVolumeFisico = '1';
     }
     else {
         $representaVolumeFisico = '0';
+    }
+
+    if ( $c->req->param('local_virtual') eq 'on' ) {
+        $c->stash->{localizacao}  = $c->model('LDAP')->local_dn;
     }
 
     eval {
@@ -256,7 +249,7 @@ sub store_alterar : Chained('get_volume') : PathPart('store_alterar') : Args(0)
                 nome           => $c->req->param('nome'),
                 volume_fisico  => $representaVolumeFisico,
                 classificacoes => $c->req->param('classificacoes'),
-                localizacao    => $c->req->param('localizacao'),
+                localizacao    => $c->stash->{localizacao} ,
                 ip             => $c->req->address,
             }
         );

@@ -21,12 +21,12 @@
   <dl class="form10">
     <dt> <label> Nome Volume: </label> </dt>
     <dd>
-	  <input type="text" id="nome" name="nome" class="upper" value="[% nome %]">
-	</dd>
+    <input type="text" id="nome" name="nome" class="upper" value="[% nome %]">
+  </dd>
     <br/>
- 	<dd>
-      <input type="checkbox" id="representaVolumeFisico" name="representaVolumeFisico" evt="representaVolumeFisico" [% IF vol.volume_fisico == 'Sim' %] checked [% END %] >  
+   <dd>
+      <input type="checkbox" id="representaVolumeFisico" name="representaVolumeFisico" evt="representaVolumeFisico" [% IF vol.volume_fisico == 'Sim' %] checked="checked" [% END %] >
       <label for="representaVolumeFisico"> Representa Volume Físico </label>
-	</dd>
+  </dd>
   </dl>
 </fieldset>

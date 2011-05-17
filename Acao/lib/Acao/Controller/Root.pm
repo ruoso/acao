@@ -46,6 +46,7 @@ no stash.
 sub begin : Private {
     my ( $self, $c ) = @_;
     $c->stash->{breadcrumb} = [];
+
 }
 
 =item end

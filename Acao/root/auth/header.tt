@@ -22,20 +22,20 @@
     <head>
         <meta http-equiv="Content-Type" content="text/xhtml; charset=UTF-8" />
         <title>Ação - Sistema de Acompanhamentos de Projetos Sociais </title>
-	<link rel="stylesheet" href='[% c.uri_for('/static/css/jquery.ui-1.8.6.custom.thema.css') %]' type="text/css" media="all" />
-        <link href='[% c.uri_for('/static/css/estilo.css') %]' rel='stylesheet' type='text/css' />      	
-      	<script language='javascript' src='[% c.uri_for('/static/js/plugins/jquery-1.4.4.min.js') %]'></script>
-      	<script language='javascript' src='[% c.uri_for('/static/js/plugins/jquery.ui-1.8.6.custom.min.js') %]'></script>
-      	<script language='javascript' src='[% c.uri_for('/static/js/funcoes.js') %]'></script>
+  <link rel="stylesheet" href='[% c.uri_for('/static/css/jquery.ui-1.8.6.custom.thema.css') %]' type="text/css" media="all" />
+        <link href='[% c.uri_for('/static/css/estilo.css') %]' rel='stylesheet' type='text/css' />
+        <script language='javascript' src='[% c.uri_for('/static/js/plugins/jquery-1.4.4.min.js') %]'></script>
+        <script language='javascript' src='[% c.uri_for('/static/js/plugins/jquery.ui-1.8.6.custom.min.js') %]'></script>
+        <script language='javascript' src='[% c.uri_for('/static/js/funcoes.js') %]'></script>
 
     <!--Instituto Atlântico-->
         <link href='[% c.uri_for('/static/css/estilo_ia.css') %]' rel='stylesheet' type='text/css' />
 
-		<!--Scripts IA-->
-      	<script language='javascript' src='[% c.uri_for('/static/js/plugins/date-format.js') %]'></script>
-	    <script language='javascript' src='[% c.uri_for('/static/js/plugins/jquery.meio.mask.js') %]'></script>
-	    <script language='javascript' src='[% c.uri_for('/static/js/funcoes_ia.js') %]'></script>
-      	<script language='javascript' src='[% c.uri_for('/static/js/plugins/jquery.collapsible-v.1.3.0.js') %]'></script>
+    <!--Scripts IA-->
+        <script language='javascript' src='[% c.uri_for('/static/js/plugins/date-format.js') %]'></script>
+      <script language='javascript' src='[% c.uri_for('/static/js/plugins/jquery.meio.mask.js') %]'></script>
+      <script language='javascript' src='[% c.uri_for('/static/js/funcoes_ia.js') %]'></script>
+        <script language='javascript' src='[% c.uri_for('/static/js/plugins/jquery.collapsible-v.1.3.0.js') %]'></script>
         <script language='javascript' src='[% c.uri_for('/static/js/jquery.validate.js') %]'></script>
         <script>
           $(document).ready(function(){
@@ -68,5 +68,10 @@
 [% FOREACH item IN breadcrumb %]
           <a href="[% item.url %]" title='[% item.title %]'>[% item.text %]</a> »
 [% END %]
+
+[% breadcrumb.last.contexto %]
+
+
+
         </div>
         <div id="conteudo">
