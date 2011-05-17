@@ -945,10 +945,8 @@ function insereValor(nameField,valor) {
     } else if (getById(nameField).type == "checkbox") {
         if (valor == 1 || valor == "true") {
             getById(nameField).checked = true;
-            alert(getById(nameField).checked);
         } else {
             getById(nameField).checked = false;
-            alert(getById(nameField).checked);
         }
 
     }
