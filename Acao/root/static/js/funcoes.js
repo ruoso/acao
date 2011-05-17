@@ -13,7 +13,7 @@ function createInput(name) {
     var newLabel = document.createElement('label');
 	
 	
-    newLabel.innerHTML = labelText[1];
+    newLabel.innerHTML = labelText[1].toUpperCase();
     newLabel.htmlFor = name;
     
     dt.appendChild(newLabel);
