@@ -17,7 +17,7 @@
 # título "LICENCA.txt", junto com este programa, se não, escreva para a
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
 %]
-[% INCLUDE 'auth/registros/volume/dossie/header.tt' %]
+[% INCLUDE 'auth/registros/volume/header_alterar.tt' %]
 <br>
 <h1 class="titulo-form">Alterar Volume:</h1>
 [% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume) ) %]
