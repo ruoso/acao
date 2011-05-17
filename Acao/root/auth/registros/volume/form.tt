@@ -28,7 +28,7 @@
   <!-- a lista de abas -->
   <ul id="abas">
         <li><a href="#tab1">Classificação</a></li>
-        <li><a href="#tab2">Localização</a></li>
+        <li  class="tabLocalizacao"><a href="#tab2">Localização</a></li>
         <li><a href="#tab3">Autorização</a></li>
   </ul>
 <!-- conteudo das abas -->
@@ -69,11 +69,11 @@
       return false;
     }
 
-    if(document.getElementById('localizacao').value == ''){
-      alert('Informe a localização do volume.');
-      document.getElementById('localizacao').focus();
-      return false;
-    }
+  //  if(document.getElementById('localizacao').value == ''){
+  //    alert('Informe a localização do volume.');
+  //    document.getElementById('localizacao').focus();
+  //    return false;
+  //  }
 
     if(document.getElementById('autorizacoes').value == '<autorizacoes xmlns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd" xmlns:author="http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd"/>'){
       if(confirm('O volume não possue autorização(ções). Deseja criá-lo assim mesmo?')){
@@ -87,46 +87,62 @@
 
 
   $("documment").ready(function(){
-  $(function(){
-      // abas
-      // oculta todas as abas
-      $("div.contaba").hide();
+      $('#help p').hide();
+    //  $('.tabLocalizacao').hide();
+    //  $('#abas').css('width','322px');
 
-      // mostra somente  a primeira aba
-      $("div.contaba:first").show();
 
-      // seta a primeira aba como selecionada (na lista de abas)
-      $("#abas a:first").addClass("selected");
-      // quando clicar no link de uma aba
-
-      $("#abas a").click(function(){
+      $(function(){
+          // abas
           // oculta todas as abas
           $("div.contaba").hide();
-          // tira a seleção da aba atual
-          $("#abas a").removeClass("selected");
-          // adiciona a classe selected na selecionada atualmente
-          $(this).addClass("selected");
-          // mostra a aba clicada
-          $($(this).attr("href")).show();
-          // pra nao ir para o link
-          return false;
-    });
- });
 
+          // mostra somente  a primeira aba
+          $("div.contaba:first").show();
 
+          // seta a primeira aba como selecionada (na lista de abas)
+          $("#abas a:first").addClass("selected");
+          // quando clicar no link de uma aba
 
+          $("#abas a").click(function(){
+              // oculta todas as abas
+              $("div.contaba").hide();
+              // tira a seleção da aba atual
+              $("#abas a").removeClass("selected");
+              // adiciona a classe selected na selecionada atualmente
+              $(this).addClass("selected");
+              // mostra a aba clicada
+              $($(this).attr("href")).show();
+              // pra nao ir para o link
+              return false;
+        });
+     });
 
-    $('#help p').hide();
+    //  $('#representaVolumeFisico').click(function() {
+    //    if ($('#representaVolumeFisico').is(':checked')) {
+    //       $('.tabLocalizacao').show();
+    //       $('#abas').css('width','483px');
+    //    } else {
+    //       $("div.contaba").hide()
+    //       $("#abas a").removeClass("selected");
+    //       $("div.contaba:first").show()
+    //       $("#abas a:first").addClass("selected");
+    //       $($("#abas a:first").attr('href')).show;
+    //       $('.tabLocalizacao').hide();
+    //       $('#abas').css('width','322px');
+    //    }
+    //  });
+
 
     $('#help > img').click(function() {
-    var class = '.' + $(this).attr('class') + ' ~ p';
+      var class = '.' + $(this).attr('class') + ' ~ p';
 
-    if ($(class).css('display') == 'block') {
-        $(class).slideToggle();
-     } else {
-       $(class).slideDown();
+      if ($(class).css('display') == 'block') {
+          $(class).slideToggle();
+       } else {
+         $(class).slideDown();
 
-     }
+       }
 
   });
 });

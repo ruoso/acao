@@ -148,6 +148,7 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
     $c->stash->{template}       = 'auth/registros/volume/dossie/form.tt';
     $c->stash->{classificacoes} = $c->req->param('classificacoes');
     $c->stash->{autorizacoes}   = $c->req->param('autorizacoes');
+    $c->stash->{localizacao}    = $c->req->param('localizacao') || $c->model('Volume')->getDadosVolumeId($c->stash->{id_volume})->{localizacao} ;
 
     my $representaDossieFisico;
     my $herdar_author;
@@ -166,15 +167,12 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
         $herdar_author = '0';
     }
 
+    if ( $c->req->param('local_virtual') eq 'on' ) {
+        $c->stash->{localizacao}  = $c->model('LDAP')->local_dn;
+    }
+
     $c->stash->{herdar} = $herdar_author;
 
- #   if (   $self->_processa_autorizacao($c)
- #       || $self->_processa_classificacao($c) )
- #   {
- #        $c->stash->{template} = 'auth/registros/volume/dossie/form.tt';
- #       return;
- #
- #   }
 
     eval {
         my $id = $c->model('Dossie')->criar_dossie({
@@ -183,7 +181,7 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
             id_volume       => $c->req->param('id_volume'),
             dossie_fisico   => $representaDossieFisico,
             classificacoes  => $c->model('Dossie')->desserialize_classificacoes( $c->stash->{classificacoes} ),
-            localizacao     => $c->req->param('localizacao') || $c->req->param('local_basedn'),
+            localizacao     => $c->stash->{localizacao} ,
             herdar_author   => $herdar_author,
             autorizacoes    => $c->model('Dossie')->desserialize_autorizacoes( $c->stash->{autorizacoes} ),
         }
@@ -344,7 +342,7 @@ sub store_alterar : Chained('get_dossie') : PathPart('store_alterar') : Args(0)
     $c->stash->{template} = 'auth/registros/volume/dossie/form_alterar.tt';
     $c->stash->{classificacoes} = $c->req->param('classificacoes');
     $c->stash->{autorizacoes}   = $c->req->param('autorizacoes');
-
+    $c->stash->{localizacao}    = $c->req->param('localizacao') || $c->model('Volume')->getDadosVolumeId($c->stash->{id_volume})->{localizacao} ;
 
     if ( $c->req->param('representaDossieFisico') eq 'on' ) {
         $representaDossieFisico = '1';
@@ -360,13 +358,11 @@ sub store_alterar : Chained('get_dossie') : PathPart('store_alterar') : Args(0)
         $herdar_author = '0';
     }
 
-    $c->stash->{herdar} = $herdar_author;
+    if ( $c->req->param('local_virtual') eq 'on' ) {
+        $c->stash->{localizacao}  = $c->model('LDAP')->local_dn;
+    }
 
- #   if (   $self->_processa_autorizacao($c)
- #       || $self->_processa_classificacao($c) )
- #   {
- #       return;
- #   }
+    $c->stash->{herdar} = $herdar_author;
 
     my $autorizacoes_h =
       $c->model('Dossie')
@@ -382,7 +378,7 @@ sub store_alterar : Chained('get_dossie') : PathPart('store_alterar') : Args(0)
                   $c->model('Dossie')->serialize_autorizacoes($autorizacoes_h),
                 nome           => $c->req->param('nome'),
                 classificacoes => $c->req->param('classificacoes'),
-                localizacao    => $c->req->param('localizacao') || $c->req->param('local_basedn'),
+                localizacao    => $c->stash->{localizacao} ,
                 dossie_fisico  => $representaDossieFisico,
                 ip             => $c->req->address,
             }

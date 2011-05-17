@@ -19,6 +19,7 @@
 %]
 [% breadcrumb.unshift({ url => c.uri_for_action('/auth/registros/volume/dossie/documento/lista', [ id_volume, controle ]),
       title => 'Prontuário',
-      text => 'Prontuário' }) %]
+      text => 'Prontuário',
+      contexto => 'Documentos' }) %]
 
 [% INCLUDE 'auth/registros/volume/dossie/header.tt' %]
