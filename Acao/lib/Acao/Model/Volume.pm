@@ -254,11 +254,11 @@ txn_method 'getDadosVolumeId' => authorized $role_listar => sub {
                         for $d in $x/ns:localizacao/text()
                             return (if (ends-with($d,",|.$local_dn.q|")) then (string-join(reverse(for $j in tokenize(substring-before($d,",|.$local_dn.q|"),',')
                                  return (tokenize($j,'='))[2]),' - ')
-                               ) else ($d)),', '),
+                               ) else ($d)),','),
                     concat($x/ns:estado/text()," "),
                     concat($x/ns:criacao/text()," "),
                     concat($x/ns:representaVolumeFisico/text()," "))|;
-
+warn $xq;
     $self->sedna->execute($xq);
 
     my $vol = {};
@@ -273,7 +273,6 @@ txn_method 'getDadosVolumeId' => authorized $role_listar => sub {
         };
 
     }
-    warn Dumper($vol);
     return $vol;
 };
 
