@@ -273,6 +273,7 @@ warn $xq;
         };
 
     }
+
     return $vol;
 };
 
@@ -527,11 +528,15 @@ sub find_key_indexes {
   $clause = substr $clause, 0, $length-4;
   $self->sedna->commit;
 
-  my $xq_indexes = qq|declare namespace cl = "http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";
+  #my $xq_indexes = qq|declare namespace cl = "http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";
+  #      declare namespace idx = "http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd";
+  #      for \$x in collection("acao-schemas")/*/*/*/*/cl:classificacoes
+  #      where $clause
+  #      return \$x/../../../../*/*/*/idx:index/idx:hint/\@key/string()|;
+  my $xq_indexes = 'declare namespace cl = "http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";
         declare namespace idx = "http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd";
-        for \$x in collection("acao-schemas")/*/*/*/*/cl:classificacoes
-        where $clause
-        return \$x/../../../../*/*/*/idx:index/idx:hint/\@key/string()|;
+        for $x in distinct-values(collection("acao-schemas")//@key/string())
+        return $x';
 
   $self->sedna->begin;
   $self->sedna->execute($xq_indexes);
