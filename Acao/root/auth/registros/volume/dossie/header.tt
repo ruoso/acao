@@ -17,11 +17,11 @@
 # título "LICENCA.txt", junto com este programa, se não, escreva para a
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
 %]
-
+[% SET dos = ( c.model('Dossie').getDadosDossie(id_volume, controle, c.model('LDAP').assuntos_dn, c.model('LDAP').local_dn) ) %]
 [% breadcrumb.unshift({ url => c.uri_for_action('/auth/registros/volume/dossie/lista', [ id_volume ]),
             title => 'Volume',
             text => 'Volume' ,
-            contexto => 'Prontuários'}) %]
+            contexto => dos.nome}) %]
 
 
 [% INCLUDE 'auth/registros/volume/header.tt' %]

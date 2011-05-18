@@ -71,9 +71,19 @@
    [% ELSE %]
           <a href="[% item.url %]" title='[% item.title %]'>[% item.text %]</a> »
    [% END %]
+
+[% END %]
+<br/>
+
+[% FOREACH item IN breadcrumb %]
+    [%  LAST IF loop.last %]
+         <span class="contexto"> [% #  item.contexto %]  </span>
 [% END %]
 
-<span class="contexto"> [% #  breadcrumb.last.contexto %]</span>
+
+
+
+<span class="contexto"> [% # breadcrumb.last.contexto %]</span>
 
 
 
