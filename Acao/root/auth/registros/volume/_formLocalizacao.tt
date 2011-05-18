@@ -105,6 +105,10 @@
      $('#divLocalVirtual').show();
    }
 
+  if ('[% local_basedn %]' == '[% c.model('LDAP').local_dn %]') {
+      $('#divLocalVirtual').remove();
+   }
+
 
   $('.local_virtual').click(function() {
      if ($(this).attr('checked')) {

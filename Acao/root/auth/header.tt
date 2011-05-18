@@ -66,10 +66,14 @@
         <div id='barraTopoCaminho'>
           <a href="[%c.uri_for_action('/public/entrada')%]" title='Início'>Início</a> »
 [% FOREACH item IN breadcrumb %]
+   [% IF item.url == breadcrumb.last.url %]
+           [% item.text %]
+   [% ELSE %]
           <a href="[% item.url %]" title='[% item.title %]'>[% item.text %]</a> »
+   [% END %]
 [% END %]
 
-[% breadcrumb.last.contexto %]
+<span class="contexto"> [% #  breadcrumb.last.contexto %]</span>
 
 
 
