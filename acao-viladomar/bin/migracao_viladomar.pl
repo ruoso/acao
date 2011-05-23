@@ -14,8 +14,8 @@ open(FILE, "<:encoding(UTF-8)", "../consultas/migracao_vm.txt");
 my $xquery = <FILE>;
 close FILE;
 
-#my $sedna = Sedna->connect('127.0.0.1', 'acao', 'acao', '12345');
-my $sedna = Sedna->connect('127.0.0.1', 'acao', 'acao', '12345');
+my $sedna = Sedna->connect('127.0.0.1', 'AcaoDb', 'acao', '12345');
+#my $sedna = Sedna->connect('172.30.116.73', 'acao', 'acao', '12345');
 $sedna->setConnectionAttr(AUTOCOMMIT => Sedna::SEDNA_AUTOCOMMIT_OFF() );
 
 {   package DumbUser;
@@ -77,6 +77,7 @@ sub init{
 	for my $ctrl (keys %documentos) {
 		$counter++;
 		warn "preparando... $counter" unless  $counter%100;
+#consulta todos os forms caderno A com estado rejeitado
 		my $xq = qq|declare namespace cc = "http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd";
 declare namespace vc = "http://schemas.fortaleza.ce.gov.br/habitafor/viladomar-consolidado.xsd";
 declare namespace fa = "http://schemas.fortaleza.ce.gov.br/habitafor/viladomar-cadernoa.xsd";
@@ -86,7 +87,7 @@ declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";
 declare namespace audt="http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd";
 declare namespace class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";
 
-for \$z in index-scan("ctrl", "$ctrl", 'EQ')[cc:estado/text() eq "Rejeitado"]
+for \$z in index-scan("controle1", "$ctrl", 'EQ')[cc:documento/cc:estado/text() eq "Rejeitado"]
 return 
           <documento xmlns="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd">
               <id>{\$z/cc:documento/cc:controle/text()}</id>
@@ -95,7 +96,7 @@ return
               <invalidacao>{\$z/cc:digitacao/cc:dataDigitacao/text()}</invalidacao>
               <motivoInvalidacao/>
               <representaDocumentoFisico>1</representaDocumentoFisico>
-              <autorizacao principal="paulo.neto" role="role" dataIni="2011-02-01T15:08:25" dataFim=""/>
+              <autorizacoes herdar="1"/>
               <documento>
                 <conteudo>
                      { \$z/cc:documento/cc:conteudo/* }
@@ -124,7 +125,7 @@ declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";
 declare namespace audt="http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd";
 declare namespace class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";
 
-for \$y in index-scan("ctrlF", "$ctrl", 'EQ')
+for \$y in index-scan("formularioPrincipal", "$ctrl", 'EQ')[cc:documento/cc:estado/text() eq "Aprovado"]
 return
           <documento xmlns="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd">
               <id>{\$y/cc:documento/cc:controle/text()}</id>
@@ -150,6 +151,42 @@ return
 			$cdb.= $sedna->getItem();
 		}
 		$sedna->commit;
+
+		$xq = qq|declare namespace cc = "http://schemas.fortaleza.ce.gov.br/acao/controledigitacao.xsd";
+declare namespace vc = "http://schemas.fortaleza.ce.gov.br/habitafor/viladomar-consolidado.xsd";
+declare namespace fa = "http://schemas.fortaleza.ce.gov.br/habitafor/viladomar-cadernoa.xsd";
+declare namespace fb = "http://schemas.fortaleza.ce.gov.br/habitafor/viladomar-cadernob.xsd";
+declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
+declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";
+declare namespace audt="http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd";
+declare namespace class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";
+
+for \$y in index-scan("formularioPrincipal", "$ctrl", 'EQ')[cc:documento/cc:estado eq "Rejeitado"]
+return
+          <documento xmlns="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd">
+              <id>{\$y/cc:documento/cc:controle/text()}</id>
+              <nome/>
+              <criacao>{\$y/cc:digitacao/cc:dataDigitacao/text()}</criacao>
+              <invalidacao>{\$y/cc:digitacao/cc:dataDigitacao/text()}</invalidacao>
+              <motivoInvalidacao/>
+              <representaDocumentoFisico>1</representaDocumentoFisico>
+              <autorizacoes herdar="1"/>
+              <documento>
+                <conteudo>
+                     { \$y/cc:documento/cc:conteudo/* }
+                </conteudo>
+              </documento>
+           </documento>
+
+|;
+
+		$sedna->begin;
+		$sedna->execute($xq);
+		while ($sedna->next){
+			$cdb.= $sedna->getItem();
+		}
+		$sedna->commit;
+
 		$documentos{$ctrl} =~ s/<cadernob\/>/$cdb/o;
 
 
