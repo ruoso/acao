@@ -117,13 +117,15 @@ sub invalidate_indices {
     my $volume = $self->dbic->resultset('Volume')->find({
         id_volume => $id_volume,
     });
-
-    my $dossies = $volume->dossies;
-    my $entries = $volume->entries;
     
-    $entries->update({ invalidado=>1 });
-    $dossies->update({ invalidado=>1 });
-    $volume->update({ invalidado=>1 });
+    if ($volume) {
+        my $dossies = $volume->dossies;
+        my $entries = $volume->entries;
+    
+        $entries->update({ invalidado=>1 });
+        $dossies->update({ invalidado=>1 });
+        $volume->update({ invalidado=>1 });
+    }
 }
 
 =item revalidate_indices()

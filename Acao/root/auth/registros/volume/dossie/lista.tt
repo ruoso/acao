@@ -59,8 +59,16 @@
            <dt>Classificação:</dt>
            <dd><span>[% vol.classificacoes %]</span></dd>
 
-           <dt>Localização:</dt>
-           <dd><span>[% vol.localizacao %]</span></dd>
+           <dt>Localização:</dt>            
+           <dd>
+             <span>
+               [% IF vol.localizacao.replace('\s+','') == c.model('LDAP').local_dn.replace('\s+','') %]
+                 Virtual 
+               [% ELSE %]
+                 [% vol.localizacao.replace('\s+','') %]
+               [% END %]
+             </span>
+           </dd>
 
            <dt>Estado:</dt>
            <dd><span>[% vol.estado %]</span></dd>

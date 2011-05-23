@@ -18,7 +18,7 @@
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
 %]
 
-[% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume) ) %]
+[% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume, c.model('LDAP').assuntos_dn, c.model('LDAP').local_dn) ) %]
 
 <div id="accordion">
   <h3><a href="#">Dados do Volume: [% vol.nome %]</a></h3>
@@ -31,8 +31,16 @@
         <dt>Classificação:</dt>
         <dd><span>[% vol.classificacoes %]</span></dd>
 
-        <dt>Localização:</dt>
-        <dd><span>[% vol.localizacao %]</span></dd>
+        <dt>Localização:</dt>            
+        <dd>
+          <span>
+            [% IF vol.localizacao.replace('\s+','') == c.model('LDAP').local_dn.replace('\s+','') %]
+              Virtual 
+            [% ELSE %]
+              [% vol.localizacao.replace('\s+','') %]
+            [% END %]
+          </span>
+        </dd>
 
         <dt>Estado:</dt>
         <dd><span>[% vol.estado %]</span></dd>
