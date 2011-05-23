@@ -18,6 +18,7 @@
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
 %]
 [% SET loc = c.model('LDAP').decompose_dn_local(local_basedn).reverse.join(' - ') %]
+
  <fieldset id="grupos">
 <!--    <legend> Localização: </legend>-->
      <div id="help">
@@ -26,7 +27,7 @@
         </p>
      </div>
  <dl>
-   <div id="divLocalVirtual">
+   <div id="divLocalVirtual" rel="[% local_basedn %]">
        <input type="checkbox" name="local_virtual" class="local_virtual"  > Este prontuário é Virtual <br/><br/>
    </div>
    <div id="divHerdarLocal" ><input type="checkbox" name="herdar_local" class="herdar_local"  >
@@ -89,6 +90,8 @@
 
    });
 
+
+
   $('#divLocal').hide();
   $('#opcao_local').hide();
   $('.herdar_local').attr('checked',true);
@@ -100,6 +103,14 @@
      $('#divLocalVirtual').show();
    }
 
+
+
+
+  if ($('#divLocalVirtual').attr('rel') == '[% c.model("LDAP").local_dn %]') {
+      $('.local_virtual').hide();
+      $('#divLocalVirtual').text('');
+
+  };
 
 
   $('.local_virtual').click(function() {

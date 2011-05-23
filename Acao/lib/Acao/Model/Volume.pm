@@ -82,7 +82,7 @@ Este método retorna os Volumes os quais o usuário autenticado tem acesso.
 
 =cut
 
-txn_method 'listar_volumes' => authorized $role_listar => sub {
+txn_method 'listar_volumes' => authorized $role_listar  => sub {
     my ( $self, $args ) = @_;
 
     my $grupos = join ' or ',
@@ -113,6 +113,8 @@ txn_method 'listar_volumes' => authorized $role_listar => sub {
               . $grupos . ')'
               . 'and @role="listar"]]'
               . 'return "")';
+
+              #&dfdfsgds();
 
     return {
         list  => $list,
@@ -258,7 +260,7 @@ txn_method 'getDadosVolumeId' => authorized $role_listar => sub {
                     concat($x/ns:estado/text()," "),
                     concat($x/ns:criacao/text()," "),
                     concat($x/ns:representaVolumeFisico/text()," "))|;
-warn $xq;
+
     $self->sedna->execute($xq);
 
     my $vol = {};

@@ -99,8 +99,15 @@
   $('.herdar_local').attr('checked',true);
   $('.herdar_local').attr('checked',true);
 
+
+
+  if ('[% c.model("LDAP").local_dn %]' == '[% local_basedn %]') {
+    $('.local_virtual').hide();
+    $('#divLocalVirtual').text('');
+  }
+
   if ($('.herdar_local').attr('checked')) {
-     $('#divLocalVirtual').hide();
+      $('#divLocalVirtual').hide();
    } else {
      $('#divLocalVirtual').show();
    }
