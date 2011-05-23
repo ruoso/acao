@@ -123,9 +123,8 @@
 [% FOREACH id_doc IN controles.replace('\s+', '').split(',') %]
 
  <script language="javascript" type="text/javascript">
-
    generateFormIteration("[% c.uri_for_action('/auth/registros/xsd/raw', { ns => xsdDocumento }) %]", "form_container", "[% iteration %]");
-   fillValuesIteration  ("[% c.uri_for_action('/auth/registros/volume/dossie/documento/xml', [ id_volume, controle, id_documento] ) %]", "[% iteration %]");
+   fillValuesIteration  ("[% c.uri_for_action('/auth/registros/volume/dossie/documento/xml', [ id_volume, controle, id_doc] ) %]", "[% iteration %]");
    generateXsdFormUI();
 
  </script>
