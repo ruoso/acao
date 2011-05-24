@@ -278,6 +278,13 @@ sub validaUser {
 
 }
 
+sub validaUserAdmin {
+    my ( $self, $dn ) = @_;
+    my $result = getDadosUsuarioLdap( $self, $dn, 'acao' )->{admin};
+    return scalar(@$result) > 0 or 0;
+
+}
+
 sub recebePermissoesAcao {
     my ( $self, $dn, $model ) = @_;
 

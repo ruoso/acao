@@ -42,21 +42,28 @@
 [% SET volumes = '' %]
 
 
-<br>
-<h1 class="titulo-form">Gerenciar Volume |
-  <span style="font-size:13px; font-weight:normal;">
-    [% IF c.model('Volume').pode_criar_volume %]
-      <a class="criar" href="[% c.uri_for_action('/auth/registros/volume/form') %]">Criar Volume</a>
-  [% END %]
-  </span>
-</h1>
 
-<h1 class="titulo-form">Busca Índices |
-  <span style="font-size:13px; font-weight:normal;">
-      <a class="buscar" href="[% c.uri_for_action('/auth/registros/volume/index/formIndexes') %]">Buscar por índices</a>
-  </span>
-</h1>
 
+<!--  <span style="font-size:13px; font-weight:normal;">-->
+<!--    [% IF c.model('Volume').pode_criar_volume %]-->
+<!--      <a class="criar" href="[% c.uri_for_action('/auth/registros/volume/form') %]">Criar Volume</a>-->
+<!--  [% END %]-->
+<!--  </span>-->
+</h3>
+<!---->
+<!--<h3 class="titulo-form_">Busca Índices |-->
+<!--  <span style="font-size:13px; font-weight:normal;">-->
+<!--      <a class="buscar" href="[% c.uri_for_action('/auth/registros/volume/index/formIndexes') %]">Buscar por índices</a>-->
+<!--  </span>-->
+<!--</h3>-->
+<div id="caixaAcoes">
+      <h3 class="titulo-form_">Gerenciar Volume</h3>
+     <span class="operacoes">
+       [% IF c.model('Volume').pode_criar_volume %]
+          <a class="_criar" href="[% c.uri_for_action('/auth/registros/volume/form') %]">Criar Volume</a>
+       [% END %]
+         <a class="_buscar" href="[% c.uri_for_action('/auth/registros/volume/index/formIndexes') %]">Buscar por Índices</a>
+     </span>
 <table>
 <thead>
  <tr>
@@ -68,7 +75,9 @@
   <th width="110px">Fechamento</th>
   <th width="110px">Arquivamento</th>
   <th width="40px">Estado</th>
+
   <th width="120px" colspan="5" align="center">Ação</th>
+
  </tr>
 </thead>
 <TBODY>
@@ -107,7 +116,7 @@
      <PRE>[% error.info %]</PRE>
     </div>
 [% END %]
-
+[% paginacao = PROCESS 'auth/registros/volume/paginacao.tt' %]
 
 </TBODY>
 </table>
@@ -134,7 +143,11 @@
 
 </script>
 
-[% paginacao = PROCESS 'auth/registros/volume/paginacao.tt' %]
+
 [% paginacao %]
+</div>
+
+
 
 [% INCLUDE 'footer.tt' %]
+

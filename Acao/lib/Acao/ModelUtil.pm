@@ -40,7 +40,7 @@ utilizadas pelas classes de maneira conveniente.
 
 use Data::Dumper;
 our @EXPORT = qw(txn_method authorized);
-
+my $admin_super = Acao->config->{'Model::LDAP'}->{admin_super};
 =over
 
 =item txn_method $name, $code
@@ -71,6 +71,7 @@ sub txn_method {
             eval { $_[0]->sedna->rollback unless $committed; };
             die $erro_original;
         }
+
         $ret;
     };
 }
@@ -87,8 +88,9 @@ exceção caso não tenha.
 
 sub authorized {
     my ( $role, $code ) = @_;
+
     return sub {
-        if ( grep { $_ eq $role } @{ $_[0]->user->memberof } ) {
+        if ( grep { $_ eq $role || $admin_super} @{ $_[0]->user->memberof } ) {
             $code->(@_);
         }
         else {

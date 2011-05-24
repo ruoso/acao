@@ -24,7 +24,7 @@ use parent 'Catalyst::Controller';
 
 my $digitador = Acao->config->{roles}{digitador};
 my $revisor   = Acao->config->{roles}{revisor};
-
+my $admin_super = Acao->config->{'Model::LDAP'}->{admin_super};
 =head1 NAME
 
 Acao::Controller::Auth::Registros - Raiz da área de registros.
@@ -41,6 +41,7 @@ Ação raiz da área de registros.
 
 sub base : Chained('/auth/base') : PathPart('registros') : CaptureArgs(0) {
     my ( $self, $c ) = @_;
+    if (($admin_super ~~ @{$c->user->memberof})) { $c->stash->{sysAdmin} = 1;}
 }
 
 =item principal

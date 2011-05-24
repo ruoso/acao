@@ -58,12 +58,14 @@
         </td>
 
         <td>
-        [% # IF c.model('Dossie').pode_transferir_dossie(id_volume) %]
+        [%  IF c.model('Dossie').pode_transferir_dossie(id_volume) %]
              { if ($transferir)  then (
                 <a href="[% c.uri_for_action('/auth/registros/volume/dossie/transferir_lista', [ id_volume , '___id_dossie___' ]).replace('___id_dossie___','{$x/ns:controle/text()}') %]" class="transferir" title="transferir"> transferir </a>
               ) else ()}
-        [% # END %]
+        [%  END %]
+
         </td>
+
         { if ( ($x/ns:estado/text() eq 'fechado') and ($alterar)) then (
            <td>
              <a href="[% c.uri_for_action('/auth/registros/volume/dossie/alterar_estado', [ id_volume , '___id_dossie___' ],'aberto').replace('___id_dossie___','{$x/ns:controle/text()}') %]" class="abrir" title="abrir" > Abrir </a>
@@ -94,7 +96,10 @@
           </td>
         ) else (
           <td></td> )}
+
+
         <input type="hidden" id="id_dossie" nome="id_dossie" value="{$x/ns:collection/text()}"/>
+
     </tr>
     [% SET counter = 0 %]
     [% IF labels %]
