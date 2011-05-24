@@ -27,7 +27,7 @@
 <script SRC="[% c.uri_for('/static/js/xsdForm.js') %]" language="Javascript" ></script>
 <script SRC="[% c.uri_for('/static/js/xsdForm-ui.js') %]" language="Javascript" ></script>
 
- 
+
  <input type="hidden" name="processed_xml">
  <input type="hidden" name="id_volume" value="[% id_volume %]">
  <input type="hidden" name="xsdDocumento" value="[% xsdDocumento %]">
@@ -36,7 +36,7 @@
  <input type="hidden" name="representaDocumentoFisico" value="[% representaDocumentoFisico %]">
 
 <div id="accordion">
-  <h3><a href="#">Dados do Volume: [% vol.nome %]</a></h3>
+  <h3><a href="#">Dados do Volume:<span class="label">  [% vol.nome %] </span></a></h3>
   <div>
     <fieldset class="fieldsetBorderNone">
       <dl class="form15">
@@ -46,11 +46,11 @@
         <dt>Classificação:</dt>
         <dd><span>[% vol.classificacoes %]</span></dd>
 
-        <dt>Localização:</dt>            
+        <dt>Localização:</dt>
         <dd>
           <span>
             [% IF vol.localizacao.replace('\s+','') == c.model('LDAP').local_dn.replace('\s+','') %]
-              Virtual 
+              Virtual
             [% ELSE %]
               [% vol.localizacao.replace('\s+','') %]
             [% END %]
@@ -77,7 +77,7 @@
     </fieldset>
   </div>
 
-  <h3><a href="#">Dados do Prontuário: [% dos.nome %]</a></h3>
+  <h3><a href="#">Dados do Prontuário: <span class="label"> [% dos.nome %] </span></a></h3>
   <div>
     <fieldset class="fieldsetBorderNone">
       <dl class="form15">
