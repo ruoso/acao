@@ -45,21 +45,10 @@
 
 [% SET tipo_documento = c.req.param('tipo_documento') %]
 [% SET xsd = c.req.param('c') %]
-
-<br>
-<h1 class="titulo-form">Gerenciar Documentos | <span style="font-size:13px; font-weight:normal;">
-    <a id="addDocument" class="criar">Inserir Documento</a>
-    |
-    [% IF c.model('Dossie').pode_alterar_dossie(id_volume,controle) %]
-      <a class="alterar" href="[% c.uri_for_action('/auth/registros/volume/dossie/alterar_dossie', [ id_volume, controle ]) %]">Alterar Prontuário</a>
-    [% END %]
-</span></h1>
-
 [% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume, c.model('LDAP').assuntos_dn, c.model('LDAP').local_dn) ) %]
 [% SET dos = ( c.model('Dossie').getDadosDossie(id_volume, controle, c.model('LDAP').assuntos_dn, c.model('LDAP').local_dn) ) %]
-
 <div id="accordion">
-  <h3><a href="#">Dados do Volume: [% vol.nome %]</a></h3>
+  <h3><a href="#">Dados do Volume: <span class="label"> [% vol.nome %] </span></a></h3>
   <div>
     <fieldset class="fieldsetBorderNone">
         <dl class="form15">
@@ -69,11 +58,11 @@
         <dt>Classificação:</dt>
         <dd><span>[% vol.classificacoes %]</span></dd>
 
-        <dt>Localização:</dt>            
+        <dt>Localização:</dt>
         <dd>
           <span>
             [% IF vol.localizacao.replace('\s+','') == c.model('LDAP').local_dn.replace('\s+','') %]
-              Virtual 
+              Virtual
             [% ELSE %]
               [% vol.localizacao.replace('\s+','') %]
             [% END %]
@@ -92,7 +81,7 @@
      </fieldset>
 
   </div>
-  <h3><a href="#">Dados do Prontuário: [% dos.nome %]</a></h3>
+  <h3><a href="#">Dados do Prontuário:<span class="label">  [% dos.nome %] </span></a></h3>
     <div>
       <fieldset class="fieldsetBorderNone">
          <dl class="form15">
@@ -118,7 +107,30 @@
 
     </div>
 </div>
+ <div id="operacoes">
+         [% IF c.model('Dossie').pode_alterar_dossie(id_volume,controle) %]
+      <a class="alterar" href="[% c.uri_for_action('/auth/registros/volume/dossie/alterar_dossie', [ id_volume, controle ]) %]">Alterar Prontuário</a>
+    [% END %]
+      <a href="[% c.uri_for_action('/auth/registros/volume/dossie/alterar_estado', [ id_volume , controle ],'fechado') %]" class="_fechar" title="Fechar" onClick="return confirmaFechamentoDossie()"> Fechar </a>
+</div>
+
+ <div id="operacoesVolume">
+     [% IF c.model('Volume').pode_alterar_volume(id_volume) %]
+       <a href="[% c.uri_for_action('/auth/registros/volume/alterar_volume', [ id_volume ]) %]" class="alterar" >Alterar volume</a>
+     [% END %]
+       <a href="[% c.uri_for_action('/auth/registros/volume/alterar_estado', [ id_volume ],'fechado') %]" class="_fechar" title="Fechar" onClick="return confirmaFechamentoVolume()"> Fechar </a>
+</div>
 <br>
+
+
+<div id="caixaAcoes">
+
+     <h3 class="titulo-form_">Gerenciar Documentos</h3>
+     <span class="operacoes">
+         <a id="addDocument" class="_criar">Inserir Documento</a>
+     </span>
+<br/>
+<br/>
 
 <fieldset>
   <legend>Filtrar Documentos</legend>
@@ -216,7 +228,7 @@
       [% c.model('XSD').link_xsd(id_volume, controle, c.model('LDAP').assuntos_dn, xqueryret ) %]
   </div>
 </div>
-
+</div>
 <style rel="stylesheet" type="text/css">
   .text {
     padding:10px 10px 10px 10px;
@@ -244,6 +256,24 @@
 </style>
 
 <script language="javascript" type="text/javascript">
+
+    function confirmaFechamentoVolume(){
+        if (!confirm('Deseja realmente fechar este volume?')){
+             return false;
+        }
+     }
+
+    function confirmaFechamentoDossie(){
+        if (!confirm('Deseja realmente fechar este prontuário?')){
+            return false;
+        }
+     }
+
+  function confirmaFechamentoVolume(){
+      if (!confirm('Deseja realmente fechar este volume?')){
+           return false;
+      }
+  }
 
   $(function(){
     //Adicionando evento de click no botão addDocumento
@@ -290,3 +320,4 @@
 </script>
 
 [% INCLUDE 'footer.tt' %]
+

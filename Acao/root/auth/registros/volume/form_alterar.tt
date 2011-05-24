@@ -19,7 +19,7 @@
 %]
 [% INCLUDE 'auth/registros/volume/header_alterar.tt' %]
 <br>
-<h1 class="titulo-form">Alterar Volume:</h1>
+<h3 class="titulo-form_">Alterar Volume:</h3>
 [% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume) ) %]
 [% SET nome = vol.nome %]
  <form id="form" name="form" action="[% c.uri_for_action('/auth/registros/volume/store_alterar', [ id_volume ]) %]" method="post" onsubmit="">

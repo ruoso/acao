@@ -18,6 +18,7 @@
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
 %]
 [% SET loc = c.model('LDAP').decompose_dn_local(local_basedn).reverse.join(' - ') %]
+
  <fieldset id="grupos">
 <!--    <legend> Localização: </legend>-->
      <div id="help">
@@ -26,7 +27,7 @@
         </p>
      </div>
  <dl>
-   <div id="divLocalVirtual">
+   <div id="divLocalVirtual" rel="[% local_basedn %]">
        <input type="checkbox" name="local_virtual" class="local_virtual"  > Este prontuário é Virtual <br/><br/>
    </div>
    <div id="divHerdarLocal" ><input type="checkbox" name="herdar_local" class="herdar_local"  >
@@ -89,9 +90,12 @@
 
    });
 
+
+
   $('#divLocal').hide();
   $('#opcao_local').hide();
   $('.herdar_local').attr('checked',true);
+
 
   if ($('.herdar_local').attr('checked')) {
      $('#divLocalVirtual').hide();
@@ -99,9 +103,14 @@
      $('#divLocalVirtual').show();
    }
 
-  if ('[% local_basedn %]' == '[% c.model('LDAP').local_dn %]') {
-      $('#divLocalVirtual').remove();
-   }
+
+
+
+  if ($('#divLocalVirtual').attr('rel') == '[% c.model("LDAP").local_dn %]') {
+      $('.local_virtual').hide();
+      $('#divLocalVirtual').text('');
+
+  };
 
 
   $('.local_virtual').click(function() {
@@ -111,36 +120,38 @@
        $('#opcao_local').hide();
        $('#divLocalVirtual').show();
        $('#divHerdarLocal').hide();
+
        $('#localizacao').val(false) ;
       } else {
        $('#divLocalVirtual').hide();
        $('#divLocalVirtual').show();
        $('#divLocal').show();
        $('#opcao_local').show();
+       $('#opcao_local').show();
        $('#divHerdarLocal').show();
-
-
       }
   });
-  $('.herdar_local').click(function() {
-
-   if ($(this).attr('checked')) {
-       $('#divLocalVirtual').hide();
-       $('#divLocal').hide();
-       $('#opcao_local').hide();
-       $('.textLocal').css('text-decoration','none');
-       $('.local_virtual').attr('checked', false);
-       $('#localizacao').val(false) ;
-   } else {
-       $('#divLocalVirtual').hide();
-       $('#divLocalVirtual').show();
-       $('#divLocal').show();
-       $('#opcao_local').show();
-       $('.textLocal').css('text-decoration','line-through');
-   }
 
 
-  });
+   $('.herdar_local').click(function() {
+
+    if ($(this).attr('checked')) {
+        $('#divLocalVirtual').hide();
+        $('#divLocal').hide();
+        $('#opcao_local').hide();
+        $('.textLocal').css('text-decoration','none');
+        $('.local_virtual').attr('checked', false);
+        $('#localizacao').val(false) ;
+    } else {
+        $('#divLocalVirtual').hide();
+        $('#divLocalVirtual').show();
+        $('#divLocal').show();
+        $('#opcao_local').show();
+        $('.textLocal').css('text-decoration','line-through');
+    }
+
+
+   });
 
 
 

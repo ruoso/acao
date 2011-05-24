@@ -54,8 +54,7 @@
 				</xs:annotation>
 				<xs:simpleType>
 					<xs:restriction base="xs:string">
-						<xs:enumeration value="Sim" />
-						<xs:enumeration value="Não" />
+						<xs:maxLength value="255"></xs:maxLength>
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>

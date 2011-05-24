@@ -19,7 +19,7 @@
 %]
 [% INCLUDE 'auth/registros/volume/dossie/header_alterar.tt' %]
 <br>
-<h1 class="titulo-form">Alterar Prontuário:</h1>
+<h3 class="titulo-form">Alterar Prontuário:</h3>
 [% SET dos = ( c.model('Dossie').getDadosDossie(id_volume, controle) ) %]
 [% SET nome = dos.nome %]
 [% SET localizacao = dos.localizacao %]
