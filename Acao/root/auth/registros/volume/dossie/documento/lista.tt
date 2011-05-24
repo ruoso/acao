@@ -48,7 +48,7 @@
 [% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume, c.model('LDAP').assuntos_dn, c.model('LDAP').local_dn) ) %]
 [% SET dos = ( c.model('Dossie').getDadosDossie(id_volume, controle, c.model('LDAP').assuntos_dn, c.model('LDAP').local_dn) ) %]
 <div id="accordion">
-  <h3><a href="#">Dados do Volume: [% vol.nome %]</a></h3>
+  <h3><a href="#">Dados do Volume: <span class="label"> [% vol.nome %] </span></a></h3>
   <div>
     <fieldset class="fieldsetBorderNone">
         <dl class="form15">
@@ -81,7 +81,7 @@
      </fieldset>
 
   </div>
-  <h3><a href="#">Dados do Prontuário: [% dos.nome %]</a></h3>
+  <h3><a href="#">Dados do Prontuário:<span class="label">  [% dos.nome %] </span></a></h3>
     <div>
       <fieldset class="fieldsetBorderNone">
          <dl class="form15">
