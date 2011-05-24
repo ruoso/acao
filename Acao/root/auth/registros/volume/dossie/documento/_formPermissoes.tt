@@ -41,8 +41,11 @@
 <br/>
 
 <br/>
-
-  <div>
+  <div id="showDivAutorizacoes">
+      <img src="[% c.uri_for('/static/img/pass/lock_go.png') %]"  />
+        <a href="javascript:void(0)" alt="Gerenciar Autorizacoes">Gerenciar Autorizacoes</a>
+ </div>
+  <div  id="divAutorizacoes">
     <div class="consultaLdap_new">
   <img src="[% c.uri_for('/static/img/magnifier.png') %]" alt=" Super Administrador" />
   <b>Localizar Grupo de Lotação </b> <br/>
@@ -117,6 +120,17 @@ $('input.dnLdap').each(function() {
   });
 });
 
+/*  Esconde a DIV de autorizações*/
+$('#divAutorizacoes').hide();
+
+$('#showDivAutorizacoes').click(function(){
+  if ($('#divAutorizacoes').css('display') == 'none') {
+     $('#divAutorizacoes').show();
+     } else {
+     $('#divAutorizacoes').hide();
+     }
+
+});
 
 
 $('#checkAllAcoes').click(function() {

@@ -142,12 +142,12 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
         $self->audit_criar( $id, $c->req->param('nome') );
     };
 
-    if ($@) { 
-        $c->flash->{erro} = $@ . ""; 
+    if ($@) {
+        $c->flash->{erro} = $@ . "";
         $c->res->redirect( $c->uri_for_action( '/auth/registros/volume/lista' ) );
     }
-    else { 
-        $c->flash->{sucesso} = 'Volume criado com sucesso'; 
+    else {
+        $c->flash->{sucesso} = 'Volume criado com sucesso';
         $c->res->redirect( $c->uri_for_action( '/auth/registros/volume/dossie/lista', [$id] ) );
     }
 
@@ -164,7 +164,13 @@ sub alterar_estado : Chained('get_volume') : PathPart('alterar_estado')
 {
     my ( $self, $c, $estado ) = @_;
     my $id_volume = $c->stash->{id_volume};
-
+    #   Checa se user logado tem autorização para executar a ação 'Alterar'
+    #
+    if ( !$c->model('Volume')->pode_alterar_volume( $c->stash->{id_volume} ) ) {
+        $c->flash->{autorizacao} = 'volume-alterar';
+        $c->res->redirect( $c->uri_for_action('/auth/registros/volume/lista') );
+        return;
+    }
     eval {
         $c->model('Volume')
           ->alterar_estado( $id_volume, $estado, $c->req->address );

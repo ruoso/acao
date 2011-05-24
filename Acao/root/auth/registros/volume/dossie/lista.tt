@@ -71,8 +71,8 @@
  <div id="operacoes">
      [% IF c.model('Volume').pode_alterar_volume(id_volume) %]
     <a href="[% c.uri_for_action('/auth/registros/volume/alterar_volume', [ id_volume ]) %]" class="alterar" >Alterar volume</a>
-     [% END %]
     <a href="[% c.uri_for_action('/auth/registros/volume/alterar_estado', [ id_volume ],'fechado') %]" class="_fechar" title="Fechar" onclick="return confirmaFechamentoVolume();" > Fechar </a>
+      [% END %]
 </div>
 
 <br/>
