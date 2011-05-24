@@ -109,7 +109,7 @@ sub transferir_lista : Chained('get_dossie') : PathPart('transferir_lista') :
   #   Checa se user logado tem autorização para executar a ação 'Transferir'
      if (!$c->model('Dossie')->pode_transferir_dossie($c->stash->{id_volume},$c->stash->{controle} )) {
      $c->flash->{autorizacao} = 'dossie-transferir';
-     $c->res->redirect( $c->uri_for_action('/auth/registros/volume/dossie/lista',[$c->stash->{id_volume},$c->stash->{controle}] ));
+     $c->res->redirect( $c->uri_for_action('/auth/registros/volume/dossie/lista',[$c->stash->{id_volume}] ));
      return
     }
 
@@ -207,7 +207,7 @@ sub alterar_estado : Chained('get_dossie') : PathPart('alterar_estado') :
     #   Checa se user logado tem autorização para executar a ação 'Alterar'
     if (!$c->model('Dossie')->pode_alterar_dossie($c->stash->{id_volume},$c->stash->{controle} )) {
      $c->flash->{autorizacao} = 'dossie-alterar';
-     $c->res->redirect( $c->uri_for_action('/auth/registros/volume/lista',$c->stash->{id_volume} ));
+     $c->res->redirect( $c->uri_for_action('/auth/registros/volume/dossie/lista',[$c->stash->{id_volume}] ));
      return
     }
 
@@ -240,7 +240,7 @@ sub transferir : Chained('get_dossie') : PathPart('transferir') : Args(0) {
   #   Checa se user logado tem autorização para executar a ação 'Transferir'
  if (!$c->model('Dossie')->pode_transferir_dossie($c->stash->{id_volume},$c->stash->{controle} )) {
      $c->flash->{autorizacao} = 'dossie-transferir';
-     $c->res->redirect( $c->uri_for_action('/auth/registros/volume/dossie/lista',[$c->stash->{id_volume},$c->stash->{controle}] ));
+     $c->res->redirect( $c->uri_for_action('/auth/registros/volume/dossie/lista',[$c->stash->{id_volume}] ));
      return;
  }
 

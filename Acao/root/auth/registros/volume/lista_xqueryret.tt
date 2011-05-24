@@ -57,7 +57,7 @@
         <td>
           {$x/ns:estado/text()}
         </td>
-
+        [%  IF c.model('Volume').pode_alterar_volume() %]
         { if ((( $x/ns:estado/text() eq 'fechado') or ( $x/ns:estado/text() eq 'fechado_arq')) and ($alterar > 0)) then (
           <td>
             <a href="[% c.uri_for_action('/auth/registros/volume/alterar_estado', [ '___id_volume___' ], 'aberto').replace('___id_volume___','{$x/ns:collection/text()}') %]" class="abrir" title="Abrir" > Abrir </a>
@@ -88,5 +88,6 @@
          </td>
        ) else (
          <td></td> )}
+       [% ELSE %] <td>------</td>[% END %]
 </tr>
 )
