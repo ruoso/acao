@@ -1653,13 +1653,22 @@ margin-top: 100px;
     overflow-x: auto;
     overflow-y: auto;
     position: relative;
-    width: auto;
+    min-width: 370px;
     z-index: 999999;
     top: 0px;
+
+
 }
 
 #lstDocumentos div.text div a {
-    min-width: 273px;
+    display: inline-table;
+    width: 100%;
+}
+#lstDocumentos div.text div a:HOVER{
+background-color: #ffffff;
+font-weight: 600;
+
+
 
 }
 
