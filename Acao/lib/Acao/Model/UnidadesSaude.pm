@@ -40,7 +40,7 @@ sub listaUnidadesSaude {
 	);
 
 	for my $rset (@result) {
-		push @postos, decode("utf-8", $rset->nome);
+		push @postos, $rset->nome;
 	}
 
 	return \@postos;

@@ -40,7 +40,7 @@ sub listaLogradouros {
 	);
 
 	for my $rset (@result) {
-		push @logradouros, decode("utf-8", $rset->nome);
+		push @logradouros, $rset->nome;
 	}
 
 	return \@logradouros;

@@ -25,6 +25,7 @@ use Data::Dumper;
 use warnings;
 use strict;
 
+
 use constant IDX_NS => 'http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd';
 
 my $controle =
@@ -244,7 +245,7 @@ sub find_for_index {
         if ($hashClause->{$k} ne '') {
             push @busca, {
                 'gin_indexes.key' => $k,
-                'gin_indexes.value' => { like => '%'.$hashClause->{$k}.'%' },
+                'UPPER(gin_indexes.value)' => { like => '%'.uc $hashClause->{$k}.'%' },
                 'invalidado' => 0
             };
         }
@@ -253,7 +254,7 @@ sub find_for_index {
     [@busca],
     {join => 'gin_indexes',
      distinct => 1});
-
+    
     return $entries;
     
 }

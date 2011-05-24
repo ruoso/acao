@@ -33,7 +33,7 @@ Essa classe registra a classe de schema para acesso ao DBIx::Class.
 
 __PACKAGE__->config(
     schema_class => 'Acao::Schema',
-    connect_info => [ 'dbi:pg:dbname=acao', 'acao', '12345', ]
+    connect_info => [ 'dbi:pg:dbname=acao', 'acao', '12345']
 );
 
 =head1 COPYRIGHT AND LICENSING

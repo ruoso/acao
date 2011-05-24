@@ -40,9 +40,8 @@ sub listaEscolas {
 	);
 
 	for my $rset (@result) {
-		#gambiarra para evitar o encode do encode feito pelo JSON
-		push @escolas, decode("utf-8", $rset->nome);
-#		push @escolas, $rset->nome;
+#		push @escolas, decode("utf-8", $rset->nome);
+		push @escolas, $rset->nome;
 	}
 
 	return \@escolas;

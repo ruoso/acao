@@ -42,7 +42,7 @@ sub listaBairros {
 	);
 
 	for my $rset (@result) {
-		push @bairros, decode("utf-8", $rset->nome);
+		push @bairros, $rset->nome;
 	}
 
 	return \@bairros;

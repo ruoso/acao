@@ -65,8 +65,6 @@ sub process {
 	my $cb = $cb_param ? $c->req->param($cb_param) : undef;
 	$self->validate_callback_param($cb) if $cb;
 	my $json = $self->json_dumper->($data, $self, $c); # weird order to be backward compat
-	warn "JSON: $json";
-	warn "JSON: ".decode("utf-8", $json);
 
 	# When you set encoding option in View::JSON, this plugin DWIMs
 	my $encoding = $self->encoding || 'utf-8';
