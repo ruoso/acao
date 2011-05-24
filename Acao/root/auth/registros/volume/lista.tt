@@ -114,7 +114,7 @@
      <PRE>[% error.info %]</PRE>
     </div>
 [% END %]
-
+[% paginacao = PROCESS 'auth/registros/volume/paginacao.tt' %]
 
 </TBODY>
 </table>
@@ -141,8 +141,11 @@
 
 </script>
 
-[% paginacao = PROCESS 'auth/registros/volume/paginacao.tt' %]
+
 [% paginacao %]
 </div>
 
+
+
 [% INCLUDE 'footer.tt' %]
+
