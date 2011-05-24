@@ -99,14 +99,17 @@
   $('.herdar_local').attr('checked',true);
   $('.herdar_local').attr('checked',true);
 
+
+
+  if ('[% c.model("LDAP").local_dn %]' == '[% local_basedn %]') {
+    $('.local_virtual').hide();
+    $('#divLocalVirtual').text('');
+  }
+
   if ($('.herdar_local').attr('checked')) {
-     $('#divLocalVirtual').hide();
+      $('#divLocalVirtual').hide();
    } else {
      $('#divLocalVirtual').show();
-   }
-
-  if ('[% local_basedn %]' == '[% c.model('LDAP').local_dn %]') {
-      $('#divLocalVirtual').remove();
    }
 
 
@@ -129,25 +132,26 @@
       }
   });
 
-  $('.herdar_local').click(function() {
-   if ($(this).attr('checked')) {
-       $('#divLocalVirtual').hide();
-       $('#divLocal').hide();
-       $('#opcao_local').hide();
-       $('.textLocal').css('text-decoration','none');
-       $('.local_virtual').attr('checked', false);
-       $('#localizacao').val(false) ;
 
-   } else {
-       $('#divLocalVirtual').hide();
-       $('#divLocalVirtual').show();
-       $('#divLocal').show();
-       $('#opcao_local').show();
-       $('.textLocal').css('text-decoration','line-through');
-   }
+     $('.herdar_local').click(function() {
+      if ($(this).attr('checked')) {
+          $('#divLocalVirtual').hide();
+          $('#divLocal').hide();
+          $('#opcao_local').hide();
+          $('.textLocal').css('text-decoration','none');
+          $('.local_virtual').attr('checked', false);
+          $('#localizacao').val(false) ;
+
+      } else {
+          $('#divLocalVirtual').hide();
+          $('#divLocalVirtual').show();
+          $('#divLocal').show();
+          $('#opcao_local').show();
+          $('.textLocal').css('text-decoration','line-through');
+      }
 
 
-  });
+     });
 
 
 

@@ -33,37 +33,23 @@
 [% SET nome_mae = c.req.param('nome_mae') %]
 
 [% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume, c.model('LDAP').assuntos_dn, c.model('LDAP').local_dn) ) %]
-
-<br>
-<h1 class="titulo-form">Gerenciar Prontuários |
-  <span style="font-size:13px; font-weight:normal;">
-
-    [% IF c.model('Dossie').pode_criar_dossie(id_volume) %]
-        <a class="criar" href="[% c.uri_for_action('/auth/registros/volume/dossie/form', [ id_volume ]) %]">Criar Prontuário</a>
-    [% END %]|
-    [% IF c.model('Volume').pode_alterar_volume(id_volume) %]
-      <a href="[% c.uri_for_action('/auth/registros/volume/alterar_volume', [ id_volume ]) %]">Alterar volume</a>
-    [% END %]
-
-  </span>
-</h1>
-
 <div id="accordion">
-  <h3><a href="#">Dados do Volume: [% vol.nome %]</a></h3>
+  <h3><a href="#">Dados do Volume: <span class="label"> [% vol.nome %] </span></a>
+  </h3>
   <div>
     <fieldset class="fieldsetBorderNone">
         <dl class="form15">
-           <dt> <label> Volume: </label> </dt>
+           <dt><label> Volume:</label></dt>
            <dd> <span>[% vol.nome %]</span>	</dd>
 
            <dt>Classificação:</dt>
            <dd><span>[% vol.classificacoes %]</span></dd>
 
-           <dt>Localização:</dt>            
+           <dt>Localização:</dt>
            <dd>
              <span>
                [% IF vol.localizacao.replace('\s+','') == c.model('LDAP').local_dn.replace('\s+','') %]
-                 Virtual 
+                 Virtual
                [% ELSE %]
                  [% vol.localizacao.replace('\s+','') %]
                [% END %]
@@ -82,164 +68,194 @@
     </fieldset>
   </div>
 </div>
-<br>
-
-<fieldset>
-  <legend>Buscar Prontuários</legend>
-
-  <form action="[% c.uri_for_action('/auth/registros/volume/dossie/lista', [ id_volume ]) %]">
-   <div>
-
-    [% SET numero_campos = (c.req.param('numero_campos')||0) + 0 %]
-    [% SET labels = [] %]
-
-    [% IF c.req.param('add_campo_pesquisa');
-       CALL c.req.param('pesquisa_' _ numero_campos _ '_ns', c.req.param('xsd_pesquisa'));
-       SET numero_campos = numero_campos + 1;
-       ELSIF c.req.param('del_campo_pesquisa') && numero_campos > 0;
-       SET numero_campos = numero_campos - 1;
-       END;
-    %]
-
-    <div>
-     <input type="hidden" name="numero_campos" value="[% numero_campos %]" />
-     <div>
-      <label> Nome do prontuário:
-      <input type="text" name="nome_prontuario" id="nome_prontuario" value="[% c.req.param('nome_prontuario') | html %]" /></label>
-      <input type="submit" name="submit_form" id="submit_form_2" value="Pesquisar">
-     </div>
-     <div>
-      <label>Adicionar um campo de pesquisa: <select name="xsd_pesquisa">[% c.model('XSD').options_xsd(id_volume, controle, c.model('LDAP').assuntos_dn) %]</select></label>
-      <input type="submit" name="add_campo_pesquisa" value="+" />
-      [% IF numero_campos > 0 %]<input type="submit" name="del_campo_pesquisa" value="-" />[% END %]
-     </div>
-    </div>
-
-    [% SET counter = 0 %]
-    [% WHILE (counter < numero_campos) %]
-    <fieldset id="campo_pesquisa_[% counter %]">
-     <legend>Buscar em:</legend>
-     [% SET schema = c.model('XSD').obter_xsd( c.req.param('pesquisa_' _ counter _ '_ns') ) %]
-     <input type="hidden" name="pesquisa_[% counter%]_ns" value="[% c.req.param('pesquisa_' _ counter _ '_ns') %]" />
-     <select name="campo_formulario_[% counter %]" id="campo_formulario_[% counter %]"  style="width:100%;">
-      [% FOREACH field IN c.model('Dossie').get_simpletype_annotations(schema) %]
-        <OPTION VALUE="[% field.path %]" [% IF (c.req.param('campo_formulario_' _ counter) == field.path); labels.push({ l => field.completelabel, ns => c.req.param('pesquisa_' _ counter _ '_ns'), p => field.path}) %] selected [% END %]>[% field.completelabel %]</OPTION>
+ <div id="operacoes">
+     [% IF c.model('Volume').pode_alterar_volume(id_volume) %]
+    <a href="[% c.uri_for_action('/auth/registros/volume/alterar_volume', [ id_volume ]) %]" class="alterar" >Alterar volume</a>
+    <a href="[% c.uri_for_action('/auth/registros/volume/alterar_estado', [ id_volume ],'fechado') %]" class="_fechar" title="Fechar" onclick="return confirmaFechamentoVolume();" > Fechar </a>
       [% END %]
-     </select>
-
-     <select name="campo_operador_[% counter %]" id="campo_operador_[% counter %]">
-      <option value="igual" [% IF (c.req.param('campo_operador_' _ counter) == 'igual') %] selected [% END %]>igual a</option>
-      <option value="igualn" [% IF (c.req.param('campo_operador_' _ counter) == 'igualn') %] selected [% END %]>igual a numero</option>
-      <option value="diferente" [% IF (c.req.param('campo_operador_' _ counter) == 'diferente') %] selected [% END %]>diferente de</option>
-      <option value="maior" [% IF (c.req.param('campo_operador_' _ counter) == 'maior') %] selected [% END %]>maior que</option>
-      <option value="maiorn" [% IF (c.req.param('campo_operador_' _ counter) == 'maiorn') %] selected [% END %]>maior que numero</option>
-      <option value="menor" [% IF (c.req.param('campo_operador_' _ counter) == 'menor') %] selected [% END %]>menor que</option>
-      <option value="menorn" [% IF (c.req.param('campo_operador_' _ counter) == 'menorn') %] selected [% END %]>menor que numero</option>
-      <option value="contem" [% IF (c.req.param('campo_operador_' _ counter) == 'contem') %] selected [% END %]>contém</option>
-      <option value="inicia" [% IF (c.req.param('campo_operador_' _ counter) == 'inicia') %] selected [% END %]>inicia com</option>
-      <option value="termina" [% IF (c.req.param('campo_operador_' _ counter) == 'termina') %] selected [% END %]>termina com</option>
-     </select>
-
-     <input type="text" id="valor_pesquisado_[% counter %]" name="valor_pesquisado_[% counter %]" value="[% c.req.param('valor_pesquisado_' _ counter) | html %]"  />
-    </fieldset>
-    [% counter = counter + 1; END %]
-
-   </div>
-  </form>
+</div>
 
 <br/>
+<!--<h3 class="">Gerenciar Prontuários-->
+<!--  <span style="font-size:13px; font-weight:normal;">-->
+<!--  </span>-->
+<!--</h3>-->
+<div id="caixaAcoes">
+  <h3>Gerenciar Prontuários   </h3>
+      <span class="operacoes">
+        [% IF c.model('Dossie').pode_criar_dossie(id_volume) %]
+            <a class="_criar" href="[% c.uri_for_action('/auth/registros/volume/dossie/form', [ id_volume ]) %]">Criar Prontuário</a>
+        [% END %]
+       </span>
+  <br/><br/>
+  <fieldset>
+    <legend>Buscar Prontuários</legend>
 
-[% IF c.req.param('submit_form') %]
+    <form action="[% c.uri_for_action('/auth/registros/volume/dossie/lista', [ id_volume ]) %]">
+     <div>
 
- [% # O foreach abaixo vai buscar diretamente no model por estar livre de contexto %]
- [% # (nao recebe argumento pela url) %]
+      [% SET numero_campos = (c.req.param('numero_campos')||0) + 0 %]
+      [% SET labels = [] %]
 
- [% TRY %]
- [%
-    xqueryret = PROCESS 'auth/registros/volume/dossie/lista_xqueryret.tt';
-    #    Listando dossies, pasando parametros para auditoria, construção da query e paginação .
-    xquery = c.model('Dossie').listar_dossies({
-                                                xqueryret         => xqueryret,
-                                                ip                => c.req.address,
-                                                id_volume         => id_volume,
-                                                interval_ini      => interval_ini,
-                                                num_por_pagina    => num_por_pagina,
-                                                pesquisa          => c.req.params()
-                                              });
-    #"<textarea cols=180 rows=80>" _ xquery.list _ "</textarea>";
-    #c.model('Sedna').conn.setConnectionAttr_CONCURRENCY_TYPE(c.model('Sedna').conn.SEDNA_READONLY_TRANSACTION);
-    c.model('Sedna').begin ;
-    c.model('Sedna').execute( xquery.list );
-  %]
+      [% IF c.req.param('add_campo_pesquisa');
+         CALL c.req.param('pesquisa_' _ numero_campos _ '_ns', c.req.param('xsd_pesquisa'));
+         SET numero_campos = numero_campos + 1;
+         ELSIF c.req.param('del_campo_pesquisa') && numero_campos > 0;
+         SET numero_campos = numero_campos - 1;
+         END;
+      %]
 
-<table id="buscadossie">
-<thead>
- <tr>
-  <th width="70px">Controle</th>
-  <th>Prontuário</th>
-  <th>Classificação</th>
-  <!--<th>Localização</th>-->
-  <th width="80px">Pront. Físico</th>
-  <th width="110px">Criação</th>
-  <th width="110px">Fechamento</th>
-  <th width="110px">Arquivamento</th>
-  <th width="40px">Estado</th>
-  <th colspan="6" align="center">Ação</th>
- </tr>
-</thead>
+      <div>
+       <input type="hidden" name="numero_campos" value="[% numero_campos %]" />
+       <div>
+        <label> Nome do prontuário:
+        <input type="text" name="nome_prontuario" id="nome_prontuario" value="[% c.req.param('nome_prontuario') | html %]" /></label>
+        <input type="submit" name="submit_form" id="submit_form_2" value="Pesquisar">
+       </div>
+       <div>
+        <label>Adicionar um campo de pesquisa: <select name="xsd_pesquisa">[% c.model('XSD').options_xsd(id_volume, controle, c.model('LDAP').assuntos_dn) %]</select></label>
+        <input type="submit" name="add_campo_pesquisa" value="+" />
+        [% IF numero_campos > 0 %]<input type="submit" name="del_campo_pesquisa" value="-" />[% END %]
+       </div>
+      </div>
 
- [%
-   WHILE (control = c.model('Sedna').get_item) ;
-     CALL c.controller.audit_listar(control);
-     SET html = c.model('Sedna').get_item ;
-     html ;
-   END
- %]
+      [% SET counter = 0 %]
+      [% WHILE (counter < numero_campos) %]
+      <fieldset id="campo_pesquisa_[% counter %]">
+       <legend>Buscar em:</legend>
+       [% SET schema = c.model('XSD').obter_xsd( c.req.param('pesquisa_' _ counter _ '_ns') ) %]
+       <input type="hidden" name="pesquisa_[% counter%]_ns" value="[% c.req.param('pesquisa_' _ counter _ '_ns') %]" />
+       <select name="campo_formulario_[% counter %]" id="campo_formulario_[% counter %]"  style="width:100%;">
+        [% FOREACH field IN c.model('Dossie').get_simpletype_annotations(schema) %]
+          <OPTION VALUE="[% field.path %]" [% IF (c.req.param('campo_formulario_' _ counter) == field.path); labels.push({ l => field.completelabel, ns => c.req.param('pesquisa_' _ counter _ '_ns'), p => field.path}) %] selected [% END %]>[% field.completelabel %]</OPTION>
+        [% END %]
+       </select>
 
- [% # Executa a contagem dos registros para fazer a paginação  %]
- [%
-    c.model('Sedna').execute( xquery.count );
+       <select name="campo_operador_[% counter %]" id="campo_operador_[% counter %]">
+        <option value="igual" [% IF (c.req.param('campo_operador_' _ counter) == 'igual') %] selected [% END %]>igual a</option>
+        <option value="igualn" [% IF (c.req.param('campo_operador_' _ counter) == 'igualn') %] selected [% END %]>igual a numero</option>
+        <option value="diferente" [% IF (c.req.param('campo_operador_' _ counter) == 'diferente') %] selected [% END %]>diferente de</option>
+        <option value="maior" [% IF (c.req.param('campo_operador_' _ counter) == 'maior') %] selected [% END %]>maior que</option>
+        <option value="maiorn" [% IF (c.req.param('campo_operador_' _ counter) == 'maiorn') %] selected [% END %]>maior que numero</option>
+        <option value="menor" [% IF (c.req.param('campo_operador_' _ counter) == 'menor') %] selected [% END %]>menor que</option>
+        <option value="menorn" [% IF (c.req.param('campo_operador_' _ counter) == 'menorn') %] selected [% END %]>menor que numero</option>
+        <option value="contem" [% IF (c.req.param('campo_operador_' _ counter) == 'contem') %] selected [% END %]>contém</option>
+        <option value="inicia" [% IF (c.req.param('campo_operador_' _ counter) == 'inicia') %] selected [% END %]>inicia com</option>
+        <option value="termina" [% IF (c.req.param('campo_operador_' _ counter) == 'termina') %] selected [% END %]>termina com</option>
+       </select>
 
- WHILE (contador = c.model('Sedna').get_item);
-       count = contador;
-    END;
+       <input type="text" id="valor_pesquisado_[% counter %]" name="valor_pesquisado_[% counter %]" value="[% c.req.param('valor_pesquisado_' _ counter) | html %]"  />
+      </fieldset>
+      [% counter = counter + 1; END %]
 
-   c.model('Sedna').commit;
-   # c.model('Sedna').conn.setConnectionAttr_CONCURRENCY_TYPE(c.model('Sedna').conn.SEDNA_UPDATE_TRANSACTION); %]
- [% CATCH %]
- <div class="erro">ERRO AO PROCESSAR CONSULTA:
-  <PRE>[% error.info %]</PRE>
- </div>
-[% END %]
+     </div>
+    </form>
+
+  <br/>
+
+  [% IF c.req.param('submit_form') %]
+
+   [% # O foreach abaixo vai buscar diretamente no model por estar livre de contexto %]
+   [% # (nao recebe argumento pela url) %]
+
+   [% TRY %]
+   [%
+      xqueryret = PROCESS 'auth/registros/volume/dossie/lista_xqueryret.tt';
+      #    Listando dossies, pasando parametros para auditoria, construção da query e paginação .
+      xquery = c.model('Dossie').listar_dossies({
+                                                  xqueryret         => xqueryret,
+                                                  ip                => c.req.address,
+                                                  id_volume         => id_volume,
+                                                  interval_ini      => interval_ini,
+                                                  num_por_pagina    => num_por_pagina,
+                                                  pesquisa          => c.req.params()
+                                                });
+      #"<textarea cols=180 rows=80>" _ xquery.list _ "</textarea>";
+      #c.model('Sedna').conn.setConnectionAttr_CONCURRENCY_TYPE(c.model('Sedna').conn.SEDNA_READONLY_TRANSACTION);
+      c.model('Sedna').begin ;
+      c.model('Sedna').execute( xquery.list );
+    %]
+
+  <table id="buscadossie">
+  <thead>
+   <tr>
+    <th width="70px">Controle</th>
+    <th>Prontuário</th>
+    <th>Classificação</th>
+    <!--<th>Localização</th>-->
+    <th width="80px">Pront. Físico</th>
+    <th width="110px">Criação</th>
+    <th width="110px">Fechamento</th>
+    <th width="110px">Arquivamento</th>
+    <th width="40px">Estado</th>
+    <th colspan="6" align="center">Ação</th>
+   </tr>
+  </thead>
+
+   [%
+     WHILE (control = c.model('Sedna').get_item) ;
+       CALL c.controller.audit_listar(control);
+       SET html = c.model('Sedna').get_item ;
+       html ;
+     END
+   %]
+
+   [% # Executa a contagem dos registros para fazer a paginação  %]
+   [%
+      c.model('Sedna').execute( xquery.count );
+
+   WHILE (contador = c.model('Sedna').get_item);
+         count = contador;
+      END;
+
+     c.model('Sedna').commit;
+     # c.model('Sedna').conn.setConnectionAttr_CONCURRENCY_TYPE(c.model('Sedna').conn.SEDNA_UPDATE_TRANSACTION); %]
+   [% CATCH %]
+   <div class="erro">ERRO AO PROCESSAR CONSULTA:
+    <PRE>[% error.info %]</PRE>
+   </div>
+  [% END %]
 
 
-</table>
+  </table>
 
-<script language="javascript" type="text/javascript">
 
-    function confirmaFechamento(){
-        if (!confirm('Deseja realmente fechar este prontuário?')){
-            return false;
-        }
-     }
 
-    function confirmaArquivamento(){
-        if (!confirm('Deseja realmente arquivar este prontuário?')){
-            return false;
-        }
-    }
+  [% paginacao = PROCESS 'auth/registros/volume/dossie/paginacao.tt' %]
+  [% paginacao %]
+  </fieldset>
 
-    function confirmaResgate(){
-        if (!confirm('Deseja realmente resgatar este prontuário?')){
-            return false;
-        }
-     }
+  [% END %]
+</div>
+  <script language="javascript" type="text/javascript">
 
-</script>
-[% paginacao = PROCESS 'auth/registros/volume/dossie/paginacao.tt' %]
-[% paginacao %]
-</fieldset>
 
-[% END %]
+      function confirmaFechamento(){
+          if (!confirm('Deseja realmente fechar este prontuário?')){
+              return false;
+          }
+       }
 
-[% INCLUDE 'footer.tt' %]
+      function confirmaArquivamento(){
+          if (!confirm('Deseja realmente arquivar este prontuário?')){
+              return false;
+          }
+      }
+
+      function confirmaResgate(){
+          if (!confirm('Deseja realmente resgatar este prontuário?')){
+              return false;
+          }
+       }
+
+      function teste() {
+      alert('asdasdasdasds');
+      }
+      function confirmaFechamentoVolume(){
+          if (!confirm('Deseja realmente fechar este volume?')){
+               return false;
+          }
+       }
+
+  </script>
+  [% INCLUDE 'footer.tt' %]

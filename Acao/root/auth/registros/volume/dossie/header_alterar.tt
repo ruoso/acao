@@ -17,11 +17,17 @@
 # título "LICENCA.txt", junto com este programa, se não, escreva para a
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
 %]
+[% breadcrumb.unshift({ url => c.uri_for_action('/auth/registros/volume/dossie/alterar_dossie', [ id_volume, controle ]),
+      title => 'Alterar',
+      text => 'Alterar',
+      contexto => '' }) %]
 
 [% breadcrumb.unshift({ url => c.uri_for_action('/auth/registros/volume/dossie/documento/lista', [ id_volume, controle ]),
       title => 'Prontuário',
       text => 'Prontuário',
-      contexto => 'Alterar' }) %]
+      contexto => '' }) %]
+
+
 
 
 [% INCLUDE 'auth/registros/volume/dossie/header.tt' %]

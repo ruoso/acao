@@ -52,13 +52,18 @@
                 Ação - Sistema de Acompanhamento de Projetos Sociais
                 <table>
                     <tr>
+                      [% IF sysAdmin %]
+                        <th>Administrador:</th>
+                      [% ELSE %]
                         <th>Operador:</th>
-                        <td>[% c.user.cn %]</td>
+                      [% END %]
+                        <td><a href="[% c.uri_for_action('/auth/usuario/ver_user') %]" alt="Editar Conta" title="Alterar Senha">[% c.user.cn %]</a></td>
                     </tr>
                 </table>
             </div>
         </div>
         <div id='barraTopo'>
+        <div class="contextoPlataforma"> Plataforma de Registros </div>
             <ul>
                 <li style="float: right"><a href="[% c.uri_for_action('/auth/logout') %]" title="Sair">Sair</a></li>
             </ul>
@@ -71,9 +76,12 @@
    [% ELSE %]
           <a href="[% item.url %]" title='[% item.title %]'>[% item.text %]</a> »
    [% END %]
-[% END %]
 
-<span class="contexto"> [% #  breadcrumb.last.contexto %]</span>
+[% END %]
+<br/>
+
+
+
 
 
 

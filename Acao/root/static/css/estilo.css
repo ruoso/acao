@@ -3,7 +3,9 @@ html
     font-family: Arial, Helvetica, sans-serif;
     margin: 0px;
 }
-
+a {
+  outline: none;
+}
 body {
   background: url(../img/degrade.jpg) repeat-x 0% 130px;
   margin: 0px;
@@ -29,7 +31,12 @@ a, a:active, a:hover, a:visited {
     /*width: 760px;*/
     background: #D40000 url(../img/bg_topo2.png) top left repeat-x;
 }
-
+#topo a {
+  background: url(../img/user/user_edit.png) no-repeat left center;
+  padding-left: 22px;
+  text-decoration: none;
+  color: #ffffff;
+}
 #topo img {
   margin:2px;
   float:left;
@@ -44,8 +51,8 @@ a, a:active, a:hover, a:visited {
     text-shadow: 1px 1px #CC0000;
     letter-spacing: 1px;
     color: #FFFFFF;
-  float: right;
-  margin-right: 30px;
+    float: right;
+    margin-right: 30px;
 }
 
 #topoTitulo table
@@ -61,9 +68,12 @@ a, a:active, a:hover, a:visited {
 #barraTopo
 {
     margin: 0px auto 0px;
+    text-shadow: 0 2px 3px #FFFFFF;
     height: 30px;
     background: #FFD214 url(../img/bgRodape.png) top left repeat-x;
     z-index: 10;
+    font-weight: bold;
+    color: #000000;
 }
 
 #barraTopo ul
@@ -133,6 +143,7 @@ a, a:active, a:hover, a:visited {
     text-align:left;
   background: url(../img/house.png) no-repeat 0% 1px;
   text-indent: 22px;
+  font-size: 13px;
   /*height: 22px;*/
     /*width:758px;*/
     /*border: 1px solid #E6B800;*/
@@ -218,6 +229,8 @@ a.voltar {
      bottom:0px;
      height:30px;
      width:100%;
+
+
 }
 
 form {
@@ -570,7 +583,7 @@ button {
 }
 
 /* Alterações Bruno 28/09/2009 */
-a.editar {
+a.editar  {
   display: block;
   width: 28px;
   height: 22px;
@@ -633,6 +646,7 @@ tr.odd td {
   background-repeat: no-repeat;
         padding: 1em 2em 1em 3em;
         margin: 1em;
+        margin-bottom: 2em;
         display: block;
         border: solid 1px darkgreen;
 }
@@ -646,6 +660,7 @@ tr.odd td {
   background-repeat: no-repeat;
         background-color: #fe9;
         margin: 1em;
+        margin-bottom: 2em;
         padding: 1em 2em 1em 3em;
         display: block;
         border: solid 1px darkred;
@@ -1163,6 +1178,80 @@ a.retirar_acao {
   float: right;
 }
 
+
+a.alterar {
+    -moz-background-clip: border;
+    -moz-background-origin: padding;
+    -moz-background-size: auto auto;
+    background-attachment: scroll;
+    background-color: transparent;
+    background: url(../img/pencil.png) no-repeat;
+    background-position: 0 1px;
+    background-repeat: no-repeat;
+    line-height: 18px;
+    padding-bottom: 5px !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    padding-top: 2px !important;
+    text-indent: 1em;
+
+}
+
+a._fechar {
+    -moz-background-clip: border;
+    -moz-background-origin: padding;
+    -moz-background-size: auto auto;
+    background-attachment: scroll;
+    background-color: transparent;
+    background-position: 0 1px;
+    background-repeat: no-repeat;
+    line-height: 18px;
+    padding-bottom: 5px !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    padding-top: 2px !important;
+    text-indent: 1em;
+    background: url(../img/application_form_delete.png) no-repeat ;
+
+}
+
+a._criar {
+    -moz-background-clip: border;
+    -moz-background-origin: padding;
+    -moz-background-size: auto auto;
+    background-attachment: scroll;
+    background-color: transparent;
+    background-position: 0 1px;
+    background-repeat: no-repeat;
+    line-height: 14px;
+    padding-bottom: 5px !important;
+    padding-left: 5px !important;
+    padding-right: 20px !important;
+    padding-top: 2px !important;
+    text-indent: 1em;
+    background: url(../img/add_cross.png) no-repeat ;
+
+}
+
+a._buscar {
+    -moz-background-clip: border;
+    -moz-background-origin: padding;
+    -moz-background-size: auto auto;
+    background-attachment: scroll;
+    background-color: transparent;
+    background-position: 0 1px;
+    background-repeat: no-repeat;
+    line-height: 14px;
+    padding-bottom: 5px !important;
+    padding-left: 5px !important;
+    padding-right: 20px !important;
+    padding-top: 2px !important;
+    text-indent: 1em;
+    background: url(../img/magnifier.png) no-repeat ;
+
+
+}
+
 /* END * icones ,Botões e Links by Carlos Wherbet */
 
 /* Correção. Sobrescrevendo CSS que estão quebrando a aplicação  Carlos Wherbet*/
@@ -1333,8 +1422,250 @@ width: auto !important;
 }
 
 
-.contexto {
-  color: #666666;
-  font-size: 14px;
+.contextoPlataforma {
+    color: #000000;
+    float: left;
+    font-size: 19px;
+    margin-left: 10px;
+    margin-top: 4px;
+    text-shadow: 0 2px 3px #FFFFFF;
+
+}
+
+#caixaAcoes {
+  border: 1px solid #cccccc;
+    float: none;
+    margin-top: 0px;
+    padding-bottom: 6px;
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-top: 6px;
+    width: 250px;
+    background: #FFFFAF;
+    margin-bottom: 40px !important;
+    padding-bottom: 30px;
+    width: 99%;
+
+
+}
+
+
+
+#caixaAcoes fieldset , #caixaAcoes table, .boxAdm fieldset{
+  background-color: #ffffff !important;
+
+
+
+}
+
+#caixaAcoes table td {
+    text-align: left !important;
+}
+
+#caixaAcoes a {
+  float: left;
+}
+#caixaAcoes span.operacoes {
+   float: right;
+  /* margin-top: -26px;
+   font-weight: bold;
+   background: #FFFFAF;
+   border-right: 1px solid #cccccc;
+   border-top: 1px solid #cccccc;
+   border-left: 1px solid #cccccc;
+   padding-left: 5px;
+   padding-right: 10px;
+   margin-left: -7px;
+   text-shadow: 1px 1px #ffffff;
+   padding-top: 5px; */
+
+
+
+}
+
+
+.titulo-form_ {
+
+
+
+
+}
+
+#infoDetalhes {
+margin-top: 100px;
+
+
+}
+
+#infoDetalhes #caixaAcoes {
+  width: 100%;
+  float: none;
+  font-size: 12px !important;
+
+}
+
+#infoDetalhes #caixaAcoes .labelOperacoes {
+   float: right;
+   margin-top: -20px;
+   font-weight: bold;
+   background: #ffffff;
+   border-right: 1px solid #cccccc;
+   border-top: 1px solid #cccccc;
+   border-left: 1px solid #cccccc;
+   padding-left: 5px;
+   padding-right: px;
+   margin-left: -7px;
+   margin-right: 200px;
+
+}
+
+#infoDetalhes #caixaAcoes .operacoes {
+   float: right;
+   margin-top: -90px !important;
+   width: 278px;
+
+}
+
+#caixaAcoes h3 {
+  margin: 0px !important;
+}
+
+
+#caixaAcoes .caixaAcoesRight {
+    border: 1px solid #cccccc;
+    float: right;
+    margin-top: 0px;
+    padding-bottom: 10px;
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-top: 6px;
+    width: 250px;
+    background: #ffffff;
+    margin-bottom: 10px;
+
+}
+
+#operacoes, #operacoesVolume  {
+  float: right;
+  margin-top: -23px;
+  position: relative;
+  z-index: 99999;
+  margin-right: 10px;
+
+  }
+
+#operacoesVolume {
+    margin-top: -55px;
+    position: relative;
+
+}
+
+ #operacoes a, #operacoesVolume  a {
+   padding: 5px;
+   text-decoration: underline;
+ }
+
+  #operacoes a:HOVER , #operacoesVolume  a:HOVER  {
+
+   text-decoration: none;
+}
+
+/*   ACCORDION - Carlos Wherbet */
+#accordion  {
+
+   font-size: 12px;
+
+  }
+
+#accordion:HOVER{
+   background: url(../img/degrade.jpg) repeat-x 0px -10px;
+}
+
+
+#accordion .ui-state-active  {
+   background: url(../img/arrowUp.png) no-repeat left center ;
+   background-position: 3px !important;
+
+
+
+}
+
+#accordion .ui-state-active:HOVER  {
+   background: url(../img/arrowUpHover.png) no-repeat left center ;
+   background-position: 3px !important;
+
+}
+
+#accordion .ui-state-default {
+   background: url(../img/arrowDown.png) no-repeat left center !important;
+   background-position: 3px !important;
+}
+
+#accordion .ui-state-default:HOVER   {
+   background: url(../img/arrowDownHover.png) no-repeat left center !important;
+   background-position: 3px !important;
+
+}
+
+
+#accordion h3 a span.label {
+  color: #000000 !important;
+
+}
+
+
+#accordion a {
+  color: #CC0000;
+  text-decoration: none;
+}
+
+#accordion a span.label:HOVER {
+  text-decoration: none;
+  font-weight: bold;
+;
+
+}
+
+#accordion fieldset {
+  overflow: hidden !important;
+}
+#accordion dl dt {
+  width: 200px !important;
+  padding: 0px;
+  overflow: hidden !important;
+}
+
+#accordion dl dd {
+  width: auto !important;
+  padding: 0px;
+  overflow: hidden !important;
+
+}
+/*  END  ACCORDION - Carlos Wherbet */
+
+#lstDocumentos  {
+    float: right !important;
+    height: 300px !important;
+    left: 0;
+    line-height: 1.6em;
+    margin-right: 145px !important;
+    margin-top: -379px !important;
+    overflow-x: auto;
+    overflow-y: auto;
+    position: relative;
+    width: auto;
+    z-index: 999999;
+    top: 0px;
+}
+
+.boxAdm {
+ background-color: #FFFFAF;
+ padding: 10px;
+ border: 1px solid #cccccc;
+
+}
+/* Paginação   */
+.paginacao-grid {
+
 
 }

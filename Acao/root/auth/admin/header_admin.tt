@@ -53,13 +53,13 @@
                 <table>
                     <tr>
                         <th>Administrador:</th>
-                        <td>[% c.user.cn %]</td>
+                        <td><a href="[% c.uri_for_action('/auth/admin/usuario/ver_user',[ c.user.dn ]) %]" alt="Editar Conta" title="Alterar Senha">[% c.user.cn %]</a></td>
                     </tr>
                 </table>
             </div>
         </div>
         <div id='barraTopo'>
-
+        <div class="contextoPlataforma"> Plataforma Administrativa </div>
             <ul>
                 <li style="float: right"><a href="[% c.uri_for_action('/auth/logout') %]" title="Sair">Sair</a></li>
             </ul>

@@ -165,6 +165,26 @@ sub _buscar_local {
 
     return \@return
 }
+
+sub getDnDescription {
+    my ( $self, $dn, $base ) = @_;
+    my $ldap = _bind_ldap_admin($self);
+    my @args = (
+        base   => $base,
+        filter => "(&(entryDN=" . $dn . "))",
+        scope  => 'sub',
+        attrs  =>
+          [qw/description cn/],
+    );
+    my $mesg = $ldap->search(@args);
+
+
+    return {
+        description       => $mesg->entry->get_value('description') || $mesg->entry->get_value('cn'),
+        dn                => $dn,
+    };
+
+}
 sub _buscar_dn {
     my ( $self, $base ) = @_;
     my $mesg = $self->ldap->search(
@@ -186,6 +206,10 @@ sub decompose_dn_grupos {
 
 sub decompose_dn_local {
     $_[0]->decompose_dn( $_[1], $_[0]->local_dn );
+}
+
+sub decompose_dn_acao {
+    $_[0]->decompose_dn( $_[1], $_[0]->base_acao );
 }
 
 sub decompose_dn {
@@ -270,7 +294,7 @@ sub LDAPChangeMemberEntry {
 
 sub searchLDAP {
     my ( $self, $args ) = @_;
-    my $ldap = $self->_bind_ldap_admin($self);
+    my $ldap = _bind_ldap_admin($self);
     my $page = Net::LDAP::Control::Paged->new( size => 5 );
     my @args = (
         base   => $args->{base},

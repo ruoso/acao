@@ -37,6 +37,8 @@ sub getUsuario : Chained('base') : PathPart('') : CaptureArgs(1) {
     $c->stash->{dn_usuario} = $dn_usuario;
 }
 
+
+
 sub lista : Chained('base') : PathPart('') : Args(0) {
     my ( $self, $c ) = @_;
 
@@ -82,6 +84,7 @@ sub ver_user : Chained('getUsuario') : PathPart('ver') : Args(0) {
 
 }
 
+
 sub alterar_lotacao : Chained('getUsuario') : PathPart('alterar_lotacao')
   : Args(0)
 {
@@ -114,6 +117,8 @@ sub alterar_senha : Chained('getUsuario') : PathPart('alterar_senha') : Args(0)
       $c->model('Usuario')
       ->getDadosUsuarioLdap( $c->stash->{dn_usuario}, 'acao' );
 }
+
+
 
 sub searchUser : Chained('base') : PathPart('buscar') : Args(0) {
     my ( $self, $c ) = @_;
@@ -426,6 +431,8 @@ sub store_alterar_senha : Chained('getUsuario')
     $c->stash->{template} = 'auth/admin/usuario/sucesso_alter_pass.tt';
 
 }
+
+
 
 sub alterar_permissoes : Chained('getUsuario') : PathPart('alterar_permissoes')
   : Args(0)

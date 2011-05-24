@@ -17,7 +17,7 @@
 # título "LICENCA.txt", junto com este programa, se não, escreva para a
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
 %]
-[% INCLUDE 'auth/registros/volume/dossie/documento/header.tt' %]
+[% INCLUDE 'auth/registros/volume/dossie/documento/header_criar.tt' %]
 [% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume, c.model('LDAP').assuntos_dn, c.model('LDAP').local_dn) ) %]
 [% SET dos = ( c.model('Dossie').getDadosDossie(id_volume, controle, c.model('LDAP').assuntos_dn, c.model('LDAP').local_dn) ) %]
 
@@ -44,11 +44,11 @@
       <dt>Classificação:</dt>
       <dd><span>[% vol.classificacoes %]</span></dd>
 
-      <dt>Localização:</dt>            
+      <dt>Localização:</dt>
       <dd>
         <span>
           [% IF vol.localizacao.replace('\s+','') == c.model('LDAP').local_dn.replace('\s+','') %]
-            Virtual 
+            Virtual
           [% ELSE %]
             [% vol.localizacao.replace('\s+','') %]
           [% END %]
@@ -120,6 +120,25 @@
  <script language="javascript">
    generateForm("[% c.uri_for_action('/auth/registros/xsd/raw', { ns => c.req.param('xsdDocumento') } ) %]", "form_container");
    generateXsdFormUI();
+
+ $("documment").ready(function(){
+
+
+
+    $('#help p').hide();
+
+    $('#help > img').click(function() {
+    var class = '.' + $(this).attr('class') + ' ~ p';
+
+    if ($(class).css('display') == 'block') {
+        $(class).slideToggle();
+     } else {
+       $(class).slideDown();
+
+     }
+
+  });
+});
  </script>
 
 [% INCLUDE 'footer.tt' %]
