@@ -18,22 +18,23 @@
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
 %]
 [% INCLUDE 'auth/admin/header.tt' %]
-<h1>Área Administrativa</h1>
-[%usuario%]
-<fieldset>
-<legend>Plataforma Administrativa</legend>
-  <ul>
-   <li><a href="[%c.uri_for_action('/auth/admin/schema/lista')%]">Schemas</a></li>
-   <li><a href="[%c.uri_for_action('/auth/admin/usuario/lista')%]">Usuários e Grupos</a></li>
-  </ul>
-</fieldset>
-<fieldset>
-<legend>Plataforma de Registros</legend>
-  <ul>
-   <li><a href="[%c.uri_for_action('/auth/registros/digitador/lista')%]">Digitador</a></li>
-   <li><a href="[%c.uri_for_action('/auth/registros/revisor/lista')%]">Revisor</a></li>
-   <li><a href="[%c.uri_for_action('/auth/registros/consolidador/lista')%]">Consolidador</a></li>
-   <li><a href="[%c.uri_for_action('/auth/registros/volume/lista')%]">Volume</a></li>
-  </ul>
-</fieldset>
+<div class="boxAdm">
+    <h3>Área Administrativa</h3>
+    <fieldset>
+    <legend>Plataforma Administrativa</legend>
+      <ul>
+       <li><a href="[%c.uri_for_action('/auth/admin/schema/lista')%]">Schemas</a></li>
+       <li><a href="[%c.uri_for_action('/auth/admin/usuario/lista')%]">Usuários e Grupos</a></li>
+      </ul>
+    </fieldset>
+    <fieldset>
+    <legend>Plataforma de Registros</legend>
+      <ul>
+       <li><a href="[%c.uri_for_action('/auth/registros/digitador/lista')%]">Digitador</a></li>
+       <li><a href="[%c.uri_for_action('/auth/registros/revisor/lista')%]">Revisor</a></li>
+       <li><a href="[%c.uri_for_action('/auth/registros/consolidador/lista')%]">Consolidador</a></li>
+       <li><a href="[%c.uri_for_action('/auth/registros/volume/lista')%]">Volume</a></li>
+      </ul>
+    </fieldset>
+</div>
 [% INCLUDE 'footer.tt' %]
