@@ -20,90 +20,78 @@
 
 	<xs:complexType name="formSituacaoViolencia">
 		<xs:sequence>
-			<xs:element name="acessoPoliticas">
+			<xs:element name="situacaoVivenciadas" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>ACESSO A POLÍTICAS PÚBLICAS</xhtml:label>
+						<xhtml:label>Marcar o(s) tipo(s) de violência sofrida pela
+							adolescente e especificar abaixo
+									</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
 					<xs:sequence>
-						<xs:element name="situacaoVivenciadas" minOccurs="0">
+
+						<xs:element name="negligencia" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Marcar o(s) tipo(s) de violência sofrida pela
-										adolescente e especificar abaixo
-									</xhtml:label>
+									<xhtml:label>Negligência</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
-							<xs:complexType>
-								<xs:sequence>
-								
-									<xs:element name="negligencia" type="xs:boolean">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Negligência</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-
-									<xs:element name="violenciaFisica" type="xs:boolean">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Violência Física</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									
-									<xs:element name="abusoSexual" type="xs:boolean">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Abuso Sexual</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-
-									<xs:element name="exploracaoSexual" type="xs:boolean">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Esploração Sexual</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-
-									<xs:element name="vivenciaDeRua" type="xs:boolean">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Vivência de Rua</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-
-									<xs:element name="outras" type="xs:boolean">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Outras</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									
-									<xs:element name="especificarOutras" type="xs:string"
-										minOccurs="0">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Especificar Outras</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-
-								</xs:sequence>
-							</xs:complexType>
 						</xs:element>
-						
+
+						<xs:element name="violenciaFisica" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Violência Física</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="abusoSexual" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Abuso Sexual</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="exploracaoSexual" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Esploração Sexual</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="vivenciaDeRua" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Vivência de Rua</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="outras" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Outras</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="especificarOutras" type="xs:string"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Especificar Outras</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
-			
+
 		</xs:sequence>
 	</xs:complexType>
 </xs:schema>
