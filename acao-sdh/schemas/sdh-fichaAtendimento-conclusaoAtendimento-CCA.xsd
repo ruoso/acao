@@ -43,14 +43,14 @@
 			</xs:element>
 
 			<xs:element name="motivo">
-			
-				<xs:appinfo>
-					<xhtml:label>Motivos</xhtml:label>
-				</xs:appinfo>
-				
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Motivo</xhtml:label>
+					</xs:appinfo>
+				<xs:annotation>
 				<xs:complexType>
 					<xs:sequence>
-					
+
 						<xs:element name="opcoesMotivo">
 							<xs:annotation>
 								<xs:appinfo>
