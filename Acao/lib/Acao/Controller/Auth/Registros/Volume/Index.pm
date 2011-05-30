@@ -25,6 +25,8 @@ use Data::Dumper;
 use List::MoreUtils 'pairwise';
 
 
+
+
 =head1 NAME
 
 Acao::Controller::Auth::Registros::Volume::Dossie - Controlador
@@ -58,8 +60,9 @@ sub findIndexes : Chained('base') : PathPart('findIndexes') : Args(0) {
         }
     }
     my $entries = $c->model('Volume')->buscar_no_indice(\%hashIndexes);
+    warn Dumper($entries);
+
     $c->stash->{entries} = $entries;
-    
 }
 
 =head1 COPYRIGHT AND LICENSING

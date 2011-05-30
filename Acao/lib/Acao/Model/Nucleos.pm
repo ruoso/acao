@@ -40,7 +40,7 @@ sub listaNucleos {
 	);
 
 	for my $rset (@result) {
-		push @nucleos, decode("utf-8", $rset->nome);
+		push @nucleos, $rset->nome;
 	}
 
 	return \@nucleos;
