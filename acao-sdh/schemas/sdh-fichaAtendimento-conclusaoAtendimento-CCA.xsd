@@ -43,47 +43,30 @@
 			</xs:element>
 
 			<xs:element name="motivo">
-				<xs:annotation>
-					<xs:appinfo>
-						<xhtml:label>Motivo</xhtml:label>
-					</xs:appinfo>
-				</xs:annotation>
+			
+				<xs:appinfo>
+					<xhtml:label>Motivos</xhtml:label>
+				</xs:appinfo>
+				
 				<xs:complexType>
 					<xs:sequence>
-						<xs:element name="desistenciaDoAtendimento" type="xs:boolean">
+					
+						<xs:element name="opcoesMotivo">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Desistência do atendimento</xhtml:label>
+									<xhtml:label>Motivo</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
-						</xs:element>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Desistência do atendimento" />
+									<xs:enumeration value="Desligamento por retorno para família de origem" />
+									<xs:enumeration value="Desligamento por colocação em família substituta" />
+									<xs:enumeration value="Transferência" />
+									<xs:enumeration value="Outros" />
+								</xs:restriction>
+							</xs:simpleType>
 
-						<xs:element name="desligamentoPorRetornoParaFamiliaDeOrigem"
-							type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Desligamento por retorno para família de origem
-									</xhtml:label>
-								</xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-
-						<xs:element name="desligamentoPorColocacaoEmFamiliaSubstituta"
-							type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Desligamento por colocação em família substituta
-									</xhtml:label>
-								</xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-
-						<xs:element name="transferencia" type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Transferência</xhtml:label>
-								</xs:appinfo>
-							</xs:annotation>
 						</xs:element>
 
 						<xs:element name="outros" type="xs:boolean">
@@ -97,7 +80,7 @@
 						<xs:element name="especifiequeOutroMotivo" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Especifique outro motivo</xhtml:label>
+									<xhtml:label>Especifique outros motivos</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
