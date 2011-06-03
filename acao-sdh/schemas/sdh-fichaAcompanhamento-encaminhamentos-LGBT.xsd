@@ -33,12 +33,113 @@
 				</xs:simpleType>
 			</xs:element>
 
-			<xs:element name="encaminhamento" type="xs:string" minOccurs="0">
+			<xs:element name="encaminhamento" maxOccurs="100">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Encaminhamentos</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="data" type="xs:date" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Data</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						
+						<xs:element name="instituição" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Instituição</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Defensoria Pública" />
+									<xs:enumeration value="Ministério Público" />
+									<xs:enumeration
+										value="Secretaria de Segurança Pública e Defesa Social- SSPDS" />
+									<xs:enumeration value="SSPDS- Divisão de Homicídios" />
+									<xs:enumeration value="SSPDS - Polícia Militar" />
+									<xs:enumeration value="SSPDS - Delegacias" />
+									<xs:enumeration value="Secretaria de Justiça do Estado do Ceará" />
+									<xs:enumeration value="Superintendencia Regional do Trabalho" />
+									<xs:enumeration value="Tribunal de Justiça do Ceará" />
+									<xs:enumeration value="PMF - Secretaria Executiva Regional" />
+									<xs:enumeration value="PMF - Secretaria Municipal de Saúde" />
+									<xs:enumeration value="PMF - SMS - Posto de Saúde/ Hospital" />
+									<xs:enumeration
+										value="PMF - Secretaria Municipal de Assistência Social" />
+									<xs:enumeration value="PMF - SEMAS - CRAS" />
+									<xs:enumeration value="PMF - SEMAS - CREAS" />
+									<xs:enumeration value="PMF - Secretaria Municipal de Educação" />
+									<xs:enumeration value="PMF- HABITAFOR" />
+									<xs:enumeration value="PMF - Secretaria de Direitos Humanos" />
+									<xs:enumeration value="Câmara Municipal de Fortaleza" />
+									<xs:enumeration value="Assembléia Legislativa do Ceará" />
+									<xs:enumeration value="Outros órgãos do Governo do Estado" />
+									<xs:enumeration value="Outros órgãos da Prefeitura de Fortaleza" />
+									<xs:enumeration
+										value="Órgãos/instituições de outros Estados do Brasil" />
+									<xs:enumeration value="Governo Federal" />
+									<xs:enumeration value="Outros" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						
+						<xs:element name="especificarOutrasInstituicoes" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Caso outra instituição, especifique</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="assunto" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Assunto</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						
+						<xs:element name="observacoes" minOccurs="0" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Observações</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						
+							<xs:element name="profissionalQueEncaminhou" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Profissional que encaminhou</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Advogado/a" />
+									<xs:enumeration value="Assistente Social" />
+									<xs:enumeration value="Psicólogo/a" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
 			</xs:element>
 
 		</xs:sequence>
