@@ -1,0 +1,216 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-lgbt-registrogeralatendimento.xsd"
+	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
+	xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-lgbt-registrogeralatendimento.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="formRegistroGeralAtendimentoGBT" type="formRegistroGeralAtendimentoGBT">
+		<xs:annotation>
+			<xs:appinfo>
+				<xhtml:label>01. REGISTRO GERAL DE ATENDIMENTO</xhtml:label>
+				<class:classificacoes>
+					<class:classificacao>cn=Diversidade Sexual,cn=Direitos Humanos
+					</class:classificacao>
+				</class:classificacoes>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="formRegistroGeralAtendimentoGBT">
+
+		<xs:sequence>
+
+			<xs:element name="numeroInscricao" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Número atendimento</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="dataAtendimento" minOccurs="0" type="xs:date">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Data do atendimento </xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="diaSemana" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Dia da Semana</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Segunda-feira" />
+						<xs:enumeration value="Terça-feira" />
+						<xs:enumeration value="Quarta-feira" />
+						<xs:enumeration value="Quinta-feira" />
+						<xs:enumeration value="Sexta-feira" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="atendimento" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Atendimento</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Presencial" />
+						<xs:enumeration value="Telefone" />
+						<xs:enumeration value="Virtual" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="origemDenuncia" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Origem da denúncia</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Própria Vítima" />
+						<xs:enumeration value="Parente da Vítima" />
+						<xs:enumeration value="Desconhecido da Vítima" />
+						<xs:enumeration value="Conhecido da Vítima" />
+						<xs:enumeration value="Disque Direitos Humanos" />
+						<xs:enumeration value="Fala Fortaleza" />
+						<xs:enumeration value="Órgão Público" />
+						<xs:enumeration value="Movimento Social/Comunidade" />
+						<xs:enumeration value="Mídia: TV/Rádio/Jornal" />
+						<xs:enumeration value="Universidade" />
+						<xs:enumeration value="Outros" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="especfiqueOrigem" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Especifique o tipo de parentesco ou tipo de
+							intituição</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="violenciaMotivadaOrientacaoSexual"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>É violência motivada por Orientação sexual e/ou
+							Identidade de Gênero</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="violenciaDireitosOuOrientacoes"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Se trata de outro tipo de violação de direitos ou de
+							orientações</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="tipoViolenciaOuOrientacoes" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Se sim, que tipo de violação e/ou orientações
+						</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="União Estável/ União Civil" />
+						<xs:enumeration value="Adoção" />
+						<xs:enumeration value="Sucessão" />
+						<xs:enumeration value="Consumidor" />
+						<xs:enumeration value="Conflitos de vizinhança" />
+						<xs:enumeration value="Pesquisas acadêmicas/escolares sobre o tema" />
+						<xs:enumeration value="Outro" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="especfiqueViolacao" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Especifique o tipo de violação</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="comoConheceuCRLGBT" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Como Tomou conhecimento do CRLGBT</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Internet" />
+						<xs:enumeration value="Amigos" />
+						<xs:enumeration value="Televisão/rádio " />
+						<xs:enumeration value="Material Gráfico" />
+						<xs:enumeration value="Participação de Atividades da CDS" />
+						<xs:enumeration value="Outro" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="especfiqueConhecimentoCRLGBT" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Especifique o outro</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>
