@@ -147,7 +147,7 @@
 			<xs:element name="identidadeDoSexo" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Identidade do sexo</xhtml:label>
+						<xhtml:label>Identidade de gênero</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -192,11 +192,24 @@
 				</xs:simpleType>
 			</xs:element>
 
-			<xs:element name="seTranssexualFezCirurgiaDeReadequacao"
+			<xs:element name="autoIdentificacao" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Auto-identificação</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="seTransexualFezCirurgiaDeReadequacao"
 				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Se transsexual fez cirurgia de readequação
+						<xhtml:label>Se transexual fez cirurgia de readequação
 						</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
@@ -222,11 +235,11 @@
 				</xs:simpleType>
 			</xs:element>
 
-			<xs:element name="seTranssexualHouveRetificacaoNoRegistroCivil"
+			<xs:element name="seTransexualHouveRetificacaoNoRegistroCivil"
 				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Se transsexual houve retificacao no registro civil?
+						<xhtml:label>Se transexual ou travesti houve retificacao no registro civil?
 						</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
@@ -288,31 +301,10 @@
 				</xs:simpleType>
 			</xs:element>
 
-			<xs:element name="religiao" minOccurs="0">
+			<xs:element name="especifiqueOutraCor" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Religião</xhtml:label>
-					</xs:appinfo>
-				</xs:annotation>
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:enumeration value="Candomblé" />
-						<xs:enumeration value="Umbanda" />
-						<xs:enumeration value="Católica" />
-						<xs:enumeration value="Protestante" />
-						<xs:enumeration value="Espírita" />
-						<xs:enumeration value="Espiritualista" />
-						<xs:enumeration value="Outra de matriz africana" />
-						<xs:enumeration value="Nenhuma" />
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
-
-			<xs:element name="especifiqueOutraDeMatrizAfricana"
-				minOccurs="0">
-				<xs:annotation>
-					<xs:appinfo>
-						<xhtml:label>Especifique outra de matriz africana</xhtml:label>
+						<xhtml:label>Especifique outra cor</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -322,11 +314,56 @@
 				</xs:simpleType>
 			</xs:element>
 
-			<xs:element name="especifiqueOutraEspiritualista"
-				minOccurs="0">
+			<xs:element name="possuiDeficiencia" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Especifique outra espiritualista</xhtml:label>
+						<xhtml:label>Possui alguma deficiência</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="especifiqueDeficiencia" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Se possui deficiência, qual</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="religiao" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Religião e/ou orientação espiritual</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Candomblé" />
+						<xs:enumeration value="Umbanda" />
+						<xs:enumeration value="Católica" />
+						<xs:enumeration value="Protestante" />
+						<xs:enumeration value="Espírita" />
+						<xs:enumeration value="Nenhuma" />
+						<xs:enumeration value="Outras" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="especifiqueOutraReligiao" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Especifique outra religião</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
