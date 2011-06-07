@@ -32,7 +32,7 @@
     { if ( $x/dc:representaDocumentoFisico/text() eq '1' ) then ("Sim") else ("Não") }
     </td>
     <td>
-{ if (exists($x/dc:motivoInvalidacao/@documentoOriginal) ) then (
+{ if ( exists($x/dc:motivoInvalidacao/@documentoOriginal) ) then (
     <a title="{$x/dc:motivoInvalidacao/@documentoOriginal}" href="[% c.uri_for_action('/auth/registros/volume/dossie/documento/visualizar', [ id_volume, controle, '___id_documento___' ]).replace('___id_documento___', '{$x/dc:motivoInvalidacao/@documentoOriginal}') %]">Original</a>
 ) else ( ) }
     </td>

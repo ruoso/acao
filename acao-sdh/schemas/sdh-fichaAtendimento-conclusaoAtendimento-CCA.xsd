@@ -42,56 +42,42 @@
 				</xs:annotation>
 			</xs:element>
 
-			<xs:element name="motivo">
+			<xs:element name="opcoesMotivo">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Motivo</xhtml:label>
 					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Desistência do atendimento" />
+						<xs:enumeration value="Desligamento por retorno para família de origem" />
+						<xs:enumeration value="Desligamento por colocação em família substituta" />
+						<xs:enumeration value="Transferência" />
+						<xs:enumeration value="Outros" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="outros" type="xs:boolean">
 				<xs:annotation>
-				<xs:complexType>
-					<xs:sequence>
+					<xs:appinfo>
+						<xhtml:label>Outros</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
 
-						<xs:element name="opcoesMotivo">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Motivo</xhtml:label>
-								</xs:appinfo>
-							</xs:annotation>
-							<xs:simpleType>
-								<xs:restriction base="xs:string">
-									<xs:enumeration value="Desistência do atendimento" />
-									<xs:enumeration value="Desligamento por retorno para família de origem" />
-									<xs:enumeration value="Desligamento por colocação em família substituta" />
-									<xs:enumeration value="Transferência" />
-									<xs:enumeration value="Outros" />
-								</xs:restriction>
-							</xs:simpleType>
-
-						</xs:element>
-
-						<xs:element name="outros" type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Outros</xhtml:label>
-								</xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-
-						<xs:element name="especifiequeOutroMotivo" minOccurs="0">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Especifique outros motivos</xhtml:label>
-								</xs:appinfo>
-							</xs:annotation>
-							<xs:simpleType>
-								<xs:restriction base="xs:string">
-									<xs:maxLength value="255" />
-								</xs:restriction>
-							</xs:simpleType>
-						</xs:element>
-
-					</xs:sequence>
-				</xs:complexType>
+			<xs:element name="especifiequeOutroMotivo" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Especifique outros motivos</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
 			</xs:element>
 
 		</xs:sequence>
