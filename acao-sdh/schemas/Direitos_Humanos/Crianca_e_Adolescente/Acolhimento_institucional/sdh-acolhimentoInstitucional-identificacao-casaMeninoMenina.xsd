@@ -1,0 +1,550 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-acolhimentoinstitucional-identificacaocriancaadolescente-casameninosmeninas.xsd"
+	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-acolhimentoinstitucional-identificacaocriancaadolescente-casameninosmeninas.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="fromIdentificacaoCriancaAdolescente" type="fromIdentificacaoCriancaAdolescente">
+		<xs:annotation>
+			<xs:appinfo>
+				<xhtml:label>01. IDENTIFICAÇÃO DA CRIANÇA OU ADOLESCENTE</xhtml:label>
+				<class:classificacoes>
+					<class:classificacao>cn=Acolhimento Institucional,cn=Criança e Adolescente,cn=Direitos Humanos</class:classificacao>
+				</class:classificacoes>
+				<idx:index>
+                    <idx:hint key="pessoa.nome" xpath="fromIdentificacaoCriancaAdolescente/nome" />
+                    <idx:hint key="pessoa.nome" xpath="fromIdentificacaoCriancaAdolescente/grupoIrmaos/nome" />
+                   	<idx:hint key="pessoa.cpf" xpath="fromIdentificacaoCriancaAdolescente/cpf" />
+                   	<idx:hint key="pessoa.rg" xpath="fromIdentificacaoCriancaAdolescente/rg" />
+                </idx:index>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="fromIdentificacaoCriancaAdolescente">
+		<xs:sequence>
+
+			<xs:element name="numeroAtendimento" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Número atendimento</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="nome" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Nome</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="naturalidade" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Naturalidade</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="uf" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>UF</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="sexo" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Sexo</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Masculino" />
+						<xs:enumeration value="Feminino" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="dataNascimento" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Data de nascimento</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="idade" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Idade</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="certidaoNascimento" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Certidão de nascimento</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="livro" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Livro</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="fls" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Fls</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="rg" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>RG</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="cpf" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>CPF</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="ctps" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>CTPS</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="serie" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Série</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="racaEtinia" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Raça/Etnia</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Amarela" />
+						<xs:enumeration value="Branca" />
+						<xs:enumeration value="Negra" />
+						<xs:enumeration value="Parda" />
+						<xs:enumeration value="Indígena" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="orientacaoSexual" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Raça/Etnia</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Heterossexual" />
+						<xs:enumeration value="Homossexual" />
+						<xs:enumeration value="Travesti" />
+						<xs:enumeration value="Transgênero" />
+						<xs:enumeration value="Transexual" />
+						<xs:enumeration value="HSH" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="religiao" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Religião</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Católico" />
+						<xs:enumeration value="Espírita" />
+						<xs:enumeration value="Evangélico" />
+						<xs:enumeration value="Afro-brasileiras" />
+						<xs:enumeration value="Budista" />
+						<xs:enumeration value="Sem religião" />
+						<xs:enumeration value="Outros" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="dataAcolhimento" type="xs:date"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Data do acolhimento</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="meioChegadaServicoAcolhimento">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Meio de chegada da criança ou adolescente no serviço de acolhimento</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="procuraEspontanea" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Procura expontânea</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="apresentacaoPelaFamilia" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Apresentação pela família</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="apresentacaoPelaPolicia" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Apresentação pela polícia</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element
+							name="apresentacaoPelosServicosAssistenciaSocialSaudeEducacao"
+							type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Apresentacao pelos serviços assistencia social
+										saúde educação</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="encaminhamentoPeloConselhoTutelar"
+							type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Encaminhamento pelo conselho tutelar</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="encaminhamentoPeloForoVaraCriancaJuventude"
+							type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Encaminhamento pelo Foro/Vada da Criança e
+										Juventude?</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="conselhoTutelarFoiAcionadoNosCasosEmQueEleOuForoNaaoFoiResponsavelPeloAcolhimento" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>O Conselho Tutelar foi acionado nos casos em que ele
+							ou Foro/VIJ não foi responsável pelo acolhimento?</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="conselhoTutelarAtuaFormaPlantao"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>O Conselho Tutelar atua na forma de plantão?
+						</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="foroVaraInfanciaJuventudeFoiComunicadoNoPrazo24Horas" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>O Foro/Vara da Criança e Juventude foi comunicado no
+							prazo de 24 horas?</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element	name="foroVaraInfanciaJuventudeConfirmouMedidaAcolhimentoExpediuGuiaEncaminhouTodosRelatoriosNecessarios" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>O Foro/Vara da Criança e Juventude confirmou a medida
+							de acolhimento, expediu guia e encaminhou todos os relatórios
+							necessários?</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element	name="proximidadeServicoAcolhimentoResidenciaPaisResponsavelLegal" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Proximidade do serviço de acolhimento com a
+							residência dos pais/responsável legal:</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="acolhimentosAnteriores" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Acolhimentos anteriores</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+						<xs:enumeration value="Sem informação" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="atendimentos" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Atendimentos</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Primeiro atendimento (1ª Admissão)" />
+						<xs:enumeration value="1 a 3 readmissões" />
+						<xs:enumeration value="4 a 6 readmissões" />
+						<xs:enumeration value="Mais de 6 readmissões" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="origemEncaminhamento" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Origem do encaminhamento</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Demanda expontânea" />
+						<xs:enumeration value="Encaminhamento do conselho tutelar" />
+						<xs:enumeration value="Encaminhamento do JIJ com o ofício" />
+						<xs:enumeration value="Encaminhamento do JIJ, com a guia de acolhimento" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="varaResponsavel" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Vara responsável</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="JIJ 1ª Vara" />
+						<xs:enumeration value="JIJ 2ª Vara" />
+						<xs:enumeration value="JIJ 3ª Vara" />
+						<xs:enumeration value="JIJ 4ª Vara" />
+						<xs:enumeration value="JIJ 5ª Vara" />
+						<xs:enumeration value="Fóruns do interior do estado" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="procedenciaTerritorio" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Procedência / Território</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Regional I" />
+						<xs:enumeration value="Regional II" />
+						<xs:enumeration value="Regional III" />
+						<xs:enumeration value="Regional IV" />
+						<xs:enumeration value="Regional V" />
+						<xs:enumeration value="Regional VI" />
+						<xs:enumeration value="Regional centro" />
+						<xs:enumeration value="Região Metropolitana de Fortaleza" />
+						<xs:enumeration value="Outros municipios do Ceará" />
+						<xs:enumeration value="Outros estados" />
+						<xs:enumeration value="Sem endereço fixo ou não identificado" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="grupoIrmaos" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Grupo de irmãos</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="nome" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nome</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="data" type="xs:date" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Data</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="acolhidosMesmoServico" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Acolhidos no mesmo serviço?</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Sim" />
+									<xs:enumeration value="Não" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

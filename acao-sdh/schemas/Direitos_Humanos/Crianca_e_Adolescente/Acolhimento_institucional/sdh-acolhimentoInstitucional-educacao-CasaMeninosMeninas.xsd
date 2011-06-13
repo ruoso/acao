@@ -1,0 +1,114 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-acolhimentoinstitucional-educacao-casameninosmeninas.xsd"
+	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
+	xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-acolhimentoinstitucional-educacao-casameninosmeninas.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="formEducacao" type="formEducacao">
+
+		<xs:annotation>
+			<xs:appinfo>
+				<xhtml:label>04. EDUCAÇÃO</xhtml:label>
+				<class:classificacoes>
+					<class:classificacao>cn=Acolhimento Institucional,cn=Criança e Adolescente,cn=Direitos Humanos</class:classificacao>
+				</class:classificacoes>
+			</xs:appinfo>
+		</xs:annotation>
+
+	</xs:element>
+
+	<xs:complexType name="formEducacao">
+
+		<xs:sequence>
+		
+			<xs:element name="numeroAtendimento" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Número atendimento</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="anoEscolarAtual" minOccurs="0">
+
+				 <xs:annotation>
+                    <xs:appinfo>
+                        <xhtml:label>Ano escolar atual</xhtml:label>                    
+                    </xs:appinfo>
+                </xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Creche"/>
+						<xs:enumeration value="Pré-escola"/>
+						<xs:enumeration value="1º ano do ensino fundamental"/>
+						<xs:enumeration value="2º ano do ensino fundamental"/>
+						<xs:enumeration value="3º ano do ensino fundamental"/>
+						<xs:enumeration value="4º ano do ensino fundamental"/>
+						<xs:enumeration value="5º ano do ensino fundamental"/>
+						<xs:enumeration value="6º ano do ensino fundamental"/>
+						<xs:enumeration value="7º ano do ensino fundamental"/>
+						<xs:enumeration value="8º ano do ensino fundamental"/>
+						<xs:enumeration value="9º ano do ensino fundamental"/>
+						<xs:enumeration value="1º ano do ensino médio"/>
+						<xs:enumeration value="2º ano do ensino médio"/>
+						<xs:enumeration value="3º ano do ensino médio"/>
+						<xs:enumeration value="Supletivo de 1º ao 4º"/>
+						<xs:enumeration value="Supletivo de 1º ao 8º"/>
+						<xs:enumeration value="Supletivo de ensino médio"/>
+						<xs:enumeration value="Superior"/>
+						<xs:enumeration value="Não freqüenta escola"/>
+						<xs:enumeration value="Sem informação"/>
+						<xs:enumeration value="Não se aplica"/>
+						<xs:enumeration value="CEJA ou EJA"/>
+						<xs:enumeration value="Ensino profissionalizantes"/>
+						<xs:enumeration value="projovem"/>
+					</xs:restriction>
+				</xs:simpleType>
+
+			</xs:element>
+			
+			<xs:element name="frequenciaEscolar" minOccurs="0">
+				 <xs:annotation>
+                    <xs:appinfo>
+                        <xhtml:label>Frequencia escolar</xhtml:label>                    
+                    </xs:appinfo>
+                </xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Satistafatória"/>
+						<xs:enumeration value="Insatisfastória"/>
+						<xs:enumeration value="Não se aplica"/>
+						<xs:enumeration value="Sem informação"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			<xs:element name="rendimentoEscolar" minOccurs="0">
+				 <xs:annotation>
+                    <xs:appinfo>
+                        <xhtml:label>Rendimento escolar</xhtml:label>                    
+                    </xs:appinfo>
+                </xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Satistafatória"/>
+						<xs:enumeration value="Insatisfastória"/>
+						<xs:enumeration value="Não se aplica"/>
+						<xs:enumeration value="Sem informação"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>
