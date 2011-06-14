@@ -2,7 +2,8 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns="http://schemas.fortaleza.ce.gov.br/acao/habitafor-revalidacaocadastro-crf.xsd"
 	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
-	xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml" 
+	xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
 	xmlns:idx="http://schemas.fortaleza.ce.gov.br/xsdform/indexhint.xsd"
 	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/habitafor-revalidacaocadastro-crf.xsd"
 	elementFormDefault="qualified">
@@ -24,7 +25,6 @@
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>1. Localização do imóvel
-							___________________________________________________________________________________________
 						</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
@@ -125,7 +125,6 @@
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>2. Dados de identificação
-							___________________________________________________________________________________________
 						</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
@@ -294,7 +293,6 @@
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>3. Dados sociais
-							___________________________________________________________________________________________
 						</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
@@ -334,7 +332,8 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="quantidadeCriancas" type="xs:integer" minOccurs="0">
+						<xs:element name="quantidadeCriancas" type="xs:integer"
+							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Quantidade de crianças</xhtml:label>
@@ -364,11 +363,11 @@
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
-			<xs:element name="dadosSociais">
+			
+			<xs:element name="situacaoImovel">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>4. Situação do imóvel
-							___________________________________________________________________________________________
 						</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
@@ -393,10 +392,12 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="casoAluguelNomeBeneficiario" minOccurs="0">
+						<xs:element name="casoAluguelNomeBeneficiario"
+							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Em caso de aluguel/compra/cessão, nome do beneficiário/locador/cedente</xhtml:label>
+									<xhtml:label>Em caso de aluguel/compra/cessão, nome do
+										beneficiário/locador/cedente</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -431,7 +432,8 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="casoAluguelNomeBeneficiario" minOccurs="0" type="string">
+						<xs:element name="observacoes"
+							minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Observações</xhtml:label>
@@ -441,6 +443,6 @@
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
-			<xs:sequence>
+		</xs:sequence>
 	</xs:complexType>
 </xs:schema>
