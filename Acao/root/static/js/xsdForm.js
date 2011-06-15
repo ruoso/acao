@@ -193,6 +193,7 @@ function generateFormFromNode(tagRaiz, xmlNode, namePattern) {
     var minOccurs = getValueAttributeByName(xmlNode, "minOccurs");
     var maxOccurs = getValueAttributeByName(xmlNode, "maxOccurs");
     if (minOccurs == null) {minOccurs = 1}
+
     if (type != null && static_type(type)) {
         return generateFormField(tagRaiz, xmlNode, type, namePattern, minOccurs, maxOccurs);
     } else if (type != null) {
