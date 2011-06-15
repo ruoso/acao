@@ -826,6 +826,298 @@
 							</xs:annotation>
 						</xs:element>
 
+						<xs:element name="educacao" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Educação</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="escolaEnsFund" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Escola de ensino fundamental</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="qtdeEscEnsFund" type="xs:integer">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Qtde.</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="nomesEscEnsFund" minOccurs="0" maxOccurs="10">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Nomes</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									
+									<xs:element name="escolaEnsMed" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Escola de ensino médio</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="qtdeEscEnsMed" type="xs:integer">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Qtde.</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="nomesEscEnsMed" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Nomes</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									
+									<xs:element name="instituicaoEnsSup" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Instituição de ensino superior</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="qtdeInstituicaoEnsSup" type="xs:integer">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Qtde.</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="nomesInstituicaoEnsSup" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Nomes</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									
+									<xs:element name="creche" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Creche</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="qtdeCreches" type="xs:integer">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Qtde.</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="nomesCreches" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Nomes</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									
+									<xs:element name="instituicaoEnsProf" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Instituição de ensino profissionalizante</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="qtdeInstituicaoEnsProf" type="xs:integer">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Qtde.</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="nomesInstituicaoEnsProf" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Nomes</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						
+						<xs:element name="saude" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Saúde</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="caps" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>CAPS</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="qtdeEscEnsFund" type="xs:integer">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Qtde.</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="nomesEscEnsFund" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Nomes</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									
+									<xs:element name="escolaEnsMed" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Escola de ensino médio</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="qtdeEscEnsMed" type="xs:integer">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Qtde.</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="nomesEscEnsMed" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Nomes</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									
+									<xs:element name="instituicaoEnsSup" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Instituição de ensino superior</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="qtdeInstituicaoEnsSup" type="xs:integer">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Qtde.</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="nomesInstituicaoEnsSup" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Nomes</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									
+									<xs:element name="creche" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Creche</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="qtdeCreches" type="xs:integer">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Qtde.</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="nomesCreches" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Nomes</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									
+									<xs:element name="instituicaoEnsProf" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Instituição de ensino profissionalizante</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="qtdeInstituicaoEnsProf" type="xs:integer">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Qtde.</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="nomesInstituicaoEnsProf" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Nomes</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
