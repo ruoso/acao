@@ -15,6 +15,10 @@
 				<class:classificacoes>
 					<class:classificacao>cn=Habitação</class:classificacao>
 				</class:classificacoes>
+                <idx:index>
+                    <idx:hint key="pessoa.nome" xpath="formAssentamentoBIC/identificacao/entrevistador" />
+                    <idx:hint key="pessoa.nome" xpath="formAssentamentoBIC/identificacao/tecnicoResponsavel" />
+                </idx:index>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>

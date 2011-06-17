@@ -15,6 +15,14 @@
 				<class:classificacoes>
 					<class:classificacao>cn=Habitação</class:classificacao>
 				</class:classificacoes>
+                <idx:index>
+                    <idx:hint key="pessoa.nome" xpath="formRevalidacaoCadastroCRF/dadosIdentificacao/atualMorador" />
+                    <idx:hint key="pessoa.rg" xpath="formRevalidacaoCadastroCRF/dadosIdentificacao/rg" />
+                    <idx:hint key="pessoa.cpf" xpath="formRevalidacaoCadastroCRF/dadosIdentificacao/cpf" />
+                    <idx:hint key="pessoa.nome" xpath="formRevalidacaoCadastroCRF/dadosIdentificacao/nomeConjuge" />
+                    <idx:hint key="pessoa.rg" xpath="formRevalidacaoCadastroCRF/dadosIdentificacao/rgConjuge" />
+                    <idx:hint key="pessoa.cpf" xpath="formRevalidacaoCadastroCRF/dadosIdentificacao/cpfConjuge" />
+                </idx:index>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
