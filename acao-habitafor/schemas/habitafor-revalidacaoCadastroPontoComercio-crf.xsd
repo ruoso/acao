@@ -16,6 +16,11 @@
 				<class:classificacoes>
 					<class:classificacao>cn=Habitação</class:classificacao>
 				</class:classificacoes>
+                <idx:index>
+                    <idx:hint key="pessoa.nome" xpath="formRevalidacaoCadastroPontoComercioCRF/identificacao/comerciante" />
+                    <idx:hint key="pessoa.rg" xpath="formRevalidacaoCadastroPontoComercioCRF/identificacao/rg" />
+                    <idx:hint key="pessoa.cpf" xpath="formRevalidacaoCadastroPontoComercioCRF/identificacao/cpf" />
+                </idx:index>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
