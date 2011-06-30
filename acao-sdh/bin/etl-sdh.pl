@@ -13,12 +13,13 @@ use Switch;
 
 use aliased 'Acao::Plugins::SDH::DimSchema';
 
-my $sedna = Sedna->connect('127.0.0.1', 'acao', 'acao', '12345');
+#my $sedna = Sedna->connect('127.0.0.1', 'acao', 'acao', '12345');
+my $sedna = Sedna->connect('172.30.116.22', 'AcaoDb', 'acao', 'acao');
 
 $sedna->setConnectionAttr(AUTOCOMMIT => Sedna::SEDNA_AUTOCOMMIT_OFF() );
 
 #my $dbi = DimSchema->connect("dbi:Pg:dbname=sdh;host=127.0.0.1;port=5432",'acao','blableblibloblu');
-my $dbi = DimSchema->connect("dbi:Pg:dbname=acao;host=127.0.0.1;port=5432",'acao','12345');
+my $dbi = DimSchema->connect("dbi:Pg:dbname=acaodw;host=127.0.0.1;port=5432",'acao','12345');
 
 BEGIN {
     die 'Informe a variavel de ambiente ACAO_HOME' unless -d $ENV{ACAO_HOME};
@@ -29,6 +30,7 @@ use constant HOME_SCHEMAS => $ENV{HOME_SCHEMAS} || catfile($Bin, '..', 'schemas'
 use constant SCHEMA_DOSSIE    => catfile($ENV{ACAO_HOME}, 'schemas', 'dossie.xsd');
 #use constant SCHEMA_AUDITORIA => catfile($ENV{ACAO_HOME}, 'schemas', 'auditoria.xsd');
 use constant SCHEMA_DOCUMENTO => catfile($ENV{ACAO_HOME}, 'schemas', 'documento.xsd');
+use constant SCHEMA_AUTORIZACAO => catfile($ENV{ACAO_HOME}, 'schemas', 'autorizacoes.xsd');
 use constant SCHEMA_ATENDIMENTOESPECIFICOSEGARANTA => catfile(HOME_SCHEMAS, 'sdh-atendimentoEspecificoSEGARANTA.xsd');
 use constant SCHEMA_CONDICOESDEMORADIA             => catfile(HOME_SCHEMAS, 'sdh-condicoesDeMoradia.xsd');
 use constant SCHEMA_CONVIVENCIAFAMILIARCOMUNITARIA => catfile(HOME_SCHEMAS, 'sdh-convivenciaFamiliarComunitaria.xsd');
@@ -61,6 +63,7 @@ use constant SCHEMA_VISITAINSTITUCIONAL            => catfile(HOME_SCHEMAS, 'sdh
 
 use constant DOSSIE_NS    => 'http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd';
 use constant DOCUMENTO_NS => 'http://schemas.fortaleza.ce.gov.br/acao/documento.xsd';
+use constant AUTORIZACAO_NS => 'http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd';
 #use constant AUDITORIA_NS => 'http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd';
 
 my $schema_form = {
@@ -95,8 +98,8 @@ my $schema_form = {
                'formVisitaInstitucional'            => XML::Compile::Schema->new(SCHEMA_VISITAINSTITUCIONAL),
                   };
 
-#my $schema = XML::Compile::Schema->new([SCHEMA_DOCUMENTO, SCHEMA_AUDITORIA]);
-my $schema = XML::Compile::Schema->new([SCHEMA_DOCUMENTO]);
+my $schema = XML::Compile::Schema->new([SCHEMA_DOCUMENTO, SCHEMA_AUTORIZACAO]);
+#my $schema = XML::Compile::Schema->new([SCHEMA_DOCUMENTO]);
 my $read = $schema->compile(READER => pack_type(DOCUMENTO_NS, 'documento'),  any_element => 'TAKE_ALL');
 
 sub getVolumes{
