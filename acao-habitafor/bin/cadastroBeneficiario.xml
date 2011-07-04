@@ -1,6 +1,6 @@
-<Schema name="cadastro_habitafor">
-  <Cube name="cadastro" cache="true" enabled="true">
-    <Table name="f_cadastro" schema="habitafor">
+<Schema name="Habitafor">
+  <Cube name="cadastroBeneficiario" cache="true" enabled="true">
+    <Table name="f_cadastro_beneficiario" schema="habitafor">
     </Table>
     <Dimension type="StandardDimension" foreignKey="id_orgao" highCardinality="false" name="orgao">
       <Hierarchy name="orgao" hasAll="true" primaryKey="id_orgao">
@@ -42,6 +42,14 @@
         </Level>
       </Hierarchy>
     </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_tipo_deficiencia_motora" highCardinality="false" name="tipo deficiencia motora">
+      <Hierarchy name="tipo deficiencia motora" hasAll="true" primaryKey="id_tipo_deficiencia_motora">
+        <Table name="d_tipo_deficiencia_motora" schema="habitafor">
+        </Table>
+        <Level name="tipo deficiencia motora" column="tipo_deficiencia_motora" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
     <Dimension type="StandardDimension" foreignKey="id_coabitacao" highCardinality="false" name="coabitacao">
       <Hierarchy name="coabitacao" hasAll="true" primaryKey="id_coabitacao">
         <Table name="d_coabitacao" schema="habitafor">
@@ -78,83 +86,11 @@
         </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="StandardDimension" foreignKey="id_tipo_bic" highCardinality="false" name="tipo_bic">
-      <Hierarchy name="tipo_bic" hasAll="true" primaryKey="id_tipo_bic">
-        <Table name="d_tipo_bic" schema="habitafor">
-        </Table>
-        <Level name="tipo_bic" column="tipo_bic" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-        </Level>
-      </Hierarchy>
-    </Dimension>
-    <Dimension type="StandardDimension" foreignKey="id_tipologia_construcao" highCardinality="false" name="tipologia_construcao">
-      <Hierarchy name="tipologia_construcao" hasAll="true" primaryKey="id_tipologia_construcao">
-        <Table name="d_tipologia_construcao" schema="habitafor">
-        </Table>
-        <Level name="tipologia_construcao" column="tipologia_construcao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-        </Level>
-      </Hierarchy>
-    </Dimension>
-    <Dimension type="StandardDimension" foreignKey="id_situacao_risco" highCardinality="false" name="situacao_risco">
-      <Hierarchy name="situacao_risco" hasAll="true" primaryKey="id_situacao_risco">
-        <Table name="d_situacao_risco" schema="habitafor">
-        </Table>
-        <Level name="situacao_risco" column="situacao_risco" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-        </Level>
-      </Hierarchy>
-    </Dimension>
-    <Dimension type="StandardDimension" foreignKey="id_rede_agua" highCardinality="false" name="rede_agua">
-      <Hierarchy name="rede_agua" hasAll="true" primaryKey="id_rede_agua">
-        <Table name="d_rede_agua" schema="habitafor">
-        </Table>
-        <Level name="rede_agua" column="rede_agua" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-        </Level>
-      </Hierarchy>
-    </Dimension>
-    <Dimension type="StandardDimension" foreignKey="id_rede_esgoto" highCardinality="false" name="rede_esgoto">
-      <Hierarchy name="rede_esgoto" hasAll="true" primaryKey="id_rede_esgoto">
-        <Table name="d_rede_esgoto" schema="habitafor">
-        </Table>
-        <Level name="rede_esgoto" column="rede_esgoto" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-        </Level>
-      </Hierarchy>
-    </Dimension>
-    <Dimension type="StandardDimension" foreignKey="id_coleta_sistematica_lixo" highCardinality="false" name="coleta_sistematica_lixo">
-      <Hierarchy name="coleta_sistematica_lixo" hasAll="true" primaryKey="id_coleta_sistematica_lixo">
-        <Table name="d_coleta_sistematica_lixo" schema="habitafor">
-        </Table>
-        <Level name="coleta_sistematica_lixo" column="coleta_sistematica_lixo" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-        </Level>
-      </Hierarchy>
-    </Dimension>
-    <Measure name="quantidade" column="quantidade" datatype="Integer" aggregator="sum" visible="true">
-    </Measure>
     <Measure name="nr_familias" column="nr_familias" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
-    <Measure name="vinculo_associacao_comunitaria" column="vinculo_assossiacao_comunitaria" datatype="Integer" aggregator="sum" visible="true">
+    <Measure name="vinculo_assossiacao_comunitaria" column="vinculo_assossiacao_comunitaria" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
-    <Measure name="qtd_deficiencientes_auditivo" column="qtd_deficientes_auditivo" datatype="Integer" aggregator="sum" visible="true">
-    </Measure>
-    <Measure name="qtd_deficiencientes_visual" column="qtd_deficientes_visual" datatype="Integer" aggregator="sum" visible="true">
-    </Measure>
-    <Measure name="qtd_deficiencientes_motora" column="qtd_deficientes_motora" datatype="Integer" aggregator="sum" visible="true">
-    </Measure>
-    <Measure name="qtd_deficiencientes_mental" column="qtd_deficientes_mental" datatype="Integer" aggregator="sum" visible="true">
-    </Measure>
-    <Measure name="destino_lixo_conteiner" column="destino_lixo_conteiner" datatype="Integer" aggregator="sum" visible="true">
-    </Measure>
-    <Measure name="destino_lixo_enterrado" column="destino_lixo_enterrado" datatype="Integer" aggregator="sum" visible="true">
-    </Measure>
-    <Measure name="destino_lixo_logradouro" column="destino_lixo_logradouro" datatype="Integer" aggregator="sum" visible="true">
-    </Measure>
-    <Measure name="destino_lixo_outro" column="destino_lixo_outro" datatype="Integer" aggregator="sum" visible="true">
-    </Measure>
-    <Measure name="destino_lixo_passeio" column="destino_lixo_passeio" datatype="Integer" aggregator="sum" visible="true">
-    </Measure>
-    <Measure name="destino_lixo_queimado" column="destino_lixo_queimado" datatype="Integer" aggregator="sum" visible="true">
-    </Measure>
-    <Measure name="destino_lixo_recurso_hidrico" column="destino_lixo_recurso_hidrico" datatype="Integer" aggregator="sum" visible="true">
-    </Measure>
-    <Measure name="destino_lixo_terreno_baldio" column="destino_lixo_terreno_baldio" aggregator="sum" visible="true">
+    <Measure name="quantidade" column="quantidade" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
   </Cube>
 </Schema>
