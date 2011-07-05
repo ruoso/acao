@@ -1,6 +1,6 @@
 <Schema name="cadastro_habitafor">
-  <Cube name="cadastro" cache="true" enabled="true">
-    <Table name="f_cadastro" schema="habitafor">
+  <Cube name="cadastro_habitafor" cache="true" enabled="true">
+    <Table name="f_cadastro_habitafor" schema="habitafor">
     </Table>
     <Dimension type="StandardDimension" foreignKey="id_orgao" highCardinality="false" name="orgao">
       <Hierarchy name="orgao" hasAll="true" primaryKey="id_orgao">
@@ -154,7 +154,7 @@
     </Measure>
     <Measure name="destino_lixo_recurso_hidrico" column="destino_lixo_recurso_hidrico" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
-    <Measure name="destino_lixo_terreno_baldio" column="destino_lixo_terreno_baldio" aggregator="sum" visible="true">
+    <Measure name="destino_lixo_terreno_baldio" column="destino_lixo_terreno_baldio" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
   </Cube>
 </Schema>
