@@ -39,7 +39,7 @@
 
 	<xs:complexType name="formAtualizacaoCadastralCAS">
 		<xs:sequence>
-			<xs:element name="comunidade">
+			<xs:element name="comunidade" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Comunidade</xhtml:label>
@@ -52,7 +52,7 @@
 				</xs:simpleType>
 			</xs:element>
 
-			<xs:element name="pmf">
+			<xs:element name="pmf" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>PMF</xhtml:label>
@@ -65,7 +65,7 @@
 				</xs:simpleType>
 			</xs:element>
 
-			<xs:element name="entrevistador">
+			<xs:element name="entrevistador" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Entrevistador(a)</xhtml:label>
@@ -86,7 +86,7 @@
 				</xs:annotation>
 			</xs:element>
 
-			<xs:element name="enderecoImovel">
+			<xs:element name="enderecoImovel" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Endereço do imóvel</xhtml:label>
@@ -99,7 +99,7 @@
 				</xs:simpleType>
 			</xs:element>
 
-			<xs:element name="pontoDeReferencia">
+			<xs:element name="pontoDeReferencia" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Ponto de referência</xhtml:label>
@@ -138,7 +138,7 @@
 				</xs:annotation>
 				<xs:complexType>
                     <xs:sequence>
-					    <xs:element name="nomeChefeCasa">
+					    <xs:element name="nomeChefeCasa" minOccurs="0">
 						    <xs:annotation>
 							    <xs:appinfo>
 								    <xhtml:label>Nome do(a) chefe da casa</xhtml:label>
@@ -174,7 +174,7 @@
 						    </xs:annotation>
 					    </xs:element>
 
-					    <xs:element name="rg">
+					    <xs:element name="rg" minOccurs="0">
 						    <xs:annotation>
 							    <xs:appinfo>
 								    <xhtml:label>RG</xhtml:label>
@@ -186,7 +186,7 @@
 							    </xs:restriction>
 						    </xs:simpleType>
 					    </xs:element>
-					    <xs:element name="orgaoExp">
+					    <xs:element name="orgaoExp" minOccurs="0">
 						    <xs:annotation>
 							    <xs:appinfo>
 								    <xhtml:label>Órgão exp</xhtml:label>
@@ -198,7 +198,7 @@
 							    </xs:restriction>
 						    </xs:simpleType>
 					    </xs:element>
-					    <xs:element name="cpf">
+					    <xs:element name="cpf" minOccurs="0">
 						    <xs:annotation>
 							    <xs:appinfo>
 								    <xhtml:label>CPF</xhtml:label>
@@ -211,7 +211,7 @@
 						    </xs:simpleType>
 					    </xs:element>
 
-					    <xs:element name="nis">
+					    <xs:element name="nis" minOccurs="0">
 						    <xs:annotation>
 							    <xs:appinfo>
 								    <xhtml:label>Nº NIS</xhtml:label>
@@ -244,7 +244,7 @@
 						    </xs:simpleType>
 					    </xs:element>
 
-					    <xs:element name="nomeConjuge">
+					    <xs:element name="nomeConjuge" minOccurs="0">
 						    <xs:annotation>
 							    <xs:appinfo>
 								    <xhtml:label>Nome do cônjuge</xhtml:label>
@@ -279,7 +279,7 @@
 							    </xs:appinfo>
 						    </xs:annotation>
 					    </xs:element>
-					    <xs:element name="rgConjuge">
+					    <xs:element name="rgConjuge" minOccurs="0">
 						    <xs:annotation>
 							    <xs:appinfo>
 								    <xhtml:label>RG</xhtml:label>
@@ -291,7 +291,7 @@
 							    </xs:restriction>
 						    </xs:simpleType>
 					    </xs:element>
-					    <xs:element name="orgaoExpConjuge">
+					    <xs:element name="orgaoExpConjuge" minOccurs="0">
 						    <xs:annotation>
 							    <xs:appinfo>
 								    <xhtml:label>Órgão exp</xhtml:label>
@@ -303,7 +303,7 @@
 							    </xs:restriction>
 						    </xs:simpleType>
 					    </xs:element>
-					    <xs:element name="cpfConjuge">
+					    <xs:element name="cpfConjuge" minOccurs="0">
 						    <xs:annotation>
 							    <xs:appinfo>
 								    <xhtml:label>CPF</xhtml:label>
@@ -316,7 +316,7 @@
 						    </xs:simpleType>
 					    </xs:element>
 
-					    <xs:element name="nisConjuge">
+					    <xs:element name="nisConjuge" minOccurs="0">
 						    <xs:annotation>
 							    <xs:appinfo>
 								    <xhtml:label>Nº NIS</xhtml:label>
@@ -357,7 +357,7 @@
 						    </xs:simpleType>
 					    </xs:element>
 
-					    <xs:element name="grauParentesco">
+					    <xs:element name="grauParentesco" minOccurs="0">
 						    <xs:annotation>
 							    <xs:appinfo>
 								    <xhtml:label>Prop. grau de parentesco</xhtml:label>
@@ -370,7 +370,7 @@
 						    </xs:simpleType>
 					    </xs:element>
 
-					    <xs:element name="endereco">
+					    <xs:element name="endereco" minOccurs="0">
 						    <xs:annotation>
 							    <xs:appinfo>
 								    <xhtml:label>Endereço</xhtml:label>
@@ -417,7 +417,7 @@
 						    </xs:simpleType>
 					    </xs:element>
 
-					    <xs:element name="tipoComercio">
+					    <xs:element name="tipoComercio" minOccurs="0">
 						    <xs:annotation>
 							    <xs:appinfo>
 								    <xhtml:label>Tipo de comércio</xhtml:label>
@@ -552,17 +552,11 @@
 							    </xs:appinfo>
 						    </xs:annotation>
 						    <xs:simpleType>
-
 							    <xs:restriction base="xs:decimal">
-
 								    <xs:fractionDigits value='2' />
-
 								    <xs:maxExclusive value="1000000" />
-
 								    <xs:minInclusive value="-1000000" />
-
 							    </xs:restriction>
-
 						    </xs:simpleType>
 					    </xs:element>
 					    <xs:element name="vincEmpregaticio" minOccurs="0">
@@ -651,7 +645,7 @@
 									        </xs:appinfo>
 								        </xs:annotation>
 							        </xs:element>
-							        <xs:element name="tipoDeficiencia">
+							        <xs:element name="tipoDeficiencia" minOccurs="0">
 								        <xs:annotation>
 									        <xs:appinfo>
 										        <xhtml:label>Tipo</xhtml:label>
@@ -711,7 +705,7 @@
 						    </xs:simpleType>
 					    </xs:element>
 					
-					    <xs:element name="especifiqueOutraProcedencia">
+					    <xs:element name="especifiqueOutraProcedencia" minOccurs="0">
 						    <xs:annotation>
 							    <xs:appinfo>
 								    <xhtml:label>Outros</xhtml:label>
@@ -742,7 +736,7 @@
 						    </xs:simpleType>
 					    </xs:element>
 					
-					    <xs:element name="especifiqueOutraMotivacao">
+					    <xs:element name="especifiqueOutraMotivacao" minOccurs="0">
 						    <xs:annotation>
 							    <xs:appinfo>
 								    <xhtml:label>Outros</xhtml:label>
@@ -769,7 +763,7 @@
 						    </xs:simpleType>
 					    </xs:element>
 
-                        <xs:element name="seSimQuem">
+                        <xs:element name="seSimQuem" minOccurs="0">
 						    <xs:annotation>
 							    <xs:appinfo>
 								    <xhtml:label>Se sim, quem</xhtml:label>
@@ -782,7 +776,7 @@
 						    </xs:simpleType>
 					    </xs:element>
 
-                        <xs:element name="qualPMFSetor">
+                        <xs:element name="qualPMFSetor" minOccurs="0">
 						    <xs:annotation>
 							    <xs:appinfo>
 								    <xhtml:label>Qual PMF/Setor</xhtml:label>
@@ -795,7 +789,7 @@
 						    </xs:simpleType>
 					    </xs:element>
 
-                        <xs:element name="tempoDeMoradia">
+                        <xs:element name="tempoDeMoradia" minOccurs="0">
 						    <xs:annotation>
 							    <xs:appinfo>
 								    <xhtml:label>Tempo de moradia</xhtml:label>
@@ -830,7 +824,7 @@
                                 </xs:annotation>
                                 <xs:complexType>
                                     <xs:sequence>
-                                        <xs:element name="nomeComposicaoFamiliar">
+                                        <xs:element name="nomeComposicaoFamiliar" minOccurs="0">
 						                    <xs:annotation>
 							                    <xs:appinfo>
 								                    <xhtml:label>Nome</xhtml:label>
@@ -842,7 +836,7 @@
 							                    </xs:restriction>
 						                    </xs:simpleType>
 					                    </xs:element>
-                                        <xs:element name="parentescoComTitular">
+                                        <xs:element name="parentescoComTitular" minOccurs="0">
 						                    <xs:annotation>
 							                    <xs:appinfo>
 								                    <xhtml:label>Parentesco com o titular</xhtml:label>
@@ -883,7 +877,7 @@
 							                    </xs:restriction>
 						                    </xs:simpleType>
 					                    </xs:element>
-                                        <xs:element name="grauInstrucaoComposicaoFamiliar">
+                                        <xs:element name="grauInstrucaoComposicaoFamiliar" minOccurs="0">
 						                    <xs:annotation>
 							                    <xs:appinfo>
 								                    <xhtml:label>Grau de instrução</xhtml:label>
@@ -895,7 +889,7 @@
 							                    </xs:restriction>
 						                    </xs:simpleType>
 					                    </xs:element>
-                                        <xs:element name="estaCursandoComposicaoFamiliar">
+                                        <xs:element name="estaCursandoComposicaoFamiliar" minOccurs="0">
 						                    <xs:annotation>
 							                    <xs:appinfo>
 								                    <xhtml:label>Está cursando</xhtml:label>
@@ -926,17 +920,11 @@
 							                    </xs:appinfo>
 						                    </xs:annotation>
 						                    <xs:simpleType>
-
 							                    <xs:restriction base="xs:decimal">
-
 								                    <xs:fractionDigits value='2' />
-
 								                    <xs:maxExclusive value="1000000" />
-
 								                    <xs:minInclusive value="-1000000" />
-
 							                    </xs:restriction>
-
 						                    </xs:simpleType>
 					                    </xs:element>
                                     </xs:sequence>

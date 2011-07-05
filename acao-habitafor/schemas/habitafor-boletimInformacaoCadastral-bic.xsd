@@ -2254,7 +2254,7 @@
 				</xs:annotation>
 				<xs:complexType>
 					<xs:sequence maxOccurs="100">
-						<xs:element name="nome">
+						<xs:element name="nome" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Nome</xhtml:label>
@@ -2266,7 +2266,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="relacao">
+						<xs:element name="relacao" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Relação</xhtml:label>
@@ -2278,7 +2278,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="dataNascimento" type="xs:date">
+						<xs:element name="dataNascimento" type="xs:date" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Data de nascimento</xhtml:label>
@@ -2321,7 +2321,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="estaCursando">
+						<xs:element name="estaCursando" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Está cursando</xhtml:label>
@@ -2335,7 +2335,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="nomeEscola">
+						<xs:element name="nomeEscola" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Nome da escola</xhtml:label>
@@ -2351,7 +2351,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="profissao">
+						<xs:element name="profissao" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Profissão</xhtml:label>
@@ -2363,7 +2363,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="trabalha">
+						<xs:element name="trabalha" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Trabalha</xhtml:label>
@@ -2377,7 +2377,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="tipoVinculo">
+						<xs:element name="tipoVinculo" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Tipo de vinculo</xhtml:label>
@@ -2398,7 +2398,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="renda">
+						<xs:element name="renda" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Renda</xhtml:label>

@@ -29,7 +29,7 @@
 
 	<xs:complexType name="formRevalidacaoCadastroCRF">
 		<xs:sequence>
-			<xs:element name="localizacaoImovel">
+			<xs:element name="localizacaoImovel" >
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>1. Localização do imóvel
@@ -39,7 +39,7 @@
 
 				<xs:complexType>
 					<xs:sequence>
-						<xs:element name="conjunto">
+						<xs:element name="conjunto" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Conjunto</xhtml:label>
@@ -58,7 +58,7 @@
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
-						<xs:element name="rua">
+						<xs:element name="rua" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Rua</xhtml:label>
@@ -77,7 +77,7 @@
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
-						<xs:element name="bloco">
+						<xs:element name="bloco" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Bloco</xhtml:label>
@@ -89,7 +89,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="apto">
+						<xs:element name="apto" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Apto</xhtml:label>
@@ -114,7 +114,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="numPontoComercial">
+						<xs:element name="numPontoComercial" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Número ponto comercial</xhtml:label>
@@ -139,7 +139,7 @@
 
 				<xs:complexType>
 					<xs:sequence>
-						<xs:element name="atualMorador">
+						<xs:element name="atualMorador" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Atual morador</xhtml:label>
@@ -159,7 +159,7 @@
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
-						<xs:element name="rg">
+						<xs:element name="rg" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>RG</xhtml:label>
@@ -171,7 +171,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="orgaoExp">
+						<xs:element name="orgaoExp" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Órgão exp</xhtml:label>
@@ -183,7 +183,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="cpf">
+						<xs:element name="cpf" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>CPF</xhtml:label>
@@ -195,7 +195,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="profissao">
+						<xs:element name="profissao" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Profissão</xhtml:label>
@@ -226,7 +226,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="nomeConjuge">
+						<xs:element name="nomeConjuge" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Nome do cônjuge</xhtml:label>
@@ -246,7 +246,7 @@
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
-						<xs:element name="rgConjuge">
+						<xs:element name="rgConjuge" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>RG</xhtml:label>
@@ -258,7 +258,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="orgaoExpConjuge">
+						<xs:element name="orgaoExpConjuge" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Órgão exp</xhtml:label>
@@ -270,7 +270,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="cpfConjuge">
+						<xs:element name="cpfConjuge" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>CPF</xhtml:label>
@@ -282,7 +282,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="profissaoConjuge">
+						<xs:element name="profissaoConjuge" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Profissão</xhtml:label>
