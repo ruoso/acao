@@ -93,13 +93,13 @@
   </connection>
   <connection>
     <name>local</name>
-    <server>127.0.0.1</server>
+    <server>172.30.116.22</server>
     <type>POSTGRESQL</type>
     <access>Native</access>
-    <database>acaodw</database>
+    <database>dw</database>
     <port>5432</port>
-    <username>bi</username>
-    <password>Encrypted 2be98afc86aa7f2e4cb79ce60d394add3</password>
+    <username>dw</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb79ce60d394abcd</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -1785,7 +1785,7 @@ group by bic.&quot;DtCadastro&quot;,
            </partitioning>
     <connection>local</connection>
     <schema>habitafor</schema>
-    <table>f_cadastro</table>
+    <table>f_cadastro_habitafor</table>
     <commit>1000</commit>
     <truncate>N</truncate>
     <ignore_errors>N</ignore_errors>
