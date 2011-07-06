@@ -1,0 +1,286 @@
+<Schema name="semas_cadastro_unico">
+  <Dimension type="StandardDimension" highCardinality="false" name="d_data">
+    <Hierarchy name="Data" hasAll="true" primaryKey="id_data">
+      <Table name="d_data" schema="semas">
+      </Table>
+      <Level name="Dia" column="dia" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Mes" column="mes" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Ano" column="ano" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Cube name="f_cadastro_familia" cache="true" enabled="true">
+    <Table name="f_cadastro_familia" schema="semas">
+    </Table>
+    <Dimension type="StandardDimension" foreignKey="cod_agua_canalizada_fam" highCardinality="false" name="d_agua_canalizada">
+      <Hierarchy name="Agua_canalizada" hasAll="true" primaryKey="cod_agua_canalizada_fam">
+        <Table name="d_agua_canalizada" schema="semas">
+        </Table>
+        <Level name="Agua Canalizada" column="descricao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="cod_banheiro_domic_fam" highCardinality="false" name="d_banheiro_sanitario">
+      <Hierarchy name="Banheiro Sanitario" hasAll="true" primaryKey="cod_banheiro_domic_fam">
+        <Table name="d_banheiro_sanitario" schema="semas">
+        </Table>
+        <Level name="Banheiro Sanitario" column="valor_sn" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="cod_escoa_sanit_domic_fam" highCardinality="false" name="d_escoamento_sanitario">
+      <Hierarchy name="Escoamento_sanitario" hasAll="true" primaryKey="cod_escoa_sanit_domic_fam">
+        <Table name="d_escoamento_sanitario" schema="semas">
+        </Table>
+        <Level name="Tipo de escoamento" column="descricao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="cod_dest_lixo_domic_fam" highCardinality="false" name="d_coleta_lixo">
+      <Hierarchy name="Destino lixo" hasAll="true" primaryKey="cod_dest_lixo_domic_fam">
+        <Table name="d_coleta_lixo" schema="semas">
+        </Table>
+        <Level name="Coleta lixo" column="descricao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="cod_bairro" highCardinality="false" name="d_bairros">
+      <Hierarchy name="Bairros" hasAll="true" primaryKey="cod_bairro">
+        <Table name="d_bairros" schema="semas">
+        </Table>
+        <Level name="Bairros" column="descricao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="cod_material_piso_fam" highCardinality="false" name="d_material_piso">
+      <Hierarchy name="Material Piso" hasAll="true" primaryKey="cod_material_piso_fam">
+        <Table name="d_material_piso" schema="semas">
+        </Table>
+        <Level name="Mateiral Piso" column="descricao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="ser" highCardinality="false" name="d_ser">
+      <Hierarchy name="SER" hasAll="true" primaryKey="cod_ser">
+        <Table name="d_ser" schema="semas">
+        </Table>
+        <Level name="Regional" column="descricao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="cod_ilumin_domic_fam" highCardinality="false" name="d_forma_iluminacao">
+      <Hierarchy name="Forma Iluminacao" hasAll="true" primaryKey="cod_ilumin_domic_fam">
+        <Table name="d_forma_iluminacao" schema="semas">
+        </Table>
+        <Level name="Forma Iluminacao" column="descricao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="cod_abaste_agua_domic_fam" highCardinality="false" name="d_abastecimento_agua">
+      <Hierarchy name="Abastecimento Agua" hasAll="true" primaryKey="cod_abaste_agua_domic_fam">
+        <Table name="d_abastecimento_agua" schema="semas">
+        </Table>
+        <Level name="Abastecimento Agua" column="descricao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="cod_local_domic_fam" highCardinality="false" name="d_local_domicilio">
+      <Hierarchy name="Local Domicilio" hasAll="true" primaryKey="cod_local_domic_fam">
+        <Table name="d_local_domicilio" schema="semas">
+        </Table>
+        <Level name="Local Domicilio" column="descricao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="cod_calc_pavimenacao_fam" highCardinality="false" name="d_calc_pavimentacao">
+      <Hierarchy name="Calcamento Pavimentacao" hasAll="true" primaryKey="cod_calc_pavimentacao_fam">
+        <Table name="d_calc_pavimentacao" schema="semas">
+        </Table>
+        <Level name="Calcamento Pavimentacao" column="valor" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="cod_material_domic_fam" highCardinality="false" name="d_material_parede_externa">
+      <Hierarchy name="Material Parede Externa" hasAll="true" primaryKey="cod_material_domic_fam">
+        <Table name="d_material_parede_externa" schema="semas">
+        </Table>
+        <Level name="Material Parede Externa" column="descricao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="cod_espec_domic_fam" highCardinality="false" name="d_especie_domicilio">
+      <Hierarchy name="Especie Domicilio" hasAll="true" primaryKey="cod_especie_dom">
+        <Table name="d_especie_domicilio" schema="semas">
+        </Table>
+        <Level name="Especie Domicilio" column="descricao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <DimensionUsage source="d_data" name="d_data" foreignKey="cod_data" highCardinality="false">
+    </DimensionUsage>
+    <Measure name="Quantidade_Pessoas" column="quant_pessoas" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="Quantidade_Familia" column="qtdfamilias" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="Quantidade_Comodos" column="qtd_comodos_dorm_fam" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+  </Cube>
+  <Cube name="f_identificacao_pessoa" cache="true" enabled="true">
+    <Table name="f_identificacao_pessoa" schema="semas">
+    </Table>
+    <Dimension type="StandardDimension" foreignKey="id_frequenta_escola_creche" highCardinality="false" name="d_frequenta_creche_escola">
+      <Hierarchy name="Frequenta Creche ou Escola" hasAll="true" primaryKey="id_frequenta_escola_creche">
+        <Table name="d_frequenta_escola_creche" schema="semas">
+        </Table>
+        <Level name="Frequenta Creche ou Escola" column="frequenta_escola_creche" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_curso_frequenta" highCardinality="false" name="d_curso_frequencia">
+      <Hierarchy name="Curso Frequenta" hasAll="true" primaryKey="id_curso_frequenta">
+        <Table name="d_curso_frequenta" schema="semas">
+        </Table>
+        <Level name="Curso Frequenta" column="curso_frequenta" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_ano_serie_frequenta" highCardinality="false" name="d_ano_serie_frequenta">
+      <Hierarchy name="Ano ou Serie que Frequenta" hasAll="true" primaryKey="id_ano_serie_frequenta">
+        <Table name="d_ano_serie_frequenta" schema="semas">
+        </Table>
+        <Level name="Ano ou Serie que Frequenta" column="ano_serie_frequenta" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_onde_nasceu" highCardinality="false" name="d_onde_nasceu">
+      <Hierarchy name="Onde Nasceu" hasAll="true" primaryKey="id_onde_nasceu">
+        <Table name="d_onde_nasceu" schema="semas">
+        </Table>
+        <Level name="Onde Nasceu" column="onde_nasceu" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_tipo_trabalho" highCardinality="false" name="d_tipo_trabalho">
+      <Hierarchy name="Tipo Trabalho" hasAll="true" primaryKey="id_tipo_trabalho">
+        <Table name="d_tipo_trabalho" schema="semas">
+        </Table>
+        <Level name="Tipo Trabalho" column="tipo_trabalho" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_cor_raca" highCardinality="false" name="d_cor_raca">
+      <Hierarchy name="Cor Ra&#231;a" hasAll="true">
+        <Table name="d_cor_raca" schema="semas">
+        </Table>
+        <Level name="Cor Ra&#231;a" column="cor_raca" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_relacao_parentesco_responsavel" highCardinality="false" name="d_relacao_parentesco_responsavel">
+      <Hierarchy name="Relacao parentesco responsavel" hasAll="true" primaryKey="id_relacao_parentesco_responsavel">
+        <Table name="d_relacao_parentesco_responsavel" schema="semas">
+        </Table>
+        <Level name="Relacao parentesco responsavel" column="relacao_parentesco_responsavel" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_nascimento_registrado" highCardinality="false" name="d_data_nascimento_registrado">
+      <Hierarchy name="Data nascimento registrado" hasAll="true" primaryKey="id_nascimento_registrado">
+        <Table name="d_nascimento_registrado" schema="semas">
+        </Table>
+        <Level name="Data nascimento registrado" column="nascimento_registrado" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_curso_parou_estudar" highCardinality="false" name="d_curso_parou_estudar">
+      <Hierarchy name="Curso parou estudar" hasAll="true" primaryKey="id_curso_parou_estudar">
+        <Table name="d_curso_parou_estudar" schema="semas">
+        </Table>
+        <Level name="Curso parou estudar" column="curso_parou_estudar" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_tipo_certidao" highCardinality="false" name="d_tipo_certidao">
+      <Hierarchy name="Tipo certidao" hasAll="true" primaryKey="id_tipo_certidao">
+        <Table name="d_tipo_certidao" schema="semas">
+        </Table>
+        <Level name="Tipo certidao" column="tipo_certidao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_sexo" highCardinality="false" name="d_sexo">
+      <Hierarchy name="Sexo" hasAll="true" primaryKey="id_sexo">
+        <Table name="d_sexo" schema="semas">
+        </Table>
+        <Level name="Sexo" column="sexo" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <DimensionUsage source="d_data" name="d_data" foreignKey="id_data" highCardinality="false">
+    </DimensionUsage>
+    <Measure name="Quantidade" column="quantidade" datatype="Integer" aggregator="distinct-count" visible="true">
+    </Measure>
+    <Measure name="possue_cegueira" column="possui_cegueira" datatype="Integer" aggregator="distinct-count" visible="true">
+    </Measure>
+    <Measure name="possui_baixa_visao" column="possui_baixa_visao" datatype="Integer" aggregator="distinct-count" visible="true">
+    </Measure>
+    <Measure name="possue_surdez_severa" column="possui_surdez_severa" datatype="Integer" aggregator="distinct-count" visible="true">
+    </Measure>
+    <Measure name="possui_surdez_leve" column="possui_surdez_levera" datatype="Integer" aggregator="distinct-count" visible="true">
+    </Measure>
+    <Measure name="possui_deficiencia" column="possui_deficiencia" datatype="Integer" aggregator="distinct-count" visible="true">
+    </Measure>
+    <Measure name="possui_deficiencia_mental_intelectual" column="possui_deficiencia_mental_intelectual" datatype="Integer" aggregator="distinct-count" visible="true">
+    </Measure>
+    <Measure name="possui_sindrome_down" column="possui_sindrome_down" datatype="Integer" aggregator="distinct-count" visible="true">
+    </Measure>
+    <Measure name="possui_transtorno_doenca_mental" column="possui_transtorno_doenca_mental" datatype="Integer" aggregator="distinct-count" visible="true">
+    </Measure>
+    <Measure name="afastado_trabalho_semana_passada" column="afastado_trabalho_semana_passada" datatype="Integer" aggregator="distinct-count" visible="true">
+    </Measure>
+    <Measure name="concluiu_curso_frequentou" column="concluiu_curso_frequentou" datatype="Integer" aggregator="distinct-count" visible="true">
+    </Measure>
+    <Measure name="deficiencia_nao_recebe_cuidados" column="deficiencia_nao_recebe_cuidados" datatype="Integer" aggregator="distinct-count" visible="true">
+    </Measure>
+    <Measure name="deficiencia_recebe_cuidados_especialista" column="deficiencia_recebe_cuidados_especialista" datatype="Integer" aggregator="distinct-count" visible="true">
+    </Measure>
+    <Measure name="deficiencia_recebe_cuidados_familia" column="deficiencia_recebe_cuidados_familia" datatype="Integer" aggregator="distinct-count" visible="true">
+    </Measure>
+    <Measure name="deficiencia_recebe_cuidados_instituicao" column="deficiencia_recebe_cuidados_instituicao" datatype="Integer" aggregator="distinct-count" visible="true">
+    </Measure>
+    <Measure name="deficiencia_recebe_cuidados_outra_forma" column="deficiencia_recebe_cuidados_outra_forma" datatype="Integer" aggregator="distinct-count" visible="true">
+    </Measure>
+    <Measure name="deficiencia_recebe_cuidados_vizinho" column="deficiencia_recebe_cuidados_vizinho" datatype="Integer" aggregator="distinct-count" visible="true">
+    </Measure>
+    <Measure name="estuda_escola_municipio" column="estuda_escola_municipio" datatype="Integer" aggregator="distinct-count" visible="true">
+    </Measure>
+    <Measure name="exerceu_trabalho_area_rural" column="exerceu_trabalho_area_rural" datatype="Integer" aggregator="distinct-count" visible="true">
+    </Measure>
+    <Measure name="meses_trabalhados_ultimos_12_meses" column="meses_trabalhados_ultimos_12_meses" datatype="Integer" aggregator="distinct-count" visible="true">
+    </Measure>
+    <Measure name="recebe_aposentadoria_mensal" column="recebe_aposentadoria_mensal" datatype="Integer" aggregator="distinct-count" visible="true">
+    </Measure>
+    <Measure name="recebe_doacao_nao_morador_mensal" column="recebe_doacao_nao_morador_mensal" datatype="Integer" aggregator="distinct-count" visible="true">
+    </Measure>
+    <Measure name="recebe_outras_fontes_mensal" column="recebe_outras_fontes_mensal" datatype="Integer" aggregator="distinct-count" visible="true">
+    </Measure>
+    <Measure name="recebe_pensao_alimenticia_mensal" column="recebe_pensao_alimenticia_mensal" datatype="Integer" aggregator="distinct-count" visible="true">
+    </Measure>
+    <Measure name="remuneracao_bruta_trabalhos_ate_12_meses" column="remuneracao_bruta_trabalhos_ate_12_meses" datatype="Integer" aggregator="distinct-count" visible="true">
+    </Measure>
+    <Measure name="remuneracao_mes_passado" column="remuneracao_mes_passado" datatype="Integer" aggregator="distinct-count" visible="true">
+    </Measure>
+    <Measure name="sabe_ler_escrever" column="sabe_ler_escrever" datatype="Integer" aggregator="distinct-count" visible="true">
+    </Measure>
+    <Measure name="trabalho_remunerado_ultimos_12_meses" column="trabalho_remunerado_ultimos_12_meses" datatype="Integer" aggregator="distinct-count" visible="true">
+    </Measure>
+    <Measure name="trabalhou_semana_passada" column="trabalhou_semana_passada" datatype="Integer" aggregator="distinct-count" visible="true">
+    </Measure>
+    <Measure name="possui_deficiencia_fisica" column="possui_deficiencia_fisica" datatype="Integer" aggregator="distinct-count" visible="true">
+    </Measure>
+    <Measure name="recebe_seguro_desemprego_mensal" column="recebe_seguro_desemprego_mensal" datatype="Integer" aggregator="distinct-count" visible="true">
+    </Measure>
+  </Cube>
+</Schema>
