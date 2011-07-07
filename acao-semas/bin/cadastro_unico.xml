@@ -224,65 +224,65 @@
     </Dimension>
     <DimensionUsage source="d_data" name="d_data" foreignKey="id_data" highCardinality="false">
     </DimensionUsage>
-    <Measure name="Quantidade" column="quantidade" datatype="Integer" aggregator="distinct-count" visible="true">
+    <Measure name="Quantidade" column="quantidade" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
-    <Measure name="possue_cegueira" column="possui_cegueira" datatype="Integer" aggregator="distinct-count" visible="true">
+    <Measure name="possue_cegueira" column="possui_cegueira" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
-    <Measure name="possui_baixa_visao" column="possui_baixa_visao" datatype="Integer" aggregator="distinct-count" visible="true">
+    <Measure name="possui_baixa_visao" column="possui_baixa_visao" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
-    <Measure name="possue_surdez_severa" column="possui_surdez_severa" datatype="Integer" aggregator="distinct-count" visible="true">
+    <Measure name="possue_surdez_severa" column="possui_surdez_severa" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
-    <Measure name="possui_surdez_leve" column="possui_surdez_levera" datatype="Integer" aggregator="distinct-count" visible="true">
+    <Measure name="possui_surdez_leve" column="possui_surdez_levera" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
-    <Measure name="possui_deficiencia" column="possui_deficiencia" datatype="Integer" aggregator="distinct-count" visible="true">
+    <Measure name="possui_deficiencia" column="possui_deficiencia" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
-    <Measure name="possui_deficiencia_mental_intelectual" column="possui_deficiencia_mental_intelectual" datatype="Integer" aggregator="distinct-count" visible="true">
+    <Measure name="possui_deficiencia_mental_intelectual" column="possui_deficiencia_mental_intelectual" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
-    <Measure name="possui_sindrome_down" column="possui_sindrome_down" datatype="Integer" aggregator="distinct-count" visible="true">
+    <Measure name="possui_sindrome_down" column="possui_sindrome_down" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
-    <Measure name="possui_transtorno_doenca_mental" column="possui_transtorno_doenca_mental" datatype="Integer" aggregator="distinct-count" visible="true">
+    <Measure name="possui_transtorno_doenca_mental" column="possui_transtorno_doenca_mental" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
-    <Measure name="afastado_trabalho_semana_passada" column="afastado_trabalho_semana_passada" datatype="Integer" aggregator="distinct-count" visible="true">
+    <Measure name="afastado_trabalho_semana_passada" column="afastado_trabalho_semana_passada" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
-    <Measure name="concluiu_curso_frequentou" column="concluiu_curso_frequentou" datatype="Integer" aggregator="distinct-count" visible="true">
+    <Measure name="concluiu_curso_frequentou" column="concluiu_curso_frequentou" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
-    <Measure name="deficiencia_nao_recebe_cuidados" column="deficiencia_nao_recebe_cuidados" datatype="Integer" aggregator="distinct-count" visible="true">
+    <Measure name="deficiencia_nao_recebe_cuidados" column="deficiencia_nao_recebe_cuidados" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
-    <Measure name="deficiencia_recebe_cuidados_especialista" column="deficiencia_recebe_cuidados_especialista" datatype="Integer" aggregator="distinct-count" visible="true">
+    <Measure name="deficiencia_recebe_cuidados_especialista" column="deficiencia_recebe_cuidados_especialista" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
-    <Measure name="deficiencia_recebe_cuidados_familia" column="deficiencia_recebe_cuidados_familia" datatype="Integer" aggregator="distinct-count" visible="true">
+    <Measure name="deficiencia_recebe_cuidados_familia" column="deficiencia_recebe_cuidados_familia" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
-    <Measure name="deficiencia_recebe_cuidados_instituicao" column="deficiencia_recebe_cuidados_instituicao" datatype="Integer" aggregator="distinct-count" visible="true">
+    <Measure name="deficiencia_recebe_cuidados_instituicao" column="deficiencia_recebe_cuidados_instituicao" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
-    <Measure name="deficiencia_recebe_cuidados_outra_forma" column="deficiencia_recebe_cuidados_outra_forma" datatype="Integer" aggregator="distinct-count" visible="true">
+    <Measure name="deficiencia_recebe_cuidados_outra_forma" column="deficiencia_recebe_cuidados_outra_forma" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
-    <Measure name="deficiencia_recebe_cuidados_vizinho" column="deficiencia_recebe_cuidados_vizinho" datatype="Integer" aggregator="distinct-count" visible="true">
+    <Measure name="deficiencia_recebe_cuidados_vizinho" column="deficiencia_recebe_cuidados_vizinho" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
-    <Measure name="estuda_escola_municipio" column="estuda_escola_municipio" datatype="Integer" aggregator="distinct-count" visible="true">
+    <Measure name="estuda_escola_municipio" column="estuda_escola_municipio" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
-    <Measure name="exerceu_trabalho_area_rural" column="exerceu_trabalho_area_rural" datatype="Integer" aggregator="distinct-count" visible="true">
+    <Measure name="exerceu_trabalho_area_rural" column="exerceu_trabalho_area_rural" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
-    <Measure name="meses_trabalhados_ultimos_12_meses" column="meses_trabalhados_ultimos_12_meses" datatype="Integer" aggregator="distinct-count" visible="true">
+    <Measure name="meses_trabalhados_ultimos_12_meses" column="meses_trabalhados_ultimos_12_meses" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
-    <Measure name="recebe_aposentadoria_mensal" column="recebe_aposentadoria_mensal" datatype="Integer" aggregator="distinct-count" visible="true">
+    <Measure name="recebe_aposentadoria_mensal" column="recebe_aposentadoria_mensal" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
-    <Measure name="recebe_doacao_nao_morador_mensal" column="recebe_doacao_nao_morador_mensal" datatype="Integer" aggregator="distinct-count" visible="true">
+    <Measure name="recebe_doacao_nao_morador_mensal" column="recebe_doacao_nao_morador_mensal" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
-    <Measure name="recebe_outras_fontes_mensal" column="recebe_outras_fontes_mensal" datatype="Integer" aggregator="distinct-count" visible="true">
+    <Measure name="recebe_outras_fontes_mensal" column="recebe_outras_fontes_mensal" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
-    <Measure name="recebe_pensao_alimenticia_mensal" column="recebe_pensao_alimenticia_mensal" datatype="Integer" aggregator="distinct-count" visible="true">
+    <Measure name="recebe_pensao_alimenticia_mensal" column="recebe_pensao_alimenticia_mensal" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
-    <Measure name="remuneracao_bruta_trabalhos_ate_12_meses" column="remuneracao_bruta_trabalhos_ate_12_meses" datatype="Integer" aggregator="distinct-count" visible="true">
+    <Measure name="remuneracao_bruta_trabalhos_ate_12_meses" column="remuneracao_bruta_trabalhos_ate_12_meses" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
-    <Measure name="remuneracao_mes_passado" column="remuneracao_mes_passado" datatype="Integer" aggregator="distinct-count" visible="true">
+    <Measure name="remuneracao_mes_passado" column="remuneracao_mes_passado" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
-    <Measure name="sabe_ler_escrever" column="sabe_ler_escrever" datatype="Integer" aggregator="distinct-count" visible="true">
+    <Measure name="sabe_ler_escrever" column="sabe_ler_escrever" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
-    <Measure name="trabalho_remunerado_ultimos_12_meses" column="trabalho_remunerado_ultimos_12_meses" datatype="Integer" aggregator="distinct-count" visible="true">
+    <Measure name="trabalho_remunerado_ultimos_12_meses" column="trabalho_remunerado_ultimos_12_meses" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
-    <Measure name="trabalhou_semana_passada" column="trabalhou_semana_passada" datatype="Integer" aggregator="distinct-count" visible="true">
+    <Measure name="trabalhou_semana_passada" column="trabalhou_semana_passada" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
-    <Measure name="possui_deficiencia_fisica" column="possui_deficiencia_fisica" datatype="Integer" aggregator="distinct-count" visible="true">
+    <Measure name="possui_deficiencia_fisica" column="possui_deficiencia_fisica" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
     <Measure name="recebe_seguro_desemprego_mensal" column="recebe_seguro_desemprego_mensal" datatype="Integer" aggregator="distinct-count" visible="true">
     </Measure>
