@@ -13,11 +13,13 @@
 			<xs:appinfo>
 				<xhtml:label>08. COMPOSIÇÃO FAMILIAR</xhtml:label>
 				<class:classificacoes>
-					<class:classificacao>cn=Diversidade Sexual,cn=Direitos Humanos</class:classificacao>
+					<class:classificacao>cn=Diversidade Sexual,cn=Direitos Humanos
+					</class:classificacao>
 				</class:classificacoes>
-                <idx:index>
-                    <idx:hint key="pessoa.nome" xpath="formcomposicaoFamiliar/composicaoFamiliar/nome" />
-                </idx:index>
+				<idx:index>
+					<idx:hint key="pessoa.nome"
+						xpath="formcomposicaoFamiliar/composicaoFamiliar/nome" />
+				</idx:index>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
@@ -71,10 +73,34 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="parentesco">
+
+						<xs:element name="parentesco" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Parentesco</xhtml:label>
+									<xhtml:label>
+										Parentesco:
+                  					</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Companheiro/a" />
+									<xs:enumeration value="Mãe" />
+									<xs:enumeration value="Pai" />
+									<xs:enumeration value="Avô/ Avó" />
+									<xs:enumeration value="Filho/a" />
+									<xs:enumeration value="Neto/a" />
+									<xs:enumeration value="Tio/a" />
+									<xs:enumeration value="Sobrinho/a" />
+									<xs:enumeration value="Outro" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						
+						<xs:element name="especifiqueOutroParemtesco">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Especifique outro parentesco</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -83,10 +109,32 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="beneficio">
+						
+						<xs:element name="beneficio" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Beneficio</xhtml:label>
+									<xhtml:label>
+										Possui Beneficio:
+                  					</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Não" />
+									<xs:enumeration value="Sim - BPC Idoso" />
+									<xs:enumeration value="Sim - BPC Deficiente" />
+									<xs:enumeration value="Sim - PETI" />
+									<xs:enumeration value="Sim - Programa Bolsa Família" />
+									<xs:enumeration value="Sim - Pró-Jovem Urbano" />
+									<xs:enumeration value="Sim - Outro" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						
+						<xs:element name="especifiqueOutroBeneficio">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Especifique outro benfício</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -95,6 +143,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
+						
 						<xs:element name="dataNascimento" type="xs:date"
 							minOccurs="0">
 							<xs:annotation>
@@ -103,10 +152,33 @@
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
-						<xs:element name="escolaridade">
+						
+						<xs:element name="escolaridade" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Escolaridade</xhtml:label>
+									<xhtml:label>
+										Escolaridade:
+                  					</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Não Alfabetizado" />
+									<xs:enumeration value="Ensino Fundamental" />
+									<xs:enumeration value="Ensino Médio Incompleto" />
+									<xs:enumeration value="Ensino Médio" />
+									<xs:enumeration value="Ensino Superior Incompleto" />
+									<xs:enumeration value="nsino Superior Completo" />
+									<xs:enumeration value="Pós-Graduação" />
+									<xs:enumeration value="Outros" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						
+						<xs:element name="especifiqueOutraEscolaridade">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Especifique outra escolaridade</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -115,6 +187,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
+						
 						<xs:element name="documentacao">
 							<xs:annotation>
 								<xs:appinfo>
@@ -126,14 +199,14 @@
 									<xs:element name="rg" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>RG</xhtml:label>
+												<xhtml:label>RG - Registro Geral</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
 									<xs:element name="cpf" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>CPF</xhtml:label>
+												<xhtml:label>CPF- Cadastro de Pessoa Física</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -147,14 +220,14 @@
 									<xs:element name="carteira" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Carteira de Trabalho</xhtml:label>
+												<xhtml:label>Carteira de Trabalho e Previdência Social</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
 									<xs:element name="cnh" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>CNH</xhtml:label>
+												<xhtml:label>Certidão de Nascimento</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
@@ -185,18 +258,23 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="deficiencia">
+						
+						<xs:element name="deficiencia" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Deficiência</xhtml:label>
+									<xhtml:label>
+										Deficiência:
+                  					</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
-									<xs:maxLength value="255" />
+									<xs:enumeration value="Sim" />
+									<xs:enumeration value="Não" />
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
+						
 						<xs:element name="usoAlcool">
 							<xs:annotation>
 								<xs:appinfo>

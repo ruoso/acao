@@ -114,5 +114,21 @@
        [% END %]
     [% SET counter = counter + 1; END %]
     [% END %]
+
+    [% SET counter_col = 0 %]
+    [% IF labels_col %]
+    [% SET seen = {} %]
+    [% FOREACH l IN labels_col %]
+      [% SET uniq = '{' _ l.ns _ '}' _ l.p %]
+       [% IF !(seen.exists(uniq)) %]
+        <tr><td></td>
+         <td colspan="13"><strong>[% l.l %]: </strong>{string-join($x/ns:doc/dc:documento/dc:documento/dc:conteudo/[% c.model('Dossie').produce_xpath('col' _ counter_col, l.p) %],', ')}</td>
+        </tr>
+        [% seen.import({ $uniq => 1 }) %]
+       [% END %]
+
+    [% SET counter_col = counter_col + 1; END %]
+    [% END %]
+    [% #   linhas_csv.push(['col 1','col 2','col ...','col N'])%]
    </tbody>
 )

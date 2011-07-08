@@ -16,6 +16,8 @@
 # Você deve ter recebido uma cópia da Licença Pública Geral GNU, sob o
 # título "LICENCA.txt", junto com este programa, se não, escreva para a
 # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,%]
+[% USE Dumper %]
+
 
 [% META title = 'Lista de Leituras para o Digitador'%]
 [% INCLUDE 'auth/registros/volume/dossie/header.tt' %]
@@ -33,6 +35,27 @@
 [% SET nome_mae = c.req.param('nome_mae') %]
 
 [% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume, c.model('LDAP').assuntos_dn, c.model('LDAP').local_dn) ) %]
+[% SET numero_campos = (c.req.param('numero_campos')||0) + 0 %]
+[% SET numero_colunas = (c.req.param('numero_colunas')||0) + 0 %]
+[% SET labels = [] %]
+[% SET colunas_csv = [] %]
+[% SET linhas_csv = [] %]
+[% SET labels_col = [] %]
+
+[% IF c.req.param('add_campo_pesquisa');
+   CALL c.req.param('pesquisa_' _ numero_campos _ '_ns', c.req.param('xsd_pesquisa'));
+   SET numero_campos = numero_campos + 1;
+   ELSIF c.req.param('del_campo_pesquisa') && numero_campos > 0;
+   SET numero_campos = numero_campos - 1;
+   END;
+%]
+[% IF c.req.param('add_coluna');
+   CALL c.req.param('col_' _ numero_colunas _ '_ns', c.req.param('xsd_coluna'));
+   SET numero_colunas = numero_colunas + 1;
+   ELSIF c.req.param('del_coluna') && numero_colunas > 0;
+   SET numero_colunas = numero_colunas - 1;
+   END;
+%]
 <div id="accordion">
   <h3><a href="#">Dados do Volume: <span class="label"> [% vol.nome %] </span></a>
   </h3>
@@ -70,8 +93,8 @@
 </div>
  <div id="operacoes">
      [% IF c.model('Volume').pode_alterar_volume(id_volume) %]
-    <a href="[% c.uri_for_action('/auth/registros/volume/alterar_volume', [ id_volume ]) %]" class="alterar" >Alterar volume</a>
-    <a href="[% c.uri_for_action('/auth/registros/volume/alterar_estado', [ id_volume ],'fechado') %]" class="_fechar" title="Fechar" onclick="return confirmaFechamentoVolume();" > Fechar </a>
+        <a href="[% c.uri_for_action('/auth/registros/volume/alterar_volume', [ id_volume ]) %]" class="alterar" >Alterar volume</a>
+        <a href="[% c.uri_for_action('/auth/registros/volume/alterar_estado', [ id_volume ],'fechado') %]" class="_fechar" title="Fechar" onclick="return confirmaFechamentoVolume();" > Fechar </a>
       [% END %]
 </div>
 
@@ -86,31 +109,74 @@
         [% IF c.model('Dossie').pode_criar_dossie(id_volume) %]
             <a class="_criar" href="[% c.uri_for_action('/auth/registros/volume/dossie/form', [ id_volume ]) %]">Criar Prontuário</a>
         [% END %]
+        [% IF numero_colunas <= 0 %]
+             <a class="criarCSV" href="javascript:void(0);">Exportar resultados</a>
+        [% END %]
        </span>
   <br/><br/>
+      <form action="[% c.uri_for_action('/auth/registros/volume/dossie/lista', [ id_volume ]) %]" method="post">
+  [% IF c.req.param('col_0_ns') %]
+    <fieldset id="fieldsetColunasShow">
+  [% ELSE %]
+    <fieldset id="fieldsetColunas">
+
+  [% END %]
+    <legend>Colunas do CSV</legend>
+       <div>
+          <label>Adicionar uma Coluna de CSV:
+            <select name="xsd_coluna">[% c.model('XSD').options_xsd(id_volume, controle, c.model('LDAP').assuntos_dn) %]</select>
+          </label>
+            <input type="submit" name="add_coluna" value="+" />
+            [% IF numero_colunas > 0 %]<input type="submit" name="del_coluna" value="-" />[% END %]
+            <input type="hidden" name="numero_colunas" value="[% numero_colunas %]" />
+
+
+       </div>
+      [% SET counter_col = 0 %]
+     <fieldset >
+        <legend> Colunas</legend>
+        [% WHILE (counter_col < numero_colunas) %]
+        <fieldset id="coluna_[% counter_col %]">
+         <legend></legend>
+         [% SET schema_col = c.model('XSD').obter_xsd( c.req.param('col_' _ counter_col _ '_ns') ) %]
+         <input type="hidden" name="col_[% counter_col %]_ns" value="[% c.req.param('col_' _ counter_col _ '_ns') %]" />
+         <select name="campo_col_[% counter_col %]" id="campo_col_[% counter_col %]"  style="width:100%;">
+          [% FOREACH field_c IN c.model('Dossie').get_simpletype_annotations(schema_col) %]
+          [% colunas_csv.push(field_c.completelabel) %]
+            <OPTION VALUE="[% field_c.path %]" [% IF (c.req.param('campo_col_' _ counter_col) == field_c.path); labels_col.push({ l => field_c.completelabel, ns => c.req.param('col_' _ counter_col _ '_ns'), p => field_c.path}) %] selected [% END %]>[% field_c.completelabel %]</OPTION>
+          [% END %]
+         </select>
+        </fieldset>
+        [% counter_col = counter_col + 1; END %]
+      </fieldset>
+
+    [% FOREACH l IN labels_col %]
+            <input type="hidden" name="labels_colunas[]" value="[% l.l %]">
+    [% END %]
+
+  </fieldset>
   <fieldset>
     <legend>Buscar Prontuários</legend>
-
-    <form action="[% c.uri_for_action('/auth/registros/volume/dossie/lista', [ id_volume ]) %]">
      <div>
-
-      [% SET numero_campos = (c.req.param('numero_campos')||0) + 0 %]
-      [% SET labels = [] %]
-
-      [% IF c.req.param('add_campo_pesquisa');
-         CALL c.req.param('pesquisa_' _ numero_campos _ '_ns', c.req.param('xsd_pesquisa'));
-         SET numero_campos = numero_campos + 1;
-         ELSIF c.req.param('del_campo_pesquisa') && numero_campos > 0;
-         SET numero_campos = numero_campos - 1;
-         END;
-      %]
-
       <div>
        <input type="hidden" name="numero_campos" value="[% numero_campos %]" />
        <div>
         <label> Nome do prontuário:
         <input type="text" name="nome_prontuario" id="nome_prontuario" value="[% c.req.param('nome_prontuario') | html %]" /></label>
-        <input type="submit" name="submit_form" id="submit_form_2" value="Pesquisar">
+         [% IF numero_colunas > 0 %]
+
+          <input type="submit" name="submit_form" id="submit_form_2" value="Pevisualizar CSV">
+          [% ELSE %]
+          <input type="submit" name="submit_form" id="submit_form_2" value="Pesquisar">
+          [% END %]
+         [% IF c.req.param('submit_form') && (numero_colunas > 0)%]
+          <input type="submit" name="gerarCSV" value="Gerar CSV" />
+        [% END %]
+
+
+
+
+
        </div>
        <div>
         <label>Adicionar um campo de pesquisa: <select name="xsd_pesquisa">[% c.model('XSD').options_xsd(id_volume, controle, c.model('LDAP').assuntos_dn) %]</select></label>
@@ -153,7 +219,7 @@
 
   <br/>
 
-  [% IF c.req.param('submit_form') %]
+  [% IF c.req.param('submit_form')  %]
 
    [% # O foreach abaixo vai buscar diretamente no model por estar livre de contexto %]
    [% # (nao recebe argumento pela url) %]
@@ -170,10 +236,10 @@
                                                   num_por_pagina    => num_por_pagina,
                                                   pesquisa          => c.req.params()
                                                 });
-      #"<textarea cols=180 rows=80>" _ xquery.list _ "</textarea>";
-      #c.model('Sedna').conn.setConnectionAttr_CONCURRENCY_TYPE(c.model('Sedna').conn.SEDNA_READONLY_TRANSACTION);
-      c.model('Sedna').begin ;
-      c.model('Sedna').execute( xquery.list );
+        #"<textarea cols=180 rows=80>" _ xquery.list _ "</textarea>";
+        #c.model('Sedna').conn.setConnectionAttr_CONCURRENCY_TYPE(c.model('Sedna').conn.SEDNA_READONLY_TRANSACTION);
+        c.model('Sedna').begin ;
+        c.model('Sedna').execute( xquery.list );
     %]
 
   <table id="buscadossie">
@@ -204,12 +270,13 @@
    [%
       c.model('Sedna').execute( xquery.count );
 
-   WHILE (contador = c.model('Sedna').get_item);
+        WHILE (contador = c.model('Sedna').get_item);
          count = contador;
-      END;
+        END;
 
      c.model('Sedna').commit;
      # c.model('Sedna').conn.setConnectionAttr_CONCURRENCY_TYPE(c.model('Sedna').conn.SEDNA_UPDATE_TRANSACTION); %]
+
    [% CATCH %]
    <div class="erro">ERRO AO PROCESSAR CONSULTA:
     <PRE>[% error.info %]</PRE>
@@ -223,6 +290,7 @@
 
   [% paginacao = PROCESS 'auth/registros/volume/dossie/paginacao.tt' %]
   [% paginacao %]
+
   </fieldset>
 
   [% END %]
@@ -256,6 +324,16 @@
                return false;
           }
        }
+
+    $(".criarCSV").click(function() {
+      if ($("#fieldsetColunas").css('display') == 'block') {
+          $("#fieldsetColunas").hide();
+       } else {
+         $("#fieldsetColunas").show();
+
+       }
+
+    });
 
   </script>
   [% INCLUDE 'footer.tt' %]

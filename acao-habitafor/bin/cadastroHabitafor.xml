@@ -1,0 +1,160 @@
+<Schema name="cadastro_habitafor">
+  <Cube name="cadastro_habitafor" cache="true" enabled="true">
+    <Table name="f_cadastro_habitafor" schema="habitafor">
+    </Table>
+    <Dimension type="StandardDimension" foreignKey="id_orgao" highCardinality="false" name="orgao">
+      <Hierarchy name="orgao" hasAll="true" primaryKey="id_orgao">
+        <Table name="d_orgao" schema="habitafor">
+        </Table>
+        <Level name="orgao" column="orgao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_assentamento" highCardinality="false" name="assentamento">
+      <Hierarchy name="assentamento" hasAll="true" primaryKey="id_assentamento">
+        <Table name="d_assentamento" schema="habitafor">
+        </Table>
+        <Level name="assentamento" column="assentamento" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_endereco" highCardinality="false" name="bairro">
+      <Hierarchy name="bairro" hasAll="true" primaryKey="id_endereco">
+        <Table name="d_endereco" schema="habitafor">
+        </Table>
+        <Level name="bairro" column="bairro" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_regional" highCardinality="false" name="regional">
+      <Hierarchy name="regional" hasAll="true" primaryKey="id_regional">
+        <Table name="d_regional" schema="habitafor">
+        </Table>
+        <Level name="regional" column="regional" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_titularidade" highCardinality="false" name="titularidade">
+      <Hierarchy name="titularidade" hasAll="true" primaryKey="id_titularidade">
+        <Table name="d_titularidade" schema="habitafor">
+        </Table>
+        <Level name="titularidade" column="titularidade" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_coabitacao" highCardinality="false" name="coabitacao">
+      <Hierarchy name="coabitacao" hasAll="true" primaryKey="id_coabitacao">
+        <Table name="d_coabitacao" schema="habitafor">
+        </Table>
+        <Level name="coabitacao" column="coabitacao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_data" highCardinality="false" name="data">
+      <Hierarchy name="data" hasAll="true" primaryKey="id_data">
+        <Table name="d_data" schema="habitafor">
+        </Table>
+        <Level name="ano" column="ano" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="mes" column="mes" ordinalColumn="nr_mes" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="dia" column="dia" type="Integer" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_condicao_moradia" highCardinality="false" name="condicao_moradia">
+      <Hierarchy name="condicao_moradia" hasAll="true" primaryKey="id_condicao_moradia">
+        <Table name="d_condicao_moradia" schema="habitafor">
+        </Table>
+        <Level name="condicao_moradia" column="condicao_moradia" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_procedencia_familia" highCardinality="false" name="procedencia_familia">
+      <Hierarchy name="procedencia_familia" hasAll="true" primaryKey="id_procedencia_familia">
+        <Table name="d_procedencia_familia" schema="habitafor">
+        </Table>
+        <Level name="procedencia_familia" column="procedencia_familia" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_tipo_bic" highCardinality="false" name="tipo_bic">
+      <Hierarchy name="tipo_bic" hasAll="true" primaryKey="id_tipo_bic">
+        <Table name="d_tipo_bic" schema="habitafor">
+        </Table>
+        <Level name="tipo_bic" column="tipo_bic" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_tipologia_construcao" highCardinality="false" name="tipologia_construcao">
+      <Hierarchy name="tipologia_construcao" hasAll="true" primaryKey="id_tipologia_construcao">
+        <Table name="d_tipologia_construcao" schema="habitafor">
+        </Table>
+        <Level name="tipologia_construcao" column="tipologia_construcao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_situacao_risco" highCardinality="false" name="situacao_risco">
+      <Hierarchy name="situacao_risco" hasAll="true" primaryKey="id_situacao_risco">
+        <Table name="d_situacao_risco" schema="habitafor">
+        </Table>
+        <Level name="situacao_risco" column="situacao_risco" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_rede_agua" highCardinality="false" name="rede_agua">
+      <Hierarchy name="rede_agua" hasAll="true" primaryKey="id_rede_agua">
+        <Table name="d_rede_agua" schema="habitafor">
+        </Table>
+        <Level name="rede_agua" column="rede_agua" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_rede_esgoto" highCardinality="false" name="rede_esgoto">
+      <Hierarchy name="rede_esgoto" hasAll="true" primaryKey="id_rede_esgoto">
+        <Table name="d_rede_esgoto" schema="habitafor">
+        </Table>
+        <Level name="rede_esgoto" column="rede_esgoto" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_coleta_sistematica_lixo" highCardinality="false" name="coleta_sistematica_lixo">
+      <Hierarchy name="coleta_sistematica_lixo" hasAll="true" primaryKey="id_coleta_sistematica_lixo">
+        <Table name="d_coleta_sistematica_lixo" schema="habitafor">
+        </Table>
+        <Level name="coleta_sistematica_lixo" column="coleta_sistematica_lixo" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Measure name="quantidade" column="quantidade" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="nr_familias" column="nr_familias" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="vinculo_associacao_comunitaria" column="vinculo_assossiacao_comunitaria" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="qtd_deficiencientes_auditivo" column="qtd_deficientes_auditivo" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="qtd_deficiencientes_visual" column="qtd_deficientes_visual" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="qtd_deficiencientes_motora" column="qtd_deficientes_motora" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="qtd_deficiencientes_mental" column="qtd_deficientes_mental" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="destino_lixo_conteiner" column="destino_lixo_conteiner" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="destino_lixo_enterrado" column="destino_lixo_enterrado" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="destino_lixo_logradouro" column="destino_lixo_logradouro" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="destino_lixo_outro" column="destino_lixo_outro" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="destino_lixo_passeio" column="destino_lixo_passeio" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="destino_lixo_queimado" column="destino_lixo_queimado" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="destino_lixo_recurso_hidrico" column="destino_lixo_recurso_hidrico" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="destino_lixo_terreno_baldio" column="destino_lixo_terreno_baldio" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+  </Cube>
+</Schema>
