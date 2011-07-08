@@ -175,7 +175,7 @@
       </Hierarchy>
     </Dimension>
     <Dimension type="StandardDimension" foreignKey="id_cor_raca" highCardinality="false" name="d_cor_raca">
-      <Hierarchy name="Cor Ra&#231;a" hasAll="true">
+      <Hierarchy name="Cor Ra&#231;a" hasAll="true" primaryKey="id_cor_raca">
         <Table name="d_cor_raca" schema="semas">
         </Table>
         <Level name="Cor Ra&#231;a" column="cor_raca" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
@@ -224,6 +224,22 @@
     </Dimension>
     <DimensionUsage source="d_data" name="d_data" foreignKey="id_data" highCardinality="false">
     </DimensionUsage>
+    <Dimension type="StandardDimension" foreignKey="id_idade" name="d_idade">
+      <Hierarchy name="Idade" hasAll="true" primaryKey="id_idade">
+        <Table name="d_idade" schema="semas" alias="">
+        </Table>
+        <Level name="idade" column="id_idade" type="Integer" uniqueMembers="false" levelType="Regular">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_beneficiario" name="d_beneficiario">
+      <Hierarchy name="d_beneficiario" hasAll="true" primaryKey="id_beneficiario">
+        <Table name="d_beneficiario" schema="semas" alias="">
+        </Table>
+        <Level name="beneficiario" column="ds_beneficiario" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
     <Measure name="Quantidade" column="quantidade" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
     <Measure name="possue_cegueira" column="possui_cegueira" datatype="Integer" aggregator="sum" visible="true">
