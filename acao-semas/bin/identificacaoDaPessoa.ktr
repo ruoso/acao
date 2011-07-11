@@ -4219,7 +4219,7 @@ var data = dia+&apos;&#47;&apos;+mes+&apos;&#47;&apos;+ano;
 var data = new Date(data);
 var idade = IDADE;
 if(idade &lt; 0){
-	idade = 0
+	idade = -1
 }
 var id_raca_cor = parseInt(COR_RACA);
 var id_relacao_parentesco = parseInt(PARENTESCO);
@@ -4554,7 +4554,7 @@ var recebe_outras_fontes_mensal = parseInt(OUTRAS_RENDAS);</jsScript_script>
     <connection>semas</connection>
     <sql>SELECT &#47;*+ use_nl(idpes, pesdoc, pesesc, trabrem, pesdef, tb_cadastrounico) index(IDPES ix_cadastrounico1) index(pesdoc ix_cadastrounico3) 
 index(pesesc ix_cadastrounico3) index(trabrem ix_cadastrounico3) index(pesdef ix_cadastrounico3) *&#47;
-1 AS QUANTIDADE, nvl(trim(IDPES.DTA_CADASTRAMENTO_MEMB),0) AS ID_DATA, trunc((to_date(validadata(IDPES.DTA_CADASTRAMENTO_MEMB),&apos;ddMMyyyy&apos;) - to_date(validadata(IDPES.DTA_NASC_PESSOA), &apos;ddMMyyyy&apos;))&#47;365) as IDADE, 
+1 AS QUANTIDADE, nvl(trim(IDPES.DTA_CADASTRAMENTO_MEMB),0) AS ID_DATA, nvl(trunc((to_date(validadata(IDPES.DTA_CADASTRAMENTO_MEMB),&apos;ddMMyyyy&apos;) - to_date(validadata(IDPES.DTA_NASC_PESSOA), &apos;ddMMyyyy&apos;))&#47;365), -1) as IDADE, 
 nvl(trim(IDPES.COD_RACA_COR_PESSOA),0) AS COR_RACA, nvl(trim(IDPES.COD_PARENTESCO_RF_PESSOA),0) AS PARENTESCO, 
 nvl(trim(IDPES.COD_LOCAL_NASCIMENTO_PESSOA),0) AS LOCAL_NASCIMENTO, nvl(trim(IDPES.COD_SEXO_PESSOA),0) AS SEXO, nvl(trim(IDPES.COD_CERTIDAO_REGISTRADA_PESSOA),0) AS CERTIDAO_REGISTRADA, 
 nvl(trim(PESDOC.COD_CERTIDAO_CIVIL_PESSOA),0) as CERTIDAO_CIVIL, nvl(trim(PESESC.IND_FREQUENTA_ESCOLA_MEMB),0) AS FREQUENTA_ESCOLA, nvl(trim(PESESC.COD_CURSO_FREQUENTA_MEMB),0) AS CURSO_FREQUENTA, 
