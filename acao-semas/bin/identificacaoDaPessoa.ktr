@@ -587,6 +587,92 @@
     </step>
 
   <step>
+    <name>Generate beneficiario1</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id_beneficiario</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>0</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ds_beneficiario</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Não</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>779</xloc>
+      <yloc>2626</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate beneficiario2</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id_beneficiario</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>1</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ds_beneficiario</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Sim</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>783</xloc>
+      <yloc>2732</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
     <name>Generate corRaca0</name>
     <type>RowGenerator</type>
     <description/>
@@ -4468,7 +4554,7 @@ var recebe_outras_fontes_mensal = parseInt(OUTRAS_RENDAS);</jsScript_script>
     <connection>semas</connection>
     <sql>SELECT &#47;*+ use_nl(idpes, pesdoc, pesesc, trabrem, pesdef, tb_cadastrounico) index(IDPES ix_cadastrounico1) index(pesdoc ix_cadastrounico3) 
 index(pesesc ix_cadastrounico3) index(trabrem ix_cadastrounico3) index(pesdef ix_cadastrounico3) *&#47;
-1 AS QUANTIDADE, nvl(trim(IDPES.DTA_CADASTRAMENTO_MEMB),0) AS ID_DATA, trunc((to_date(IDPES.DTA_CADASTRAMENTO_MEMB,&apos;ddMMyyyy&apos;) - to_date(IDPES.DTA_NASC_PESSOA, &apos;ddMMyyyy&apos;))&#47;365) as IDADE, 
+1 AS QUANTIDADE, nvl(trim(IDPES.DTA_CADASTRAMENTO_MEMB),0) AS ID_DATA, trunc((to_date(validadata(IDPES.DTA_CADASTRAMENTO_MEMB),&apos;ddMMyyyy&apos;) - to_date(validadata(IDPES.DTA_NASC_PESSOA), &apos;ddMMyyyy&apos;))&#47;365) as IDADE, 
 nvl(trim(IDPES.COD_RACA_COR_PESSOA),0) AS COR_RACA, nvl(trim(IDPES.COD_PARENTESCO_RF_PESSOA),0) AS PARENTESCO, 
 nvl(trim(IDPES.COD_LOCAL_NASCIMENTO_PESSOA),0) AS LOCAL_NASCIMENTO, nvl(trim(IDPES.COD_SEXO_PESSOA),0) AS SEXO, nvl(trim(IDPES.COD_CERTIDAO_REGISTRADA_PESSOA),0) AS CERTIDAO_REGISTRADA, 
 nvl(trim(PESDOC.COD_CERTIDAO_CIVIL_PESSOA),0) as CERTIDAO_CIVIL, nvl(trim(PESESC.IND_FREQUENTA_ESCOLA_MEMB),0) AS FREQUENTA_ESCOLA, nvl(trim(PESESC.COD_CURSO_FREQUENTA_MEMB),0) AS CURSO_FREQUENTA, 
@@ -4545,6 +4631,51 @@ LEFT JOIN V_PESSOA_COM_DEFICIENCIA PESDEF ON IDPES.NUM_MEMBRO_FMLA = PESDEF.NUM_
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>380</xloc>
       <yloc>1558</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>output beneficiario</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>semas_postgres</connection>
+    <schema>semas</schema>
+    <table>d_beneficiario</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+        <field>
+          <column_name>id_beneficiario</column_name>
+          <stream_name>id_beneficiario</stream_name>
+        </field>
+        <field>
+          <column_name>ds_beneficiario</column_name>
+          <stream_name>ds_beneficiario</stream_name>
+        </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>974</xloc>
+      <yloc>2672</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -5216,137 +5347,6 @@ LEFT JOIN V_PESSOA_COM_DEFICIENCIA PESDEF ON IDPES.NUM_MEMBRO_FMLA = PESDEF.NUM_
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>1129</xloc>
       <yloc>1276</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>output beneficiario</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>semas_postgres</connection>
-    <schema>semas</schema>
-    <table>d_beneficiario</table>
-    <commit>1000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-        <field>
-          <column_name>id_beneficiario</column_name>
-          <stream_name>id_beneficiario</stream_name>
-        </field>
-        <field>
-          <column_name>ds_beneficiario</column_name>
-          <stream_name>ds_beneficiario</stream_name>
-        </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>974</xloc>
-      <yloc>2672</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Generate beneficiario1</name>
-    <type>RowGenerator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>
-      <field>
-        <name>id_beneficiario</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>0</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>ds_beneficiario</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>Não</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-    </fields>
-    <limit>1</limit>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>779</xloc>
-      <yloc>2626</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Generate beneficiario2</name>
-    <type>RowGenerator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>
-      <field>
-        <name>id_beneficiario</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>1</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>ds_beneficiario</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>Sim</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-    </fields>
-    <limit>1</limit>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>783</xloc>
-      <yloc>2732</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
