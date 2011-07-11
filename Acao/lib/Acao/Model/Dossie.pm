@@ -29,6 +29,7 @@ use Encode;
 use Data::UUID;
 use Data::Dumper;
 use List::MoreUtils 'pairwise';
+use XML::Simple;
 
 with 'Acao::Role::Model::BuscaXSD';
 with 'Acao::Role::Model::Indices';
@@ -112,11 +113,19 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
     my @ns_add =
       map { $args->{pesquisa}{ 'pesquisa_' . $_ . '_ns' } }
       0 .. ( $args->{pesquisa}{numero_campos} - 1 );
+    my @ns_add_col =
+      map { $args->{pesquisa}{ 'col_' . $_ . '_ns' } }
+      0 .. ( $args->{pesquisa}{numero_colunas} - 1 );
     my $counter;
-    my %ns        = ( %ns_base, map { "extra" . $counter++ => $_ } @ns_add );
+    my $counter_old;
+    %ns_base = (%ns_base, map { "col" . $counter_old++ => $_ } @ns_add_col);
+
+    my %ns = ( %ns_base, map { "extra" . $counter++ => $_ } @ns_add );
+
     my %prefix    = reverse %ns;
     my $declarens = join "\n",
       map { 'declare namespace ' . $_ . '="' . $ns{$_} . '";' } keys %ns;
+
     my @where;
 
     if ( $args->{pesquisa}{nome_prontuario} ) {
@@ -127,7 +136,6 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
     foreach my $counter ( 0 .. ( $args->{pesquisa}{numero_campos} - 1 ) ) {
         my $ns     = $args->{pesquisa}{"pesquisa_${counter}_ns"};
         my $prefix = $prefix{$ns};
-        warn $args->{pesquisa}{"campo_formulario_${counter}"};
         my $expr = $self->produce_expr_xpfilter(
             $prefix,
             $args->{pesquisa}{"campo_formulario_${counter}"},
@@ -137,6 +145,9 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
         );
         push @where, $expr;
     }
+
+
+
 
     my $where = join '', @where if @where;
 
@@ -159,9 +170,33 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
     # Query para listagem
 
 
+    my $return;
+    # contruindo o retorno para gerar o CSV
+    if ($args->{pesquisa}{gerarCSV}) {
+        my $mnt_return;
+        my $xpprefix = '$x/ns:doc/dc:documento/dc:documento/dc:conteudo';
+        my $counter = 0;
+        my @cols =  map { $args->{pesquisa}{ 'campo_col_' . $_  } }  0 .. ( $args->{pesquisa}{numero_colunas} - 1 );
+        @cols = (map { $self->produce_xpath('col'. $counter++, $_).'/text()' } @cols);
+
+        $mnt_return = ' for $y in '.$xpprefix.' return ('
+                    . 'if ('.join (" or ", map { '$y/'.$_ } @cols).') then ('
+                    . 'string-join(( '
+                    . '$x/ns:nome/text(),'
+                    . join (' else(" * "), ' , map { 'if($y/'.$_.') then ($y/'.$_.')' } @cols)
+                    . ' else(" * ")),";-;")'
+                    . ') else () )'; ;
+        $return = "return (".$mnt_return." ),0)";
+
+    } else {
+       $return = 'return ($x/ns:controle/text() , '
+              . $args->{xqueryret} . '),' . '('
+              . $args->{interval_ini} * $args->{num_por_pagina}
+              . ') + 1 ,'
+              . $args->{num_por_pagina} . '' . ')';
+    }
 
 
-    my $count =
     my $list = $declarens
              . 'subsequence('
              . 'for $x in collection("'
@@ -189,15 +224,28 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
              . ' (some $verif in $dossie satisfies ($verif[('.$grupos.') and @role = "transferir"])) '
              . ')'
              . 'order by $x/ns:criacao descending '
-             . 'return ($x/ns:controle/text() , '
-             . $args->{xqueryret} . '),' . '('
-             . $args->{interval_ini} * $args->{num_por_pagina}
-             . ') + 1 ,'
-             . $args->{num_por_pagina} . '' . ')';
+             . $return;
+
+    if ($args->{pesquisa}{gerarCSV}) {
+         my @csvData;
+         my @cabecalho_colunas =   map { my $var = $_; $var =~ s/^.*-\s+//go; $var; } @{$args->{pesquisa}{'labels_colunas[]'}}  ;
+         unshift(@cabecalho_colunas,'Nome do Prontuário');
+         warn @cabecalho_colunas;
+         $self->sedna->execute($list);
+         while ( my $item = $self->sedna->get_item ) {
+             $item =~ s/^\s//go;
+             my @row = split(/;-;/,$item);
+             push (@csvData,\@row);
+         }
+        unshift (@csvData,\@cabecalho_colunas );
+        return \@csvData;
+
+
+    }
 
 
     # Contrução da query de contagem para contrução da paginação
-    $count = $declarens
+    my $count = $declarens
               #. ' count( for $x in collection("'.$args->{id_volume}.'")/ns:dossie[ns:autorizacoes/author:autorizacao[('.$grupos.') and @role="listar"]] '
               . ' count( for $x in collection("'.$args->{id_volume}.'")/ns:dossie/ns:autorizacoes '
               . $where

@@ -1,0 +1,54 @@
+<Schema name="teste_pronasci">
+  <Cube name="cadastro" cache="true" enabled="true">
+    <Table name="cadastro" schema="pronasci_teste">
+    </Table>
+    <Dimension type="StandardDimension" foreignKey="id_bairro" highCardinality="false" name="bairro">
+      <Hierarchy name="bairro" hasAll="true" primaryKey="id_bairro">
+        <Table name="d_bairro" schema="pronasci_teste">
+        </Table>
+        <Level name="bairro" column="bairro" ordinalColumn="bairro" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_idade" highCardinality="false" name="idade">
+      <Hierarchy name="idade" hasAll="true" primaryKey="id_idade">
+        <Table name="d_idade" schema="pronasci_teste">
+        </Table>
+        <Level name="idade" column="idade" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Measure name="quantidade" column="quantidade" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="interesse_danca" column="interesse_danca" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="interesse_informatica" column="interesse_informatica" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="interesse_arte_tecido" column="interesse_arte_tecido" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="interesse_artesanato" column="interesse_artesanato" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="interesse_canto_coral" column="interesse_canto_coral" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="interesse_customizacao" column="interesse_customizacao" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="interesse_formacao_cidada" column="interesse_formacao_cidada" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="interesse_fotografia" column="interesse_fotografia" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="interesse_maracatu" column="interesse_maracatu" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="interesse_percussao" column="interesse_percussao" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="interesse_protejo" column="interesse_protejo" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="interesse_reciclagem" column="interesse_reciclagem" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="interesse_teatro" column="interesse_teatro" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="interesse_violao" column="interesse_violao" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="interesse_leitura_interpretacao" column="interesse_leitura_interpretacao" aggregator="sum" visible="true">
+    </Measure>
+  </Cube>
+</Schema>

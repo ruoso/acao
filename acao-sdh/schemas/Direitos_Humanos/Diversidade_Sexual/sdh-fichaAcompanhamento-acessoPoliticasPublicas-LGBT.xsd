@@ -65,6 +65,23 @@
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
+						<xs:element name="especificarRegionalCras" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Especifica Reginal CRAS</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="1" />
+									<xs:enumeration value="2" />
+                                    <xs:enumeration value="3" />
+                                    <xs:enumeration value="4" />
+                                    <xs:enumeration value="5" />
+                                    <xs:enumeration value="6" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
 						<xs:element name="creas" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
@@ -121,8 +138,7 @@
 			<xs:element name="beneficioAssistencia" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>É usuário de algum benefico no âmbito da politica
-							assitêncial:</xhtml:label>
+						<xhtml:label>É usuário/a de algum benefico no âmbito da politica de assitência:</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -179,7 +195,7 @@
 						<xs:element name="educacao" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Educacao</xhtml:label>
+									<xhtml:label>Educação</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -209,7 +225,7 @@
 						<xs:element name="esporteLazerCultura" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Esporte, Laser e Cultura</xhtml:label>
+									<xhtml:label>Esporte, Lazer e Cultura</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -254,7 +270,7 @@
 						<xs:element name="seguranca" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Segurança</xhtml:label>
+									<xhtml:label>Segurança Pública</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>

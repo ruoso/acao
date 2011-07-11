@@ -75,6 +75,16 @@ sub lista : Chained('base') : PathPart('') : Args(0) {
         $c->res->redirect( $c->uri_for_action('/auth/registros/volume/lista') );
         return;
     }
+
+
+     if ($c->req->param('gerarCSV')) {
+        my $datacsv = $c->model('Dossie')->listar_dossies({ pesquisa => \%{$c->req->params}, id_volume => $c->stash->{id_volume}});
+        $c->stash->{'csv'} = {'data' => $datacsv };
+        $c->stash->{'download'} = 'text/csv';
+        #
+        $c->forward('Acao::View::Download');
+
+     }
 }
 
 sub form : Chained('base') : PathPart('criardossie') : Args(0) {

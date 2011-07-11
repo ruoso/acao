@@ -43,8 +43,8 @@
 				<xs:simpleType>
 					<xs:restriction base="xs:string">
 						<xs:enumeration value="1" />
-						<xs:enumeration
-							value="mais de 1 (no caso de mais de 1 pule para a questão xxxx)" />
+						<xs:enumeration value="2" />
+						<xs:enumeration value="mais de 2" />
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
@@ -52,7 +52,7 @@
 			<xs:element name="identificacaoDoAgressor" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Identificação do(s) agressor(es)</xhtml:label>
+						<xhtml:label>Identificação do(a) agressor(a)</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>

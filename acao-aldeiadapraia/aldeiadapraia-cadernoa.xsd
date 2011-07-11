@@ -25,7 +25,13 @@
 
 	<xs:complexType name="formCadernoA">
 		<xs:sequence>
-
+			<xs:element name="controle" type="xs:integer" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Controle</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>	
 			<xs:element name="identificacao">
 				<xs:annotation>
 					<xs:appinfo>
@@ -34,7 +40,6 @@
 				</xs:annotation>
 				<xs:complexType>
 					<xs:sequence>
-
 						<xs:element name="codigoPMF" type="xs:integer"
 							minOccurs="0">
 							<xs:annotation>
