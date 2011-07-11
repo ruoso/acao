@@ -1,0 +1,253 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/habitafor-revalidacaocadastropontocomercio-crf.xsd"
+	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
+	xmlns:idx="http://schemas.fortaleza.ce.gov.br/xsdform/indexhint.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/habitafor-revalidacaocadastropontocomercio-crf.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="formRevalidacaoCadastroPontoComercioCRF"
+		type="formRevalidacaoCadastroPontoComercioCRF">
+		<xs:annotation>
+			<xs:appinfo>
+				<xhtml:label>03. FICHA DE REVALIDAÇÃO DE CADASTROS - PONTO COMERCIAL
+				</xhtml:label>
+				<class:classificacoes>
+					<class:classificacao>cn=Habitação</class:classificacao>
+				</class:classificacoes>
+                <idx:index>
+                    <idx:hint key="pessoa.nome" xpath="formRevalidacaoCadastroPontoComercioCRF/identificacao/comerciante" />
+                    <idx:hint key="pessoa.rg" xpath="formRevalidacaoCadastroPontoComercioCRF/identificacao/rg" />
+                    <idx:hint key="pessoa.cpf" xpath="formRevalidacaoCadastroPontoComercioCRF/identificacao/cpf" />
+                </idx:index>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="formRevalidacaoCadastroPontoComercioCRF">
+		<xs:sequence>
+			<xs:element name="localizacao">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Localização</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="conjunto" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Conjunto</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="data" minOccurs="0" type="xs:date">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Data</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="tipoConsrucaoComercio" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Tipo construção comércio</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Independente" />
+									<xs:enumeration value="Conjugado" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="possuiTermoAutorizacaoUso" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Possui termo de autorização de uso</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Sim" />
+									<xs:enumeration value="Não" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="endereco" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Endereço do ponto</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="atividadeDesenvolvida" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Atividade desenvolvida</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="identificacao">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Identificação</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="comerciante" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Comerciante</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="condicaoOcupacao" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Condição ocupação</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Beneficiário" />
+									<xs:enumeration value="Ocupante" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="dataNascimento" minOccurs="0" type="xs:date">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Data nascimento</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="rg" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nr RG</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="orgaoExpeditorRg" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Orgao expeditor RG</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="cpf" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nr CPF</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="profissao" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Profissão</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="endereco" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Endereço</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="situacao">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Situação</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="situacao" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Situação do ponto comercial</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Regular" />
+									<xs:enumeration value="Alugado" />
+									<xs:enumeration value="Fechado" />
+									<xs:enumeration value="Cedido" />
+									<xs:enumeration value="Troca" />
+									<xs:enumeration value="Comprado" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="observacoes" minOccurs="0" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Observações</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

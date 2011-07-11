@@ -15,6 +15,10 @@
 				<class:classificacoes>
 					<class:classificacao>cn=Habitação</class:classificacao>
 				</class:classificacoes>
+                <idx:index>
+                    <idx:hint key="pessoa.nome" xpath="formAssentamentoBIC/identificacao/entrevistador" />
+                    <idx:hint key="pessoa.nome" xpath="formAssentamentoBIC/identificacao/tecnicoResponsavel" />
+                </idx:index>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
@@ -172,7 +176,7 @@
 				<xs:complexType>
 					<xs:sequence>
 
-						<xs:element name="Bairro" minOccurs="0">
+						<xs:element name="bairro" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Bairro</xhtml:label>
@@ -601,7 +605,7 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="redeColetEsgoto" minOccurs="0">
+						<xs:element name="redeColetaEsgoto" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Rede coleta esgoto</xhtml:label>
@@ -752,7 +756,7 @@
 									<xs:enumeration value="Asfalto" />
 									<xs:enumeration value="Pedra tosca" />
 									<xs:enumeration value="Paralelepípedo" />
-									<xs:enumeration value="Pirraça" />
+									<xs:enumeration value="Piçarra" />
 									<xs:enumeration value="Outro" />
 								</xs:restriction>
 							</xs:simpleType>
@@ -848,14 +852,14 @@
 							</xs:annotation>
 							<xs:complexType>
 								<xs:sequence>
-									<xs:element name="escolaEnsFund" type="xs:boolean">
+									<xs:element name="escolaEnsFund" type="xs:boolean" >
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Escola de ensino fundamental</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="qtdeEscEnsFund" type="xs:integer">
+									<xs:element name="qtdeEscEnsFund" type="xs:integer" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Qtde.</xhtml:label>
@@ -883,7 +887,7 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="qtdeEscEnsMed" type="xs:integer">
+									<xs:element name="qtdeEscEnsMed" type="xs:integer" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Qtde.</xhtml:label>
@@ -910,7 +914,7 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="qtdeInstituicaoEnsSup" type="xs:integer">
+									<xs:element name="qtdeInstituicaoEnsSup" type="xs:integer" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Qtde.</xhtml:label>
@@ -937,7 +941,7 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="qtdeCreches" type="xs:integer">
+									<xs:element name="qtdeCreches" type="xs:integer" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Qtde.</xhtml:label>
@@ -965,7 +969,7 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="qtdeInstituicaoEnsProf" type="xs:integer">
+									<xs:element name="qtdeInstituicaoEnsProf" type="xs:integer" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Qtde.</xhtml:label>
@@ -1004,7 +1008,7 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="qtdeCaps" type="xs:integer">
+									<xs:element name="qtdeCaps" type="xs:integer" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Qtde.</xhtml:label>
@@ -1031,7 +1035,7 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="qtdeHospitais" type="xs:integer">
+									<xs:element name="qtdeHospitais" type="xs:integer" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Qtde.</xhtml:label>
@@ -1058,7 +1062,7 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="qtdePostoSaude" type="xs:integer">
+									<xs:element name="qtdePostoSaude" type="xs:integer" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Qtde.</xhtml:label>
@@ -1085,7 +1089,7 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="qtdeAmbulatorio" type="xs:integer">
+									<xs:element name="qtdeAmbulatorio" type="xs:integer" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Qtde.</xhtml:label>
@@ -1123,7 +1127,7 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="qtdeOrgaoAssistenciaSocial" type="xs:integer">
+									<xs:element name="qtdeOrgaoAssistenciaSocial" type="xs:integer" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Qtde.</xhtml:label>
@@ -1151,7 +1155,7 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="qtdeAssociacaoComunitaria" type="xs:integer">
+									<xs:element name="qtdeAssociacaoComunitaria" type="xs:integer" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Qtde.</xhtml:label>
@@ -1179,7 +1183,7 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="qtdeCentroComunitario" type="xs:integer">
+									<xs:element name="qtdeCentroComunitario" type="xs:integer" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Qtde.</xhtml:label>
@@ -1206,7 +1210,7 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="qtdeOficinaProducao" type="xs:integer">
+									<xs:element name="qtdeOficinaProducao" type="xs:integer" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Qtde.</xhtml:label>
@@ -1233,7 +1237,7 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="qtdeGalpaoComunitario" type="xs:integer">
+									<xs:element name="qtdeGalpaoComunitario" type="xs:integer" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Qtde.</xhtml:label>
@@ -1260,7 +1264,7 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="qtdeInstituicaoReligiosa" type="xs:integer">
+									<xs:element name="qtdeInstituicaoReligiosa" type="xs:integer" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Qtde.</xhtml:label>
@@ -1289,7 +1293,7 @@
 										</xs:annotation>
 									</xs:element>
 									<xs:element name="qtdeOrganizacaoNaoGovernamental"
-										type="xs:integer">
+										type="xs:integer" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Qtde.</xhtml:label>
@@ -1329,7 +1333,7 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="qtdeSupermercado" type="xs:integer">
+									<xs:element name="qtdeSupermercado" type="xs:integer" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Qtde.</xhtml:label>
@@ -1344,7 +1348,7 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="qtdeMercadinhoMercearia" type="xs:integer">
+									<xs:element name="qtdeMercadinhoMercearia" type="xs:integer" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Qtde.</xhtml:label>
@@ -1359,7 +1363,7 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="qtdeBarLanchonete" type="xs:integer">
+									<xs:element name="qtdeBarLanchonete" type="xs:integer" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Qtde.</xhtml:label>
@@ -1374,7 +1378,7 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="qtdeAcougue" type="xs:integer">
+									<xs:element name="qtdeAcougue" type="xs:integer" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Qtde.</xhtml:label>
@@ -1389,7 +1393,7 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="qtdePadaria" type="xs:integer">
+									<xs:element name="qtdePadaria" type="xs:integer" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Qtde.</xhtml:label>
@@ -1404,7 +1408,7 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="qtdeRestaurante" type="xs:integer">
+									<xs:element name="qtdeRestaurante" type="xs:integer" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Qtde.</xhtml:label>
@@ -1431,7 +1435,7 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="qtdeCasaLoterica" type="xs:integer">
+									<xs:element name="qtdeCasaLoterica" type="xs:integer" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Qtde.</xhtml:label>
@@ -1446,7 +1450,7 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="qtdeCorreio" type="xs:integer">
+									<xs:element name="qtdeCorreio" type="xs:integer" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Qtde.</xhtml:label>
@@ -1461,7 +1465,7 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="qtdeSalaoBeleza" type="xs:integer">
+									<xs:element name="qtdeSalaoBeleza" type="xs:integer" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Qtde.</xhtml:label>
@@ -1476,7 +1480,7 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="qtdeArmarinho" type="xs:integer">
+									<xs:element name="qtdeArmarinho" type="xs:integer" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Qtde.</xhtml:label>
@@ -1491,7 +1495,7 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="qtdeFarmacia" type="xs:integer">
+									<xs:element name="qtdeFarmacia" type="xs:integer" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Qtde.</xhtml:label>
@@ -1506,7 +1510,7 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="qtdePostoCombustivel" type="xs:integer">
+									<xs:element name="qtdePostoCombustivel" type="xs:integer" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Qtde.</xhtml:label>
@@ -1521,7 +1525,7 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="qtdeBanco" type="xs:integer">
+									<xs:element name="qtdeBanco" type="xs:integer" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Qtde.</xhtml:label>
@@ -1536,7 +1540,7 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="qtdeDistritoPolicial" type="xs:integer">
+									<xs:element name="qtdeDistritoPolicial" type="xs:integer" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Qtde.</xhtml:label>
@@ -1563,7 +1567,7 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="qtdeCampoFutebol" type="xs:integer">
+									<xs:element name="qtdeCampoFutebol" type="xs:integer" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Qtde.</xhtml:label>
@@ -1578,7 +1582,7 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="qtdeQuadra" type="xs:integer">
+									<xs:element name="qtdeQuadra" type="xs:integer" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Qtde.</xhtml:label>
@@ -1593,7 +1597,7 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="qtdePlayground" type="xs:integer">
+									<xs:element name="qtdePlayground" type="xs:integer" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Qtde.</xhtml:label>
@@ -1608,7 +1612,7 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="qtdeAcademia" type="xs:integer">
+									<xs:element name="qtdeAcademia" type="xs:integer" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Qtde.</xhtml:label>
@@ -1623,7 +1627,7 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="qtdeClube" type="xs:integer">
+									<xs:element name="qtdeClube" type="xs:integer" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Qtde.</xhtml:label>
@@ -1638,7 +1642,7 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="qtdeCentroSocial" type="xs:integer">
+									<xs:element name="qtdeCentroSocial" type="xs:integer" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Qtde.</xhtml:label>
@@ -1653,7 +1657,7 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="qtdePraca" type="xs:integer">
+									<xs:element name="qtdePraca" type="xs:integer" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Qtde.</xhtml:label>

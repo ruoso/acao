@@ -1,0 +1,5359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<transformation>
+  <info>
+    <name>identificacaoDaPessoa</name>
+    <description/>
+    <extended_description/>
+    <trans_version/>
+    <trans_type>Normal</trans_type>
+    <directory>&#47;</directory>
+    <parameters>
+    </parameters>
+    <log>
+<trans-log-table><connection/>
+<schema/>
+<table/>
+<size_limit_lines/>
+<interval/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STATUS</id><enabled>Y</enabled><name>STATUS</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name><subject/></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name><subject/></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name><subject/></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name><subject/></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name><subject/></field><field><id>LINES_REJECTED</id><enabled>Y</enabled><name>LINES_REJECTED</name><subject/></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>STARTDATE</id><enabled>Y</enabled><name>STARTDATE</name></field><field><id>ENDDATE</id><enabled>Y</enabled><name>ENDDATE</name></field><field><id>LOGDATE</id><enabled>Y</enabled><name>LOGDATE</name></field><field><id>DEPDATE</id><enabled>Y</enabled><name>DEPDATE</name></field><field><id>REPLAYDATE</id><enabled>Y</enabled><name>REPLAYDATE</name></field><field><id>LOG_FIELD</id><enabled>Y</enabled><name>LOG_FIELD</name></field></trans-log-table>
+<perf-log-table><connection/>
+<schema/>
+<table/>
+<interval/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>SEQ_NR</id><enabled>Y</enabled><name>SEQ_NR</name></field><field><id>LOGDATE</id><enabled>Y</enabled><name>LOGDATE</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STEPNAME</id><enabled>Y</enabled><name>STEPNAME</name></field><field><id>STEP_COPY</id><enabled>Y</enabled><name>STEP_COPY</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name></field><field><id>LINES_REJECTED</id><enabled>Y</enabled><name>LINES_REJECTED</name></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>INPUT_BUFFER_ROWS</id><enabled>Y</enabled><name>INPUT_BUFFER_ROWS</name></field><field><id>OUTPUT_BUFFER_ROWS</id><enabled>Y</enabled><name>OUTPUT_BUFFER_ROWS</name></field></perf-log-table>
+<channel-log-table><connection/>
+<schema/>
+<table/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>LOG_DATE</id><enabled>Y</enabled><name>LOG_DATE</name></field><field><id>LOGGING_OBJECT_TYPE</id><enabled>Y</enabled><name>LOGGING_OBJECT_TYPE</name></field><field><id>OBJECT_NAME</id><enabled>Y</enabled><name>OBJECT_NAME</name></field><field><id>OBJECT_COPY</id><enabled>Y</enabled><name>OBJECT_COPY</name></field><field><id>REPOSITORY_DIRECTORY</id><enabled>Y</enabled><name>REPOSITORY_DIRECTORY</name></field><field><id>FILENAME</id><enabled>Y</enabled><name>FILENAME</name></field><field><id>OBJECT_ID</id><enabled>Y</enabled><name>OBJECT_ID</name></field><field><id>OBJECT_REVISION</id><enabled>Y</enabled><name>OBJECT_REVISION</name></field><field><id>PARENT_CHANNEL_ID</id><enabled>Y</enabled><name>PARENT_CHANNEL_ID</name></field><field><id>ROOT_CHANNEL_ID</id><enabled>Y</enabled><name>ROOT_CHANNEL_ID</name></field></channel-log-table>
+<step-log-table><connection/>
+<schema/>
+<table/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>LOG_DATE</id><enabled>Y</enabled><name>LOG_DATE</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STEPNAME</id><enabled>Y</enabled><name>STEPNAME</name></field><field><id>STEP_COPY</id><enabled>Y</enabled><name>STEP_COPY</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name></field><field><id>LINES_REJECTED</id><enabled>Y</enabled><name>LINES_REJECTED</name></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>LOG_FIELD</id><enabled>N</enabled><name>LOG_FIELD</name></field></step-log-table>
+    </log>
+    <maxdate>
+      <connection/>
+      <table/>
+      <field/>
+      <offset>0.0</offset>
+      <maxdiff>0.0</maxdiff>
+    </maxdate>
+    <size_rowset>10000</size_rowset>
+    <sleep_time_empty>50</sleep_time_empty>
+    <sleep_time_full>50</sleep_time_full>
+    <unique_connections>N</unique_connections>
+    <feedback_shown>Y</feedback_shown>
+    <feedback_size>50000</feedback_size>
+    <using_thread_priorities>Y</using_thread_priorities>
+    <shared_objects_file/>
+    <capture_step_performance>N</capture_step_performance>
+    <step_performance_capturing_delay>1000</step_performance_capturing_delay>
+    <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
+    <dependencies>
+    </dependencies>
+    <partitionschemas>
+    </partitionschemas>
+    <slaveservers>
+    </slaveservers>
+    <clusterschemas>
+    </clusterschemas>
+  <created_user>-</created_user>
+  <created_date>2011&#47;06&#47;30 11:11:26.238</created_date>
+  <modified_user>-</modified_user>
+  <modified_date>2011&#47;06&#47;30 11:11:26.238</modified_date>
+  </info>
+  <notepads>
+  </notepads>
+  <connection>
+    <name>semas</name>
+    <server>172.30.116.22</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>pmft</database>
+    <port>1521</port>
+    <username>semas</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb79ce63db9faec9</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>1521</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>semas_postgres</name>
+    <server>172.30.116.22</server>
+    <type>POSTGRESQL</type>
+    <access>Native</access>
+    <database>dw</database>
+    <port>5432</port>
+    <username>dw</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb79ce60d394abcd</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>5432</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <order>
+  <hop> <from>Generate ondeNasceu1</from><to>output ondeNasceu</to><enabled>Y</enabled> </hop>  <hop> <from>Generate ondeNasceu2</from><to>output ondeNasceu</to><enabled>Y</enabled> </hop>  <hop> <from>Generate ondeNasceu3</from><to>output ondeNasceu</to><enabled>Y</enabled> </hop>  <hop> <from>Generate nascimentoRegistrado1 </from><to>output nascimentoRegistrado</to><enabled>Y</enabled> </hop>  <hop> <from>Generate nascimentoRegistrado2</from><to>output nascimentoRegistrado</to><enabled>Y</enabled> </hop>  <hop> <from>Generate nascimentoRegistrado3</from><to>output nascimentoRegistrado</to><enabled>Y</enabled> </hop>  <hop> <from>Generate nascimentoRegistrado4</from><to>output nascimentoRegistrado</to><enabled>Y</enabled> </hop>  <hop> <from>Generate sexo1</from><to>output sexo</to><enabled>Y</enabled> </hop>  <hop> <from>Generate sexo2</from><to>output sexo</to><enabled>Y</enabled> </hop>  <hop> <from>Generate corRaca1</from><to>output corRaca</to><enabled>Y</enabled> </hop>  <hop> <from>Generate corRaca2</from><to>output corRaca</to><enabled>Y</enabled> </hop>  <hop> <from>Generate corRaca3</from><to>output corRaca</to><enabled>Y</enabled> </hop>  <hop> <from>Generate corRaca4</from><to>output corRaca</to><enabled>Y</enabled> </hop>  <hop> <from>Generate corRaca5</from><to>output corRaca</to><enabled>Y</enabled> </hop>  <hop> <from>Generate relacaoParentescoResponsavel1</from><to>output relacaoParentescoResponsavel</to><enabled>Y</enabled> </hop>  <hop> <from>Generate relacaoParentescoResponsavel2</from><to>output relacaoParentescoResponsavel</to><enabled>Y</enabled> </hop>  <hop> <from>Generate relacaoParentescoResponsavel3</from><to>output relacaoParentescoResponsavel</to><enabled>Y</enabled> </hop>  <hop> <from>Generate relacaoParentescoResponsavel4</from><to>output relacaoParentescoResponsavel</to><enabled>Y</enabled> </hop>  <hop> <from>Generate relacaoParentescoResponsavel5</from><to>output relacaoParentescoResponsavel</to><enabled>Y</enabled> </hop>  <hop> <from>Generate relacaoParentescoResponsavel6</from><to>output relacaoParentescoResponsavel</to><enabled>Y</enabled> </hop>  <hop> <from>Generate relacaoParentescoResponsavel7</from><to>output relacaoParentescoResponsavel</to><enabled>Y</enabled> </hop>  <hop> <from>Generate relacaoParentescoResponsavel9</from><to>output relacaoParentescoResponsavel</to><enabled>Y</enabled> </hop>  <hop> <from>Generate relacaoParentescoResponsavel8</from><to>output relacaoParentescoResponsavel</to><enabled>Y</enabled> </hop>  <hop> <from>Generate relacaoParentescoResponsavel10</from><to>output relacaoParentescoResponsavel</to><enabled>Y</enabled> </hop>  <hop> <from>Generate relacaoParentescoResponsavel11</from><to>output relacaoParentescoResponsavel</to><enabled>Y</enabled> </hop>  <hop> <from>Generate frequentaEscolaCreche1</from><to>output frequentaEscolaCreche</to><enabled>Y</enabled> </hop>  <hop> <from>Generate frequentaEscolaCreche2</from><to>output frequentaEscolaCreche</to><enabled>Y</enabled> </hop>  <hop> <from>Generate frequentaEscolaCreche3</from><to>output frequentaEscolaCreche</to><enabled>Y</enabled> </hop>  <hop> <from>Generate frequentaEscolaCreche4</from><to>output frequentaEscolaCreche</to><enabled>Y</enabled> </hop>  <hop> <from>Generate tipoTrabalho1</from><to>output tipoTrabalho</to><enabled>Y</enabled> </hop>  <hop> <from>Generate tipoTrabalho2</from><to>output tipoTrabalho</to><enabled>Y</enabled> </hop>  <hop> <from>Generate tipoTrabalho3</from><to>output tipoTrabalho</to><enabled>Y</enabled> </hop>  <hop> <from>Generate tipoTrabalho4</from><to>output tipoTrabalho</to><enabled>Y</enabled> </hop>  <hop> <from>Generate tipoTrabalho5</from><to>output tipoTrabalho</to><enabled>Y</enabled> </hop>  <hop> <from>Generate tipoTrabalho6</from><to>output tipoTrabalho</to><enabled>Y</enabled> </hop>  <hop> <from>Generate tipoTrabalho7</from><to>output tipoTrabalho</to><enabled>Y</enabled> </hop>  <hop> <from>Generate tipoTrabalho9</from><to>output tipoTrabalho</to><enabled>Y</enabled> </hop>  <hop> <from>Generate tipoTrabalho8</from><to>output tipoTrabalho</to><enabled>Y</enabled> </hop>  <hop> <from>Generate tipoTrabalho10</from><to>output tipoTrabalho</to><enabled>Y</enabled> </hop>  <hop> <from>Generate tipoTrabalho11</from><to>output tipoTrabalho</to><enabled>Y</enabled> </hop>  <hop> <from>Generate tipoCertidao1</from><to>output tipoCertidao</to><enabled>Y</enabled> </hop>  <hop> <from>Generate tipoCertidao2</from><to>output tipoCertidao</to><enabled>Y</enabled> </hop>  <hop> <from>Generate tipoCertidao3</from><to>output tipoCertidao</to><enabled>Y</enabled> </hop>  <hop> <from>Generate anoSerie1</from><to>output anoSerie</to><enabled>Y</enabled> </hop>  <hop> <from>Generate anoSerie2</from><to>output anoSerie</to><enabled>Y</enabled> </hop>  <hop> <from>Generate anoSerie3</from><to>output anoSerie</to><enabled>Y</enabled> </hop>  <hop> <from>Generate anoSerie4</from><to>output anoSerie</to><enabled>Y</enabled> </hop>  <hop> <from>Generate anoSerie5</from><to>output anoSerie</to><enabled>Y</enabled> </hop>  <hop> <from>Generate anoSerie6</from><to>output anoSerie</to><enabled>Y</enabled> </hop>  <hop> <from>Generate anoSerie7</from><to>output anoSerie</to><enabled>Y</enabled> </hop>  <hop> <from>Generate anoSerie8</from><to>output anoSerie</to><enabled>Y</enabled> </hop>  <hop> <from>Generate anoSerie9</from><to>output anoSerie</to><enabled>Y</enabled> </hop>  <hop> <from>Generate anoSerie10</from><to>output anoSerie</to><enabled>Y</enabled> </hop>  <hop> <from>Generate cursoFrequenta1</from><to>output cursoFrequenta</to><enabled>Y</enabled> </hop>  <hop> <from>Generate cursoFrequenta2</from><to>output cursoFrequenta</to><enabled>Y</enabled> </hop>  <hop> <from>Generate cursoFrequenta3</from><to>output cursoFrequenta</to><enabled>Y</enabled> </hop>  <hop> <from>Generate cursoFrequenta4</from><to>output cursoFrequenta</to><enabled>Y</enabled> </hop>  <hop> <from>Generate cursoFrequenta5</from><to>output cursoFrequenta</to><enabled>Y</enabled> </hop>  <hop> <from>Generate cursoFrequenta6</from><to>output cursoFrequenta</to><enabled>Y</enabled> </hop>  <hop> <from>Generate cursoFrequenta7</from><to>output cursoFrequenta</to><enabled>Y</enabled> </hop>  <hop> <from>Generate cursoFrequenta8</from><to>output cursoFrequenta</to><enabled>Y</enabled> </hop>  <hop> <from>Generate cursoFrequenta9</from><to>output cursoFrequenta</to><enabled>Y</enabled> </hop>  <hop> <from>Generate cursoFrequenta10</from><to>output cursoFrequenta</to><enabled>Y</enabled> </hop>  <hop> <from>Generate cursoFrequenta11</from><to>output cursoFrequenta</to><enabled>Y</enabled> </hop>  <hop> <from>Generate cursoFrequenta12</from><to>output cursoFrequenta</to><enabled>Y</enabled> </hop>  <hop> <from>Generate cursoFrequenta13</from><to>output cursoFrequenta</to><enabled>Y</enabled> </hop>  <hop> <from>Generate cursoFrequenta14</from><to>output cursoFrequenta</to><enabled>Y</enabled> </hop>  <hop> <from>Generate cursoParouEstudar1</from><to>output cursoParouEstudar</to><enabled>Y</enabled> </hop>  <hop> <from>Generate cursoParouEstudar2</from><to>output cursoParouEstudar</to><enabled>Y</enabled> </hop>  <hop> <from>Generate cursoParouEstudar3</from><to>output cursoParouEstudar</to><enabled>Y</enabled> </hop>  <hop> <from>Generate cursoParouEstudar4</from><to>output cursoParouEstudar</to><enabled>Y</enabled> </hop>  <hop> <from>Generate cursoParouEstudar5</from><to>output cursoParouEstudar</to><enabled>Y</enabled> </hop>  <hop> <from>Generate cursoParouEstudar6</from><to>output cursoParouEstudar</to><enabled>Y</enabled> </hop>  <hop> <from>Generate cursoParouEstudar7</from><to>output cursoParouEstudar</to><enabled>Y</enabled> </hop>  <hop> <from>Generate cursoParouEstudar8</from><to>output cursoParouEstudar</to><enabled>Y</enabled> </hop>  <hop> <from>Generate cursoParouEstudar9</from><to>output cursoParouEstudar</to><enabled>Y</enabled> </hop>  <hop> <from>Generate cursoParouEstudar10</from><to>output cursoParouEstudar</to><enabled>Y</enabled> </hop>  <hop> <from>Generate cursoParouEstudar11</from><to>output cursoParouEstudar</to><enabled>Y</enabled> </hop>  <hop> <from>Generate cursoParouEstudar12</from><to>output cursoParouEstudar</to><enabled>Y</enabled> </hop>  <hop> <from>Generate cursoParouEstudar13</from><to>output cursoParouEstudar</to><enabled>Y</enabled> </hop>  <hop> <from>Generate cursoParouEstudar14</from><to>output cursoParouEstudar</to><enabled>Y</enabled> </hop>  <hop> <from>Generate cursoParouEstudar15</from><to>output cursoParouEstudar</to><enabled>Y</enabled> </hop>  <hop> <from>input f_identificacao_pessoa</from><to>Modified Java Script Value 2</to><enabled>Y</enabled> </hop>  <hop> <from>Modified Java Script Value 2</from><to>output f_identificacao_pessoa</to><enabled>Y</enabled> </hop>  <hop> <from>Generate ondeNasceu0</from><to>output ondeNasceu</to><enabled>Y</enabled> </hop>  <hop> <from>Generate corRaca0</from><to>output corRaca</to><enabled>Y</enabled> </hop>  <hop> <from>Generate nascimentoRegistrado0</from><to>output nascimentoRegistrado</to><enabled>Y</enabled> </hop>  <hop> <from>Generate relacaoParentescoResponsavel0</from><to>output relacaoParentescoResponsavel</to><enabled>Y</enabled> </hop>  <hop> <from>Generate sexo0</from><to>output sexo</to><enabled>Y</enabled> </hop>  <hop> <from>Generate frequentaEscolaCreche0</from><to>output frequentaEscolaCreche</to><enabled>Y</enabled> </hop>  <hop> <from>Generate tipoCertidao0</from><to>output tipoCertidao</to><enabled>Y</enabled> </hop>  <hop> <from>Generate tipoTrabalho0</from><to>output tipoTrabalho</to><enabled>Y</enabled> </hop>  <hop> <from>Generate anoSerie0</from><to>output anoSerie</to><enabled>Y</enabled> </hop>  <hop> <from>Generate cursoParouEstudar0</from><to>output cursoParouEstudar</to><enabled>Y</enabled> </hop>  <hop> <from>Generate cursoFrequenta0</from><to>output cursoFrequenta</to><enabled>Y</enabled> </hop>  <hop> <from>Generate beneficiario1</from><to>output beneficiario</to><enabled>Y</enabled> </hop>  <hop> <from>Generate beneficiario2</from><to>output beneficiario</to><enabled>Y</enabled> </hop>  </order>
+  <step>
+    <name>Generate anoSerie0</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>0</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ano_serie</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Não Informado</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>191</xloc>
+      <yloc>1172</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate anoSerie1</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>1</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ano_serie</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Primeiro(a)</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>117</xloc>
+      <yloc>1245</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate anoSerie10</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>10</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ano_serie</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Curso não-seriado</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>124</xloc>
+      <yloc>1836</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate anoSerie2</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>2</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ano_serie</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Segundo(a)</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>122</xloc>
+      <yloc>1309</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate anoSerie3</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>3</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ano_serie</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Terceiro(a)</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>118</xloc>
+      <yloc>1379</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate anoSerie4</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>4</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ano_serie</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Quarto(a)</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>117</xloc>
+      <yloc>1444</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate anoSerie5</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>5</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ano_serie</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Quinto(a)</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>115</xloc>
+      <yloc>1510</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate anoSerie6</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>6</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ano_serie</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Sexto(a)</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>120</xloc>
+      <yloc>1574</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate anoSerie7</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>7</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ano_serie</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Sétimo(a)</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>116</xloc>
+      <yloc>1644</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate anoSerie8</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>8</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ano_serie</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Oitavo(a)</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>115</xloc>
+      <yloc>1709</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate anoSerie9</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>9</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ano_serie</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Nono(a)</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>125</xloc>
+      <yloc>1771</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate corRaca0</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>0</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>cor_raca</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Não Informado</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>687</xloc>
+      <yloc>0</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate corRaca1</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>1</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>cor_raca</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Branca</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>542</xloc>
+      <yloc>16</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate corRaca2</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>2</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>cor_raca</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Preta</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>549</xloc>
+      <yloc>77</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate corRaca3</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>3</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>cor_raca</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Amarela</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>553</xloc>
+      <yloc>136</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate corRaca4</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>4</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>cor_raca</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Parda</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>557</xloc>
+      <yloc>198</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate corRaca5</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>5</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>cor_raca</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Indígena</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>559</xloc>
+      <yloc>259</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate cursoFrequenta0</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>0</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>curso_frequenta</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Não Informado</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1084</xloc>
+      <yloc>1529</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate cursoFrequenta1</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>1</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>curso_frequenta</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Creche</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>933</xloc>
+      <yloc>1561</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate cursoFrequenta10</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>10</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>curso_frequenta</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Ensino Fundamental EJA - séries finais (Supletivo - 5ª a 8ª)</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>940</xloc>
+      <yloc>2152</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate cursoFrequenta11</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>11</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>curso_frequenta</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Ensino Médio EJA (Supletivo)</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>942</xloc>
+      <yloc>2211</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate cursoFrequenta12</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>12</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>curso_frequenta</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Alfabetização para adultos</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>939</xloc>
+      <yloc>2276</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate cursoFrequenta13</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>13</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>curso_frequenta</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Superior, Aperfeiçoamento, Especialização, Mestrado, Doutorado</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>949</xloc>
+      <yloc>2338</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate cursoFrequenta14</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>14</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>curso_frequenta</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Pré-vestibular</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>948</xloc>
+      <yloc>2403</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate cursoFrequenta2</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>2</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>curso_frequenta</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Pré-escola (exceto CA)</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>938</xloc>
+      <yloc>1625</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate cursoFrequenta3</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>3</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>curso_frequenta</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Classe de Alfabetização - CA</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>934</xloc>
+      <yloc>1695</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate cursoFrequenta4</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>4</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>curso_frequenta</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Ensino fundamental regular (duração 8 anos)</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>933</xloc>
+      <yloc>1760</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate cursoFrequenta5</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>5</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>curso_frequenta</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Ensino fundamental regular (duração 9 anos)</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>931</xloc>
+      <yloc>1826</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate cursoFrequenta6</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>6</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>curso_frequenta</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Ensino fundamental especial</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>936</xloc>
+      <yloc>1890</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate cursoFrequenta7</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>7</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>curso_frequenta</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Ensino Médio regular</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>934</xloc>
+      <yloc>1960</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate cursoFrequenta8</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>8</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>curso_frequenta</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Ensino Médio especial</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>931</xloc>
+      <yloc>2025</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate cursoFrequenta9</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>9</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>curso_frequenta</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Ensino Fundamental EJA - séries iniciais (Supletivo - 1ª a 4ª)</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>941</xloc>
+      <yloc>2087</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate cursoParouEstudar0</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>0</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>curso_parou_estudar</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Não Informado</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>464</xloc>
+      <yloc>1688</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate cursoParouEstudar1</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>1</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>curso_parou_estudar</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Creche</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>401</xloc>
+      <yloc>1748</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate cursoParouEstudar10</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>10</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>curso_parou_estudar</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Ensino Fundamental EJA - séries iniciais (Supletivo - 1ª a 4ª)</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>408</xloc>
+      <yloc>2339</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate cursoParouEstudar11</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>11</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>curso_parou_estudar</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Ensino Fundamental EJA - séries finais (Supletivo 5ª a 8ª)</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>413</xloc>
+      <yloc>2397</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate cursoParouEstudar12</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>12</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>curso_parou_estudar</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Ensino Médio EJA (Supletivo)</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>407</xloc>
+      <yloc>2463</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate cursoParouEstudar13</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>13</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>curso_parou_estudar</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Superior, Aperfeiçoamento, Especialização, Mestrado, Doutorado</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>417</xloc>
+      <yloc>2525</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate cursoParouEstudar14</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>14</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>curso_parou_estudar</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Alfabetização para Adultos (Mobral, etc.)</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>416</xloc>
+      <yloc>2588</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate cursoParouEstudar15</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>15</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>curso_parou_estudar</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Nenhum</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>418</xloc>
+      <yloc>2650</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate cursoParouEstudar2</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>2</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>curso_parou_estudar</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Pré-escola (exceto CA)</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>406</xloc>
+      <yloc>1812</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate cursoParouEstudar3</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>3</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>curso_parou_estudar</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Classe de Alfabetização - CA</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>402</xloc>
+      <yloc>1882</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate cursoParouEstudar4</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>4</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>curso_parou_estudar</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Ensino fundamental 1ª a 4ª séries, Elementar (Primário), Primeira fase do 1º grau</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>401</xloc>
+      <yloc>1947</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate cursoParouEstudar5</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>5</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>curso_parou_estudar</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Ensino fundamental 5ª a 8ª séries, Médio 1º ciclo (Ginasial), Segunda fase do 1º grau</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>399</xloc>
+      <yloc>2013</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate cursoParouEstudar6</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>6</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>curso_parou_estudar</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Ensino Fundamental (duração 9 anos)</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>404</xloc>
+      <yloc>2077</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate cursoParouEstudar7</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>7</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>curso_parou_estudar</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Ensino Fundamental Especial</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>402</xloc>
+      <yloc>2147</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate cursoParouEstudar8</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>8</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>curso_parou_estudar</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Ensino Médio, 2º grau, Médio 2º ciclo (Científico, Clássico, Técnico, Normal)</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>401</xloc>
+      <yloc>2211</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate cursoParouEstudar9</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>9</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>curso_parou_estudar</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Ensino Médio especial</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>409</xloc>
+      <yloc>2274</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate frequentaEscolaCreche0</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>0</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>frequenta_escola_creche</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Não Informado</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>262</xloc>
+      <yloc>815</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate frequentaEscolaCreche1</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>1</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>frequenta_escola_creche</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Sim, rede pública</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>105</xloc>
+      <yloc>859</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate frequentaEscolaCreche2</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>2</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>frequenta_escola_creche</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Sim, rede particular</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>106</xloc>
+      <yloc>915</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate frequentaEscolaCreche3</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>3</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>frequenta_escola_creche</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Não, já frequentou</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>104</xloc>
+      <yloc>972</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate frequentaEscolaCreche4</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>4</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>frequenta_escola_creche</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Nunca frequentou</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>101</xloc>
+      <yloc>1029</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate nascimentoRegistrado0</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>0</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>nascimento_registrado</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Não Informado</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>266</xloc>
+      <yloc>295</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate nascimentoRegistrado1 </name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>1</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>nascimento_registrado</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Sim e tem Certidão de Nascimento</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>86</xloc>
+      <yloc>328</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate nascimentoRegistrado2</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>2</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>nascimento_registrado</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Sim, mas não tem Certidão de Nascimento</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>85</xloc>
+      <yloc>415</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate nascimentoRegistrado3</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>3</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>nascimento_registrado</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Não</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>83</xloc>
+      <yloc>514</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate nascimentoRegistrado4</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>4</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>nascimento_registrado</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Não sabe</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>89</xloc>
+      <yloc>592</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate ondeNasceu0</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>0</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>onde_nasceu</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Não informado</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>212</xloc>
+      <yloc>18</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate ondeNasceu1</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>1</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>onde_nasceu</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Neste município</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>69</xloc>
+      <yloc>50</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate ondeNasceu2</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>2</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>onde_nasceu</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Em outro município</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>68</xloc>
+      <yloc>137</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate ondeNasceu3</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>3</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>onde_nasceu</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Em outro país</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>66</xloc>
+      <yloc>235</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate relacaoParentescoResponsavel0</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>0</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>relacao_parentesco_responsavel</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Não Informado</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>831</xloc>
+      <yloc>263</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate relacaoParentescoResponsavel1</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>1</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>relacao_parentesco_responsavel</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Pessoa Responsável pela Unidade Familiar - RF</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>694</xloc>
+      <yloc>319</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate relacaoParentescoResponsavel10</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>10</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>relacao_parentesco_responsavel</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Outro parente</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>701</xloc>
+      <yloc>812</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate relacaoParentescoResponsavel11</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>11</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>relacao_parentesco_responsavel</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Não parente</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>701</xloc>
+      <yloc>867</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate relacaoParentescoResponsavel2</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>2</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>relacao_parentesco_responsavel</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Cônjuge ou companheiro(a)</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>696</xloc>
+      <yloc>377</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate relacaoParentescoResponsavel3</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>3</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>relacao_parentesco_responsavel</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Filho(a)</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>697</xloc>
+      <yloc>433</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate relacaoParentescoResponsavel4</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>4</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>relacao_parentesco_responsavel</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Enteado(a)</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>697</xloc>
+      <yloc>488</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate relacaoParentescoResponsavel5</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>5</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>relacao_parentesco_responsavel</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Neto(a) ou bisneto(a)</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>700</xloc>
+      <yloc>541</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate relacaoParentescoResponsavel6</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>6</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>relacao_parentesco_responsavel</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Pai ou mãe</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>700</xloc>
+      <yloc>594</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate relacaoParentescoResponsavel7</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>7</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>relacao_parentesco_responsavel</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Sogro(a)</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>699</xloc>
+      <yloc>648</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate relacaoParentescoResponsavel8</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>8</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>relacao_parentesco_responsavel</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Irmão ou irmã</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>701</xloc>
+      <yloc>701</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate relacaoParentescoResponsavel9</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>9</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>relacao_parentesco_responsavel</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Genro ou nora</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>701</xloc>
+      <yloc>756</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate sexo0</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>0</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>sexo</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Não Informado</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>253</xloc>
+      <yloc>636</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate sexo1</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>1</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>sexo</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Masculino</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>92</xloc>
+      <yloc>681</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate sexo2</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>2</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>sexo</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Feminino</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>90</xloc>
+      <yloc>760</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate tipoCertidao0</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>0</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>tipo_certidao</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Não Informado</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1017</xloc>
+      <yloc>779</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate tipoCertidao1</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>1</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>tipo_certidao</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Nascimento</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>991</xloc>
+      <yloc>860</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate tipoCertidao2</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>2</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>tipo_certidao</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Casamento</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>990</xloc>
+      <yloc>920</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate tipoCertidao3</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>3</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>tipo_certidao</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Certidão Administrativa de Nascimento do Indígena (RANI)</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>989</xloc>
+      <yloc>981</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate tipoTrabalho0</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>0</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>tipo_trabalho</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Não Informado</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>822</xloc>
+      <yloc>945</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate tipoTrabalho1</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>1</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>tipo_trabalho</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Trabalhador por conta própria (bico, autônomo)</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>722</xloc>
+      <yloc>972</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate tipoTrabalho10</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>10</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>tipo_trabalho</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Estagiário</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>735</xloc>
+      <yloc>1525</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate tipoTrabalho11</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>11</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>tipo_trabalho</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Aprendiz</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>738</xloc>
+      <yloc>1588</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate tipoTrabalho2</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>2</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>tipo_trabalho</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Trabalhador temporário em área rural</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>723</xloc>
+      <yloc>1034</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate tipoTrabalho3</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>3</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>tipo_trabalho</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Empregado sem carteira de trabalho assinada</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>723</xloc>
+      <yloc>1094</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate tipoTrabalho4</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>4</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>tipo_trabalho</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Empregado com carteira de trabalho assinada</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>724</xloc>
+      <yloc>1152</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate tipoTrabalho5</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>5</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>tipo_trabalho</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Trabalhador doméstico sem carteira de trabalho assinada</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>724</xloc>
+      <yloc>1214</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate tipoTrabalho6</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>6</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>tipo_trabalho</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Trabalhador doméstico com carteira de trabalho assinada</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>725</xloc>
+      <yloc>1274</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate tipoTrabalho7</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>7</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>tipo_trabalho</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Trabalhador não-remunerado</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>729</xloc>
+      <yloc>1339</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate tipoTrabalho8</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>8</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>tipo_trabalho</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Militar ou servidor público</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>731</xloc>
+      <yloc>1401</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate tipoTrabalho9</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>9</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>tipo_trabalho</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Empregador</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>734</xloc>
+      <yloc>1462</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Modified Java Script Value 2</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <compatible>N</compatible>
+    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>var quantidade = parseInt(QUANTIDADE);
+var dia = substr(ID_DATA,0,2);
+var mes = substr(ID_DATA,2,2);
+var ano = substr(ID_DATA,4,4);
+var data = dia+&apos;&#47;&apos;+mes+&apos;&#47;&apos;+ano;
+var data = new Date(data);
+var idade = IDADE;
+if(idade &lt; 0){
+	idade = 0
+}
+var id_raca_cor = parseInt(COR_RACA);
+var id_relacao_parentesco = parseInt(PARENTESCO);
+var id_onde_nasceu = parseInt(LOCAL_NASCIMENTO);
+var id_sexo = parseInt(SEXO);
+var id_nascimento_registrado = parseInt(CERTIDAO_REGISTRADA);
+var id_tipo_certidao = parseInt(CERTIDAO_CIVIL);
+var id_frequenta_escola_creche = parseInt(FREQUENTA_ESCOLA);
+var id_curso_frequenta = parseInt(CURSO_FREQUENTA);
+var id_curso_parou_estudar = parseInt(CURSO_FREQUENTOU);
+var id_ano_serie_frequenta = parseInt(ANO_SERIE_FREQUENTA);
+var id_ano_serie_parou_estudar = parseInt(ANO_SERIE_FREQUENTOU);
+var possui_deficiencia = parseInt(DEFICIENCIA);
+var possui_cegueira = parseInt(DEF_CEGUEIRA);
+var possui_baixa_visao = parseInt(DEF_BAIXA_VISAO);
+var possui_surdez_severa = parseInt(DEF_SURDEZ_PROFUNDA);
+var possui_surdez_leve = parseInt(DEF_SURDEZ_LEVE);
+var possui_deficiencia_fisica = parseInt(DEF_FISICA);
+var possui_deficiencia_mental_intelectual = parseInt(DEF_MENTAL);
+var possui_sindrome_down = parseInt(DEF_SINDROME_DOWN);
+var possui_transtorno_doenca_mental = parseInt(DEF_TRANSTORNO_MENTAL);
+var deficiencia_nao_recebe_cuidados = parseInt(NAO_RECEBE_AJUDA);
+var deficiencia_recebe_cuidados_familia = parseInt(RECEBE_AJUDA_FAMILIA);
+var deficiencia_recebe_cuidados_especialista = parseInt(RECEBE_AJUDA_ESPECIALIZADA);
+var deficiencia_recebe_cuidados_vizinho = parseInt(RECEBE_AJUDA_VIZINHO);
+var deficiencia_recebe_cuidados_instituicao = parseInt(RECEBE_AJUDA_INSTITUICAO);
+var deficiencia_recebe_cuidados_outra_forma = parseInt(RECEBE_AJUDA_OUTROS);
+var estuda_escola_municipio = parseInt(LOCAL_ESCOLA);
+var sabe_ler_escrever = parseInt(SABE_LER_ESCREVER);
+var concluiu_curso_frequentou = parseInt(CONCLUIU_CURSO_FREQUENTOU);
+var trabalhou_semana_passada = parseInt(TRABALHOU_SEMANA_PASSADA);
+var afastado_trabalho_semana_passada = parseInt(AFASTADO_TRAB_SEMANA_PASSADA);
+var id_tipo_trabalho = parseInt(PRINCIPAL_TRAB);
+var exerceu_trabalho_area_rural = parseInt(TRABALHO_AGRICULTURA);
+var remuneracao_mes_passado = parseFloat(REMUNERACAO_MES_PASSADO);
+var trabalho_remunerado_ultimos_12_meses = parseInt(TRAB_REM_12_MESES);
+var meses_trabalhados_ultimos_12_meses = parseInt(QTD_MESES_TRAB_12_MESES);
+var remuneracao_bruta_trabalhos_ate_12_meses = parseFloat(RENDA_BRUTA_12_MESES);
+var recebe_doacao_nao_morador_mensal = parseInt(RENDA_DOACAO);
+var recebe_aposentadoria_mensal = parseInt(RENDA_APOSENTADORIA);
+var recebe_seguro_desemprego_mensal = parseInt(RENDA_SEGURO_DESEMP);
+var recebe_pensao_alimenticia_mensal = parseInt(RENDA_PENSAO_ALIMENT);
+var recebe_outras_fontes_mensal = parseInt(OUTRAS_RENDAS);</jsScript_script>
+      </jsScript>    </jsScripts>    <fields>      <field>        <name>quantidade</name>
+        <rename>quantidade</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>data</name>
+        <rename>data</rename>
+        <type>Date</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>id_raca_cor</name>
+        <rename>id_raca_cor</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>id_relacao_parentesco</name>
+        <rename>id_relacao_parentesco</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>id_onde_nasceu</name>
+        <rename>id_onde_nasceu</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>id_sexo</name>
+        <rename>id_sexo</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>id_nascimento_registrado</name>
+        <rename>id_nascimento_registrado</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>id_tipo_certidao</name>
+        <rename>id_tipo_certidao</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>id_frequenta_escola_creche</name>
+        <rename>id_frequenta_escola_creche</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>id_curso_frequenta</name>
+        <rename>id_curso_frequenta</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>id_curso_parou_estudar</name>
+        <rename>id_curso_parou_estudar</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>id_ano_serie_frequenta</name>
+        <rename>id_ano_serie_frequenta</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>id_ano_serie_parou_estudar</name>
+        <rename>id_ano_serie_parou_estudar</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>possui_deficiencia</name>
+        <rename>possui_deficiencia</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>possui_cegueira</name>
+        <rename>possui_cegueira</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>possui_baixa_visao</name>
+        <rename>possui_baixa_visao</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>possui_surdez_severa</name>
+        <rename>possui_surdez_severa</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>possui_surdez_leve</name>
+        <rename>possui_surdez_leve</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>possui_deficiencia_fisica</name>
+        <rename>possui_deficiencia_fisica</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>possui_deficiencia_mental_intelectual</name>
+        <rename>possui_deficiencia_mental_intelectual</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>possui_sindrome_down</name>
+        <rename>possui_sindrome_down</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>possui_transtorno_doenca_mental</name>
+        <rename>possui_transtorno_doenca_mental</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>deficiencia_nao_recebe_cuidados</name>
+        <rename>deficiencia_nao_recebe_cuidados</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>deficiencia_recebe_cuidados_familia</name>
+        <rename>deficiencia_recebe_cuidados_familia</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>deficiencia_recebe_cuidados_especialista</name>
+        <rename>deficiencia_recebe_cuidados_especialista</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>deficiencia_recebe_cuidados_vizinho</name>
+        <rename>deficiencia_recebe_cuidados_vizinho</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>deficiencia_recebe_cuidados_instituicao</name>
+        <rename>deficiencia_recebe_cuidados_instituicao</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>deficiencia_recebe_cuidados_outra_forma</name>
+        <rename>deficiencia_recebe_cuidados_outra_forma</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>estuda_escola_municipio</name>
+        <rename>estuda_escola_municipio</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>sabe_ler_escrever</name>
+        <rename>sabe_ler_escrever</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>concluiu_curso_frequentou</name>
+        <rename>concluiu_curso_frequentou</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>trabalhou_semana_passada</name>
+        <rename>trabalhou_semana_passada</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>afastado_trabalho_semana_passada</name>
+        <rename>afastado_trabalho_semana_passada</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>id_tipo_trabalho</name>
+        <rename>id_tipo_trabalho</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>exerceu_trabalho_area_rural</name>
+        <rename>exerceu_trabalho_area_rural</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>remuneracao_mes_passado</name>
+        <rename>remuneracao_mes_passado</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>trabalho_remunerado_ultimos_12_meses</name>
+        <rename>trabalho_remunerado_ultimos_12_meses</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>meses_trabalhados_ultimos_12_meses</name>
+        <rename>meses_trabalhados_ultimos_12_meses</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>remuneracao_bruta_trabalhos_ate_12_meses</name>
+        <rename>remuneracao_bruta_trabalhos_ate_12_meses</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>recebe_doacao_nao_morador_mensal</name>
+        <rename>recebe_doacao_nao_morador_mensal</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>recebe_aposentadoria_mensal</name>
+        <rename>recebe_aposentadoria_mensal</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>recebe_seguro_desemprego_mensal</name>
+        <rename>recebe_seguro_desemprego_mensal</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>recebe_pensao_alimenticia_mensal</name>
+        <rename>recebe_pensao_alimenticia_mensal</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>recebe_outras_fontes_mensal</name>
+        <rename>recebe_outras_fontes_mensal</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>idade</name>
+        <rename>idade</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>317</xloc>
+      <yloc>2769</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>input f_identificacao_pessoa</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>semas</connection>
+    <sql>SELECT &#47;*+ use_nl(idpes, pesdoc, pesesc, trabrem, pesdef, tb_cadastrounico) index(IDPES ix_cadastrounico1) index(pesdoc ix_cadastrounico3) 
+index(pesesc ix_cadastrounico3) index(trabrem ix_cadastrounico3) index(pesdef ix_cadastrounico3) *&#47;
+1 AS QUANTIDADE, nvl(trim(IDPES.DTA_CADASTRAMENTO_MEMB),0) AS ID_DATA, trunc((to_date(IDPES.DTA_CADASTRAMENTO_MEMB,&apos;ddMMyyyy&apos;) - to_date(IDPES.DTA_NASC_PESSOA, &apos;ddMMyyyy&apos;))&#47;365) as IDADE, 
+nvl(trim(IDPES.COD_RACA_COR_PESSOA),0) AS COR_RACA, nvl(trim(IDPES.COD_PARENTESCO_RF_PESSOA),0) AS PARENTESCO, 
+nvl(trim(IDPES.COD_LOCAL_NASCIMENTO_PESSOA),0) AS LOCAL_NASCIMENTO, nvl(trim(IDPES.COD_SEXO_PESSOA),0) AS SEXO, nvl(trim(IDPES.COD_CERTIDAO_REGISTRADA_PESSOA),0) AS CERTIDAO_REGISTRADA, 
+nvl(trim(PESDOC.COD_CERTIDAO_CIVIL_PESSOA),0) as CERTIDAO_CIVIL, nvl(trim(PESESC.IND_FREQUENTA_ESCOLA_MEMB),0) AS FREQUENTA_ESCOLA, nvl(trim(PESESC.COD_CURSO_FREQUENTA_MEMB),0) AS CURSO_FREQUENTA, 
+nvl(trim(PESESC.COD_ANO_SERIE_FREQUENTA_MEMB),0) AS ANO_SERIE_FREQUENTA, nvl(trim(PESESC.COD_CURSO_FREQUENTOU_PES_MEMB),0) AS CURSO_FREQUENTOU, 
+nvl(trim(PESESC.COD_ANO_SERIE_FREQUENTOU_MEMB),0) AS ANO_SERIE_FREQUENTOU, nvl(trim(PESDEF.COD_DEFICIENCIA_MEMB),0) AS DEFICIENCIA, nvl(trim(PESDEF.IND_DEF_CEGUEIRA_MEMB),0) AS DEF_CEGUEIRA, 
+nvl(trim(PESDEF.IND_DEF_BAIXA_VISAO_MEMB),0) AS DEF_BAIXA_VISAO, nvl(trim(PESDEF.IND_DEF_SURDEZ_PROFUNDA_MEMB),0) AS DEF_SURDEZ_PROFUNDA, nvl(trim(PESDEF.IND_DEF_SURDEZ_LEVE_MEMB),0) AS DEF_SURDEZ_LEVE,
+nvl(trim(PESDEF.IND_DEF_FISICA_MEMB),0) AS DEF_FISICA, nvl(trim(PESDEF.IND_DEF_MENTAL_MEMB),0) AS DEF_MENTAL, nvl(trim(PESDEF.IND_DEF_SINDROME_DOWN_MEMB),0) AS DEF_SINDROME_DOWN, 
+nvl(trim(PESDEF.IND_DEF_TRANSTORNO_MENTAL_MEMB),0) AS DEF_TRANSTORNO_MENTAL, nvl(trim(PESDEF.IND_AJUDA_NAO_MEMB),0) AS NAO_RECEBE_AJUDA, nvl(trim(PESDEF.IND_AJUDA_FAMILIA_MEMB),0) AS RECEBE_AJUDA_FAMILIA,
+nvl(trim(PESDEF.IND_AJUDA_ESPECIALIZADO_MEMB),0) AS RECEBE_AJUDA_ESPECIALIZADA, nvl(trim(PESDEF.IND_AJUDA_VIZINHO_MEMB),0) AS RECEBE_AJUDA_VIZINHO, 
+nvl(trim(PESDEF.IND_AJUDA_INSTITUICAO_MEMB),0) AS RECEBE_AJUDA_INSTITUICAO, nvl(PESDEF.IND_AJUDA_OUTRA_MEMB,0) AS RECEBE_AJUDA_OUTROS, nvl(PESESC.COD_SABE_LER_ESCREVER_MEMB,0) AS SABE_LER_ESCREVER, 
+nvl(trim(PESESC.COD_ESCOLA_LOCAL_MEMB),0) AS LOCAL_ESCOLA, nvl(trim(PESESC.COD_CONCLUIU_FREQUENTOU_MEMB),0) AS CONCLUIU_CURSO_FREQUENTOU, nvl(trim(TRABREM.COD_TRABALHOU_MEMB),0) AS TRABALHOU_SEMANA_PASSADA, 
+nvl(trim(TRABREM.COD_AFASTADO_TRAB_MEMB),0) AS AFASTADO_TRAB_SEMANA_PASSADA, nvl(trim(TRABREM.COD_PRINCIPAL_TRAB_MEMB),0) AS PRINCIPAL_TRAB, nvl(trim(TRABREM.COD_AGRICULTURA_TRAB_MEMB),0) AS TRABALHO_AGRICULTURA, 
+nvl(trim(TRABREM.VAL_REMUNER_EMPREGO_MEMB),0) AS REMUNERACAO_MES_PASSADO, nvl(trim(TRABREM.COD_TRABALHO_12_MESES_MEMB),0) AS TRAB_REM_12_MESES, 
+nvl(trim(TRABREM.QTD_MESES_12_MESES_MEMB),0) AS QTD_MESES_TRAB_12_MESES, nvl(trim(TRABREM.VAL_RENDA_BRUTA_12_MESES_MEMB),0) AS RENDA_BRUTA_12_MESES, nvl(trim(TRABREM.VAL_RENDA_DOACAO_MEMB),0) AS RENDA_DOACAO, 
+nvl(trim(TRABREM.VAL_RENDA_APOSENT_MEMB),0) AS RENDA_APOSENTADORIA, nvl(trim(TRABREM.VAL_RENDA_SEGURO_DESEMP_MEMB),0) AS RENDA_SEGURO_DESEMP,
+nvl(trim(TRABREM.VAL_RENDA_PENSAO_ALIMEN_MEMB),0) AS RENDA_PENSAO_ALIMENT, nvl(trim(TRABREM.VAL_OUTRAS_RENDAS_MEMB),0) AS OUTRAS_RENDAS,
+nvl((SELECT 1 FROM DUAL WHERE  EXISTS (SELECT 1 FROM FL_PGTO_SEMAS WHERE IDPES.NUM_NIS_PESSOA_ATUAL = NISTITULAR)),0) AS BENEFICIARIO
+FROM V_IDENTIFICACAO_PESSOA IDPES LEFT JOIN V_PESSOA_DOCUMENTO PESDOC ON IDPES.NUM_MEMBRO_FMLA = PESDOC.NUM_MEMBRO_FMLA
+LEFT JOIN V_PESSOA_ESCOLARIDADE PESESC ON IDPES.NUM_MEMBRO_FMLA = PESESC.NUM_MEMBRO_FMLA
+LEFT JOIN V_PESSOA_TRABALHO_REMUNERACAO TRABREM ON IDPES.NUM_MEMBRO_FMLA = TRABREM.NUM_MEMBRO_FMLA
+LEFT JOIN V_PESSOA_COM_DEFICIENCIA PESDEF ON IDPES.NUM_MEMBRO_FMLA = PESDEF.NUM_MEMBRO_FMLA
+</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>109</xloc>
+      <yloc>2767</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>output anoSerie</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>semas_postgres</connection>
+    <schema>semas</schema>
+    <table>d_ano_serie_frequenta</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+        <field>
+          <column_name>id_ano_serie_frequenta</column_name>
+          <stream_name>id</stream_name>
+        </field>
+        <field>
+          <column_name>ano_serie_frequenta</column_name>
+          <stream_name>ano_serie</stream_name>
+        </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>380</xloc>
+      <yloc>1558</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>output corRaca</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>semas_postgres</connection>
+    <schema>semas</schema>
+    <table>d_cor_raca</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+        <field>
+          <column_name>id_cor_raca</column_name>
+          <stream_name>id</stream_name>
+        </field>
+        <field>
+          <column_name>cor_raca</column_name>
+          <stream_name>cor_raca</stream_name>
+        </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>804</xloc>
+      <yloc>136</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>output cursoFrequenta</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>semas_postgres</connection>
+    <schema>semas</schema>
+    <table>d_curso_frequenta</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+        <field>
+          <column_name>id_curso_frequenta</column_name>
+          <stream_name>id</stream_name>
+        </field>
+        <field>
+          <column_name>curso_frequenta</column_name>
+          <stream_name>curso_frequenta</stream_name>
+        </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1266</xloc>
+      <yloc>1982</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>output cursoParouEstudar</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>semas_postgres</connection>
+    <schema>semas</schema>
+    <table>d_curso_parou_estudar</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+        <field>
+          <column_name>id_curso_parou_estudar</column_name>
+          <stream_name>id</stream_name>
+        </field>
+        <field>
+          <column_name>curso_parou_estudar</column_name>
+          <stream_name>curso_parou_estudar</stream_name>
+        </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>734</xloc>
+      <yloc>2169</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>output f_identificacao_pessoa</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>semas_postgres</connection>
+    <schema>semas</schema>
+    <table>f_identificacao_pessoa</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+        <field>
+          <column_name>id_data</column_name>
+          <stream_name>data</stream_name>
+        </field>
+        <field>
+          <column_name>id_cor_raca</column_name>
+          <stream_name>id_raca_cor</stream_name>
+        </field>
+        <field>
+          <column_name>id_relacao_parentesco_responsavel</column_name>
+          <stream_name>id_relacao_parentesco</stream_name>
+        </field>
+        <field>
+          <column_name>id_onde_nasceu</column_name>
+          <stream_name>id_onde_nasceu</stream_name>
+        </field>
+        <field>
+          <column_name>id_sexo</column_name>
+          <stream_name>id_sexo</stream_name>
+        </field>
+        <field>
+          <column_name>id_nascimento_registrado</column_name>
+          <stream_name>id_nascimento_registrado</stream_name>
+        </field>
+        <field>
+          <column_name>id_tipo_certidao</column_name>
+          <stream_name>id_tipo_certidao</stream_name>
+        </field>
+        <field>
+          <column_name>id_frequenta_escola_creche</column_name>
+          <stream_name>id_frequenta_escola_creche</stream_name>
+        </field>
+        <field>
+          <column_name>id_curso_frequenta</column_name>
+          <stream_name>id_curso_frequenta</stream_name>
+        </field>
+        <field>
+          <column_name>id_curso_parou_estudar</column_name>
+          <stream_name>id_curso_parou_estudar</stream_name>
+        </field>
+        <field>
+          <column_name>id_ano_serie_frequenta</column_name>
+          <stream_name>id_ano_serie_frequenta</stream_name>
+        </field>
+        <field>
+          <column_name>possui_deficiencia</column_name>
+          <stream_name>possui_deficiencia</stream_name>
+        </field>
+        <field>
+          <column_name>id_ano_serie_parou_estudar</column_name>
+          <stream_name>id_ano_serie_parou_estudar</stream_name>
+        </field>
+        <field>
+          <column_name>possui_cegueira</column_name>
+          <stream_name>possui_cegueira</stream_name>
+        </field>
+        <field>
+          <column_name>possui_baixa_visao</column_name>
+          <stream_name>possui_baixa_visao</stream_name>
+        </field>
+        <field>
+          <column_name>possui_surdez_severa</column_name>
+          <stream_name>possui_surdez_severa</stream_name>
+        </field>
+        <field>
+          <column_name>possui_surdez_leve</column_name>
+          <stream_name>possui_surdez_leve</stream_name>
+        </field>
+        <field>
+          <column_name>possui_deficiencia_fisica</column_name>
+          <stream_name>possui_deficiencia_fisica</stream_name>
+        </field>
+        <field>
+          <column_name>possui_deficiencia_mental_intelectual</column_name>
+          <stream_name>possui_deficiencia_mental_intelectual</stream_name>
+        </field>
+        <field>
+          <column_name>possui_sindrome_down</column_name>
+          <stream_name>possui_sindrome_down</stream_name>
+        </field>
+        <field>
+          <column_name>possui_transtorno_doenca_mental</column_name>
+          <stream_name>possui_transtorno_doenca_mental</stream_name>
+        </field>
+        <field>
+          <column_name>deficiencia_nao_recebe_cuidados</column_name>
+          <stream_name>deficiencia_nao_recebe_cuidados</stream_name>
+        </field>
+        <field>
+          <column_name>deficiencia_recebe_cuidados_familia</column_name>
+          <stream_name>deficiencia_recebe_cuidados_familia</stream_name>
+        </field>
+        <field>
+          <column_name>deficiencia_recebe_cuidados_especialista</column_name>
+          <stream_name>deficiencia_recebe_cuidados_especialista</stream_name>
+        </field>
+        <field>
+          <column_name>deficiencia_recebe_cuidados_vizinho</column_name>
+          <stream_name>deficiencia_recebe_cuidados_vizinho</stream_name>
+        </field>
+        <field>
+          <column_name>deficiencia_recebe_cuidados_instituicao</column_name>
+          <stream_name>deficiencia_recebe_cuidados_instituicao</stream_name>
+        </field>
+        <field>
+          <column_name>deficiencia_recebe_cuidados_outra_forma</column_name>
+          <stream_name>deficiencia_recebe_cuidados_outra_forma</stream_name>
+        </field>
+        <field>
+          <column_name>estuda_escola_municipio</column_name>
+          <stream_name>estuda_escola_municipio</stream_name>
+        </field>
+        <field>
+          <column_name>afastado_trabalho_semana_passada</column_name>
+          <stream_name>afastado_trabalho_semana_passada</stream_name>
+        </field>
+        <field>
+          <column_name>id_tipo_trabalho</column_name>
+          <stream_name>id_tipo_trabalho</stream_name>
+        </field>
+        <field>
+          <column_name>exerceu_trabalho_area_rural</column_name>
+          <stream_name>exerceu_trabalho_area_rural</stream_name>
+        </field>
+        <field>
+          <column_name>trabalho_remunerado_ultimos_12_meses</column_name>
+          <stream_name>trabalho_remunerado_ultimos_12_meses</stream_name>
+        </field>
+        <field>
+          <column_name>meses_trabalhados_ultimos_12_meses</column_name>
+          <stream_name>meses_trabalhados_ultimos_12_meses</stream_name>
+        </field>
+        <field>
+          <column_name>remuneracao_bruta_trabalhos_ate_12_meses</column_name>
+          <stream_name>remuneracao_bruta_trabalhos_ate_12_meses</stream_name>
+        </field>
+        <field>
+          <column_name>recebe_doacao_nao_morador_mensal</column_name>
+          <stream_name>recebe_doacao_nao_morador_mensal</stream_name>
+        </field>
+        <field>
+          <column_name>recebe_aposentadoria_mensal</column_name>
+          <stream_name>recebe_aposentadoria_mensal</stream_name>
+        </field>
+        <field>
+          <column_name>recebe_seguro_desemprego_mensal</column_name>
+          <stream_name>recebe_seguro_desemprego_mensal</stream_name>
+        </field>
+        <field>
+          <column_name>recebe_pensao_alimenticia_mensal</column_name>
+          <stream_name>recebe_pensao_alimenticia_mensal</stream_name>
+        </field>
+        <field>
+          <column_name>recebe_outras_fontes_mensal</column_name>
+          <stream_name>recebe_outras_fontes_mensal</stream_name>
+        </field>
+        <field>
+          <column_name>quantidade</column_name>
+          <stream_name>quantidade_1</stream_name>
+        </field>
+        <field>
+          <column_name>sabe_ler_escrever</column_name>
+          <stream_name>sabe_ler_escrever_1</stream_name>
+        </field>
+        <field>
+          <column_name>concluiu_curso_frequentou</column_name>
+          <stream_name>concluiu_curso_frequentou_1</stream_name>
+        </field>
+        <field>
+          <column_name>trabalhou_semana_passada</column_name>
+          <stream_name>trabalhou_semana_passada_1</stream_name>
+        </field>
+        <field>
+          <column_name>remuneracao_mes_passado</column_name>
+          <stream_name>remuneracao_mes_passado_1</stream_name>
+        </field>
+        <field>
+          <column_name>id_idade</column_name>
+          <stream_name>idade_1</stream_name>
+        </field>
+        <field>
+          <column_name>id_beneficiario</column_name>
+          <stream_name>BENEFICIARIO</stream_name>
+        </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>513</xloc>
+      <yloc>2768</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>output frequentaEscolaCreche</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>semas_postgres</connection>
+    <schema>semas</schema>
+    <table>d_frequenta_escola_creche</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+        <field>
+          <column_name>id_frequenta_escola_creche</column_name>
+          <stream_name>id</stream_name>
+        </field>
+        <field>
+          <column_name>frequenta_escola_creche</column_name>
+          <stream_name>frequenta_escola_creche</stream_name>
+        </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>379</xloc>
+      <yloc>932</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>output nascimentoRegistrado</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>semas_postgres</connection>
+    <schema>semas</schema>
+    <table>d_nascimento_registrado</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+        <field>
+          <column_name>id_nascimento_registrado</column_name>
+          <stream_name>id</stream_name>
+        </field>
+        <field>
+          <column_name>nascimento_registrado</column_name>
+          <stream_name>nascimento_registrado</stream_name>
+        </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>402</xloc>
+      <yloc>430</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>output ondeNasceu</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>semas_postgres</connection>
+    <schema>semas</schema>
+    <table>d_onde_nasceu</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+        <field>
+          <column_name>id_onde_nasceu</column_name>
+          <stream_name>id</stream_name>
+        </field>
+        <field>
+          <column_name>onde_nasceu</column_name>
+          <stream_name>onde_nasceu</stream_name>
+        </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>385</xloc>
+      <yloc>152</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>output relacaoParentescoResponsavel</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>semas_postgres</connection>
+    <schema>semas</schema>
+    <table>d_relacao_parentesco_responsavel</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+        <field>
+          <column_name>id_relacao_parentesco_responsavel</column_name>
+          <stream_name>id</stream_name>
+        </field>
+        <field>
+          <column_name>relacao_parentesco_responsavel</column_name>
+          <stream_name>relacao_parentesco_responsavel</stream_name>
+        </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1136</xloc>
+      <yloc>592</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>output sexo</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>semas_postgres</connection>
+    <schema>semas</schema>
+    <table>d_sexo</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+        <field>
+          <column_name>id_sexo</column_name>
+          <stream_name>id</stream_name>
+        </field>
+        <field>
+          <column_name>sexo</column_name>
+          <stream_name>sexo</stream_name>
+        </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>404</xloc>
+      <yloc>698</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>output tipoCertidao</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>semas_postgres</connection>
+    <schema>semas</schema>
+    <table>d_tipo_certidao</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+        <field>
+          <column_name>id_tipo_certidao</column_name>
+          <stream_name>id</stream_name>
+        </field>
+        <field>
+          <column_name>tipo_certidao</column_name>
+          <stream_name>tipo_certidao</stream_name>
+        </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1157</xloc>
+      <yloc>920</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>output tipoTrabalho</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>semas_postgres</connection>
+    <schema>semas</schema>
+    <table>d_tipo_trabalho</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+        <field>
+          <column_name>id_tipo_trabalho</column_name>
+          <stream_name>id</stream_name>
+        </field>
+        <field>
+          <column_name>tipo_trabalho</column_name>
+          <stream_name>tipo_trabalho</stream_name>
+        </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1129</xloc>
+      <yloc>1276</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>output beneficiario</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>semas_postgres</connection>
+    <schema>semas</schema>
+    <table>d_beneficiario</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+        <field>
+          <column_name>id_beneficiario</column_name>
+          <stream_name>id_beneficiario</stream_name>
+        </field>
+        <field>
+          <column_name>ds_beneficiario</column_name>
+          <stream_name>ds_beneficiario</stream_name>
+        </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>974</xloc>
+      <yloc>2672</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate beneficiario1</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id_beneficiario</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>0</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ds_beneficiario</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Não</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>779</xloc>
+      <yloc>2626</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate beneficiario2</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>id_beneficiario</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>1</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ds_beneficiario</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Sim</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>783</xloc>
+      <yloc>2732</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step_error_handling>
+  </step_error_handling>
+   <slave-step-copy-partition-distribution>
+</slave-step-copy-partition-distribution>
+   <slave_transformation>N</slave_transformation>
+</transformation>
