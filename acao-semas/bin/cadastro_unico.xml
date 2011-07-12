@@ -3,15 +3,17 @@
     <Hierarchy name="Data" hasAll="true" primaryKey="id_data">
       <Table name="d_data" schema="semas">
       </Table>
-      <Level name="Dia" column="id_data" type="Date" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never">
+      <Level name="Ano" column="ano" type="Date" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never">
       </Level>
-      <Level name="Mes" column="id_data" type="Date" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never">
+      <Level name="semestre" column="semestre" type="String" uniqueMembers="false" levelType="TimeHalfYear" hideMemberIf="Never">
       </Level>
-      <Level name="Ano" column="id_data" type="Date" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never">
+      <Level name="trimestre" column="trimestre" type="String" uniqueMembers="false" levelType="TimeUndefined" hideMemberIf="Never">
       </Level>
-      <Level name="semestre" column="id_data" type="Date" uniqueMembers="false" levelType="TimeHalfYear" hideMemberIf="Never">
+      <Level name="bimestre" column="bimestre" type="String" uniqueMembers="false" levelType="TimeUndefined" hideMemberIf="Never">
       </Level>
-      <Level name="bimestre" column="bimestre" type="Integer" uniqueMembers="false" levelType="TimeUndefined" hideMemberIf="Never">
+      <Level name="mes" column="mes" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never">
+      </Level>
+      <Level name="dia" column="dia" type="Integer" uniqueMembers="false" levelType="TimeDays">
       </Level>
     </Hierarchy>
   </Dimension>
@@ -224,17 +226,17 @@
     </Dimension>
     <DimensionUsage source="d_data" name="d_data" foreignKey="id_data" highCardinality="false">
     </DimensionUsage>
-    <Dimension type="StandardDimension" foreignKey="id_idade" name="d_idade">
+    <Dimension type="StandardDimension" foreignKey="id_idade" highCardinality="false" name="d_idade">
       <Hierarchy name="Idade" hasAll="true" primaryKey="id_idade">
-        <Table name="d_idade" schema="semas" alias="">
+        <Table name="d_idade" schema="semas">
         </Table>
-        <Level name="idade" column="id_idade" type="Integer" uniqueMembers="false" levelType="Regular">
+        <Level name="idade" column="id_idade" type="Integer" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="StandardDimension" foreignKey="id_beneficiario" name="d_beneficiario">
+    <Dimension type="StandardDimension" foreignKey="id_beneficiario" highCardinality="false" name="d_beneficiario">
       <Hierarchy name="d_beneficiario" hasAll="true" primaryKey="id_beneficiario">
-        <Table name="d_beneficiario" schema="semas" alias="">
+        <Table name="d_beneficiario" schema="semas">
         </Table>
         <Level name="beneficiario" column="ds_beneficiario" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
