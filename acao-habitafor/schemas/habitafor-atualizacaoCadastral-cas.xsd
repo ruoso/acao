@@ -78,7 +78,7 @@
 				</xs:simpleType>
 			</xs:element>
 
-			<xs:element name="data" type="xs:date" minOccurs="0">
+			<xs:element name="data" type="xs:date" >
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Data</xhtml:label>
@@ -402,7 +402,7 @@
 						    </xs:simpleType>
 					    </xs:element>
 
-					    <xs:element name="tipologiaConstrucao" minOccurs="0">
+					    <xs:element name="usoImovel" minOccurs="0">
 						    <xs:annotation>
 							    <xs:appinfo>
 								    <xhtml:label>Uso do imóvel</xhtml:label>
@@ -552,10 +552,8 @@
 							    </xs:appinfo>
 						    </xs:annotation>
 						    <xs:simpleType>
-							    <xs:restriction base="xs:decimal">
-								    <xs:fractionDigits value='2' />
-								    <xs:maxExclusive value="1000000" />
-								    <xs:minInclusive value="-1000000" />
+							    <xs:restriction base="xs:string">
+								  <xs:maxLength value="255" />
 							    </xs:restriction>
 						    </xs:simpleType>
 					    </xs:element>
@@ -901,7 +899,7 @@
 							                    </xs:restriction>
 						                    </xs:simpleType>
 					                    </xs:element>
-                                        <xs:element name="profOcupComposicaoFamiliar">
+                                        <xs:element name="profOcupComposicaoFamiliar" minOccurs="0">
 						                    <xs:annotation>
 							                    <xs:appinfo>
 								                    <xhtml:label>Prof/Ocup</xhtml:label>
@@ -920,10 +918,8 @@
 							                    </xs:appinfo>
 						                    </xs:annotation>
 						                    <xs:simpleType>
-							                    <xs:restriction base="xs:decimal">
-								                    <xs:fractionDigits value='2' />
-								                    <xs:maxExclusive value="1000000" />
-								                    <xs:minInclusive value="-1000000" />
+							                    <xs:restriction base="xs:string">
+								                    <xs:maxLength value="255" />
 							                    </xs:restriction>
 						                    </xs:simpleType>
 					                    </xs:element>
