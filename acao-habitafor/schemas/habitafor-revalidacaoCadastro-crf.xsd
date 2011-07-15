@@ -315,13 +315,8 @@
 							</xs:annotation>
 							<xs:simpleType>
 
-								<xs:restriction base="xs:decimal">
-
-									<xs:fractionDigits value='2' />
-
-									<xs:maxExclusive value="1000000" />
-
-									<xs:minInclusive value="-1000000" />
+								<xs:restriction base="xs:string">
+									      <xs:maxLength value="255" />
 
 								</xs:restriction>
 

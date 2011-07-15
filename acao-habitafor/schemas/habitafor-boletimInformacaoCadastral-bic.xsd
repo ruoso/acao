@@ -509,7 +509,7 @@
 												<xhtml:label>22 a 24</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
-									</xs:element>
+									</xs:element>tipolog
 
 									<xs:element name="_25a29" minOccurs="0" type="xs:integer">
 										<xs:annotation>
@@ -894,7 +894,7 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="tipologiaConstrução" minOccurs="0">
+						<xs:element name="tipologiaConstrucao" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Tipologia construção</xhtml:label>
@@ -2246,7 +2246,7 @@
 				</xs:complexType>
 			</xs:element>
 
-			<xs:element name="composicaoFamiliar" maxOccurs="100">
+			<xs:element name="composicaoFamiliar" minOccurs="0" maxOccurs="100">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Composição familiar</xhtml:label>
@@ -2405,12 +2405,9 @@
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
-								<xs:restriction base="xs:decimal">
-									<xs:fractionDigits value='2' />
-									<xs:maxExclusive value="1000000" />
-									<xs:minInclusive value="-1000000" />
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
 								</xs:restriction>
-
 							</xs:simpleType>
 						</xs:element>
 					</xs:sequence>
