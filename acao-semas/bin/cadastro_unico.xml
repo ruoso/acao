@@ -3,15 +3,15 @@
     <Hierarchy name="Data" hasAll="true" primaryKey="id_data">
       <Table name="d_data" schema="semas">
       </Table>
-      <Level name="Dia" column="id_data" type="Date" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never">
+      <Level name="Ano" column="ano" type="Integer" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never">
       </Level>
-      <Level name="Mes" column="id_data" type="Date" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never">
+      <Level name="semestre" column="semestre" type="String" uniqueMembers="false" levelType="TimeHalfYear" hideMemberIf="Never">
       </Level>
-      <Level name="Ano" column="id_data" type="Date" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never">
+      <Level name="bimestre" column="bimestre" type="String" uniqueMembers="false" levelType="TimeUndefined" hideMemberIf="Never">
       </Level>
-      <Level name="semestre" column="id_data" type="Date" uniqueMembers="false" levelType="TimeHalfYear" hideMemberIf="Never">
+      <Level name="mes" column="mes" ordinalColumn="id_data" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never">
       </Level>
-      <Level name="bimestre" column="bimestre" type="Integer" uniqueMembers="false" levelType="TimeUndefined" hideMemberIf="Never">
+      <Level name="dia" column="dia" type="Integer" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never">
       </Level>
     </Hierarchy>
   </Dimension>
@@ -124,11 +124,31 @@
     </Dimension>
     <DimensionUsage source="d_data" name="d_data" foreignKey="cod_data" highCardinality="false">
     </DimensionUsage>
-    <Measure name="Quantidade_Pessoas" column="quant_pessoas" datatype="Integer" aggregator="sum" visible="true">
-    </Measure>
+    <Dimension type="StandardDimension" foreignKey="quant_pessoas" highCardinality="false" name="d_num_pessoas">
+      <Hierarchy name="N&#250;mero de pessoas no Domic&#237;lio" hasAll="true" primaryKey="cod_num_pessoas">
+        <Table name="d_num_pessoas" schema="semas">
+        </Table>
+        <Level name="N&#250;mero de pessoas no Domic&#237;lio" column="desc_num_pessoas" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="qtd_comodos_domic_fam" highCardinality="false" name="d_num_comodos">
+      <Hierarchy name="N&#250;mero de comodos" hasAll="true" primaryKey="cod_num_comodos">
+        <Table name="d_num_comodos" schema="semas">
+        </Table>
+        <Level name="N&#250;mero de comodos" column="desc_num_comodos" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="qtd_comodos_dorm_fam" highCardinality="false" name="d_num_com_dorm">
+      <Hierarchy name="N&#250;mero de comodos dormit&#243;rio" hasAll="true" primaryKey="cod_num_comodos_dorm">
+        <Table name="d_num_comodos_dorm" schema="semas">
+        </Table>
+        <Level name="N&#250;mero de comodos dormit&#243;rio" column="desc_num_comodos_dorm" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
     <Measure name="Quantidade_Familia" column="qtdfamilias" datatype="Integer" aggregator="sum" visible="true">
-    </Measure>
-    <Measure name="Quantidade_Comodos" column="qtd_comodos_dorm_fam" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
   </Cube>
   <Cube name="f_identificacao_pessoa" cache="true" enabled="true">
@@ -224,17 +244,17 @@
     </Dimension>
     <DimensionUsage source="d_data" name="d_data" foreignKey="id_data" highCardinality="false">
     </DimensionUsage>
-    <Dimension type="StandardDimension" foreignKey="id_idade" name="d_idade">
+    <Dimension type="StandardDimension" foreignKey="id_idade" highCardinality="false" name="d_idade">
       <Hierarchy name="Idade" hasAll="true" primaryKey="id_idade">
-        <Table name="d_idade" schema="semas" alias="">
+        <Table name="d_idade" schema="semas">
         </Table>
-        <Level name="idade" column="id_idade" type="Integer" uniqueMembers="false" levelType="Regular">
+        <Level name="idade" column="id_idade" type="Integer" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="StandardDimension" foreignKey="id_beneficiario" name="d_beneficiario">
+    <Dimension type="StandardDimension" foreignKey="id_beneficiario" highCardinality="false" name="d_beneficiario">
       <Hierarchy name="d_beneficiario" hasAll="true" primaryKey="id_beneficiario">
-        <Table name="d_beneficiario" schema="semas" alias="">
+        <Table name="d_beneficiario" schema="semas">
         </Table>
         <Level name="beneficiario" column="ds_beneficiario" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
