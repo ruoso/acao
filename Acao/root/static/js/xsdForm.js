@@ -193,7 +193,6 @@ function generateFormFromNode(tagRaiz, xmlNode, namePattern) {
     var minOccurs = getValueAttributeByName(xmlNode, "minOccurs");
     var maxOccurs = getValueAttributeByName(xmlNode, "maxOccurs");
     if (minOccurs == null) {minOccurs = 1}
-
     if (type != null && static_type(type)) {
         return generateFormField(tagRaiz, xmlNode, type, namePattern, minOccurs, maxOccurs);
     } else if (type != null) {
@@ -470,12 +469,9 @@ function generateFormFromSimpleTypeNode(tagRaiz, xmlNode, namePattern, name, lab
         divRepeat.addRepeat = onclickAdd;
 
         var onclickDel = function() {
-            alert(currentCount);
             if (currentCount > minOccurs) {
                 divRepeat.removeChild(divRepeat.childNodes[currentCount]);
                 currentCount--;
-                //divRepeat.removeChild(divRepeat.childNodes[currentCount]);
-                //currentCount--;
             }
             refreshEnableDisable();
         }
