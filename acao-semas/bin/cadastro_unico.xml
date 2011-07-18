@@ -260,11 +260,19 @@
         </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="StandardDimension" foreignKey="id_ser" name="d_ser">
+    <Dimension type="StandardDimension" foreignKey="id_ser" highCardinality="false" name="d_ser">
       <Hierarchy name="SER" hasAll="true" primaryKey="cod_ser">
-        <Table name="d_ser" schema="semas" alias="">
+        <Table name="d_ser" schema="semas">
         </Table>
         <Level name="Regional" column="descricao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_bairro" highCardinality="false" name="d_bairros">
+      <Hierarchy name="d_bairros" hasAll="true" primaryKey="cod_bairro">
+        <Table name="d_bairros" schema="semas">
+        </Table>
+        <Level name="Bairros" column="descricao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
