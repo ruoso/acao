@@ -1,4 +1,4 @@
-<Schema name="semas_cadastro_unico">
+<Schema name="Semas - Cadastro Unico">
   <Dimension type="TimeDimension" highCardinality="false" name="d_data">
     <Hierarchy name="Data" hasAll="true" primaryKey="id_data">
       <Table name="d_data" schema="semas">
@@ -15,7 +15,7 @@
       </Level>
     </Hierarchy>
   </Dimension>
-  <Cube name="f_cadastro_familia" cache="true" enabled="true">
+  <Cube name="Caracteristicas do domicilio" cache="true" enabled="true">
     <Table name="f_cadastro_familia" schema="semas">
     </Table>
     <Dimension type="StandardDimension" foreignKey="cod_agua_canalizada_fam" highCardinality="false" name="d_agua_canalizada">
@@ -151,7 +151,7 @@
     <Measure name="Quantidade_Familia" column="qtdfamilias" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
   </Cube>
-  <Cube name="f_identificacao_pessoa" cache="true" enabled="true">
+  <Cube name="Identificacao da pessoa" cache="true" enabled="true">
     <Table name="f_identificacao_pessoa" schema="semas">
     </Table>
     <Dimension type="StandardDimension" foreignKey="id_frequenta_escola_creche" highCardinality="false" name="d_frequenta_creche_escola">
@@ -244,11 +244,29 @@
     </Dimension>
     <DimensionUsage source="d_data" name="d_data" foreignKey="id_data" highCardinality="false">
     </DimensionUsage>
-    <Dimension type="StandardDimension" foreignKey="id_idade" highCardinality="false" name="d_idade">
+    <Dimension type="StandardDimension" foreignKey="id_idade" highCardinality="false" name="d_idade_Faixa Et&#225;ria">
       <Hierarchy name="Idade" hasAll="true" primaryKey="id_idade">
         <Table name="d_idade" schema="semas">
         </Table>
+        <Level name="Faixa Et&#225;ria" column="faixa_etaria" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
         <Level name="idade" column="id_idade" type="Integer" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_idade" highCardinality="false" name="d_idade_Faixa Et&#225;ria Escolaridade">
+      <Hierarchy name="Idade Faixa Et&#225;ria Escolaridade" hasAll="true" primaryKey="id_idade">
+        <Table name="d_idade" schema="semas">
+        </Table>
+        <Level name="Faixa Et&#225;ria" column="faixa_etaria_escolaridade" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_idade" highCardinality="false" name="d_idade_Faixa Et&#225;ria Trabalho">
+      <Hierarchy name="Idade Faixa Et&#225;ria Trabalho" hasAll="true" primaryKey="id_idade">
+        <Table name="d_idade" schema="semas">
+        </Table>
+        <Level name="Faixa Et&#225;ria" column="faixa_etaria_trabalho" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
@@ -262,11 +280,11 @@
     </Dimension>
     <Measure name="Quantidade" column="quantidade" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
-    <Measure name="possue_cegueira" column="possui_cegueira" datatype="Integer" aggregator="sum" visible="true">
+    <Measure name="possui_cegueira" column="possui_cegueira" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
     <Measure name="possui_baixa_visao" column="possui_baixa_visao" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
-    <Measure name="possue_surdez_severa" column="possui_surdez_severa" datatype="Integer" aggregator="sum" visible="true">
+    <Measure name="possui_surdez_severa" column="possui_surdez_severa" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
     <Measure name="possui_surdez_leve" column="possui_surdez_levera" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
