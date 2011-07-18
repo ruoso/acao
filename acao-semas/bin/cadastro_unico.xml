@@ -278,6 +278,14 @@
         </Level>
       </Hierarchy>
     </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_ser" name="d_ser">
+      <Hierarchy name="SER" hasAll="true" primaryKey="cod_ser">
+        <Table name="d_ser" schema="semas" alias="">
+        </Table>
+        <Level name="Regional" column="descricao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
     <Measure name="Quantidade" column="quantidade" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
     <Measure name="possui_cegueira" column="possui_cegueira" datatype="Integer" aggregator="sum" visible="true">

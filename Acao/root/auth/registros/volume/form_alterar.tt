@@ -110,12 +110,12 @@
 
 
     $('#help > img').click(function() {
-    var class = '.' + $(this).attr('class') + ' ~ p';
+    var classe = '.' + $(this).attr('class') + ' ~ p';
 
-    if ($(class).css('display') == 'block') {
-        $(class).slideToggle();
+    if ($(classe).css('display') == 'block') {
+        $(classe).slideToggle();
      } else {
-       $(class).slideDown();
+       $(classe).slideDown();
 
      }
 
