@@ -432,13 +432,18 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="vinculoAssociacaoComunitaria"
-							minOccurs="0" type="xs:integer">
+						<xs:element name="vinculoAssociacaoComunitaria" minOccurs="0" >
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Vínculo com associação comunitária</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Sim" />
+									<xs:enumeration value="Não" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
 						<xs:element name="nomeAssociacao" minOccurs="0">
@@ -698,6 +703,11 @@
 												</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
+							            <xs:simpleType>
+								            <xs:restriction base="xs:string">
+									            <xs:maxLength value="255" />
+								            </xs:restriction>
+							            </xs:simpleType>
 									</xs:element>
 
 								</xs:sequence>
@@ -1180,7 +1190,26 @@
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:element>
-
+									<xs:element name="indenizacao" minOccurs="0"
+										type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Indenização</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="valorIndenizacao" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Valor indenização</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
 								</xs:sequence>
 							</xs:complexType>
 						</xs:element>
@@ -1490,6 +1519,8 @@
 									<xs:enumeration value="Enterrado" />
 									<xs:enumeration value="Queimado" />
 									<xs:enumeration value="Coletado" />
+                                    <xs:enumeration value="Passeio" />
+                                    <xs:enumeration value="Logradouro" />
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
