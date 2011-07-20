@@ -184,9 +184,10 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
 
     $c->stash->{herdar} = $herdar_author;
 
+    my $id;
 
     eval {
-        my $id = $c->model('Dossie')->criar_dossie({
+            $id = $c->model('Dossie')->criar_dossie({
             ip              => $c->req->address,
             nome            => $c->req->param('nome'),
             id_volume       => $c->req->param('id_volume'),
@@ -205,8 +206,8 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
     else      { $c->flash->{sucesso} = 'Dossie criado com sucesso'; }
     $c->res->redirect(
         $c->uri_for_action(
-            '/auth/registros/volume/dossie/lista',
-            [ $c->req->param('id_volume') ]
+            '/auth/registros/volume/dossie/documento/lista',
+            [ $c->req->param('id_volume'), $id ]
         )
     );
 }
