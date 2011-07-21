@@ -15,6 +15,14 @@
       </Level>
     </Hierarchy>
   </Dimension>
+  <Dimension type="StandardDimension" highCardinality="false" name="d_bairro">
+    <Hierarchy name="d_bairros" hasAll="true" primaryKey="cod_bairro">
+      <Table name="d_bairros" schema="semas">
+      </Table>
+      <Level name="Bairros" column="descricao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
   <Cube name="Caracteristicas do domicilio" cache="true" enabled="true">
     <Table name="f_cadastro_familia" schema="semas">
     </Table>
@@ -47,14 +55,6 @@
         <Table name="d_coleta_lixo" schema="semas">
         </Table>
         <Level name="Coleta lixo" column="descricao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-        </Level>
-      </Hierarchy>
-    </Dimension>
-    <Dimension type="StandardDimension" foreignKey="cod_bairro" highCardinality="false" name="d_bairros">
-      <Hierarchy name="Bairros" hasAll="true" primaryKey="cod_bairro">
-        <Table name="d_bairros" schema="semas">
-        </Table>
-        <Level name="Bairros" column="descricao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
@@ -148,6 +148,8 @@
         </Level>
       </Hierarchy>
     </Dimension>
+    <DimensionUsage source="d_bairro" name="d_bairro" foreignKey="cod_bairro" highCardinality="false">
+    </DimensionUsage>
     <Measure name="Quantidade_Familia" column="qtdfamilias" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
   </Cube>
@@ -278,14 +280,16 @@
         </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="StandardDimension" foreignKey="id_ser" name="d_ser">
+    <Dimension type="StandardDimension" foreignKey="id_ser" highCardinality="false" name="d_ser">
       <Hierarchy name="SER" hasAll="true" primaryKey="cod_ser">
-        <Table name="d_ser" schema="semas" alias="">
+        <Table name="d_ser" schema="semas">
         </Table>
         <Level name="Regional" column="descricao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
+    <DimensionUsage source="d_bairro" name="d_bairro" foreignKey="id_bairro">
+    </DimensionUsage>
     <Measure name="Quantidade" column="quantidade" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
     <Measure name="possui_cegueira" column="possui_cegueira" datatype="Integer" aggregator="sum" visible="true">
