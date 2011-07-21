@@ -80,11 +80,13 @@ sub insere_schema {
     'LOAD "'.$target.'" "'.$documentoXsd.'" "'.$collection.'" ';
 
     $self->sedna->begin();
+
     eval {
       $self->sedna->execute($query);
-      $self->sedna->commit;
-      return 1;
     };
+
+    $self->sedna->commit;
+    return 1;
 
 }
 
@@ -146,12 +148,14 @@ sub substituir_schema {
     my $query = 'DROP DOCUMENT "'.$documentoXsd.'" IN COLLECTION "'.$collection.'"';
 
     $self->sedna->begin();
+
     eval {
       $self->sedna->execute($query);
-      $self->sedna->commit;
-      $self->insere_schema( $collection, $target, $documentoXsd );
-      return 1;
     };
+    $self->sedna->commit;
+
+    $self->insere_schema( $collection, $target, $documentoXsd );
+    return 1;
 
 }
 1;
