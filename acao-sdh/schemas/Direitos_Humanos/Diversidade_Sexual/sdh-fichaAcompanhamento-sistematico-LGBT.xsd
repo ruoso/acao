@@ -1,0 +1,343 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-lgbt-fichaacompanhamento-sistematico.xsd"
+	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-lgbt-fichaacompanhamento-sistematico.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="formAcompanhamentoSistematico" type="formAcompanhamentoSistematico">
+		<xs:annotation>
+			<xs:appinfo>
+				<xhtml:label>13. JURÍDICO</xhtml:label>
+				<class:classificacoes>
+					<class:classificacao>cn=Diversidade Sexual,cn=Direitos Humanos
+					</class:classificacao>
+				</class:classificacoes>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="formAcompanhamentoSistematico">
+
+		<xs:sequence>
+			<xs:element name="numeroAtendimento" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Número atendimento</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="sistematico" maxOccurs="100">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Sistemático</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="data" type="xs:date" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Data</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="tipoProvidencia" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>TIPO DE PROVIDÊNCIA
+						</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="orientacaoJuridica" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Orientações jurídicas</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="retornoAtendimento" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Retorno de atendimentor</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="visitaInstitucional" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Visita institucional</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="acompanhamentoDelegacia" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Acompanhamento á delegacia</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="acompanhamentoDefensoriaPublica"
+										type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Acompanhamento á defensoria pública
+												</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="consultaProcessual" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Consulta processual</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="aguadandoDocumentos" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Aguardando documentos</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="encaminhamentoCaso" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Encaminhamento do caso</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="reunaiaoInstitucional" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Reunião institucional com outros
+													órgãos/políticas psicossociais e jurídicas</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="atendimentoEncerrado" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Atendimento encerrado</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="outros" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Outros</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="especificarOutros" type="xs:string"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Especificar</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="observacaoSobreProvidenciaTomada"
+										type="xs:string" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>OBSERVAÇÕES SOBRE A PROVIDENCIA TOMADA:
+												</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+
+
+
+			<xs:element name="psicologico" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>PSICOLÓGICO
+						</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="atendimentoPsicologicoIndividual"
+							type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Atendimento psicológico individual</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="atendimentoPsicologicoTerapiaGrupo"
+							type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Atendimento psicológico- terapia de grupo
+									</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="atendimentoPsicologicoAconcelhamentoFamiliar"
+							type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Atendimento psicológico- aconselhamento familiar
+									</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="visitaDomiciliar" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Visita domiciliar</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="encaminhamentoOutraTerapia" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Encaminhamento para outra terapia</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="reunaiaoInstitucional" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Reunião institucional com outros órgãos/políticas
+										psicossociais e jurídicas</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="atendimentoEncerrado" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Atendimento encerrado</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="aoutros" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Outros</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="especificarOutros" type="xs:string"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Especificar</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="observacaoSobreProvidenciaTomada"
+							type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>OBSERVAÇÕES SOBRE A PROVIDENCIA TOMADA:
+									</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+
+
+
+
+			<xs:element name="social" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>SOCIAL</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="visitaDomiciliar" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Visita domiciliar</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="encaminhamentoOutraPolitica" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Encaminhado para outra política social
+									</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="reunaiaoInstitucional" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Reunião institucional com outros órgãos/políticas
+										psicossociais e jurídicas</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="acompanhamentoPoliticaSocial" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Acompanhamento a alguma política social
+									</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="atendimentoEncerrado" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Atendimento encerrado</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="outros" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Outros</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="especificarOutros" type="xs:string"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Especificar</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="observacaoSobreProvidenciaTomada"
+							type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>OBSERVAÇÕES SOBRE A PROVIDENCIA TOMADA:
+									</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+
+	</xs:complexType>
+</xs:schema>
+
