@@ -106,7 +106,7 @@ sub iniciar_consolidacao {
                     {
                         etapa            => $etapa,
                         log_level        => 'FATAL',
-                        datahora         => DateTime->now(),
+                        datahora         => DateTime->now()->set_time_zone('America/Fortaleza'),
                         descricao_alerta => 'Erro carregando plugin - '
                           . $erro_original
                     }
@@ -118,7 +118,7 @@ sub iniciar_consolidacao {
                     {
                         etapa     => $etapa,
                         log_level => 'FATAL',
-                        datahora  => DateTime->now(),
+                        datahora  => DateTime->now()->set_time_zone('America/Fortaleza'),
                         descricao_alerta =>
                           'Ocorreu um erro inesperado ao registrar um alerta.'
                     }
@@ -127,7 +127,7 @@ sub iniciar_consolidacao {
             $consolidacao->update(
                 {
                     status   => 'Finalizada com Erro!',
-                    data_fim => DateTime->now(),
+                    data_fim => DateTime->now()->set_time_zone('America/Fortaleza'),
                 }
             );
             exit 1;
@@ -151,7 +151,7 @@ sub iniciar_consolidacao {
                     {
                         etapa            => $etapa,
                         log_level        => 'FATAL',
-                        datahora         => DateTime->now(),
+                        datahora         => DateTime->now()->set_time_zone('America/Fortaleza'),
                         descricao_alerta => 'Erro executando coleta de dados - '
                           . $erro_original
                     }
@@ -163,7 +163,7 @@ sub iniciar_consolidacao {
                     {
                         etapa     => $etapa,
                         log_level => 'FATAL',
-                        datahora  => DateTime->now(),
+                        datahora  => DateTime->now()->set_time_zone('America/Fortaleza'),
                         descricao_alerta =>
                           'Ocorreu um erro inesperado ao registrar um alerta.'
                     }
@@ -172,7 +172,7 @@ sub iniciar_consolidacao {
             $consolidacao->update(
                 {
                     status   => 'Finalizada com Erro!',
-                    data_fim => DateTime->now(),
+                    data_fim => DateTime->now()->set_time_zone('America/Fortaleza'),
                 }
             );
             exit 1;
@@ -222,7 +222,7 @@ sub iniciar_consolidacao {
         {
             etapa            => $etapa,
             log_level        => 'TRACE',
-            datahora         => DateTime->now(),
+            datahora         => DateTime->now()->set_time_zone('America/Fortaleza'),
             descricao_alerta => 'Vai iniciar o processo de validacao'
         }
     );
@@ -240,7 +240,7 @@ sub iniciar_consolidacao {
                     {
                         etapa            => $etapa,
                         log_level        => 'FATAL',
-                        datahora         => DateTime->now(),
+                        datahora         => DateTime->now()->set_time_zone('America/Fortaleza'),
                         descricao_alerta => 'Erro carregando plugin - '
                           . $erro_original
                     }
@@ -252,7 +252,7 @@ sub iniciar_consolidacao {
                     {
                         etapa     => $etapa,
                         log_level => 'FATAL',
-                        datahora  => DateTime->now(),
+                        datahora  => DateTime->now()->set_time_zone('America/Fortaleza'),
                         descricao_alerta =>
                           'Ocorreu um erro inesperado ao registrar um alerta.'
                     }
@@ -261,7 +261,7 @@ sub iniciar_consolidacao {
             $consolidacao->update(
                 {
                     status   => 'Finalizada com Erro!',
-                    data_fim => DateTime->now(),
+                    data_fim => DateTime->now()->set_time_zone('America/Fortaleza'),
                 }
             );
             exit 1;
@@ -284,7 +284,7 @@ sub iniciar_consolidacao {
                     {
                         etapa            => $etapa,
                         log_level        => 'FATAL',
-                        datahora         => DateTime->now(),
+                        datahora         => DateTime->now()->set_time_zone('America/Fortaleza'),
                         descricao_alerta => 'Erro inicializando plugin - '
                           . $erro_original
                     }
@@ -296,7 +296,7 @@ sub iniciar_consolidacao {
                     {
                         etapa     => $etapa,
                         log_level => 'FATAL',
-                        datahora  => DateTime->now(),
+                        datahora  => DateTime->now()->set_time_zone('America/Fortaleza'),
                         descricao_alerta =>
                           'Ocorreu um erro inesperado ao registrar um alerta.'
                     }
@@ -305,7 +305,7 @@ sub iniciar_consolidacao {
             $consolidacao->update(
                 {
                     status   => 'Finalizada com Erro!',
-                    data_fim => DateTime->now(),
+                    data_fim => DateTime->now()->set_time_zone('America/Fortaleza'),
                 }
             );
             exit 1;
@@ -325,7 +325,7 @@ sub iniciar_consolidacao {
                     {
                         etapa            => $etapa,
                         log_level        => 'FATAL',
-                        datahora         => DateTime->now(),
+                        datahora         => DateTime->now()->set_time_zone('America/Fortaleza'),
                         descricao_alerta => 'Erro carregando plugin - '
                           . $erro_original
                     }
@@ -337,7 +337,7 @@ sub iniciar_consolidacao {
                     {
                         etapa     => $etapa,
                         log_level => 'FATAL',
-                        datahora  => DateTime->now(),
+                        datahora  => DateTime->now()->set_time_zone('America/Fortaleza'),
                         descricao_alerta =>
                           'Ocorreu um erro inesperado ao registrar um alerta.'
                     }
@@ -346,7 +346,7 @@ sub iniciar_consolidacao {
             $consolidacao->update(
                 {
                     status   => 'Finalizada com Erro!',
-                    data_fim => DateTime->now(),
+                    data_fim => DateTime->now()->set_time_zone('America/Fortaleza'),
                 }
             );
             exit 1;
@@ -371,7 +371,7 @@ sub iniciar_consolidacao {
                     {
                         etapa            => $etapa,
                         log_level        => 'FATAL',
-                        datahora         => DateTime->now(),
+                        datahora         => DateTime->now()->set_time_zone('America/Fortaleza'),
                         descricao_alerta => 'Erro inicializando plugin - '
                           . $erro_original
                     }
@@ -383,7 +383,7 @@ sub iniciar_consolidacao {
                     {
                         etapa     => $etapa,
                         log_level => 'FATAL',
-                        datahora  => DateTime->now(),
+                        datahora  => DateTime->now()->set_time_zone('America/Fortaleza'),
                         descricao_alerta =>
                           'Ocorreu um erro inesperado ao registrar um alerta.'
                     }
@@ -392,7 +392,7 @@ sub iniciar_consolidacao {
             $consolidacao->update(
                 {
                     status   => 'Finalizada com Erro!',
-                    data_fim => DateTime->now(),
+                    data_fim => DateTime->now()->set_time_zone('America/Fortaleza'),
                 }
             );
             exit 1;
@@ -433,7 +433,7 @@ sub iniciar_consolidacao {
                     {
                         etapa     => $etapa,
                         log_level => 'FATAL',
-                        datahora  => DateTime->now(),
+                        datahora  => DateTime->now()->set_time_zone('America/Fortaleza'),
                         descricao_alerta =>
                           'Inconsistencia no registro XML, validacao falhou - '
                           . $erro_original
@@ -446,7 +446,7 @@ sub iniciar_consolidacao {
                     {
                         etapa     => $etapa,
                         log_level => 'FATAL',
-                        datahora  => DateTime->now(),
+                        datahora  => DateTime->now()->set_time_zone('America/Fortaleza'),
                         descricao_alerta =>
                           'Ocorreu um erro inesperado ao registrar um alerta.'
                     }
@@ -459,7 +459,7 @@ sub iniciar_consolidacao {
             {
                 etapa            => 2,
                 log_level        => 'TRACE',
-                datahora         => DateTime->now(),
+                datahora         => DateTime->now()->set_time_zone('America/Fortaleza'),
                 descricao_alerta => 'Vai validar o documento.',
                 id_documento_consolidado =>
                   $registroConsolidacao->{documento}{id}
@@ -479,7 +479,7 @@ sub iniciar_consolidacao {
                         {
                             etapa            => 2,
                             log_level        => 'ERROR',
-                            datahora         => DateTime->now(),
+                            datahora         => DateTime->now()->set_time_zone('America/Fortaleza'),
                             descricao_alerta => 'Erro validando documento - '
                               . $erro_original,
                             id_documento_consolidado =>
@@ -493,7 +493,7 @@ sub iniciar_consolidacao {
                         {
                             etapa     => $etapa,
                             log_level => 'FATAL',
-                            datahora  => DateTime->now(),
+                            datahora  => DateTime->now()->set_time_zone('America/Fortaleza'),
                             descricao_alerta =>
 'Ocorreu um erro inesperado ao registrar um alerta.'
                         }
@@ -506,7 +506,7 @@ sub iniciar_consolidacao {
             {
                 etapa            => 3,
                 log_level        => 'TRACE',
-                datahora         => DateTime->now(),
+                datahora         => DateTime->now()->set_time_zone('America/Fortaleza'),
                 descricao_alerta => 'Vai transformar o documento.',
                 id_documento_consolidado =>
                   $registroConsolidacao->{documento}{id}
@@ -528,7 +528,7 @@ sub iniciar_consolidacao {
                         {
                             etapa     => 3,
                             log_level => 'ERROR',
-                            datahora  => DateTime->now(),
+                            datahora  => DateTime->now()->set_time_zone('America/Fortaleza'),
                             descricao_alerta =>
                               'Erro transformando documento - '
                               . $erro_original,
@@ -543,7 +543,7 @@ sub iniciar_consolidacao {
                         {
                             etapa     => $etapa,
                             log_level => 'FATAL',
-                            datahora  => DateTime->now(),
+                            datahora  => DateTime->now()->set_time_zone('America/Fortaleza'),
                             descricao_alerta =>
 'Ocorreu um erro inesperado ao registrar um alerta.'
                         }
@@ -584,7 +584,7 @@ sub iniciar_consolidacao {
                 {
                     etapa            => 4,
                     log_level        => 'TRACE',
-                    datahora         => DateTime->now(),
+                    datahora         => DateTime->now()->set_time_zone('America/Fortaleza'),
                     descricao_alerta => 'Terminou de processar o documento.',
                     id_documento_consolidado =>
                       $registroConsolidacao->{documento}{id}
@@ -598,7 +598,7 @@ sub iniciar_consolidacao {
                     {
                         etapa            => 3,
                         log_level        => 'ERROR',
-                        datahora         => DateTime->now(),
+                        datahora         => DateTime->now()->set_time_zone('America/Fortaleza'),
                         descricao_alerta => 'Erro armazenando documento - '
                           . $erro_original,
                         id_documento_consolidado =>
@@ -612,7 +612,7 @@ sub iniciar_consolidacao {
                     {
                         etapa     => $etapa,
                         log_level => 'FATAL',
-                        datahora  => DateTime->now(),
+                        datahora  => DateTime->now()->set_time_zone('America/Fortaleza'),
                         descricao_alerta =>
                           'Ocorreu um erro inesperado ao registrar um alerta.'
                     }
@@ -628,7 +628,7 @@ sub iniciar_consolidacao {
         {
             etapa            => 5,
             log_level        => 'TRACE',
-            datahora         => DateTime->now(),
+            datahora         => DateTime->now()->set_time_zone('America/Fortaleza'),
             descricao_alerta => 'Terminou a Consolidacao.',
         }
     );
@@ -637,7 +637,7 @@ sub iniciar_consolidacao {
     $consolidacao->update(
         {
             status   => 'Finalizada',
-            data_fim => DateTime->now(),
+            data_fim => DateTime->now()->set_time_zone('America/Fortaleza'),
         }
     );
 
@@ -657,7 +657,7 @@ txn_method 'preparar_consolidacao' => sub {
         {
             etapa            => $etapa,
             log_level        => 'TRACE',
-            datahora         => DateTime->now(),
+            datahora         => DateTime->now()->set_time_zone('America/Fortaleza'),
             descricao_alerta => 'Iniciando o processo de consolidação'
         }
     );
@@ -680,7 +680,7 @@ txn_method 'preparar_consolidacao' => sub {
             {
                 etapa     => 1,
                 log_level => 'TRACE',
-                datahora  => DateTime->now(),
+                datahora  => DateTime->now()->set_time_zone('America/Fortaleza'),
                 descricao_alerta =>
 'Criada Collection de entrada, prosseguindo para entrada de dados.'
             }
@@ -694,7 +694,7 @@ txn_method 'preparar_consolidacao' => sub {
                 {
                     etapa            => $etapa,
                     log_level        => 'FATAL',
-                    datahora         => DateTime->now(),
+                    datahora         => DateTime->now()->set_time_zone('America/Fortaleza'),
                     descricao_alerta => 'Erro específico: ' . $erro_original
                 }
             );

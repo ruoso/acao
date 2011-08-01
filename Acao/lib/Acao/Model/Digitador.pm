@@ -161,7 +161,7 @@ txn_method 'salvar_digitacao' => authorized $digitador => sub {
         {
             digitacao => {
                 digitador      => $self->user->get('entrydn'),
-                dataDigitacao  => DateTime->now(),
+                dataDigitacao  => DateTime->now()->set_time_zone('America/Fortaleza'),
                 localDigitacao => $ip,
             },
             leitura => {

@@ -152,7 +152,7 @@ txn_method 'criar_volume' => authorized $role_criar => sub {
         $doc,
         {
             nome                   => uc $nome,
-            criacao                => DateTime->now(),
+            criacao                => DateTime->now()->set_time_zone('America/Fortaleza'),
             fechamento             => '',
             arquivamento           => '',
             collection             => $doc_name,
@@ -193,7 +193,7 @@ txn_method 'alterar_estado' => authorized $role_alterar => sub {
           . $id_volume . '"]';
         $xq .=
             '/ns:fechamento with <ns:fechamento>'
-          . DateTime->now()
+          . DateTime->now()->set_time_zone('America/Fortaleza')
           . '</ns:fechamento>';
         $self->sedna->execute($xq);
     }
@@ -206,7 +206,7 @@ txn_method 'alterar_estado' => authorized $role_alterar => sub {
           . $id_volume . '"]';
         $xq .=
             '/ns:arquivamento with <ns:arquivamento>'
-          . DateTime->now()
+          . DateTime->now()->set_time_zone('America/Fortaleza')
           . '</ns:arquivamento>';
         $self->sedna->execute($xq);
         $self->invalidate_indices($id_volume);
