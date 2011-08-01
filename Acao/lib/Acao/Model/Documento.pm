@@ -189,7 +189,7 @@ txn_method 'inserir_documento' => authorized $role_criar => sub {
         {
             id                        => $uuid_str,
             nome                      => '',
-            criacao                   => DateTime->now(),
+            criacao                   => DateTime->now()->set_time_zone('America/Fortaleza'),
             invalidacao               => '',
             motivoInvalidacao         => {},
             representaDocumentoFisico => $representaDocumentoFisico,
@@ -228,7 +228,7 @@ txn_method 'inserir_documento' => authorized $role_criar => sub {
           . $id_documento
           . '"]/dc:invalidacao
                                                   with <dc:invalidacao>'
-          . DateTime->now()
+          . DateTime->now()->set_time_zone('America/Fortaleza')
           . '</dc:invalidacao>';
         $self->sedna->execute($xq_invalidacao);
 
@@ -345,7 +345,7 @@ txn_method 'invalidar_documento' => authorized $role_alterar => sub {
       . $id_documento
       . '"]/dc:invalidacao
                                         with <dc:invalidacao>'
-      . DateTime->now()
+      . DateTime->now()->set_time_zone('America/Fortaleza')
       . '</dc:invalidacao>';
 
     $self->sedna->execute($xq_invalidacao);
