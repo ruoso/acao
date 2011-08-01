@@ -97,6 +97,7 @@ txn_method 'listar_volumes' => authorized $role_listar  => sub {
              . 'and @role="listar"]] '
              . 'let $alterar := count(collection("volume")/ns:volume[ns:collection = $x/ns:collection]/ns:autorizacoes/author:autorizacao[('.$grupos.')'
              . 'and @role = "alterar"])'
+             . 'order by $x/ns:nome/text()'
              . 'return ($x/ns:collection/text(), '
              . $args->{xqueryret} . '),' . '('
              . $args->{interval_ini} * $args->{num_por_pagina}
