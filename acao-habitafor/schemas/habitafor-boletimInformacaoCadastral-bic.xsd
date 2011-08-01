@@ -17,38 +17,38 @@
 				</class:classificacoes>
 				<idx:index>
 					<idx:hint key="pessoa.nome"
-						xpath="formAssentamentoBIC/identificacao/entrevistador" />
+						xpath="formBoletimInformacaoCadastral/identificacao/entrevistador" />
 					<idx:hint key="pessoa.nome"
-						xpath="formAssentamentoBIC/identificacao/tecnicoResponsavel" />
+						xpath="formBoletimInformacaoCadastral/identificacao/tecnicoResponsavel" />
 					<idx:hint key="pessoa.nome"
-						xpath="formAssentamentoBIC/dadosChefeDaFamilia/nome" />
+						xpath="formBoletimInformacaoCadastral/dadosChefeDaFamilia/nome" />
 					<idx:hint key="pessoa.nome"
-						xpath="formAssentamentoBIC/dadosChefeDaFamilia/apelido" />
-					<idx:hint key="pessoa.rg" xpath="formAssentamentoBIC/dadosChefeDaFamilia/rg" />
+						xpath="formBoletimInformacaoCadastral/dadosChefeDaFamilia/apelido" />
+					<idx:hint key="pessoa.rg" xpath="formBoletimInformacaoCadastral/dadosChefeDaFamilia/rg" />
 					<idx:hint key="pessoa.cpf"
-						xpath="formAssentamentoBIC/dadosChefeDaFamilia/cpf" />
+						xpath="formBoletimInformacaoCadastral/dadosChefeDaFamilia/cpf" />
 					<idx:hint key="pessoa.nome"
-						xpath="formAssentamentoBIC/dadosChefeDaFamilia/nomePai" />
+						xpath="formBoletimInformacaoCadastral/dadosChefeDaFamilia/nomePai" />
 					<idx:hint key="pessoa.nome"
-						xpath="formAssentamentoBIC/dadosChefeDaFamilia/nomeMae" />
+						xpath="formBoletimInformacaoCadastral/dadosChefeDaFamilia/nomeMae" />
 					<idx:hint key="pessoa.nome"
-						xpath="formAssentamentoBIC/dadosCompanheiro/nomeCompanheiro" />
+						xpath="formBoletimInformacaoCadastral/dadosCompanheiro/nomeCompanheiro" />
 					<idx:hint key="pessoa.nome"
-						xpath="formAssentamentoBIC/dadosCompanheiro/apelidoCompanheiro" />
+						xpath="formBoletimInformacaoCadastral/dadosCompanheiro/apelidoCompanheiro" />
 					<idx:hint key="pessoa.rg"
-						xpath="formAssentamentoBIC/dadosCompanheiro/rgCompanheiro" />
+						xpath="formBoletimInformacaoCadastral/dadosCompanheiro/rgCompanheiro" />
 					<idx:hint key="pessoa.cpf"
-						xpath="formAssentamentoBIC/dadosCompanheiro/cpfCompanheiro" />
+						xpath="formBoletimInformacaoCadastral/dadosCompanheiro/cpfCompanheiro" />
 					<idx:hint key="pessoa.nome"
-						xpath="formAssentamentoBIC/dadosCompanheiro/nomePaiCompanheiro" />
+						xpath="formBoletimInformacaoCadastral/dadosCompanheiro/nomePaiCompanheiro" />
 					<idx:hint key="pessoa.nome"
-						xpath="formAssentamentoBIC/dadosCompanheiro/nomeMaeCompanheiro" />
+						xpath="formBoletimInformacaoCadastral/dadosCompanheiro/nomeMaeCompanheiro" />
 					<idx:hint key="pessoa.nome"
-						xpath="formAssentamentoBIC/dadosDoInformante/nomeInformante" />
+						xpath="formBoletimInformacaoCadastral/dadosDoInformante/nomeInformante" />
 					<idx:hint key="pessoa.rg"
-						xpath="formAssentamentoBIC/dadosCompanheiro/rgInformante" />
+						xpath="formBoletimInformacaoCadastral/dadosCompanheiro/rgInformante" />
 					<idx:hint key="pessoa.nome"
-						xpath="formAssentamentoBIC/composicaoFamiliar/nome" />
+						xpath="formBoletimInformacaoCadastral/composicaoFamiliar/nome" />
 				</idx:index>
 			</xs:appinfo>
 		</xs:annotation>
@@ -1281,7 +1281,7 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="outro" minOccurs="0" type="xs:boolean">
+									<xs:element name="outro" minOccurs="0" type="Chefexs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Outro</xhtml:label>
