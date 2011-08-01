@@ -69,7 +69,9 @@ sub insert_indices {
 
     #Constrói o resumo do índice inserido
     my $resumo = "$nm_volume - $nm_prontuario - $label";
+
     my $indices = $self->extract_xml_keys( $xsd, $idx_data, $id_volume, $controle, $id_documento );
+
     my $autorizacoes_vol = $self->extract_autorizacoes_volume($id_volume);
 
     my ( $autorizacoes_dos, $herda_dos ) = $self->extract_autorizacoes_dossie( $id_volume, $controle );
@@ -303,9 +305,9 @@ sub extract_xml_keys {
     my $self = shift;
     my ( $ns, $idx_data, $id_volume, $controle, $id_documento ) = @_;
 
-    my $xqueryret = join ', ',
-      map { '"' . $_->{key} . '"', $self->normalize_xpath( 'x', $_->{xpath} ) }
-      @{ $idx_data->{hint} };
+#    my $xqueryret = join ', ', map { '"' . $_->{key} . '"', $self->normalize_xpath( 'x', $_->{xpath} ) } @{ $idx_data->{hint} };
+
+    my $xqueryret = join ', ', map { 'for $y in ('.$self->normalize_xpath( 'x', $_->{xpath} ).') return ("'.$_->{key}.'", concat("", $y))' } @{ $idx_data->{hint} };
 
     my $xquery =
 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
@@ -319,14 +321,19 @@ sub extract_xml_keys {
       . $id_documento
       . '"]/dc:documento/dc:conteudo
                   return (' . $xqueryret . ')';
+
     my @xmldata;
     $xquery =~ s/\n//gis;
+
     $self->sedna->execute($xquery);
+
     my @data;
     while ( my $key = $self->sedna->get_item ) {
         my $val = $self->sedna->get_item;
+
         $key =~ s/^\s+|\s+$//gs;
         $val =~ s/^\s+|\s+$//gs;
+
         if ($key eq 'pessoa.datanascimento') {
             @data = split('-',$val);
             $val = $data[2].'/'.$data[1].'/'.$data[0];
@@ -334,7 +341,7 @@ sub extract_xml_keys {
         next unless $val;
         push @xmldata, { key => $key, value => $val };
     }
-
+ 
     return \@xmldata;
 }
 
@@ -374,17 +381,18 @@ sub extract_autorizacoes_dossie {
     my $self = shift;
     my ( $id_volume, $controle ) = @_;
     my $xquery =
-'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
-                  declare namespace author = "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";
-                  for $x in collection("'
-      . $id_volume
-      . '")/ns:dossie[ns:controle = "'
-      . $controle . '"] 
-                        return ( if ($x/ns:autorizacoes/@herdar/string())
-                                 then ($x/ns:autorizacoes/@herdar/string())
-                                 else ("0"),
-                                 $x/ns:autorizacoes/author:autorizacao[@role="listar"]/@principal/string() )';
+               'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
+                declare namespace author = "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";
+                for $x in collection("'
+                . $id_volume
+                . '")/ns:dossie[ns:controle = "'
+                . $controle . '"] 
+                return ( if ($x/ns:autorizacoes/@herdar/string())
+                then ($x/ns:autorizacoes/@herdar/string())
+                else ("0"),
+                $x/ns:autorizacoes/author:autorizacao[@role="listar"]/@principal/string() )';
     my %dns;
+
     $self->sedna->execute($xquery);
     my $herda = $self->sedna->get_item;
 
@@ -442,7 +450,8 @@ ser utilizados corretamente nas buscas pelos valores associados a estes
 sub normalize_xpath {
     my ( $self, $prefix, $xpath ) = @_;
     my $with_prefix = join '/', map { $prefix . ':' . $_ } split /\//, $xpath;
-    return 'concat("",$x/' . $with_prefix . '/text())';
+
+    return '$x/' . $with_prefix . '/text()';
 }
 
 =item get_nm_volume()
