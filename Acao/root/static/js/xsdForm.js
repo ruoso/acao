@@ -209,7 +209,7 @@ function generateFormFromNode(tagRaiz, xmlNode, namePattern) {
             var inner = tagRaiz.childNodes[i];
             if (inner.nodeType == 1 && inner.nodeName == 'xs:complexType' &&
                 getValueAttributeByName(inner, "name") == type) {
-                return generateFormFromComplexTypeNode(tagRaiz, inner, namePattern, getValueAttributeByName(xmlNode, "name"), label, minOccurs, maxOccurs, engine, service );date
+                return generateFormFromComplexTypeNode(tagRaiz, inner, namePattern, getValueAttributeByName(xmlNode, "name"), label, minOccurs, maxOccurs, engine, service );
             }
         }
     } else {
