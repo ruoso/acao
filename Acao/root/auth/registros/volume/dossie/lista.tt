@@ -198,6 +198,7 @@
        </select>
 
        <select name="campo_operador_[% counter %]" id="campo_operador_[% counter %]">
+        <option value="contem" [% IF (c.req.param('campo_operador_' _ counter) == 'contem') %] selected [% END %]>contém</option>
         <option value="igual" [% IF (c.req.param('campo_operador_' _ counter) == 'igual') %] selected [% END %]>igual a</option>
         <option value="igualn" [% IF (c.req.param('campo_operador_' _ counter) == 'igualn') %] selected [% END %]>igual a numero</option>
         <option value="diferente" [% IF (c.req.param('campo_operador_' _ counter) == 'diferente') %] selected [% END %]>diferente de</option>
@@ -205,7 +206,6 @@
         <option value="maiorn" [% IF (c.req.param('campo_operador_' _ counter) == 'maiorn') %] selected [% END %]>maior que numero</option>
         <option value="menor" [% IF (c.req.param('campo_operador_' _ counter) == 'menor') %] selected [% END %]>menor que</option>
         <option value="menorn" [% IF (c.req.param('campo_operador_' _ counter) == 'menorn') %] selected [% END %]>menor que numero</option>
-        <option value="contem" [% IF (c.req.param('campo_operador_' _ counter) == 'contem') %] selected [% END %]>contém</option>
         <option value="inicia" [% IF (c.req.param('campo_operador_' _ counter) == 'inicia') %] selected [% END %]>inicia com</option>
         <option value="termina" [% IF (c.req.param('campo_operador_' _ counter) == 'termina') %] selected [% END %]>termina com</option>
        </select>

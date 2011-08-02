@@ -133,21 +133,22 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
           . $self->quote_valor( $args->{pesquisa}{nome_prontuario} ) . '))]';
     }
     my $xpprefix = 'ns:doc/dc:documento/dc:documento/dc:conteudo/';
+    my $valor_pesquisado;
     foreach my $counter ( 0 .. ( $args->{pesquisa}{numero_campos} - 1 ) ) {
         my $ns     = $args->{pesquisa}{"pesquisa_${counter}_ns"};
         my $prefix = $prefix{$ns};
+        $valor_pesquisado = $args->{pesquisa}{"valor_pesquisado_${counter}"};
+        $valor_pesquisado =~ s/^\s+//;
+	    $valor_pesquisado =~ s/\s+$//;
         my $expr = $self->produce_expr_xpfilter(
             $prefix,
             $args->{pesquisa}{"campo_formulario_${counter}"},
             $args->{pesquisa}{"campo_operador_${counter}"},
-            $args->{pesquisa}{"valor_pesquisado_${counter}"},
+            $valor_pesquisado,
             $xpprefix
         );
         push @where, $expr;
     }
-
-
-
 
     my $where = join '', @where if @where;
 
