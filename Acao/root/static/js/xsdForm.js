@@ -209,7 +209,7 @@ function generateFormFromNode(tagRaiz, xmlNode, namePattern) {
             var inner = tagRaiz.childNodes[i];
             if (inner.nodeType == 1 && inner.nodeName == 'xs:complexType' &&
                 getValueAttributeByName(inner, "name") == type) {
-                return generateFormFromComplexTypeNode(tagRaiz, inner, namePattern, getValueAttributeByName(xmlNode, "name"), label, minOccurs, maxOccurs, engine, service );
+                return generateFormFromComplexTypeNode(tagRaiz, inner, namePattern, getValueAttributeByName(xmlNode, "name"), label, minOccurs, maxOccurs, engine, service );date
             }
         }
     } else {
@@ -311,6 +311,7 @@ function generateFormFromComplexTypeNode(tagRaiz, xmlNode, namePattern, name, la
                 var html = generateFormFromComplexTypeNodeNoRepeat(tagRaiz, xmlNode, namePattern+"__"+currentCount, name, "Item "+(currentCount+1));
                 divRepeat.appendChild(html);
                 currentCount++;
+                genereteXsdFormUIInMaxOccurs();
             }
             refreshEnableDisable();
         }
@@ -365,7 +366,6 @@ function generateFormFromComplexTypeNodeNoRepeat(tagRaiz, xmlNode, namePattern, 
             //throw "xs:choice not supported";
         }
     }
-
     return fieldset;
 
 }
@@ -532,7 +532,7 @@ function generateXmlFromSimpleTypeNode(odoc, namespace, tagRaiz, xmlNode, namePa
 	        var node = xmlNode.childNodes[i];
             if (node.nodeType == 1) {
                 if (node.nodeName == "xs:restriction" &&
-                    node.getAttribute('base') == "xs:string") {
+                    node.getAttribute('base') == "xs:string" || node.getAttribute('base') == "xs:decimal") {
                     restriction = node;
                 } else {
                     throw "Unkown simple type";
@@ -569,7 +569,9 @@ function generateXmlFromSimpleTypeNode(odoc, namespace, tagRaiz, xmlNode, namePa
             var maxl = rdecl[0].getAttribute('value');
             if (fieldValue.length <= maxl) {
                 valid = 1;
-            }
+            } 
+        } else if (rdecl[0].nodeName == "xs:fractionDigits") {
+		        valid = 1;
         } else {
             throw "Unkown restriction type: "+rdecl[0].nodeName;
         }
