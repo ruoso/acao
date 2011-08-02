@@ -19,12 +19,11 @@
 					<idx:hint key="pessoa.nome"
 						xpath="formBoletimInformacaoCadastral/identificacao/entrevistador" />
 					<idx:hint key="pessoa.nome"
-						xpath="formBoletimInformacaoCadastral/identificacao/tecnicoResponsavel" />
-					<idx:hint key="pessoa.nome"
 						xpath="formBoletimInformacaoCadastral/dadosChefeDaFamilia/nome" />
 					<idx:hint key="pessoa.nome"
 						xpath="formBoletimInformacaoCadastral/dadosChefeDaFamilia/apelido" />
-					<idx:hint key="pessoa.rg" xpath="formBoletimInformacaoCadastral/dadosChefeDaFamilia/rg" />
+					<idx:hint key="pessoa.rg" 
+                        xpath="formBoletimInformacaoCadastral/dadosChefeDaFamilia/rg" />
 					<idx:hint key="pessoa.cpf"
 						xpath="formBoletimInformacaoCadastral/dadosChefeDaFamilia/cpf" />
 					<idx:hint key="pessoa.nome"
@@ -46,7 +45,7 @@
 					<idx:hint key="pessoa.nome"
 						xpath="formBoletimInformacaoCadastral/dadosDoInformante/nomeInformante" />
 					<idx:hint key="pessoa.rg"
-						xpath="formBoletimInformacaoCadastral/dadosCompanheiro/rgInformante" />
+						xpath="formBoletimInformacaoCadastral/dadosDoInformante/rgInformante" />
 					<idx:hint key="pessoa.nome"
 						xpath="formBoletimInformacaoCadastral/composicaoFamiliar/nome" />
 				</idx:index>
@@ -1281,7 +1280,7 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="outro" minOccurs="0" type="Chefexs:boolean">
+									<xs:element name="outro" minOccurs="0" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Outro</xhtml:label>
@@ -2311,7 +2310,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="dataNascimento" type="xs:date">
+						<xs:element name="dataNascimento" type="xs:date" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Data de nascimento</xhtml:label>
@@ -2438,11 +2437,14 @@
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
-								<xs:restriction base="xs:string">
-									<xs:maxLength value="255" />
-								</xs:restriction>
+                                <xs:restriction base="xs:decimal">
+                                    <xs:fractionDigits value='2'/>
+                                    <xs:maxExclusive value="1000000"/>
+                                    <xs:minInclusive value="-1000000"/>
+                                </xs:restriction>
 							</xs:simpleType>
 						</xs:element>
+
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
