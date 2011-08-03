@@ -1,8 +1,7 @@
-jQuery(document).ready(function() {
-
+/*jQuery(document).ready(function() {
+    //generateXsdFormUI();
 	//$("table tbody tr:nth-child(even)").addClass("striped");
-
-});
+});*/
 
 function createInput(name) {
     var labelText = name.split('.');

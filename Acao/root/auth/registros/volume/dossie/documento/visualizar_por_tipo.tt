@@ -21,7 +21,11 @@
 [% SET vol = ( c.model('Volume').getDadosVolumeId(id_volume, c.model('LDAP').assuntos_dn, c.model('LDAP').local_dn) ) %]
 [% SET dos = ( c.model('Dossie').getDadosDossie(id_volume, controle, c.model('LDAP').assuntos_dn, c.model('LDAP').local_dn) ) %]
 [% SET iteration = 0 %]
-
+<script language="Javascript">
+    function genereteXsdFormUIInMaxOccurs() {
+        //generateXsdFormUI();
+    }
+</script>
 <script SRC="[% c.uri_for('/static/js/input.deflate.plugin.js') %]" language="Javascript" ></script>
 <script SRC="[% c.uri_for('/static/js/regex-mask-plugin.js') %]" language="Javascript" ></script>
 <script SRC="[% c.uri_for('/static/js/jquery.meio.mask.js') %]" language="Javascript" ></script>

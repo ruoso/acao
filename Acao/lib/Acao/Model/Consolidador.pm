@@ -128,7 +128,7 @@ txn_method 'iniciar_consolidacao' => authorized $consolidador => sub {
     my $consolidacao = $definicao_consolidacao->consolidacao->create(
         {
             status   => 'Criada',
-            data_ini => DateTime->now(),
+            data_ini => DateTime->now()->set_time_zone('America/Fortaleza'),
             dn       => $self->user->get('entrydn')
         }
     );

@@ -133,21 +133,22 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
           . $self->quote_valor( $args->{pesquisa}{nome_prontuario} ) . '))]';
     }
     my $xpprefix = 'ns:doc/dc:documento/dc:documento/dc:conteudo/';
+    my $valor_pesquisado;
     foreach my $counter ( 0 .. ( $args->{pesquisa}{numero_campos} - 1 ) ) {
         my $ns     = $args->{pesquisa}{"pesquisa_${counter}_ns"};
         my $prefix = $prefix{$ns};
+        $valor_pesquisado = $args->{pesquisa}{"valor_pesquisado_${counter}"};
+        $valor_pesquisado =~ s/^\s+//;
+	    $valor_pesquisado =~ s/\s+$//;
         my $expr = $self->produce_expr_xpfilter(
             $prefix,
             $args->{pesquisa}{"campo_formulario_${counter}"},
             $args->{pesquisa}{"campo_operador_${counter}"},
-            $args->{pesquisa}{"valor_pesquisado_${counter}"},
+            $valor_pesquisado,
             $xpprefix
         );
         push @where, $expr;
     }
-
-
-
 
     my $where = join '', @where if @where;
 
@@ -285,7 +286,7 @@ txn_method 'criar_dossie' => authorized $role_criar => sub {
         $doc,
         {
             nome                   => uc $args->{nome},
-            criacao                => DateTime->now(),
+            criacao                => DateTime->now()->set_time_zone('America/Fortaleza'),
             fechamento             => '',
             arquivamento           => '',
             estado                 => 'aberto',
@@ -332,7 +333,7 @@ txn_method 'alterar_estado' => authorized $role_alterar => sub {
           . $controle . '"]';
         $xq .=
             '/ns:fechamento with <ns:fechamento>'
-          . DateTime->now()
+          . DateTime->now()->set_time_zone('America/Fortaleza')
           . '</ns:fechamento>';
         $self->sedna->execute($xq);
     }
@@ -347,7 +348,7 @@ txn_method 'alterar_estado' => authorized $role_alterar => sub {
           . $controle . '"]';
         $xq .=
             '/ns:arquivamento with <ns:arquivamento>'
-          . DateTime->now()
+          . DateTime->now()->set_time_zone('America/Fortaleza')
           . '</ns:arquivamento>';
         $self->sedna->execute($xq);
     }

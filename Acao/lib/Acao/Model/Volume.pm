@@ -97,6 +97,7 @@ txn_method 'listar_volumes' => authorized $role_listar  => sub {
              . 'and @role="listar"]] '
              . 'let $alterar := count(collection("volume")/ns:volume[ns:collection = $x/ns:collection]/ns:autorizacoes/author:autorizacao[('.$grupos.')'
              . 'and @role = "alterar"])'
+             . 'order by $x/ns:nome/text()'
              . 'return ($x/ns:collection/text(), '
              . $args->{xqueryret} . '),' . '('
              . $args->{interval_ini} * $args->{num_por_pagina}
@@ -151,7 +152,7 @@ txn_method 'criar_volume' => authorized $role_criar => sub {
         $doc,
         {
             nome                   => uc $nome,
-            criacao                => DateTime->now(),
+            criacao                => DateTime->now()->set_time_zone('America/Fortaleza'),
             fechamento             => '',
             arquivamento           => '',
             collection             => $doc_name,
@@ -192,7 +193,7 @@ txn_method 'alterar_estado' => authorized $role_alterar => sub {
           . $id_volume . '"]';
         $xq .=
             '/ns:fechamento with <ns:fechamento>'
-          . DateTime->now()
+          . DateTime->now()->set_time_zone('America/Fortaleza')
           . '</ns:fechamento>';
         $self->sedna->execute($xq);
     }
@@ -205,7 +206,7 @@ txn_method 'alterar_estado' => authorized $role_alterar => sub {
           . $id_volume . '"]';
         $xq .=
             '/ns:arquivamento with <ns:arquivamento>'
-          . DateTime->now()
+          . DateTime->now()->set_time_zone('America/Fortaleza')
           . '</ns:arquivamento>';
         $self->sedna->execute($xq);
         $self->invalidate_indices($id_volume);

@@ -17,38 +17,37 @@
 				</class:classificacoes>
 				<idx:index>
 					<idx:hint key="pessoa.nome"
-						xpath="formAssentamentoBIC/identificacao/entrevistador" />
+						xpath="formBoletimInformacaoCadastral/identificacao/entrevistador" />
 					<idx:hint key="pessoa.nome"
-						xpath="formAssentamentoBIC/identificacao/tecnicoResponsavel" />
+						xpath="formBoletimInformacaoCadastral/dadosChefeDaFamilia/nome" />
 					<idx:hint key="pessoa.nome"
-						xpath="formAssentamentoBIC/dadosChefeDaFamilia/nome" />
-					<idx:hint key="pessoa.nome"
-						xpath="formAssentamentoBIC/dadosChefeDaFamilia/apelido" />
-					<idx:hint key="pessoa.rg" xpath="formAssentamentoBIC/dadosChefeDaFamilia/rg" />
+						xpath="formBoletimInformacaoCadastral/dadosChefeDaFamilia/apelido" />
+					<idx:hint key="pessoa.rg" 
+                        xpath="formBoletimInformacaoCadastral/dadosChefeDaFamilia/rg" />
 					<idx:hint key="pessoa.cpf"
-						xpath="formAssentamentoBIC/dadosChefeDaFamilia/cpf" />
+						xpath="formBoletimInformacaoCadastral/dadosChefeDaFamilia/cpf" />
 					<idx:hint key="pessoa.nome"
-						xpath="formAssentamentoBIC/dadosChefeDaFamilia/nomePai" />
+						xpath="formBoletimInformacaoCadastral/dadosChefeDaFamilia/nomePai" />
 					<idx:hint key="pessoa.nome"
-						xpath="formAssentamentoBIC/dadosChefeDaFamilia/nomeMae" />
+						xpath="formBoletimInformacaoCadastral/dadosChefeDaFamilia/nomeMae" />
 					<idx:hint key="pessoa.nome"
-						xpath="formAssentamentoBIC/dadosCompanheiro/nomeCompanheiro" />
+						xpath="formBoletimInformacaoCadastral/dadosCompanheiro/nomeCompanheiro" />
 					<idx:hint key="pessoa.nome"
-						xpath="formAssentamentoBIC/dadosCompanheiro/apelidoCompanheiro" />
+						xpath="formBoletimInformacaoCadastral/dadosCompanheiro/apelidoCompanheiro" />
 					<idx:hint key="pessoa.rg"
-						xpath="formAssentamentoBIC/dadosCompanheiro/rgCompanheiro" />
+						xpath="formBoletimInformacaoCadastral/dadosCompanheiro/rgCompanheiro" />
 					<idx:hint key="pessoa.cpf"
-						xpath="formAssentamentoBIC/dadosCompanheiro/cpfCompanheiro" />
+						xpath="formBoletimInformacaoCadastral/dadosCompanheiro/cpfCompanheiro" />
 					<idx:hint key="pessoa.nome"
-						xpath="formAssentamentoBIC/dadosCompanheiro/nomePaiCompanheiro" />
+						xpath="formBoletimInformacaoCadastral/dadosCompanheiro/nomePaiCompanheiro" />
 					<idx:hint key="pessoa.nome"
-						xpath="formAssentamentoBIC/dadosCompanheiro/nomeMaeCompanheiro" />
+						xpath="formBoletimInformacaoCadastral/dadosCompanheiro/nomeMaeCompanheiro" />
 					<idx:hint key="pessoa.nome"
-						xpath="formAssentamentoBIC/dadosDoInformante/nomeInformante" />
+						xpath="formBoletimInformacaoCadastral/dadosDoInformante/nomeInformante" />
 					<idx:hint key="pessoa.rg"
-						xpath="formAssentamentoBIC/dadosCompanheiro/rgInformante" />
+						xpath="formBoletimInformacaoCadastral/dadosDoInformante/rgInformante" />
 					<idx:hint key="pessoa.nome"
-						xpath="formAssentamentoBIC/composicaoFamiliar/nome" />
+						xpath="formBoletimInformacaoCadastral/composicaoFamiliar/nome" />
 				</idx:index>
 			</xs:appinfo>
 		</xs:annotation>
@@ -432,7 +431,8 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="vinculoAssociacaoComunitaria" minOccurs="0" >
+						<xs:element name="vinculoAssociacaoComunitaria"
+							minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Vínculo com associação comunitária</xhtml:label>
@@ -514,7 +514,7 @@
 												<xhtml:label>22 a 24</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
-									</xs:element>tipolog
+									</xs:element>
 
 									<xs:element name="_25a29" minOccurs="0" type="xs:integer">
 										<xs:annotation>
@@ -703,11 +703,11 @@
 												</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
-							            <xs:simpleType>
-								            <xs:restriction base="xs:string">
-									            <xs:maxLength value="255" />
-								            </xs:restriction>
-							            </xs:simpleType>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
 									</xs:element>
 
 								</xs:sequence>
@@ -1519,8 +1519,8 @@
 									<xs:enumeration value="Enterrado" />
 									<xs:enumeration value="Queimado" />
 									<xs:enumeration value="Coletado" />
-                                    <xs:enumeration value="Passeio" />
-                                    <xs:enumeration value="Logradouro" />
+									<xs:enumeration value="Passeio" />
+									<xs:enumeration value="Logradouro" />
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
@@ -2277,7 +2277,8 @@
 				</xs:complexType>
 			</xs:element>
 
-			<xs:element name="composicaoFamiliar" minOccurs="0" maxOccurs="100">
+			<xs:element name="composicaoFamiliar" minOccurs="0"
+				maxOccurs="100">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Composição familiar</xhtml:label>
@@ -2309,7 +2310,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="dataNascimento" type="xs:date" >
+						<xs:element name="dataNascimento" type="xs:date" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Data de nascimento</xhtml:label>
@@ -2436,11 +2437,14 @@
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
-								<xs:restriction base="xs:string">
-									<xs:maxLength value="255" />
-								</xs:restriction>
+                                <xs:restriction base="xs:decimal">
+                                    <xs:fractionDigits value='2'/>
+                                    <xs:maxExclusive value="1000000"/>
+                                    <xs:minInclusive value="-1000000"/>
+                                </xs:restriction>
 							</xs:simpleType>
 						</xs:element>
+
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
@@ -2657,7 +2661,8 @@
 
 				</xs:simpleType>
 			</xs:element>
-			<xs:element name="qualAtividadeCultural" type="xs:string" minOccurs="0">
+			<xs:element name="qualAtividadeCultural" type="xs:string"
+				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Qual</xhtml:label>
@@ -2676,10 +2681,11 @@
 						<xs:enumeration value="Sim" />
 						<xs:enumeration value="Não" />
 					</xs:restriction>
-
 				</xs:simpleType>
 			</xs:element>
-			<xs:element name="qualInteresse" type="xs:string" minOccurs="0">
+
+			<xs:element name="qualInteresse" type="xs:string"
+				minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Qual</xhtml:label>
@@ -2775,6 +2781,1787 @@
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
+
+			<xs:element name="informacoesComplementares" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Informações complementares</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="dadosTrabalhistaTitular" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Dados trabalhista do titular</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+
+									<xs:element name="trabalhouSemanaPassada" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Na semana passada trabalhou?</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="Sim" />
+												<xs:enumeration value="Não" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
+									<xs:element name="ondetrabalhouSemanaPassada"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Onde trabalhou semana passada?</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
+									<xs:element name="rendaTitular" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Renda do(a) titular</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
+									<xs:element name="rendaCompanheiro" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Renda do companheiro(a)</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
+									<xs:element name="valorRecebeBCP" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Valor que recebe do BCP</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
+									<xs:element name="valorRecebeBolsaFamilia"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Valor que recebe do bolsa família</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
+									<xs:element name="valorRecebeOutroBeneficio"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Valor que recebe de outro benefício
+												</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
+									<xs:element name="quantoTempoExerceTrabalhoAtual"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Há quanto tempo exerce o trabalho atual
+												</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="Até 6 meses" />
+												<xs:enumeration value="De 6 meses a 1 ano" />
+												<xs:enumeration value="De 1 a 3 anos" />
+												<xs:enumeration value="Mais de 3 anos" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+
+						<xs:element name="despesasFamiliares" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Despesas familiares</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+
+									<xs:element name="despesaEnergiaEletrica" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Despesa com energia elétrica</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="De R$ 10,00 a R$ 20,00" />
+												<xs:enumeration value="De R$ 21,00 a R$ 30,00" />
+												<xs:enumeration value="De R$ 31,00 a R$ 40,00" />
+												<xs:enumeration value="Acima de R$ 40,00" />
+												<xs:enumeration value="Sem gasto" />
+												<xs:enumeration value="Não informado" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
+									<xs:element name="despesaAguaEsgoto" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Despesa com água e esgoto</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
+									<xs:element name="despesaGasCarvaoLenha" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Despesa com gás, carvão ou lenha</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="De R$ 10,00 a R$ 20,00" />
+												<xs:enumeration value="De R$ 21,00 a R$ 30,00" />
+												<xs:enumeration value="De R$ 31,00 a R$ 40,00" />
+												<xs:enumeration value="Acima de R$ 40,00" />
+												<xs:enumeration value="Sem gasto" />
+												<xs:enumeration value="Não informado" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
+									<xs:element name="despesaAlimentacaoHigieneLimpeza"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Despesas com alimentação, higine e limpeza
+												</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="Até R$ 50,00" />
+												<xs:enumeration value="De R$ 51,00 a R$ 100,00" />
+												<xs:enumeration value="De R$ 101,00 a R$ 150,00" />
+												<xs:enumeration value="Acima de R$ 200,00" />
+												<xs:enumeration value="Sem gasto" />
+												<xs:enumeration value="Não informado" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
+									<xs:element name="despesaTransporte" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Despesas com transporte</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="Até R$40,00" />
+												<xs:enumeration value="De R$41,00 a R$80,00" />
+												<xs:enumeration value="De R$81,00 a R$120,00" />
+												<xs:enumeration value="Acima de R$ 120,00" />
+												<xs:enumeration value="Sem gasto" />
+												<xs:enumeration value="Não informado" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
+									<xs:element name="despesaAluguel" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Despesas com aluguel</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
+									<xs:element name="despesaMedicamentos" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Despesas com medicamentos de uso regular
+												</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="De R$ 10,00 a R$ 20,00" />
+												<xs:enumeration value="De R$ 21,00 a R$ 30,00" />
+												<xs:enumeration value="De R$ 31,00 a R$ 40,00" />
+												<xs:enumeration value="Acima de R$ 40,00" />
+												<xs:enumeration value="Sem gasto" />
+												<xs:enumeration value="Não informado" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+
+						<xs:element name="caracteristicasDomicilio" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Características do domicílio</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+
+									<xs:element name="pisoPredominante" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Material predominante no piso da unidade
+													habitacional</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="Terra" />
+												<xs:enumeration value="Cimento" />
+												<xs:enumeration value="Madeira aproveitada" />
+												<xs:enumeration value="Madeira aparelhada" />
+												<xs:enumeration value="Cerâmica, lajota, ou pedra" />
+												<xs:enumeration value="Carpete" />
+												<xs:enumeration value="Outro material" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
+									<xs:element name="nrComodos" minOccurs="0" type="xs:integer">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Número de cômodos na unidade habitacional
+												</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+
+						<xs:element name="equipamentosUsoComun" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Equipamentos de uso comum</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="transporteAlternativo" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Transporte alternativo</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="onibusTopic" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Onibus/Topic</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="trem" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Trem</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="carro" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Carro</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="moto" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Moto</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="bicicleta" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Bicicleta</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="outro" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Outro</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="especifiqueOutro" minOccurs="0">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Especifique outro</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="255" />
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+
+									<xs:element name="educacao" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Educação</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="creche" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Creche</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="crecheFacilAcesso" minOccurs="0">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>É de fácil acesso</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:enumeration value="Sim" />
+															<xs:enumeration value="Não" />
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="escolaEnsinoFundamental" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Escola de ensino fundamental</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="escolaEnsinoFundamentalFacilAcesso"
+													minOccurs="0">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>É de fácil acesso</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:enumeration value="Sim" />
+															<xs:enumeration value="Não" />
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="escolaEnsinoMedio" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Escola de ensino médio</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="escolaEnsinoMedioFacilAcesso"
+													minOccurs="0">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>É de fácil acesso</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:enumeration value="Sim" />
+															<xs:enumeration value="Não" />
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="ensinoProfissionalizante" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Instituição de ensino profissionalizante
+															</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="ensinoProfissionalizanteFacilAcesso"
+													minOccurs="0">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>É de fácil acesso</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:enumeration value="Sim" />
+															<xs:enumeration value="Não" />
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="ensinoSuperior" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Instituição de ensino superior</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="ensinoSuperiorFacilAcesso"
+													minOccurs="0">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>É de fácil acesso</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:enumeration value="Sim" />
+															<xs:enumeration value="Não" />
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+
+									<xs:element name="saude" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Saúde</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="hospital" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Hospital</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="hospitalFacilAcesso" minOccurs="0">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>É de fácil acesso</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:enumeration value="Sim" />
+															<xs:enumeration value="Não" />
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="postoSaude" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Posto de saúde</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="postoSaudeFacilAcesso"
+													minOccurs="0">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>É de fácil acesso</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:enumeration value="Sim" />
+															<xs:enumeration value="Não" />
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="ambulatorio" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Ambulatório</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="ambulatorioFacilAcesso"
+													minOccurs="0">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>É de fácil acesso</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:enumeration value="Sim" />
+															<xs:enumeration value="Não" />
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="caps" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>CAPS</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="capsFacilAcesso" minOccurs="0">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>É de fácil acesso</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:enumeration value="Sim" />
+															<xs:enumeration value="Não" />
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+
+									<xs:element name="social" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Social</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="cras" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>CRAS</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="crasFacilAcesso" minOccurs="0">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>É de fácil acesso</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:enumeration value="Sim" />
+															<xs:enumeration value="Não" />
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="associacaoComunitaria" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Associação comunitária</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="associacaoComunitariaFacilAcesso"
+													minOccurs="0">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>É de fácil acesso</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:enumeration value="Sim" />
+															<xs:enumeration value="Não" />
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="centroComunitario" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Centro comunitário</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="centroComunitarioFacilAcesso"
+													minOccurs="0">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>É de fácil acesso</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:enumeration value="Sim" />
+															<xs:enumeration value="Não" />
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="ong" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>ONG</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="ongFacilAcesso" minOccurs="0">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>É de fácil acesso</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:enumeration value="Sim" />
+															<xs:enumeration value="Não" />
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+
+												<xs:element name="instituicaoReligiosa" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Instituição religiosa</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="instituicaoReligiosaFacilAcesso"
+													minOccurs="0">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>É de fácil acesso</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:enumeration value="Sim" />
+															<xs:enumeration value="Não" />
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+
+									<xs:element name="alimentacao" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Alimentação</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="mercadinho" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Mercadinho/mercearia</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="mercadinhoFacilAcesso"
+													minOccurs="0">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>É de fácil acesso</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:enumeration value="Sim" />
+															<xs:enumeration value="Não" />
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="barLanchonete" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Bar/lanchonete</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="barLanchoneteFacilAcesso"
+													minOccurs="0">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>É de fácil acesso</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:enumeration value="Sim" />
+															<xs:enumeration value="Não" />
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="padaria" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Padaria</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="padariaFacilAcesso" minOccurs="0">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>É de fácil acesso</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:enumeration value="Sim" />
+															<xs:enumeration value="Não" />
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="acougue" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Açougue</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="acougueFacilAcesso" minOccurs="0">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>É de fácil acesso</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:enumeration value="Sim" />
+															<xs:enumeration value="Não" />
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+
+												<xs:element name="supermercado" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Supermercado</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="supermercadoFacilAcesso"
+													minOccurs="0">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>É de fácil acesso</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:enumeration value="Sim" />
+															<xs:enumeration value="Não" />
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+
+												<xs:element name="restaurante" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Restaurante</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="restauranteFacilAcesso"
+													minOccurs="0">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>É de fácil acesso</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:enumeration value="Sim" />
+															<xs:enumeration value="Não" />
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+
+						<xs:element name="adesaoProjeto" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Adesão ao projeto</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+
+									<xs:element name="satisfeitoMoradiaAtual" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Está satisfeito com a moradia atual
+												</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="Sim" />
+												<xs:enumeration value="Não" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
+									<xs:element name="porqueSatisfeitoMoradiaAtual"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Porquê?</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="localizacao" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Localização</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="valorAluguel" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Valor do aluguel</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="vizinhanca" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Vizinhança</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="servicoPublico" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Servicos/equipamentos públicos</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="infraestrutura" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Infraestrutura</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="cedida" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Cedida</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+
+									<xs:element name="conheceConjuntoHabitacional"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Conhece o conjunto habitacional proposto pelo
+													município</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="Sim" />
+												<xs:enumeration value="Não" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
+									<xs:element name="dispostoMudarConjuntoHabitacional"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Está disposto a mudar-se para esta área com sua
+													família</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="Sim" />
+												<xs:enumeration value="Não" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+
+						<xs:element name="doencasCronicas" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Doenças crônicas</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="qtdeMoradoresCancer" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Quantidade de moradores com câncer
+												</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
+									<xs:element name="familiarMoradoresCancer"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Qual familiar</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="titular" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Titular</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="companheiro" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Companheiro(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="filho" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Filho(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="neto" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Neto(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="sobrinho" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Sobrinho(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="primo" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Primo(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="tio" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Tio(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="cunhado" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Cunhado(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="sogro" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Sogro(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="genroNora" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Genro/nora</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="irmao" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Irmão(ã)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="amigo" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Amigo(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+
+
+									<xs:element name="qtdeMoradoresInsufucienciaRenal"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Quantidade de moradores com insufuciência renal
+												</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									
+									<xs:element name="familiarMoradoresInsufucienciaRenal"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Qual familiar</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="titular" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Titular</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="companheiro" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Companheiro(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="filho" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Filho(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="neto" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Neto(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="sobrinho" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Sobrinho(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="primo" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Primo(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="tio" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Tio(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="cunhado" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Cunhado(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="sogro" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Sogro(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="genroNora" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Genro/nora</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="irmao" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Irmão(ã)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="amigo" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Amigo(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+									
+
+									<xs:element name="qtdeMoradoresEpilepsia" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Quantidade de moradores com epilepsia
+												</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									
+									<xs:element name="familiarMoradoresEpilepsia"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Qual familiar</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="titular" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Titular</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="companheiro" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Companheiro(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="filho" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Filho(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="neto" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Neto(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="sobrinho" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Sobrinho(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="primo" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Primo(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="tio" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Tio(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="cunhado" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Cunhado(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="sogro" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Sogro(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="genroNora" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Genro/nora</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="irmao" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Irmão(ã)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="amigo" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Amigo(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>									
+
+									<xs:element name="qtdeMoradoresHiv" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Quantidade de moradores com HIV</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
+									<xs:element name="familiarMoradoresHIV"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Qual familiar</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="titular" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Titular</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="companheiro" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Companheiro(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="filho" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Filho(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="neto" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Neto(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="sobrinho" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Sobrinho(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="primo" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Primo(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="tio" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Tio(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="cunhado" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Cunhado(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="sogro" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Sogro(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="genroNora" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Genro/nora</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="irmao" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Irmão(ã)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="amigo" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Amigo(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>									
+
+									<xs:element name="qtdeMoradoresDiabetes" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Quantidade de moradores com diabetes
+												</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									
+									<xs:element name="familiarMoradoresDiabetes"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Qual familiar</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="titular" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Titular</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="companheiro" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Companheiro(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="filho" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Filho(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="neto" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Neto(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="sobrinho" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Sobrinho(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="primo" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Primo(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="tio" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Tio(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="cunhado" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Cunhado(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="sogro" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Sogro(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="genroNora" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Genro/nora</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="irmao" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Irmão(ã)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="amigo" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Amigo(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>									
+
+									<xs:element name="qtdeMoradoresHipertensao"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Quantidade de moradores com hipertensão
+												</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									
+									<xs:element name="familiarMoradoresHipertensao"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Qual familiar</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="titular" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Titular</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="companheiro" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Companheiro(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="filho" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Filho(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="neto" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Neto(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="sobrinho" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Sobrinho(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="primo" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Primo(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="tio" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Tio(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="cunhado" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Cunhado(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="sogro" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Sogro(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="genroNora" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Genro/nora</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="irmao" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Irmão(ã)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="amigo" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Amigo(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>									
+
+									<xs:element name="qtdeMoradoresOutraDoenca" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Quantidade de moradores com outro tipo de
+													doença</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+
+									<xs:element name="especifiqueOutraDoenca" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Especifique outros</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									
+									<xs:element name="familiarMoradoresOutraDoenca"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Qual familiar</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="titular" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Titular</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="companheiro" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Companheiro(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="filho" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Filho(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="neto" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Neto(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="sobrinho" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Sobrinho(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="primo" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Primo(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="tio" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Tio(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="cunhado" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Cunhado(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="sogro" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Sogro(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="genroNora" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Genro/nora</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="irmao" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Irmão(ã)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="amigo" type="xs:boolean">
+													<xs:annotation>
+														<xs:appinfo>
+															<xhtml:label>Amigo(a)</xhtml:label>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>									
+
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
 		</xs:sequence>
 	</xs:complexType>
 
