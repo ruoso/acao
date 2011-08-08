@@ -126,6 +126,22 @@
         </Level>
       </Hierarchy>
     </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_tipo_pessoa" highCardinality="false" name="tipo_pessoa">
+      <Hierarchy name="tipo_pessoa" hasAll="true" primaryKey="id_tipo_pessoa">
+        <Table name="d_tipo_pessoa" schema="habitafor">
+        </Table>
+        <Level name="tipo_pessoa" column="tipo_pessoa" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" foreignKey="id_sexo" name="sexo">
+      <Hierarchy name="sexo" hasAll="true" primaryKey="id_sexo">
+        <Table name="d_sexo" schema="habitafor" alias="">
+        </Table>
+        <Level name="sexo" column="sexo" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
     <Measure name="quantidade" column="quantidade" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
     <Measure name="nr_familias" column="nr_familias" datatype="Integer" aggregator="sum" visible="true">
