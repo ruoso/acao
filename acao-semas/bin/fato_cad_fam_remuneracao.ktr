@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>fato_cadastro_familia</name>
+    <name>fato_cad_fam_remuneracao</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -60,37 +60,15 @@
     </slaveservers>
     <clusterschemas>
     </clusterschemas>
-  <created_user/>
-  <created_date>2011&#47;08&#47;08 10:04:43.306</created_date>
+  <created_user>-</created_user>
+  <created_date>2011&#47;08&#47;08 09:51:27.862</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2011&#47;06&#47;22 11:32:46.165</modified_date>
+  <modified_date>2011&#47;08&#47;08 09:51:27.862</modified_date>
   </info>
   <notepads>
   </notepads>
   <connection>
-    <name>oracle_devel</name>
-    <server>172.30.116.22</server>
-    <type>ORACLE</type>
-    <access>Native</access>
-    <database>pmft</database>
-    <port>1521</port>
-    <username>semas</username>
-    <password>Encrypted 2be98afc86aa7f2e4cb79ce63db9faec9</password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <attributes>
-      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>1521</attribute></attribute>
-      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
-      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
-      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
-    </attributes>
-  </connection>
-  <connection>
-    <name>postgres_devel</name>
+    <name>Postgresql_dev</name>
     <server>172.30.116.22</server>
     <type>POSTGRESQL</type>
     <access>Native</access>
@@ -111,11 +89,33 @@
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
+  <connection>
+    <name>SEMAS_ORACLE</name>
+    <server>172.31.4.1</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>pmft</database>
+    <port>1521</port>
+    <username>semas</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb79ce63db9faec9</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>1521</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
   <order>
-  <hop> <from>Execute SQL script (Create View)</from><to>Execute SQL script (MATERIALIZED TB_FATO_CADASTRO_FAMILIA)</to><enabled>Y</enabled> </hop>  <hop> <from>Execute SQL script (MATERIALIZED TB_FATO_CADASTRO_FAMILIA)</from><to>TB_FATO_CADASTRO_FAMILIA</to><enabled>N</enabled> </hop>  <hop> <from>Select values</from><to>Table output</to><enabled>Y</enabled> </hop>  <hop> <from>convert date</from><to>Select values</to><enabled>Y</enabled> </hop>  <hop> <from>TB_FATO_CADASTRO_FAMILIA</from><to>convert date</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>v_cadastro_familia_remuneracao</from><to>Execute SQL script (MATERIALIZED TB_CAD_FAM_REMUNERACAO)</to><enabled>N</enabled> </hop>  <hop> <from>Execute SQL script (MATERIALIZED TB_CAD_FAM_REMUNERACAO)</from><to>Table input</to><enabled>N</enabled> </hop>  <hop> <from>Select values</from><to>Table output</to><enabled>Y</enabled> </hop>  <hop> <from>inserts d_trabalho_principal</from><to>d_trabalho_principal output</to><enabled>N</enabled> </hop>  <hop> <from>Table input</from><to>Select values</to><enabled>Y</enabled> </hop>  </order>
   <step>
-    <name>Execute SQL script (Create View)</name>
-    <type>ExecSQL</type>
+    <name>Table input</name>
+    <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
     <copies>1</copies>
@@ -123,101 +123,23 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>oracle_devel</connection>
+    <connection>SEMAS_ORACLE</connection>
+    <sql>select * from tb_fato_cad_fam_remuneracao</sql>
+    <limit>0</limit>
+    <lookup/>
     <execute_each_row>N</execute_each_row>
-    <single_statement>N</single_statement>
-    <replace_variables>N</replace_variables>
-    <sql>CREATE OR REPLACE VIEW V_FATO_CADASTRO_FAM_NEW AS
-select
-COD_LOCAL_DOMIC_FAM,
-COD_ESPEC_DOMIC_FAM,
-COD_MATERIAL_PISO_FAM,
-COD_MATERIAL_DOMIC_FAM,
-COD_AGUA_CANALIZADA_FAM,
-COD_ABASTE_AGUA_DOMIC_FAM,
-COD_BANHEIRO_DOMIC_FAM,
-COD_ESCOA_SANIT_DOMIC_FAM,
-COD_DEST_LIXO_DOMIC_FAM,
-COD_ILUMIN_DOMIC_FAM,
-COD_CALC_DOMIC_FAM,
-QTD_COMODOS_DOMIC_FAM,
-QTD_COMODOS_DORM_FAM,
-BAIRRO_NOME,
-SER,
-CIDADE_NOME,
-QUANT_PESSOAS,
-DAT_CAD_FAMILIA,
-count(1) qtdfamilias
-from
-(
-   SELECT
-   replace(COD_LOCAL_DOMIC_FAM,&apos; &apos;,&apos;-1&apos;) as COD_LOCAL_DOMIC_FAM,
-   replace(COD_ESPEC_DOMIC_FAM,&apos; &apos;,&apos;-1&apos;) as COD_ESPEC_DOMIC_FAM,
-   replace(COD_MATERIAL_PISO_FAM,&apos; &apos;,&apos;-1&apos;) as COD_MATERIAL_PISO_FAM,
-   replace(COD_MATERIAL_DOMIC_FAM,&apos; &apos;,&apos;-1&apos;) as COD_MATERIAL_DOMIC_FAM,
-   replace(COD_AGUA_CANALIZADA_FAM,&apos; &apos;,&apos;-1&apos;) as COD_AGUA_CANALIZADA_FAM,
-   replace(COD_ABASTE_AGUA_DOMIC_FAM,&apos; &apos;,&apos;-1&apos;) as COD_ABASTE_AGUA_DOMIC_FAM,
-   replace(COD_BANHEIRO_DOMIC_FAM,&apos; &apos;,&apos;-1&apos;) as COD_BANHEIRO_DOMIC_FAM,
-   replace(COD_ESCOA_SANIT_DOMIC_FAM,&apos; &apos;,&apos;-1&apos;) as COD_ESCOA_SANIT_DOMIC_FAM,
-   replace(COD_DEST_LIXO_DOMIC_FAM,&apos; &apos;,&apos;-1&apos;) as COD_DEST_LIXO_DOMIC_FAM,
-   replace(COD_ILUMIN_DOMIC_FAM,&apos; &apos;,&apos;-1&apos;) as COD_ILUMIN_DOMIC_FAM,
-   replace(COD_CALC_DOMIC_FAM,&apos; &apos;,&apos;-1&apos;) as COD_CALC_DOMIC_FAM,
-   replace(QTD_COMODOS_DOMIC_FAM,&apos;  &apos;,&apos;-1&apos;) as QTD_COMODOS_DOMIC_FAM,
-   replace(QTD_COMODOS_DORM_FAM,&apos;  &apos;,&apos;-1&apos;) as QTD_COMODOS_DORM_FAM,
-   (select c1.CBAIRRO_NOME from CEP_CE c1 where nvl(substr(crt.NUM_CEP_LOGRA_FAM,1,5),&apos;60000&apos;) = substr(c1.CLOG_CEP,1,5) and rownum = 1) BAIRRO_NOME,
-   (select c1.CSER_ID from CEP_CE c1 where nvl(substr(crt.NUM_CEP_LOGRA_FAM,1,5),&apos;60000&apos;) = substr(c1.CLOG_CEP,1,5) and rownum = 1) SER,
-   (select c1.CCIDADE_NOME from CEP_CE c1 where nvl(substr(crt.NUM_CEP_LOGRA_FAM,1,5),&apos;60000&apos;) = substr(c1.CLOG_CEP,1,5) and rownum = 1) CIDADE_NOME,
-   replace(CRT.DAT_CAD_FAMILIA,&apos; &apos;,&apos;-1&apos;) as DAT_CAD_FAMILIA,
-   pes.QUANT as QUANT_PESSOAS
-   FROM V_CARACTERIZACAO_DOMICILIO c,
-   V_IDENTIFICACAO_CONTROLE crt,   
-   V_QUANT_PESSOA_FAM pes
-   where crt.COD_FAMILIAR_FAM = c.COD_FAMILIAR_FAM
-   and c.COD_FAMILIAR_FAM = pes.COD_FAMILIAR_FAM_1
-   
-   and exists
-   (
-      select
-      1
-      from cep_ce x
-      where nvl(substr(crt.NUM_CEP_LOGRA_FAM,1,5),&apos;60000&apos;) = substr(x.CLOG_CEP,1,5)
-   )
-)
-GROUP BY COD_LOCAL_DOMIC_FAM,
-COD_ESPEC_DOMIC_FAM,
-COD_MATERIAL_PISO_FAM,
-COD_MATERIAL_DOMIC_FAM,
-COD_AGUA_CANALIZADA_FAM,
-COD_ABASTE_AGUA_DOMIC_FAM,
-COD_BANHEIRO_DOMIC_FAM,
-COD_ESCOA_SANIT_DOMIC_FAM,
-COD_DEST_LIXO_DOMIC_FAM,
-COD_ILUMIN_DOMIC_FAM,
-COD_CALC_DOMIC_FAM,
-QTD_COMODOS_DOMIC_FAM,
-QTD_COMODOS_DORM_FAM,
-BAIRRO_NOME,
-SER,
-CIDADE_NOME,
-QUANT_PESSOAS,
-DAT_CAD_FAMILIA
-</sql>
-    <insert_field/>
-    <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-    </arguments>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>197</xloc>
-      <yloc>380</yloc>
+      <xloc>319</xloc>
+      <yloc>250</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Execute SQL script (MATERIALIZED TB_FATO_CADASTRO_FAMILIA)</name>
+    <name>Execute SQL script (MATERIALIZED TB_CAD_FAM_REMUNERACAO)</name>
     <type>ExecSQL</type>
     <description/>
     <distribute>Y</distribute>
@@ -226,32 +148,38 @@ DAT_CAD_FAMILIA
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>oracle_devel</connection>
+    <connection>SEMAS_ORACLE</connection>
     <execute_each_row>N</execute_each_row>
     <single_statement>N</single_statement>
     <replace_variables>N</replace_variables>
-    <sql>CREATE  MATERIALIZED  VIEW TB_FATO_CADASTRO_FAMILIA AS
-select
-COD_LOCAL_DOMIC_FAM,
-COD_ESPEC_DOMIC_FAM,
-COD_MATERIAL_PISO_FAM,
-COD_MATERIAL_DOMIC_FAM,
-COD_AGUA_CANALIZADA_FAM,
-COD_ABASTE_AGUA_DOMIC_FAM,
-COD_BANHEIRO_DOMIC_FAM,
-COD_ESCOA_SANIT_DOMIC_FAM,
-COD_DEST_LIXO_DOMIC_FAM,
-COD_ILUMIN_DOMIC_FAM,
-COD_CALC_DOMIC_FAM,
-QTD_COMODOS_DOMIC_FAM,
-QTD_COMODOS_DORM_FAM,
-decode(b.DESCRICAOP1,null,&apos;-1&apos;,b.COD_BAIRRO) as COD_BAIRRO ,
-nvl(SER,&apos;0&apos;) as SER,
+    <sql>CREATE  MATERIALIZED  VIEW TB_FATO_CAD_FAM_REMUNERACAO AS
+select 
+COD_FAMILIAR_FAM,
+qtd_pessoas,
+renda_mensal_total,
+idade,
+DATA,
+renda_per_capta,
+beneficiario,
+trabalha,
+renda_mensal,
+BAIRRO_NOME,
+SER,
 CIDADE_NOME,
-QUANT_PESSOAS,
-DAT_CAD_FAMILIA,
-qtdfamilias
-from V_FATO_CADASTRO_FAM_NEW c, TB_BAIRRO_SEMAS b
+nvl(COD_BAIRRO,&apos;-1&apos;),
+trabalhou_semana_passada,
+afastado_trabalho,
+trabalho_agricultura,
+trabalho_principal,
+nao_recebeu_renda_mes_passado,
+trabalhou_12_meses,
+doacao,
+aposent,
+seguro_desemprego,
+pensao_aliment,
+outras_renda
+
+from V_CADASTRO_FAMILIA_REMUNERACAO c, TB_BAIRRO_SEMAS b
 where b.DESCRICAOP1(+) = c.BAIRRO_NOME</sql>
     <insert_field/>
     <update_field/>
@@ -261,8 +189,128 @@ where b.DESCRICAOP1(+) = c.BAIRRO_NOME</sql>
     </arguments>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>196</xloc>
-      <yloc>271</yloc>
+      <xloc>319</xloc>
+      <yloc>386</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>v_cadastro_familia_remuneracao</name>
+    <type>ExecSQL</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>SEMAS_ORACLE</connection>
+    <execute_each_row>N</execute_each_row>
+    <single_statement>N</single_statement>
+    <replace_variables>N</replace_variables>
+    <sql>create or replace view v_cadastro_familia_remuneracao as 
+select 
+COD_FAMILIAR_FAM,
+count(1) as qtd_pessoas,
+sum(renda_mensal_total) as renda_mensal_total,
+idade,
+to_date(data,&apos;dd&#47;mm&#47;yyyy&apos;)   AS DATA,
+Trunc(renda_per_capta,2) as renda_per_capta,
+beneficiario,
+trabalha,
+renda_mensal,
+BAIRRO_NOME,
+SER,
+CIDADE_NOME,
+trabalhou_semana_passada,
+afastado_trabalho,
+trabalho_agricultura,
+trabalho_principal,
+nao_recebeu_renda_mes_passado,
+trabalhou_12_meses,
+doacao,
+aposent,
+seguro_desemprego,
+pensao_aliment,
+outras_renda
+
+
+from (
+
+select
+    pessoa.COD_FAMILIAR_FAM,
+    pessoa.NUM_MEMBRO_FMLA,
+    (case
+        when (((SYSDATE - nvl(to_date(trim(pessoa.DTA_NASC_PESSOA),&apos;ddmmyyyy&apos;),SYSDATE + 1)) &#47;365) &lt; 0) then &apos;-1&apos;
+        else to_char(Trunc((SYSDATE - nvl(to_date(trim(pessoa.DTA_NASC_PESSOA),&apos;ddmmyyyy&apos;),SYSDATE + 1)) &#47;365)) end
+    ) as idade,
+    nvl(decode(COD_TRABALHOU_MEMB,&apos; &apos;,&apos;-1&apos;,COD_TRABALHOU_MEMB),&apos;-1&apos;) as trabalhou_semana_passada,
+    nvl(decode(COD_AFASTADO_TRAB_MEMB,&apos; &apos;,&apos;-1&apos;,COD_AFASTADO_TRAB_MEMB),&apos;-1&apos;) as afastado_trabalho,
+    nvl(decode(COD_AGRICULTURA_TRAB_MEMB,&apos; &apos;,&apos;-1&apos;,COD_AGRICULTURA_TRAB_MEMB),&apos;-1&apos;) as trabalho_agricultura,
+    nvl(decode(COD_PRINCIPAL_TRAB_MEMB,&apos;  &apos;,&apos;-1&apos;,COD_PRINCIPAL_TRAB_MEMB),&apos;-1&apos;) as trabalho_principal,
+    nvl(decode(ltrim(VAL_REMUNER_EMPREGO_MEMB,&apos;0&apos;),&apos;     &apos;,&apos;0&apos;,ltrim(VAL_REMUNER_EMPREGO_MEMB,&apos;0&apos;)),&apos;0&apos;) as renda_mensal ,
+    nvl(decode(IND_VAL_REMUNER_EMPREGO_MEMB,&apos; &apos;,&apos;-1&apos;,IND_VAL_REMUNER_EMPREGO_MEMB),&apos;-1&apos;) as nao_recebeu_renda_mes_passado,
+    nvl(decode(COD_TRABALHO_12_MESES_MEMB,&apos; &apos;,&apos;-1&apos;,COD_TRABALHO_12_MESES_MEMB),&apos;-1&apos;) as trabalhou_12_meses,
+    nvl(decode(QTD_MESES_12_MESES_MEMB,&apos;  &apos;,&apos;-1&apos;,    QTD_MESES_12_MESES_MEMB),&apos;-1&apos;) as qtd_meses_trabalhados,
+    nvl(decode(IND_VAL_RENDA_DOACAO_MEMB,&apos; &apos;,&apos;-1&apos;,IND_VAL_RENDA_DOACAO_MEMB),&apos;-1&apos;) as doacao,    
+    nvl(decode(IND_VAL_RENDA_APOSENT_MEMB,&apos; &apos;,&apos;-1&apos;,IND_VAL_RENDA_APOSENT_MEMB),&apos;-1&apos;) as aposent,    
+    nvl(decode(IND_VAL_RENDA_SEG_DESEMP_MEMB,&apos; &apos;,&apos;-1&apos;,IND_VAL_RENDA_SEG_DESEMP_MEMB),&apos;-1&apos;) as seguro_desemprego,    
+    nvl(decode(IND_VAL_REN_PENSAO_ALIMEN_MEMB,&apos; &apos;,&apos;-1&apos;,IND_VAL_REN_PENSAO_ALIMEN_MEMB),&apos;-1&apos;) as pensao_aliment,    
+    nvl(decode(IND_VAL_OUTRAS_RENDAS_MEMB,&apos; &apos;,&apos;-1&apos;,IND_VAL_OUTRAS_RENDAS_MEMB),&apos;-1&apos;) as outras_renda,
+    nvl((select 1 from FL_PGTO_SEMAS pg where ( LPAD(TRIM(nudomicfamil),9,&apos;0&apos;) = SUBSTR(pessoa.COD_FAMILIAR_FAM,0,9) ) and rownum = 1 ) ,&apos;0&apos;) as beneficiario,
+    nvl((select 1 from V_PESSOA_TRABALHO_REMUNERACAO c1  where c1.NUM_MEMBRO_FMLA = trabalho.NUM_MEMBRO_FMLA  and rownum = 1 ) ,&apos;0&apos;) as trabalha,
+    nvl((select sum(renda) from V_COD_FAMILIAR_RENDA_TRABALHO c1 where (c1.COD_FAMILIAR_FAM  = pessoa.COD_FAMILIAR_FAM) ),&apos;0&apos;) as renda_mensal_total,
+    (nvl((select sum(renda) from V_COD_FAMILIAR_RENDA_TRABALHO c1 where (c1.COD_FAMILIAR_FAM  = pessoa.COD_FAMILIAR_FAM)),&apos;0&apos;) &#47;
+         (select QUANT from V_QUANT_PESSOA_FAM q1 where (q1.COD_FAMILIAR_FAM_1 = pessoa.COD_FAMILIAR_FAM) and rownum = 1)) as renda_per_capta ,
+    (select c1.CBAIRRO_NOME from CEP_CE c1 where nvl(substr(crt.NUM_CEP_LOGRA_FAM,1,5),&apos;60000&apos;) = substr(c1.CLOG_CEP,1,5) and rownum = 1) BAIRRO_NOME,
+     (select c1.CSER_ID from CEP_CE c1 where nvl(substr(crt.NUM_CEP_LOGRA_FAM,1,5),&apos;60000&apos;) = substr(c1.CLOG_CEP,1,5) and rownum = 1) SER,
+     (select c1.CCIDADE_NOME from CEP_CE c1 where nvl(substr(crt.NUM_CEP_LOGRA_FAM,1,5),&apos;60000&apos;) = substr(c1.CLOG_CEP,1,5) and rownum = 1) CIDADE_NOME,
+     pessoa.DTA_ATUAL_MEMB as data
+from V_PESSOA_TRABALHO_REMUNERACAO trabalho, V_IDENTIFICACAO_PESSOA pessoa, V_IDENTIFICACAO_CONTROLE crt
+
+
+where      
+     pessoa.NUM_MEMBRO_FMLA = trabalho.NUM_MEMBRO_FMLA(+)     
+     and crt.COD_FAMILIAR_FAM = pessoa.COD_FAMILIAR_FAM
+     and exists (select 1 from V_DADOS_FAMILIA dom where dom.COD_FAMILIAR_FAM = pessoa.COD_FAMILIAR_FAM )
+     and exists (select 1 from cep_ce x where nvl(substr(crt.NUM_CEP_LOGRA_FAM,1,5),&apos;60000&apos;) = substr(x.CLOG_CEP,1,5)
+   )
+
+)
+
+
+group by COD_FAMILIAR_FAM,
+idade,
+data,
+renda_per_capta,
+beneficiario,
+trabalha,
+renda_mensal,
+BAIRRO_NOME,
+SER,
+CIDADE_NOME,
+trabalhou_semana_passada,
+afastado_trabalho,
+trabalho_agricultura,
+trabalho_principal,
+nao_recebeu_renda_mes_passado,
+trabalhou_12_meses,
+doacao,
+aposent,
+seguro_desemprego,
+pensao_aliment,
+outras_rendaV_</sql>
+    <insert_field/>
+    <update_field/>
+    <delete_field/>
+    <read_field/>
+    <arguments>
+    </arguments>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>321</xloc>
+      <yloc>522</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -277,59 +325,35 @@ where b.DESCRICAOP1(+) = c.BAIRRO_NOME</sql>
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <fields>      <field>        <name>COD_BAIRRO</name>
+    <fields>      <field>        <name>COD_FAMILIAR_FAM</name>
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
-      </field>      <field>        <name>COD_LOCAL_DOMIC_FAM</name>
+      </field>      <field>        <name>QTD_PESSOAS</name>
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
-      </field>      <field>        <name>COD_ESPEC_DOMIC_FAM</name>
+      </field>      <field>        <name>RENDA_MENSAL_TOTAL</name>
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
-      </field>      <field>        <name>COD_MATERIAL_PISO_FAM</name>
+      </field>      <field>        <name>IDADE</name>
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
-      </field>      <field>        <name>COD_MATERIAL_DOMIC_FAM</name>
+      </field>      <field>        <name>RENDA_PER_CAPTA</name>
+        <rename/>
+        <length>8</length>
+        <precision>2</precision>
+      </field>      <field>        <name>BENEFICIARIO</name>
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
-      </field>      <field>        <name>COD_AGUA_CANALIZADA_FAM</name>
+      </field>      <field>        <name>TRABALHA</name>
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
-      </field>      <field>        <name>COD_ABASTE_AGUA_DOMIC_FAM</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>COD_BANHEIRO_DOMIC_FAM</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>COD_ESCOA_SANIT_DOMIC_FAM</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>COD_DEST_LIXO_DOMIC_FAM</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>COD_ILUMIN_DOMIC_FAM</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>COD_CALC_DOMIC_FAM</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>QTD_COMODOS_DOMIC_FAM</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>QTD_COMODOS_DORM_FAM</name>
+      </field>      <field>        <name>RENDA_MENSAL</name>
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
@@ -337,217 +361,161 @@ where b.DESCRICAOP1(+) = c.BAIRRO_NOME</sql>
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
-      </field>      <field>        <name>QUANT_PESSOAS</name>
+      </field>      <field>        <name>COD_BAIRRO</name>
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
-      </field>      <field>        <name>QTDFAMILIAS</name>
+      </field>      <field>        <name>TRABALHOU_SEMANA_PASSADA</name>
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
-      </field>      <field>        <name>data</name>
+      </field>      <field>        <name>AFASTADO_TRABALHO</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TRABALHO_AGRICULTURA</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TRABALHO_PRINCIPAL</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>NAO_RECEBEU_RENDA_MES_PASSADO</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TRABALHOU_12_MESES</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>DOACAO</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>APOSENT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SEGURO_DESEMPREGO</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PENSAO_ALIMENT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>OUTRAS_RENDA</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>DATA</name>
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
       </field>        <select_unspecified>N</select_unspecified>
-      <meta>        <name>SER</name>
+      <meta>        <name>COD_FAMILIAR_FAM</name>
+        <rename>COD_FAMILIAR_FAM</rename>
+        <type>BigNumber</type>
+        <length>0</length>
+        <precision>0</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>      <meta>        <name>QTD_PESSOAS</name>
+        <rename>QTD_PESSOAS</rename>
+        <type>Integer</type>
+        <length>0</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>      <meta>        <name>RENDA_MENSAL_TOTAL</name>
+        <rename>RENDA_MENSAL_TOTAL</rename>
+        <type>Number</type>
+        <length>0</length>
+        <precision>2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>      <meta>        <name>IDADE</name>
+        <rename>IDADE</rename>
+        <type>Integer</type>
+        <length>0</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>      <meta>        <name>RENDA_PER_CAPTA</name>
+        <rename>RENDA_PER_CAPTA</rename>
+        <type>Number</type>
+        <length>0</length>
+        <precision>2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>      <meta>        <name>BENEFICIARIO</name>
+        <rename>BENEFICIARIO</rename>
+        <type>Integer</type>
+        <length>0</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>      <meta>        <name>TRABALHA</name>
+        <rename>TRABALHA</rename>
+        <type>Integer</type>
+        <length>0</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>      <meta>        <name>RENDA_MENSAL</name>
+        <rename>RENDA_MENSAL</rename>
+        <type>Number</type>
+        <length>0</length>
+        <precision>2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>      <meta>        <name>SER</name>
         <rename>SER</rename>
         <type>Integer</type>
         <length>0</length>
         <precision>-2</precision>
         <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>      <meta>        <name>QUANT_PESSOAS</name>
-        <rename>QUANT_PESSOAS</rename>
-        <type>Integer</type>
-        <length>0</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>      <meta>        <name>QTDFAMILIAS</name>
-        <rename>QTDFAMILIAS</rename>
-        <type>Integer</type>
-        <length>0</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>      <meta>        <name>QTD_COMODOS_DOMIC_FAM</name>
-        <rename>QTD_COMODOS_DOMIC_FAM</rename>
-        <type>Integer</type>
-        <length>0</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>      <meta>        <name>QTD_COMODOS_DORM_FAM</name>
-        <rename>QTD_COMODOS_DORM_FAM</rename>
-        <type>Integer</type>
-        <length>0</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>      <meta>        <name>COD_LOCAL_DOMIC_FAM</name>
-        <rename>COD_LOCAL_DOMIC_FAM</rename>
-        <type>Integer</type>
-        <length>0</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>      <meta>        <name>COD_ESPEC_DOMIC_FAM</name>
-        <rename>COD_ESPEC_DOMIC_FAM</rename>
-        <type>Integer</type>
-        <length>0</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>      <meta>        <name>COD_MATERIAL_PISO_FAM</name>
-        <rename>COD_MATERIAL_PISO_FAM</rename>
-        <type>Integer</type>
-        <length>0</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>      <meta>        <name>COD_MATERIAL_DOMIC_FAM</name>
-        <rename>COD_MATERIAL_DOMIC_FAM</rename>
-        <type>Integer</type>
-        <length>0</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>      <meta>        <name>COD_AGUA_CANALIZADA_FAM</name>
-        <rename>COD_AGUA_CANALIZADA_FAM</rename>
-        <type>Integer</type>
-        <length>0</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>      <meta>        <name>COD_ABASTE_AGUA_DOMIC_FAM</name>
-        <rename>COD_ABASTE_AGUA_DOMIC_FAM</rename>
-        <type>Integer</type>
-        <length>0</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>      <meta>        <name>COD_BANHEIRO_DOMIC_FAM</name>
-        <rename>COD_BANHEIRO_DOMIC_FAM</rename>
-        <type>Integer</type>
-        <length>0</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>      <meta>        <name>COD_ESCOA_SANIT_DOMIC_FAM</name>
-        <rename>COD_ESCOA_SANIT_DOMIC_FAM</rename>
-        <type>Integer</type>
-        <length>0</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>      <meta>        <name>COD_DEST_LIXO_DOMIC_FAM</name>
-        <rename>COD_DEST_LIXO_DOMIC_FAM</rename>
-        <type>Integer</type>
-        <length>0</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>      <meta>        <name>COD_ILUMIN_DOMIC_FAM</name>
-        <rename>COD_ILUMIN_DOMIC_FAM</rename>
-        <type>Integer</type>
-        <length>0</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>      <meta>        <name>COD_CALC_DOMIC_FAM</name>
-        <rename>COD_CALC_DOMIC_FAM</rename>
-        <type>Integer</type>
-        <length>0</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>      <meta>        <name>data</name>
-        <rename>data</rename>
-        <type>Date</type>
-        <length>0</length>
-        <precision>-2</precision>
-        <conversion_mask>yyyy-MM-dd</conversion_mask>
         <date_format_lenient>false</date_format_lenient>
         <encoding/>
         <decimal_symbol/>
@@ -566,37 +534,154 @@ where b.DESCRICAOP1(+) = c.BAIRRO_NOME</sql>
         <grouping_symbol/>
         <currency_symbol/>
         <storage_type/>
+      </meta>      <meta>        <name>TRABALHOU_SEMANA_PASSADA</name>
+        <rename>TRABALHOU_SEMANA_PASSADA</rename>
+        <type>Integer</type>
+        <length>0</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>      <meta>        <name>AFASTADO_TRABALHO</name>
+        <rename>AFASTADO_TRABALHO</rename>
+        <type>Integer</type>
+        <length>0</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>      <meta>        <name>TRABALHO_AGRICULTURA</name>
+        <rename>TRABALHO_AGRICULTURA</rename>
+        <type>Integer</type>
+        <length>0</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>      <meta>        <name>TRABALHO_PRINCIPAL</name>
+        <rename>TRABALHO_PRINCIPAL</rename>
+        <type>Integer</type>
+        <length>0</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>      <meta>        <name>NAO_RECEBEU_RENDA_MES_PASSADO</name>
+        <rename>NAO_RECEBEU_RENDA_MES_PASSADO</rename>
+        <type>Integer</type>
+        <length>0</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>      <meta>        <name>TRABALHOU_12_MESES</name>
+        <rename>TRABALHOU_12_MESES</rename>
+        <type>Integer</type>
+        <length>0</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>      <meta>        <name>DOACAO</name>
+        <rename>DOACAO</rename>
+        <type>Integer</type>
+        <length>0</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>      <meta>        <name>APOSENT</name>
+        <rename>APOSENT</rename>
+        <type>Integer</type>
+        <length>0</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>      <meta>        <name>SEGURO_DESEMPREGO</name>
+        <rename>SEGURO_DESEMPREGO</rename>
+        <type>Integer</type>
+        <length>0</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>      <meta>        <name>PENSAO_ALIMENT</name>
+        <rename>PENSAO_ALIMENT</rename>
+        <type>Integer</type>
+        <length>0</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>      <meta>        <name>OUTRAS_RENDA</name>
+        <rename>OUTRAS_RENDA</rename>
+        <type>Integer</type>
+        <length>0</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>      <meta>        <name>DATA</name>
+        <rename>DATA</rename>
+        <type>Date</type>
+        <length>0</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
       </meta>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>607</xloc>
-      <yloc>130</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>TB_FATO_CADASTRO_FAMILIA</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>N</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>oracle_devel</connection>
-    <sql>select *
-from  TB_FATO_CADASTRO_FAMILIA
-</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>188</xloc>
-      <yloc>132</yloc>
+      <xloc>626</xloc>
+      <yloc>246</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -611,9 +696,9 @@ from  TB_FATO_CADASTRO_FAMILIA
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>postgres_devel</connection>
+    <connection>Postgresql_dev</connection>
     <schema>semas</schema>
-    <table>f_cadastro_familia</table>
+    <table>fato_cad_fam_remuneracao</table>
     <commit>1000</commit>
     <truncate>Y</truncate>
     <ignore_errors>N</ignore_errors>
@@ -630,89 +715,105 @@ from  TB_FATO_CADASTRO_FAMILIA
     <return_field/>
     <fields>
         <field>
-          <column_name>cod_bairro</column_name>
-          <stream_name>COD_BAIRRO</stream_name>
+          <column_name>qtd_pessoas</column_name>
+          <stream_name>QTD_PESSOAS</stream_name>
         </field>
         <field>
-          <column_name>cod_local_domic_fam</column_name>
-          <stream_name>COD_LOCAL_DOMIC_FAM</stream_name>
+          <column_name>renda_mensal_total</column_name>
+          <stream_name>RENDA_MENSAL_TOTAL</stream_name>
         </field>
         <field>
-          <column_name>cod_espec_domic_fam</column_name>
-          <stream_name>COD_ESPEC_DOMIC_FAM</stream_name>
+          <column_name>idade</column_name>
+          <stream_name>IDADE</stream_name>
         </field>
         <field>
-          <column_name>cod_material_piso_fam</column_name>
-          <stream_name>COD_MATERIAL_PISO_FAM</stream_name>
+          <column_name>renda_per_capta</column_name>
+          <stream_name>RENDA_PER_CAPTA</stream_name>
         </field>
         <field>
-          <column_name>cod_material_domic_fam</column_name>
-          <stream_name>COD_MATERIAL_DOMIC_FAM</stream_name>
+          <column_name>beneficiario</column_name>
+          <stream_name>BENEFICIARIO</stream_name>
         </field>
         <field>
-          <column_name>cod_agua_canalizada_fam</column_name>
-          <stream_name>COD_AGUA_CANALIZADA_FAM</stream_name>
+          <column_name>trabalha</column_name>
+          <stream_name>TRABALHA</stream_name>
         </field>
         <field>
-          <column_name>cod_abaste_agua_domic_fam</column_name>
-          <stream_name>COD_ABASTE_AGUA_DOMIC_FAM</stream_name>
-        </field>
-        <field>
-          <column_name>cod_banheiro_domic_fam</column_name>
-          <stream_name>COD_BANHEIRO_DOMIC_FAM</stream_name>
-        </field>
-        <field>
-          <column_name>cod_escoa_sanit_domic_fam</column_name>
-          <stream_name>COD_ESCOA_SANIT_DOMIC_FAM</stream_name>
-        </field>
-        <field>
-          <column_name>cod_dest_lixo_domic_fam</column_name>
-          <stream_name>COD_DEST_LIXO_DOMIC_FAM</stream_name>
-        </field>
-        <field>
-          <column_name>cod_ilumin_domic_fam</column_name>
-          <stream_name>COD_ILUMIN_DOMIC_FAM</stream_name>
-        </field>
-        <field>
-          <column_name>cod_calc_pavimenacao_fam</column_name>
-          <stream_name>COD_CALC_DOMIC_FAM</stream_name>
-        </field>
-        <field>
-          <column_name>qtd_comodos_domic_fam</column_name>
-          <stream_name>QTD_COMODOS_DOMIC_FAM</stream_name>
-        </field>
-        <field>
-          <column_name>qtd_comodos_dorm_fam</column_name>
-          <stream_name>QTD_COMODOS_DORM_FAM</stream_name>
+          <column_name>renda_mensal</column_name>
+          <stream_name>RENDA_MENSAL</stream_name>
         </field>
         <field>
           <column_name>ser</column_name>
           <stream_name>SER</stream_name>
         </field>
         <field>
-          <column_name>quant_pessoas</column_name>
-          <stream_name>QUANT_PESSOAS</stream_name>
+          <column_name>cod_bairro</column_name>
+          <stream_name>COD_BAIRRO</stream_name>
         </field>
         <field>
-          <column_name>qtdfamilias</column_name>
-          <stream_name>QTDFAMILIAS</stream_name>
+          <column_name>trabalhou_semana_passada</column_name>
+          <stream_name>TRABALHOU_SEMANA_PASSADA</stream_name>
         </field>
         <field>
-          <column_name>cod_data</column_name>
-          <stream_name>data</stream_name>
+          <column_name>afastado_trabalho</column_name>
+          <stream_name>AFASTADO_TRABALHO</stream_name>
+        </field>
+        <field>
+          <column_name>trabalho_agricultura</column_name>
+          <stream_name>TRABALHO_AGRICULTURA</stream_name>
+        </field>
+        <field>
+          <column_name>trabalho_principal</column_name>
+          <stream_name>TRABALHO_PRINCIPAL</stream_name>
+        </field>
+        <field>
+          <column_name>nao_recebeu_renda_mes_passado</column_name>
+          <stream_name>NAO_RECEBEU_RENDA_MES_PASSADO</stream_name>
+        </field>
+        <field>
+          <column_name>trabalhou_12_meses</column_name>
+          <stream_name>TRABALHOU_12_MESES</stream_name>
+        </field>
+        <field>
+          <column_name>doacao</column_name>
+          <stream_name>DOACAO</stream_name>
+        </field>
+        <field>
+          <column_name>aposent</column_name>
+          <stream_name>APOSENT</stream_name>
+        </field>
+        <field>
+          <column_name>seguro_desemprego</column_name>
+          <stream_name>SEGURO_DESEMPREGO</stream_name>
+        </field>
+        <field>
+          <column_name>pensao_aliment</column_name>
+          <stream_name>PENSAO_ALIMENT</stream_name>
+        </field>
+        <field>
+          <column_name>outras_renda</column_name>
+          <stream_name>OUTRAS_RENDA</stream_name>
+        </field>
+        <field>
+          <column_name>cod_familiar</column_name>
+          <stream_name>COD_FAMILIAR_FAM</stream_name>
+        </field>
+        <field>
+          <column_name>data_cad</column_name>
+          <stream_name>DATA</stream_name>
         </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>781</xloc>
-      <yloc>128</yloc>
+      <xloc>800</xloc>
+      <yloc>245</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>convert date</name>
-    <type>ScriptValueMod</type>
+    <name>inserts d_trabalho_principal</name>
+    <type>ExecSQL</type>
     <description/>
     <distribute>Y</distribute>
     <copies>1</copies>
@@ -720,26 +821,69 @@ from  TB_FATO_CADASTRO_FAMILIA
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <compatible>N</compatible>
-    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>&#47;&#47;Script here
-
-var dia = substr(DAT_CAD_FAMILIA,0,2);
-var mes = substr(DAT_CAD_FAMILIA,2,2);
-var ano = substr(DAT_CAD_FAMILIA,4,4);
-var data = dia+&apos;&#47;&apos;+mes+&apos;&#47;&apos;+ano;
-var data = new Date(data);</jsScript_script>
-      </jsScript>    </jsScripts>    <fields>      <field>        <name>data</name>
-        <rename>data</rename>
-        <type>Date</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>    </fields>     <cluster_schema/>
+    <connection>Postgresql_dev</connection>
+    <execute_each_row>N</execute_each_row>
+    <single_statement>N</single_statement>
+    <replace_variables>N</replace_variables>
+    <sql>INSERT INTO semas.d_trabalho_principal (-1,&apos;Não informado&apos;);
+INSERT INTO semas.d_trabalho_principal (1,&apos;Trabalhador por conta própria (bico, autônomo)&apos;);
+INSERT INTO semas.d_trabalho_principal (2,&apos;Trabalhador temporário em área rural&apos;);
+INSERT INTO semas.d_trabalho_principal (3,&apos;Empregado sem carteira de trabalho assinada&apos;);
+INSERT INTO semas.d_trabalho_principal (4,&apos;Empregado com carteira de trabalho assinada&apos;);
+INSERT INTO semas.d_trabalho_principal (5,&apos;Trabalhador doméstico sem carteira de trabalho assinada&apos;);
+INSERT INTO semas.d_trabalho_principal (6,&apos;Trabalhador doméstico com carteira de trabalho assinada&apos;);
+INSERT INTO semas.d_trabalho_principal (7,&apos;Trabalhador não-remunerado&apos;);
+INSERT INTO semas.d_trabalho_principal (8,&apos;Militar ou servidor público&apos;);
+INSERT INTO semas.d_trabalho_principal (9,&apos;Empregador&apos;);
+INSERT INTO semas.d_trabalho_principal (10,&apos;Estagiário&apos;);
+INSERT INTO semas.d_trabalho_principal (11,&apos;Aprendiz&apos;);</sql>
+    <insert_field/>
+    <update_field/>
+    <delete_field/>
+    <read_field/>
+    <arguments>
+    </arguments>
+     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>439</xloc>
-      <yloc>126</yloc>
+      <xloc>874</xloc>
+      <yloc>499</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>d_trabalho_principal output</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>Postgresql_dev</connection>
+    <schema>semas</schema>
+    <table>d_trabalho_principal</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1110</xloc>
+      <yloc>508</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
