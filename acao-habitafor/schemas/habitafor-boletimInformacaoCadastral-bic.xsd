@@ -1659,6 +1659,7 @@
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
 									<xs:maxLength value="255" />
+                                    <xs:pattern value="[0-9]+"/>
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
@@ -1965,6 +1966,7 @@
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
 									<xs:maxLength value="255" />
+                                    <xs:pattern value="[0-9]+"/>
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
@@ -3002,6 +3004,7 @@
 												<xs:enumeration value="Até R$ 50,00" />
 												<xs:enumeration value="De R$ 51,00 a R$ 100,00" />
 												<xs:enumeration value="De R$ 101,00 a R$ 150,00" />
+                                                <xs:enumeration value="De R$ 151,00 a R$ 199,00" />
 												<xs:enumeration value="Acima de R$ 200,00" />
 												<xs:enumeration value="Sem gasto" />
 												<xs:enumeration value="Não informado" />
