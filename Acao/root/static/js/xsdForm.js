@@ -18,12 +18,15 @@
   # Fundação do Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor,
 */
 
-function createInput(type, name, id, maxlength) {
+function createInput(type, name, id, maxlength, valorPadrao) {
     var newInput = document.createElement('input');
     newInput.type  = type;
     newInput.name  = name;
     if (maxlength != null) {
         newInput.setAttribute('maxlength', maxlength);
+    }
+    if (valorPadrao == '[0-9]+') {
+         newInput.setAttribute('class', 'xsdForm__cpf');
     }
     newInput.id    = ( id != undefined )? id: name;
     return newInput;
@@ -416,12 +419,18 @@ function generateFormFromSimpleTypeNode(tagRaiz, xmlNode, namePattern, name, lab
     var restrictionNode = getNodeByTagName(xmlNode, 'xs:restriction');
 
     for (var i = 0; i < restrictionNode.childNodes.length; i++) {
-        if (restrictionNode.childNodes[i].nodeType == 1 && restrictionNode.childNodes[i].nodeName == 'xs:pattern' ) {
+          if (restrictionNode.childNodes[i].nodeType == 1 && restrictionNode.childNodes[i].nodeName == 'xs:pattern' ) {
             return generateFormFromSimpleTypeNodeRestrictionPattern(tagRaiz, xmlNode, namePattern, name, label, minOccurs,restrictionNode.childNodes[i].getAttribute('value') );
         } else if (restrictionNode.childNodes[i].nodeType == 1 && restrictionNode.childNodes[i].nodeName == 'xs:enumeration'  ) {
             return generateFormFromSimpleTypeNodeRestrictionEnumeration(tagRaiz, xmlNode, namePattern, name, label, minOccurs);
         } else if (restrictionNode.childNodes[i].nodeType == 1 && restrictionNode.childNodes[i].nodeName == 'xs:maxLength'  ) {
-            return generateFormFromSimpleTypeNodeRestrictionMaxLength(tagRaiz, xmlNode, namePattern, name, label, minOccurs,restrictionNode.childNodes[i].getAttribute('value'), engine, service );
+            for (var a = 0; a < restrictionNode.childNodes.length; a++) {
+                if(restrictionNode.childNodes[a].nodeName == 'xs:pattern'){
+                    var valorPadrao  = restrictionNode.childNodes[a].getAttribute('value');
+                    valorPadrao;
+                }
+            }
+            return generateFormFromSimpleTypeNodeRestrictionMaxLength(tagRaiz, xmlNode, namePattern, name, label, minOccurs,restrictionNode.childNodes[i].getAttribute('value'), engine, service, valorPadrao );
         } else if (restrictionNode.childNodes[i].nodeType == 1 && restrictionNode.childNodes[i].nodeName == 'xs:fractionDigits'  ) {
             return createFieldDecimal(namePattern, name, label);
         }
@@ -486,7 +495,7 @@ function generateFormFromSimpleTypeNodeRestrictionPattern(tagRaiz, xmlNode, name
     return frag;
 }
 
-function generateFormFromSimpleTypeNodeRestrictionMaxLength(tagRaiz, xmlNode, namePattern, name, label, minOccurs, maxLength, engine, service){
+function generateFormFromSimpleTypeNodeRestrictionMaxLength(tagRaiz, xmlNode, namePattern, name, label, minOccurs, maxLength, engine, service, valorPadrao){
     var inputName = namePattern + "__" + name;
 
 
@@ -497,7 +506,7 @@ function generateFormFromSimpleTypeNodeRestrictionMaxLength(tagRaiz, xmlNode, na
     var dt = document.createElement('dt');
     var dd = document.createElement('dd');
     dt.appendChild(newLabel);
-    field = createInput('text' ,inputName, inputName, maxLength);
+    field = createInput('text' ,inputName, inputName, maxLength, valorPadrao);
 
     if (engine) {
 	if (field.getAttribute('class')) {
