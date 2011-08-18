@@ -165,7 +165,7 @@
         <input type="text" name="nome_prontuario" id="nome_prontuario" value="[% c.req.param('nome_prontuario') | html %]" /></label>
          [% IF numero_colunas > 0 %]
 
-          <input type="submit" name="submit_form" id="submit_form_2" value="Pevisualizar CSV">
+          <input type="submit" name="submit_form" id="submit_form_2" value="Pré-visualizar CSV">
           [% ELSE %]
           <input type="submit" name="submit_form" id="submit_form_2" value="Pesquisar">
           [% END %]
