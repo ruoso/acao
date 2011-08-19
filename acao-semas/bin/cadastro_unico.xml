@@ -23,8 +23,16 @@
       </Level>
     </Hierarchy>
   </Dimension>
+  <Dimension type="StandardDimension" name="Beneficiario">
+    <Hierarchy name="Beneficiario" hasAll="true" primaryKey="id_beneficiario">
+      <Table name="d_beneficiario" schema="semas" alias="">
+      </Table>
+      <Level name="Beneficiario" column="ds_beneficiario" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
   <Cube name="Caracteristicas do domicilio" cache="true" enabled="true">
-    <Table name="f_cadastro_familia" schema="semas">
+    <Table name="f_cadastro_familia_new_s" schema="semas">
     </Table>
     <Dimension type="StandardDimension" foreignKey="cod_agua_canalizada_fam" highCardinality="false" name="d_agua_canalizada">
       <Hierarchy name="Agua_canalizada" hasAll="true" primaryKey="cod_agua_canalizada_fam">
@@ -150,6 +158,8 @@
     </Dimension>
     <DimensionUsage source="d_bairro" name="d_bairro" foreignKey="cod_bairro" highCardinality="false">
     </DimensionUsage>
+    <DimensionUsage source="Beneficiario" name="Beneficiario" foreignKey="cod_beneficiario_fam">
+    </DimensionUsage>
     <Measure name="Quantidade_Familia" column="qtdfamilias" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
   </Cube>
@@ -272,14 +282,6 @@
         </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="StandardDimension" foreignKey="id_beneficiario" highCardinality="false" name="d_beneficiario">
-      <Hierarchy name="d_beneficiario" hasAll="true" primaryKey="id_beneficiario">
-        <Table name="d_beneficiario" schema="semas">
-        </Table>
-        <Level name="beneficiario" column="ds_beneficiario" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-        </Level>
-      </Hierarchy>
-    </Dimension>
     <Dimension type="StandardDimension" foreignKey="id_ser" highCardinality="false" name="d_ser">
       <Hierarchy name="SER" hasAll="true" primaryKey="cod_ser">
         <Table name="d_ser" schema="semas">
@@ -288,7 +290,9 @@
         </Level>
       </Hierarchy>
     </Dimension>
-    <DimensionUsage source="d_bairro" name="d_bairro" foreignKey="id_bairro">
+    <DimensionUsage source="d_bairro" name="d_bairro" foreignKey="id_bairro" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Beneficiario" name="Beneficiario" foreignKey="id_beneficiario">
     </DimensionUsage>
     <Measure name="Quantidade" column="quantidade" datatype="Integer" aggregator="sum" visible="true">
     </Measure>

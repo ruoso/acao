@@ -202,6 +202,22 @@ function convert_float_ptbr2xsd(floatValue) {
     return floatValue;
 }
 
+function convert_cpf_ptbr2xsd(cpf) {
+    var cpfFormat = cpf.replace('.','').replace('.','').replace('-','');
+    return cpfFormat;
+}
+
+function convert_cpf_xsd2ptbr(cpf) {
+    var digito = cpf.substring(cpf.length-2, cpf.length-1);
+    var ultimoBloco = cpf.substring(cpf.length-5, cpf.length-4, cpf.length-3); 
+    var penultimoBloco = cpf.substring(cpf.length-8, cpf.length-7, cpf.length- 6);
+    return cpf;
+}
+
+function convert_rg(rg) {
+    return rg;
+}
+
 function generateXsdFormUI() {
     
     $('input.xsdForm__date').inputDeflate({
@@ -247,4 +263,19 @@ function generateXsdFormUI() {
 	        });
 	});
 
+    $('input.xsdForm__cpf').inputDeflate({
+        inflate: convert_cpf_xsd2ptbr,
+        deflate: convert_cpf_ptbr2xsd,
+        addClass: 'inflated'
+    });
+    $('input.xsdForm__cpf.inflated').setMask('cpf');
+
+    $('input.xsdForm__rg').inputDeflate({
+        inflate: convert_rg,
+        deflate: convert_rg,
+        addClass: 'inflated'
+    });
+    $('input.xsdForm__rg.inflated').setMask({
+        mask : '99999999999999999999'
+    });
 }

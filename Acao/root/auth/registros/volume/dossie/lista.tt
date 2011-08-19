@@ -87,6 +87,9 @@
 
            <dt>Vol. Físico:</dt>
            <dd><span>[% vol.volume_fisico %]</span></dd>
+
+           <dt>Qtd. Prontuários:</dt>
+           <dd><span>[% vol.qtd_prontuarios %]</span></dd>
         </dl>
     </fieldset>
   </div>
@@ -165,7 +168,7 @@
         <input type="text" name="nome_prontuario" id="nome_prontuario" value="[% c.req.param('nome_prontuario') | html %]" /></label>
          [% IF numero_colunas > 0 %]
 
-          <input type="submit" name="submit_form" id="submit_form_2" value="Pevisualizar CSV">
+          <input type="submit" name="submit_form" id="submit_form_2" value="Pré-visualizar CSV">
           [% ELSE %]
           <input type="submit" name="submit_form" id="submit_form_2" value="Pesquisar">
           [% END %]

@@ -168,6 +168,7 @@
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
 									<xs:maxLength value="255" />
+                                    <xs:pattern value="[0-9]+[0-9]+"/>
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
@@ -192,6 +193,7 @@
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
 									<xs:maxLength value="255" />
+                                    <xs:pattern value="[0-9]+"/>
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
@@ -255,6 +257,7 @@
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
 									<xs:maxLength value="255" />
+                                    <xs:pattern value="[0-9]+[0-9]+"/>
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
@@ -279,6 +282,7 @@
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
 									<xs:maxLength value="255" />
+                                    <xs:pattern value="[0-9]+"/>
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
@@ -314,12 +318,11 @@
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
-
-								<xs:restriction base="xs:string">
-									      <xs:maxLength value="255" />
-
-								</xs:restriction>
-
+                                <xs:restriction base="xs:decimal">
+                                    <xs:fractionDigits value='2'/>
+                                    <xs:maxExclusive value="1000000"/>
+                                    <xs:minInclusive value="-1000000"/>
+                                </xs:restriction>
 							</xs:simpleType>
 						</xs:element>
 						<xs:element name="bolsaFamilia" minOccurs="0">
