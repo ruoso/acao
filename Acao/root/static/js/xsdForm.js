@@ -28,6 +28,9 @@ function createInput(type, name, id, maxlength, valorPadrao) {
     if (valorPadrao == '[0-9]+') {
          newInput.setAttribute('class', 'xsdForm__cpf');
     }
+    if (valorPadrao == '[0-9]+[0-9]+') {
+         newInput.setAttribute('class', 'xsdForm__rg');
+    }
     newInput.id    = ( id != undefined )? id: name;
     return newInput;
 }
