@@ -132,6 +132,7 @@
             <input type="submit" name="add_coluna" value="+" />
             [% IF numero_colunas > 0 %]<input type="submit" name="del_coluna" value="-" />[% END %]
             <input type="hidden" name="numero_colunas" value="[% numero_colunas %]" />
+	    <input type="checkbox" name="documentos_inativos" [% IF c.req.param('documentos_inativos') %] CHECKED [% END %] id="documentos_validos"><strong>Incluir Documentos Inativos no CSV </strong>
 
 
        </div>
@@ -175,6 +176,8 @@
          [% IF c.req.param('submit_form') && (numero_colunas > 0)%]
           <input type="submit" name="gerarCSV" value="Gerar CSV" />
         [% END %]
+         
+         
 
 
 
@@ -237,7 +240,8 @@
                                                   id_volume         => id_volume,
                                                   interval_ini      => interval_ini,
                                                   num_por_pagina    => num_por_pagina,
-                                                  pesquisa          => c.req.params()
+                                                  pesquisa          => c.req.params(),
+						  documentos_validos => documentos_validos
                                                 });
         #"<textarea cols=180 rows=80>" _ xquery.list _ "</textarea>";
         #c.model('Sedna').conn.setConnectionAttr_CONCURRENCY_TYPE(c.model('Sedna').conn.SEDNA_READONLY_TRANSACTION);
