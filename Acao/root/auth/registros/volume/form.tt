@@ -43,29 +43,32 @@
            [% INCLUDE 'auth/registros/volume/_formPermissoes.tt' %]
   </div>
 
-  <input type="submit" name="opcao" onClick="javascript:return validaForm();" value="Criar">
+  <input type="submit" id="btcriar" name="opcao" onClick="javascript:return validaForm();" value="Criar">
 
   <input type="button" name="Cancelar" onClick="javascript:history.go(-1);" value="Cancelar">
  </form>
 
  <script language="javascript">
   function validaForm(){
-
+    $('#btcriar').attr('disabled', true);
     if(document.getElementById('nome').value == ''){
       alert('Informe o nome do volume.');
       document.getElementById('nome').focus();
+      $('#btcriar').removeAttr('disabled');
       return false;
     }
 
     if(document.getElementById('classificacoes').value == '<x0:classificacoes xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd" xmlns:x0="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd"/>'){
       alert('Informe a(as) classificação(ões) do volume.');
       document.getElementById('classificacoes').focus();
+      $('#btcriar').removeAttr('disabled');
       return false;
     }
 
   //  if(document.getElementById('localizacao').value == ''){
   //    alert('Informe a localização do volume.');
   //    document.getElementById('localizacao').focus();
+  //    $('#btcriar').removeAttr('disabled');
   //    return false;
   //  }
 
@@ -73,6 +76,7 @@
       if(confirm('O volume não possue autorização(ções). Deseja criá-lo assim mesmo?')){
       }
       else {
+      $('#btcriar').removeAttr('disabled');
         return false;
       }
     }

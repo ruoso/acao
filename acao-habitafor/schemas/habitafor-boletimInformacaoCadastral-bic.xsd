@@ -324,7 +324,7 @@
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
 									<xs:enumeration value="Adquirida" />
-									<xs:enumeration value="Aludaga" />
+									<xs:enumeration value="Alugada" />
 									<xs:enumeration value="Cedida" />
 									<xs:enumeration value="Ocupada" />
 								</xs:restriction>
@@ -1849,6 +1849,14 @@
 						</xs:element>
 					</xs:sequence>
 				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="uniaoHomoafetiva" type="xs:boolean">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>União homoafetiva</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
 			</xs:element>
 
 			<xs:element name="dadosCompanheiro">
