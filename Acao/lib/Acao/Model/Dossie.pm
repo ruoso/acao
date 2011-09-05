@@ -180,10 +180,10 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
     my $showDocInv_ = '';
     
     
-    if (!$args->{pesquisa}{"documentos_inativos"}) {	
-	  $showDocInv = ' and  $y/../../dc:invalidacao/text() = \'1970-01-01T00:00:00Z\' '; 
+    if ($args->{pesquisa}{"documentos_inativos"} ne 'on') {	
+	  $showDocInv = ' and  $y/../../dc:invalidacao/text() eq \'1970-01-01T00:00:00Z\' '; 
     } else {
-	  $showDocInv_ = 'if ($y/../../dc:invalidacao/text() = "1970-01-01T00:00:00Z") then ( "" ) else ( "inativo"),';
+	  $showDocInv_ = 'if ($y/../../dc:invalidacao/text() eq "1970-01-01T00:00:00Z") then ( "" ) else ( "inativo"),';
     }
     my $return;
     # contruindo o retorno para gerar o CSV
@@ -195,7 +195,7 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
         @cols = (map { $self->produce_xpath('col'. $counter++, $_).'/text()' } @cols);
 
         $mnt_return = ' for $y in '.$xpprefix.' return ('
-                    . 'if ('.join (" or ", map { '$y/'.$_ } @cols).$showDocInv.') then ('
+                    . 'if (('.join (" or ", map { '$y/'.$_ } @cols).')'.$showDocInv.') then ('
                     . 'string-join(( '
                     . '$x/ns:nome/text(),'.$showDocInv_
                     . join (' else(" * "), ' , map { 'if($y/'.$_.') then ($y/'.$_.')' } @cols)
