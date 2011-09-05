@@ -139,7 +139,7 @@
 [%# IF c.config.roles.dossie.criar %]
     [%# IF invalidacao == '1970-01-01T00:00:00Z' %]
 
-         <input type="submit" id="btcriar" value="Submeter alterações como novo documento" onClick="javascript:$('#btcriar').attr('disabled', true);">
+         <input type="submit" id="btcriar" value="Submeter alterações como novo documento">
 
     [%# END %]
 [%# END %]
