@@ -71,7 +71,6 @@
 					<xs:restriction base="xs:string">
 						<xs:enumeration value="Masculino" />
 						<xs:enumeration value="Feminino" />
-
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
@@ -184,8 +183,7 @@
 								<xs:restriction base="xs:string">
 									<xs:enumeration value="a) Estou estudando atualmente" />
 									<xs:enumeration value="b) Já estudei, mas abandonei a escola" />
-									<xs:enumeration
-										value="c) Já estudei até a série desejada / conclui meus estudos" />
+									<xs:enumeration value="c) Já estudei até a série desejada/conclui meus estudos" />
 									<xs:enumeration value="d) Nunca estudei" />
 								</xs:restriction>
 							</xs:simpleType>
@@ -210,10 +208,8 @@
 							</xs:annotation>
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
-									<xs:enumeration
-										value="a) Da 1° à 4° série do ensino Fundamental (antigo primário)" />
-									<xs:enumeration
-										value="b) Da 5° à 8° série do ensino fundamenal (antigo ginásio)" />
+									<xs:enumeration	value="a) Da 1° à 4° série do ensino Fundamental(antigo primário)" />
+									<xs:enumeration	value="b) Da 5° à 8° série do ensino fundamenal(antigo ginásio)" />
 									<xs:enumeration value="c) Ensino médio(antigo 2°grau)incompleto" />
 									<xs:enumeration value="d) Ensino médio completo" />
 									<xs:enumeration value="e) Ensino superior incompleto" />
@@ -223,8 +219,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="voceSeConsideraQualCorRaca"
-							minOccurs="0">
+						<xs:element name="voceSeConsideraQualCorRaca" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>03. Você se considera de qual cor ou raça?
@@ -242,8 +237,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="voceTemAlgumTipoDeficiencia"
-							minOccurs="0">
+						<xs:element name="voceTemAlgumTipoDeficiencia" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>04. Você tem algum tipo de deficiência?
@@ -290,8 +284,7 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="seResponderItemabcVaParaqSete"
-							minOccurs="0">
+						<xs:element name="seResponderItemabcVaParaqSete" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Se responder item a,b,c vá para Q:7</xhtml:label>
@@ -299,14 +292,12 @@
 							</xs:annotation>
 							<xs:complexType>
 								<xs:sequence>
-
 								</xs:sequence>
 							</xs:complexType>
 						</xs:element>
 
 
-						<xs:element name="procurouTrabalhoUltimosDias"
-							minOccurs="0">
+						<xs:element name="procurouTrabalhoUltimosDias" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>6. Você procurou trabalho nos ultimos dias?
@@ -316,10 +307,8 @@
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
 									<xs:enumeration value="a) Sim,procurou o SINE" />
-									<xs:enumeration
-										value="b) Sim,consultou agência de emprego e/ou sindicato" />
-									<xs:enumeration
-										value="c) Sim,consultou empresas ou nelas se cadastrou" />
+									<xs:enumeration	value="b) Sim,consultou agência de emprego e/ou sindicato" />
+									<xs:enumeration	value="c) Sim,consultou empresas ou nelas se cadastrou" />
 									<xs:enumeration value="d) Sim,consultou parentes e amigos" />
 									<xs:enumeration value="e) Sim,fez concurso" />
 									<xs:enumeration value="f) Sim,consultou políticos" />
@@ -397,8 +386,7 @@
 						<xs:element name="primeiraRelacaoSexual" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>10. Com quantos anos você teve sua primeira
-										relação sexual?</xhtml:label>
+									<xhtml:label>10. Com quantos anos você teve sua primeira relação sexual?</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -480,7 +468,6 @@
 						<xhtml:label>IV-PARTICIPAÇÃO COMUNITÁRIA E SOCIAL</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
-
 				<xs:complexType>
 					<xs:sequence>
 						<xs:element name="pergunta">
@@ -488,16 +475,12 @@
 								<xs:appinfo>
 									<xhtml:label>13. Você participa de algum movimento
 										social,político,esportivo,artístico e/ou cultural ?(Este
-										quadro
-										admite múltipla marcação)</xhtml:label>
+										quadro admite múltipla marcação)</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
-
-
 							<xs:complexType>
 								<xs:sequence>
-									<xs:element name="grupoEsportivo" type="xs:boolean"
-										minOccurs="0">
+									<xs:element name="grupoEsportivo" type="xs:boolean" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Grupo esportivo (time de futebol,torcida
@@ -505,8 +488,7 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="grupoReligioso" type="xs:boolean"
-										minOccurs="0">
+									<xs:element name="grupoReligioso" type="xs:boolean" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Grupo religioso</xhtml:label>
@@ -514,8 +496,7 @@
 										</xs:annotation>
 									</xs:element>
 
-									<xs:element name="cultural" type="xs:boolean"
-										minOccurs="0">
+									<xs:element name="cultural" type="xs:boolean" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Cultural(capoeira,quadrilha junina,dança)
@@ -523,58 +504,49 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="gremioMovimentoEstudantil" type="xs:boolean"
-										minOccurs="0">
+									<xs:element name="gremioMovimentoEstudantil" type="xs:boolean" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Grêmio/Movimento estudantil</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="grupoDeDefesa" type="xs:boolean"
-										minOccurs="0">
+									<xs:element name="grupoDeDefesa" type="xs:boolean" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Grupo de defesa do meio ambiente
-															</xhtml:label>
+												<xhtml:label>Grupo de defesa do meio ambiente</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="politicoPartidario" type="xs:boolean"
-										minOccurs="0">
+									<xs:element name="politicoPartidario" type="xs:boolean" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Político/Partidário</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="organizaçaoDeMulheres" type="xs:boolean"
-										minOccurs="0">
+									<xs:element name="organizaçaoDeMulheres" type="xs:boolean" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Organização de mulheres/Movimento Feminista
-												</xhtml:label>
+												<xhtml:label>Organização de mulheres/Movimento Feminista</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="organizaçaoLGBTTT" type="xs:boolean"
-										minOccurs="0">
+									<xs:element name="organizaçaoLGBTTT" type="xs:boolean" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Organização LGBTTT</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="movimentoNegro" type="xs:boolean"
-										minOccurs="0">
+									<xs:element name="movimentoNegro" type="xs:boolean" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Movimento negro</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="associacaoDeBairro" type="xs:boolean"
-										minOccurs="0">
+									<xs:element name="associacaoDeBairro" type="xs:boolean" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Associação de bairro/Movimento Popular
@@ -582,16 +554,14 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="movimentoSindical" type="xs:boolean"
-										minOccurs="0">
+									<xs:element name="movimentoSindical" type="xs:boolean" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Movimento sindical</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="nenhum" type="xs:boolean"
-										minOccurs="0">
+									<xs:element name="nenhum" type="xs:boolean" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Nenhum</xhtml:label>
