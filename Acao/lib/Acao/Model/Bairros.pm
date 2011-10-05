@@ -31,7 +31,6 @@ sub listaBairros {
 
 	$dsc_bairro = uc($dsc_bairro);
 	
-	warn  "UPPERCASE".$dsc_bairro;
 
 	my @bairros;
 
