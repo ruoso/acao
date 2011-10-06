@@ -25,6 +25,13 @@
 	</xs:element>
 	<xs:complexType name="formPoliticaJuventude">
 		<xs:sequence>
+			<xs:element name="data" minOccurs="0" type="xs:date">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Data</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
 			<xs:element name="ciaNr" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
@@ -49,6 +56,18 @@
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
+			<xs:element name="nucleo" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Núcleo</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
 			<xs:element name="nome" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
@@ -60,6 +79,26 @@
 						<xs:maxLength value="255" />
 					</xs:restriction>
 				</xs:simpleType>
+			</xs:element>
+			<xs:element name="cpf" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>CPF</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+						<xs:pattern value="[0-9]+" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="dataNascimento" minOccurs="0" type="xs:date">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Data de nascimento</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
 			</xs:element>
 			<xs:element name="sexo" minOccurs="0">
 				<xs:annotation>
@@ -73,6 +112,13 @@
 						<xs:enumeration value="Feminino" />
 					</xs:restriction>
 				</xs:simpleType>
+			</xs:element>
+			<xs:element name="telefone" minOccurs="0" type="xs:integer">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Telefone</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
 			</xs:element>
 			<xs:element name="endereco" minOccurs="0">
 				<xs:annotation>
@@ -90,51 +136,6 @@
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
-			<xs:element name="complemento" type="xs:string" minOccurs="0">
-				<xs:annotation>
-					<xs:appinfo>
-						<xhtml:label>Complemento</xhtml:label>
-					</xs:appinfo>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="nomeMae" minOccurs="0">
-				<xs:annotation>
-					<xs:appinfo>
-						<xhtml:label>Nome da Mãe</xhtml:label>
-					</xs:appinfo>
-				</xs:annotation>
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:maxLength value="255" />
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
-			<xs:element name="nucleo" minOccurs="0">
-				<xs:annotation>
-					<xs:appinfo>
-						<xhtml:label>Núcleo</xhtml:label>
-					</xs:appinfo>
-				</xs:annotation>
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:maxLength value="255" />
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
-			<xs:element name="dataNascimento" minOccurs="0" type="xs:date">
-				<xs:annotation>
-					<xs:appinfo>
-						<xhtml:label>Data de nascimento</xhtml:label>
-					</xs:appinfo>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="telefone" minOccurs="0" type="xs:integer">
-				<xs:annotation>
-					<xs:appinfo>
-						<xhtml:label>Telefone</xhtml:label>
-					</xs:appinfo>
-				</xs:annotation>
-			</xs:element>
 			<xs:element name="bairro" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
@@ -151,20 +152,62 @@
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
-
-			<xs:element name="cpf" minOccurs="0">
+			<xs:element name="regional" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>CPF</xhtml:label>
+						<xhtml:label>Regional</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="SER 1" />
+						<xs:enumeration value="SER 2" />
+						<xs:enumeration value="SER 3" />
+						<xs:enumeration value="SER 4" />
+						<xs:enumeration value="SER 5" />
+						<xs:enumeration value="SER 6" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="complemento" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Complemento</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="cep" minOccurs="0" type="xs:integer">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>CEP</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nis" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Número NIS</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
 					<xs:restriction base="xs:string">
 						<xs:maxLength value="255" />
-						<xs:pattern value="[0-9]+" />
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
+			<xs:element name="nomeMae" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Nome da Mãe</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
 			<xs:element name="informacaoBeneficio" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
@@ -182,8 +225,8 @@
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
 									<xs:enumeration value="a) Estou estudando atualmente" />
-									<xs:enumeration value="b) Já estudei, mas abandonei a escola" />
-									<xs:enumeration value="c) Já estudei até a série desejada/conclui meus estudos" />
+									<xs:enumeration value="b) Já estudei até a série desejada/conclui meus estudos" />
+									<xs:enumeration value="c) Já estudei, mas abandonei a escola" />
 									<xs:enumeration value="d) Nunca estudei" />
 								</xs:restriction>
 							</xs:simpleType>
@@ -351,8 +394,7 @@
 									<xs:enumeration value="a) De 1 a 3 pessoas" />
 									<xs:enumeration value="b) De 4 a 6 pessoas" />
 									<xs:enumeration value="c) De 7 a 9 pessoas" />
-									<xs:enumeration value="d) De 10 a 12 pessoas" />
-									<xs:enumeration value="e) Mais de 12 pessoas" />
+									<xs:enumeration value="d) De 10 a 12 pessoas (Mais de 12 pessoas)" />
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
@@ -525,14 +567,14 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="organizaçaoDeMulheres" type="xs:boolean" minOccurs="0">
+									<xs:element name="organizacaoDeMulheres" type="xs:boolean" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Organização de mulheres/Movimento Feminista</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="organizaçaoLGBTTT" type="xs:boolean" minOccurs="0">
+									<xs:element name="organizacaoLGBTTT" type="xs:boolean" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Organização LGBTTT</xhtml:label>

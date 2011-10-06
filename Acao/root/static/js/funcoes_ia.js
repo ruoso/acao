@@ -9,11 +9,6 @@ jQuery(document).ready(function() {
 			    active: false 
 	});
 
-	$("input,select").bind("keypress", function(e) {
-		if (e.keyCode == 13) {
-        	        return false;
-		}
-        });
 	//Jquery: FieldSet com collapsed
 	//$(".collapsible").collapse();
 	//$("fieldset.collapsibleClosed").collapse( { closed : true } );

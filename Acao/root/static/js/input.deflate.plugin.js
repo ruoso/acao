@@ -28,6 +28,11 @@
 		return this.each(function() {
 			// elemento selecionado...
 			var este = $(this);
+
+            var re = new RegExp(suffix+'$', "i");
+            //verifica se o input já tem input_deflate
+            if ( !este.attr('id').match(re)) {
+
 			// primeiro precisamos criar um clone do elemento
 			var clone2 = este.clone();
 			
@@ -61,7 +66,7 @@
 			este.replaceWith('<input type="hidden" name="'+este.attr('name')+'" id="'+este.attr('id')+'">');
 			este = $('#' + este.attr('id'));
 			este.val(value);
-			
+			} 
 		});
 	};
 })(jQuery);
