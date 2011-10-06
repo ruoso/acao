@@ -66,9 +66,7 @@
 			este.replaceWith('<input type="hidden" name="'+este.attr('name')+'" id="'+este.attr('id')+'">');
 			este = $('#' + este.attr('id'));
 			este.val(value);
-			} else {
-                alert(este.attr('id'));
-            }
+			} 
 		});
 	};
 })(jQuery);

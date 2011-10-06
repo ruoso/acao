@@ -275,7 +275,14 @@ function generateXsdFormUI() {
         deflate: convert_rg,
         addClass: 'inflated'
     });
+
     $('input.xsdForm__rg.inflated').setMask({
         mask : '99999999999999999999'
+    });
+
+	$("input,select").bind("keypress", function(e) {
+		if (e.keyCode == 13) {
+            return false;
+	    }
     });
 }
