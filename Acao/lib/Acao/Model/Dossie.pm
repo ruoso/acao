@@ -196,11 +196,13 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
 
         $mnt_return = ' for $y in '.$xpprefix.' return ('
                     . 'if (('.join (" or ", map { '$y/'.$_ } @cols).')'.$showDocInv.') then ('
-                    . 'string-join(( '
-                    . '$x/ns:nome/text(),'.$showDocInv_
-                    . join (' else(" * "), ' , map { 'if($y/'.$_.') then ($y/'.$_.')' } @cols)
-                    . ' else(" * ")),";-;")'
+                        . 'string-join(( '
+                                . '$x/ns:nome/text(),'.$showDocInv_
+                                . join (' else(" * ")," / "), ' , map { 'string-join(if($y/'.$_.') then ($y/'.$_.')' } @cols)
+                    . ' else(" * ")," / ")),";-;")'
+
                     . ') else () )'; ;
+
         $return = "return (".$mnt_return." ),0)";
 
     } else {
@@ -266,7 +268,7 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
          $self->sedna->execute($list);
          while ( my $item = $self->sedna->get_item ) {
              $item =~ s/^\s//go;
-             my @row = split(/;-;/,$item);
+              my @row = split(/;-;/,$item);   
              push (@csvData,\@row);
          }
         unshift (@csvData,\@cabecalho_colunas );
