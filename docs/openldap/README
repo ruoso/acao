@@ -1,0 +1,26 @@
+####### Configurando o OpenLDAP para funcionar com o Ação ##########
+
+Premissas: 
+
+1. Utilizando um computador com Debian ou Ubuntu
+2. Ter uma instalação limpa do openldap (apt-get install slapd)
+
+Passos:
+1. Pare o openldap /etc/init.d/slapd stop
+2. Faça um backup da sua instalação atual: mv /etc/ldap /etc/ldap.ori
+3. Faça um backup da base atual (ainda que esteja limpa): mv /var/lib/ldap /var/lib/ldap.ori
+4. Descompacte o ldap.tgz e mova a pasta ldap para o /etc
+5. Corrija as permissões do diretório e arquivos: chown openldap:openldap /etc/ldap -R
+6. Povoe a base do ldap com o comando slapadd: slapadd -v -c -l ldap.seed.ldif
+7. Corrija as permissões do diretório da base: chown openldap:openldap /var/lib/ldap -R
+8. Inicie o openldap
+
+
+Observações:
+Caso tenha problemas investige o syslog
+Você pode rodar o slapd na mão em modo debug: slapd -h 'ldap:/// ldapi:///' -g openldap -u openldap -F /etc/ldap/slapd.d/ -d 16383
+
+Esta versão de configuração vem com os seguintes parâmetros para teste:
+Bind DN: cn=admin,dc=fortaleza,dc=ce,dc=gov,dc=br
+Password: 123asd
+
