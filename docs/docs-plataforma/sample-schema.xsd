@@ -13,13 +13,44 @@
                 <class:classificacoes>
                     <class:classificacao>cn=Direitos Humanos</class:classificacao>
                 </class:classificacoes>
+                <idx:index>
+					<idx:hint key="pessoa.nome"
+						xpath="formDocumentacao/nomeCompleto" />	
+					<idx:hint key="pessoa.cpf"
+						xpath="formDocumentacao/cpfNumero" />					
+				</idx:index>		
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
 
 	<xs:complexType name="formDocumentacao">
 		<xs:sequence>
-		
+	        <xs:element name="numFormulario" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Número do Formulário</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			<xs:element name="nomeCompleto" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Nome Completo</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
 			<xs:element name="rgNumero" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
@@ -32,6 +63,8 @@
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
+			
+			
 
 			<xs:element name="cpfNumero" minOccurs="0">
 				<xs:annotation>
@@ -42,6 +75,7 @@
 				<xs:simpleType>
 					<xs:restriction base="xs:string">
 						<xs:maxLength value="255" />
+                       <xs:pattern value="[0-9]+"/>
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
