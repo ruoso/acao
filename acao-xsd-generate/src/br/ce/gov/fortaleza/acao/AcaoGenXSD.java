@@ -110,12 +110,12 @@ public class AcaoGenXSD extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
+        jTClassificacao = new javax.swing.JTextField();
+        jTIndice = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        jTTitulo = new javax.swing.JTextField();
+        jTFormName = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
         jButton8 = new javax.swing.JButton();
 
@@ -977,17 +977,17 @@ public class AcaoGenXSD extends javax.swing.JFrame {
 
         jLabel4.setText("Classificação");
 
-        jTextField6.setText("Digite aqui a classificaão do formulario");
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        jTClassificacao.setText("Digite aqui a classificaão do formulario");
+        jTClassificacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                jTClassificacaoActionPerformed(evt);
             }
         });
 
-        jTextField7.setText("Digite aqui o indice");
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+        jTIndice.setText("Digite aqui o indice");
+        jTIndice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
+                jTIndiceActionPerformed(evt);
             }
         });
 
@@ -995,17 +995,17 @@ public class AcaoGenXSD extends javax.swing.JFrame {
 
         jLabel8.setText("Titulo");
 
-        jTextField8.setText("Digite aqui o titulo");
-        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+        jTTitulo.setText("Digite aqui o titulo");
+        jTTitulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField8ActionPerformed(evt);
+                jTTituloActionPerformed(evt);
             }
         });
 
-        jTextField4.setText("Digite aqui o nome do formulario");
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        jTFormName.setText("Digite aqui o nome do formulario");
+        jTFormName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                jTFormNameActionPerformed(evt);
             }
         });
 
@@ -1019,7 +1019,7 @@ public class AcaoGenXSD extends javax.swing.JFrame {
                     .add(jPanel4Layout.createSequentialGroup()
                         .add(jLabel3)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jTextField4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 1172, Short.MAX_VALUE))
+                        .add(jTFormName, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 1172, Short.MAX_VALUE))
                     .add(jPanel4Layout.createSequentialGroup()
                         .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(jLabel4)
@@ -1027,10 +1027,10 @@ public class AcaoGenXSD extends javax.swing.JFrame {
                             .add(jLabel8))
                         .add(66, 66, 66)
                         .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(jTextField6, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 1172, Short.MAX_VALUE)
+                            .add(jTClassificacao, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 1172, Short.MAX_VALUE)
                             .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                                .add(org.jdesktop.layout.GroupLayout.LEADING, jTextField8)
-                                .add(org.jdesktop.layout.GroupLayout.LEADING, jTextField7, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 1172, Short.MAX_VALUE)))))
+                                .add(org.jdesktop.layout.GroupLayout.LEADING, jTTitulo)
+                                .add(org.jdesktop.layout.GroupLayout.LEADING, jTIndice, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 1172, Short.MAX_VALUE)))))
                 .add(37, 37, 37))
         );
         jPanel4Layout.setVerticalGroup(
@@ -1038,18 +1038,18 @@ public class AcaoGenXSD extends javax.swing.JFrame {
             .add(jPanel4Layout.createSequentialGroup()
                 .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel3)
-                    .add(jTextField4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jTFormName, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel4)
-                    .add(jTextField6, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jTClassificacao, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(7, 7, 7)
                 .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jTextField7, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jTIndice, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jLabel5))
                 .add(7, 7, 7)
                 .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jTextField8, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jTTitulo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jLabel8))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
@@ -1163,21 +1163,21 @@ public class AcaoGenXSD extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void jTFormNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFormNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_jTFormNameActionPerformed
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void jTClassificacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTClassificacaoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_jTClassificacaoActionPerformed
 
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+    private void jTIndiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTIndiceActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
+    }//GEN-LAST:event_jTIndiceActionPerformed
 
-    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+    private void jTTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTTituloActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField8ActionPerformed
+    }//GEN-LAST:event_jTTituloActionPerformed
 
     private void close(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_close
         System.exit(0);
@@ -1542,6 +1542,10 @@ public class AcaoGenXSD extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane9;
+    private javax.swing.JTextField jTClassificacao;
+    private javax.swing.JTextField jTFormName;
+    private javax.swing.JTextField jTIndice;
+    private javax.swing.JTextField jTTitulo;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField13;
@@ -1565,9 +1569,5 @@ public class AcaoGenXSD extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField32;
     private javax.swing.JTextField jTextField33;
     private javax.swing.JTextField jTextField34;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
     // End of variables declaration//GEN-END:variables
 }
