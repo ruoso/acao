@@ -243,7 +243,7 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
              . ') else ( '
              . ' (some $verif in $dossie satisfies ($verif[('.$grupos.') and @role = "transferir"])) '
              . ')'
-             . 'order by $x/ns:criacao descending '
+             . ' order by $x/ns:nome ascending '
              . $return;
 
     
@@ -284,7 +284,7 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
               . ' count( for $x in collection("'.$args->{id_volume}.'")/ns:dossie '
               . $where
               . ' return "" )';
-    warn Dumper($count).'';
+
 
    
 
