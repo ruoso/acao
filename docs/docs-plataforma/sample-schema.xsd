@@ -1,0 +1,144 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sample-xsd.xsd"
+    xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sample-xsd.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="formDocumentacao" type="formDocumentacao">
+		<xs:annotation>
+			<xs:appinfo>
+				<xhtml:label>Documentos</xhtml:label>
+                <class:classificacoes>
+                    <class:classificacao>cn=Direitos Humanos</class:classificacao>
+                </class:classificacoes>
+                <idx:index>
+					<idx:hint key="pessoa.nome"
+						xpath="formDocumentacao/nomeCompleto" />	
+					<idx:hint key="pessoa.cpf"
+						xpath="formDocumentacao/cpfNumero" />					
+				</idx:index>		
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="formDocumentacao">
+		<xs:sequence>
+	        <xs:element name="numFormulario" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Número do Formulário</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			<xs:element name="nomeCompleto" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Nome Completo</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			<xs:element name="rgNumero" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Número do RG</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			
+
+			<xs:element name="cpfNumero" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>CPF</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+                       <xs:pattern value="[0-9]+"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="titEleitorNumero" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Título de Eleitor</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			<xs:element name="sexo">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Sexo</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="masc" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Masc</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="fem" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Fem</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="estadoCivil" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Estado civil</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Solteiro(a)" />
+						<xs:enumeration value="Casado(a)" />
+						<xs:enumeration value="Desquitado(a)" />
+						<xs:enumeration value="Junto(a)" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

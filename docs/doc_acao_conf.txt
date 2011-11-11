@@ -1,0 +1,152 @@
+<!-- acao.conf      -->
+
+<!-- Arquivo de configuração da aplicação.
+Configuração da autenticação da plataforma de registro. -->
+<Plugin::Authentication>
+    use_session   1
+    default_realm ldap
+
+    <realms>
+
+<!--   Configuração do modulo do LDAP utilizado na plataforma de registro para autenticação de usuários e validação das autorizações e permissões dos Objetos (Volume, Dossie e Documento) a partir da estrutura de diretório do ldap. -->
+        <ldap>
+            <credential>
+                class Password
+                password_field password
+                password_type  self_check
+            </credential>
+            <store>
+                class LDAP
+                ldap_server localhost
+             <!--   ldap-server :  IP da maquina onde está instalado o openldap -->
+                ldap_server_options
+                timeout 30
+                binddn uid=acao,ou=Ação,dc=sistemas,dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br
+                bindpw senhadoldap
+             <!--  binddn e bindpw  :  usuário e senha do ldap aplicação respectivamente. -->
+                start_tls 0
+                start_tls_options
+                verify none
+                user_basedn dc=rh,dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br
+            <!--  user_basedn  :  Define a DN onde estão os  usuários que serão autenticados pelos sistemas. -->
+                user_basedn   :  Define o Diretorio padrão, do usuário ldap utilizado na aplicação.
+                user_filter (uid=%s)
+                user_scope sub
+                user_field uid
+                deref always
+             <!-- user_search_options :  Define os atributos opcionais utilizados no processo de busca no ldap. -->
+                <user_search_options>
+                  attrs uid
+                  attrs cn
+                  attrs memberof
+                  attrs entrydn
+      raw qr/(?i:^jpegPhoto|;binary)/
+                </user_search_options>
+                use_roles 1
+                role_basedn ou=Ação,dc=sistemas,dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br
+                <!-- role_basedn:  Define a DN da aplicação  -->
+                role_filter (&(objectClass=relacionamentoGrupo)(member=%s))
+                role_scope sub
+                role_field cn
+                role_value cn
+                role_search_options
+                deref always
+            </store>
+        </ldap>
+
+    </realms>
+
+</Plugin::Authentication>
+
+
+<!-- Definição das Roles que serão usados na aplicação. São regras que definem Permissões para os objetos(Volume, dossie, documento) -->
+<roles>
+    <volume>
+        listar cn=listar,ou=volume,ou=Ação,dc=sistemas,dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br
+        visualizar cn=visualizar,ou=volume,ou=Ação,dc=sistemas,dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br
+        criar cn=criar,ou=volume,ou=Ação,dc=sistemas,dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br
+        alterar cn=alterar,ou=volume,ou=Ação,dc=sistemas,dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br
+        transferir cn=transferir,ou=volume,ou=Ação,dc=sistemas,dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br
+    </volume>
+    <dossie>
+        listar cn=listar,ou=dossie,ou=Ação,dc=sistemas,dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br
+        visualizar cn=visualizar,ou=dossie,ou=Ação,dc=sistemas,dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br
+        criar cn=criar,ou=dossie,ou=Ação,dc=sistemas,dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br
+        alterar cn=alterar,ou=dossie,ou=Ação,dc=sistemas,dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br
+        transferir cn=transferir,ou=dossie,ou=Ação,dc=sistemas,dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br
+    </dossie>
+    <documento>
+        listar cn=listar,ou=documento,ou=Ação,dc=sistemas,dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br
+        visualizar cn=visualizar,ou=documento,ou=Ação,dc=sistemas,dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br
+        criar cn=criar,ou=documento,ou=Ação,dc=sistemas,dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br
+        alterar cn=alterar,ou=documento,ou=Ação,dc=sistemas,dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br
+        transferir cn=transferir,ou=volume,ou=Ação,dc=sistemas,dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br
+    </documento>
+    digitador cn=digitador,ou=Ação,dc=sistemas,dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br
+    revisor cn=revisor,ou=Ação,dc=sistemas,dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br
+    consolidador cn=consolidador,ou=Ação,dc=sistemas,dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br
+</roles>
+
+<session>
+    verify_address   0
+    cookie_name   acao_session
+    dbic_class DB::Sessions
+    expires   7200
+</session>
+<!-- Define as configurações do banco Sedna -->
+<Model::Sedna>
+    url 172.30.116.22
+    db_name AcaoDb
+    login acao
+    password 12345
+</Model::Sedna>
+
+<Model::LDAP>
+<!--  Define as DN's mais utilizadas na aplicação - -->
+  dominios_dn dc=rh,dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br
+  grupos_dn dc=adm,dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br
+  assuntos_dn dc=assuntos,dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br
+  local_dn dc=local,dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br
+  admin_super cn=super,ou=admin,ou=Ação,dc=sistemas,dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br
+  admin_registros cn=registros,ou=admin,ou=Ação,dc=sistemas,dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br
+  admin_schemas cn=schemas,ou=admin,ou=Ação,dc=sistemas,dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br
+  base_acao ou=Ação,dc=sistemas,dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br
+  base_adm dc=adm,dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br
+  base_rh dc=rh,dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br
+
+
+<!-- Define as configurações de acesso do usuário normal da plataforma, ouse ja, usuário não admin -->
+  <ldap_config>
+     host 172.30.117.107
+     base dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br
+     dn ou=Ação,uid=acao,dc=sistemas,dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br
+     password senhadoldap
+     raw qr/(?i:^jpegPhoto|;binary)/
+  </ldap_config>
+<!--  Define as configurações de acesso do usuário admin da plataforma. -->
+  <ldap_admin_config>
+     host 172.30.117.107
+     base dc=diretorio,dc=fortaleza,dc=ce,dc=gov,dc=br
+     dn cn=admin,dc=fortaleza,dc=ce,dc=gov,dc=br
+     password 123asd
+     raw qr/(?i:^jpegPhoto|;binary)/
+  </ldap_admin_config>
+</Model::LDAP>
+
+<!--  Define as configurações do banco postgreSQl -->
+<Model::DB>
+    <connect_info>
+        dsn dbi:Pg:host=172.30.116.22;dbname=pmf_desv
+        user acao
+        password acao
+        pg_enable_utf8 1
+    </connect_info>
+</Model::DB>
+
+<!--  Define o direitorio temporario de uploads de arquivos. -->
+<Model::Schema>
+  upload_schemas /tmp/acao/
+</Model::Schema>
+name   Acao
+root   root
+default_view TT
