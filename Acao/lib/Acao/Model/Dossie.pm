@@ -281,9 +281,10 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
     # Contrução da query de contagem para contrução da paginação
     my $count = $declarens
               #. ' count( for $x in collection("'.$args->{id_volume}.'")/ns:dossie[ns:autorizacoes/author:autorizacao[('.$grupos.') and @role="listar"]] '
-              . ' count( for $x in collection("'.$args->{id_volume}.'")/ns:dossie/ns:autorizacoes '
+              . ' count( for $x in collection("'.$args->{id_volume}.'")/ns:dossie '
               . $where
               . ' return "" )';
+    warn Dumper($count).'';
 
    
 
