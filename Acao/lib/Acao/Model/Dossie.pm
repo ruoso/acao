@@ -243,7 +243,7 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
              . ') else ( '
              . ' (some $verif in $dossie satisfies ($verif[('.$grupos.') and @role = "transferir"])) '
              . ')'
-             . 'order by $x/ns:criacao descending '
+             . ' order by $x/ns:nome ascending '
              . $return;
 
     
@@ -281,9 +281,10 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
     # Contrução da query de contagem para contrução da paginação
     my $count = $declarens
               #. ' count( for $x in collection("'.$args->{id_volume}.'")/ns:dossie[ns:autorizacoes/author:autorizacao[('.$grupos.') and @role="listar"]] '
-              . ' count( for $x in collection("'.$args->{id_volume}.'")/ns:dossie/ns:autorizacoes '
+              . ' count( for $x in collection("'.$args->{id_volume}.'")/ns:dossie '
               . $where
               . ' return "" )';
+
 
    
 

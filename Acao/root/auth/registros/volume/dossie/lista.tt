@@ -87,9 +87,6 @@
 
            <dt>Vol. Físico:</dt>
            <dd><span>[% vol.volume_fisico %]</span></dd>
-
-           <dt>Qtd. Prontuários:</dt>
-           <dd><span>[% vol.qtd_prontuarios %]</span></dd>
         </dl>
     </fieldset>
   </div>
@@ -171,7 +168,7 @@
 
           <input type="submit" name="submit_form" id="submit_form_2" value="Pré-visualizar CSV">
           [% ELSE %]
-          <input type="submit" name="submit_form" id="submit_form_2" value="Pesquisar">
+          <input type="submit" name="submit_form" id="submit_form_2" value="Pesquisar" class="defaultEnter" >
           [% END %]
          [% IF c.req.param('submit_form') && (numero_colunas > 0)%]
           <input type="submit" name="gerarCSV" value="Gerar CSV" />
@@ -241,7 +238,7 @@
                                                   interval_ini      => interval_ini,
                                                   num_por_pagina    => num_por_pagina,
                                                   pesquisa          => c.req.params(),
-						  documentos_validos => documentos_validos
+					                        	  documentos_validos => documentos_validos
                                                 });
         #"<textarea cols=180 rows=80>" _ xquery.list _ "</textarea>";
         #c.model('Sedna').conn.setConnectionAttr_CONCURRENCY_TYPE(c.model('Sedna').conn.SEDNA_READONLY_TRANSACTION);
@@ -341,6 +338,17 @@
        }
 
     });
+   //comportamento do ''ENTER''
+
+    $("form input").keypress(function (e) {
+        if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) {
+            $('.defaultEnter').click();
+            return false;
+        } else {
+            return true;
+        }
+    });
+
 
   </script>
   [% INCLUDE 'footer.tt' %]
