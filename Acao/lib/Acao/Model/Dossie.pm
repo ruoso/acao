@@ -147,10 +147,14 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
             $valor_pesquisado,
             $xpprefix
         );
-        push @where, $expr;
+	 push @where, $expr;
+	   
     }
-
     my $where = join '', @where if @where;
+
+
+    
+    
 
     # cria um array do tipo (@principal = dn, 'listar',@principal = dn, 'visualizar') dos memberOf do usuário logado
     my $grupos = join ' or ',
@@ -170,7 +174,17 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
 
     # Query para listagem
 
-
+    # contruindo o retorno para gerar o CSV - Mostrar ou não documentos invalidados. Se checkbox marcado ele mostrara tbm os inativos
+    
+    my $showDocInv = '';
+    my $showDocInv_ = '';
+    
+    
+    if ($args->{pesquisa}{"documentos_inativos"} ne 'on') {	
+	  $showDocInv = ' and  $y/../../dc:invalidacao/text() eq \'1970-01-01T00:00:00Z\' '; 
+    } else {
+	  $showDocInv_ = 'if ($y/../../dc:invalidacao/text() eq "1970-01-01T00:00:00Z") then ( "" ) else ( "inativo"),';
+    }
     my $return;
     # contruindo o retorno para gerar o CSV
     if ($args->{pesquisa}{gerarCSV}) {
@@ -181,12 +195,14 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
         @cols = (map { $self->produce_xpath('col'. $counter++, $_).'/text()' } @cols);
 
         $mnt_return = ' for $y in '.$xpprefix.' return ('
-                    . 'if ('.join (" or ", map { '$y/'.$_ } @cols).') then ('
-                    . 'string-join(( '
-                    . '$x/ns:nome/text(),'
-                    . join (' else(" * "), ' , map { 'if($y/'.$_.') then ($y/'.$_.')' } @cols)
-                    . ' else(" * ")),";-;")'
+                    . 'if (('.join (" or ", map { '$y/'.$_ } @cols).')'.$showDocInv.') then ('
+                        . 'string-join(( '
+                                . '$x/ns:nome/text(),'.$showDocInv_
+                                . join (' else(" * ")," / "), ' , map { 'string-join(if($y/'.$_.') then ($y/'.$_.')' } @cols)
+                    . ' else(" * ")," / ")),";-;")'
+
                     . ') else () )'; ;
+
         $return = "return (".$mnt_return." ),0)";
 
     } else {
@@ -196,8 +212,11 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
               . ') + 1 ,'
               . $args->{num_por_pagina} . '' . ')';
     }
+ 
 
+    
 
+   
     my $list = $declarens
              . 'subsequence('
              . 'for $x in collection("'
@@ -224,18 +243,32 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
              . ') else ( '
              . ' (some $verif in $dossie satisfies ($verif[('.$grupos.') and @role = "transferir"])) '
              . ')'
-             . 'order by $x/ns:criacao descending '
+             . ' order by $x/ns:nome ascending '
              . $return;
 
+    
+    # contruindo o retorno para gerar o CSV - Tratamento e definiação das colunas do CSV
     if ($args->{pesquisa}{gerarCSV}) {
          my @csvData;
-         my @cabecalho_colunas =   map { my $var = $_; $var =~ s/^.*-\s+//go; $var; } @{$args->{pesquisa}{'labels_colunas[]'}}  ;
-         unshift(@cabecalho_colunas,'Nome do Prontuário');
-         warn @cabecalho_colunas;
+         my @label_colunas;
+	 
+	 if (ref($args->{pesquisa}{'labels_colunas[]'}) eq 'ARRAY') {
+	      @label_colunas = @{$args->{pesquisa}{'labels_colunas[]'}} ;
+	  }  else { 
+	      push(@label_colunas,$args->{pesquisa}{'labels_colunas[]'}) ;
+	  }
+	       
+	 
+         my @cabecalho_colunas =   map { my $var = $_; $var =~ s/^.*-\s+//go; $var; } @label_colunas  ;
+	 if ($args->{pesquisa}{"documentos_inativos"}) {	       
+		unshift(@cabecalho_colunas,'Doc. inativos'); 
+	 }          
+	 unshift(@cabecalho_colunas,'Nome do Prontuário');  
+	 
          $self->sedna->execute($list);
          while ( my $item = $self->sedna->get_item ) {
              $item =~ s/^\s//go;
-             my @row = split(/;-;/,$item);
+              my @row = split(/;-;/,$item);   
              push (@csvData,\@row);
          }
         unshift (@csvData,\@cabecalho_colunas );
@@ -248,11 +281,12 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
     # Contrução da query de contagem para contrução da paginação
     my $count = $declarens
               #. ' count( for $x in collection("'.$args->{id_volume}.'")/ns:dossie[ns:autorizacoes/author:autorizacao[('.$grupos.') and @role="listar"]] '
-              . ' count( for $x in collection("'.$args->{id_volume}.'")/ns:dossie/ns:autorizacoes '
+              . ' count( for $x in collection("'.$args->{id_volume}.'")/ns:dossie '
               . $where
               . ' return "" )';
 
 
+   
 
     return {
         list     => $list,

@@ -92,7 +92,6 @@ sub process {
 			$output = "\xEF\xBB\xBF";
 		}
 	}
-	warn "OUT $json";
 	$output .= "$cb(" if $cb;
 	$output .= $json;
 	$output .= ");"   if $cb;

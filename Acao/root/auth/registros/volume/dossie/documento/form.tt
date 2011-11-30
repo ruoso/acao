@@ -115,7 +115,7 @@
 
  <div id="form_container"></div>
   [% INCLUDE 'auth/registros/volume/dossie/documento/_formPermissoes.tt' %]
- <input type="submit" name="Submeter" onClick="javascript:document.getElementById('form').action='[% c.uri_for_action('/auth/registros/volume/dossie/documento/store', [ id_volume, controle ]) %]';" value="Criar">
+ <input type="submit" id="btcriar" name="Submeter" onClick="javascript:document.getElementById('form').action='[% c.uri_for_action('/auth/registros/volume/dossie/documento/store', [ id_volume, controle ]) %]'" value="Criar">
 
  <input type="button" name="Cancelar" onClick="javascript:history.go(-1);" value="Cancelar">
 

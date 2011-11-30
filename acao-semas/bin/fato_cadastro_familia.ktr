@@ -60,6 +60,8 @@
     </slaveservers>
     <clusterschemas>
     </clusterschemas>
+  <created_user/>
+  <created_date>2011&#47;08&#47;08 10:04:43.306</created_date>
   <modified_user>-</modified_user>
   <modified_date>2011&#47;06&#47;22 11:32:46.165</modified_date>
   </info>
@@ -110,7 +112,7 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Execute SQL script (Create View)</from><to>Execute SQL script (MATERIALIZED TB_FATO_CADASTRO_FAMILIA)</to><enabled>N</enabled> </hop>  <hop> <from>Execute SQL script (MATERIALIZED TB_FATO_CADASTRO_FAMILIA)</from><to>TB_FATO_CADASTRO_FAMILIA</to><enabled>N</enabled> </hop>  <hop> <from>Select values</from><to>Table output</to><enabled>Y</enabled> </hop>  <hop> <from>convert date</from><to>Select values</to><enabled>Y</enabled> </hop>  <hop> <from>TB_FATO_CADASTRO_FAMILIA</from><to>convert date</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Execute SQL script (Create View)</from><to>Execute SQL script (MATERIALIZED TB_FATO_CADASTRO_FAMILIA)</to><enabled>Y</enabled> </hop>  <hop> <from>Execute SQL script (MATERIALIZED TB_FATO_CADASTRO_FAMILIA)</from><to>TB_FATO_CADASTRO_FAMILIA</to><enabled>N</enabled> </hop>  <hop> <from>Select values</from><to>Table output</to><enabled>Y</enabled> </hop>  <hop> <from>convert date</from><to>Select values</to><enabled>Y</enabled> </hop>  <hop> <from>TB_FATO_CADASTRO_FAMILIA</from><to>convert date</to><enabled>Y</enabled> </hop>  </order>
   <step>
     <name>Execute SQL script (Create View)</name>
     <type>ExecSQL</type>
@@ -354,6 +356,7 @@ where b.DESCRICAOP1(+) = c.BAIRRO_NOME</sql>
         <length>0</length>
         <precision>-2</precision>
         <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
         <encoding/>
         <decimal_symbol/>
         <grouping_symbol/>
@@ -365,6 +368,7 @@ where b.DESCRICAOP1(+) = c.BAIRRO_NOME</sql>
         <length>0</length>
         <precision>-2</precision>
         <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
         <encoding/>
         <decimal_symbol/>
         <grouping_symbol/>
@@ -376,6 +380,7 @@ where b.DESCRICAOP1(+) = c.BAIRRO_NOME</sql>
         <length>0</length>
         <precision>-2</precision>
         <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
         <encoding/>
         <decimal_symbol/>
         <grouping_symbol/>
@@ -387,6 +392,7 @@ where b.DESCRICAOP1(+) = c.BAIRRO_NOME</sql>
         <length>0</length>
         <precision>-2</precision>
         <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
         <encoding/>
         <decimal_symbol/>
         <grouping_symbol/>
@@ -398,6 +404,7 @@ where b.DESCRICAOP1(+) = c.BAIRRO_NOME</sql>
         <length>0</length>
         <precision>-2</precision>
         <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
         <encoding/>
         <decimal_symbol/>
         <grouping_symbol/>
@@ -409,6 +416,7 @@ where b.DESCRICAOP1(+) = c.BAIRRO_NOME</sql>
         <length>0</length>
         <precision>-2</precision>
         <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
         <encoding/>
         <decimal_symbol/>
         <grouping_symbol/>
@@ -420,6 +428,7 @@ where b.DESCRICAOP1(+) = c.BAIRRO_NOME</sql>
         <length>0</length>
         <precision>-2</precision>
         <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
         <encoding/>
         <decimal_symbol/>
         <grouping_symbol/>
@@ -431,6 +440,7 @@ where b.DESCRICAOP1(+) = c.BAIRRO_NOME</sql>
         <length>0</length>
         <precision>-2</precision>
         <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
         <encoding/>
         <decimal_symbol/>
         <grouping_symbol/>
@@ -442,6 +452,7 @@ where b.DESCRICAOP1(+) = c.BAIRRO_NOME</sql>
         <length>0</length>
         <precision>-2</precision>
         <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
         <encoding/>
         <decimal_symbol/>
         <grouping_symbol/>
@@ -453,6 +464,7 @@ where b.DESCRICAOP1(+) = c.BAIRRO_NOME</sql>
         <length>0</length>
         <precision>-2</precision>
         <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
         <encoding/>
         <decimal_symbol/>
         <grouping_symbol/>
@@ -464,6 +476,7 @@ where b.DESCRICAOP1(+) = c.BAIRRO_NOME</sql>
         <length>0</length>
         <precision>-2</precision>
         <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
         <encoding/>
         <decimal_symbol/>
         <grouping_symbol/>
@@ -475,6 +488,7 @@ where b.DESCRICAOP1(+) = c.BAIRRO_NOME</sql>
         <length>0</length>
         <precision>-2</precision>
         <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
         <encoding/>
         <decimal_symbol/>
         <grouping_symbol/>
@@ -486,6 +500,7 @@ where b.DESCRICAOP1(+) = c.BAIRRO_NOME</sql>
         <length>0</length>
         <precision>-2</precision>
         <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
         <encoding/>
         <decimal_symbol/>
         <grouping_symbol/>
@@ -497,6 +512,7 @@ where b.DESCRICAOP1(+) = c.BAIRRO_NOME</sql>
         <length>0</length>
         <precision>-2</precision>
         <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
         <encoding/>
         <decimal_symbol/>
         <grouping_symbol/>
@@ -508,6 +524,7 @@ where b.DESCRICAOP1(+) = c.BAIRRO_NOME</sql>
         <length>0</length>
         <precision>-2</precision>
         <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
         <encoding/>
         <decimal_symbol/>
         <grouping_symbol/>
@@ -519,6 +536,7 @@ where b.DESCRICAOP1(+) = c.BAIRRO_NOME</sql>
         <length>0</length>
         <precision>-2</precision>
         <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
         <encoding/>
         <decimal_symbol/>
         <grouping_symbol/>
@@ -530,6 +548,7 @@ where b.DESCRICAOP1(+) = c.BAIRRO_NOME</sql>
         <length>0</length>
         <precision>-2</precision>
         <conversion_mask>yyyy-MM-dd</conversion_mask>
+        <date_format_lenient>false</date_format_lenient>
         <encoding/>
         <decimal_symbol/>
         <grouping_symbol/>
@@ -541,6 +560,7 @@ where b.DESCRICAOP1(+) = c.BAIRRO_NOME</sql>
         <length>0</length>
         <precision>-2</precision>
         <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
         <encoding/>
         <decimal_symbol/>
         <grouping_symbol/>

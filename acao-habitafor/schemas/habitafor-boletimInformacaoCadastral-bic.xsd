@@ -324,7 +324,7 @@
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
 									<xs:enumeration value="Adquirida" />
-									<xs:enumeration value="Aludaga" />
+									<xs:enumeration value="Alugada" />
 									<xs:enumeration value="Cedida" />
 									<xs:enumeration value="Ocupada" />
 								</xs:restriction>
@@ -1204,11 +1204,13 @@
 												<xhtml:label>Valor indenização</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
-										<xs:simpleType>
-											<xs:restriction base="xs:string">
-												<xs:maxLength value="255" />
-											</xs:restriction>
-										</xs:simpleType>
+							            <xs:simpleType>
+                                            <xs:restriction base="xs:decimal">
+                                                <xs:fractionDigits value='2'/>
+                                                <xs:maxExclusive value="1000000"/>
+                                                <xs:minInclusive value="-1000000"/>
+                                            </xs:restriction>
+							            </xs:simpleType>
 									</xs:element>
 								</xs:sequence>
 							</xs:complexType>
@@ -1432,7 +1434,7 @@
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
 									<xs:enumeration value="Telefone fixo" />
-									<xs:enumeration value="Telefone celular " />
+									<xs:enumeration value="Telefone celular" />
 									<xs:enumeration value="Telefone público" />
 									<xs:enumeration value="Telefone comunitário" />
 								</xs:restriction>
@@ -1633,6 +1635,7 @@
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
 									<xs:maxLength value="255" />
+                                    <xs:pattern value="[0-9]+[0-9]+"/>
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
@@ -1657,6 +1660,7 @@
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
 									<xs:maxLength value="255" />
+                                    <xs:pattern value="[0-9]+"/>
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
@@ -1847,6 +1851,14 @@
 				</xs:complexType>
 			</xs:element>
 
+			<xs:element name="uniaoHomoafetiva" type="xs:boolean">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>União homoafetiva</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
 			<xs:element name="dadosCompanheiro">
 				<xs:annotation>
 					<xs:appinfo>
@@ -1939,6 +1951,7 @@
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
 									<xs:maxLength value="255" />
+                                    <xs:pattern value="[0-9]+[0-9]+"/>
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
@@ -1963,6 +1976,7 @@
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
 									<xs:maxLength value="255" />
+                                    <xs:pattern value="[0-9]+"/>
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
@@ -2188,6 +2202,7 @@
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
 									<xs:maxLength value="255" />
+                                    <xs:pattern value="[0-9]+[0-9]+"/>
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
@@ -2833,11 +2848,13 @@
 												<xhtml:label>Renda do(a) titular</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
-										<xs:simpleType>
-											<xs:restriction base="xs:string">
-												<xs:maxLength value="255" />
-											</xs:restriction>
-										</xs:simpleType>
+							            <xs:simpleType>
+                                            <xs:restriction base="xs:decimal">
+                                                <xs:fractionDigits value='2'/>
+                                                <xs:maxExclusive value="1000000"/>
+                                                <xs:minInclusive value="-1000000"/>
+                                            </xs:restriction>
+							            </xs:simpleType>
 									</xs:element>
 
 									<xs:element name="rendaCompanheiro" minOccurs="0">
@@ -2846,11 +2863,13 @@
 												<xhtml:label>Renda do companheiro(a)</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
-										<xs:simpleType>
-											<xs:restriction base="xs:string">
-												<xs:maxLength value="255" />
-											</xs:restriction>
-										</xs:simpleType>
+							            <xs:simpleType>
+                                            <xs:restriction base="xs:decimal">
+                                                <xs:fractionDigits value='2'/>
+                                                <xs:maxExclusive value="1000000"/>
+                                                <xs:minInclusive value="-1000000"/>
+                                            </xs:restriction>
+							            </xs:simpleType>
 									</xs:element>
 
 									<xs:element name="valorRecebeBCP" minOccurs="0">
@@ -2859,11 +2878,13 @@
 												<xhtml:label>Valor que recebe do BCP</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
-										<xs:simpleType>
-											<xs:restriction base="xs:string">
-												<xs:maxLength value="255" />
-											</xs:restriction>
-										</xs:simpleType>
+							            <xs:simpleType>
+                                            <xs:restriction base="xs:decimal">
+                                                <xs:fractionDigits value='2'/>
+                                                <xs:maxExclusive value="1000000"/>
+                                                <xs:minInclusive value="-1000000"/>
+                                            </xs:restriction>
+							            </xs:simpleType>
 									</xs:element>
 
 									<xs:element name="valorRecebeBolsaFamilia"
@@ -2873,11 +2894,13 @@
 												<xhtml:label>Valor que recebe do bolsa família</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
-										<xs:simpleType>
-											<xs:restriction base="xs:string">
-												<xs:maxLength value="255" />
-											</xs:restriction>
-										</xs:simpleType>
+							            <xs:simpleType>
+                                            <xs:restriction base="xs:decimal">
+                                                <xs:fractionDigits value='2'/>
+                                                <xs:maxExclusive value="1000000"/>
+                                                <xs:minInclusive value="-1000000"/>
+                                            </xs:restriction>
+							            </xs:simpleType>
 									</xs:element>
 
 									<xs:element name="valorRecebeOutroBeneficio"
@@ -2888,11 +2911,13 @@
 												</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
-										<xs:simpleType>
-											<xs:restriction base="xs:string">
-												<xs:maxLength value="255" />
-											</xs:restriction>
-										</xs:simpleType>
+							            <xs:simpleType>
+                                            <xs:restriction base="xs:decimal">
+                                                <xs:fractionDigits value='2'/>
+                                                <xs:maxExclusive value="1000000"/>
+                                                <xs:minInclusive value="-1000000"/>
+                                            </xs:restriction>
+							            </xs:simpleType>
 									</xs:element>
 
 									<xs:element name="quantoTempoExerceTrabalhoAtual"
@@ -2934,7 +2959,12 @@
 										</xs:annotation>
 										<xs:simpleType>
 											<xs:restriction base="xs:string">
-												<xs:maxLength value="255" />
+												<xs:enumeration value="De R$ 10,00 a R$ 20,00" />
+												<xs:enumeration value="De R$ 21,00 a R$ 30,00" />
+												<xs:enumeration value="De R$ 31,00 a R$ 40,00" />
+												<xs:enumeration value="Acima de R$ 40,00" />
+												<xs:enumeration value="Sem gasto" />
+												<xs:enumeration value="Não informado" />
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:element>
@@ -2945,11 +2975,13 @@
 												<xhtml:label>Despesa com água e esgoto</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
-										<xs:simpleType>
-											<xs:restriction base="xs:string">
-												<xs:maxLength value="255" />
-											</xs:restriction>
-										</xs:simpleType>
+							            <xs:simpleType>
+                                            <xs:restriction base="xs:decimal">
+                                                <xs:fractionDigits value='2'/>
+                                                <xs:maxExclusive value="1000000"/>
+                                                <xs:minInclusive value="-1000000"/>
+                                            </xs:restriction>
+							            </xs:simpleType>
 									</xs:element>
 
 									<xs:element name="despesaGasCarvaoLenha" minOccurs="0">
@@ -2960,7 +2992,12 @@
 										</xs:annotation>
 										<xs:simpleType>
 											<xs:restriction base="xs:string">
-												<xs:maxLength value="255" />
+												<xs:enumeration value="De R$ 10,00 a R$ 20,00" />
+												<xs:enumeration value="De R$ 21,00 a R$ 30,00" />
+												<xs:enumeration value="De R$ 31,00 a R$ 40,00" />
+												<xs:enumeration value="Acima de R$ 40,00" />
+												<xs:enumeration value="Sem gasto" />
+												<xs:enumeration value="Não informado" />
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:element>
@@ -2975,7 +3012,13 @@
 										</xs:annotation>
 										<xs:simpleType>
 											<xs:restriction base="xs:string">
-												<xs:maxLength value="255" />
+												<xs:enumeration value="Até R$ 50,00" />
+												<xs:enumeration value="De R$ 51,00 a R$ 100,00" />
+												<xs:enumeration value="De R$ 101,00 a R$ 150,00" />
+                                                <xs:enumeration value="De R$ 151,00 a R$ 199,00" />
+												<xs:enumeration value="Acima de R$ 200,00" />
+												<xs:enumeration value="Sem gasto" />
+												<xs:enumeration value="Não informado" />
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:element>
@@ -2988,7 +3031,12 @@
 										</xs:annotation>
 										<xs:simpleType>
 											<xs:restriction base="xs:string">
-												<xs:maxLength value="255" />
+												<xs:enumeration value="Até R$40,00" />
+												<xs:enumeration value="De R$41,00 a R$80,00" />
+												<xs:enumeration value="De R$81,00 a R$120,00" />
+												<xs:enumeration value="Acima de R$ 120,00" />
+												<xs:enumeration value="Sem gasto" />
+												<xs:enumeration value="Não informado" />
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:element>
@@ -2999,11 +3047,13 @@
 												<xhtml:label>Despesas com aluguel</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
-										<xs:simpleType>
-											<xs:restriction base="xs:string">
-												<xs:maxLength value="255" />
-											</xs:restriction>
-										</xs:simpleType>
+							            <xs:simpleType>
+                                            <xs:restriction base="xs:decimal">
+                                                <xs:fractionDigits value='2'/>
+                                                <xs:maxExclusive value="1000000"/>
+                                                <xs:minInclusive value="-1000000"/>
+                                            </xs:restriction>
+							            </xs:simpleType>
 									</xs:element>
 
 									<xs:element name="despesaMedicamentos" minOccurs="0">
@@ -3015,7 +3065,12 @@
 										</xs:annotation>
 										<xs:simpleType>
 											<xs:restriction base="xs:string">
-												<xs:maxLength value="255" />
+												<xs:enumeration value="De R$ 10,00 a R$ 20,00" />
+												<xs:enumeration value="De R$ 21,00 a R$ 30,00" />
+												<xs:enumeration value="De R$ 31,00 a R$ 40,00" />
+												<xs:enumeration value="Acima de R$ 40,00" />
+												<xs:enumeration value="Sem gasto" />
+												<xs:enumeration value="Não informado" />
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:element>

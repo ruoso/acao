@@ -276,6 +276,13 @@ txn_method 'getDadosVolumeId' => authorized $role_listar => sub {
 
     }
 
+    if ($id_volume) {
+        $xq = 'count(collection("'. $id_volume . '"))';
+        my $qtdePront = 0;
+        $self->sedna->execute($xq);
+        $qtdePront = $self->sedna->get_item;
+        $vol->{qtd_prontuarios} = $qtdePront;
+    }
     return $vol;
 };
 

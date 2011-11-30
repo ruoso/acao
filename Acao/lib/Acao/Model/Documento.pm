@@ -127,12 +127,8 @@ txn_method 'listar_documentos' => authorized $role_listar => sub {
        $list .= ' return ($i , ' . $args->{xqueryret} . '), ';
        $list .= '(('.$args->{interval_ini}.' * '.$args->{num_por_pagina}.') + 1), '.$args->{num_por_pagina}.')';
 
-    my $count = $declare_namespace . 'count(' . $xquery_for . $xquery_where . ' return "")';
-warn 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
-warn $count;
-warn 'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB';
-warn $list;
-
+    my $count = $declare_namespace
+              . 'count('.$xquery_for.$xquery_where.' return "")';
     return {
         list  => $list,
         count => $count
