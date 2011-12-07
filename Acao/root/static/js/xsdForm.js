@@ -26,7 +26,6 @@ function createInput(type, name, id, maxlength, valorPadrao) {
         newInput.setAttribute('maxlength', maxlength);
     }
     if (valorPadrao == '[0-9]+') {
-alert(name);
          newInput.setAttribute('class', 'xsdForm__cpf');
     }
     if (valorPadrao == '[0-9]+[0-9]+') {
@@ -180,8 +179,9 @@ function getQtdNodeByName(xmlNode,numType,tagName) {
 }
 
 function static_type(type) {
+//alert(type);
     if ( type == "xs:string" ||
-         type == "xsdext:cpf" ||
+         type == "cpf" ||
          type == "xs:float" ||
          type == "xs:integer" ||
          type == "xs:date" ||
@@ -648,7 +648,6 @@ function generateXmlFromSimpleTextNode(odoc, namespace, tagRaiz, xmlNode, namePa
         if (!validateValue(type, valueField)) {
             $('#'+inputName+"_input_deflate").addClass('xsd__validationfailed');
             $('#'+inputName).addClass('xsd__validationfailed');
-            alert(name);
             throw "Erro de validação";
         } else {
             $('#'+inputName+"_input_deflate").removeClass('xsd__validationfailed');
@@ -846,7 +845,7 @@ function generateFormField(tagRaiz, xmlNode, type, namePattern, minOccurs, maxOc
         field = createFieldString(inputName, minOccurs, maxOccurs);
     } else if ( type == "xs:float" ) {
         field = createFieldFloat(inputName, minOccurs, maxOccurs);
-    } else if ( type == "xsdext:cpf" ) {
+    } else if ( type == "cpf" ) {
         field = createInput('text', inputName, inputName, '255', '[0-9]+');
     } else if ( type == "xs:decimal" ) {
         field = createFieldDecimal(inputName, minOccurs, maxOccurs);
@@ -1070,7 +1069,7 @@ function validateValue(type, value) {
         return validateDate(value);
     } else if (type == "xs:dateTime") {
         return validateDateTime(value);
-    } else if (type == "xsdext:cpf") {
+    } else if (type == "cpf") {
         return verificaCPF(value);
     } else {
         return true;
