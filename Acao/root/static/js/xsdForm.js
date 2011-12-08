@@ -179,7 +179,6 @@ function getQtdNodeByName(xmlNode,numType,tagName) {
 }
 
 function static_type(type) {
-//alert(type);
     if ( type == "xs:string" ||
          type == "cpf" ||
          type == "xs:float" ||
