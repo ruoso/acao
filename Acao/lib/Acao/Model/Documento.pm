@@ -80,20 +80,13 @@ txn_method 'listar_documentos' => authorized $role_listar => sub {
     my ( $self, $args ) = @_;
 
 
-    my $declare_namespace =
-'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";';
-    $declare_namespace .=
-'declare namespace dc = "http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";';
-    $declare_namespace .=
-'declare namespace adt = "http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd";';
-    $declare_namespace .=
-'declare namespace author = "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";';
-    $declare_namespace .=
-'declare namespace vol = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";';
-    $declare_namespace .=
-      'declare namespace xhtml = "http://www.w3.org/1999/xhtml";';
-    $declare_namespace .=
-      'declare namespace xss = "http://www.w3.org/2001/XMLSchema";';
+    my $declare_namespace = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";';
+    $declare_namespace .= 'declare namespace dc = "http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";';
+    $declare_namespace .= 'declare namespace adt = "http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd";';
+    $declare_namespace .= 'declare namespace author = "http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";';
+    $declare_namespace .= 'declare namespace vol = "http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";';
+    $declare_namespace .= 'declare namespace xhtml = "http://www.w3.org/1999/xhtml";';
+    $declare_namespace .= 'declare namespace xss = "http://www.w3.org/2001/XMLSchema";';
       #######################################################################
     my $grupos = join ' or ',
       map { '@principal = "' . $_ . '"' } @{ $self->user->memberof };
@@ -149,8 +142,7 @@ txn_method 'listar_documentos' => authorized $role_listar => sub {
 txn_method 'inserir_documento' => authorized $role_criar => sub {
     my $self = shift;
     my ( $ip, $xml, $id_volume, $controle, $xsdDocumento,
-        $representaDocumentoFisico,$herdar_author, $autorizacoes , $id_documento )
-      = @_;
+        $representaDocumentoFisico,$herdar_author, $autorizacoes , $id_documento ) = @_;
 
     my $role = 'role';
 
@@ -240,11 +232,11 @@ txn_method 'inserir_documento' => authorized $role_criar => sub {
           . '")/ns:dossie[ns:controle="'
           . $controle . '"]
                                                          /ns:doc/dc:documento[dc:id = "'
-          . $id_documento
+          . $uuid_str
           . '"]/dc:motivoInvalidacao
                                                          with <dc:motivoInvalidacao documentoOriginal="'.$id_documento.'">replace</dc:motivoInvalidacao>';
         $self->sedna->execute($xq_motivo_invalidacao);
-        
+
         $self->drop_indices( $id_volume, $controle, $id_documento );
 
     }

@@ -52,7 +52,13 @@
 				</xs:annotation>
 				<xs:simpleType>
 					<xs:restriction base="xs:string">
-						<xs:maxLength value="255" />
+						<xs:enumeration value="POPFOR"/>
+						<xs:enumeration value="PROJOVEM URBANO"/>
+						<xs:enumeration value="ADOLESCENTE CIDADÃO"/>
+						<xs:enumeration value="CIDADE GRAFITE"/>
+						<xs:enumeration value="CUCA BARRA"/>
+						<xs:enumeration value="JUVENTUDE, CULTURA E MOVIMENTO"/>
+						<xs:enumeration value="CIDADE GRAFITE"/>
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>

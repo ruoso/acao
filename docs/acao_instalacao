@@ -3,7 +3,7 @@ Instalando/Configurando
 
 Pre-requisitos:
 
-apt-get install make gcc cmake flex postgresql-server-dev-8.4
+apt-get install make gcc cmake flex postgresql-server-dev-8.4 libpq-dev
 
 1 - Criando usuario no github
     1.1 - Criar usuario (http://github.com/)
@@ -101,10 +101,23 @@ apt-get install make gcc cmake flex postgresql-server-dev-8.4
     7.14 - install Class::MOP
     7.15 - install Catalyst::Log::Log4perl
     7.16 - install Catalyst::View::JSON
+    7.17 - Catalyst::View::Download
+    7.18 - XML::Compile::Schema 
+    7.19 - CatalystX::Component::Traits  
+    7.20 - MooseX::Traits::Pluggable
+    
+    7.30 Adicionando o Path do driver do sedna no SO.
+        7.31  Como root abra o arquivo ld.so.conf.   sudo gedit  /etc/ld.so.conf
+        7.32  Acrescente o path onde está localizado o driver do sedna. Ex: ~/sedna/driver/c
+        sudo ldconfig
+
+
 
 8 - Instalando módulos necessários no linux
     8.1 - sudo apt-get install zlib1g-de
     8.2 - sudo apt-get install libnet-ssleay
+
+
 
 9 - Instalando o LibXML no Linux
     9.1 Para baixar e instalar o LibXML digite no console: sudo apt-get install libxml2-dev

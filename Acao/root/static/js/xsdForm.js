@@ -180,8 +180,9 @@ function getQtdNodeByName(xmlNode,numType,tagName) {
 }
 
 function static_type(type) {
+//alert(type);
     if ( type == "xs:string" ||
-         type == "xsdext:cpf" ||
+         type == "cpf" ||
          type == "xs:float" ||
          type == "xs:integer" ||
          type == "xs:date" ||
@@ -846,7 +847,7 @@ function generateFormField(tagRaiz, xmlNode, type, namePattern, minOccurs, maxOc
         field = createFieldString(inputName, minOccurs, maxOccurs);
     } else if ( type == "xs:float" ) {
         field = createFieldFloat(inputName, minOccurs, maxOccurs);
-    } else if ( type == "xsdext:cpf" ) {
+    } else if ( type == "cpf" ) {
         field = createInput('text', inputName, inputName, '255', '[0-9]+');
     } else if ( type == "xs:decimal" ) {
         field = createFieldDecimal(inputName, minOccurs, maxOccurs);
@@ -1070,7 +1071,7 @@ function validateValue(type, value) {
         return validateDate(value);
     } else if (type == "xs:dateTime") {
         return validateDateTime(value);
-    } else if (type == "xsdext:cpf") {
+    } else if (type == "cpf") {
         return verificaCPF(value);
     } else {
         return true;

@@ -196,11 +196,13 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
 
         $mnt_return = ' for $y in '.$xpprefix.' return ('
                     . 'if (('.join (" or ", map { '$y/'.$_ } @cols).')'.$showDocInv.') then ('
-                    . 'string-join(( '
-                    . '$x/ns:nome/text(),'.$showDocInv_
-                    . join (' else(" * "), ' , map { 'if($y/'.$_.') then ($y/'.$_.')' } @cols)
-                    . ' else(" * ")),";-;")'
+                        . 'string-join(( '
+                                . '$x/ns:nome/text(),'.$showDocInv_
+                                . join (' else(" * ")," / "), ' , map { 'string-join(if($y/'.$_.') then ($y/'.$_.')' } @cols)
+                    . ' else(" * ")," / ")),";-;")'
+
                     . ') else () )'; ;
+
         $return = "return (".$mnt_return." ),0)";
 
     } else {
@@ -241,7 +243,7 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
              . ') else ( '
              . ' (some $verif in $dossie satisfies ($verif[('.$grupos.') and @role = "transferir"])) '
              . ')'
-             . 'order by $x/ns:criacao descending '
+             . ' order by $x/ns:nome ascending '
              . $return;
 
     
@@ -266,7 +268,7 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
          $self->sedna->execute($list);
          while ( my $item = $self->sedna->get_item ) {
              $item =~ s/^\s//go;
-             my @row = split(/;-;/,$item);
+              my @row = split(/;-;/,$item);   
              push (@csvData,\@row);
          }
         unshift (@csvData,\@cabecalho_colunas );
@@ -279,9 +281,10 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
     # Contrução da query de contagem para contrução da paginação
     my $count = $declarens
               #. ' count( for $x in collection("'.$args->{id_volume}.'")/ns:dossie[ns:autorizacoes/author:autorizacao[('.$grupos.') and @role="listar"]] '
-              . ' count( for $x in collection("'.$args->{id_volume}.'")/ns:dossie/ns:autorizacoes '
+              . ' count( for $x in collection("'.$args->{id_volume}.'")/ns:dossie '
               . $where
               . ' return "" )';
+
 
    
 

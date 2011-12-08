@@ -12,7 +12,7 @@
       {$x/dc:criacao/text()}
     </td>
 
-    {if ( $x/dc:invalidacao/text() eq '1970-01-01T00:00:00Z' ) then (
+    {if ( $x/dc:invalidacao/text() ne '1970-01-01T00:00:00Z' ) then (
         <td class="longDateFormat">
         <x class="longDateFormat">
             {replace ($x/dc:invalidacao/text(), '1970-01-01T00:00:00Z', '-')}
@@ -32,7 +32,7 @@
     { if ( $x/dc:representaDocumentoFisico/text() eq '1' ) then ("Sim") else ("Não") }
     </td>
     <td>
-{ if ( exists($x/dc:motivoInvalidacao/@documentoOriginal) ) then (
+{ if (exists($x/dc:motivoInvalidacao/@documentoOriginal) ) then (
     <a title="{$x/dc:motivoInvalidacao/@documentoOriginal}" href="[% c.uri_for_action('/auth/registros/volume/dossie/documento/visualizar', [ id_volume, controle, '___id_documento___' ]).replace('___id_documento___', '{$x/dc:motivoInvalidacao/@documentoOriginal}') %]">Original</a>
 ) else ( ) }
     </td>
