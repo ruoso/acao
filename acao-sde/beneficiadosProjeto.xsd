@@ -79,10 +79,10 @@
 							</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-				        <xs:element name="nit" minOccurs="0">
+				        <xs:element name="nid" minOccurs="0">
 				            <xs:annotation>
 				                <xs:appinfo>
-				                    <xhtml:label>NIT</xhtml:label>
+				                    <xhtml:label>NID</xhtml:label>
 				                </xs:appinfo>
 				            </xs:annotation>
 				            <xs:simpleType>
@@ -186,22 +186,40 @@
 							</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="deficiencia"  minOccurs="0">
+						<xs:element name="naoPossuiDeficiencia" minOccurs="0" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Deficiência</xhtml:label>
+									<xhtml:label>Não possui deficiência</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
-							<xs:simpleType>
-							<xs:restriction base="xs:string">
-								<xs:enumeration value="Não informou" />
-								<xs:enumeration value="Nenhuma" />
-								<xs:enumeration value="Auditiva" />
-								<xs:enumeration value="Física" />
-								<xs:enumeration value="Mental" />
-								<xs:enumeration value="Visual" />
-							</xs:restriction>
-							</xs:simpleType>
+						</xs:element>
+						<xs:element name="possuiDeficienciaAuditiva" minOccurs="0" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Possui deficiência auditiva</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="possuiDeficienciaFisica" minOccurs="0" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Possui deficiência física</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="possuiDeficienciaMental" minOccurs="0" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Possui deficiência mental</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="possuiDeficienciaVisual" minOccurs="0" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Possui deficiência visual</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
 						</xs:element>
 						<xs:element name="estadocivil"  minOccurs="0">
 							<xs:annotation>
@@ -358,6 +376,78 @@
 				                </xs:restriction>
 				            </xs:simpleType>
 				        </xs:element>
+						<xs:element name="rendaPessoal"  minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Renda pessoal</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="De 0 até 0,5 salário mínimo" />
+								<xs:enumeration value="Acima de 0,5 até 1 salário mínimo" />
+								<xs:enumeration value="Acima de 1 até 2 salários mínimos" />
+								<xs:enumeration value="Acima de 2 até 3 salários mínimos" />
+								<xs:enumeration value="Acima de 3 até 5 salários mínimos" />
+								<xs:enumeration value="Acima de 5 até 10 salários mínimos" />
+								<xs:enumeration value="Acima de 10 até 20 salários mínimos" />
+								<xs:enumeration value="Acima de 20 salários mínimos" />
+							</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="rendaFamiliar"  minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Renda familiar</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="De 0 até 0,5 salário mínimo" />
+								<xs:enumeration value="Acima de 0,5 até 1 salário mínimo" />
+								<xs:enumeration value="Acima de 1 até 2 salários mínimos" />
+								<xs:enumeration value="Acima de 2 até 3 salários mínimos" />
+								<xs:enumeration value="Acima de 3 até 5 salários mínimos" />
+								<xs:enumeration value="Acima de 5 até 10 salários mínimos" />
+								<xs:enumeration value="Acima de 10 até 20 salários mínimos" />
+								<xs:enumeration value="Acima de 20 salários mínimos" />
+							</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+			            <xs:element name="qtPessoasTrabalham" type="xs:integer" minOccurs="0">
+				            <xs:annotation>
+					            <xs:appinfo>
+						            <xhtml:label>Nr de pessoas que trabalham</xhtml:label>
+					            </xs:appinfo>
+				            </xs:annotation>
+			            </xs:element>
+			            <xs:element name="qtPessoasResidentes" type="xs:integer" minOccurs="0">
+				            <xs:annotation>
+					            <xs:appinfo>
+						            <xhtml:label>Nr de pessoas residentes</xhtml:label>
+					            </xs:appinfo>
+				            </xs:annotation>
+			            </xs:element>
+						<xs:element name="tipoAtividade"  minOccurs="0" type="xs:string">
+								<xs:annotation>
+									<xs:appinfo>
+										<xhtml:label>Tipo de atividade</xhtml:label>
+									</xs:appinfo>
+								</xs:annotation>
+						</xs:element>
+						<xs:element name="possuiBolsaFamilia"  minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Possui bolsa família</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="Sim" />
+								<xs:enumeration value="Não" />
+							</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
 						<xs:element name="obs"  minOccurs="0" type="xs:string">
 								<xs:annotation>
 									<xs:appinfo>
