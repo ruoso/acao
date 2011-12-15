@@ -254,13 +254,24 @@ function generateXsdFormUI() {
     $('input.xsdForm__float.inflated').regexMask('float-ptbr');
 
     $('input.xsdForm__integer').regexMask('integer');
-
+    
     $('input.autoComplete').each(
-	function(i,elemento) {
-		$(this).autocomplete({
-                	source: $(elemento).attr('rel'),
-			minLength: 2	                
-	        });
+	    function(i,elemento) {
+		    $(this).autocomplete({
+                source: $(elemento).attr('rel'),
+			    minLength: 2,    
+                select: function( event, ui ) {				
+			    	$( ".xsdForm__ser" ).val( ui.item.regional );
+                    $(this).val(ui.item.bairro);					
+			    	return false; 
+                }
+                
+			}).data( "autocomplete" )._renderItem = function( ul, item ) {
+			    return $( "<li></li>" )
+				    .data( "item.autocomplete", item )
+				    .append( "<a>" + item.bairro + "</a>" )
+				    .appendTo( ul );
+    		}
 	});
 
     $('input.xsdForm__cpf').inputDeflate({

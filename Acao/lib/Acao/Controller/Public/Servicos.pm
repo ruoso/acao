@@ -68,7 +68,7 @@ sub bairros : Chained('/') : PathPart('bairros') : Args(0) {
   my $bairro = $c->req->param('term');
   my $result = $c->model('Bairros')->listaBairros($bairro);
   $c->stash->{json} = $result;
-  warn Dumper($result);
+  warn Dumper($result ) ;
   $c->forward('View::JSON');
 }
 

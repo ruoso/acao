@@ -44,6 +44,13 @@ __PACKAGE__->add_columns(
         is_nullable       => 0,
         size              => undef,
     },
+    "regional",
+    {
+        data_type         => "varchar",
+        default_value     => undef,
+        is_nullable       => 0,
+        size              => undef,
+    },
 );
 
 

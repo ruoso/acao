@@ -469,7 +469,9 @@ function generateFormFromSimpleTypeNodeRestrictionEnumeration(tagRaiz, xmlNode, 
     var newLabel = document.createElement("label");
     newLabel.innerHTML = label;
     newLabel.htmlFor = inputName;
-
+    if(name = 'ser'){
+         newSelect.setAttribute('class', 'xsdForm__ser');
+    }
     dt.appendChild(newLabel);
 
     dd.appendChild(newSelect);
