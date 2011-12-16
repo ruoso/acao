@@ -26,7 +26,6 @@ function createInput(type, name, id, maxlength, valorPadrao) {
         newInput.setAttribute('maxlength', maxlength);
     }
     if (valorPadrao == '[0-9]+') {
-alert(name);
          newInput.setAttribute('class', 'xsdForm__cpf');
     }
     if (valorPadrao == '[0-9]+[0-9]+') {
@@ -648,7 +647,6 @@ function generateXmlFromSimpleTextNode(odoc, namespace, tagRaiz, xmlNode, namePa
         if (!validateValue(type, valueField)) {
             $('#'+inputName+"_input_deflate").addClass('xsd__validationfailed');
             $('#'+inputName).addClass('xsd__validationfailed');
-            alert(name);
             throw "Erro de validação";
         } else {
             $('#'+inputName+"_input_deflate").removeClass('xsd__validationfailed');
