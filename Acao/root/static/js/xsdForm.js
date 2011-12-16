@@ -180,7 +180,6 @@ function getQtdNodeByName(xmlNode,numType,tagName) {
 }
 
 function static_type(type) {
-//alert(type);
     if ( type == "xs:string" ||
          type == "cpf" ||
          type == "xs:float" ||
@@ -515,9 +514,9 @@ function generateFormFromSimpleTypeNodeRestrictionMaxLength(tagRaiz, xmlNode, na
 
     if (engine) {
 	if (field.getAttribute('class')) {
-		 field.setAttribute('class', field.getAttribute('class')+ ' '+ engine)
+		 field.setAttribute('class', field.getAttribute('class')+ ' '+ engine);
 	} else {
-		 field.setAttribute('class', engine)
+		 field.setAttribute('class', engine);
 	}
         field.setAttribute('rel', service);
     }
