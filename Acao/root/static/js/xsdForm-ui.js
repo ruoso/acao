@@ -256,20 +256,37 @@ function generateXsdFormUI() {
     $('input.xsdForm__integer').regexMask('integer');
     
     $('input.autoComplete').each(
+	function(i,elemento) {
+		$(this).autocomplete({
+                	source: $(elemento).attr('rel'),
+			minLength: 2	                
+	        });
+	});
+
+    $('input.autoCompletePlus').each(
 	    function(i,elemento) {
+            //regexp para tirar o #....... do rel
+            //no select fazer o tratamento para preencher o outro campo
+            consulta = $(elemento).attr('rel').replace(/#.*$/gi, '');
+            item_value = $(elemento).attr('rel').replace(/^.*value\=(\w+).*$/, '$1');
+            target = $(elemento).attr('rel').replace(/^.*target\=(\w+).*$/, '$1');
+            defaultTarget = $(elemento).attr('rel').replace(/^.*defaultTarget\=(\w+).*$/, '$1');
+            label = '#xsdform_____' + target;
 		    $(this).autocomplete({
-                source: $(elemento).attr('rel'),
+                source: consulta,
 			    minLength: 2,    
-                select: function( event, ui ) {				
-			    	$( ".xsdForm__ser" ).val( ui.item.regional );
-                    $(this).val(ui.item.bairro);					
+                select: function( event, ui ) {	
+                    //atribui ao campo de ser o nome do ser selecionado a partir do bairro.						
+			    	eval($( label ).val( eval('ui.item.'+ item_value) ) ); 
+                    // atribui ao campo de bairro o nome do bairro selecionado.				
+                    $(this).val(eval('ui.item.'+ defaultTarget));
 			    	return false; 
                 }
                 
 			}).data( "autocomplete" )._renderItem = function( ul, item ) {
 			    return $( "<li></li>" )
 				    .data( "item.autocomplete", item )
-				    .append( "<a>" + item.bairro + "</a>" )
+				    .append( "<a>" + eval('item.'+defaultTarget) + "</a>" )
 				    .appendTo( ul );
     		}
 	});

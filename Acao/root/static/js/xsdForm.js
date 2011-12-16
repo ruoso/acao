@@ -469,9 +469,9 @@ function generateFormFromSimpleTypeNodeRestrictionEnumeration(tagRaiz, xmlNode, 
     var newLabel = document.createElement("label");
     newLabel.innerHTML = label;
     newLabel.htmlFor = inputName;
-    if(name = 'ser'){
-         newSelect.setAttribute('class', 'xsdForm__ser');
-    }
+//    if(name = 'ser'){
+//         newSelect.setAttribute('class', 'xsdForm__ser');
+//    }
     dt.appendChild(newLabel);
 
     dd.appendChild(newSelect);
@@ -517,7 +517,7 @@ function generateFormFromSimpleTypeNodeRestrictionMaxLength(tagRaiz, xmlNode, na
 	if (field.getAttribute('class')) {
 		 field.setAttribute('class', field.getAttribute('class')+ ' '+ engine)
 	} else {
-		 field.setAttribute('class', engine)
+		 field.setAttribute('class', engine);
 	}
         field.setAttribute('rel', service);
     }
