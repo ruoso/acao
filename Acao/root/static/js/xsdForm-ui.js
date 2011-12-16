@@ -258,7 +258,7 @@ function generateXsdFormUI() {
     $('input.autoComplete').each(
 	function(i,elemento) {
 		$(this).autocomplete({
-                	source: $(elemento).attr('rel'),
+            source: $(elemento).attr('rel'),
 			minLength: 2	                
 	        });
 	});
@@ -266,12 +266,12 @@ function generateXsdFormUI() {
     $('input.autoCompletePlus').each(
 	    function(i,elemento) {
             //regexp para tirar o #....... do rel
-            //no select fazer o tratamento para preencher o outro campo
             consulta = $(elemento).attr('rel').replace(/#.*$/gi, '');
             item_value = $(elemento).attr('rel').replace(/^.*value\=(\w+).*$/, '$1');
             target = $(elemento).attr('rel').replace(/^.*target\=(\w+).*$/, '$1');
             defaultTarget = $(elemento).attr('rel').replace(/^.*defaultTarget\=(\w+).*$/, '$1');
             label = '#xsdform_____' + target;
+            //no select fazer o tratamento para preencher o outro campo
 		    $(this).autocomplete({
                 source: consulta,
 			    minLength: 2,    

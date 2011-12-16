@@ -72,6 +72,17 @@ sub bairros : Chained('/') : PathPart('bairros') : Args(0) {
   $c->forward('View::JSON');
 }
 
+# lista os bairros com sua respectiva regional fazendo a busca na model bairros
+sub bairrosRegional : Chained('/') : PathPart('bairrosRegional') : Args(0) {
+
+  my ($self, $c) = @_;
+  my $bairro = $c->req->param('term');
+  my $result = $c->model('BairrosRegional')->listaBairros($bairro);
+  $c->stash->{json} = $result;
+  warn Dumper($result ) ;
+  $c->forward('View::JSON');
+}
+
 # lista os municipios fazendo a busca na model municipios
 sub municipios : Chained('/') : PathPart('municipios') : Args(0) {
 

@@ -1,4 +1,4 @@
-package Acao::Model::Bairros;
+package Acao::Model::BairrosRegional;
 
 
 # Copyright 2010 - Prefeitura Municipal de Fortaleza
@@ -34,12 +34,14 @@ sub listaBairros {
 	my @regional;
 	my @result = $self->dbic->resultset('Bairros')->search(
 		{ nome => { like => '%'.$dsc_bairro.'%' } },
-		{ columns => ['nome']},
+		{ columns => ['nome', 'regional']},
 		{ rows => 30},
 	);
 
 	for my $rset (@result) {
-		push @bairros, $rset->nome;
+		push @bairros, { bairro => $rset->nome,                         
+                          regional => $rset->regional
+                        };
 	}
 
 	return \@bairros;
