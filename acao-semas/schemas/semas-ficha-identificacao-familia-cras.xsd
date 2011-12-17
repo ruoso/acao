@@ -65,7 +65,7 @@
 						<xs:element name="dataCadastro" minOccurs="0" type="xs:date">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Data Cadastro</xhtml:label>
+									<xhtml:label>Data preenchimento</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -131,7 +131,7 @@
 							</xs:annotation>
 							<xs:simpleType>
 							<xs:restriction base="xs:string">
-								<xs:enumeration value="Demanda Expontânea" />
+								<xs:enumeration value="Demanda Espontânea" />
 								<xs:enumeration value="Busca Ativa" />
 								<xs:enumeration value="Demanda Encaminhada" />
 							</xs:restriction>
@@ -333,7 +333,7 @@
 				        <xs:element name="pontoRefResp" minOccurs="0">
 				            <xs:annotation>
 				                <xs:appinfo>
-				                    <xhtml:label>Ponto de Referencia</xhtml:label>
+				                    <xhtml:label>Ponto de Referência</xhtml:label>
 				                </xs:appinfo>
 				            </xs:annotation>
 				            <xs:simpleType>
@@ -762,6 +762,7 @@
 							
 							<xs:complexType>
 								<xs:sequence>
+							        
 							        <xs:element name="nomeMembro" minOccurs="0">
 							            <xs:annotation>
 							                <xs:appinfo>
@@ -774,6 +775,7 @@
 							                </xs:restriction>
 							            </xs:simpleType>
 							        </xs:element>
+									
 									<xs:element name="sexoMembro"  minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
@@ -789,10 +791,11 @@
 										</xs:restriction>
 										</xs:simpleType>
 									</xs:element>
+									
 									<xs:element name="benefMembro"  minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Beneficio</xhtml:label>
+												<xhtml:label>Benefício</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:simpleType>
@@ -806,6 +809,7 @@
 										</xs:restriction>
 										</xs:simpleType>
 									</xs:element>
+									
 									<xs:element name="dataNascMembro" minOccurs="0" type="xs:date">
 										<xs:annotation>
 											<xs:appinfo>
@@ -813,6 +817,7 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
+							        
 							        <xs:element name="escolarMembro" minOccurs="0">
 							            <xs:annotation>
 							                <xs:appinfo>
@@ -828,6 +833,25 @@
 										</xs:sequence>
 									</xs:complexType>
 								</xs:element>
+								
+								<xs:element name="servParticipa"  minOccurs="0">
+									<xs:annotation>
+										<xs:appinfo>
+											<xhtml:label>Participa Serviço</xhtml:label>
+										</xs:appinfo>
+									</xs:annotation>
+									<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="" />
+										<xs:enumeration value="Multiplicidade" />
+										<xs:enumeration value="Cadastro Aberto" />
+										<xs:enumeration value="Cadastro Fechado" />
+										<xs:enumeration value="Extraído" />
+									</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								
+								
 		            </xs:sequence>
 		        </xs:complexType>
 	        </xs:element>
@@ -847,7 +871,7 @@
 						<xs:element name="dadosComplementares" minOccurs="0" maxOccurs="20">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Membros da Familia</xhtml:label>
+									<xhtml:label>Membros da Família</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
@@ -1181,7 +1205,7 @@
 						<xs:element name="descCondicCadunico"  minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>6.5 Encontra-se em situação de descumprimento de  condicionalidade</xhtml:label>
+									<xhtml:label>6.5 Encontra-se em situação de descumprimento de condicionalidade</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -1210,16 +1234,16 @@
 						<xs:element name="tipoSansaoCadunico"  minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>6.7 Tipo de Sansão</xhtml:label>
+									<xhtml:label>6.7 Tipo de Sanção</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
 							<xs:restriction base="xs:string">
-								<xs:enumeration value="I-Advertência" />
-								<xs:enumeration value="II-Bloqueio por 30 dias" />
-								<xs:enumeration value="III-1ª Suspensão por 60 dias" />
-								<xs:enumeration value="IV-2ª Suspensão por 60 dias" />
-								<xs:enumeration value="V-Cancelamento do benefício" />
+								<xs:enumeration value="I  - Advertência" />
+								<xs:enumeration value="II - Bloqueio por 30 dias" />
+								<xs:enumeration value="III- 1ª Suspensão por 60 dias" />
+								<xs:enumeration value="IV - 2ª Suspensão por 60 dias" />
+								<xs:enumeration value="V  - Cancelamento do benefício" />
 							</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
@@ -1369,7 +1393,7 @@
             			<xs:element name="sitRiscoDrogadAlcool" minOccurs="0" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Drogadição/ Alcoolismo</xhtml:label>
+									<xhtml:label>Drogadição/Alcoolismo</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -1394,7 +1418,7 @@
 						<xs:element name="descrimiSitRisc" minOccurs="0" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Discriminação (ex.: étnica, cultural, gênero, religiosa)</xhtml:label>
+									<xhtml:label>Discriminação (ex.: étnica, cultural, gênero, religiosa, )</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
