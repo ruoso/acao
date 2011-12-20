@@ -1,0 +1,16 @@
+﻿insert into acao.bairros (nome, regional) select * from dbi_link.remote_select(10,'
+       select distinct(convert(bairro_nome,''UTF8'',''WE8ISO8859P1'')) as NOME,
+                 case
+                   when ser = ''1'' then ''SER I''
+                   when ser = ''2'' then ''SER II''
+                   when ser = ''3'' then ''SER III''
+                   when ser = ''4'' then ''SER IV''
+                   when ser = ''5'' then ''SER V''
+                   when ser = ''6'' then ''SER VI''
+                   else ''0''
+                 end as REGIONAL
+       from TB_CEP_BAIRROS_SEMAS_AUX
+       where cidade = ''Fortaleza''
+       order by REGIONAL
+')
+as y("NOME" character varying, "REGIONAL" character varying );
