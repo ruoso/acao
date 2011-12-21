@@ -33,7 +33,7 @@ sub listaBairros {
 	my @bairros;
 	my @regional;
 	my @result = $self->dbic->resultset('Bairros')->search(
-		{ nome => { like => '%'.$dsc_bairro.'%' } },
+		{ nome => { ilike => '%'.$dsc_bairro.'%' } },
 		{ columns => ['nome']},
 		{ rows => 30},
 	);
