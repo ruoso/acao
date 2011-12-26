@@ -11,9 +11,9 @@
     <xs:element name="formFichaIdentificacaoFamilia" type="formFichaIdentificacaoFamilia">
         <xs:annotation>
             <xs:appinfo>
-                <xhtml:label>Ficha de Identificação Família</xhtml:label>
+                <xhtml:label>FICHA IDENTIFICAÇÃO FAMÍLIA</xhtml:label>
                 <class:classificacoes>
-                    <class:classificacao>cn=Assistencia Social</class:classificacao>
+                    <class:classificacao>cn=Proteção Social Básica,cn=Assistencia Social</class:classificacao>
                 </class:classificacoes>
                 <idx:index>
                     <idx:hint key="pessoa.numeroInscricao" xpath="formFichaIdentificacaoFamilia/identificacao/nuneroInscricao"/>
