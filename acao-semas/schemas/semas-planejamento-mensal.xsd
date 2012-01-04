@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml" targetNamespace="test:ns"
+	elementFormDefault="qualified">
+	
+<xs:element name="planejamentoMensal" type="planejamentoMensal">
+		<xs:annotation>
+			<xs:appinfo>
+				<xhtml:label>PLANEJAMENTO MENSAL</xhtml:label>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>	
+    <xs:complexType name="planejamentoMensal">
+		<xs:sequence>
+            <xs:element name="servico" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Serviço</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+                <xs:simpleType>
+					<xs:restriction base="xs:string">
+   						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+            </xs:element>
+            <xs:element name="ser" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Ser</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+                <xs:simpleType>
+					<xs:restriction base="xs:string">
+   						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+            </xs:element>
+            <xs:element name="tematica" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Temática</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+                <xs:simpleType>
+					<xs:restriction base="xs:string">
+   						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+            </xs:element>
+            <xs:element name="tecnicoReferencia" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>técnico(a) de referência</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+                <xs:simpleType>
+					<xs:restriction base="xs:string">
+   						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+            </xs:element>
+            <xs:element name="crasUnidade" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>CRAS/Unidade</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+                <xs:simpleType>
+					<xs:restriction base="xs:string">
+   						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+            </xs:element>
+            <xs:element name="educador" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Educador(a)/Orientador(a) Social</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+                <xs:simpleType>
+					<xs:restriction base="xs:string">
+   						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+            </xs:element>
+            <xs:element name="planejamento" maxOccurs="20">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Planejamento</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+            <xs:element name="data" minOccurs="0" type="xs:date">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Data</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+            </xs:element>
+            <xs:element name="atividade" >
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Atividade</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+                <xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Acolhida" />
+									<xs:enumeration value="Atividade principal" />
+									<xs:enumeration value="Fechamento" />
+								</xs:restriction>
+							</xs:simpleType>
+            </xs:element>
+            <xs:element name="objetivo" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Objetivo</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+            </xs:element>
+            <xs:element name="metodologia" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Metodologia</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+            </xs:element>
+            <xs:element name="recursos" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Recursos</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+            </xs:element>
+            <xs:element name="parceiros" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Parceiros</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+            </xs:element>
+                    </xs:sequence>
+				</xs:complexType>
+            </xs:element>
+            
+
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
+
