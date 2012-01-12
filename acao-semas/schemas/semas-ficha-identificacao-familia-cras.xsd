@@ -11,14 +11,14 @@
     <xs:element name="formFichaIdentificacaoFamilia" type="formFichaIdentificacaoFamilia">
         <xs:annotation>
             <xs:appinfo>
-                <xhtml:label>Ficha de Identificação Família</xhtml:label>
+                <xhtml:label>FICHA IDENTIFICAÇÃO FAMÍLIA</xhtml:label>
                 <class:classificacoes>
-                    <class:classificacao>cn=Assistencia Social</class:classificacao>
+                    <class:classificacao>cn=Proteção Social Básica,cn=Assistencia Social</class:classificacao>
                 </class:classificacoes>
                 <idx:index>
                     <idx:hint key="pessoa.numinscricao" xpath="formFichaIdentificacaoFamilia/identificacao/numinscricao"/>
                     <idx:hint key="pessoa.numnis" xpath="formFichaIdentificacaoFamilia/identificacao/numnis"/>
-                    <idx:hint key="pessoa.nomresp" xpath="formFichaIdentificacaoFamilia/identificaresp/nomresp"/>
+                    <idx:hint key="pessoa.nome" xpath="formFichaIdentificacaoFamilia/identificaresp/nomresp"/>
                 </idx:index>
             </xs:appinfo>
         </xs:annotation>

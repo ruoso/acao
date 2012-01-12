@@ -1,0 +1,687 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/semas-plano-acompanhamento-familiar-cras.xsd"
+	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
+	xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/semas-plano-acompanhamento-familiar-cras.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="formPlanoAcompanhamentoFamiliar" type="formPlanoAcompanhamentoFamiliar">
+		<xs:annotation>
+			<xs:appinfo>
+				<xhtml:label>PLANO ACOMPANHAMENTO FAMILIAR</xhtml:label>
+				<class:classificacoes>
+					<class:classificacao>cn=Proteção Social Básica,cn=Assistencia Social</class:classificacao>
+				</class:classificacoes>
+				<idx:index>
+					<idx:hint key="pessoa.nome"	xpath="formPlanoAcompanhamentoFamiliar/nomeResponsavelFamiliar" />
+					<idx:hint key="pessoa.nome"	xpath="formPlanoAcompanhamentoFamiliar/superacaoVulnerabilidade/responsavel" />
+					<idx:hint key="pessoa.nome"	xpath="formPlanoAcompanhamentoFamiliar/tecResp" />
+				</idx:index>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="formPlanoAcompanhamentoFamiliar">
+		<xs:sequence>
+
+			<xs:element name="cras" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>CRAS</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="CRAS-PIRAMBU" />
+						<xs:enumeration value="CRAS-BARRA DO CEARÁ" />
+						<xs:enumeration value="CRAS-MUCURIPE" />
+						<xs:enumeration value="CRAS-SERVILUZ" />
+						<xs:enumeration value="CRAS-LAGAMAR" />
+						<xs:enumeration value="CRAS-PRAIA DO FUTURO " />
+						<xs:enumeration value="CRAS-BELA VISTA" />
+						<xs:enumeration value="CRAS-QUINTINO CUNHA " />
+						<xs:enumeration value="CRAS-VILA UNIÃO" />
+						<xs:enumeration value="CRAS-SERRINHA" />
+						<xs:enumeration value="CRAS-COUTO FERNANDES" />
+						<xs:enumeration value="CRAS-GRANJA PORTUGAL" />
+						<xs:enumeration value="CRAS-BOM JARDIM" />
+						<xs:enumeration value="CRAS-MONDUBIM" />
+						<xs:enumeration value="CRAS-GENIBAÚ" />
+						<xs:enumeration value="CRAS-CONJUNTO ESPERANÇA" />
+						<xs:enumeration value="CRAS-CANINDEZINHO" />
+						<xs:enumeration value="CRAS-SIQUEIRA" />
+						<xs:enumeration value="CRAS-SANTA ROSA" />
+						<xs:enumeration value="CRAS-CONJUNTO ALVORADA" />
+						<xs:enumeration value="CRAS-JARDIM DAS OLIVEIRAS" />
+						<xs:enumeration value="CRAS-CASTELÃO" />
+						<xs:enumeration value="CRAS-JOÃO PAULO II" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="nrIdentificacaoFamilia" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Número de identificação da família</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="nis" minOccurs="0" type="xs:integer">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>NIS</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nomeResponsavelFamiliar" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Nome do responsável familiar</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="logradouro" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Logradouro</xhtml:label>
+					</xs:appinfo>
+					<xsdext:extensions>
+						<xsdext:engine>autoComplete</xsdext:engine>
+						<xsdext:service>/enderecos</xsdext:service>
+					</xsdext:extensions>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="bairro" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Bairro</xhtml:label>
+					</xs:appinfo>
+					<xsdext:extensions>
+						<xsdext:engine>autoComplete</xsdext:engine>
+						<xsdext:service>/bairros</xsdext:service>
+					</xsdext:extensions>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dataInclusaoFamiliaCras" type="xs:date"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Data de inclusão da família no CRAS</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="situacaoInicialFamilia">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Situação inicial da família</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="vulnerabilidade">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Vulnerabilidade</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="pobreza" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Pobreza</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="pobrezaEnvolvidos" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Membros envolvidos</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="ausenciaRenda" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Ausência de renda</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="ausenciaEnvolvidos" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Membros envolvidos</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="desemprego" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Desemprego</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="desempregoEnvolvidos" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Membros envolvidos</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="precario" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Precário ou nulo acesso aos serviços públicos
+												</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="precarioEnvolvidos" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Membros envolvidos</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="fragilVinculoAfetivo" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Fragilização dos vínculos afetivos-relacionais
+												</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="fragilVinculoAfetivoEnvolvidos"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Membros envolvidos</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="fragilPertencimentoSocial" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Fragilização do pertencimento social
+												</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="fragilPertencimentoSocialEnvolvidos"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Membros envolvidos</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="outros" type="xs:boolean">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Outros</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="outrosEnvolvidos" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Membros envolvidos</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="potencialidade" maxOccurs="10">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Potencialidade</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="tipoPotencialidade" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Tipo de potencialidade</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="tipoPotencialidadeEnvolvidos"
+										minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Membros envolvidos</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="superacaoVulnerabilidade" maxOccurs="10">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Superação das vulnerabilidades</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="vulnerabilidade" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Vulnerabilidade</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Pobreza" />
+									<xs:enumeration value="Ausência de renda" />
+									<xs:enumeration value="Desemprego" />
+									<xs:enumeration value="Precário ou nulo acesso aos serviços públicos" />
+									<xs:enumeration value="Fragilização dos vínculos afetivos-relacionais" />
+									<xs:enumeration value="Fragilização do pertencimento social" />
+									<xs:enumeration value="Outros" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="estrategiaSuperacao" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Estratégia de superação</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="meta" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Meta</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="responsavel" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Responsável</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="situacao" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Situação</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Cumprida" />
+									<xs:enumeration value="Não cumprida" />
+									<xs:enumeration value="Parcialmente cumprida" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="justificativaNaoCumpriu" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Justificativa do não cumprimento</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="trabalhoSuperacaoVulnerabilidade"
+				maxOccurs="10">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Trabalho de superação das vulnerabilidades
+						</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="compTrabVulnerabilidade" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Vulnerabilidade</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Pobreza" />
+									<xs:enumeration value="Ausência de renda" />
+									<xs:enumeration value="Desemprego" />
+									<xs:enumeration value="Precário ou nulo acesso aos serviços públicos" />
+									<xs:enumeration value="Fragilização dos vínculos afetivos-relacionais" />
+									<xs:enumeration value="Fragilização do pertencimento social" />
+									<xs:enumeration value="Outros" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="compTrabEstrategiaSuperacao"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Estratégia de superação</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="compTrabMeta" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Meta</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="compTrabSituacao" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Situação</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Cumprida" />
+									<xs:enumeration value="Não cumprida" />
+									<xs:enumeration value="Parcialmente cumprida" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="compTrabJustificativaNaoCumpriu"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Justificativa do não cumprimento</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="encaminhamentos" maxOccurs="10">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Atividades e encaminhamentos realizados que não foram
+							previstos</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="atividades" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Atividades e encaminhamentos</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="dtAtividade" minOccurs="0" type="xs:date">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Data</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="situacao" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Situação</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Realizado" />
+									<xs:enumeration value="Não realizado" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="avaliacao" maxOccurs="10">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Avaliação da situação de vulnerabilidade
+						</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="avalVulnerabilidade" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Vulnerabilidade</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Pobreza" />
+									<xs:enumeration value="Ausência de renda" />
+									<xs:enumeration value="Desemprego" />
+									<xs:enumeration value="Precário ou nulo acesso aos serviços públicos" />
+									<xs:enumeration value="Fragilização dos vínculos afetivos-relacionais" />
+									<xs:enumeration value="Fragilização do pertencimento social" />
+									<xs:enumeration value="Outros" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="dtAvaliacao" minOccurs="0" type="xs:date">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Data</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="situacaoAval" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Situação</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Superada" />
+									<xs:enumeration value="Em superação" />
+									<xs:enumeration value="Não superada" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="aquisicoes" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Aquisições familiares durante o acompanhamento da
+							equipe técnica do CRAS/PAIF</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="observacoes" maxOccurs="10">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Observações complementares</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="dtObs" minOccurs="0" type="xs:date">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Data</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="observacao" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Especificar</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="parecer" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Parecer técnico da equipe</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="deligamento">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Desligamento</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="dtDesligamento" minOccurs="0" type="xs:date">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Data</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="motivoDesligamento" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Motivo</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="parecerFinal" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Parecer final</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="tecResp" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Técnicos responsáveis</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

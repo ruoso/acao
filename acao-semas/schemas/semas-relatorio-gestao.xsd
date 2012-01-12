@@ -1,0 +1,398 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/semas-relatorio-gestao.xsd"
+	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
+	xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/semas-relatorio-gestao.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="formRelatorioGestao" type="formRelatorioGestao">
+		<xs:annotation>
+			<xs:appinfo>
+				<xhtml:label>RELATORIO DE GESTÃO</xhtml:label>
+				<class:classificacoes>
+					<class:classificacao>cn=Proteção Social Básica,cn=Assistencia Social</class:classificacao>
+				</class:classificacoes>
+				<idx:index>
+				</idx:index>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="formRelatorioGestao">
+		<xs:sequence>
+			<xs:element name="secretariaExecutivaRegional" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Secretaria Executiva Regional</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="SER I" />
+						<xs:enumeration value="SER II" />
+						<xs:enumeration value="SER III" />
+						<xs:enumeration value="SER IV" />
+						<xs:enumeration value="SER V" />
+						<xs:enumeration value="SER VI" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="cras" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>CRAS</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="PIRAMBU" />
+						<xs:enumeration value="BARRA DO CEARÁ" />
+						<xs:enumeration value="MUCURIPE" />
+						<xs:enumeration value="SERVILUZ" />
+						<xs:enumeration value="LAGAMAR" />
+						<xs:enumeration value="PRAIA DO FUTURO " />
+						<xs:enumeration value="BELA VISTA" />
+						<xs:enumeration value="QUINTINO CUNHA " />
+						<xs:enumeration value="VILA UNIÃO" />
+						<xs:enumeration value="SERRINHA" />
+						<xs:enumeration value="COUTO FERNANDES" />
+						<xs:enumeration value="GRANJA PORTUGAL" />
+						<xs:enumeration value="BOM JARDIM" />
+						<xs:enumeration value="MONDUBIM" />
+						<xs:enumeration value="GENIBAÚ" />
+						<xs:enumeration value="CONJUNTO ESPERANÇA" />
+						<xs:enumeration value="CANINDEZINHO" />
+						<xs:enumeration value="ARACAPÉ" />
+						<xs:enumeration value="CONJUNTO PALMEIRAS" />
+						<xs:enumeration value="JARDIM DAS OLIVEIRAS" />
+						<xs:enumeration value="CASTELÃO" />
+						<xs:enumeration value="JOÃO PAULO II" />
+						<xs:enumeration value="DENDÊ" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="servico" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Serviço</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration
+							value="Serviço de Proteçao  e Atendimento Integral a Familia-PAIF" />
+						<xs:enumeration
+							value="Serviço de Conveniencia e Fortalecimento de Vínculos para Crianças de 6 a 15 anos" />
+						<xs:enumeration
+							value="Serviço de Convivência e Fortalecimento de Vínculos para Adolescentes e Jovens de 15 a 17 anos- Projovem Adolescente" />
+						<xs:enumeration
+							value="Serviço de Convivência e Fortalecimento de Vínculos para Pessoas Idosas-Progama de Atendimento Básico à Pessoa Idosa - PABI" />
+						<xs:enumeration value="Gestão Territorial da Proteção Social Básica" />
+						<xs:enumeration value="Núcleo de Partipação Popular-NUPP" />
+						<xs:enumeration value="Concessão de Benefícios Eventuais" />
+						<xs:enumeration value="outro" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="outroServico" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Especifique outro serviço</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="atividadesRealizadas">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Atividades realizadas</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="recpcao" minOccurs="0" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Recepção e acolhida</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="acompanhamentoFamilia" minOccurs="0"
+							type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Acompanhamento de famílias</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="acompanhamentoIndividuo" minOccurs="0"
+							type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Acompanhamento de indivíduos</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="grupo" minOccurs="0" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Grupo/oficina de convivência e atividades
+										socioeducativas com famílias</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="visita" minOccurs="0" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Visitas domiciliares</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="deslocamento" minOccurs="0" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Dslocamento da Equipe para atendimento em
+										localidades distantes</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="acompanhamentoDescumprimento"
+							minOccurs="0" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Acompanhamento de famílias em descumprimento de
+										condicionalidades</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="acompanhamentoDescumprimento"
+							minOccurs="0" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Acompanhamento a beneficiários e famílias
+										benefiárias do BPC</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="acompanhamentoPeti" minOccurs="0"
+							type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Acompanhamento a famílias integradas do PETI(após
+										contrarreferenciamento do PAEFI) </xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="acompanhamentoBeneficioEventual"
+							minOccurs="0" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Acompanhamento a famílias atendidas com benefícios
+										eventuais</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="encaminhamentoServicoSocioassistencial"
+							minOccurs="0" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Encaminhamento de famílias ou indivíduos para a
+										rede de serviço Socioassistencial </xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="encaminhamentoPoliticaPublica"
+							minOccurs="0" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Encaminhamento de famílias ou indivíduos para
+										outras politicas públicas</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="encaminhamentoBeneficioEventual"
+							minOccurs="0" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Encaminhamento para obtenção de benefícios
+										eventuais </xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="encamInsercaoCadastroUnico"
+							minOccurs="0" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Encaminhamento para inserção de famílias ou
+										indivíduos de famílias no cadastro unico </xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="orientacaoInsercaoBpc" minOccurs="0"
+							type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Orientação/acompanhamento para irserção do BPC
+									</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="acompEncaminhamentoRealizado"
+							minOccurs="0" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Acompanhamento dos encminhamentos realizados
+									</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="palestra" minOccurs="0" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Palestras</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="apoioObtencaoDocumentacao" minOccurs="0"
+							type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Apoio para obtenção de documentacao pessoal
+									</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="outros" minOccurs="0" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Outros </xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="outroServico" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Especifique outros serviços</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			
+					<xs:element name="metaProgamada" minOccurs="0">
+						<xs:annotation>
+							<xs:appinfo>
+								<xhtml:label>Meta progamada</xhtml:label>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="255" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="metaExecutada" minOccurs="0">
+						<xs:annotation>
+							<xs:appinfo>
+								<xhtml:label>Meta executada</xhtml:label>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="255" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="resultados" minOccurs="0">
+						<xs:annotation>
+							<xs:appinfo>
+								<xhtml:label>Resultados/Produtos obtidos</xhtml:label>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="255" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="aspectosFacilitadores" minOccurs="0">
+						<xs:annotation>
+							<xs:appinfo>
+								<xhtml:label>Aspectos facilitadores</xhtml:label>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="255" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="aspectosDificultadores" minOccurs="0">
+						<xs:annotation>
+							<xs:appinfo>
+								<xhtml:label>Aspectos difilcutadores</xhtml:label>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="255" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="propostaSuperacao" minOccurs="0">
+						<xs:annotation>
+							<xs:appinfo>
+								<xhtml:label>Proposta de superação das dificuldades</xhtml:label>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="255" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="demandas" minOccurs="0">
+						<xs:annotation>
+							<xs:appinfo>
+								<xhtml:label>Demandas do setor/Equipamento</xhtml:label>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="255" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="responssavel" minOccurs="0">
+						<xs:annotation>
+							<xs:appinfo>
+								<xhtml:label>Responsável</xhtml:label>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="255" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>
