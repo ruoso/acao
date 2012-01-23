@@ -16,8 +16,7 @@
                     <class:classificacao>cn=Proteção Social Básica,cn=Assistencia Social</class:classificacao>
                 </class:classificacoes>
                 <idx:index>
-                    <idx:hint key="pessoa.numinscricao" xpath="formFichaIdentificacaoFamilia/identificacao/numinscricao"/>
-                    <idx:hint key="pessoa.numnis" xpath="formFichaIdentificacaoFamilia/identificacao/numnis"/>
+                    <idx:hint key="pessoa.numeronis" xpath="formFichaIdentificacaoFamilia/identificacao/numeronis"/>
                     <idx:hint key="pessoa.nome" xpath="formFichaIdentificacaoFamilia/identificaresp/nomresp"/>
                 </idx:index>
             </xs:appinfo>
@@ -37,7 +36,7 @@
 				<xs:complexType>
 					<xs:sequence>
 
-				        <xs:element name="numeroNIS" minOccurs="1">
+				        <xs:element name="numeronis" minOccurs="1">
 				            <xs:annotation>
 				                <xs:appinfo>
 				                    <xhtml:label>NIS</xhtml:label>
@@ -940,12 +939,10 @@
 									</xs:sequence>
 								</xs:complexType>
 							</xs:element>
-							
-								
+
 		            </xs:sequence>
 		        </xs:complexType>
 	        </xs:element>
-
 
 			<xs:element name="dadoscomplementaresmembro">
 			
@@ -959,11 +956,13 @@
 					<xs:sequence>
 
 						<xs:element name="dadoscomplementares" minOccurs="0" maxOccurs="20">
+							
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Membros da Família</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+							
 							<xs:complexType>
 								<xs:sequence>
 									
@@ -1065,113 +1064,90 @@
 					</xs:appinfo>
 				</xs:annotation>
 				
+
 				<xs:complexType>
 					<xs:sequence>
 
-						<xs:element name="potencialparticipa" minOccurs="0" maxOccurs="20">
+						<xs:element name="dadosidentifpotencial" minOccurs="0" maxOccurs="20">
+							
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Participação em programas, projetos e atividades grupais  do CRAS e outros</xhtml:label>
+									<xhtml:label>Especificação</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+
 							<xs:complexType>
 								<xs:sequence>
+
+									<xs:element name="numidentpotenc" minOccurs="0"  type="xs:integer">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Nº</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="atividade" type="xs:string" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Atividade</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
 									
-							        <xs:element name="numidentpotenc" minOccurs="0"  type="xs:integer">
-							            <xs:annotation>
-							                <xs:appinfo>
-							                    <xhtml:label>Nº</xhtml:label>
-							                </xs:appinfo>
-							            </xs:annotation>
-							        </xs:element>
-								
-							        <xs:element name="atividade" type="xs:string" minOccurs="0">
-							            <xs:annotation>
-							                <xs:appinfo>
-							                    <xhtml:label>Atividade</xhtml:label>
-							                </xs:appinfo>
-							            </xs:annotation>
+									<xs:element name="atividperido" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Período</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
 
-							        </xs:element>
-							        
-							        <xs:element name="atividperido" minOccurs="0">
-							            <xs:annotation>
-							                <xs:appinfo>
-							                    <xhtml:label>Período</xhtml:label>
-							                </xs:appinfo>
-							            </xs:annotation>
-							            <xs:simpleType>
-							                <xs:restriction base="xs:string">
-							                    <xs:maxLength value="255"/>
-							                </xs:restriction>
-							            </xs:simpleType>
-							        </xs:element>
+									<xs:element name="habilprofissional" type="xs:string" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Profissional</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
 
-								</xs:sequence>
-							</xs:complexType>
+									<xs:element name="habilartcultural" type="xs:string" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Artístico Cultural</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									
+									<xs:element name="profissional" type="xs:string" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Profissional</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="artisticocultural" type="xs:string" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Artístico Cultural</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									</xs:sequence>
+								</xs:complexType>
+
 						</xs:element>
-						
-						<xs:element name="areaHabilidade" minOccurs="0" maxOccurs="20">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Área de Habilidade/Qualificação</xhtml:label>
-								</xs:appinfo>
-							</xs:annotation>
-							<xs:complexType>
-								<xs:sequence>
-							        <xs:element name="habilprofissional" type="xs:string" minOccurs="0">
-							            <xs:annotation>
-							                <xs:appinfo>
-							                    <xhtml:label>Profissional</xhtml:label>
-							                </xs:appinfo>
-							            </xs:annotation>
-							        </xs:element>
-							        
-							        <xs:element name="habilartcultural" type="xs:string" minOccurs="0">
-							            <xs:annotation>
-							                <xs:appinfo>
-							                    <xhtml:label>Artístico Cultural</xhtml:label>
-							                </xs:appinfo>
-							            </xs:annotation>
-							        </xs:element>
-
-								</xs:sequence>
-							</xs:complexType>
-						</xs:element>
-						
-						<xs:element name="areainteresse" minOccurs="0" maxOccurs="20">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Área de Interesse</xhtml:label>
-								</xs:appinfo>
-							</xs:annotation>
-							<xs:complexType>
-								<xs:sequence>
-							        <xs:element name="profissional" type="xs:string" minOccurs="0">
-							            <xs:annotation>
-							                <xs:appinfo>
-							                    <xhtml:label>Profissional</xhtml:label>
-							                </xs:appinfo>
-							            </xs:annotation>
-							        </xs:element>
-							        
-							        <xs:element name="artisticocultural" type="xs:string" minOccurs="0">
-							            <xs:annotation>
-							                <xs:appinfo>
-							                    <xhtml:label>Artístico Cultural</xhtml:label>
-							                </xs:appinfo>
-							            </xs:annotation>
-							        </xs:element>
-
-								</xs:sequence>
-							</xs:complexType>
-						</xs:element>
-
 					</xs:sequence>
 				</xs:complexType>
 			
 			</xs:element>
-
 
 
 			<xs:element name="cadastrounico">
@@ -1187,7 +1163,7 @@
 						<xs:element name="inscricaocadunico"  minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>6.1 Está Inscrita no Cadastro Único</xhtml:label>
+									<xhtml:label>6.1 Está Inscrito(a) no Cadastro Único</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -1201,10 +1177,11 @@
 						<xs:element name="seinscritocadunico" minOccurs="0" type="xs:date">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Caso Afirmativo, Data da Pesquisa</xhtml:label>
+									<xhtml:label>Em Caso Afirmativo, Data da Pesquisa</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
+
 				        <xs:element name="codigodomicilio" minOccurs="0">
 				            <xs:annotation>
 				                <xs:appinfo>
@@ -1217,7 +1194,6 @@
 				                </xs:restriction>
 				            </xs:simpleType>
 				        </xs:element>
-
 
 						<xs:element name="senaoinscritocadunico"  minOccurs="0">
 							<xs:annotation>
@@ -1524,7 +1500,7 @@
 						<xs:element name="especdescrimsitrisc" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Especifique Discriminação</xhtml:label>
+									<xhtml:label>Espec. Discriminação</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -1577,7 +1553,7 @@
 						<xs:element name="especsitriscoutro" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Especifique outros</xhtml:label>
+									<xhtml:label>Espec. outros</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -1588,12 +1564,11 @@
 						</xs:element>
 		            
 		            </xs:sequence>
-		     </xs:complexType>
-	       
-	       
+				</xs:complexType>
+
 	        </xs:element>
-	        
-	        
+
+
 			<xs:element name="particvidacomunit">
 
 				<xs:annotation>
@@ -2000,11 +1975,31 @@
 
 				<xs:complexType>
 					<xs:sequence>
-					
 						<xs:element name="especobservgerais" minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Liste as observações</xhtml:label>
+									<xhtml:label>Observações</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						
+						<xs:element name="tecresp" minOccurs="1">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Técnico(a) Responsável</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="datadoc" minOccurs="1" type="xs:date">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Data</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>

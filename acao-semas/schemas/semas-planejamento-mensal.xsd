@@ -130,6 +130,22 @@
 					</xs:restriction>
 				</xs:simpleType>
             </xs:element>
+
+			<xs:element name="horaini" minOccurs="1" type="xs:time">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Horário Início</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="horaterm" minOccurs="1" type="xs:time">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Horário Término</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
             
             <xs:element name="planejamento" maxOccurs="20">
 				<xs:annotation>
@@ -140,17 +156,45 @@
               
                 <xs:complexType>
                     <xs:sequence>
-						<xs:element name="data" minOccurs="0" type="xs:date">
+
+						<xs:element name="data" minOccurs="1" type="xs:date">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Data</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
-						<xs:element name="atividade" >
+						
+						<xs:element name="atividade" minOccurs="1" >
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Atividade</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Encontro sócio-educativo/convivência" />
+									<xs:enumeration value="Roda de conversa" />
+									<xs:enumeration value="Seminários/palestra" />
+									<xs:enumeration value="Passeio cultural/lazer" />
+									<xs:enumeration value="Intervenções comunitárias" />
+									<xs:enumeration value="Outros" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="objetivo" minOccurs="1" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Objetivo</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="metodologia" minOccurs="1" >
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Metodologia</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -161,27 +205,23 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="objetivo" minOccurs="0" type="xs:string">
+
+						<xs:element name="descmetodol" minOccurs="1" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Objetivo</xhtml:label>
+									<xhtml:label>Descrição Metodologia</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
-						<xs:element name="metodologia" minOccurs="0" type="xs:string">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Metodologia</xhtml:label>
-								</xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-						<xs:element name="recursos" minOccurs="0" type="xs:string">
+
+						<xs:element name="recursos" minOccurs="1" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Recursos</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
+
 						<xs:element name="parceiros" minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
@@ -190,6 +230,7 @@
 							</xs:annotation>
 						</xs:element>
                     </xs:sequence>
+
 				</xs:complexType>
             </xs:element>
 

@@ -8,21 +8,18 @@
 	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/semas-relatorio-quantitativo-mensal.xsd"
 	elementFormDefault="qualified">
 
-	<xs:element name="RelQtdMensal" type="RelQtdMensal">
+	<xs:element name="formRelatQuantMensal" type="formRelatQuantMensal">
 		<xs:annotation>
 			<xs:appinfo>
 				<xhtml:label>RELATORIO QUANTITATIVO MENSAL</xhtml:label>
 				<class:classificacoes>
-					<class:classificacao>cn=Proteção Social Básica,cn=Assistencia
-						Social</class:classificacao>
+					<class:classificacao>cn=Proteção Social Básica,cn=Assistencia Social</class:classificacao>
 				</class:classificacoes>
-				<idx:index>
-				</idx:index>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
 
-	<xs:complexType name="RelQtdMensal">
+	<xs:complexType name="formRelatQuantMensal">
 		<xs:sequence>
 			<xs:element name="ser" minOccurs="0">
 				<xs:annotation>
