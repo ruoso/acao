@@ -84,30 +84,30 @@
 							<xs:simpleType>
 
 							<xs:restriction base="xs:string">
-								<xs:enumeration value="CRAS-ARACAPÉ" />
 								<xs:enumeration value="CRAS-BARRA DO CEARÁ" />
+								<xs:enumeration value="CRAS-PIRAMBU" />
+								<xs:enumeration value="CRAS-LAGAMAR" />
+								<xs:enumeration value="CRAS-MUCURIPE" />
+								<xs:enumeration value="CRAS-PRAIA DO FUTURO II" />
+								<xs:enumeration value="CRAS-SERVILUZ" />
 								<xs:enumeration value="CRAS-BELA VISTA" />
+								<xs:enumeration value="CRAS-QUINTINO CUNHA " />
+								<xs:enumeration value="CRAS-COUTO FERNANDES" />
+								<xs:enumeration value="CRAS-SERRINHA" />
+								<xs:enumeration value="CRAS-VILA UNIÃO" />
+								<xs:enumeration value="CRAS-ARACAPÉ" />
 								<xs:enumeration value="CRAS-BOM JARDIM" />
+								<xs:enumeration value="CRAS-CONJUNTO ESPERANÇA" />
+								<xs:enumeration value="CRAS-GRANJA PORTUGAL" />
+								<xs:enumeration value="CRAS-GENIBAÚ" />
+								<xs:enumeration value="CRAS-MONDUBIM" />
 								<xs:enumeration value="CRAS-CANINDEZINHO" />
 								<xs:enumeration value="CRAS-CASTELÃO" />
-								<xs:enumeration value="CRAS-CONJUNTO ESPERANÇA" />
 								<xs:enumeration value="CRAS-CONJUNTO PALMEIRAS" />
-								<xs:enumeration value="CRAS-COUTO FERNANDES" />
 								<xs:enumeration value="CRAS-DENDÊ" />
-								<xs:enumeration value="CRAS-GENIBAÚ" />
-								<xs:enumeration value="CRAS-GRANJA PORTUGAL" />
-								<xs:enumeration value="CRAS-ITINEREANTE" />
 								<xs:enumeration value="CRAS-JARDIM DAS OLIVEIRAS" />
 								<xs:enumeration value="CRAS-JOÃO PAULO II" />
-								<xs:enumeration value="CRAS-LAGAMAR" />
-								<xs:enumeration value="CRAS-MONDUBIM" />
-								<xs:enumeration value="CRAS-MUCURIPE" />
-								<xs:enumeration value="CRAS-PIRAMBU" />
-								<xs:enumeration value="CRAS-PRAIA DO FUTURO II" />
-								<xs:enumeration value="CRAS-QUINTINO CUNHA " />
-								<xs:enumeration value="CRAS-SERRINHA" />
-								<xs:enumeration value="CRAS-SERVILUZ" />
-								<xs:enumeration value="CRAS-VILA UNIÃO" />
+								<xs:enumeration value="CRAS-ITINEREANTE" />
 							</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
@@ -537,11 +537,11 @@
 								</xs:appinfo>
 							</xs:annotation>
 								<xs:simpleType>
-										<xs:restriction base="xs:decimal">
-											<xs:fractionDigits value='2'/>
-											<xs:maxExclusive value="1000000"/>
-											<xs:minInclusive value="-1000000"/>
-										</xs:restriction>
+									<xs:restriction base="xs:decimal">
+										<xs:fractionDigits value='2'/>
+										<xs:maxExclusive value="1000000"/>
+										<xs:minInclusive value="-1000000"/>
+									</xs:restriction>
 								</xs:simpleType>
 						</xs:element>
 
@@ -731,13 +731,13 @@
 
 
 			<xs:element name="membroscompfamiliar">
-			
+
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>3. Composição Familiar</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
-				
+
 				<xs:complexType>
 					<xs:sequence>
 
@@ -747,7 +747,7 @@
 									<xhtml:label>Composição Familiar</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
-							
+
 							<xs:complexType>
 								<xs:sequence>
 									
@@ -1063,13 +1063,12 @@
 						<xhtml:label>5. Identificação de Potencialidades</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
-				
 
 				<xs:complexType>
 					<xs:sequence>
 
 						<xs:element name="dadosidentifpotencial" minOccurs="0" maxOccurs="20">
-							
+
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Especificação</xhtml:label>

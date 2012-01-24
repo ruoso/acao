@@ -11,7 +11,7 @@
 	<xs:element name="formRelatorioMensal" type="formRelatorioMensal">
 		<xs:annotation>
 			<xs:appinfo>
-				<xhtml:label>RELATORIO MENSAL DAS ATIVIDADES COLETIVAS
+				<xhtml:label>RELATÓRIO MENSAL DAS ATIVIDADES COLETIVAS
 				</xhtml:label>
                <class:classificacoes>
                     <class:classificacao>cn=Proteção Social Básica,cn=Assistencia Social</class:classificacao>
@@ -29,79 +29,10 @@
 	<xs:complexType name="formRelatorioMensal">
 		<xs:sequence>
 
-	        <xs:element name="servico" minOccurs="0">
-	            <xs:annotation>
-	                <xs:appinfo>
-	                    <xhtml:label>Serviço</xhtml:label>
-	                </xs:appinfo>
-	            </xs:annotation>
-	            <xs:simpleType>
-	                <xs:restriction base="xs:string">
-	                    <xs:maxLength value="255"/>
-	                </xs:restriction>
-	            </xs:simpleType>
-	        </xs:element>
-
-			<xs:element name="mes"  minOccurs="0">
-				<xs:annotation>
-					<xs:appinfo>
-						<xhtml:label>Mês</xhtml:label>
-					</xs:appinfo>
-				</xs:annotation>
-				<xs:simpleType>
-				<xs:restriction base="xs:string">
-					<xs:enumeration value="Janeiro" />
-					<xs:enumeration value="Fevereiro" />
-					<xs:enumeration value="Março" />
-					<xs:enumeration value="Abril" />
-					<xs:enumeration value="Maio" />
-					<xs:enumeration value="Junho" />
-					<xs:enumeration value="Julho" />
-					<xs:enumeration value="Agosto" />
-					<xs:enumeration value="Setembro" />
-					<xs:enumeration value="outubro" />
-					<xs:enumeration value="Novembro" />
-					<xs:enumeration value="Dezembro" />
-				</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
-
-			<xs:element name="ano" minOccurs="1" type="xs:integer">
-				<xs:annotation>
-					<xs:appinfo>
-						<xhtml:label>Ano</xhtml:label>
-					</xs:appinfo>
-				</xs:annotation>
-			</xs:element>
-			
-			<xs:element name="mes"  minOccurs="1">
-				<xs:annotation>
-					<xs:appinfo>
-						<xhtml:label>Mês</xhtml:label>
-					</xs:appinfo>
-				</xs:annotation>
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:enumeration value="Janeiro" />
-						<xs:enumeration value="Fevereiro" />
-						<xs:enumeration value="Março" />
-						<xs:enumeration value="Abril" />
-						<xs:enumeration value="Mail" />
-						<xs:enumeration value="Junho" />
-						<xs:enumeration value="Julho" />
-						<xs:enumeration value="Agosto" />
-						<xs:enumeration value="Setembro" />
-						<xs:enumeration value="Outubro" />
-						<xs:enumeration value="Novembro" />
-						<xs:enumeration value="Dezembro" />
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
-
 			<xs:element name="ser"  minOccurs="1">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>SER</xhtml:label>
+						<xhtml:label>Regional</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -150,6 +81,51 @@
 						<xs:enumeration value="CRAS-VILA UNIÃO" />
 					</xs:restriction>
 				</xs:simpleType>
+			</xs:element>
+			
+	        <xs:element name="servico" minOccurs="0">
+	            <xs:annotation>
+	                <xs:appinfo>
+	                    <xhtml:label>Serviço</xhtml:label>
+	                </xs:appinfo>
+	            </xs:annotation>
+	            <xs:simpleType>
+	                <xs:restriction base="xs:string">
+	                    <xs:maxLength value="255"/>
+	                </xs:restriction>
+	            </xs:simpleType>
+	        </xs:element>
+
+			<xs:element name="mes"  minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Mês</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Janeiro" />
+					<xs:enumeration value="Fevereiro" />
+					<xs:enumeration value="Março" />
+					<xs:enumeration value="Abril" />
+					<xs:enumeration value="Maio" />
+					<xs:enumeration value="Junho" />
+					<xs:enumeration value="Julho" />
+					<xs:enumeration value="Agosto" />
+					<xs:enumeration value="Setembro" />
+					<xs:enumeration value="outubro" />
+					<xs:enumeration value="Novembro" />
+					<xs:enumeration value="Dezembro" />
+				</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="ano" minOccurs="1" type="xs:integer">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Ano</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
 			</xs:element>
 
             <xs:element name="tecnicoReferencia" minOccurs="1">
@@ -212,26 +188,18 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="dataativ" minOccurs="1" type="xs:date">
+						<xs:element name="horainicio" minOccurs="1" type="xs:dateTime">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Data</xhtml:label>
+									<xhtml:label>Data/Hora início</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="horainicio" minOccurs="1" type="xs:time">
+						<xs:element name="horatermino" minOccurs="1" type="xs:dateTime">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Hora início</xhtml:label>
-								</xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-
-						<xs:element name="horatermino" minOccurs="1" type="xs:time">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Hora término</xhtml:label>
+									<xhtml:label>Data/Hora término</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -239,7 +207,7 @@
 						<xs:element name="cargahoraria" minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Carga horárias(em horas)</xhtml:label>
+									<xhtml:label>Carga horária(em horas)</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
