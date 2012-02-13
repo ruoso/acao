@@ -161,4 +161,15 @@ sub substituir_xsd : Chained('base') : PathPart('substituir_xsd') : Args(0) {
     return;
 
 }
+
+sub excluir_xsd : Chained('base') : PathPart('excluir_xsd') : Args(0) {
+    my ( $self, $c ) = @_;
+    my $XSDtargetNamespace = $c->req->param('XSDtargetNamespace');
+    my $res = $c->model('Schema')->excluir_schema('acao-schemas', $XSDtargetNamespace);
+    $c->res->redirect( $c->uri_for_action('/auth/admin/schema/lista') );
+    $c->flash->{sucesso} = 'Schema XSD excluído com com sucesso';
+    return;
+    
+}
+
 1;
