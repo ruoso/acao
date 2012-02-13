@@ -165,9 +165,18 @@ sub substituir_xsd : Chained('base') : PathPart('substituir_xsd') : Args(0) {
 sub excluir_xsd : Chained('base') : PathPart('excluir_xsd') : Args(0) {
     my ( $self, $c ) = @_;
     my $XSDtargetNamespace = $c->req->param('XSDtargetNamespace');
-    my $res = $c->model('Schema')->excluir_schema('acao-schemas', $XSDtargetNamespace);
-    $c->res->redirect( $c->uri_for_action('/auth/admin/schema/lista') );
-    $c->flash->{sucesso} = 'Schema XSD excluído com com sucesso';
+    my $countTNS = $c->model('Schema')->verifica_schemas( $XSDtargetNamespace );
+    
+    if ($countTNS != 0 ) {
+        $c->res->redirect( $c->uri_for_action('/auth/admin/schema/lista') );
+        $c->flash->{erro} = 'Existe(m) '.$countTNS.' documento(s) deste tipo persistido(s) no banco.';
+        return;
+    }
+    else{
+        my $res = $c->model('Schema')->excluir_schema('acao-schemas', $XSDtargetNamespace);
+        $c->res->redirect( $c->uri_for_action('/auth/admin/schema/lista') );
+        $c->flash->{sucesso} = 'Schema XSD excluído com com sucesso';
+    }
     return;
     
 }
