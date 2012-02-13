@@ -190,7 +190,6 @@ sub excluir_schema {
           $self->sedna->execute($query);
           if($self->sedna->get_item()  eq $XSDtargetNamespace){
             my $drop = 'DROP DOCUMENT "'.$doc.'" IN COLLECTION "'.$collection.'"';
-warn $drop;
             $self->sedna->execute($drop);
           }
         };
