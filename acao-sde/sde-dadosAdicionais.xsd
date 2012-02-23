@@ -106,6 +106,18 @@
 					</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
+		        <xs:element name="tpServiço" minOccurs="0">
+		            <xs:annotation>
+		                <xs:appinfo>
+		                    <xhtml:label>Especifique o serviço</xhtml:label>
+		                </xs:appinfo>
+		            </xs:annotation>
+		            <xs:simpleType>
+		                <xs:restriction base="xs:string">
+		                    <xs:maxLength value="255"/>
+		                </xs:restriction>
+		            </xs:simpleType>
+		        </xs:element>
 		        <xs:element name="tpAtividade" minOccurs="0">
 		            <xs:annotation>
 		                <xs:appinfo>
@@ -147,7 +159,7 @@
 				<xs:element name="tpPonto"  minOccurs="0">
 					<xs:annotation>
 						<xs:appinfo>
-							<xhtml:label>Tipo de negócio</xhtml:label>
+							<xhtml:label>Tipo de ponto</xhtml:label>
 						</xs:appinfo>
 					</xs:annotation>
 					<xs:simpleType>
