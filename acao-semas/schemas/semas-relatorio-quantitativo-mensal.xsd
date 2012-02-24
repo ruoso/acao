@@ -660,7 +660,7 @@
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
 									<xs:enumeration value="Grupo de famílias" />
-									<xs:enumeration value="Encontro socioeducativo com famílias do Cad. único" />
+									<xs:enumeration value="Encontro socioeducativo com famílias do PBF" />
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
@@ -807,11 +807,21 @@
 							</xs:annotation>
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
-									<xs:enumeration value="Auxílio natalidade - kit enxoval" />
-									<xs:enumeration value="Auxílio funeral" />
-									<xs:enumeration value="Auxílio relacionado à SAN(Cesta Básica, leite)" />
+									<xs:enumeration value="Auxílio Natalidade - Kit Enxoval" />
+									<xs:enumeration value="Auxílio Funeral" />
+									<xs:enumeration value="Auxílio relacionado à SAN(Cesta básica)" />
+									<xs:enumeration value="Auxílio Viagem" />
+									<xs:enumeration value="Outros" />
 								</xs:restriction>
 							</xs:simpleType>
+						</xs:element>
+						
+						<xs:element name="tipbenOutros" minOccurs="0"  type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Especifique/Outros</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
 						</xs:element>
 
 						<xs:element name="benSolicUsuarios" minOccurs="0"  type="xs:integer">
