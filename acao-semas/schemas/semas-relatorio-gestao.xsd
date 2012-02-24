@@ -11,9 +11,9 @@
 	<xs:element name="formRelatorioGestao" type="formRelatorioGestao">
 		<xs:annotation>
 			<xs:appinfo>
-				<xhtml:label>RELATORIO DE GESTÃO</xhtml:label>
+				<xhtml:label>RELATÓRIO DE GESTÃO</xhtml:label>
 				<class:classificacoes>
-					<class:classificacao>cn=Proteção Social Básica,cn=Assistencia Social</class:classificacao>
+                    <class:classificacao>cn=Relatórios Gestão PSB,cn=Assistencia Social</class:classificacao>
 				</class:classificacoes>
 			</xs:appinfo>
 		</xs:annotation>
@@ -437,7 +437,7 @@
 			<xs:element name="nomeresp" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Responsável</xhtml:label>
+						<xhtml:label>Nome do Responsável</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>

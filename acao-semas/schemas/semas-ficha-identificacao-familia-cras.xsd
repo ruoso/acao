@@ -36,18 +36,13 @@
 				<xs:complexType>
 					<xs:sequence>
 
-				        <xs:element name="numeronis" minOccurs="1">
-				            <xs:annotation>
-				                <xs:appinfo>
-				                    <xhtml:label>NIS</xhtml:label>
-				                </xs:appinfo>
-				            </xs:annotation>
-				            <xs:simpleType>
-				                <xs:restriction base="xs:string">
-				                    <xs:maxLength value="255"/>
-				                </xs:restriction>
-				            </xs:simpleType>
-				        </xs:element>
+						<xs:element name="numeronis" minOccurs="1" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>NIS</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
 
 						<xs:element name="datapreenchi" minOccurs="1" type="xs:date">
 							<xs:annotation>
@@ -57,7 +52,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="regional"  minOccurs="1">
+						<xs:element name="regionalident"  minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Regional</xhtml:label>
@@ -148,6 +143,7 @@
 							</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
+
 				        <xs:element name="origencaminhamentooutro" minOccurs="0">
 				            <xs:annotation>
 				                <xs:appinfo>
@@ -248,7 +244,7 @@
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
-				        <xs:element name="cpfresp" minOccurs="0">
+				        <xs:element name="cpf" minOccurs="0">
 				            <xs:annotation>
 				                <xs:appinfo>
 				                    <xhtml:label>1.5 CPF</xhtml:label>
@@ -257,36 +253,45 @@
 				            <xs:simpleType>
 				                <xs:restriction base="xs:string">
 				                    <xs:maxLength value="255"/>
-				                    <xs:pattern value="[0-9]{3}\."/>
+				                    <xs:pattern value="[0-9]+"/>
 				                </xs:restriction>
 				            </xs:simpleType>
 				        </xs:element>
 
-				        <xs:element name="enderecoresp" minOccurs="1">
-				            <xs:annotation>
-				                <xs:appinfo>
-				                    <xhtml:label>1.6 Endereço</xhtml:label>
-				                </xs:appinfo>
-				            </xs:annotation>
-				            <xs:simpleType>
-				                <xs:restriction base="xs:string">
-				                    <xs:maxLength value="255"/>
-				                </xs:restriction>
-				            </xs:simpleType>
-				        </xs:element>
 
-				        <xs:element name="bairroresp" minOccurs="0">
-				            <xs:annotation>
-				                <xs:appinfo>
-				                    <xhtml:label>Bairro</xhtml:label>
-				                </xs:appinfo>
-				            </xs:annotation>
-				            <xs:simpleType>
-				                <xs:restriction base="xs:string">
-				                    <xs:maxLength value="255"/>
-				                </xs:restriction>
-				            </xs:simpleType>
-				        </xs:element>
+						<xs:element name="enderecoresp" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>1.6 Endereço</xhtml:label>
+								</xs:appinfo>
+								<xsdext:extensions>
+									<xsdext:engine>autoComplete</xsdext:engine>
+									<xsdext:service>/enderecos</xsdext:service>
+								</xsdext:extensions>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="bairrores" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Bairro</xhtml:label>
+								</xs:appinfo>
+								<xsdext:extensions>
+									<xsdext:engine>autoComplete</xsdext:engine>
+									<xsdext:service>/bairros</xsdext:service>
+								</xsdext:extensions>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
 
 				        <xs:element name="comunlocalresp" minOccurs="0">
 				            <xs:annotation>
@@ -301,7 +306,7 @@
 				            </xs:simpleType>
 				        </xs:element>
 
-						<xs:element name="serresp"  minOccurs="1">
+						<xs:element name="regionalresp"  minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>SER</xhtml:label>
@@ -318,6 +323,7 @@
 							</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
+
 				        <xs:element name="pontorefresp" minOccurs="0">
 				            <xs:annotation>
 				                <xs:appinfo>
@@ -938,7 +944,7 @@
 										
 									</xs:sequence>
 								</xs:complexType>
-							</xs:element>
+						</xs:element>
 
 		            </xs:sequence>
 		        </xs:complexType>
@@ -1052,7 +1058,6 @@
 						
 					</xs:sequence>
 				</xs:complexType>
-				
 			</xs:element>				
 
 
@@ -1145,7 +1150,6 @@
 						</xs:element>
 					</xs:sequence>
 				</xs:complexType>
-			
 			</xs:element>
 
 
@@ -1184,12 +1188,13 @@
 				        <xs:element name="codigodomicilio" minOccurs="0">
 				            <xs:annotation>
 				                <xs:appinfo>
-				                    <xhtml:label>Código Domiciliar</xhtml:label>
+				                    <xhtml:label>Código Familiar</xhtml:label>
 				                </xs:appinfo>
 				            </xs:annotation>
 				            <xs:simpleType>
 				                <xs:restriction base="xs:string">
 				                    <xs:maxLength value="255"/>
+				                     <xs:pattern value="[0-9]+"/>
 				                </xs:restriction>
 				            </xs:simpleType>
 				        </xs:element>
@@ -1330,7 +1335,6 @@
 						</xs:element>
 		            </xs:sequence>
 		        </xs:complexType>
-	        
 	        </xs:element>
 
 	        
@@ -1564,7 +1568,6 @@
 		            
 		            </xs:sequence>
 				</xs:complexType>
-
 	        </xs:element>
 
 
@@ -1896,8 +1899,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="especassistjur"
-							minOccurs="0">
+						<xs:element name="especassistjur" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Especifique</xhtml:label>
@@ -1982,7 +1984,7 @@
 							</xs:annotation>
 						</xs:element>
 						
-						<xs:element name="tecresp" minOccurs="1">
+						<xs:element name="nomertecresp" minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Técnico(a) Responsável</xhtml:label>
@@ -1995,7 +1997,7 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="datadoc" minOccurs="1" type="xs:date">
+						<xs:element name="datadocumento" minOccurs="1" type="xs:date">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Data</xhtml:label>
@@ -2005,7 +2007,6 @@
 
 					</xs:sequence>
 				</xs:complexType>
-			
 			</xs:element>
 
 		</xs:sequence>
