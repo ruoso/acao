@@ -14,10 +14,10 @@
 				<xhtml:label>RELATÓRIO MENSAL DAS ATIVIDADES COLETIVAS
 				</xhtml:label>
                <class:classificacoes>
-                    <class:classificacao>cn=Relatórios PSB,cn=Assistencia Social</class:classificacao>
+                    <class:classificacao>cn=Atividades Coletivas PSB,cn=Assistencia Social</class:classificacao>
                 </class:classificacoes>
                 <idx:index>
-                    <idx:hint key="pessoa.nome" xpath="formRelatorioMensal/tecnicoReferencia"/>
+                    <idx:hint key="pessoa.nome" xpath="formRelatorioMensal/tecnicoref"/>
                     <idx:hint key="pessoa.nome" xpath="formRelatorioMensal/educador"/>
                 </idx:index>
 				<idx:index>
@@ -47,41 +47,41 @@
 				</xs:simpleType>
 			</xs:element>
 
-			<xs:element name="cras"  minOccurs="1">
-				<xs:annotation>
-					<xs:appinfo>
-						<xhtml:label>CRAS</xhtml:label>
-					</xs:appinfo>
-				</xs:annotation>
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:enumeration value="CRAS-ARACAPÉ" />
-						<xs:enumeration value="CRAS-BARRA DO CEARÁ" />
-						<xs:enumeration value="CRAS-BELA VISTA" />
-						<xs:enumeration value="CRAS-BOM JARDIM" />
-						<xs:enumeration value="CRAS-CANINDEZINHO" />
-						<xs:enumeration value="CRAS-CASTELÃO" />
-						<xs:enumeration value="CRAS-CONJUNTO ESPERANÇA" />
-						<xs:enumeration value="CRAS-CONJUNTO PALMEIRAS" />
-						<xs:enumeration value="CRAS-COUTO FERNANDES" />
-						<xs:enumeration value="CRAS-DENDÊ" />
-						<xs:enumeration value="CRAS-GENIBAÚ" />
-						<xs:enumeration value="CRAS-GRANJA PORTUGAL" />
-						<xs:enumeration value="CRAS-ITINEREANTE" />
-						<xs:enumeration value="CRAS-JARDIM DAS OLIVEIRAS" />
-						<xs:enumeration value="CRAS-JOÃO PAULO II" />
-						<xs:enumeration value="CRAS-LAGAMAR" />
-						<xs:enumeration value="CRAS-MONDUBIM" />
-						<xs:enumeration value="CRAS-MUCURIPE" />
-						<xs:enumeration value="CRAS-PIRAMBU" />
-						<xs:enumeration value="CRAS-PRAIA DO FUTURO II" />
-						<xs:enumeration value="CRAS-QUINTINO CUNHA " />
-						<xs:enumeration value="CRAS-SERRINHA" />
-						<xs:enumeration value="CRAS-SERVILUZ" />
-						<xs:enumeration value="CRAS-VILA UNIÃO" />
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
+					<xs:element name="cras"  minOccurs="1">
+						<xs:annotation>
+							<xs:appinfo>
+								<xhtml:label>CRAS</xhtml:label>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+									<xs:enumeration value="CRAS-BARRA DO CEARÁ" />
+									<xs:enumeration value="CRAS-PIRAMBU" />
+									<xs:enumeration value="CRAS-LAGAMAR" />
+									<xs:enumeration value="CRAS-MUCURIPE" />
+									<xs:enumeration value="CRAS-PRAIA DO FUTURO II" />
+									<xs:enumeration value="CRAS-SERVILUZ" />
+									<xs:enumeration value="CRAS-BELA VISTA" />
+									<xs:enumeration value="CRAS-QUINTINO CUNHA " />
+									<xs:enumeration value="CRAS-COUTO FERNANDES" />
+									<xs:enumeration value="CRAS-SERRINHA" />
+									<xs:enumeration value="CRAS-VILA UNIÃO" />
+									<xs:enumeration value="CRAS-ARACAPÉ" />
+									<xs:enumeration value="CRAS-BOM JARDIM" />
+									<xs:enumeration value="CRAS-CONJUNTO ESPERANÇA" />
+									<xs:enumeration value="CRAS-GRANJA PORTUGAL" />
+									<xs:enumeration value="CRAS-GENIBAÚ" />
+									<xs:enumeration value="CRAS-MONDUBIM" />
+									<xs:enumeration value="CRAS-CANINDEZINHO" />
+									<xs:enumeration value="CRAS-CASTELÃO" />
+									<xs:enumeration value="CRAS-CONJUNTO PALMEIRAS" />
+									<xs:enumeration value="CRAS-DENDÊ" />
+									<xs:enumeration value="CRAS-JARDIM DAS OLIVEIRAS" />
+									<xs:enumeration value="CRAS-JOÃO PAULO II" />
+									<xs:enumeration value="CRAS-ITINEREANTE" />		
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
 			
 	        <xs:element name="servico" minOccurs="0">
 	            <xs:annotation>
@@ -120,7 +120,7 @@
 				</xs:simpleType>
 			</xs:element>
 
-			<xs:element name="ano" minOccurs="1" type="xs:integer">
+			<xs:element name="ano" minOccurs="0" type="xs:integer">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Ano</xhtml:label>
@@ -128,7 +128,7 @@
 				</xs:annotation>
 			</xs:element>
 
-            <xs:element name="tecnicoReferencia" minOccurs="1">
+            <xs:element name="tecnicoref" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>técnico(a) de referência</xhtml:label>
@@ -164,7 +164,7 @@
 				<xs:complexType>
 					<xs:sequence>
 
-						<xs:element name="tematica" minOccurs="1" type="xs:string">
+						<xs:element name="tematica" minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Temática</xhtml:label>
@@ -172,7 +172,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="atividadeExecutada" minOccurs="1" type="xs:string">
+						<xs:element name="atividadeExecutada" minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Atividades executadas</xhtml:label>
@@ -180,7 +180,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="numeroParticipantes" minOccurs="1" type="xs:string">
+						<xs:element name="numeroParticipantes" minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Nº de participantes</xhtml:label>
@@ -188,7 +188,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="horainicio" minOccurs="1" type="xs:dateTime">
+						<xs:element name="horainicio" minOccurs="0" type="xs:dateTime">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Data/Hora início</xhtml:label>
@@ -196,7 +196,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="horatermino" minOccurs="1" type="xs:dateTime">
+						<xs:element name="horatermino" minOccurs="0" type="xs:dateTime">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Data/Hora término</xhtml:label>
@@ -204,7 +204,7 @@
 							</xs:annotation>
 						</xs:element>
 						
-						<xs:element name="cargahoraria" minOccurs="1" type="xs:integer">
+						<xs:element name="cargahoraria" minOccurs="0" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Carga horária(em horas)</xhtml:label>
@@ -212,7 +212,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="local" minOccurs="1" type="xs:string">
+						<xs:element name="local" minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Local</xhtml:label>
@@ -228,7 +228,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="avaliacaoAspFac" minOccurs="1" type="xs:string">
+						<xs:element name="avaliacaoAspFac" minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Avaliação aspectos facilitadores</xhtml:label>
@@ -236,7 +236,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="avaliacaoAspDif" minOccurs="1" type="xs:string">
+						<xs:element name="avaliacaoAspDif" minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Avaliação aspectos dificultadores</xhtml:label>

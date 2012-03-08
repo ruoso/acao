@@ -7,16 +7,16 @@
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
 	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/semas-planejamento-mensal.xsd"
 	elementFormDefault="qualified">
-	
-<xs:element name="formPlanejamentoMensal" type="formPlanejamentoMensal">
+
+	<xs:element name="formPlanejamentoMensal" type="formPlanejamentoMensal">
 		<xs:annotation>
 			<xs:appinfo>
 				<xhtml:label>PLANEJAMENTO MENSAL</xhtml:label>
                <class:classificacoes>
-                    <class:classificacao>cn=Relatórios PSB,cn=Assistencia Social</class:classificacao>
+                    <class:classificacao>cn=Atividades Coletivas PSB,cn=Assistencia Social</class:classificacao>
                 </class:classificacoes>
                 <idx:index>
-                    <idx:hint key="pessoa.nome" xpath="formPlanejamentoMensal/identificacao/tecnicoReferencia"/>
+                    <idx:hint key="pessoa.nome" xpath="formPlanejamentoMensal/identificacao/tecnicoref"/>
                     <idx:hint key="pessoa.nome" xpath="formPlanejamentoMensal/identificacao/educador"/>
                 </idx:index>
 			</xs:appinfo>
@@ -34,167 +34,164 @@
 				</xs:annotation>
 
                 <xs:complexType>
-                    <xs:sequence>		
+                    <xs:sequence>
 
-					<xs:element name="servico" minOccurs="0">
-						<xs:annotation>
-							<xs:appinfo>
-								<xhtml:label>Serviço</xhtml:label>
-							</xs:appinfo>
-						</xs:annotation>
-						<xs:simpleType>
-							<xs:restriction base="xs:string">
-								<xs:maxLength value="255" />
-							</xs:restriction>
-						</xs:simpleType>
-					</xs:element>
-
-					<xs:element name="ser"  minOccurs="1">
-						<xs:annotation>
-							<xs:appinfo>
-								<xhtml:label>Regional</xhtml:label>
-							</xs:appinfo>
-						</xs:annotation>
-						<xs:simpleType>
-							<xs:restriction base="xs:string">
-								<xs:enumeration value="SER I" />
-								<xs:enumeration value="SER II" />
-								<xs:enumeration value="SER III" />
-								<xs:enumeration value="SER IV" />
-								<xs:enumeration value="SER V" />
-								<xs:enumeration value="SER VI" />
-							</xs:restriction>
-						</xs:simpleType>
-					</xs:element>
-
-					<xs:element name="cras"  minOccurs="1">
-						<xs:annotation>
-							<xs:appinfo>
-								<xhtml:label>CRAS</xhtml:label>
-							</xs:appinfo>
-						</xs:annotation>
-						<xs:simpleType>
-							<xs:restriction base="xs:string">
-									<xs:enumeration value="CRAS-BARRA DO CEARÁ" />
-									<xs:enumeration value="CRAS-PIRAMBU" />
-									<xs:enumeration value="CRAS-LAGAMAR" />
-									<xs:enumeration value="CRAS-MUCURIPE" />
-									<xs:enumeration value="CRAS-PRAIA DO FUTURO II" />
-									<xs:enumeration value="CRAS-SERVILUZ" />
-									<xs:enumeration value="CRAS-BELA VISTA" />
-									<xs:enumeration value="CRAS-QUINTINO CUNHA " />
-									<xs:enumeration value="CRAS-COUTO FERNANDES" />
-									<xs:enumeration value="CRAS-SERRINHA" />
-									<xs:enumeration value="CRAS-VILA UNIÃO" />
-									<xs:enumeration value="CRAS-ARACAPÉ" />
-									<xs:enumeration value="CRAS-BOM JARDIM" />
-									<xs:enumeration value="CRAS-CONJUNTO ESPERANÇA" />
-									<xs:enumeration value="CRAS-GRANJA PORTUGAL" />
-									<xs:enumeration value="CRAS-GENIBAÚ" />
-									<xs:enumeration value="CRAS-MONDUBIM" />
-									<xs:enumeration value="CRAS-CANINDEZINHO" />
-									<xs:enumeration value="CRAS-CASTELÃO" />
-									<xs:enumeration value="CRAS-CONJUNTO PALMEIRAS" />
-									<xs:enumeration value="CRAS-DENDÊ" />
-									<xs:enumeration value="CRAS-JARDIM DAS OLIVEIRAS" />
-									<xs:enumeration value="CRAS-JOÃO PAULO II" />
-									<xs:enumeration value="CRAS-ITINEREANTE" />		
-							</xs:restriction>
-						</xs:simpleType>
-					</xs:element>
-					
-					<xs:element name="tematica" minOccurs="1">
-						<xs:annotation>
-							<xs:appinfo>
-								<xhtml:label>Temática</xhtml:label>
-							</xs:appinfo>
-						</xs:annotation>
-						<xs:simpleType>
-							<xs:restriction base="xs:string">
-								<xs:maxLength value="255" />
-							</xs:restriction>
-						</xs:simpleType>
-					</xs:element>
-					
-					<xs:element name="tecnicoReferencia" minOccurs="1">
-						<xs:annotation>
-							<xs:appinfo>
-								<xhtml:label>Técnico(a) de referência</xhtml:label>
-							</xs:appinfo>
-						</xs:annotation>
-						<xs:simpleType>
-							<xs:restriction base="xs:string">
-								<xs:maxLength value="255" />
-							</xs:restriction>
-						</xs:simpleType>
-					</xs:element>
-
-
-					<xs:element name="educador" minOccurs="0">
-						<xs:annotation>
-							<xs:appinfo>
-								<xhtml:label>Educador(a)/Orientador(a) Social</xhtml:label>
-							</xs:appinfo>
-						</xs:annotation>
-						<xs:simpleType>
-							<xs:restriction base="xs:string">
-								<xs:maxLength value="255" />
-							</xs:restriction>
-						</xs:simpleType>
-					</xs:element>
-
-					<xs:element name="horaini" minOccurs="0">
-						<xs:annotation>
-							<xs:appinfo>
-								<xhtml:label>Horário Início</xhtml:label>
-							</xs:appinfo>
-						</xs:annotation>
-						<xs:simpleType>
-							<xs:restriction base="xs:string">
-								<xs:maxLength value="255"/>
-								<xs:pattern value="[0-2][0-9]{2}\:[0-5][0-9]{2}"/>
-							</xs:restriction>
-						</xs:simpleType>
-
-					</xs:element>
-
-					<xs:element name="horaterm" minOccurs="0">
-						<xs:annotation>
-							<xs:appinfo>
-								<xhtml:label>Horário Término</xhtml:label>
-							</xs:appinfo>
-						</xs:annotation>
-						<xs:simpleType>
+						<xs:element name="servico" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Serviço</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
 								<xs:restriction base="xs:string">
-									<xs:maxLength value="255"/>
-									<xs:pattern value="[0-2][0-9]{2}\:[0-5][0-9]{2}"/>
+									<xs:maxLength value="255" />
 								</xs:restriction>
-						</xs:simpleType>
-					</xs:element>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="ser"  minOccurs="1">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Regional</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="SER I" />
+									<xs:enumeration value="SER II" />
+									<xs:enumeration value="SER III" />
+									<xs:enumeration value="SER IV" />
+									<xs:enumeration value="SER V" />
+									<xs:enumeration value="SER VI" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="cras"  minOccurs="1">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>CRAS</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+										<xs:enumeration value="CRAS-BARRA DO CEARÁ" />
+										<xs:enumeration value="CRAS-PIRAMBU" />
+										<xs:enumeration value="CRAS-LAGAMAR" />
+										<xs:enumeration value="CRAS-MUCURIPE" />
+										<xs:enumeration value="CRAS-PRAIA DO FUTURO II" />
+										<xs:enumeration value="CRAS-SERVILUZ" />
+										<xs:enumeration value="CRAS-BELA VISTA" />
+										<xs:enumeration value="CRAS-QUINTINO CUNHA " />
+										<xs:enumeration value="CRAS-COUTO FERNANDES" />
+										<xs:enumeration value="CRAS-SERRINHA" />
+										<xs:enumeration value="CRAS-VILA UNIÃO" />
+										<xs:enumeration value="CRAS-ARACAPÉ" />
+										<xs:enumeration value="CRAS-BOM JARDIM" />
+										<xs:enumeration value="CRAS-CONJUNTO ESPERANÇA" />
+										<xs:enumeration value="CRAS-GRANJA PORTUGAL" />
+										<xs:enumeration value="CRAS-GENIBAÚ" />
+										<xs:enumeration value="CRAS-MONDUBIM" />
+										<xs:enumeration value="CRAS-CANINDEZINHO" />
+										<xs:enumeration value="CRAS-CASTELÃO" />
+										<xs:enumeration value="CRAS-CONJUNTO PALMEIRAS" />
+										<xs:enumeration value="CRAS-DENDÊ" />
+										<xs:enumeration value="CRAS-JARDIM DAS OLIVEIRAS" />
+										<xs:enumeration value="CRAS-JOÃO PAULO II" />
+										<xs:enumeration value="CRAS-ITINEREANTE" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="tematica" minOccurs="1">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Temática</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="tecnicoref" minOccurs="1">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Técnico(a) de referência</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+
+						<xs:element name="educador" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Educador(a)/Orientador(a) Social</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						
+				        <xs:element name="hrInicio" minOccurs="1">
+				            <xs:annotation>
+				                <xs:appinfo>
+				                    <xhtml:label>Horário de Início(HH:MM)</xhtml:label>
+				                </xs:appinfo>
+				            </xs:annotation>
+				            <xs:simpleType>
+				                <xs:restriction base="xs:string">
+				                    <xs:maxLength value="5"/>
+				                </xs:restriction>
+				            </xs:simpleType>
+				        </xs:element>
+				        
+				        <xs:element name="hrTermino" minOccurs="1">
+				            <xs:annotation>
+				                <xs:appinfo>
+				                    <xhtml:label>Horário de término(HH:MM)</xhtml:label>
+				                </xs:appinfo>
+				            </xs:annotation>
+				            <xs:simpleType>
+				                <xs:restriction base="xs:string">
+				                    <xs:maxLength value="5"/>
+				                </xs:restriction>
+				            </xs:simpleType>
+				        </xs:element>
 
 					</xs:sequence>
 				</xs:complexType>
             </xs:element>
-            
+
             <xs:element name="planejamento" maxOccurs="20">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Planejamento</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
-              
+
                 <xs:complexType>
                     <xs:sequence>
 
-						<xs:element name="data" minOccurs="1" type="xs:date">
+						<xs:element name="data" minOccurs="0" type="xs:date">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Data</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
-						
-						<xs:element name="atividade" minOccurs="1" >
+
+						<xs:element name="atividade" minOccurs="0" >
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Atividade</xhtml:label>
@@ -212,7 +209,7 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="objetivo" minOccurs="1" type="xs:string">
+						<xs:element name="objetivo" minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Objetivo</xhtml:label>
@@ -220,7 +217,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="metodologia" minOccurs="1" >
+						<xs:element name="metodologia" minOccurs="0" >
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Metodologia</xhtml:label>
@@ -235,7 +232,7 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="descmetodol" minOccurs="1" type="xs:string">
+						<xs:element name="descmetodol" minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Descrição Metodologia</xhtml:label>
@@ -243,7 +240,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="recursos" minOccurs="1" type="xs:string">
+						<xs:element name="recursos" minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Recursos</xhtml:label>
@@ -258,13 +255,13 @@
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
+
                     </xs:sequence>
 
 				</xs:complexType>
             </xs:element>
-            
-            
-			<xs:element name="nomertecresp" minOccurs="1">
+
+			<xs:element name="nometecresp" minOccurs="1">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Técnico(a) Responsável</xhtml:label>
@@ -277,7 +274,7 @@
 				</xs:simpleType>
 			</xs:element>
 
-			<xs:element name="datadocumento" minOccurs="1" type="xs:date">
+			<xs:element name="dataDocumento" minOccurs="1" type="xs:date">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Data</xhtml:label>

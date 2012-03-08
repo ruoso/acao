@@ -424,7 +424,7 @@
 			</xs:element>
 			
 			
-			<xs:element name="encamRedeSocioAssistencial">
+			<xs:element name="encamRequisicaoBpc">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>1.2.3 ENCAMINHAMENTOS - Requisição BPC</xhtml:label>
@@ -1466,6 +1466,288 @@
 
 						</xs:sequence>
 					</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="atendimentofam">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>3.1 Atendimento familiar</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="numeroFamOrient" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de Famílias orientadas, informadas, encaminhadas pelos atendentes e cadastradores</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="numeroCadunico" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de Famílias incluídas no CADÚNICO</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="numeroAtualiazado" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de Famílias com Cadastro Atualizado</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="numeroAtualiazado" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de Declarações de NIS expedidas	</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="acompFamiliar">
+
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>3.2 Acompanhamento Familiar</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="numeroSicon" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de Famílias acompanhadas e informadas no SICON</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="numeroDeferidos" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de recursos on line deferidos </xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="numerosIndeferidos" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de recursos on line indeferidos </xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="numeroDenunciar" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de denúncias recebidas </xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="numeroVisita" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de visitas/contatos institucionais realizados</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			
+			
+			<xs:element name="acoesComplementares">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>3.3 Ações Complementares</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="inscPronatec" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de inscritos no PRONATEC</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="numEncontAtiv" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de encontros/atividades realizadas com escolas/educação</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			
+			
+			<xs:element name="articIntersetCadunicoPBF">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>3.4 Articulação Intersetorial do CADUNICO-PBF</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="numEncRealizEscolas" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de encontros/atividades realizadas com escolas/educação</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="numEncRealizCSFSaude" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de encontros/atividades realizadas com CSF/saúde</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="cadastrounico">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>3.5 Cadastro Único</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="cadastroDigitado" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Cadastros digitados</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="gestaoBeneficio">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>3.6 Gestão de Benefícios</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="bloqueioRealizado" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de Bloqueios Realizados</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="desbloqueioRealizado" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de Desbloqueios Realizados</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="cancelamentoRealizado" minOccurs="0"
+							type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de Cancelamentos Realizados</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="reversoesRealizadas" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de Reversões de suspensões realizadas</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="reversoesCanceladas" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de Reversões de cancelamento realizadas</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="outrasAtividades">
+
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>3.7 Outras atividades</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="numeroRrealizada" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de reuniões realizadas</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						
+						<xs:element name="numeroRparticipada" minOccurs="0"
+							type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de reuniões participadas</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						
+						<xs:element name="numeroCrealizada" minOccurs="0"
+							type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de capacitações realizadas</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="numeroCparticipada" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de capacitações participadas</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+					
+					</xs:sequence>
+				</xs:complexType>
 			</xs:element>
 
 			<xs:element name="observdoc" minOccurs="0" type="xs:string">

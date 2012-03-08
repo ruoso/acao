@@ -32,17 +32,23 @@
 						<xhtml:label>Identificação</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
-				
+
 				<xs:complexType>
 					<xs:sequence>
 
-						<xs:element name="numeronis" minOccurs="1" type="xs:integer">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>NIS</xhtml:label>
-								</xs:appinfo>
-							</xs:annotation>
-						</xs:element>
+				        <xs:element name="numeronis" minOccurs="1">
+				            <xs:annotation>
+				                <xs:appinfo>
+				                    <xhtml:label>NIS</xhtml:label>
+				                </xs:appinfo>
+				            </xs:annotation>
+				            <xs:simpleType>
+				                <xs:restriction base="xs:string">
+				                    <xs:maxLength value="11"/>
+				                    <xs:pattern value="[0-9]+[0-9]+"/>
+				                </xs:restriction>
+				            </xs:simpleType>
+				        </xs:element>
 
 						<xs:element name="datapreenchi" minOccurs="1" type="xs:date">
 							<xs:annotation>
@@ -244,6 +250,7 @@
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
+
 				        <xs:element name="cpf" minOccurs="0">
 				            <xs:annotation>
 				                <xs:appinfo>
@@ -1180,7 +1187,7 @@
 						<xs:element name="seinscritocadunico" minOccurs="0" type="xs:date">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Em Caso Afirmativo, Data da Pesquisa</xhtml:label>
+									<xhtml:label>Em Caso Afirmativo, Data da entrevista</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -1220,13 +1227,12 @@
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
-							<xs:restriction base="xs:string">
-								<xs:enumeration value="Processado Ativo" />
-								<xs:enumeration value="Multiplicidade" />
-								<xs:enumeration value="Cadastro Aberto" />
-								<xs:enumeration value="Cadastro Fechado" />
-								<xs:enumeration value="Extraído" />
-							</xs:restriction>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Cadastrado" />
+									<xs:enumeration value="Atribuindo NIS" />
+									<xs:enumeration value="Validando NIS" />
+									<xs:enumeration value="Em Processamento" />
+								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
 
@@ -1260,10 +1266,10 @@
 						</xs:element>
 
 
-						<xs:element name="participaacaocompl"  minOccurs="0">
+						<xs:element name="participaprogprojeto"  minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>6.4 Participa de ação complementar do Programa Bolsa Família</xhtml:label>
+									<xhtml:label>6.4 Participa de algum Programa/Projeto ou Serviço  ou recebe algum benefício a parti do Cadastro Único</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -1274,7 +1280,7 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="separticipaacaocompl"  minOccurs="0">
+						<xs:element name="casoparticprogproj"  minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Caso Afirmativo, qual</xhtml:label>
@@ -1282,8 +1288,21 @@
 							</xs:annotation>
 							<xs:simpleType>
 							<xs:restriction base="xs:string">
-								<xs:enumeration value="Plaseq" />
-								<xs:enumeration value="Inclusão Produtiva" />
+								<xs:enumeration value="Programa Bolsa Família" />
+								<xs:enumeration value="PRONATEC" />
+								<xs:enumeration value="PETI" />
+								<xs:enumeration value="PROJOVEM Adolescente" />
+								<xs:enumeration value="Benefício da Tarifa Social de Energia Elétrica" />
+								<xs:enumeration value="Carteira Nacional do Idoso" />
+								<xs:enumeration value="Gratuidade para Pessoa com Deficiência" />
+								<xs:enumeration value="Isenção em Concursos Públicos Federais" />
+								<xs:enumeration value="Programa Minha Casa Minha Vida" />
+								<xs:enumeration value="CNH Popular" />
+								<xs:enumeration value="Projeto de Inclusão Produtiva para as Mulheres do PBF" />
+								<xs:enumeration value="Projeto Autonomia para as Mulheres do Cadúnico" />
+								<xs:enumeration value="Benefícios Previdenciários para Dona(o) de Casa de Baixa Renda" />
+								<xs:enumeration value="Brasil Alfabetizado" />
+								<xs:enumeration value="Outros" />
 							</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
@@ -1327,9 +1346,10 @@
 							<xs:restriction base="xs:string">
 								<xs:enumeration value="I  - Advertência" />
 								<xs:enumeration value="II - Bloqueio por 30 dias" />
-								<xs:enumeration value="III- 1ª Suspensão por 60 dias" />
-								<xs:enumeration value="IV - 2ª Suspensão por 60 dias" />
-								<xs:enumeration value="V  - Cancelamento do benefício" />
+								<xs:enumeration value="III- Suspensão" />
+								<xs:enumeration value="IV- 1ª Suspensão por 60 dias" />
+								<xs:enumeration value="V - 2ª Suspensão por 60 dias" />
+								<xs:enumeration value="VI  - Cancelamento do benefício" />
 							</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
