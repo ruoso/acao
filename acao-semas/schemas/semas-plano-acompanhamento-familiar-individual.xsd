@@ -96,7 +96,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						
+
 						<xs:element name="idindivfam" minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
@@ -109,7 +109,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						
+
 						<xs:element name="nomresponsavel" minOccurs="1" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
@@ -117,7 +117,7 @@
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
-						
+
 						<xs:element name="enderecoresp" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
@@ -145,7 +145,7 @@
 
 							<xs:complexType>
 								<xs:sequence>
-								
+
 									<xs:element name="benpbf" minOccurs="0" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
@@ -161,7 +161,7 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									
+
 									<xs:element name="benpbcidoso" minOccurs="0" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
@@ -177,7 +177,7 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									
+
 									<xs:element name="benpbcidoso" minOccurs="0" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
@@ -188,9 +188,9 @@
 
 								</xs:sequence>
 							</xs:complexType>
-							
+
 						</xs:element>
-						
+
 						<xs:element name="compfamiliar" minOccurs="0" maxOccurs="20">
 
 							<xs:annotation>
@@ -201,7 +201,7 @@
 
 							<xs:complexType>
 								<xs:sequence>
-									
+
 									<xs:element name="nommembro" minOccurs="1">
 										<xs:annotation>
 											<xs:appinfo>
@@ -214,7 +214,7 @@
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:element>
-									
+
 									<xs:element name="dtnasci" minOccurs="0" type="xs:date">
 										<xs:annotation>
 											<xs:appinfo>
@@ -222,7 +222,7 @@
 											</xs:appinfo>
 										</xs:annotation>
 									</xs:element>
-									
+
 									<xs:element name="grauparent" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
@@ -235,7 +235,7 @@
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:element>
-									
+
 									<xs:element name="numeronis"  minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
@@ -249,7 +249,7 @@
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:element>
-									
+
 									<xs:element name="ocupacaomembro" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
@@ -291,7 +291,7 @@
 			<xs:element name="evolucaosocialfam">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>2. Evolução Social Familiar/Individual</xhtml:label>
+						<xhtml:label>Evolução Social Familiar/Individual</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 
@@ -305,7 +305,7 @@
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
-						
+
 						<xs:element name="objetivo"  minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
@@ -319,8 +319,268 @@
 									<xs:enumeration value="Superação da Vivência de Rua" />
 								</xs:restriction>
 							</xs:simpleType>
-						</xs:element>						
+						</xs:element>
+						
+						<xs:element name="evolucaosocialfam">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>1. Situação inicial da família/indivíduo</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
 
+							<xs:complexType>
+								<xs:sequence>
+
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+
+						<xs:element name="pstirua" minOccurs="0" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Pessoa  em situação de rua</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						
+						<xs:element name="expsexcriadol" minOccurs="0" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Abuso/exploração sexual de crianças e adolescentes</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						
+						<xs:element name="aband" minOccurs="0" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Abandono</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						
+						<xs:element name="aplmedsociedu" minOccurs="0" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Afastamento do convívio familiar devido à aplicação de medida socioeducativa ou de proteção</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						
+						<xs:element name="vivtrabinf" minOccurs="0" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Vivência de Trabalho Infantil</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						
+						<xs:element name="jovconflei" minOccurs="0" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Jovens em conflito com a lei</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						
+						<xs:element name="violmtracontrcria" minOccurs="0" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Negligência, violência ou maus tratos contra crianças</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						
+						<xs:element name="viomtratcontrpido" minOccurs="0" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Negligência, violência, maus tratos ou abuso financeiro contra a pessoa  idosa</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						
+						<xs:element name="viomtratcontrpdef" minOccurs="0" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Negligência, violência, maus tratos ou abuso financeiro contra pessoa com deficiência</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						
+						<xs:element name="viomtratcontrptransment" minOccurs="0" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Negligência, violência, maus tratos ou abuso financeiro contra pessoa com transtorno mental</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="pdefafastconvsoc" minOccurs="0" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Pessoas com deficiência afastadas do convívio social</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="ptranmafconvment" minOccurs="0" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Pessoas com transtorno mental afastadas do convívio social</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="" minOccurs="0" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Famílias em situação de insegurança alimentar</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="" minOccurs="0" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Violência urbana</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="" minOccurs="0" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Violência doméstica contra a mulher</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="" minOccurs="0" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Risco habitacional </xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="" minOccurs="0" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Mendicância</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						
+						<xs:element name="" minOccurs="0" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Pessoa em situação de rua</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="" minOccurs="0" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Drogadição/ alcoolismo</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="" minOccurs="0" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Cárcere privado </xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="" minOccurs="0" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Pessoa sem documentação civil</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="" minOccurs="0" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Discriminação (ex.: étnica, cultural, gênero, orientação sexual, religiosa)</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="" minOccurs="0" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label> Descumprimento de condicionalidades do PBF e do PETI em decorrência de violação de direitos</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="" minOccurs="0" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Tráfico de seres humanos</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="" minOccurs="0" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Tráfico de seres humanos para fins sexuais</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="" minOccurs="0" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Turismo sexual</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="" minOccurs="0" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Criança e/ou adolescente fora da escola</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="" minOccurs="0" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Precário ou nulo acesso aos serviços públicos</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="" minOccurs="0" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Fragilização de vínculos afetivos</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="" minOccurs="0" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Desemprego</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="" minOccurs="0" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Outros</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
 
 					</xs:sequence>
 				</xs:complexType>
