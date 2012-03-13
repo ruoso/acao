@@ -114,13 +114,13 @@
 								<xs:enumeration value="Vínculos fragilizados" />
 								<xs:enumeration value="Vínculos vínculos rompidos" />
 								<xs:enumeration value="Contatos freqüentes" />
-								<xs:enumeration value="Contatos com a família na rua" />
+								<xs:enumeration value="Com a família na rua" />
 								<xs:enumeration value="Contatos esporádicos" />
 								<xs:enumeration value="Outros" />
 							</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						
+
 						<xs:element name="outrosvincfam" minOccurs="1" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
@@ -128,7 +128,7 @@
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
-						
+
 						<xs:element name="contatos" minOccurs="0" maxOccurs="20">
 							<xs:annotation>
 								<xs:appinfo>
@@ -151,7 +151,6 @@
 							                </xs:restriction>
 							            </xs:simpleType>
 							        </xs:element>
-							        
 
 							        <xs:element name="tiporel" minOccurs="1">
 							            <xs:annotation>
@@ -205,7 +204,7 @@
 								<xs:enumeration value="Despejo" />
 								<xs:enumeration value="Situação de rua" />
 								<xs:enumeration value="Conflitos familiares" />
-								<xs:enumeration value="Outro" />
+								<xs:enumeration value="Outros" />
 							</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
@@ -314,7 +313,7 @@
 						<xs:element name="consumsubstancia"  minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>4.1 Já Consumiu Substâncias Psicoativas(Em caso afirmativo, 
+									<xhtml:label>4.1 Já Consumiu Substâncias Psicoativas (Em caso afirmativo, 
 									responder os itens 4.2, 4.3 e 4.4)</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
@@ -329,7 +328,7 @@
 						<xs:element name="tiposubstancia"  minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>4.2 Tipo de Substência</xhtml:label>
+									<xhtml:label>4.2 Tipo de Substância</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -382,6 +381,130 @@
 							</xs:annotation>
 						</xs:element>
 					
+					</xs:sequence>
+				</xs:complexType>
+
+			</xs:element>
+			
+			<xs:element name="aspectrelacsaude">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>5. Aspectos Relacionados à Saúde</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="tomandmedic"  minOccurs="1">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>5.1 Está tomando alguma medicação?</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="Sim" />
+								<xs:enumeration value="Não" />
+							</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="tomandmedicpos" minOccurs="0" maxOccurs="10">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Em caso positivo</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+
+							<xs:complexType>
+								<xs:sequence>
+
+							        <xs:element name="nommed" minOccurs="1">
+							            <xs:annotation>
+							                <xs:appinfo>
+							                    <xhtml:label>Qual?</xhtml:label>
+							                </xs:appinfo>
+							            </xs:annotation>
+							            <xs:simpleType>
+							                <xs:restriction base="xs:string">
+							                    <xs:maxLength value="255"/>
+							                </xs:restriction>
+							            </xs:simpleType>
+							        </xs:element>
+
+							        <xs:element name="hormed" minOccurs="1">
+							            <xs:annotation>
+							                <xs:appinfo>
+							                    <xhtml:label>Qual horário?</xhtml:label>
+							                </xs:appinfo>
+							            </xs:annotation>
+							            <xs:simpleType>
+							                <xs:restriction base="xs:string">
+							                    <xs:maxLength value="255"/>
+							                </xs:restriction>
+							            </xs:simpleType>
+							        </xs:element>
+
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>	
+
+						<xs:element name="possuialergia"  minOccurs="1">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>5.2 Possui algum tipo de alergia?(medicamentos, alimentos, insetos)</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="Sim" />
+								<xs:enumeration value="Não" />
+								<xs:enumeration value="Não sei" />
+							</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						
+						<xs:element name="possuialergiapos" minOccurs="0" maxOccurs="10">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Em caso positivo</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+
+							<xs:complexType>
+								<xs:sequence>
+
+							        <xs:element name="nomalerg" minOccurs="1">
+							            <xs:annotation>
+							                <xs:appinfo>
+							                    <xhtml:label>Qual?</xhtml:label>
+							                </xs:appinfo>
+							            </xs:annotation>
+							            <xs:simpleType>
+							                <xs:restriction base="xs:string">
+							                    <xs:maxLength value="255"/>
+							                </xs:restriction>
+							            </xs:simpleType>
+							        </xs:element>
+
+							        <xs:element name="quereacoes" minOccurs="1">
+							            <xs:annotation>
+							                <xs:appinfo>
+							                    <xhtml:label>Quais as reações?</xhtml:label>
+							                </xs:appinfo>
+							            </xs:annotation>
+							            <xs:simpleType>
+							                <xs:restriction base="xs:string">
+							                    <xs:maxLength value="255"/>
+							                </xs:restriction>
+							            </xs:simpleType>
+							        </xs:element>
+
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+
 					</xs:sequence>
 				</xs:complexType>
 
@@ -558,7 +681,7 @@
 						<xs:element name="grauparenvitneg"  minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Em caso afirmativo, assinalar</xhtml:label>
+									<xhtml:label>Caso negativo, assinalar abaixo</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -637,7 +760,7 @@
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
-			
+
 			<xs:element name="evolucao" minOccurs="0" type="xs:string">
 				<xs:annotation>
 					<xs:appinfo>
