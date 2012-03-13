@@ -41,13 +41,13 @@
           {$x/ns:criacao/text()}
         </td>
 
-        {if ( $x/ns:fechamento/text() eq '1970-01-01T00:00:00Z' ) then (
+        {if ( ($x/ns:fechamento/text() eq '1970-01-01T00:00:00Z') or  empty($x/ns:fechamento/text()))  then (
             <td style="text-align: center;" class="longDateFormat"> - </td>
          ) else (
             <td class="longDateFormat"> { $x/ns:fechamento/text() } </td>
          ) }
 
-        {if ( $x/ns:arquivamento/text() eq '1970-01-01T00:00:00Z' ) then (
+        {if ( ($x/ns:arquivamento/text() eq '1970-01-01T00:00:00Z') or  empty($x/ns:arquivamento/text()))  then (
             <td style="text-align: center;" class="longDateFormat"> - </td>
          ) else (
             <td class="longDateFormat"> { $x/ns:arquivamento/text() } </td>
