@@ -13,7 +13,7 @@
 			<xs:appinfo>
 				<xhtml:label>RELATÓRIO QUANTITATIVO MENSAL</xhtml:label>
 				<class:classificacoes>
-					<class:classificacao>cn=Proteção Social Básica,cn=Assistencia Social</class:classificacao>
+                    <class:classificacao>cn=Relatórios PSB,cn=Assistencia Social</class:classificacao>
 				</class:classificacoes>
 			</xs:appinfo>
 		</xs:annotation>
@@ -26,7 +26,7 @@
 			<xs:element name="identificacao">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Identificação</xhtml:label>
+						<xhtml:label>IDENTIFICAÇÃO</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 
@@ -123,10 +123,11 @@
 				</xs:complexType>
 			</xs:element>
 
+
 			<xs:element name="atendimentos" minOccurs="0" maxOccurs="5">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>1.1 Atendimentos</xhtml:label>
+						<xhtml:label>1.1 ATENDIMENTOS</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 
@@ -208,7 +209,7 @@
 						<xs:element name="beneficiarios">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Beneficiarios</xhtml:label>
+									<xhtml:label>Beneficiários</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:complexType>
@@ -273,184 +274,211 @@
 
 			</xs:element>
 
-			<xs:element name="encaminhamentos" minOccurs="0">
+
+			<xs:element name="encamRedeSocioAssistencial" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>1.2 Encaminhamentos</xhtml:label>
+						<xhtml:label>1.2.1 ENCAMINHAMENTOS - Rede Socioassistencial</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 
 				<xs:complexType>
 					<xs:sequence>
 
-						<xs:element name="redesocassist">
+						<xs:element name="socioassistCreas" minOccurs="0" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Rede socioassistencial</xhtml:label>
+									<xhtml:label>CREAS</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
-
-							<xs:complexType>
-								<xs:sequence>
-								
-									<xs:element name="socioassistCreas" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>CREAS</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-
-									<xs:element name="socioassistCentroPop" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>CENTRO POP</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-
-									<xs:element name="socioassistMSE" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>MSE</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-
-									<xs:element name="socioassistAquarela" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Rede Aquarela</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-
-									<xs:element name="socioassistConveniada" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Conveniada</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-
-									<xs:element name="socioassistCRMClotilde" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>CRM Fca. Clotilde</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-
-									<xs:element name="socioassistencialOutro" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Outros</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-
-								</xs:sequence>
-							</xs:complexType>
-
 						</xs:element>
 
-
-						<xs:element name="politintersetor" minOccurs="0">
+						<xs:element name="socioassistCentroPop" minOccurs="0" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Políticas intersetoriais</xhtml:label>
+									<xhtml:label>CENTRO POP</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
-
-							<xs:complexType>
-								<xs:sequence>
-
-									<xs:element name="politInterSetorSaude" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Saúde</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									
-									<xs:element name="politInterSetorEducacao" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Educação</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									
-									<xs:element name="politInterSetorSdh" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>SDH</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-
-									<xs:element name="politInterSetorHabit" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Habitação</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-
-									<xs:element name="politInterSetorSde" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>SDE</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-
-									<xs:element name="politInterSetorSgd" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>SGD</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-
-									<xs:element name="politInterSetorTrab" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Trabalho e emprego
-												</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-
-									<xs:element name="politInterSetorOutro" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Outros</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-								
-								</xs:sequence>
-							</xs:complexType>
 						</xs:element>
 
+						<xs:element name="socioassistMSE" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>MSE</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="socioassistAquarela" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Rede Aquarela</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="socioassistConveniada" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Conveniada</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="socioassistCRMClotilde" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>CRM Fca. Clotilde</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="socioassistencialOutro" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Outros</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="encamPolitIntersetorial" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>1.2.2 ENCAMINHAMENTOS - Político Intersetoriais</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="politInterSetorSaude" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Saúde</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="politInterSetorEducacao" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Educação</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="politInterSetorSdh" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>SDH</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="politInterSetorHabit" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Habitação</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="politInterSetorSde" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>SDE</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="politInterSetorSgd" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>SGD</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="politInterSetorTrab" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Trabalho e emprego</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="politInterSetorOutro" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Outros</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			
+			
+			<xs:element name="encamRequisicaoBpc">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>1.2.3 ENCAMINHAMENTOS - Requisição BPC</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+
+				<xs:complexType>
+					<xs:sequence>
 
 						<xs:element name="requisicaoBpc" minOccurs="0" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Requisição BPC</xhtml:label>
+									<xhtml:label>Requisição de BPC</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
 
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			
+			
+			<xs:element name="encamEtufor">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>1.2.4 ENCAMINHAMENTOS - ETUFOR</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+
+				<xs:complexType>
+					<xs:sequence>
+
 						<xs:element name="etuforGratuit" minOccurs="0" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>ETUFOR gratuidade pessoas com deficiencia
-									</xhtml:label>
+									<xhtml:label>ETUFOR gratuidade pessoas com deficiência</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			
+
+			<xs:element name="encamOutros" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>1.2.5 ENCAMINHAMENTOS - Outros</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+
+				<xs:complexType>
+					<xs:sequence>
 
 						<xs:element name="outrosencamin" minOccurs="0" type="xs:integer">
 							<xs:annotation>
@@ -469,15 +497,14 @@
 						</xs:element>
 					
 					</xs:sequence>
-
 				</xs:complexType>
-
 			</xs:element>
+
 
 			<xs:element name="famAcompPaf" minOccurs="0" maxOccurs="6">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>1.3 Famílias acompanhadas pelo PAF</xhtml:label>
+						<xhtml:label>1.3 FAMÍLIAS ACOMPANHADAS PELO PAF Famílias</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 
@@ -613,15 +640,17 @@
 
 			</xs:element>
 
-			<xs:element name="ativEducativas" minOccurs="0">
+
+			<xs:element name="ativEducativas" minOccurs="0"  maxOccurs="2">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>1.4 Atividades Socioeducativas para famílias(GRUPO)</xhtml:label>
+						<xhtml:label>1.4 ATIVIDADES SOCIOEDUCATIVAS PARA FAMÍLIAS(GRUPO)</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 
 				<xs:complexType>
 					<xs:sequence>
+
 						<xs:element name="tpAtividadeEduc" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
@@ -631,161 +660,192 @@
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
 									<xs:enumeration value="Grupo de famílias" />
-									<xs:enumeration value="Encontro socioeducativo com famílias do Cad. único" />
+									<xs:enumeration value="Encontro socioeducativo com famílias do PBF" />
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
+
 						<xs:element name="qtdEncontroMeta" minOccurs="0" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Qtd encontros meta</xhtml:label>
+									<xhtml:label>Nº de encontros meta</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
+
 						<xs:element name="qtdEncontroRealizada" minOccurs="0" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Qtd encontros realizados</xhtml:label>
+									<xhtml:label>Nº de encontros realizados</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
+
 						<xs:element name="qtdIncritEncont" minOccurs="0" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Qtd inscritos no encontro</xhtml:label>
+									<xhtml:label>Nº de inscritos no encontro</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
+
 						<xs:element name="qtdParticEncont" minOccurs="0" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Qtd participantes no encontro</xhtml:label>
+									<xhtml:label>Nº de participantes no encontro</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
+
 						<xs:element name="qtdMulEncont" minOccurs="0" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Qtd mulheres no encontro</xhtml:label>
+									<xhtml:label>Nº de mulheres no encontro</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
+
 						<xs:element name="qtdHomEncont" minOccurs="0" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Qtd homens no encontro</xhtml:label>
+									<xhtml:label>Nº de homens no encontro</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
+
 						<xs:element name="qtdInscCadUnico" minOccurs="0" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Qtd inscritos no CadÚnico</xhtml:label>
+									<xhtml:label>Nº de inscritos no CadÚnico</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
-						<xs:element name="pbfAtvSocEduc" minOccurs="0" type="xs:integer">
+						
+						
+						<xs:element name="ativSocEducBeneficiarios">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Beneficiarios PBF</xhtml:label>
+									<xhtml:label>Beneficiários</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
+							
+							<xs:complexType>
+								<xs:sequence>
+								
+									<xs:element name="pbfAtvSocEduc" minOccurs="0" type="xs:integer">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>PBF</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="beAtvSocEduc" minOccurs="0" type="xs:integer">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>BE</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="bpcIdosoAtvSocEduc" minOccurs="0" type="xs:integer">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>BPC idoso</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="bpcDeficienteAtvSocEduc" minOccurs="0" type="xs:integer">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>BPC deficiente</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="petiAtvSocEduc" minOccurs="0" type="xs:integer">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>PETI</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="pafAtvSocEduc" minOccurs="0" type="xs:integer">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>PAF</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+								
+								</xs:sequence>
+							</xs:complexType>
 						</xs:element>
-						<xs:element name="beAtvSocEduc" minOccurs="0" type="xs:integer">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Beneficiarios BE</xhtml:label>
-								</xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-						<xs:element name="bpcIdosoAtvSocEduc" minOccurs="0" type="xs:integer">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Beneficiarios BPC idoso</xhtml:label>
-								</xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-						<xs:element name="bpcDeficienteAtvSocEduc" minOccurs="0" type="xs:integer">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Beneficiarios BPC deficiente</xhtml:label>
-								</xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-						<xs:element name="petiAtvSocEduc" minOccurs="0"
-							type="xs:integer">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Beneficiarios PETI</xhtml:label>
-								</xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-						<xs:element name="pafAtvSocEduc" minOccurs="0" type="xs:integer">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Beneficiarios PAF</xhtml:label>
-								</xs:appinfo>
-							</xs:annotation>
-						</xs:element>
+
+
 					</xs:sequence>
 				</xs:complexType>
-
 			</xs:element>
 
-			<xs:element name="concessaoBeneficios">
+			<xs:element name="beneficiosEventuais" minOccurs="0" maxOccurs="3">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>1.5 Concessão de benefícios</xhtml:label>
+						<xhtml:label>1.5.1 BENEFÍCIOS EVENTUAIS</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 
 				<xs:complexType>
 					<xs:sequence>
 
-						<xs:element name="auxNatalidade" minOccurs="0">
+						<xs:element name="benEventual" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Auxílio natalidade - kit enxoval</xhtml:label>
+									<xhtml:label>Tipo Benefício</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
-									<xs:enumeration value="Solicitação de usuários" />
-									<xs:enumeration value="Concessão de usuários" />
-									<xs:enumeration value="Demanda reprimida" />
+									<xs:enumeration value="Auxílio Natalidade - Kit Enxoval" />
+									<xs:enumeration value="Auxílio Funeral" />
+									<xs:enumeration value="Auxílio relacionado à SAN(Cesta básica)" />
+									<xs:enumeration value="Auxílio Viagem" />
+									<xs:enumeration value="Outros" />
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-
-						<xs:element name="auxFuneral" minOccurs="0">
+						
+						<xs:element name="tipbenOutros" minOccurs="0"  type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Auxílio funeral</xhtml:label>
+									<xhtml:label>Especifique/Outros</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
-							<xs:simpleType>
-								<xs:restriction base="xs:string">
-									<xs:enumeration value="Solicitação de usuários" />
-									<xs:enumeration value="Concessão de usuários" />
-									<xs:enumeration value="Demanda reprimida" />
-								</xs:restriction>
-							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="auxSan" minOccurs="0">
+						<xs:element name="benSolicUsuarios" minOccurs="0"  type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Auxílio relacionado à SAN (Cesta Básica, leite)
-									</xhtml:label>
+									<xhtml:label>Solicitação de usuários</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
-							<xs:simpleType>
-								<xs:restriction base="xs:string">
-									<xs:enumeration value="Solicitação de usuários" />
-									<xs:enumeration value="Concessão de usuários" />
-									<xs:enumeration value="Demanda reprimida" />
-								</xs:restriction>
-							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="benConcUsuarios" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Concessão de usuários</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="benDemReprim" minOccurs="0"  type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Demanda reprimida</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
 						</xs:element>
 
 					</xs:sequence>
@@ -796,7 +856,7 @@
 			<xs:element name="riscos">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>1.6 Situações de riscos identificadas</xhtml:label>
+						<xhtml:label>1.6 SITUAÇÕES DE RISCO IDENTIFICADAS</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 
@@ -805,8 +865,7 @@
 						<xs:element name="abusoSexual" minOccurs="0" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Abuso/exploração sexual de crianças e adolescentes
-									</xhtml:label>
+									<xhtml:label>Abuso/exploração sexual de crianças e adolescentes</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -841,40 +900,35 @@
 						<xs:element name="maltratoDeficiente" minOccurs="0" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Negligência, violência, maus tratos ou abuso
-												financeiro contra pessoa com deficiência</xhtml:label>
+									<xhtml:label>Negligência, violência, maus tratos ou abuso financeiro contra pessoa com deficiência</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
 						<xs:element name="maltratoTranstMental" minOccurs="0" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Negligência, violência, maus tratos ou abuso
-												financeiro contra pessoa com transtorno mental</xhtml:label>
+									<xhtml:label>Negligência, violência, maus tratos ou abuso financeiro contra pessoa com transtorno mental</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
 						<xs:element name="discrimDeficiente" minOccurs="0" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Pessoas com deficiência afastadas do convívio
-												social</xhtml:label>
+									<xhtml:label>Pessoas com deficiência afastadas do convívio social</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
 						<xs:element name="discrimTranstMental" minOccurs="0" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Pessoas com transtorno mental afastadas do
-												convívio social</xhtml:label>
+									<xhtml:label>Pessoas com transtorno mental afastadas do convívio social</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
 						<xs:element name="famSemAlimento" minOccurs="0" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Famílias em situação de insegurança alimentar
-									</xhtml:label>
+									<xhtml:label>Famílias em situação de insegurança alimentar</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -916,7 +970,7 @@
 						<xs:element name="drogas" minOccurs="0" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Drogadição/ alcoolismo</xhtml:label>
+									<xhtml:label>Drogadição/alcoolismo</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -951,8 +1005,7 @@
 						<xs:element name="TraficHumanoSexual" minOccurs="0" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Tráfico de seres humanos para fins sexuais
-									</xhtml:label>
+									<xhtml:label>Tráfico de seres humanos para fins sexuais</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -966,8 +1019,7 @@
 						<xs:element name="criancaForaEscola" minOccurs="0" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Criança e/ou adolescente fora da escola
-									</xhtml:label>
+									<xhtml:label>Criança e/ou adolescente fora da escola</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -983,11 +1035,10 @@
 
 			</xs:element>
 
-			<xs:element name="articulacao">
+			<xs:element name="articulacao" minOccurs="0" maxOccurs="20">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>1.7 Articulação comunitária/participação popular
-						</xhtml:label>
+						<xhtml:label>1.7 ARTICULAÇÃO COMUNITÁRIA/PARTICIPAÇÃO POPULAR</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 
@@ -1022,918 +1073,150 @@
 
 			</xs:element>
 
-			<xs:element name="articulacaoRede">
+
+			<xs:element name="articRedeSocAssist" minOccurs="0" maxOccurs="3" >
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>1.8 Articulação de rede</xhtml:label>
+						<xhtml:label>1.8.1 ARTICULAÇÃO DE REDE - Rede socioassistencial</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 
 				<xs:complexType>
 					<xs:sequence>
-
-						<xs:element name="redeSocAssistencial">
+					
+						<xs:element name="articRedeSocAssistAtiv" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Rede socioassistencial</xhtml:label>
+									<xhtml:label>Atividade</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
-
-							<xs:complexType>
-								<xs:sequence>
-									<xs:element name="socioVisitasCreas" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Visitas institucionais CREAS</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="socioVisitasPop" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Visitas institucionais centro POP</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="socioVisitasCRM" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Visitas institucionais CRM Fca Clotilde
-												</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="socioVisitasConvenio" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Visitas institucionais conveniada</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="socioVisitasOutros" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Visitas institucionais outros</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="socioReuniaoCreas" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Reuniões institucionais CREAS</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="socioReuniaoPop" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Reuniões institucionais centro POP</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="socioReuniaoCRM" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Reuniões intitucionais CRM Fca Clotilde
-												</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="socioReuniaoConvenio" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Reuniões intitucionais conveniada</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="socioReuniaoOutros" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Reuniões intitucionais outros</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="socioEventoCreas" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Eventos intitucionais CREAS</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="socioEventoPop" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Eventos intitucionais centro POP</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="socioEventoCRM" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Eventos intitucionais CRM Fca Clotilde
-												</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="socioEventoConvenio" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Eventos intitucionais conveniada</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="socioEventoOutros" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Eventos intitucionais outros</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-
-								</xs:sequence>
-							</xs:complexType>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Auxílio natalidade - kit enxoval" />
+									<xs:enumeration value="Auxílio funeral" />
+									<xs:enumeration value="Auxílio relacionado à SAN(Cesta Básica, leite)" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="politicaIntersetorial">
+						<xs:element name="socioVisitasCreas" minOccurs="0" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Política intersetorial</xhtml:label>
+									<xhtml:label>CREAS</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
-
-							<xs:complexType>
-								<xs:sequence>
-									<xs:element name="politicaVisitasSaude" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Visitas intitucionais saúde</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="politicaVisitasEduc" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Visitas intitucionais Educação</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="politicaVisitasSde" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Visitas intitucionais SDE</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="politicaVisitasSdh" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Visitas intitucionais SDH</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="politicaVisitashabitacao" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Visitas intitucionais habitação</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="politicaVisitasOutros" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Visitas intitucionais outros</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="politicaReuniaoSaude" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Reunião intitucionais saúde</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="politicaReuniaoEduc" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Reunião intitucionais Educação</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="politicaReuniaoSde" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Reunião intitucionais SDE</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="politicaReuniaoSdh" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Reunião intitucionais SDH</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="politicaReuniaohabitacao" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Reunião intitucionais habitação</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="politicaReuniaoOutros" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Reunião intitucionais outros</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="politicaEventoSaude" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Evento intitucionais saúde</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="politicaEventoEduc" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Evento intitucionais Educação</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="politicaEventoSde" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Evento intitucionais SDE</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="politicaEventoSdh" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Evento intitucionais SDH</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="politicaEventohabitacao" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Evento intitucionais habitação</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="politicaEventoOutros" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Evento intitucionais outros</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-								</xs:sequence>
-							</xs:complexType>
-
 						</xs:element>
 
-
-						<xs:element name="outasAtividades">
+						<xs:element name="socioVisitasPop" minOccurs="0" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Outras atividades</xhtml:label>
+									<xhtml:label>CENTRO POP</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
-
-							<xs:complexType>
-								<xs:sequence>
-									<xs:element name="outrasVisitas" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Outras visitas</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="reuniaoInterna" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Reuniao interna da equipe</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="capacitacao" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Capacitações/Formações</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="planejamento" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Reuniões de planejamentos</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="reuniaoCoord" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Reuniões de Coordenação de CRAS/SEMAS
-												</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="outrasAtividades" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Outras atividades</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-
-								</xs:sequence>
-							</xs:complexType>
-
 						</xs:element>
 
+						<xs:element name="socioVisitasCRM" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>CRM Fca Clotilde
+									</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="socioVisitasConvenio" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Conveniada</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="socioVisitasOutros" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Outros</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+					
 					</xs:sequence>
 				</xs:complexType>
-
 			</xs:element>
-
 			
-
-			<xs:element name="atividadesColetiva">
+			<xs:element name="articRedePolicInter" minOccurs="0" maxOccurs="3" >
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>2.1 Atividades coletivas(GRUPOS)</xhtml:label>
+						<xhtml:label>1.8.2 ARTICULAÇÃO DE REDE - Política intersetorial</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 
 				<xs:complexType>
 					<xs:sequence>
 
-						<xs:element name="criancas">
+						<xs:element name="articRedePolicInterAtiv" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Crianças e Adolescentes de 6 a 15 anos
-									</xhtml:label>
+									<xhtml:label>Atividade</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
-
-							<xs:complexType>
-								<xs:sequence>
-
-									<xs:element name="criancaEncontroMeta" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Encontros meta</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="criancaEncontroRealizada" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Encontros realizados</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="criancaIncritEncont" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Inscritos no encontro</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="criancaParticEncont" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Participantes no encontro</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="criancaMulEncont" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Mulheres no encontro</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="criancaHomEncont" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Homens no encontro</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="criancaInscCadUnico" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Inscritos no CadÚnico</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="criancapbfAtvSocEduc" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Beneficiarios PBF</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="criancabeAtvSocEduc" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Beneficiarios BE</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="criancabpcIdosoAtvSocEduc" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Beneficiarios BPC idoso</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="criancabpcDeficienteAtvSocEduc" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Beneficiarios BPC deficiente</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="criancapetiAtvSocEduc" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Beneficiarios PETI</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-
-								</xs:sequence>
-							</xs:complexType>
-
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Visitas intitucionais" />
+									<xs:enumeration value="Reunião" />
+									<xs:enumeration value="Eventos" />
+								</xs:restriction>
+							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="adolescente">
+						<xs:element name="politSaude" minOccurs="0" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Adolescentes e Jovens de 15 a 17 anos
-									</xhtml:label>
+									<xhtml:label>Saúde</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
-
-							<xs:complexType>
-								<xs:sequence>
-									<xs:element name="adolescEncontroMeta" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Encontros meta</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="adolescEncontroRealizada" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Encontros realizados</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="adolescIncritEncont" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Inscritos no encontro</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="adolescParticEncont" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Participantes no encontro</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="adolescMulEncont" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Mulheres no encontro</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="adolescHomEncont" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Homens no encontro</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="adolescInscCadUnico" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Inscritos no CadÚnico</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="adolescpbfAtvSocEduc" minOccurs="0"
-										type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Beneficiarios PBF</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="adolescbeAtvSocEduc" minOccurs="0"
-										type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Beneficiarios BE</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="adolescbpcIdosoAtvSocEduc"
-										minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Beneficiarios BPC idoso</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="adolescbpcDeficienteAtvSocEduc"
-										minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Beneficiarios BPC deficiente</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="adolescpetiAtvSocEduc" minOccurs="0"
-										type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Beneficiarios PETI</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-								</xs:sequence>
-							</xs:complexType>
 						</xs:element>
-
-						<xs:element name="idosoConvivencia">
+						<xs:element name="politEduc" minOccurs="0" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Idoso G. Convivência</xhtml:label>
+									<xhtml:label>Educação</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
-
-							<xs:complexType>
-								<xs:sequence>
-									<xs:element name="idosoConvEncontroMeta" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Encontros meta</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="idosoConvEncontroRealizada" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Encontros realizados</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="idosoConvIncritEncont" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Inscritos no encontro</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="idosoConvParticEncont" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Participantes no encontro</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="idosoConvMulEncont" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Mulheres no encontro</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="idosoConvHomEncont" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Homens no encontro</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="idosoConvInscCadUnico" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Inscritos no CadÚnico</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="idosoConvpbfAtvSocEduc" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Beneficiarios PBF</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="idosoConvbeAtvSocEduc" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Beneficiarios BE</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="idosoConvbpcIdosoAtvSocEduc" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Beneficiarios BPC idoso</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="idosoConvbpcDeficienteAtvSocEduc" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Beneficiarios BPC deficiente</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="idosoConvpetiAtvSocEduc" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Beneficiarios PETI</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-								</xs:sequence>
-							</xs:complexType>
 						</xs:element>
-
-						<xs:element name="idosoArtistico">
+						<xs:element name="politSde" minOccurs="0" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Idoso G. Artístico</xhtml:label>
+									<xhtml:label>SDE</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
-
-							<xs:complexType>
-								<xs:sequence>
-									<xs:element name="idosoArtEncontroMeta" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Encontros meta</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="idosoArtEncontroRealizada" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Encontros realizados</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="idosoArtIncritEncont" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Inscritos no encontro</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="idosoArtParticEncont" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Participantes no encontro</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="idosoArtMulEncont" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Mulheres no encontro</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="idosoArtHomEncont" minOccurs="0"
-										type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Homens no encontro</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="idosoArtInscCadUnico" minOccurs="0"
-										type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Inscritos no CadÚnico</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="idosoArtpbfAtvSocEduc" minOccurs="0"
-										type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Beneficiarios PBF</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="idosoArtbeAtvSocEduc" minOccurs="0"
-										type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Beneficiarios BE</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="idosoArtbpcIdosoAtvSocEduc"
-										minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Beneficiarios BPC idoso</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="idosoArtbpcDeficienteAtvSocEduc"
-										minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Beneficiarios BPC deficiente</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="idosoArtpetiAtvSocEduc" minOccurs="0"
-										type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Beneficiarios PETI</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-								</xs:sequence>
-							</xs:complexType>
 						</xs:element>
-						<xs:element name="encSocioduc">
+						<xs:element name="politSdh" minOccurs="0" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Encontro socioeducativo com famílias do Serviço de
-												 Convivência</xhtml:label>
+									<xhtml:label>SDH</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
-							<xs:complexType>
-								<xs:sequence>
-									<xs:element name="encSocioducEncontroMeta"
-										minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Encontros meta</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="encSocioducEncontroRealizada"
-										minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Encontros realizados</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="encSocioducIncritEncont"
-										minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Inscritos no encontro</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="encSocioducParticEncont"
-										minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Participantes no encontro</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="encSocioducMulEncont" minOccurs="0"
-										type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Mulheres no encontro</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="encSocioducHomEncont" minOccurs="0"
-										type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Homens no encontro</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="encSocioducInscCadUnico"
-										minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Inscritos no CadÚnico</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="encSocioducpbfAtvSocEduc"
-										minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Beneficiarios PBF</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="encSocioducbeAtvSocEduc"
-										minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Beneficiarios BE</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="encSocioducbpcIdosoAtvSocEduc"
-										minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Beneficiarios BPC idoso</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="encSocioducbpcDeficienteAtvSocEduc" 
-										minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Beneficiarios BPC deficiente</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="encSocioducpetiAtvSocEduc" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Beneficiarios PETI</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-								</xs:sequence>
-							</xs:complexType>
 						</xs:element>
-
-						<xs:element name="encSocioEducOutrasAtiv">
+						<xs:element name="politHabit" minOccurs="0" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>2.2 Outras atividades</xhtml:label>
+									<xhtml:label>Habitação</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
-
-							<xs:complexType>
-								<xs:sequence>
-
-									<xs:element name="capacitacaoAtv" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Capacitações/Formações</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-
-									<xs:element name="reuniaoInternaAtv" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Reuniao interna da equipe</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-
-									<xs:element name="planejamentoAtv" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Reuniões de planejamentos</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-
-									<xs:element name="eventosAtv" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>Eventos</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-
-									<xs:element name="outrosAtv" minOccurs="0" type="xs:integer">
-										<xs:annotation>
-											<xs:appinfo>
-												<xhtml:label>outros</xhtml:label>
-											</xs:appinfo>
-										</xs:annotation>
-									</xs:element>
-
-								</xs:sequence>
-							</xs:complexType>
+						</xs:element>
+						<xs:element name="politOutros" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Outros</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="politOutrosEsp" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Especificação Outros</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
 						</xs:element>
 
 					</xs:sequence>
@@ -1941,10 +1224,557 @@
 
 			</xs:element>
 
-			<xs:element name="observacoes" minOccurs="0" type="xs:string">
+
+			<xs:element name="articRedeOutros">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Observações</xhtml:label>
+						<xhtml:label>1.8.3 ARTICULAÇÃO DE REDE - Outros</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="outrasVisitas" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº Outras visitas</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="reuniaoInterna" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº Reunião interna da equipe</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="capacitacao" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº Capacitações/Formações</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="planejamento" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº Reuniões de planejamentos</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="reuniaoCoord" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº Reuniões de Coordenação de CRAS/SEMAS</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="outrasAtividades" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº Outras atividades</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
+
+			</xs:element>
+			
+			
+			<xs:element name="atividadesColetivas" minOccurs="0" maxOccurs="6">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>2.1 ATIVIDADES COLETIVAS(GRUPOS)</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+
+				<xs:complexType>
+					<xs:sequence>
+					
+						<xs:element name="ativColetTipo" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Atividade</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Criança e Adolescente de 6 a 15 anos" />
+									<xs:enumeration value="Adolescente e Jovens de 15 a 17 anos" />
+									<xs:enumeration value="Idosos(PABI) G.Convivência" />
+									<xs:enumeration value="Idosos(PABI) G.Artístico" />
+									<xs:enumeration value="Encontro Socioeducativo com famílias do Serviço de Convivência" />
+									<xs:enumeration value="TOTAL" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="criancaEncontroMeta" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Meta proposta</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="criancaEncontroRealizada" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Meta Realizada</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="criancaIncritEncont" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de inscritos</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="criancaParticEncont" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de Participantes</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="criancaMulEncont" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de Mulheres</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="criancaHomEncont" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de Homens</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="criancaInscCadUnico" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de Inscritos no CadÚnico</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="criancapbfAtvSocEduc" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº PBF</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="criancabeAtvSocEduc" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº BE</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="criancabpcIdosoAtvSocEduc" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº BPC idoso</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="criancabpcDeficienteAtvSocEduc" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº BPC deficiente</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="criancapetiAtvSocEduc" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº PETI</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
+
+			</xs:element>
+
+
+			<xs:element name="encSocioEducOutrasAtiv">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>2.2 OUTRAS ATIVIDADES</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+
+					<xs:complexType>
+						<xs:sequence>
+
+							<xs:element name="capacitacaoAtv" minOccurs="0" type="xs:integer">
+								<xs:annotation>
+									<xs:appinfo>
+										<xhtml:label>Quant. Capacitações/Formações</xhtml:label>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+
+							<xs:element name="reuniaoInternaAtv" minOccurs="0" type="xs:integer">
+								<xs:annotation>
+									<xs:appinfo>
+										<xhtml:label>Quant. Reunião interna da equipe</xhtml:label>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+
+							<xs:element name="planejamentoAtv" minOccurs="0" type="xs:integer">
+								<xs:annotation>
+									<xs:appinfo>
+										<xhtml:label>Quant. Reuniões de planejamentos</xhtml:label>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+
+							<xs:element name="eventosAtv" minOccurs="0" type="xs:integer">
+								<xs:annotation>
+									<xs:appinfo>
+										<xhtml:label>Quant. Eventos</xhtml:label>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+
+							<xs:element name="outrosAtv" minOccurs="0" type="xs:integer">
+								<xs:annotation>
+									<xs:appinfo>
+										<xhtml:label>Quant. Outros</xhtml:label>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+
+						</xs:sequence>
+					</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="atendimentofam">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>3.1 Atendimento familiar</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="numeroFamOrient" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de Famílias orientadas, informadas, encaminhadas pelos atendentes e cadastradores</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="numeroCadunico" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de Famílias incluídas no CADÚNICO</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="numeroAtualiazado" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de Famílias com Cadastro Atualizado</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="numeroAtualiazado" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de Declarações de NIS expedidas	</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="acompFamiliar">
+
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>3.2 Acompanhamento Familiar</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="numeroSicon" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de Famílias acompanhadas e informadas no SICON</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="numeroDeferidos" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de recursos on line deferidos </xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="numerosIndeferidos" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de recursos on line indeferidos </xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="numeroDenunciar" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de denúncias recebidas </xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="numeroVisita" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de visitas/contatos institucionais realizados</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			
+			
+			<xs:element name="acoesComplementares">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>3.3 Ações Complementares</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="inscPronatec" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de inscritos no PRONATEC</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="numEncontAtiv" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de encontros/atividades realizadas com escolas/educação</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			
+			
+			<xs:element name="articIntersetCadunicoPBF">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>3.4 Articulação Intersetorial do CADUNICO-PBF</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="numEncRealizEscolas" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de encontros/atividades realizadas com escolas/educação</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="numEncRealizCSFSaude" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de encontros/atividades realizadas com CSF/saúde</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="cadastrounico">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>3.5 Cadastro Único</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="cadastroDigitado" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Cadastros digitados</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="gestaoBeneficio">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>3.6 Gestão de Benefícios</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="bloqueioRealizado" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de Bloqueios Realizados</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="desbloqueioRealizado" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de Desbloqueios Realizados</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="cancelamentoRealizado" minOccurs="0"
+							type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de Cancelamentos Realizados</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="reversoesRealizadas" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de Reversões de suspensões realizadas</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="reversoesCanceladas" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de Reversões de cancelamento realizadas</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="outrasAtividades">
+
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>3.7 Outras atividades</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="numeroRrealizada" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de reuniões realizadas</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						
+						<xs:element name="numeroRparticipada" minOccurs="0"
+							type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de reuniões participadas</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						
+						<xs:element name="numeroCrealizada" minOccurs="0"
+							type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de capacitações realizadas</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="numeroCparticipada" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de capacitações participadas</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+					
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="observdoc" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>OBSERVAÇÕES</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			
+			<xs:element name="numcres" minOccurs="1">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Nº do CRES/CRP</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			<xs:element name="datadoc" minOccurs="0" type="xs:date">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Data</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>

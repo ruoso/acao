@@ -14,7 +14,7 @@
 				<xhtml:label>RELATÓRIO DE ATIVIDADES MENSAIS CADÚNICO-PBF
 				</xhtml:label>
 				<class:classificacoes>
-					<class:classificacao>cn=Proteção Social Básica,cn=Assistencia Social</class:classificacao>
+                    <class:classificacao>cn=Relatórios PSB,cn=Assistencia Social</class:classificacao>
 				</class:classificacoes>
 				<idx:index>
 				</idx:index>
@@ -97,6 +97,37 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
+						
+						<xs:element name="mes" minOccurs="1">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Período(mês)</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Janeiro" />
+									<xs:enumeration value="Fevereiro" />
+									<xs:enumeration value="Março" />
+									<xs:enumeration value="Abril" />
+									<xs:enumeration value="Maio" />
+									<xs:enumeration value="Junho" />
+									<xs:enumeration value="Julho" />
+									<xs:enumeration value="Agosto" />
+									<xs:enumeration value="Setembro" />
+									<xs:enumeration value="outubro" />
+									<xs:enumeration value="Novembro" />
+									<xs:enumeration value="Dezembro" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="ano" minOccurs="1" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Ano</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
 
 		            </xs:sequence>
 		        </xs:complexType>
@@ -110,20 +141,35 @@
 				</xs:annotation>
 				<xs:complexType>
 					<xs:sequence>
-						
-						<xs:element name="numeroCadunico" minOccurs="0" type="xs:integer">
+
+						<xs:element name="numeroFamOrient" minOccurs="0" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Nº de Famílias incluídas no Cadastro Único</xhtml:label>
+									<xhtml:label>Nº de Famílias orientadas, informadas, encaminhadas pelos atendentes e cadastradores</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
-						
+
+						<xs:element name="numeroCadunico" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de Famílias incluídas no CADÚNICO</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
 						<xs:element name="numeroAtualiazado" minOccurs="0" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Nº de Famílias com Cadastro Atualizado
-									</xhtml:label>
+									<xhtml:label>Nº de Famílias com Cadastro Atualizado</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="numeroAtualiazado" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de Declarações de NIS expedidas	</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -133,6 +179,7 @@
 			</xs:element>
 			
 			<xs:element name="acompFamiliar">
+
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Acompanhamento Familiar</xhtml:label>
@@ -140,6 +187,7 @@
 				</xs:annotation>
 				<xs:complexType>
 					<xs:sequence>
+
 						<xs:element name="numeroSicon" minOccurs="0" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
@@ -147,6 +195,7 @@
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
+
 						<xs:element name="numeroDeferidos" minOccurs="0" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
@@ -154,6 +203,7 @@
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
+
 						<xs:element name="numerosIndeferidos" minOccurs="0" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
@@ -161,6 +211,7 @@
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
+
 						<xs:element name="numeroDenunciar" minOccurs="0" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
@@ -168,6 +219,7 @@
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
+
 						<xs:element name="numeroVisita" minOccurs="0" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
@@ -179,6 +231,66 @@
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
+
+			<xs:element name="acoesComplementares">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Ações Complementares</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="inscPronatec" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de inscritos no PRONATEC</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="numEncontAtiv" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de encontros/atividades realizadas com escolas/educação</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+
+			<xs:element name="articIntersetCadunicoPBF">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Articulação Intersetorial do CADUNICO-PBF</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="numEncRealizEscolas" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de encontros/atividades realizadas com escolas/educação</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="numEncRealizCSFSaude" minOccurs="0" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Nº de encontros/atividades realizadas com CSF/saúde</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
 
 			<xs:element name="cadastrounico">
 				<xs:annotation>
@@ -192,7 +304,7 @@
 						<xs:element name="cadastroDigitado" minOccurs="0" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Cadastro digitado</xhtml:label>
+									<xhtml:label>Cadastros digitados</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -201,26 +313,6 @@
 				</xs:complexType>
 			</xs:element>
 			
-			<xs:element name="beneficio">
-				<xs:annotation>
-					<xs:appinfo>
-						<xhtml:label>Benefício</xhtml:label>
-					</xs:appinfo>
-				</xs:annotation>
-				<xs:complexType>
-					<xs:sequence>
-
-						<xs:element name="numcartnacionidoso" minOccurs="0" type="xs:integer">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Carteira Nacional do Idoso</xhtml:label>
-								</xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-
-					</xs:sequence>
-				</xs:complexType>
-			</xs:element>
 
 			<xs:element name="gestaoBeneficio">
 				<xs:annotation>
@@ -328,27 +420,11 @@
 			<xs:element name="observacoes" minOccurs="0" type="xs:string">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Observações</xhtml:label>
-					</xs:appinfo>
-				</xs:annotation>
-			</xs:element>
-			
-			<xs:element name="avancos" minOccurs="0" type="xs:string">
-				<xs:annotation>
-					<xs:appinfo>
 						<xhtml:label>Avanços</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
 
-			<xs:element name="dificuldades" minOccurs="0" type="xs:string">
-				<xs:annotation>
-					<xs:appinfo>
-						<xhtml:label>Difilculdades</xhtml:label>
-					</xs:appinfo>
-				</xs:annotation>
-			</xs:element>
-			
 			<xs:element name="tecresp" minOccurs="1">
 				<xs:annotation>
 					<xs:appinfo>
