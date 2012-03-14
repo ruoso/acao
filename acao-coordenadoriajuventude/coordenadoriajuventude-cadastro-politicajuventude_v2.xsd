@@ -4,8 +4,8 @@
 	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
 	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
 	xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
-	xmlns="http://schemas.fortaleza.ce.gov.br/acao/coordenadoriajuventude-cadastro-politicajuventude.xsd"
-	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/coordenadoriajuventude-cadastro-politicajuventude.xsd"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/coordenadoriajuventude-cadastro-politicajuventude_v2.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/coordenadoriajuventude-cadastro-politicajuventude_v2.xsd"
 	elementFormDefault="qualified">
 
 	<xs:element name="formPoliticaJuventude" type="formPoliticaJuventude">
@@ -52,7 +52,15 @@
 				</xs:annotation>
 				<xs:simpleType>
 					<xs:restriction base="xs:string">
-						<xs:maxLength value="255" />
+						<xs:enumeration value="POPFOR"/>
+						<xs:enumeration value="ADOLESCENTE CIDADÃO"/>
+						<xs:enumeration value="PROJOVEM URBANO"/>
+						<xs:enumeration value="PROJOVEM ADOLESCENTE"/>
+						<xs:enumeration value="CREDJOVEM"/>
+						<xs:enumeration value="PROINFOR"/>
+						<xs:enumeration value="CUCA"/>
+						<xs:enumeration value="JUVENTUDE, CULTURA E MOVIMENTO"/>
+						<xs:enumeration value="PRAÇAS DA JUVENTUDE"/>
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
@@ -113,7 +121,7 @@
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
-			<xs:element name="telefone" minOccurs="0" type="xs:integer">
+			<xs:element name="telefone" minOccurs="0" type="xs:integer" >
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Telefone</xhtml:label>

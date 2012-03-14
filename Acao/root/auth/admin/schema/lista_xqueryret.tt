@@ -26,5 +26,8 @@
   <td>
     {$x/xs:element/xs:annotation/xs:appinfo/class:classificacoes/@validacao/string()}
   </td>
+  <td align='center'>
+    <a href="[% c.uri_for_action('/auth/admin/schema/excluir_xsd', {XSDtargetNamespace => '___XSDtargetNamespace___'}).replace('___XSDtargetNamespace___','{$x/@targetNamespace/string()}')%]"> X</a>
+  </td>   
 </tr>
 )

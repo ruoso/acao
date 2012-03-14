@@ -421,6 +421,7 @@ function generateXmlFromComplexTypeNodeNoRepeat(odoc, namespace, tagRaiz, xmlNod
 function generateFormFromSimpleTypeNode(tagRaiz, xmlNode, namePattern, name, label, minOccurs, engine, service) {
 
     var restrictionNode = getNodeByTagName(xmlNode, 'xs:restriction');
+    var nameBase = restrictionNode.getAttribute('base');
     for (var i = 0; i < restrictionNode.childNodes.length; i++) {
           if (restrictionNode.childNodes[i].nodeType == 1 && restrictionNode.childNodes[i].nodeName == 'xs:pattern' ) {
             return generateFormFromSimpleTypeNodeRestrictionPattern(tagRaiz, xmlNode, namePattern, name, label, minOccurs,restrictionNode.childNodes[i].getAttribute('value') );
@@ -433,7 +434,8 @@ function generateFormFromSimpleTypeNode(tagRaiz, xmlNode, namePattern, name, lab
                     valorPadrao;
                 }
             }
-            return generateFormFromSimpleTypeNodeRestrictionMaxLength(tagRaiz, xmlNode, namePattern, name, label, minOccurs,restrictionNode.childNodes[i].getAttribute('value'), engine, service, valorPadrao );
+            return generateFormFromSimpleTypeNodeRestrictionMaxLength(tagRaiz, xmlNode, namePattern, name, label, minOccurs,restrictionNode.childNodes[i].getAttribute('value'), engine, service, valorPadrao, nameBase );
+
         } else if (restrictionNode.childNodes[i].nodeType == 1 && restrictionNode.childNodes[i].nodeName == 'xs:fractionDigits'  ) {
             return createFieldDecimal(namePattern, name, label);
         }
@@ -498,7 +500,7 @@ function generateFormFromSimpleTypeNodeRestrictionPattern(tagRaiz, xmlNode, name
     return frag;
 }
 
-function generateFormFromSimpleTypeNodeRestrictionMaxLength(tagRaiz, xmlNode, namePattern, name, label, minOccurs, maxLength, engine, service, valorPadrao){
+function generateFormFromSimpleTypeNodeRestrictionMaxLength(tagRaiz, xmlNode, namePattern, name, label, minOccurs, maxLength, engine, service, valorPadrao, nameBase){
     var inputName = namePattern + "__" + name;
 
 
@@ -509,7 +511,13 @@ function generateFormFromSimpleTypeNodeRestrictionMaxLength(tagRaiz, xmlNode, na
     var dt = document.createElement('dt');
     var dd = document.createElement('dd');
     dt.appendChild(newLabel);
-    field = createInput('text' ,inputName, inputName, maxLength, valorPadrao);
+    
+    if(nameBase == 'xs:string'){
+        field = createInput('text' ,inputName, inputName, maxLength, valorPadrao);
+    }
+   else {
+        field = createFieldInteger(inputName, minOccurs, maxLength);
+   }
 
     if (engine) {
 	if (field.getAttribute('class')) {
@@ -535,7 +543,6 @@ function generateXmlFromSimpleTypeNode(odoc, namespace, tagRaiz, xmlNode, namePa
 
     var inputName = namePattern + "__" + name;
     var fieldValue = getById(inputName).value;
-    
 
     if ( minOccurs != '0' || fieldValue != '' ) {
 
@@ -545,7 +552,7 @@ function generateXmlFromSimpleTypeNode(odoc, namespace, tagRaiz, xmlNode, namePa
 	        var node = xmlNode.childNodes[i];
             if (node.nodeType == 1) {
                 if (node.nodeName == "xs:restriction" &&
-                    node.getAttribute('base') == "xs:string" || node.getAttribute('base') == "xs:decimal") {
+                    node.getAttribute('base') == "xs:string" || node.getAttribute('base') == "xs:decimal" || node.getAttribute('base') == "xs:integer" ) {
                     restriction = node;
                 } else {
                     throw "Unkown simple type";
@@ -766,9 +773,9 @@ function createFieldFloat(name, minOccurs) {
     return field;
 }
 
-function createFieldInteger(name, minOccurs) {
+function createFieldInteger(name, minOccurs, maxLength) {
     var field;
-    field = createInput('text', name);
+    field = createInput('text', name, name, maxLength);
     field.setAttribute('class','xsdForm__integer');
     if (minOccurs > 0) {
         field.setAttribute('class', 'xsdForm__integer xsdForm__mandatory')

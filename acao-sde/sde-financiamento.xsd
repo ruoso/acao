@@ -1,0 +1,595 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://schemas.fortaleza.ce.gov.br/acao/sde-financiamento.xsd"
+    xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+    xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
+    xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
+    xmlns:xhtml="http://www.w3.org/1999/xhtml"
+    targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sde-financiamento.xsd"
+    elementFormDefault="qualified">
+
+    <xs:element name="financiamento" type="financiamento">
+        <xs:annotation>
+            <xs:appinfo>
+                <xhtml:label>FINANCIAMENTO</xhtml:label>
+                <class:classificacoes>
+                    <class:classificacao>cn=Desenvolvimento Econômico</class:classificacao>
+                </class:classificacoes>
+                <idx:index>
+
+                </idx:index>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
+
+    <xs:complexType name="financiamento">
+        <xs:sequence>
+		        <xs:element name="nomeEmprendimento" minOccurs="0">
+		            <xs:annotation>
+		                <xs:appinfo>
+		                    <xhtml:label>Nome do empreendimento</xhtml:label>
+		                </xs:appinfo>
+		            </xs:annotation>
+		            <xs:simpleType>
+		                <xs:restriction base="xs:string">
+		                    <xs:maxLength value="255"/>
+		                </xs:restriction>
+		            </xs:simpleType>
+		        </xs:element>
+				<xs:element name="tpNegocio"  minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<xhtml:label>Tipo de negócio</xhtml:label>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Indústria" />
+						<xs:enumeration value="Comércio" />
+						<xs:enumeration value="Serviço" />
+					</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="tpLocal"  minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<xhtml:label>Tipo de local</xhtml:label>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Próprio" />
+						<xs:enumeration value="Alugado" />
+					</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+		        <xs:element name="fimAlguel" minOccurs="0" type="xs:date">
+		            <xs:annotation>
+		                <xs:appinfo>
+		                    <xhtml:label>Se aluguel, contrato até</xhtml:label>
+		                </xs:appinfo>
+		            </xs:annotation>
+		        </xs:element>
+				<xs:element name="tpPonto"  minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<xhtml:label>Tipo de negócio</xhtml:label>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Fixo" />
+						<xs:enumeration value="Serviço a Domicílio" />
+						<xs:enumeration value="Ambulante permanente" />
+                        <xs:enumeration value="Feirante permanente" />
+						<xs:enumeration value="Ambulante ocasional" />
+                        <xs:enumeration value="Feirante ocasional" />
+                        <xs:enumeration value="Outro" />
+					</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+		        <xs:element name="experienciaAtvMeses" minOccurs="0" type="xs:integer">
+		            <xs:annotation>
+		                <xs:appinfo>
+		                    <xhtml:label>Experiencia na atividade em meses</xhtml:label>
+		                </xs:appinfo>
+		            </xs:annotation>
+		        </xs:element>
+				<xs:element name="formaComercializar"  minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<xhtml:label>Forma de comercialização de seus produtos/serviços</xhtml:label>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Atacado" />
+						<xs:enumeration value="Varejo" />
+						<xs:enumeration value="Direta" />
+                        <xs:enumeration value="Indireta" />
+					</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="querFinanc"  minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<xhtml:label>Você ou alguém da sua família desejaria participar das políticas de financiamento</xhtml:label>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim, com microcrédito" />
+						<xs:enumeration value="Sim, em grupo solidário" />
+						<xs:enumeration value="Sim, outro" />
+                        <xs:enumeration value="Não" />
+					</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+		        <xs:element name="qtsQueremFinac" minOccurs="0" type="xs:integer">
+		            <xs:annotation>
+		                <xs:appinfo>
+		                    <xhtml:label>Quantos querem finacimento</xhtml:label>
+		                </xs:appinfo>
+		            </xs:annotation>
+		        </xs:element>
+				<xs:element name="jaRecebeuFinanc"  minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<xhtml:label>Já recebeu algum financiamento</xhtml:label>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+                        <xs:enumeration value="Não" />
+					</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+		        <xs:element name="pqNaoRecebeu" minOccurs="0">
+		            <xs:annotation>
+		                <xs:appinfo>
+		                    <xhtml:label>Se não recebeu financiamento, qual foi o motivo</xhtml:label>
+		                </xs:appinfo>
+		            </xs:annotation>
+		            <xs:simpleType>
+		                <xs:restriction base="xs:string">
+		                    <xs:maxLength value="255"/>
+		                </xs:restriction>
+		            </xs:simpleType>
+		        </xs:element>
+				<xs:element name="valorFinanc" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<xhtml:label>Valor financiado</xhtml:label>
+						</xs:appinfo>
+					</xs:annotation>
+		            <xs:simpleType>
+                        <xs:restriction base="xs:decimal">
+                            <xs:fractionDigits value='2'/>
+                            <xs:maxExclusive value="1000000"/>
+                            <xs:minInclusive value="-1000000"/>
+                        </xs:restriction>
+		            </xs:simpleType>
+				</xs:element>
+		        <xs:element name="institFinanc" minOccurs="0">
+		            <xs:annotation>
+		                <xs:appinfo>
+		                    <xhtml:label>Instituição financeira</xhtml:label>
+		                </xs:appinfo>
+		            </xs:annotation>
+		            <xs:simpleType>
+		                <xs:restriction base="xs:string">
+		                    <xs:maxLength value="255"/>
+		                </xs:restriction>
+		            </xs:simpleType>
+		        </xs:element>
+				<xs:element name="finalidadeFinanc"  minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<xhtml:label>Finalidade do financiamento</xhtml:label>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Giro" />
+						<xs:enumeration value="Investimento" />
+						<xs:enumeration value="Giro + Investimento" />
+                        <xs:enumeration value="Outro" />
+					</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+                <xs:element name="melhorMesComercializar">
+				    <xs:annotation>
+					    <xs:appinfo>
+						    <xhtml:label>Melhores meses para comercializar seu produtos</xhtml:label>
+					    </xs:appinfo>
+				    </xs:annotation>
+				    <xs:complexType>
+					    <xs:sequence>
+                            <xs:element name="muitoBom">
+				                <xs:annotation>
+					                <xs:appinfo>
+						                <xhtml:label>Muito Bom</xhtml:label>
+					                </xs:appinfo>
+				                </xs:annotation>
+				                <xs:complexType>
+					                <xs:sequence>
+		                                <xs:element name="janMb" minOccurs="0" type="xs:boolean">
+		                                    <xs:annotation>
+		                                        <xs:appinfo>
+		                                            <xhtml:label>Janeiro</xhtml:label>
+		                                        </xs:appinfo>
+		                                    </xs:annotation>
+		                                </xs:element>
+		                                <xs:element name="fevMb" minOccurs="0" type="xs:boolean">
+		                                    <xs:annotation>
+		                                        <xs:appinfo>
+		                                            <xhtml:label>Fevereiro</xhtml:label>
+		                                        </xs:appinfo>
+		                                    </xs:annotation>
+		                                </xs:element>
+		                                <xs:element name="marMb" minOccurs="0" type="xs:boolean">
+		                                    <xs:annotation>
+		                                        <xs:appinfo>
+		                                            <xhtml:label>Março</xhtml:label>
+		                                        </xs:appinfo>
+		                                    </xs:annotation>
+		                                </xs:element>
+		                                <xs:element name="abrMb" minOccurs="0" type="xs:boolean">
+		                                    <xs:annotation>
+		                                        <xs:appinfo>
+		                                            <xhtml:label>Abril</xhtml:label>
+		                                        </xs:appinfo>
+		                                    </xs:annotation>
+		                                </xs:element>
+		                                <xs:element name="maiMb" minOccurs="0" type="xs:boolean">
+		                                    <xs:annotation>
+		                                        <xs:appinfo>
+		                                            <xhtml:label>Maio</xhtml:label>
+		                                        </xs:appinfo>
+		                                    </xs:annotation>
+		                                </xs:element>
+		                                <xs:element name="junMb" minOccurs="0" type="xs:boolean">
+		                                    <xs:annotation>
+		                                        <xs:appinfo>
+		                                            <xhtml:label>Junho</xhtml:label>
+		                                        </xs:appinfo>
+		                                    </xs:annotation>
+		                                </xs:element>
+		                                <xs:element name="julMb" minOccurs="0" type="xs:boolean">
+		                                    <xs:annotation>
+		                                        <xs:appinfo>
+		                                            <xhtml:label>Julho</xhtml:label>
+		                                        </xs:appinfo>
+		                                    </xs:annotation>
+		                                </xs:element>
+		                                <xs:element name="agoMb" minOccurs="0" type="xs:boolean">
+		                                    <xs:annotation>
+		                                        <xs:appinfo>
+		                                            <xhtml:label>Agosto</xhtml:label>
+		                                        </xs:appinfo>
+		                                    </xs:annotation>
+		                                </xs:element>
+		                                <xs:element name="setMb" minOccurs="0" type="xs:boolean">
+		                                    <xs:annotation>
+		                                        <xs:appinfo>
+		                                            <xhtml:label>Setembro</xhtml:label>
+		                                        </xs:appinfo>
+		                                    </xs:annotation>
+		                                </xs:element>
+		                                <xs:element name="outMb" minOccurs="0" type="xs:boolean">
+		                                    <xs:annotation>
+		                                        <xs:appinfo>
+		                                            <xhtml:label>Outubro</xhtml:label>
+		                                        </xs:appinfo>
+		                                    </xs:annotation>
+		                                </xs:element>
+		                                <xs:element name="novMb" minOccurs="0" type="xs:boolean">
+		                                    <xs:annotation>
+		                                        <xs:appinfo>
+		                                            <xhtml:label>Novembro</xhtml:label>
+		                                        </xs:appinfo>
+		                                    </xs:annotation>
+		                                </xs:element>
+		                                <xs:element name="dezMb" minOccurs="0" type="xs:boolean">
+		                                    <xs:annotation>
+		                                        <xs:appinfo>
+		                                            <xhtml:label>Dezembro</xhtml:label>
+		                                        </xs:appinfo>
+		                                    </xs:annotation>
+		                                </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+				            </xs:element>
+                            <xs:element name="bom">
+				                <xs:annotation>
+					                <xs:appinfo>
+						                <xhtml:label>Bom</xhtml:label>
+					                </xs:appinfo>
+				                </xs:annotation>
+				                <xs:complexType>
+					                <xs:sequence>
+		                                <xs:element name="janB" minOccurs="0" type="xs:boolean">
+		                                    <xs:annotation>
+		                                        <xs:appinfo>
+		                                            <xhtml:label>Janeiro</xhtml:label>
+		                                        </xs:appinfo>
+		                                    </xs:annotation>
+		                                </xs:element>
+		                                <xs:element name="fevB" minOccurs="0" type="xs:boolean">
+		                                    <xs:annotation>
+		                                        <xs:appinfo>
+		                                            <xhtml:label>Fevereiro</xhtml:label>
+		                                        </xs:appinfo>
+		                                    </xs:annotation>
+		                                </xs:element>
+		                                <xs:element name="marB" minOccurs="0" type="xs:boolean">
+		                                    <xs:annotation>
+		                                        <xs:appinfo>
+		                                            <xhtml:label>Março</xhtml:label>
+		                                        </xs:appinfo>
+		                                    </xs:annotation>
+		                                </xs:element>
+		                                <xs:element name="abrB" minOccurs="0" type="xs:boolean">
+		                                    <xs:annotation>
+		                                        <xs:appinfo>
+		                                            <xhtml:label>Abril</xhtml:label>
+		                                        </xs:appinfo>
+		                                    </xs:annotation>
+		                                </xs:element>
+		                                <xs:element name="maiB" minOccurs="0" type="xs:boolean">
+		                                    <xs:annotation>
+		                                        <xs:appinfo>
+		                                            <xhtml:label>Maio</xhtml:label>
+		                                        </xs:appinfo>
+		                                    </xs:annotation>
+		                                </xs:element>
+		                                <xs:element name="junB" minOccurs="0" type="xs:boolean">
+		                                    <xs:annotation>
+		                                        <xs:appinfo>
+		                                            <xhtml:label>Junho</xhtml:label>
+		                                        </xs:appinfo>
+		                                    </xs:annotation>
+		                                </xs:element>
+		                                <xs:element name="julB" minOccurs="0" type="xs:boolean">
+		                                    <xs:annotation>
+		                                        <xs:appinfo>
+		                                            <xhtml:label>Julho</xhtml:label>
+		                                        </xs:appinfo>
+		                                    </xs:annotation>
+		                                </xs:element>
+		                                <xs:element name="agoB" minOccurs="0" type="xs:boolean">
+		                                    <xs:annotation>
+		                                        <xs:appinfo>
+		                                            <xhtml:label>Agosto</xhtml:label>
+		                                        </xs:appinfo>
+		                                    </xs:annotation>
+		                                </xs:element>
+		                                <xs:element name="setB" minOccurs="0" type="xs:boolean">
+		                                    <xs:annotation>
+		                                        <xs:appinfo>
+		                                            <xhtml:label>Setembro</xhtml:label>
+		                                        </xs:appinfo>
+		                                    </xs:annotation>
+		                                </xs:element>
+		                                <xs:element name="outB" minOccurs="0" type="xs:boolean">
+		                                    <xs:annotation>
+		                                        <xs:appinfo>
+		                                            <xhtml:label>Outubro</xhtml:label>
+		                                        </xs:appinfo>
+		                                    </xs:annotation>
+		                                </xs:element>
+		                                <xs:element name="novB" minOccurs="0" type="xs:boolean">
+		                                    <xs:annotation>
+		                                        <xs:appinfo>
+		                                            <xhtml:label>Novembro</xhtml:label>
+		                                        </xs:appinfo>
+		                                    </xs:annotation>
+		                                </xs:element>
+		                                <xs:element name="dezB" minOccurs="0" type="xs:boolean">
+		                                    <xs:annotation>
+		                                        <xs:appinfo>
+		                                            <xhtml:label>Dezembro</xhtml:label>
+		                                        </xs:appinfo>
+		                                    </xs:annotation>
+		                                </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+				            </xs:element>
+                            <xs:element name="regular">
+				                <xs:annotation>
+					                <xs:appinfo>
+						                <xhtml:label>Regular</xhtml:label>
+					                </xs:appinfo>
+				                </xs:annotation>
+				                <xs:complexType>
+					                <xs:sequence>
+		                                <xs:element name="janR" minOccurs="0" type="xs:boolean">
+		                                    <xs:annotation>
+		                                        <xs:appinfo>
+		                                            <xhtml:label>Janeiro</xhtml:label>
+		                                        </xs:appinfo>
+		                                    </xs:annotation>
+		                                </xs:element>
+		                                <xs:element name="fevR" minOccurs="0" type="xs:boolean">
+		                                    <xs:annotation>
+		                                        <xs:appinfo>
+		                                            <xhtml:label>Fevereiro</xhtml:label>
+		                                        </xs:appinfo>
+		                                    </xs:annotation>
+		                                </xs:element>
+		                                <xs:element name="marR" minOccurs="0" type="xs:boolean">
+		                                    <xs:annotation>
+		                                        <xs:appinfo>
+		                                            <xhtml:label>Março</xhtml:label>
+		                                        </xs:appinfo>
+		                                    </xs:annotation>
+		                                </xs:element>
+		                                <xs:element name="abrR" minOccurs="0" type="xs:boolean">
+		                                    <xs:annotation>
+		                                        <xs:appinfo>
+		                                            <xhtml:label>Abril</xhtml:label>
+		                                        </xs:appinfo>
+		                                    </xs:annotation>
+		                                </xs:element>
+		                                <xs:element name="maiR" minOccurs="0" type="xs:boolean">
+		                                    <xs:annotation>
+		                                        <xs:appinfo>
+		                                            <xhtml:label>Maio</xhtml:label>
+		                                        </xs:appinfo>
+		                                    </xs:annotation>
+		                                </xs:element>
+		                                <xs:element name="junR" minOccurs="0" type="xs:boolean">
+		                                    <xs:annotation>
+		                                        <xs:appinfo>
+		                                            <xhtml:label>Junho</xhtml:label>
+		                                        </xs:appinfo>
+		                                    </xs:annotation>
+		                                </xs:element>
+		                                <xs:element name="julR" minOccurs="0" type="xs:boolean">
+		                                    <xs:annotation>
+		                                        <xs:appinfo>
+		                                            <xhtml:label>Julho</xhtml:label>
+		                                        </xs:appinfo>
+		                                    </xs:annotation>
+		                                </xs:element>
+		                                <xs:element name="agoR" minOccurs="0" type="xs:boolean">
+		                                    <xs:annotation>
+		                                        <xs:appinfo>
+		                                            <xhtml:label>Agosto</xhtml:label>
+		                                        </xs:appinfo>
+		                                    </xs:annotation>
+		                                </xs:element>
+		                                <xs:element name="setR" minOccurs="0" type="xs:boolean">
+		                                    <xs:annotation>
+		                                        <xs:appinfo>
+		                                            <xhtml:label>Setembro</xhtml:label>
+		                                        </xs:appinfo>
+		                                    </xs:annotation>
+		                                </xs:element>
+		                                <xs:element name="outR" minOccurs="0" type="xs:boolean">
+		                                    <xs:annotation>
+		                                        <xs:appinfo>
+		                                            <xhtml:label>Outubro</xhtml:label>
+		                                        </xs:appinfo>
+		                                    </xs:annotation>
+		                                </xs:element>
+		                                <xs:element name="novR" minOccurs="0" type="xs:boolean">
+		                                    <xs:annotation>
+		                                        <xs:appinfo>
+		                                            <xhtml:label>Novembro</xhtml:label>
+		                                        </xs:appinfo>
+		                                    </xs:annotation>
+		                                </xs:element>
+		                                <xs:element name="dezR" minOccurs="0" type="xs:boolean">
+		                                    <xs:annotation>
+		                                        <xs:appinfo>
+		                                            <xhtml:label>Dezembro</xhtml:label>
+		                                        </xs:appinfo>
+		                                    </xs:annotation>
+		                                </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+				            </xs:element>
+                            <xs:element name="fraco">
+				                <xs:annotation>
+					                <xs:appinfo>
+						                <xhtml:label>Fraco</xhtml:label>
+					                </xs:appinfo>
+				                </xs:annotation>
+				                <xs:complexType>
+					                <xs:sequence>
+		                                <xs:element name="janF" minOccurs="0" type="xs:boolean">
+		                                    <xs:annotation>
+		                                        <xs:appinfo>
+		                                            <xhtml:label>Janeiro</xhtml:label>
+		                                        </xs:appinfo>
+		                                    </xs:annotation>
+		                                </xs:element>
+		                                <xs:element name="fevF" minOccurs="0" type="xs:boolean">
+		                                    <xs:annotation>
+		                                        <xs:appinfo>
+		                                            <xhtml:label>Fevereiro</xhtml:label>
+		                                        </xs:appinfo>
+		                                    </xs:annotation>
+		                                </xs:element>
+		                                <xs:element name="marF" minOccurs="0" type="xs:boolean">
+		                                    <xs:annotation>
+		                                        <xs:appinfo>
+		                                            <xhtml:label>Março</xhtml:label>
+		                                        </xs:appinfo>
+		                                    </xs:annotation>
+		                                </xs:element>
+		                                <xs:element name="abrF" minOccurs="0" type="xs:boolean">
+		                                    <xs:annotation>
+		                                        <xs:appinfo>
+		                                            <xhtml:label>Abril</xhtml:label>
+		                                        </xs:appinfo>
+		                                    </xs:annotation>
+		                                </xs:element>
+		                                <xs:element name="maiF" minOccurs="0" type="xs:boolean">
+		                                    <xs:annotation>
+		                                        <xs:appinfo>
+		                                            <xhtml:label>Maio</xhtml:label>
+		                                        </xs:appinfo>
+		                                    </xs:annotation>
+		                                </xs:element>
+		                                <xs:element name="junF" minOccurs="0" type="xs:boolean">
+		                                    <xs:annotation>
+		                                        <xs:appinfo>
+		                                            <xhtml:label>Junho</xhtml:label>
+		                                        </xs:appinfo>
+		                                    </xs:annotation>
+		                                </xs:element>
+		                                <xs:element name="julF" minOccurs="0" type="xs:boolean">
+		                                    <xs:annotation>
+		                                        <xs:appinfo>
+		                                            <xhtml:label>Julho</xhtml:label>
+		                                        </xs:appinfo>
+		                                    </xs:annotation>
+		                                </xs:element>
+		                                <xs:element name="agoF" minOccurs="0" type="xs:boolean">
+		                                    <xs:annotation>
+		                                        <xs:appinfo>
+		                                            <xhtml:label>Agosto</xhtml:label>
+		                                        </xs:appinfo>
+		                                    </xs:annotation>
+		                                </xs:element>
+		                                <xs:element name="setF" minOccurs="0" type="xs:boolean">
+		                                    <xs:annotation>
+		                                        <xs:appinfo>
+		                                            <xhtml:label>Setembro</xhtml:label>
+		                                        </xs:appinfo>
+		                                    </xs:annotation>
+		                                </xs:element>
+		                                <xs:element name="outF" minOccurs="0" type="xs:boolean">
+		                                    <xs:annotation>
+		                                        <xs:appinfo>
+		                                            <xhtml:label>Outubro</xhtml:label>
+		                                        </xs:appinfo>
+		                                    </xs:annotation>
+		                                </xs:element>
+		                                <xs:element name="novF" minOccurs="0" type="xs:boolean">
+		                                    <xs:annotation>
+		                                        <xs:appinfo>
+		                                            <xhtml:label>Novembro</xhtml:label>
+		                                        </xs:appinfo>
+		                                    </xs:annotation>
+		                                </xs:element>
+		                                <xs:element name="dezF" minOccurs="0" type="xs:boolean">
+		                                    <xs:annotation>
+		                                        <xs:appinfo>
+		                                            <xhtml:label>Dezembro</xhtml:label>
+		                                        </xs:appinfo>
+		                                    </xs:annotation>
+		                                </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+				            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+				</xs:element>
+
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

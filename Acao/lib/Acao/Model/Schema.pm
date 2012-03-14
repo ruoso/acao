@@ -158,4 +158,45 @@ sub substituir_schema {
     return 1;
 
 }
+
+sub excluir_schema {
+    my ($self, $collection, $XSDtargetNamespace) = @_;
+    my @docs;
+    my $target;
+
+    my $query = 'doc("$documents")/documents/collection[@name="acao-schemas"]';
+
+    $self->sedna->begin();
+
+    eval {
+        $self->sedna->execute($query);
+        while ( my $doc = $self->sedna->get_item() ) { 
+            $doc =~ s/qw|<document name="|//go;
+            $doc =~ s/qw|"\/>|//go;
+            $doc =~ s/qw|<collection name="acao-schemas">|//go;
+            $doc =~ s/qw|<\/collection>|//go;
+            $doc =~ s/\n//go;
+            $doc =~ s/^\s*//go;
+            @docs = split('  ', $doc);
+        }
+    };
+    $self->sedna->commit;
+
+    foreach my $doc(@docs){
+        $query = 'data(fn:doc("'.$doc.'", "acao-schemas")//@targetNamespace)';
+        $self->sedna->begin();
+
+        eval {
+          $self->sedna->execute($query);
+          if($self->sedna->get_item()  eq $XSDtargetNamespace){
+            my $drop = 'DROP DOCUMENT "'.$doc.'" IN COLLECTION "'.$collection.'"';
+            $self->sedna->execute($drop);
+          }
+        };
+        $self->sedna->commit;
+    }
+
+    return 1;
+}
+
 1;
