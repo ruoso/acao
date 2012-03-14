@@ -1,0 +1,191 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://schemas.fortaleza.ce.gov.br/acao/sde-projeto.xsd"
+    xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+    xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
+    xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
+    xmlns:xhtml="http://www.w3.org/1999/xhtml"
+    targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sde-projeto.xsd"
+    elementFormDefault="qualified">
+
+    <xs:element name="formProjeto" type="formProjeto">
+        <xs:annotation>
+            <xs:appinfo>
+                <xhtml:label>PROJETO</xhtml:label>
+                <class:classificacoes>
+                    <class:classificacao>cn=Desenvolvimento Econômico</class:classificacao>
+                </class:classificacoes>
+                <idx:index>
+
+                </idx:index>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
+
+    <xs:complexType name="formProjeto">
+        <xs:sequence>
+			            <xs:element name="dt" minOccurs="0" type="xs:date">
+				            <xs:annotation>
+					            <xs:appinfo>
+						            <xhtml:label>Data</xhtml:label>
+					            </xs:appinfo>
+				            </xs:annotation>
+			            </xs:element>
+				        <xs:element name="nomeProjeto"  minOccurs="0">
+					        <xs:annotation>
+						        <xs:appinfo>
+							        <xhtml:label>Nome do projeto</xhtml:label>
+						        </xs:appinfo>
+					        </xs:annotation>
+					        <xs:simpleType>
+					        <xs:restriction base="xs:string">
+                                <xs:enumeration value="Ações Descentralizadas de Geração de Trabalho e Renda nos Bairros de Fortaleza" />
+                                <xs:enumeration value="Agricultura Urbana Agroecológica" />
+                                <xs:enumeration value="Apoio a Comercialização - Feiras de Fortaleza*" />
+                                <xs:enumeration value="Apoio a Comercialização e Feiras e II Mostra de Economia Solidária de Fortaleza" />
+                                <xs:enumeration value="Apoio a Inserção Produtiva de Empreendedores em Fortaleza" />
+                                <xs:enumeration value="Apoio ao Empreendedorismo em Micronegócios Criativos" />
+                                <xs:enumeration value="Apoio aos Processos de Produção e Comercialização da Unidade de Beneficiamento da Casca de Coco Verde" />
+                                <xs:enumeration value="Artesanato Competitivo" />
+                                <xs:enumeration value="As Quatro Estações do Artesanato" />
+                                <xs:enumeration value="Beneficiamento da Casca de Coco" />
+                                <xs:enumeration value="Capacitação e Organização de Mulheres para a Geração de Emprego e Renda" />
+                                <xs:enumeration value="Compra Antecipada Especial da Agricultura Familiar" />
+                                <xs:enumeration value="Confeccionando Arte e Solidariedade" />
+                                <xs:enumeration value="Cozinha Popular" />
+                                <xs:enumeration value="CRAUS" />
+                                <xs:enumeration value="Credcultura Jovem" />
+                                <xs:enumeration value="Credjovem Solidário" />
+                                <xs:enumeration value="Promoção e Fortalecimento do Trabalho Comunitário: Casa de Economia Solidária" />
+                                <xs:enumeration value="Desenvolvimento do Empreendedorismo para Copa de 2014*" />
+                                <xs:enumeration value="Despertar do Ser para o Desenvolvimento Local" />
+                                <xs:enumeration value="Empreendedor Individual" />
+                                <xs:enumeration value="Fazer Solidário" />
+                                <xs:enumeration value="Feira Passeando Com Arte" />
+                                <xs:enumeration value="Feiras Solidárias" />
+                                <xs:enumeration value="Formação e Apoio a Organização Sócio Produtiva das Mulheres de Fortaleza" />
+                                <xs:enumeration value="Fortaleza Criativa - Desenvolvendo a Intelecto atividade" />
+                                <xs:enumeration value="Frentes de Serviços" />
+                                <xs:enumeration value="Frutos da Terra" />
+                                <xs:enumeration value="Frutos da Terra Fase 2" />
+                                <xs:enumeration value="Fundo Rotativo Solidário" />
+                                <xs:enumeration value="Gerando Trabalho e Aprimorando Saberes em Fortaleza" />
+                                <xs:enumeration value="Gerando Trabalho e Renda com a Produção Popular" />
+                                <xs:enumeration value="Gestão do Programa Credjovem" />
+                                <xs:enumeration value="Horta Bela" />
+                                <xs:enumeration value="Horta das Comunidades" />
+                                <xs:enumeration value="Horta nas Escolas" />
+                                <xs:enumeration value="Hortas de Fortaleza" />
+                                <xs:enumeration value="Horto Vivo" />
+                                <xs:enumeration value="I Mostra de Economia Criativa" />
+                                <xs:enumeration value="I Salão Municipal do Artesanato de Fortaleza" />
+                                <xs:enumeration value="II Salão Municipal do Artesanato de Fortaleza" />
+                                <xs:enumeration value="II Mostra de Economia Solidária" />
+                                <xs:enumeration value="III Mostra de Economia Solidária" />
+                                <xs:enumeration value="III Salão Municipal do Artesanato de Fortaleza" />
+                                <xs:enumeration value="Incubação de Cooperativa - Servilar" />
+                                <xs:enumeration value="IV Salão Municipal do Artesanato de Fortaleza" />
+                                <xs:enumeration value="V Salão Municipal do Artesanato de Fortaleza" />
+                                <xs:enumeration value="VI Salão Municipal do Artesanato de Fortaleza" />
+                                <xs:enumeration value="Mãos Dadas para a Produção Popular" />
+                                <xs:enumeration value="Massoterapia" />
+                                <xs:enumeration value="Melhoria no Ambiente dos Negócios de Fortaleza" />
+                                <xs:enumeration value="Mercado das Marias - Mulheres Empreendedoras" />
+                                <xs:enumeration value="Mulheres TOP 100*" />
+                                <xs:enumeration value="Mulheres, Autonomia e Solidariedade" />
+                                <xs:enumeration value="Orientação Ocupacional de Jovens para o Mercado de Trabalho" />
+                                <xs:enumeration value="PAC - Programa Agência Cidadã de Crédito" />
+                                <xs:enumeration value="Polo Criativo de Fortaleza" />
+                                <xs:enumeration value="Polo Tecnológico" />
+                                <xs:enumeration value="Profissionalização e Ocupação de Mulheres Desempregadas" />
+                                <xs:enumeration value="Programa Associações Produtivas Locais" />
+                                <xs:enumeration value="Programa Casa Brasil" />
+                                <xs:enumeration value="Programa Credjovem" />
+                                <xs:enumeration value="Programa Nacional de Qualificação" />
+                                <xs:enumeration value="Programa PROINFOR - Programa de Qualificação Profissional" />
+                                <xs:enumeration value="Projeto de Desenvolvimento da Moda e Uso da TI nas Pequenas Indústrias de Confecção" />
+                                <xs:enumeration value="Projeto Produtivo Popular Solidário" />
+                                <xs:enumeration value="Promovendo Trabalho e Articulando Metas" />
+                                <xs:enumeration value="Saciando a Arte na Diversidade" />
+                                <xs:enumeration value="Sistema Público de Emprego SINE/PMF" />
+                                <xs:enumeration value="Trabalhando a Arte e a Cultura na Diversidade" />
+                                <xs:enumeration value="Trabalho Artesanal e Ocupação de Pessoas com Deficiência" />
+                                <xs:enumeration value="Trabalho Comunitário Solidário" />
+                                <xs:enumeration value="Tupinambá da Frota" />
+                                <xs:enumeration value="VI Salão Municipal do Artesanato de Fortaleza" />
+					        </xs:restriction>
+					        </xs:simpleType>
+				        </xs:element>
+						<xs:element name="demandaOP"  minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Demanda OP</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="Sim" />
+								<xs:enumeration value="Não" />
+							</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+				        <xs:element name="nid" minOccurs="0">
+				            <xs:annotation>
+				                <xs:appinfo>
+				                    <xhtml:label>NID</xhtml:label>
+				                </xs:appinfo>
+				            </xs:annotation>
+				            <xs:simpleType>
+				                <xs:restriction base="xs:string">
+				                    <xs:maxLength value="255"/>
+				                </xs:restriction>
+				            </xs:simpleType>
+				        </xs:element>
+				        <xs:element name="atividade"  minOccurs="0">
+					        <xs:annotation>
+						        <xs:appinfo>
+							        <xhtml:label>Atividade</xhtml:label>
+						        </xs:appinfo>
+					        </xs:annotation>
+					        <xs:simpleType>
+					        <xs:restriction base="xs:string">
+                                <xs:enumeration value="Microcrédito - Capital de Giro" />		
+                                <xs:enumeration value="Microcrédito - Capital Fixo" />		
+                                <xs:enumeration value="Microcrédito – Capital Misto" />		
+                                <xs:enumeration value="Participação em Feiras" />		
+                                <xs:enumeration value="Participação em Eventos" />		
+                                <xs:enumeration value="Participação em Mostras" />		
+                                <xs:enumeration value="Participação em Exposição de Produtos Artesanais" />		
+                                <xs:enumeration value="Participação em Outros Eventos. Qual (is)? " />		
+                                <xs:enumeration value="Implantação de Hortas/Quintais Produtivos" />		
+                                <xs:enumeration value="Financiamento de Empreendimento de Cozinhas Populares" />		
+                                <xs:enumeration value="Financiamento de Empreendimento do Programa Credjovem" />		
+                                <xs:enumeration value="Financiamento de Empreendimento Criativo" />		
+                                <xs:enumeration value="Financiamento de Empreendimento de Pequenos Negócios" />		
+                                <xs:enumeration value="Inclusão Social Produtiva de Pessoas com Deficiência" />		
+                                <xs:enumeration value="Formalização e Promoção do Empreendedor Individual" />		
+                                <xs:enumeration value="Organização de Grupos Produtivos de Empreendimentos Econômicos Solidários" />		
+                                <xs:enumeration value="Organização de Grupos Produtivos de Incubação de Empreendimentos Criativos" />		
+                                <xs:enumeration value="Organização de Grupos Produtivos de Empreendimentos de Jovens" />		
+                                <xs:enumeration value="Apoio ao Desenvolvimento de Negócios" />		
+					        </xs:restriction>
+					        </xs:simpleType>
+				        </xs:element>
+						<xs:element name="valor" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Valor</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+                                <xs:restriction base="xs:decimal">
+                                    <xs:fractionDigits value='2'/>
+                                    <xs:maxExclusive value="1000000"/>
+                                    <xs:minInclusive value="-1000000"/>
+                                </xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

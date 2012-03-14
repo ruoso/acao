@@ -1,17 +1,17 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns="http://schemas.fortaleza.ce.gov.br/acao/sde-dadosAdacionais.xsd"
+    xmlns="http://schemas.fortaleza.ce.gov.br/acao/sde-dadosEmpreendimento.xsd"
     xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
     xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
     xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
-    targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sde-dadosAdacionais.xsd"
+    targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sde-dadosEmpreendimento.xsd"
     elementFormDefault="qualified">
 
-    <xs:element name="dadosAdacionais" type="dadosAdacionais">
+    <xs:element name="dadosEmpreendimento" type="dadosEmpreendimento">
         <xs:annotation>
             <xs:appinfo>
-                <xhtml:label>DADOS ADICIONAIS</xhtml:label>
+                <xhtml:label>DADOS EMPREENDIMENTO</xhtml:label>
                 <class:classificacoes>
                     <class:classificacao>cn=Desenvolvimento Econômico</class:classificacao>
                 </class:classificacoes>
@@ -22,8 +22,15 @@
         </xs:annotation>
     </xs:element>
 
-    <xs:complexType name="dadosAdacionais">
+    <xs:complexType name="dadosEmpreendimento">
         <xs:sequence>
+			    <xs:element name="dt" minOccurs="0" type="xs:date">
+				    <xs:annotation>
+					    <xs:appinfo>
+						    <xhtml:label>Data</xhtml:label>
+					    </xs:appinfo>
+				    </xs:annotation>
+			    </xs:element>
 		        <xs:element name="nomeEmprendimento" minOccurs="0">
 		            <xs:annotation>
 		                <xs:appinfo>
@@ -192,198 +199,6 @@
 		                    <xhtml:label>Nr de empregados</xhtml:label>
 		                </xs:appinfo>
 		            </xs:annotation>
-		        </xs:element>
-
-                <xs:element name="microcredito">
-				    <xs:annotation>
-					    <xs:appinfo>
-						    <xhtml:label>Microcrédito</xhtml:label>
-					    </xs:appinfo>
-				    </xs:annotation>
-				    <xs:complexType>
-					    <xs:sequence>
-							<xs:element name="capitalGiro" minOccurs="0" type="xs:boolean">
-								<xs:annotation>
-									<xs:appinfo>
-										<xhtml:label>Capital de giro</xhtml:label>
-									</xs:appinfo>
-								</xs:annotation>
-							</xs:element>
-							<xs:element name="capitalFixo" minOccurs="0" type="xs:boolean">
-								<xs:annotation>
-									<xs:appinfo>
-										<xhtml:label>Capital fixo</xhtml:label>
-									</xs:appinfo>
-								</xs:annotation>
-							</xs:element>
-                        </xs:sequence>
-                    </xs:complexType>
-		        </xs:element>
-
-                <xs:element name="feiras">
-				    <xs:annotation>
-					    <xs:appinfo>
-						    <xhtml:label>Participação em Feiras/Eventos</xhtml:label>
-					    </xs:appinfo>
-				    </xs:annotation>
-				    <xs:complexType>
-					    <xs:sequence>
-							<xs:element name="feirante" minOccurs="0" type="xs:boolean">
-								<xs:annotation>
-									<xs:appinfo>
-										<xhtml:label>Feirantes</xhtml:label>
-									</xs:appinfo>
-								</xs:annotation>
-							</xs:element>
-							<xs:element name="mostras" minOccurs="0" type="xs:boolean">
-								<xs:annotation>
-									<xs:appinfo>
-										<xhtml:label>Mostras</xhtml:label>
-									</xs:appinfo>
-								</xs:annotation>
-							</xs:element>
-							<xs:element name="expProdArte" minOccurs="0" type="xs:boolean">
-								<xs:annotation>
-									<xs:appinfo>
-										<xhtml:label>Exposição de Produtos Artesanais</xhtml:label>
-									</xs:appinfo>
-								</xs:annotation>
-							</xs:element>
-							<xs:element name="outraAtvfeira" minOccurs="0" type="xs:boolean">
-								<xs:annotation>
-									<xs:appinfo>
-										<xhtml:label>Outros</xhtml:label>
-									</xs:appinfo>
-								</xs:annotation>
-							</xs:element>
-		                    <xs:element name="outroAtvFeira" minOccurs="0">
-		                        <xs:annotation>
-		                            <xs:appinfo>
-		                                <xhtml:label>Especifique outra atividade em eventos</xhtml:label>
-		                            </xs:appinfo>
-		                        </xs:annotation>
-		                        <xs:simpleType>
-		                            <xs:restriction base="xs:string">
-		                                <xs:maxLength value="255"/>
-		                            </xs:restriction>
-		                        </xs:simpleType>
-		                    </xs:element>
-                        </xs:sequence>
-                    </xs:complexType>
-		        </xs:element>
-
-                <xs:element name="financiamento">
-				    <xs:annotation>
-					    <xs:appinfo>
-						    <xhtml:label>Financiamento de Empreendimento</xhtml:label>
-					    </xs:appinfo>
-				    </xs:annotation>
-				    <xs:complexType>
-					    <xs:sequence>
-							<xs:element name="cozinhaPopular" minOccurs="0" type="xs:boolean">
-								<xs:annotation>
-									<xs:appinfo>
-										<xhtml:label>Cozinha Popular</xhtml:label>
-									</xs:appinfo>
-								</xs:annotation>
-							</xs:element>
-							<xs:element name="credjovem" minOccurs="0" type="xs:boolean">
-								<xs:annotation>
-									<xs:appinfo>
-										<xhtml:label>Credjovem</xhtml:label>
-									</xs:appinfo>
-								</xs:annotation>
-							</xs:element>
-							<xs:element name="empreendCriativo" minOccurs="0" type="xs:boolean">
-								<xs:annotation>
-									<xs:appinfo>
-										<xhtml:label>Empreendimento Criativo</xhtml:label>
-									</xs:appinfo>
-								</xs:annotation>
-							</xs:element>
-							<xs:element name="peqNegocios" minOccurs="0" type="xs:boolean">
-								<xs:annotation>
-									<xs:appinfo>
-										<xhtml:label>Pequenos Negócios</xhtml:label>
-									</xs:appinfo>
-								</xs:annotation>
-							</xs:element>
-                        </xs:sequence>
-                    </xs:complexType>
-		        </xs:element>
-
-                <xs:element name="orgGpProd">
-				    <xs:annotation>
-					    <xs:appinfo>
-						    <xhtml:label>Organização de Grupos Produtivos</xhtml:label>
-					    </xs:appinfo>
-				    </xs:annotation>
-				    <xs:complexType>
-					    <xs:sequence>
-							<xs:element name="empEconSolid" minOccurs="0" type="xs:boolean">
-								<xs:annotation>
-									<xs:appinfo>
-										<xhtml:label>Empreendimentos Econômicos Solidários</xhtml:label>
-									</xs:appinfo>
-								</xs:annotation>
-							</xs:element>
-							<xs:element name="incEmpCriat" minOccurs="0" type="xs:boolean">
-								<xs:annotation>
-									<xs:appinfo>
-										<xhtml:label>Incubação de Empreendimentos Criativos</xhtml:label>
-									</xs:appinfo>
-								</xs:annotation>
-							</xs:element>
-							<xs:element name="empJovens" minOccurs="0" type="xs:boolean">
-								<xs:annotation>
-									<xs:appinfo>
-										<xhtml:label>Empreendimentos de Jovens</xhtml:label>
-									</xs:appinfo>
-								</xs:annotation>
-							</xs:element>
-                        </xs:sequence>
-                    </xs:complexType>
-		        </xs:element>
-
-                <xs:element name="outrasAcoes">
-				    <xs:annotation>
-					    <xs:appinfo>
-						    <xhtml:label>Outras ações</xhtml:label>
-					    </xs:appinfo>
-				    </xs:annotation>
-				    <xs:complexType>
-					    <xs:sequence>
-							<xs:element name="impHortas" minOccurs="0" type="xs:boolean">
-								<xs:annotation>
-									<xs:appinfo>
-										<xhtml:label>Implantação de Hortas/Quintais Produtivos</xhtml:label>
-									</xs:appinfo>
-								</xs:annotation>
-							</xs:element>
-							<xs:element name="incSocProd" minOccurs="0" type="xs:boolean">
-								<xs:annotation>
-									<xs:appinfo>
-										<xhtml:label>Inclusão Social Produtiva de Pessoas com Deficiência</xhtml:label>
-									</xs:appinfo>
-								</xs:annotation>
-							</xs:element>
-							<xs:element name="formEmpInd" minOccurs="0" type="xs:boolean">
-								<xs:annotation>
-									<xs:appinfo>
-										<xhtml:label>Formalização e Promoção do Empreendedor Individual</xhtml:label>
-									</xs:appinfo>
-								</xs:annotation>
-							</xs:element>
-							<xs:element name="desNegocio" minOccurs="0" type="xs:boolean">
-								<xs:annotation>
-									<xs:appinfo>
-										<xhtml:label>Apoio ao Desenvolvimento de Negócios</xhtml:label>
-									</xs:appinfo>
-								</xs:annotation>
-							</xs:element>
-
-                        </xs:sequence>
-                    </xs:complexType>
 		        </xs:element>
 
         </xs:sequence>
