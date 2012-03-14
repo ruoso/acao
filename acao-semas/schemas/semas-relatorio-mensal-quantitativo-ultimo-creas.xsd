@@ -150,26 +150,6 @@
                        <xs:complexType>
                             <xs:sequence>
                                 
-                                <xs:element name="demandaDiversasCreas"  minOccurs="0">
-                                <xs:annotation>
-                                    <xs:appinfo>
-                                        <xhtml:label>Demandas diversas</xhtml:label>
-                                    </xs:appinfo>
-                                </xs:annotation>
-                                    <xs:simpleType>
-                                    <xs:restriction base="xs:string">
-                                        <xs:enumeration value="" />
-                                        <xs:enumeration value="" />
-                                        <xs:enumeration value="." />
-                                        <xs:enumeration value="" />
-                                        <xs:enumeration value=" " />
-                                        <xs:enumeration value="" />
-                                        <xs:enumeration value="" />
-                                        <xs:enumeration value="" />
-                                    </xs:restriction>
-                                    </xs:simpleType>
-                                </xs:element>
-
                                 <xs:element name="quantidadeDemandaCreas" minOccurs="1" type="xs:integer">
                                     <xs:annotation>
                                         <xs:appinfo>
