@@ -11,7 +11,7 @@
     <xs:element name="formbeneficiados" type="formbeneficiados">
         <xs:annotation>
             <xs:appinfo>
-                <xhtml:label>CADASTRO DOS BENEFICIADOS PELO PROJETO</xhtml:label>
+                <xhtml:label>CADASTRO DOS BENEFICIADOS</xhtml:label>
                 <class:classificacoes>
                     <class:classificacao>cn=Desenvolvimento Econômico</class:classificacao>
                 </class:classificacoes>
@@ -27,7 +27,7 @@
 
     <xs:complexType name="cpf">
         <xs:sequence>
-	        <xs:element name="cpf" minOccurs="0">
+	        <xs:element name="cpf" minOccurs="1">
 	            <xs:annotation>
 	                <xs:appinfo>
 	                    <xhtml:label>CPF</xhtml:label>
@@ -45,65 +45,21 @@
 
     <xs:complexType name="formbeneficiados">
         <xs:sequence>
-			<xs:element name="projeto">
-				<xs:annotation>
-					<xs:appinfo>
-						<xhtml:label>projeto</xhtml:label>
-					</xs:appinfo>
-				</xs:annotation>
-				
-				<xs:complexType>
-					<xs:sequence>
-				        <xs:element name="nomeProjeto" minOccurs="0">
-				            <xs:annotation>
-				                <xs:appinfo>
-				                    <xhtml:label>Nome do projeto</xhtml:label>
-				                </xs:appinfo>
-				            </xs:annotation>
-				            <xs:simpleType>
-				                <xs:restriction base="xs:string">
-				                    <xs:maxLength value="255"/>
-				                </xs:restriction>
-				            </xs:simpleType>
-				        </xs:element>
-						<xs:element name="demandaOP"  minOccurs="0">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Demanda OP</xhtml:label>
-								</xs:appinfo>
-							</xs:annotation>
-							<xs:simpleType>
-							<xs:restriction base="xs:string">
-								<xs:enumeration value="Sim" />
-								<xs:enumeration value="Não" />
-							</xs:restriction>
-							</xs:simpleType>
-						</xs:element>
-				        <xs:element name="nid" minOccurs="0">
-				            <xs:annotation>
-				                <xs:appinfo>
-				                    <xhtml:label>NID</xhtml:label>
-				                </xs:appinfo>
-				            </xs:annotation>
-				            <xs:simpleType>
-				                <xs:restriction base="xs:string">
-				                    <xs:maxLength value="255"/>
-				                </xs:restriction>
-				            </xs:simpleType>
-				        </xs:element>
-		            </xs:sequence>
-		        </xs:complexType>
-	        </xs:element>
-
 			<xs:element name="beneficiado">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>beneficiado</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
-				
 				<xs:complexType>
 					<xs:sequence>
+			            <xs:element name="dt" minOccurs="0" type="xs:date">
+				            <xs:annotation>
+					            <xs:appinfo>
+						            <xhtml:label>Data</xhtml:label>
+					            </xs:appinfo>
+				            </xs:annotation>
+			            </xs:element>
 				        <xs:element name="nome" minOccurs="0">
 				            <xs:annotation>
 				                <xs:appinfo>
@@ -148,7 +104,6 @@
 				                </xs:appinfo>
 				            </xs:annotation>
 				        </xs:element>
-
 						<xs:element name="sexo"  minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
