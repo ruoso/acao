@@ -1,0 +1,456 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-dadospsicossociais.xsd"
+    xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-dadospsicossociais.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="formDadosPsicossociais" type="formDadosPsicossociais">
+		<xs:annotation>
+			<xs:appinfo>
+				<xhtml:label>7. DADOS PSICOSSOCIAIS</xhtml:label>
+                <class:classificacoes>
+                    <class:classificacao>cn=Direitos Humanos</class:classificacao>
+                </class:classificacoes>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="formDadosPsicossociais">
+		<xs:sequence>
+
+			<xs:element name="orientsexual" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>7.1 Orientação Sexual</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Heterosexual" />
+						<xs:enumeration value="Gay" />
+						<xs:enumeration value="Lésbica" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			<xs:element name="idengenero" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>7.2</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Masculino" />
+						<xs:enumeration value="Feminino" />
+						<xs:enumeration value="Travesti" />
+						<xs:enumeration value="Transsexual masculino" />
+						<xs:enumeration value="Transsexual feminino" />
+						<xs:enumeration value="Transgênero" />
+						<xs:enumeration value="Outro" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			<xs:element name="idengeneroespec" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Especificar outro</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			
+			<xs:element name="sexobiol" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>7.3 Sexo Biológico</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Macho" />
+						<xs:enumeration value="Fêmea" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			<xs:element name="racacor" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>7.4 Raça / Cor</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Branca" />
+						<xs:enumeration value="Negra" />
+						<xs:enumeration value="Amarela" />
+						<xs:enumeration value="Parda" />
+						<xs:enumeration value="Indígena" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			<xs:element name="oriespreliog" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>7.5 Orientação Espiritual/Religiosa</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Católico" />
+						<xs:enumeration value="Evangélico" />
+						<xs:enumeration value="Espírita" />
+						<xs:enumeration value="Testemunha de Jeová" />
+						<xs:enumeration value="Candoblé" />
+						<xs:enumeration value="Umbanda" />
+						<xs:enumeration value="Não possui religião" />
+						<xs:enumeration value="Outros" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="oriespreliogespec" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Especificar outro</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>		
+			
+			<xs:element name="pessdefic" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>7.6 É pessoa com deficiência</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			<xs:element name="pessdeficsim" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>7.6.1 Se sim, qual?</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Intelectual" />
+						<xs:enumeration value="Visual" />
+						<xs:enumeration value="Auditiva" />
+						<xs:enumeration value="Física" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			<xs:element name="sitrua" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>7.7 Está em situação de rua</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			<xs:element name="conflitolei" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>7.8 Está em conflito com a lei</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Sim" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="acompanhainst" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>7.9 É acompanhado por alguma instituição</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="acompinstespec" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>7.9.1 Se SIM, Qual</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="acomppsico" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>7.10 Já fez algum tipo  de acompanhamento psicológico?</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="acomppsicoespec" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>7.10.1 Se SIM, Qual</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+
+			<xs:element name="transtemoc" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>7.11 Tem algum transtorno emocial?</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="transtemocespec" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>7.11.1 Se SIM, Qual</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="usudroglicit" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>7.12 É usuário de drogas lícitas?</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="usudroglicitespec" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>7.12.1 Se SIM, Qual</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="usudroglicitper" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>7.12.2 Período de uso
+						</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+
+			<xs:element name="usudrogilicit" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>7.13 É usuário de drogas ilícitas?</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="usudrogilicitespec" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>7.13.1 Se sim, quais?</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Maconha" />
+						<xs:enumeration value="Cocaína" />
+						<xs:enumeration value="Crack" />
+						<xs:enumeration value="Cola" />
+						<xs:enumeration value="LSD/Àcido" />
+						<xs:enumeration value="Mesclado" />
+						<xs:enumeration value="Ecstasy" />
+						<xs:enumeration value="Outras" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			<xs:element name="usudrogilicitout" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>7.13.2 Especificar outros
+						</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			
+			
+			<xs:element name="histusodroglic" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>7.14 Tem família com histórico de uso de drogas lícitas?</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			<xs:element name="histusodroglicespec" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>7.14.1 Se sim, quais?</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Álcool" />
+						<xs:enumeration value="Tabaco" />
+						<xs:enumeration value="Psicotrópicos" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			<xs:element name="histusodroglicespecout" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Outras(quais)</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			
+			<xs:element name="histusodroglicgraup" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>7.14.2 Grau de parentesco</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			
+
+			<xs:element name="histusodrogilic" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>7.15 Tem família com histórico de uso de drogas ilícitas?</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			<xs:element name="histusodrogilicespec" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>7.15.1 Se sim, quais?</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Maconha" />
+						<xs:enumeration value="Cocaína" />
+						<xs:enumeration value="Crack" />
+						
+						<xs:enumeration value="Cola" />
+						<xs:enumeration value="LSD/Ácido" />
+						<xs:enumeration value="Mesclado" />
+						<xs:enumeration value="Ecstasy" />
+						<xs:enumeration value="Outras" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			<xs:element name="histusodrogilicespecout" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Outras(quais)</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			
+			<xs:element name="histusodrogilicgraup" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>7.15.2 Grau de parentesco</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			
+			<xs:element name="histtransemoc" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>7.16 Possui familiar com histórico de transtorno emocional?</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			<xs:element name="histtransemocespec" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>7.16.1 Se SIM, Quais transtornos?</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			
+			<xs:element name="histtransemocgraup" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>7.16.2 Grau de parentesco</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			
+
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>
