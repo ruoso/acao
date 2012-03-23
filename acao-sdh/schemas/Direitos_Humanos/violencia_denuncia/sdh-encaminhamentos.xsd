@@ -1,0 +1,211 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-encaminhamentos.xsd"
+    xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-encaminhamentos.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="encaminhamentos" type="encaminhamentos">
+		<xs:annotation>
+			<xs:appinfo>
+				<xhtml:label>15.ENCAMINHAMENTOS</xhtml:label>
+                <class:classificacoes>
+                    <class:classificacao>cn=Direitos Humanos</class:classificacao>
+                </class:classificacoes>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="encaminhamentos">
+		<xs:sequence>
+
+            <xs:element name="interno">
+	            <xs:annotation>
+		            <xs:appinfo>
+			            <xhtml:label>Interno</xhtml:label>
+		            </xs:appinfo>
+	            </xs:annotation>
+	            <xs:complexType>
+		            <xs:sequence>
+		                   <xs:element name="juridico" type="xs:boolean">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>Jurídico</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>
+		                   <xs:element name="social" type="xs:boolean">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>Social</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>
+		                   <xs:element name="psicologico" type="xs:boolean">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>Psicológico</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>
+		            </xs:sequence>
+	            </xs:complexType>
+            </xs:element>
+
+            <xs:element name="externo">
+	            <xs:annotation>
+		            <xs:appinfo>
+			            <xhtml:label>Externo</xhtml:label>
+		            </xs:appinfo>
+	            </xs:annotation>
+	            <xs:complexType>
+		            <xs:sequence>
+		                   <xs:element name="creas" type="xs:boolean">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>CREAS - Centro de Referência Especializado da Assistência Social</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>
+		                   <xs:element name="dpge" type="xs:boolean">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>DPGE - Defensoria Pública do Estado</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>
+		                   <xs:element name="mpf" type="xs:boolean">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>MPF - Ministério Público do Estado</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>
+                            <xs:element name="cras" type="xs:boolean">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>CRAS - Centro de Referência da Assistência Social</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>
+                            <xs:element name="dpu" type="xs:boolean">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>DPU - Defensoria Pública da União</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>
+                            <xs:element name="cosp" type="xs:boolean">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>Controladoria dos Órgãos de Seg. Público</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>
+                            <xs:element name="creasPop" type="xs:boolean">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>CREAS POP - Centro de Referência Especializado da Assistência Social para População de Rua</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>
+                            <xs:element name="mpe" type="xs:boolean">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>MPE - Ministério Público do Estado</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>
+                            <xs:element name="sejus" type="xs:boolean">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>SEJUS - Secretaria de justiça do Estado do Ceará</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>
+                            <xs:element name="habitafor" type="xs:boolean">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>HABITAFOR - Fundação de Desenvolvimento Habitacional de Fortaleza</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>
+                            <xs:element name="conselhoTutelar" type="xs:boolean">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>Conselho Tutelar</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>
+                            <xs:element name="raizCidadania" type="xs:boolean">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>Raiz de Cidadania</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>
+                            <xs:element name="stds" type="xs:boolean">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>STDS - Secretaria do Trabalho e Desenvolvimento Social do Estado do Ceará</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>
+                            <xs:element name="creasRegional" type="xs:boolean">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>CREAS Regional - Centro de Referência Especializado da Assistência Social do Estado do Ceará</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>
+                            <xs:element name="caps" type="xs:boolean">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>CAPS - Centros de Atenção Psicossocial</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>
+                            <xs:element name="postoSaude" type="xs:boolean">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>Posto de Saúde</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>
+                            <xs:element name="hospital" type="xs:boolean">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>Hospital</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>
+                            <xs:element name="sme" type="xs:boolean">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>SME - Secretaria Municipal de Educação</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>
+                            <xs:element name="seduc" type="xs:boolean">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>SEDUC - Secretaria Estadual de Educação</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>
+			                <xs:element name="outroEncaminhamento" minOccurs="0" type="xs:string">
+				                <xs:annotation>
+					                <xs:appinfo>
+						                <xhtml:label>Outros encaminhamentos</xhtml:label>
+					                </xs:appinfo>
+				                </xs:annotation>
+                            </xs:element>
+		            </xs:sequence>
+	            </xs:complexType>
+            </xs:element>
+
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

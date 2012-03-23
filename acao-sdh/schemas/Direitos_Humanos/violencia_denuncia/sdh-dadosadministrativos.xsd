@@ -1,15 +1,15 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-dadostrabalhista.xsd"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-dadosadministrativos.xsd"
     xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
-	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-dadostrabalhista.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-dadosadministrativos.xsd"
 	elementFormDefault="qualified">
 
-	<xs:element name="dadostrabalhista" type="dadostrabalhista">
+	<xs:element name="dadosadministrativos" type="dadosadministrativos">
 		<xs:annotation>
 			<xs:appinfo>
-				<xhtml:label>12.DADOS TRABALHISTA</xhtml:label>
+				<xhtml:label>14.DADOS ADMINISTRATIVOS</xhtml:label>
                 <class:classificacoes>
                     <class:classificacao>cn=Direitos Humanos</class:classificacao>
                 </class:classificacoes>
@@ -17,7 +17,7 @@
 		</xs:annotation>
 	</xs:element>
 
-	<xs:complexType name="dadostrabalhista">
+	<xs:complexType name="dadosadministrativos">
 		<xs:sequence>
 
            <xs:element name="nrProcesso" minOccurs="0">
@@ -32,22 +32,10 @@
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
-            <xs:element name="comarca" minOccurs="0">
+            <xs:element name="instituicao" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Comarca</xhtml:label>
-					</xs:appinfo>
-				</xs:annotation>
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:maxLength value="255" />
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
-			<xs:element name="vara" minOccurs="0">
-				<xs:annotation>
-					<xs:appinfo>
-						<xhtml:label>Vara</xhtml:label>
+						<xhtml:label>Instituição</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -95,31 +83,6 @@
 					</xs:appinfo>
 				</xs:annotation>
             </xs:element>
-            <xs:element name="reclamante" minOccurs="0">
-				    <xs:annotation>
-					    <xs:appinfo>
-						    <xhtml:label>Reclamante</xhtml:label>
-					    </xs:appinfo>
-				    </xs:annotation>
-				    <xs:simpleType>
-					    <xs:restriction base="xs:string">
-						    <xs:maxLength value="255" />
-					    </xs:restriction>
-				    </xs:simpleType>
-			    </xs:element>
-
-			    <xs:element name="reclamado" minOccurs="0">
-				    <xs:annotation>
-					    <xs:appinfo>
-						    <xhtml:label>Reclamado</xhtml:label>
-					    </xs:appinfo>
-				    </xs:annotation>
-				    <xs:simpleType>
-					    <xs:restriction base="xs:string">
-						    <xs:maxLength value="255" />
-					    </xs:restriction>
-				    </xs:simpleType>
-			    </xs:element>
 
                 <xs:element name="testemunhas" minOccurs="0" type="xs:string">
 	                <xs:annotation>
