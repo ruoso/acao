@@ -1,0 +1,148 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-perfildenuncia.xsd"
+    xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-perfildenuncia.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="perfildenuncia" type="perfildenuncia">
+		<xs:annotation>
+			<xs:appinfo>
+				<xhtml:label>01.PERFIL DA DENUÚNCIA</xhtml:label>
+                <class:classificacoes>
+                    <class:classificacao>cn=Direitos Humanos</class:classificacao>
+                </class:classificacoes>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="perfildenuncia">
+		<xs:sequence>
+
+			<xs:element name="tipodedenuncia" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>1.1 Tipo de denúncia</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Presencial" />
+						<xs:enumeration value="Telefone" />
+						<xs:enumeration value="E-mail" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="denunciaanomima" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>1.2 Denúncia anônima</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="nomedodenunciante" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>1.3 Nome do denunciante</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="telefone" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>1.4 Telefone</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="populacaosegmento" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>1.5 População (segmento)</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Criança/Adolescente" />
+						<xs:enumeration value="Pessoa com deficiência" />
+						<xs:enumeration value="Negro" />
+						<xs:enumeration value="Idoso" />
+						<xs:enumeration value="Homem" />
+						<xs:enumeration value="Mulher" />
+						<xs:enumeration value="LGBT" />
+						<xs:enumeration value="Imigrante africano" />
+						<xs:enumeration value="Imigrante oriental" />
+						<xs:enumeration value="Imigrante boiviano" />
+						<xs:enumeration value="Outro" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="outropolulacao" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Outros</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="instituicaoencaminhadora" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>1.6 Instituição encaminhadora</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="CRAS" />
+						<xs:enumeration value="CREAS" />
+						<xs:enumeration value="CREAS POP" />
+						<xs:enumeration value="COOID" />
+						<xs:enumeration value="COPEDEF" />
+						<xs:enumeration value="COPPIR" />
+						<xs:enumeration value="CRLGBT" />
+						<xs:enumeration value="COORD. INCFÂNCIA/FUNCI" />
+						<xs:enumeration value="CONSELHO TUTELAR" />
+						<xs:enumeration value="COMISSÃO DE DDHH DA ASSEMBLÉIA LEGISLATIVA" />
+						<xs:enumeration value="COMISSÃO DE DDHH OAB" />
+						<xs:enumeration value="SEJUS" />
+						<xs:enumeration value="STDS" />
+						<xs:enumeration value="DEFENSORIA PÚBLICA" />
+						<xs:enumeration value="COMISSÃO DDHH DA CÂMARA DE VEREADORES" />
+						<xs:enumeration value="DEMANDA ESPONTÂNEA" />
+						<xs:enumeration value="OUTROS" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="outroinstituicaoencaminhadora" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Outros</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+
+			<xs:element name="sintesedocaso" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Síntese do caso</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>
