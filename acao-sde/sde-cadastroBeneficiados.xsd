@@ -1,14 +1,14 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns="http://schemas.fortaleza.ce.gov.br/acao/sde-beneficiados-projetos.xsd"
+    xmlns="http://schemas.fortaleza.ce.gov.br/acao/sde-cadastro-beneficiados.xsd"
     xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
     xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
     xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
-    targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sde-beneficiados-projetos.xsd"
+    targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sde-cadastro-beneficiados.xsd"
     elementFormDefault="qualified">
 
-    <xs:element name="formbeneficiados" type="formbeneficiados">
+    <xs:element name="cadastroBeneficiados" type="cadastroBeneficiados">
         <xs:annotation>
             <xs:appinfo>
                 <xhtml:label>CADASTRO DOS BENEFICIADOS</xhtml:label>
@@ -43,7 +43,7 @@
         </xs:sequence>
     </xs:complexType>
 
-    <xs:complexType name="formbeneficiados">
+    <xs:complexType name="cadastroBeneficiados">
         <xs:sequence>
 			<xs:element name="beneficiado">
 				<xs:annotation>
@@ -228,7 +228,7 @@
 				        <xs:element name="nr_casa" minOccurs="0">
 				            <xs:annotation>
 				                <xs:appinfo>
-				                    <xhtml:label>Numero casa</xhtml:label>
+				                    <xhtml:label>Nº</xhtml:label>
 				                </xs:appinfo>
 				            </xs:annotation>
 				            <xs:simpleType>
@@ -372,14 +372,14 @@
 			            <xs:element name="qtPessoasTrabalham" type="xs:integer" minOccurs="0">
 				            <xs:annotation>
 					            <xs:appinfo>
-						            <xhtml:label>Nr de pessoas que trabalham</xhtml:label>
+						            <xhtml:label>Nº de pessoas que trabalham</xhtml:label>
 					            </xs:appinfo>
 				            </xs:annotation>
 			            </xs:element>
 			            <xs:element name="qtPessoasResidentes" type="xs:integer" minOccurs="0">
 				            <xs:annotation>
 					            <xs:appinfo>
-						            <xhtml:label>Nr de pessoas residentes</xhtml:label>
+						            <xhtml:label>Nº de pessoas residentes</xhtml:label>
 					            </xs:appinfo>
 				            </xs:annotation>
 			            </xs:element>
