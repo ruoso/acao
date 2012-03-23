@@ -1,17 +1,17 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns="http://schemas.fortaleza.ce.gov.br/acao/sde-dadosEmpreendimento.xsd"
+    xmlns="http://schemas.fortaleza.ce.gov.br/acao/sde-dadosOcupacao.xsd"
     xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
     xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
     xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
-    targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sde-dadosEmpreendimento.xsd"
+    targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sde-dadosOcupacao.xsd"
     elementFormDefault="qualified">
 
-    <xs:element name="dadosEmpreendimento" type="dadosEmpreendimento">
+    <xs:element name="dadosOcupacao" type="dadosOcupacao">
         <xs:annotation>
             <xs:appinfo>
-                <xhtml:label>DADOS EMPREENDIMENTO</xhtml:label>
+                <xhtml:label>DADOS OCUPAÇÃO</xhtml:label>
                 <class:classificacoes>
                     <class:classificacao>cn=Desenvolvimento Econômico</class:classificacao>
                 </class:classificacoes>
@@ -22,7 +22,7 @@
         </xs:annotation>
     </xs:element>
 
-    <xs:complexType name="dadosEmpreendimento">
+    <xs:complexType name="dadosOcupacao">
         <xs:sequence>
 			    <xs:element name="dt" minOccurs="0" type="xs:date">
 				    <xs:annotation>
@@ -62,7 +62,7 @@
 		        <xs:element name="nr" minOccurs="0">
 		            <xs:annotation>
 		                <xs:appinfo>
-		                    <xhtml:label>Nr</xhtml:label>
+		                    <xhtml:label>Nº</xhtml:label>
 		                </xs:appinfo>
 		            </xs:annotation>
 		            <xs:simpleType>
@@ -99,10 +99,10 @@
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
-				<xs:element name="tpNegocio"  minOccurs="0">
+				<xs:element name="setorEconomico"  minOccurs="0">
 					<xs:annotation>
 						<xs:appinfo>
-							<xhtml:label>Tipo de negócio</xhtml:label>
+							<xhtml:label>Setor econômico</xhtml:label>
 						</xs:appinfo>
 					</xs:annotation>
 					<xs:simpleType>
@@ -110,6 +110,8 @@
 						<xs:enumeration value="Indústria" />
 						<xs:enumeration value="Comércio" />
 						<xs:enumeration value="Serviço" />
+                        <xs:enumeration value="Agricultura urbana" />
+                        <xs:enumeration value="Piscicultura" />
 					</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
