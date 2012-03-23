@@ -31,7 +31,7 @@ sub produce_xpath_segments {
     my ( $self, $nsprefix, $path_form ) = @_;
     return map { $nsprefix . ':' . $_ }
       grep     { $_ }
-      map { s/[^0-9a-zA-Z\_\-]//gs; $_ }
+      map { s/[^0-9a-zA-Z\_\-][áàãâéêíóôõúüñçÁÀÃÂÉÊÍÓÔÕÚÜÑÇ]//gs; $_ }
       split /\//, $path_form;
 }
 
