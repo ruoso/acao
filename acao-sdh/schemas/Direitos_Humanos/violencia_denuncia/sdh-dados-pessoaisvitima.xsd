@@ -2,6 +2,8 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-dados-pessoaisvitima.xsd"
     xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
+	xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
 	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-dados-pessoaisvitima.xsd"
 	elementFormDefault="qualified">
@@ -299,7 +301,7 @@
 					</xs:simpleType>
 				</xs:element>
 
-				<xs:element name="documentos"  minOccurs="1">
+				<xs:element name="documentos">
 					<xs:annotation>
 						<xs:appinfo>
 							<xhtml:label>4.1 DOCUMENTOS</xhtml:label>
