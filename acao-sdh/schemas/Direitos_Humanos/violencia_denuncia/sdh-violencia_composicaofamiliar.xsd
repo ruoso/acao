@@ -1,17 +1,17 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-composicao-familiar.xsd"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-violencia_composicaofamiliar.xsd"
     xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
-	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-composicao-familiar.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-violencia_composicaofamiliar.xsd"
 	elementFormDefault="qualified">
 
-	<xs:element name="formComposicaoFamiliar" type="formComposicaoFamiliar">
+	<xs:element name="composicaoFamiliar" type="composicaoFamiliar">
 		<xs:annotation>
 			<xs:appinfo>
-				<xhtml:label>8. COMPOSIÇÃO FAMILIAR</xhtml:label>
+				<xhtml:label>08. COMPOSIÇÃO FAMILIAR</xhtml:label>
                 <class:classificacoes>
-                    <class:classificacao>cn=Direitos Humanos</class:classificacao>
+                    <class:classificacao>cn=Geral,cn=Direitos Humanos</class:classificacao>
                 </class:classificacoes>
 			</xs:appinfo>
 		</xs:annotation>

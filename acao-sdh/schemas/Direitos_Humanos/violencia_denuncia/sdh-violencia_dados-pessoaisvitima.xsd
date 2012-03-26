@@ -1,19 +1,19 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-dados-pessoaisvitima.xsd"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-violencia_dados-pessoaisvitima.xsd"
     xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
 	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
 	xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
-	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-dados-pessoaisvitima.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-violencia_dados-pessoaisvitima.xsd"
 	elementFormDefault="qualified">
 
-	<xs:element name="formDadosPessoaisVitima" type="formDadosPessoaisVitima">
+	<xs:element name="dadosPessoaisVitima" type="dadosPessoaisVitima">
 		<xs:annotation>
 			<xs:appinfo>
-				<xhtml:label>4. DADOS PESSOAIS DA VÍTIMA</xhtml:label>
+				<xhtml:label>04. DADOS PESSOAIS DA VÍTIMA</xhtml:label>
                 <class:classificacoes>
-                    <class:classificacao>cn=Direitos Humanos</class:classificacao>
+                    <class:classificacao>cn=Geral,cn=Direitos Humanos</class:classificacao>
                 </class:classificacoes>
 			</xs:appinfo>
 		</xs:annotation>
