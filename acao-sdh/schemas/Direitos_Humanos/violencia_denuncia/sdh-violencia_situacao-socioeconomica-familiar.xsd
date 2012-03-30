@@ -1,23 +1,23 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-situacao-socioeconomica-familiar.xsd"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-violencia_situacao-socioeconomica-familiar.xsd"
     xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
-	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-situacao-socioeconomica-familiar.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-violencia_situacao-socioeconomica-familiar.xsd"
 	elementFormDefault="qualified">
 
-	<xs:element name="formSituacaoSocioEconomicaFam" type="formSituacaoSocioEconomicaFam">
+	<xs:element name="situacaoSocioEconomicaFam" type="situacaoSocioEconomicaFam">
 		<xs:annotation>
 			<xs:appinfo>
-				<xhtml:label>9. SITUAÇÃO SÓCIO-ECONÔMICA FAMILIAR</xhtml:label>
+				<xhtml:label>09. SITUAÇÃO SÓCIO-ECONÔMICA FAMILIAR</xhtml:label>
                 <class:classificacoes>
-                    <class:classificacao>cn=Direitos Humanos</class:classificacao>
+                    <class:classificacao>cn=Geral,cn=Direitos Humanos</class:classificacao>
                 </class:classificacoes>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
 
-	<xs:complexType name="formSituacaoSocioEconomicaFam">
+	<xs:complexType name="situacaoSocioEconomicaFam">
 		<xs:sequence>
 
 			<xs:element name="rendafam" minOccurs="0">

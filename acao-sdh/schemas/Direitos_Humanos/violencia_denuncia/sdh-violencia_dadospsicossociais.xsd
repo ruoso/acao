@@ -1,23 +1,23 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-dadospsicossociais.xsd"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-violencia_dadospsicossociais.xsd"
     xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
-	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-dadospsicossociais.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-violencia_dadospsicossociais.xsd"
 	elementFormDefault="qualified">
 
-	<xs:element name="formDadosPsicossociais" type="formDadosPsicossociais">
+	<xs:element name="dadosPsicossociais" type="dadosPsicossociais">
 		<xs:annotation>
 			<xs:appinfo>
-				<xhtml:label>7. DADOS PSICOSSOCIAIS</xhtml:label>
+				<xhtml:label>07. DADOS PSICOSSOCIAIS</xhtml:label>
                 <class:classificacoes>
-                    <class:classificacao>cn=Direitos Humanos</class:classificacao>
+                    <class:classificacao>cn=Geral,cn=Direitos Humanos</class:classificacao>
                 </class:classificacoes>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
 
-	<xs:complexType name="formDadosPsicossociais">
+	<xs:complexType name="dadosPsicossociais">
 		<xs:sequence>
 
 			<xs:element name="orientsexual" minOccurs="0">
