@@ -39,7 +39,7 @@
 				        <xs:element name="numeronis" minOccurs="1">
 				            <xs:annotation>
 				                <xs:appinfo>
-				                    <xhtml:label>NIS</xhtml:label>
+				                    <xhtml:label>NIS *</xhtml:label>
 				                </xs:appinfo>
 				            </xs:annotation>
 				            <xs:simpleType>
@@ -52,7 +52,7 @@
 						<xs:element name="datapreenchi" minOccurs="1" type="xs:date">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Data preenchimento</xhtml:label>
+									<xhtml:label>Data preenchimento *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -60,7 +60,7 @@
 						<xs:element name="regionalident"  minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Regional</xhtml:label>
+									<xhtml:label>Regional *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -78,44 +78,45 @@
 						<xs:element name="cras"  minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>CRAS</xhtml:label>
+									<xhtml:label>CRAS *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
 
-							<xs:restriction base="xs:string">
-								<xs:enumeration value="CRAS-BARRA DO CEARÁ" />
-								<xs:enumeration value="CRAS-PIRAMBU" />
-								<xs:enumeration value="CRAS-LAGAMAR" />
-								<xs:enumeration value="CRAS-MUCURIPE" />
-								<xs:enumeration value="CRAS-PRAIA DO FUTURO II" />
-								<xs:enumeration value="CRAS-SERVILUZ" />
-								<xs:enumeration value="CRAS-BELA VISTA" />
-								<xs:enumeration value="CRAS-QUINTINO CUNHA " />
-								<xs:enumeration value="CRAS-COUTO FERNANDES" />
-								<xs:enumeration value="CRAS-SERRINHA" />
-								<xs:enumeration value="CRAS-VILA UNIÃO" />
-								<xs:enumeration value="CRAS-ARACAPÉ" />
-								<xs:enumeration value="CRAS-BOM JARDIM" />
-								<xs:enumeration value="CRAS-CONJUNTO ESPERANÇA" />
-								<xs:enumeration value="CRAS-GRANJA PORTUGAL" />
-								<xs:enumeration value="CRAS-GENIBAÚ" />
-								<xs:enumeration value="CRAS-MONDUBIM" />
-								<xs:enumeration value="CRAS-CANINDEZINHO" />
-								<xs:enumeration value="CRAS-CASTELÃO" />
-								<xs:enumeration value="CRAS-CONJUNTO PALMEIRAS" />
-								<xs:enumeration value="CRAS-DENDÊ" />
-								<xs:enumeration value="CRAS-JARDIM DAS OLIVEIRAS" />
-								<xs:enumeration value="CRAS-JOÃO PAULO II" />
-								<xs:enumeration value="CRAS-ITINEREANTE" />
-							</xs:restriction>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="CRAS-BARRA DO CEARÁ" />
+									<xs:enumeration value="CRAS-PIRAMBU" />
+									<xs:enumeration value="CRAS-LAGAMAR" />
+									<xs:enumeration value="CRAS-MUCURIPE" />
+									<xs:enumeration value="CRAS-PRAIA DO FUTURO II" />
+									<xs:enumeration value="CRAS-SERVILUZ" />
+									<xs:enumeration value="CRAS-BELA VISTA" />
+									<xs:enumeration value="CRAS-QUINTINO CUNHA " />
+									<xs:enumeration value="CRAS-COUTO FERNANDES" />
+									<xs:enumeration value="CRAS-SERRINHA" />
+									<xs:enumeration value="CRAS-VILA UNIÃO" />
+									<xs:enumeration value="CRAS-ARACAPÉ" />
+									<xs:enumeration value="CRAS-BOM JARDIM" />
+									<xs:enumeration value="CRAS-CONJUNTO ESPERANÇA" />
+									<xs:enumeration value="CRAS-GRANJA PORTUGAL" />
+									<xs:enumeration value="CRAS-GENIBAÚ" />
+									<xs:enumeration value="CRAS-MONDUBIM" />
+									<xs:enumeration value="CRAS-CANINDEZINHO" />
+									<xs:enumeration value="CRAS-CASTELÃO" />
+									<xs:enumeration value="CRAS-CONJUNTO PALMEIRAS" />
+									<xs:enumeration value="CRAS-DENDÊ" />
+									<xs:enumeration value="CRAS-JARDIM DAS OLIVEIRAS" />
+									<xs:enumeration value="CRAS-JOÃO PAULO II" />
+									<xs:enumeration value="CRAS-ITINEREANTE" />
+								</xs:restriction>
+
 							</xs:simpleType>
 						</xs:element>
 
 						<xs:element name="origatendimento"  minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Origem Atendimento</xhtml:label>
+									<xhtml:label>Origem Atendimento *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -127,7 +128,7 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="oriencaminhamento"  minOccurs="1">
+						<xs:element name="oriencaminhamento"  minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Origem Encaminhamento</xhtml:label>
@@ -175,10 +176,11 @@
 				
 				<xs:complexType>
 					<xs:sequence>
+
 				        <xs:element name="nomresp" minOccurs="1">
 				            <xs:annotation>
 				                <xs:appinfo>
-				                    <xhtml:label>1.1 Nome</xhtml:label>
+				                    <xhtml:label>1.1 Nome *</xhtml:label>
 				                </xs:appinfo>
 				            </xs:annotation>
 				            <xs:simpleType>
@@ -217,7 +219,7 @@
 				        <xs:element name="numrgresp" minOccurs="1">
 				            <xs:annotation>
 				                <xs:appinfo>
-				                    <xhtml:label>1.4 RG</xhtml:label>
+				                    <xhtml:label>1.4 RG *</xhtml:label>
 				                </xs:appinfo>
 				            </xs:annotation>
 				            <xs:simpleType>
@@ -315,7 +317,7 @@
 						<xs:element name="regionalresp"  minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>SER</xhtml:label>
+									<xhtml:label>SER *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -386,7 +388,7 @@
 						<xs:element name="sexoresp"  minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>1.8 Sexo</xhtml:label>
+									<xhtml:label>1.8 Sexo *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -766,7 +768,7 @@
 							        <xs:element name="nummembro" minOccurs="1">
 							            <xs:annotation>
 							                <xs:appinfo>
-							                    <xhtml:label>Nº</xhtml:label>
+							                    <xhtml:label>Nº *</xhtml:label>
 							                </xs:appinfo>
 							            </xs:annotation>
 							            <xs:simpleType>
@@ -779,7 +781,7 @@
 							        <xs:element name="nommembro" minOccurs="1">
 							            <xs:annotation>
 							                <xs:appinfo>
-							                    <xhtml:label>Nome</xhtml:label>
+							                    <xhtml:label>Nome *</xhtml:label>
 							                </xs:appinfo>
 							            </xs:annotation>
 							            <xs:simpleType>
@@ -836,7 +838,7 @@
 									<xs:element name="sexomembro"  minOccurs="1">
 										<xs:annotation>
 											<xs:appinfo>
-												<xhtml:label>Sexo</xhtml:label>
+												<xhtml:label>Sexo *</xhtml:label>
 											</xs:appinfo>
 										</xs:annotation>
 										<xs:simpleType>
@@ -2020,7 +2022,7 @@
 						<xs:element name="nomertecresp" minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Técnico(a) Responsável</xhtml:label>
+									<xhtml:label>Técnico(a) Responsável *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -2033,7 +2035,7 @@
 						<xs:element name="datadocumento" minOccurs="1" type="xs:date">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Data</xhtml:label>
+									<xhtml:label>Data *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
