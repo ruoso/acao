@@ -1,0 +1,210 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/semas-ficha-especifica-abordagem-rua.xsd"
+	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
+	xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/semas-ficha-especifica-abordagem-rua.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="formFichaEspecificaAbordagemRua" type="formFichaEspecificaAbordagemRua">
+		<xs:annotation>
+			<xs:appinfo>
+				<xhtml:label>Ficha Específica da Abordagem de Rua</xhtml:label>
+				<class:classificacoes>
+                    <class:classificacao>cn=Proteção Social Especial,cn=Assistencia Social</class:classificacao>
+				</class:classificacoes>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="formFichaEspecificaAbordagemRua">
+		<xs:sequence>
+		
+			<xs:element name="numeronis" minOccurs="1" type="xs:integer">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>NIS</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			
+			<xs:element name="pontabordagem" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Ponto de abordagem</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			<xs:element name="endereco" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Endereço</xhtml:label>
+					</xs:appinfo>
+					<xsdext:extensions>
+						<xsdext:engine>autoComplete</xsdext:engine>
+						<xsdext:service>/enderecos</xsdext:service>
+					</xsdext:extensions>								
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+
+			<xs:element name="regional"  minOccurs="1">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>SER</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="SER I" />
+					<xs:enumeration value="SER II" />
+					<xs:enumeration value="SER III" />
+					<xs:enumeration value="SER IV" />
+					<xs:enumeration value="SER V" />
+					<xs:enumeration value="SER VI" />
+				</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			
+			<xs:element name="sitapresent" minOccurs="1" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>1. Situação Apresentada</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			
+			<xs:element name="enccaso"  minOccurs="1">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>2. Encaminhamento do caso</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Inclusão no PAI" />
+					<xs:enumeration value="Atendimento Psicossocial" />
+					<xs:enumeration value="Orientação Sócio-jurídico" />
+					<xs:enumeration value="Oficina Sócio-educativas" />
+				</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+
+			<xs:element name="encoutroserv">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>3. Encaminhamentos para outros serviços</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+
+				<xs:complexType>
+					<xs:sequence>
+					
+						<xs:element name="redesocassist"  minOccurs="1">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Rede Socioassistencial</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="CRAS" />
+									<xs:enumeration value="CREAS" />
+									<xs:enumeration value="CCA" />
+									<xs:enumeration value="CRM" />
+									<xs:enumeration value="Entidade Conveniada" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						
+						<xs:element name="redesocassistoutr" minOccurs="0" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Outros</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						
+						<xs:element name="politintersetoriais"  minOccurs="1">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Políticas intersetoriais</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Saúde" />
+									<xs:enumeration value="Educação" />
+									<xs:enumeration value="SDE" />
+									<xs:enumeration value="SDH" />
+									<xs:enumeration value="Previdência Social" />
+									<xs:enumeration value="Habitação" />
+									<xs:enumeration value="SGD" />
+									<xs:enumeration value="Outros" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						
+						<xs:element name="politintersetoriaisoutr" minOccurs="0" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Outros</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+			
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="evolucaocaso" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>4. Evolução do caso</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+
+			<xs:element name="tecresponsavel" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Técnico(a) responsável</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="datcadastro" minOccurs="0" type="xs:date">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Data</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+
+
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

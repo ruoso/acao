@@ -32,12 +32,13 @@
 			<xs:element name="numeronis" minOccurs="1">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>NIS *</xhtml:label>
+						<xhtml:label>NIS</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
-					<xs:restriction base="xs:integer">
+					<xs:restriction base="xs:string">
 						<xs:maxLength value="11"/>
+						<xs:pattern value="[0-9]+[0-9]+"/>
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
@@ -45,7 +46,7 @@
 			<xs:element name="ser"  minOccurs="1">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Regional *</xhtml:label>
+						<xhtml:label>Regional</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -63,7 +64,7 @@
 			<xs:element name="cras" minOccurs="1">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>CRAS *</xhtml:label>
+						<xhtml:label>CRAS</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -193,7 +194,7 @@
 										</xs:annotation>
 									</xs:element>
 
-									<xs:element name="ausenenvolvido" minOccurs="0" type="xs:string">
+									<xs:element name="ausenciaEnvolvidos" minOccurs="0" type="xs:string">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Membros envolvidos</xhtml:label>
@@ -239,7 +240,7 @@
 										</xs:simpleType>
 									</xs:element>
 
-									<xs:element name="fragilvinculoafet" type="xs:boolean">
+									<xs:element name="fragilVinculoAfetivo" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Fragilização dos vínculos afetivos-relacionais
@@ -256,7 +257,7 @@
 										</xs:annotation>
 									</xs:element>
 
-									<xs:element name="fragilvincafetenvolv" minOccurs="0"  type="xs:string">
+									<xs:element name="fragilVinculoAfetivoEnvolvidos" minOccurs="0"  type="xs:string">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Membros envolvidos</xhtml:label>
@@ -264,7 +265,7 @@
 										</xs:annotation>
 									</xs:element>
 
-									<xs:element name="fragilpertencsocial" type="xs:boolean">
+									<xs:element name="fragilPertencimentoSocial" type="xs:boolean">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Fragilização do pertencimento social</xhtml:label>
@@ -272,7 +273,7 @@
 										</xs:annotation>
 									</xs:element>
 
-									<xs:element name="fragilpertencsocenvolv" minOccurs="0"  type="xs:string">
+									<xs:element name="fragilPertencimentoSocialEnvolvidos" minOccurs="0"  type="xs:string">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Membros envolvidos</xhtml:label>
@@ -318,7 +319,7 @@
 							<xs:complexType>
 								<xs:sequence>
 
-									<xs:element name="tippotencial" minOccurs="0">
+									<xs:element name="tipoPotencialidade" minOccurs="0">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Tipo de potencialidade</xhtml:label>
@@ -331,7 +332,7 @@
 										</xs:simpleType>
 									</xs:element>
 
-									<xs:element name="tippotencenvolv" minOccurs="0" type="xs:string">
+									<xs:element name="tipoPotencialidadeEnvolvidos" minOccurs="0" type="xs:string">
 										<xs:annotation>
 											<xs:appinfo>
 												<xhtml:label>Membros envolvidos</xhtml:label>
@@ -357,7 +358,7 @@
 				<xs:complexType>
 					<xs:sequence>
 
-						<xs:element name="vulnerabil" minOccurs="0">
+						<xs:element name="vulnerabilidade" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Vulnerabilidade</xhtml:label>
@@ -384,7 +385,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="estratsuper" minOccurs="0"  type="xs:string">
+						<xs:element name="estrategiaSuperacao" minOccurs="0"  type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Estratégia</xhtml:label>
@@ -428,7 +429,7 @@
 							</xs:simpleType>
 						</xs:element>
 						
-						<xs:element name="justnaocump" minOccurs="0" type="xs:string">
+						<xs:element name="justificativaNaoCumpriu" minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Justificativa do não cumprimento</xhtml:label>
@@ -440,7 +441,7 @@
 				</xs:complexType>
 			</xs:element>
 
-			<xs:element name="trabsuperavulnera" maxOccurs="100">
+			<xs:element name="trabalhoSuperacaoVulnerabilidade" maxOccurs="100">
 
 				<xs:annotation>
 					<xs:appinfo>
@@ -451,7 +452,7 @@
 				<xs:complexType>
 					<xs:sequence>
 
-						<xs:element name="comptrabvulne" minOccurs="0">
+						<xs:element name="compTrabVulnerab" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Vulnerabilidade</xhtml:label>
@@ -478,7 +479,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="comptrabestrasuper" minOccurs="0"  type="xs:string">
+						<xs:element name="compTrabEstrategiaSuperacao" minOccurs="0"  type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Estratégia</xhtml:label>
@@ -486,7 +487,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="comptrabmeta" minOccurs="0"  type="xs:string">
+						<xs:element name="compTrabMeta" minOccurs="0"  type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Meta</xhtml:label>
@@ -494,7 +495,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="comptrabsit" minOccurs="0">
+						<xs:element name="compTrabSituacao" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Situação</xhtml:label>
@@ -509,7 +510,7 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="comptrabjustnaocumpriu" minOccurs="0"  type="xs:string">
+						<xs:element name="compTrabJustificativaNaoCumpriu" minOccurs="0"  type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Justificativa do não cumprimento</xhtml:label>
@@ -624,7 +625,7 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="avaliavulnboutros" minOccurs="0" type="xs:string">
+						<xs:element name="avaliavulneraboutros" minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Outros</xhtml:label>
@@ -658,7 +659,7 @@
 				</xs:complexType>
 			</xs:element>
 			
-			<xs:element name="observgerais" maxOccurs="10">
+			<xs:element name="observacoesgerais" maxOccurs="10">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>7. Observações complementares</xhtml:label>
@@ -705,14 +706,14 @@
 				<xs:complexType>
 					<xs:sequence>
 
-						<xs:element name="dtdesli" minOccurs="0" type="xs:date">
+						<xs:element name="dtDesligamento" minOccurs="0" type="xs:date">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Data</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
-						<xs:element name="motdesl" minOccurs="0" type="xs:string">
+						<xs:element name="motivoDesligamento" minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Motivo</xhtml:label>
@@ -724,7 +725,7 @@
 				</xs:complexType>
 			</xs:element>
 
-			<xs:element name="parecerfinal">
+			<xs:element name="parecerFinal">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>9. Parecer final da equipe técnica</xhtml:label>
@@ -734,7 +735,7 @@
 				<xs:complexType>
 					<xs:sequence>
 
-						<xs:element name="paredesc" minOccurs="0" type="xs:string">
+						<xs:element name="parecerDesc" minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Descrição</xhtml:label>
@@ -756,14 +757,14 @@
 				<xs:complexType>
 					<xs:sequence>
 
-						<xs:element name="dadtecdata" minOccurs="0" type="xs:date">
+						<xs:element name="dadotecdata" minOccurs="0" type="xs:date">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Data</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
-						<xs:element name="dattecnomes" minOccurs="0" type="xs:string">
+						<xs:element name="datatecnomes" minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Nome dos técnicos</xhtml:label>

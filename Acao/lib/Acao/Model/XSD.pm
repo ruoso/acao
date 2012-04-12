@@ -93,7 +93,7 @@ txn_method 'link_xsd' => authorized $role_listar => sub {
                  or not(boolean($x/xs:schema/xs:element/xs:annotation/xs:appinfo/cl:classificacoes/@validacao/string()))
               order by $x/xs:schema/xs:element/xs:annotation/xs:appinfo/xhtml:label/text()
               return ' . $xqueryret;
- 
+
     $self->sedna->execute($xq);
     my $ret;
     while ( my $item = $self->sedna->get_item() ) {
@@ -133,15 +133,20 @@ sub get_filter_classificacoes {
     }
 
     my @classificacoes = keys %classificacoes;
-    my $filter = join ' or ', map { 'cl:classificacao eq "' . $_ . '"' }
+    my $filter = join ' or ', map { 'cl:classificacao = "' . $_ . '"' }
       map {
         /$assuntos_dn$/
           ? substr( $_, 0, 0 - length($assuntos_dn) - 1 )
           : $_
       }
-      map { s/^\s+|\s+$//gs; $_ } @classificacoes;
+      map { s/^\s+|\s+$//gs; $_ } @classificacoes;   
+         
+    
+    # acrescentando for mais interno para filtrar por N classificações   
+    # 'for $y in  $x'
+    # 
     $filter =
-      '[xs:schema/xs:element/xs:annotation/xs:appinfo/cl:classificacoes['
+      ' for $y in  $x[xs:schema/xs:element/xs:annotation/xs:appinfo/cl:classificacoes['
       . $filter . ']]'
       if $filter;
 
