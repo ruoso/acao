@@ -1,0 +1,90 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-violencia_dadosjuridicos.xsd"
+    xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-violencia_dadosjuridicos.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="dadosjuridicos" type="dadosjuridicos">
+		<xs:annotation>
+			<xs:appinfo>
+				<xhtml:label>10.DADOS JURÍDICOS</xhtml:label>
+                <class:classificacoes>
+                    <class:classificacao>cn=Geral,cn=Direitos Humanos</class:classificacao>
+                </class:classificacoes>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="dadosjuridicos">
+		<xs:sequence>
+
+            <xs:element name="procJudicialAndamento">
+	            <xs:annotation>
+		            <xs:appinfo>
+			            <xhtml:label>Existe processo judicial em andamento?</xhtml:label>
+		            </xs:appinfo>
+	            </xs:annotation>
+	            <xs:complexType>
+		            <xs:sequence>
+			            <xs:element name="criminal" minOccurs="0">
+				            <xs:annotation>
+					            <xs:appinfo>
+						            <xhtml:label>Criminal</xhtml:label>
+					            </xs:appinfo>
+				            </xs:annotation>
+				            <xs:simpleType>
+					            <xs:restriction base="xs:string">
+						            <xs:enumeration value="Sim" />
+						            <xs:enumeration value="Não" />
+					            </xs:restriction>
+				            </xs:simpleType>
+			            </xs:element>
+			            <xs:element name="trabalhista" minOccurs="0">
+				            <xs:annotation>
+					            <xs:appinfo>
+						            <xhtml:label>Trabalhista</xhtml:label>
+					            </xs:appinfo>
+				            </xs:annotation>
+				            <xs:simpleType>
+					            <xs:restriction base="xs:string">
+						            <xs:enumeration value="Sim" />
+						            <xs:enumeration value="Não" />
+					            </xs:restriction>
+				            </xs:simpleType>
+			            </xs:element>
+			            <xs:element name="civel" minOccurs="0">
+				            <xs:annotation>
+					            <xs:appinfo>
+						            <xhtml:label>Cível</xhtml:label>
+					            </xs:appinfo>
+				            </xs:annotation>
+				            <xs:simpleType>
+					            <xs:restriction base="xs:string">
+						            <xs:enumeration value="Sim" />
+						            <xs:enumeration value="Não" />
+					            </xs:restriction>
+				            </xs:simpleType>
+			            </xs:element>
+			            <xs:element name="administrativo" minOccurs="0">
+				            <xs:annotation>
+					            <xs:appinfo>
+						            <xhtml:label>Administrativo(Instituição Pública/Guarda Municipal)</xhtml:label>
+					            </xs:appinfo>
+				            </xs:annotation>
+				            <xs:simpleType>
+					            <xs:restriction base="xs:string">
+						            <xs:enumeration value="Sim" />
+						            <xs:enumeration value="Não" />
+					            </xs:restriction>
+				            </xs:simpleType>
+			            </xs:element>
+		            </xs:sequence>
+	            </xs:complexType>
+            </xs:element>
+
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

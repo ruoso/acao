@@ -1,0 +1,354 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-sistema_cordenadoria.xsd"
+    xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-sistema_cordenadoria.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="sistemacordenadoria" type="sistemacordenadoria">
+		<xs:annotation>
+			<xs:appinfo>
+				<xhtml:label>SISTEMA COORDENADORIA</xhtml:label>
+                <class:classificacoes>
+                    <class:classificacao>cn=Relatórios,cn=Direitos Humanos</class:classificacao>
+                </class:classificacoes>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="sistemacordenadoria">
+		<xs:sequence>
+
+			<xs:element name="sistemaCordenadoria">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>1. O que produziu/ realizou? </xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="curso" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Curso</xhtml:label>
+								 </xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="seminario" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Seminário</xhtml:label>
+								 </xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="oficina" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Oficina</xhtml:label>
+								 </xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="simposio" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Simpósio</xhtml:label>
+								 </xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="encontro" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Encontro</xhtml:label>
+								 </xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="padreGrio" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Padê Griô</xhtml:label>
+								 </xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="rodaDeConversa" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Roda de Conversa</xhtml:label>
+								 </xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="apresentacaoCultural" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Apresentação Cultural</xhtml:label>
+								 </xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+				        <xs:element name="especificarApresentacaoCultural" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+								   <xhtml:label>.     Especificar que Apresentação Cultural</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+										<xs:enumeration value="Parada" />
+										<xs:enumeration value="Ato show" />
+										<xs:enumeration value="Quarta Cultural" />
+										<xs:enumeration value="Terça Negra" />
+										<xs:enumeration value="etc" />
+								</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							
+							
+						<xs:element name="caminhada" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Caminhada</xhtml:label>
+								 </xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						
+						
+						<xs:element name="multiraoPrestacaoDeServiços" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Multirao Prestação de Serviços</xhtml:label>
+								 </xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						
+                       <xs:element name="especificarMultiraoPrestacaoDeServiços" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+								   <xhtml:label>.     Especificar MultiraoPrestacaoDeServiços</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+										<xs:enumeration value="Mutirão de Subregistro" />
+										<xs:enumeration value="Mutirão de União Estável" />
+										<xs:enumeration value="etc" />
+								</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+
+						<xs:element name="audienciaPublica" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Audiência Pública</xhtml:label>
+								 </xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						
+						
+						<xs:element name="reuniaoDeComite" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Reunião de Comitê</xhtml:label>
+								 </xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						
+                       <xs:element name="especificarReuniaoDeComite" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+								   <xhtml:label>.     Especificar Reunião de Comitê</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+										<xs:enumeration value="Comitê de Subregistro e Comitê Educação em Direitos Humanos" />
+								</xs:restriction>
+								</xs:simpleType>
+							</xs:element>						
+
+						<xs:element name="conferencia" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Conferência</xhtml:label>
+								 </xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="planoMunicipalDeAtuação" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Plano Municipal de Atuação</xhtml:label>
+								 </xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						
+						<xs:element name="especificarPlanoMunicipalDeAtuação" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+								   <xhtml:label>.     Especificar Plano Municipal de Atuacao</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+										<xs:enumeration value="Plano Municipal da Igualdade Racial e o Plano Municipal de Educação em DH" />
+								</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+
+						<xs:element name="outros" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Outros</xhtml:label>
+								 </xs:appinfo>
+							</xs:annotation>
+						</xs:element>						
+
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+
+  
+                      <xs:element name="dataEvento" minOccurs="0"  type="xs:date">
+			                <xs:annotation>
+				                <xs:appinfo>
+					                <xhtml:label>2.0 Data do Evento</xhtml:label>
+				                </xs:appinfo>
+			                </xs:annotation>
+
+                        </xs:element>
+                        
+                        <xs:element name="hora" minOccurs="0"  >
+			                <xs:annotation>
+				                <xs:appinfo>
+					                <xhtml:label>3.0 Hora</xhtml:label>
+				                </xs:appinfo>
+			                </xs:annotation>
+			                <xs:simpleType>
+					    <xs:restriction base="xs:string">
+						    <xs:maxLength value="255" />
+					    </xs:restriction>
+				        </xs:simpleType>
+                        </xs:element>
+                        
+						<xs:element  name="informacao"> 
+						        <xs:annotation>          	
+								   <xs:appinfo>
+									<xhtml:label>4.0 Local do Evento</xhtml:label>
+								   </xs:appinfo>
+								 </xs:annotation>
+						    <xs:complexType>
+					           <xs:sequence>
+			              	   </xs:sequence>
+						    </xs:complexType>		
+						</xs:element>
+                        
+                         <xs:element name="endereco" minOccurs="0"  >
+			                <xs:annotation>
+				                <xs:appinfo>
+					                <xhtml:label>Endereço</xhtml:label>
+				                </xs:appinfo>
+			                </xs:annotation>
+			                <xs:simpleType>
+					    <xs:restriction base="xs:string">
+						    <xs:maxLength value="255" />
+					    </xs:restriction>
+				        </xs:simpleType>
+                        </xs:element>     
+                        
+                       <xs:element name="bairro" minOccurs="0"  >
+			                <xs:annotation>
+				                <xs:appinfo>
+					                <xhtml:label>Bairro</xhtml:label>
+				                </xs:appinfo>
+			                </xs:annotation>
+			                <xs:simpleType>
+					    <xs:restriction base="xs:string">
+						    <xs:maxLength value="255" />
+					    </xs:restriction>
+				        </xs:simpleType>
+                        </xs:element> 
+                        
+                       <xs:element name="regional" minOccurs="0"  >
+			                <xs:annotation>
+				                <xs:appinfo>
+					                <xhtml:label>Regional</xhtml:label>
+				                </xs:appinfo>
+			                </xs:annotation>
+			                <xs:simpleType>
+					    <xs:restriction base="xs:string">
+						    <xs:maxLength value="255" />
+					    </xs:restriction>
+				        </xs:simpleType>
+                        </xs:element>    
+                        
+                       <xs:element name="publicoAfetado">
+	            <xs:annotation>
+		            <xs:appinfo>
+			            <xhtml:label>5.0 Público Afetado</xhtml:label>
+		            </xs:appinfo>
+	            </xs:annotation>
+	            <xs:complexType>
+		            <xs:sequence>
+		                   <xs:element name="ate50Pessoas" type="xs:boolean">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>Até 50 Pessoas</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>
+		                   <xs:element name="entre50e100Pessoas" type="xs:boolean">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>Entre 51 e 100 Pessoas</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>
+		                   <xs:element name="entre101e200Pessoas" type="xs:boolean">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>Entre 101 e 200 Pessoas</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>
+						    
+						    <xs:element name="entre201e300Pessoas" type="xs:boolean">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>Entre 201 e 500 Pessoas</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>
+						    <xs:element name="acimaDe501" type="xs:boolean">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>Acima de 501</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>
+						    
+		            </xs:sequence>
+	            </xs:complexType>
+            </xs:element>               
+
+			            <xs:element name="sintese" minOccurs="0" type="xs:string">
+	                      <xs:annotation>
+		                    <xs:appinfo>
+			                 <xhtml:label>6.0 Síntese</xhtml:label>
+		                   </xs:appinfo>
+	                     </xs:annotation>
+                </xs:element>
+
+
+
+
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>
