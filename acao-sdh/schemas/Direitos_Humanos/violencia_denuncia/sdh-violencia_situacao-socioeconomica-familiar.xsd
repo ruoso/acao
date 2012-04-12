@@ -9,7 +9,7 @@
 	<xs:element name="situacaoSocioEconomicaFam" type="situacaoSocioEconomicaFam">
 		<xs:annotation>
 			<xs:appinfo>
-				<xhtml:label>09. SITUAÇÃO SÓCIO-ECONÔMICA FAMILIAR</xhtml:label>
+				<xhtml:label>11. SITUAÇÃO SÓCIO-ECONÔMICA FAMILIAR</xhtml:label>
                 <class:classificacoes>
                     <class:classificacao>cn=Geral,cn=Direitos Humanos</class:classificacao>
                 </class:classificacoes>
@@ -23,15 +23,15 @@
 			<xs:element name="rendafam" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>9.1 Renda Familiar</xhtml:label>
+						<xhtml:label>11.1 Renda Familiar</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
 					<xs:restriction base="xs:string">
 						<xs:enumeration value="Não possui renda" />
 						<xs:enumeration value="Até 1 SM" />
-						<xs:enumeration value="Até 2 SM" />
-						<xs:enumeration value="Até 3 SM" />
+						<xs:enumeration value="Entre 1 SM e 2 SM" />
+						<xs:enumeration value="Entre 2 SM e 3 SM" />
 						<xs:enumeration value="Acima de 4 SM" />
 					</xs:restriction>
 				</xs:simpleType>
@@ -40,7 +40,7 @@
 			<xs:element name="recbensoc" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>9.2 Rece Algum Benefício Social</xhtml:label>
+						<xhtml:label>11.2 Rece Algum Benefício Social</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -54,7 +54,7 @@
 			<xs:element name="recbensocespec" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>9.2.1 Se SIM, quais? </xhtml:label>
+						<xhtml:label>11.2.1 Se SIM, quais? </xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -80,7 +80,7 @@
 			<xs:element name="partequipsoc" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>9.3 Participa de algum equipamento social</xhtml:label>
+						<xhtml:label>11.3 Participa de algum equipamento social</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -95,7 +95,7 @@
 			<xs:element name="partequipsocespec" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>9.3.1 Se Sim, Quais</xhtml:label>
+						<xhtml:label>11.3.1 Se Sim, Quais</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>

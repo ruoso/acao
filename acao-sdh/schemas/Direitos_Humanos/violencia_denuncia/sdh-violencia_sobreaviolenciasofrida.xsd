@@ -201,6 +201,7 @@
 								 </xs:appinfo>
 							</xs:annotation>
 						</xs:element>
+						
 
 					</xs:sequence>
 				</xs:complexType>
@@ -213,12 +214,20 @@
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
+			
+			<xs:element name="naoSabe" type="xs:boolean">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Não sabe</xhtml:label>
+					 </xs:appinfo>
+				</xs:annotation>
+			</xs:element>			
 
 
 			<xs:element name="sefamiliarinformequem" maxOccurs="100">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>3.3 SE familiar informe quem</xhtml:label>
+						<xhtml:label>3.2.1 SE familiar informe quem:</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -228,14 +237,6 @@
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Mãe</xhtml:label>
-								 </xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-
-						<xs:element name="responsavel" type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Responsável legal</xhtml:label>
 								 </xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -483,7 +484,7 @@
 						<xs:element name="entada" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Entada</xhtml:label>
+									<xhtml:label>Enteada</xhtml:label>
 								 </xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -504,24 +505,9 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="vizinho" type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Vizinho</xhtml:label>
-								 </xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-
-						<xs:element name="vizinha" type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Vizinha</xhtml:label>
-								 </xs:appinfo>
-							</xs:annotation>
-						</xs:element>
 
 					</xs:sequence>
-				</xs:complexType>avo
+				</xs:complexType>
 
 			</xs:element>
 
@@ -536,19 +522,22 @@
 			<xs:element name="localviolacao" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>3.4 Local da violação</xhtml:label>
+						<xhtml:label>3.3 Local da violação</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
 					<xs:restriction base="xs:string">
 						<xs:enumeration value="Vizinhança" />
 						<xs:enumeration value="Comunidade" />
+						<xs:enumeration value="Comunidade Religiosa" />
+						<xs:enumeration value="Cooperativa"/>
 						<xs:enumeration value="Escola" />
 						<xs:enumeration value="Local de trabalho" />
 						<xs:enumeration value="Instituição pública" />
 						<xs:enumeration value="Praças" />
 						<xs:enumeration value="Logradouros" />
 						<xs:enumeration value="Outros" />
+						<xs:enumeration value="Não sabe" />
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>

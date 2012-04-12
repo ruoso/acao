@@ -9,7 +9,7 @@
 	<xs:element name="sistemacordenadoria" type="sistemacordenadoria">
 		<xs:annotation>
 			<xs:appinfo>
-				<xhtml:label>SISTEMA COORDENADORIA</xhtml:label>
+				<xhtml:label>1.0 - Sistema Cordenadoria</xhtml:label>
                 <class:classificacoes>
                     <class:classificacao>cn=Relatórios,cn=Direitos Humanos</class:classificacao>
                 </class:classificacoes>
@@ -95,16 +95,16 @@
 				        <xs:element name="especificarApresentacaoCultural" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-								   <xhtml:label>.     Especificar que Apresentação Cultural</xhtml:label>
+								   <xhtml:label>.     Especificar o tipo Apresentação Cultural </xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
-										<xs:enumeration value="Parada" />
+										<xs:enumeration value="Parada pela diversidade sexual" />
+										<xs:enumeration value="Cortejo, caminhada" />
 										<xs:enumeration value="Ato show" />
 										<xs:enumeration value="Quarta Cultural" />
 										<xs:enumeration value="Terça Negra" />
-										<xs:enumeration value="etc" />
 								</xs:restriction>
 								</xs:simpleType>
 							</xs:element>
@@ -130,14 +130,13 @@
                        <xs:element name="especificarMultiraoPrestacaoDeServiços" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-								   <xhtml:label>.     Especificar MultiraoPrestacaoDeServiços</xhtml:label>
+								   <xhtml:label>.     Especificar o tipo de Multirão Prestação De Serviços</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
 										<xs:enumeration value="Mutirão de Subregistro" />
 										<xs:enumeration value="Mutirão de União Estável" />
-										<xs:enumeration value="etc" />
 								</xs:restriction>
 								</xs:simpleType>
 							</xs:element>
@@ -162,12 +161,13 @@
                        <xs:element name="especificarReuniaoDeComite" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-								   <xhtml:label>.     Especificar Reunião de Comitê</xhtml:label>
+								   <xhtml:label>.     Especificar o tipo de Reunião de Comitê</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
-							<xs:simpleType>
+							    <xs:simpleType>
 								<xs:restriction base="xs:string">
-										<xs:enumeration value="Comitê de Subregistro e Comitê Educação em Direitos Humanos" />
+										<xs:enumeration value="Comitê de Subregistro " />
+										<xs:enumeration value="Comitê Educação em Direitos Humanos" />
 								</xs:restriction>
 								</xs:simpleType>
 							</xs:element>						
@@ -191,12 +191,13 @@
 						<xs:element name="especificarPlanoMunicipalDeAtuação" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
-								   <xhtml:label>.     Especificar Plano Municipal de Atuacao</xhtml:label>
+								   <xhtml:label>.     Especificar o tipo Plano Municipal de Atuacao</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
-										<xs:enumeration value="Plano Municipal da Igualdade Racial e o Plano Municipal de Educação em DH" />
+										<xs:enumeration value="Plano Municipal da Igualdade Racial" />
+										<xs:enumeration value="Plano Municipal de Educação em DH" />
 								</xs:restriction>
 								</xs:simpleType>
 							</xs:element>
@@ -208,7 +209,13 @@
 								 </xs:appinfo>
 							</xs:annotation>
 						</xs:element>						
-
+			<xs:element name="especificarOutros" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Especifique Outros</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
@@ -262,18 +269,22 @@
 				        </xs:simpleType>
                         </xs:element>     
                         
-                       <xs:element name="bairro" minOccurs="0"  >
-			                <xs:annotation>
-				                <xs:appinfo>
-					                <xhtml:label>Bairro</xhtml:label>
-				                </xs:appinfo>
-			                </xs:annotation>
-			                <xs:simpleType>
-					    <xs:restriction base="xs:string">
-						    <xs:maxLength value="255" />
-					    </xs:restriction>
-				        </xs:simpleType>
-                        </xs:element> 
+						<xs:element name="bairro" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Bairro</xhtml:label>
+								</xs:appinfo>
+								<xsdext:extensions>
+									<xsdext:engine>autoComplete</xsdext:engine>
+									<xsdext:service>/bairros</xsdext:service>
+								</xsdext:extensions>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element> 
                         
                        <xs:element name="regional" minOccurs="0"  >
 			                <xs:annotation>
