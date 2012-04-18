@@ -269,7 +269,7 @@
 					</xs:simpleType>
 				</xs:element>
 
-				<xs:element name="escolaridade"  minOccurs="1">
+				<xs:element name="escolaridade"  minOccurs="0">
 					<xs:annotation>
 						<xs:appinfo>
 							<xhtml:label>Escolaridade</xhtml:label>
@@ -473,23 +473,23 @@
 					</xs:annotation>
 					<xs:simpleType>
 						<xs:restriction base="xs:string">
-							<xs:enumeration value=" Empregador" />
-							<xs:enumeration value=" Assalariado com carteira assinada" />
-							<xs:enumeration value=" Assalariado sem carteira assinada" />
-							<xs:enumeration value=" Autônomo com previdência social" />
-							<xs:enumeration value=" Autônomo sem previdência social" />
-							<xs:enumeration value=" Aposentado/  Pensionista" />
-							<xs:enumeration value=" Trabalhador rural" />
-							<xs:enumeration value=" Empregador rural" />
-							<xs:enumeration value=" Servidor (a) público" />
-							<xs:enumeration value=" Free lancer" />
-							<xs:enumeration value=" Não trabalha" />
-							<xs:enumeration value=" Outros" />
+							<xs:enumeration value="Empregador" />
+							<xs:enumeration value="Assalariado com carteira assinada" />
+							<xs:enumeration value="Assalariado sem carteira assinada" />
+							<xs:enumeration value="Autônomo com previdência social" />
+							<xs:enumeration value="Autônomo sem previdência social" />
+							<xs:enumeration value="Aposentado/  Pensionista" />
+							<xs:enumeration value="Trabalhador rural" />
+							<xs:enumeration value="Empregador rural" />
+							<xs:enumeration value="Servidor (a) público" />
+							<xs:enumeration value="Free lancer" />
+							<xs:enumeration value="Não trabalha" />
+							<xs:enumeration value="Outros" />
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
 
-				<xs:element name="sitmercatrabalho"  minOccurs="0" type="xs:string">
+				<xs:element name="sitmercatrabalhoOutro"  minOccurs="0" type="xs:string">
 					<xs:annotation>
 						<xs:appinfo>
 							<xhtml:label>Outros(especificar)</xhtml:label>
