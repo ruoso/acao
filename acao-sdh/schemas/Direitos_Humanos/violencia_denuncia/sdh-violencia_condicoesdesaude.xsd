@@ -1,0 +1,405 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-violencia_condicoesdesaude.xsd"
+    xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-violencia_condicoesdesaude.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="condicoesdesaude" type="condicoesdesaude">
+		<xs:annotation>
+			<xs:appinfo>
+				<xhtml:label>08. CONDIÇÕES DE SAÚDE</xhtml:label>
+                <class:classificacoes>
+                    <class:classificacao>cn=Geral,cn=Direitos Humanos</class:classificacao>
+                </class:classificacoes>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="condicoesdesaude">
+		<xs:sequence>			  
+			 <xs:element name="temAlgunsProblemasDeSaude" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>8.1 Tem Alguns Problemas De Saúde?</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+            <xs:element name="seSimTemAgunsProblemasDeSauce">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>8.1.1 Se sim. Qual tipo de doença?</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="anemiaFalciforme" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Anemia Falciforme</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="hipertencaoArterial" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Hipertensão arterial</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="diabeteMellitus" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Diabete Mellitus</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="doencasCardiacas" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Doenças cardiacas</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="avcAcidenteVascular" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>AVC - Acidente Vascular Cerebral</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						
+						<xs:element name="osteoartrose" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Osteoartrose</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						
+						
+						<xs:element name="malDeAlzheimer" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Mal de Alzheimer</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						
+						<xs:element name="doencasPulmonares" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Doenças Pulmonares</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="outros" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Outros</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			 
+			 
+			 
+			 <xs:element name="fazUsoDeMedicacao" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>8.2 Faz uso de Medicação?</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="seSimEspecificarUsoDeMedicamentos"	minOccurs="0">
+						<xs:annotation>
+							<xs:appinfo>
+								<xhtml:label>* Se sim. Especificar Qual?</xhtml:label>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="255" />
+							</xs:restriction>
+						</xs:simpleType>
+			 </xs:element>
+			 
+			 
+					 
+			 <xs:element name="possuiCuidador" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>8.3 Possui cuidador(a)?</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>	 
+			 
+			 
+			 <xs:element name="jaEsteveInternado" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>8.4 Ja esteve internado?</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="seSimEspecifiqueSejaEsteveInternado"	minOccurs="0">
+						<xs:annotation>
+							<xs:appinfo>
+								<xhtml:label>* Se sim. Especificar por qual motivo?</xhtml:label>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="255" />
+							</xs:restriction>
+						</xs:simpleType>
+			 </xs:element>		
+			 
+			 
+			 
+			 			 <xs:element name="estaGestante" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>8.5 Esta gestante?</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="seSimEspecifiqueQuantosmeses"	minOccurs="0">
+						<xs:annotation>
+							<xs:appinfo>
+								<xhtml:label>* Se sim. Especificar quantos meses?</xhtml:label>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="255" />
+							</xs:restriction>
+						</xs:simpleType>
+			 </xs:element>		 
+			 
+			 <xs:element name="estaFazendoPreNatal" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>8.6 Esta fazendo pré-natal?</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+				 			 <xs:element name="jaFezPrevencaoGenicologica" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>8.7 Ja fez prevenção genicológica?</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="seSimEspecifiqueHaQuantoTempo"	minOccurs="0">
+						<xs:annotation>
+							<xs:appinfo>
+								<xhtml:label>* Se sim. há quanto tempo?</xhtml:label>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="255" />
+							</xs:restriction>
+						</xs:simpleType>
+			 </xs:element>		
+			
+			<xs:element name="fezTesteHIV" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>8.8 Ja fez teste HIV?</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			 <xs:element name="utilizaPreservativo" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>8.9 Utiliza Preservativo?</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+				 			 <xs:element name="seUsaPreservativoEspecifivar" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Se sim. Com que frequência?</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sempre" />
+						<xs:enumeration value="Frequentimente" />
+						<xs:enumeration value="Esporadicamente" />
+						<xs:enumeration value="Nunca" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>						 
+						 
+			 <xs:element name="seTransexualFezCirurgiaDeAdequacao" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>8.10 Se transexual, fez cirurgia de readequação?</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Não" />
+						<xs:enumeration value="Sim (Completa)" />
+						<xs:enumeration value="sim (Incompleta)" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>							 
+			<xs:element name="seSimEspecifiqueFezCirurgia"	minOccurs="0">
+						<xs:annotation>
+							<xs:appinfo>
+								<xhtml:label>* Se sim (Incompleta). Especificar</xhtml:label>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="255" />
+							</xs:restriction>
+						</xs:simpleType>
+			 </xs:element>						 
+						 
+			 <xs:element name="usarServicoPublicoDeSaude" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>8.11 Voce é usuário dos serviços públicos de saúde?</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>						 
+						 
+			 <xs:element name="esistePostoProximoResidencia" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>8.12 Existe posto de saúde próximo a sua residência?</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>	
+			
+           <xs:element name="frequentaDentista" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>8.13 Frequenta dentista?</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+				 			 <xs:element name="frequenciaSeFrequentaDentista" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Se sim. Com que frequência?</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sempre" />
+						<xs:enumeration value="Frequentimente" />
+						<xs:enumeration value="Esporadicamente" />
+						<xs:enumeration value="Nunca" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>	
+									 
+						 
+			 <xs:element name="possuiPlanoDeSaude" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>8.14 Possui algum plano de saúde?</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>						 
+						 
+			
+
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

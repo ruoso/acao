@@ -1,0 +1,559 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-violencia_dados-pessoaisvitima.xsd"
+    xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
+	xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-violencia_dados-pessoaisvitima.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="dadosPessoaisVitima" type="dadosPessoaisVitima">
+		<xs:annotation>
+			<xs:appinfo>
+				<xhtml:label>04. DADOS PESSOAIS DA VÍTIMA</xhtml:label>
+                <class:classificacoes>
+                    <class:classificacao>cn=Geral,cn=Direitos Humanos</class:classificacao>
+                </class:classificacoes>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="dadosPessoaisVitima">
+		<xs:sequence>
+
+				<xs:element name="nomeuser" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<xhtml:label>Nome do usuário</xhtml:label>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="255"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+
+				<xs:element name="nomesoc" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<xhtml:label>Nome social</xhtml:label>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="255"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+
+				<xs:element name="dtnasc" minOccurs="0" type="xs:date">
+					<xs:annotation>
+						<xs:appinfo>
+							<xhtml:label>Data de Nascimento</xhtml:label>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				
+				<xs:element name="idade" minOccurs="0" type="xs:integer">
+					<xs:annotation>
+						<xs:appinfo>
+							<xhtml:label>Idade</xhtml:label>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				
+				<xs:element name="estcivil" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<xhtml:label>Estado Civil</xhtml:label>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="255"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+
+				<xs:element name="nascional" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<xhtml:label>Nacionalidade</xhtml:label>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="255"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+
+				<xs:element name="paisorigem" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<xhtml:label>País de origem(SE ESTRANGEIRO)</xhtml:label>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="255"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+
+				<xs:element name="dtchegbrasil" minOccurs="0" type="xs:date">
+					<xs:annotation>
+						<xs:appinfo>
+							<xhtml:label>Data de chegada ao Brasil</xhtml:label>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+
+				<xs:element name="ufest" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<xhtml:label>UF(Estado de nascimento)</xhtml:label>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="255"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+
+				<xs:element name="natural" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<xhtml:label>Naturalidade</xhtml:label>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="255"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+
+
+				<xs:element name="filiacao1" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<xhtml:label>Filiação 1</xhtml:label>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="255"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+
+				<xs:element name="filiacao2" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<xhtml:label>Filiação 2</xhtml:label>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="255"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+
+				<xs:element name="endereco" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<xhtml:label>Endereço</xhtml:label>
+						</xs:appinfo>
+						<xsdext:extensions>
+							<xsdext:engine>autoComplete</xsdext:engine>
+							<xsdext:service>/enderecos</xsdext:service>
+						</xsdext:extensions>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="255" />
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+
+				<xs:element name="complender" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<xhtml:label>Complemento</xhtml:label>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="255"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+
+				<xs:element name="ptreferencia" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<xhtml:label>Ponto de referência</xhtml:label>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="255"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+
+				<xs:element name="bairro" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<xhtml:label>Bairro</xhtml:label>
+						</xs:appinfo>
+						<xsdext:extensions>
+							<xsdext:engine>autoComplete</xsdext:engine>
+							<xsdext:service>/bairros</xsdext:service>
+						</xsdext:extensions>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="255" />
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+
+				<xs:element name="cep" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<xhtml:label>CEP</xhtml:label>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="255"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				
+				
+				<xs:element name="regional"  minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<xhtml:label>Regional</xhtml:label>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="SER I" />
+							<xs:enumeration value="SER II" />
+							<xs:enumeration value="SER III" />
+							<xs:enumeration value="SER IV" />
+							<xs:enumeration value="SER V" />
+							<xs:enumeration value="SER VI" />
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+
+				<xs:element name="fones" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<xhtml:label>Telefone(s)</xhtml:label>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="255"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+
+				<xs:element name="escolaridade"  minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<xhtml:label>Escolaridade</xhtml:label>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="Ensino Fundamental" />
+							<xs:enumeration value="Ensino Médio Incompleto" />
+							<xs:enumeration value="Ensino Médio" />
+							<xs:enumeration value="Ensino Superior Incompleto" />
+							<xs:enumeration value="Ensino Superior Completo" />
+							<xs:enumeration value="Pós-Graduação" />
+							<xs:enumeration value="Nunca estudou" />
+							<xs:enumeration value="Outro" />
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+
+				<xs:element name="escoloutro" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<xhtml:label>Outro(escolaidade)</xhtml:label>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="255"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+
+
+				<xs:element name="documentos">
+					<xs:annotation>
+						<xs:appinfo>
+							<xhtml:label>4.1  POSSUI OS SEGUINTES DOCUMENTOS</xhtml:label>
+						</xs:appinfo>
+					</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+	<xs:element name="certidaNacimento" minOccurs="0">
+		<xs:annotation>
+			<xs:appinfo>
+				<xhtml:label>Certidão de Nascimento</xhtml:label>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="Sim" />
+				<xs:enumeration value="Não" />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+								
+	<xs:element name="numrg" minOccurs="0">
+		<xs:annotation>
+			<xs:appinfo>
+				<xhtml:label>RG</xhtml:label>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="Sim" />
+				<xs:enumeration value="Não" />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+								<xs:element name="numRg" minOccurs="0">
+									<xs:annotation>
+										<xs:appinfo>
+											<xhtml:label>Se SIM, informe o número RG</xhtml:label>
+										</xs:appinfo>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:maxLength value="255"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>	
+	
+	<xs:element name="cpf" minOccurs="0">
+		<xs:annotation>
+			<xs:appinfo>
+				<xhtml:label>CPF</xhtml:label>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="Sim" />
+				<xs:enumeration value="Não" />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	
+									<xs:element name="numCPF" minOccurs="0">
+									<xs:annotation>
+										<xs:appinfo>
+											<xhtml:label>Se SIM, informe o número CPF</xhtml:label>
+										</xs:appinfo>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:maxLength value="255"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>	
+								
+	<xs:element name="carteiraTrabalho" minOccurs="0">
+		<xs:annotation>
+			<xs:appinfo>
+				<xhtml:label>Carteira de Trabalho</xhtml:label>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="Sim" />
+				<xs:enumeration value="Não" />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	
+									<xs:element name="numCarteiraTrabalho" minOccurs="0">
+									<xs:annotation>
+										<xs:appinfo>
+											<xhtml:label>Se SIM, informe o número Carteira Trabalho</xhtml:label>
+										</xs:appinfo>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:maxLength value="255"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>	
+								
+	<xs:element name="tituloEleitor" minOccurs="0">
+		<xs:annotation>
+			<xs:appinfo>
+				<xhtml:label>Titulo de Eleitor</xhtml:label>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="Sim" />
+				<xs:enumeration value="Não" />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	
+									<xs:element name="numTitulo" minOccurs="0">
+									<xs:annotation>
+										<xs:appinfo>
+											<xhtml:label>Se SIM, informe o número Titutlo Eleitor</xhtml:label>
+										</xs:appinfo>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:maxLength value="255"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>	
+								
+								
+	<xs:element name="resevistaCDI" minOccurs="0">
+		<xs:annotation>
+			<xs:appinfo>
+				<xhtml:label>Certificado de Reservista ou CDI </xhtml:label>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="Sim" />
+				<xs:enumeration value="Não" />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	
+									<xs:element name="numResevistaCDI" minOccurs="0">
+									<xs:annotation>
+										<xs:appinfo>
+											<xhtml:label>Se SIM, informe o número Certificado da Reservista ou CDI</xhtml:label>
+										</xs:appinfo>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:maxLength value="255"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>																														
+
+								
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+
+				<xs:element name="sitmercatrabalho"  minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<xhtml:label>4.2 Situação no Mercado de Trabalho</xhtml:label>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="Empregador" />
+							<xs:enumeration value="Assalariado com carteira assinada" />
+							<xs:enumeration value="Assalariado sem carteira assinada" />
+							<xs:enumeration value="Autônomo com previdência social" />
+							<xs:enumeration value="Autônomo sem previdência social" />
+							<xs:enumeration value="Aposentado/  Pensionista" />
+							<xs:enumeration value="Trabalhador rural" />
+							<xs:enumeration value="Empregador rural" />
+							<xs:enumeration value="Servidor (a) público" />
+							<xs:enumeration value="Free lancer" />
+							<xs:enumeration value="Não trabalha" />
+							<xs:enumeration value="Outros" />
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+
+				<xs:element name="sitmercatrabalhoOutro"  minOccurs="0" type="xs:string">
+					<xs:annotation>
+						<xs:appinfo>
+							<xhtml:label>Outros(especificar)</xhtml:label>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+
+				<xs:element name="nomempresatrab" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<xhtml:label>Nome da empresa em que trabalha</xhtml:label>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="255"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+
+				<xs:element name="ocupacao" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<xhtml:label>Ocupação</xhtml:label>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="255"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+
+				<xs:element name="numpis" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<xhtml:label>PIS PASEP Nº</xhtml:label>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="255"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+
+				<xs:element name="remunemprego"  minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<xhtml:label>4.3 Remuneração deste emprego</xhtml:label>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="Não possui renda" />
+							<xs:enumeration value="Até 1 SM" />
+							<xs:enumeration value="Entre 1SM e 2 SM" />
+							<xs:enumeration value="Entre 2SM e 3 SM" />
+							<xs:enumeration value="Acima de 4 SM" />
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

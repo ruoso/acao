@@ -1,29 +1,29 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-dadospsicossociais.xsd"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-violencia_dadospsicossociais.xsd"
     xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
-	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-dadospsicossociais.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-violencia_dadospsicossociais.xsd"
 	elementFormDefault="qualified">
 
-	<xs:element name="formDadosPsicossociais" type="formDadosPsicossociais">
+	<xs:element name="dadosPsicossociais" type="dadosPsicossociais">
 		<xs:annotation>
 			<xs:appinfo>
-				<xhtml:label>7. DADOS PSICOSSOCIAIS</xhtml:label>
+				<xhtml:label>09. DADOS PSICOSSOCIAIS</xhtml:label>
                 <class:classificacoes>
-                    <class:classificacao>cn=Direitos Humanos</class:classificacao>
+                    <class:classificacao>cn=Geral,cn=Direitos Humanos</class:classificacao>
                 </class:classificacoes>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
 
-	<xs:complexType name="formDadosPsicossociais">
+	<xs:complexType name="dadosPsicossociais">
 		<xs:sequence>
 
 			<xs:element name="orientsexual" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>7.1 Orientação Sexual</xhtml:label>
+						<xhtml:label>9.1 Orientação Sexual</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -38,7 +38,7 @@
 			<xs:element name="idengenero" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>7.2</xhtml:label>
+						<xhtml:label>9.2</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -65,7 +65,7 @@
 			<xs:element name="sexobiol" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>7.3 Sexo Biológico</xhtml:label>
+						<xhtml:label>9.3 Sexo Biológico</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -79,7 +79,7 @@
 			<xs:element name="racacor" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>7.4 Raça / Cor</xhtml:label>
+						<xhtml:label>9.4 Raça / Cor</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -96,7 +96,7 @@
 			<xs:element name="oriespreliog" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>7.5 Orientação Espiritual/Religiosa</xhtml:label>
+						<xhtml:label>9.5 Orientação Espiritual/Religiosa</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -124,7 +124,7 @@
 			<xs:element name="pessdefic" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>7.6 É pessoa com deficiência</xhtml:label>
+						<xhtml:label>9.6 É pessoa com deficiência</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -138,7 +138,7 @@
 			<xs:element name="pessdeficsim" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>7.6.1 Se sim, qual?</xhtml:label>
+						<xhtml:label>9.6.1 Se sim, qual?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -154,7 +154,7 @@
 			<xs:element name="sitrua" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>7.7 Está em situação de rua</xhtml:label>
+						<xhtml:label>9.7 Está em situação de rua</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -168,7 +168,7 @@
 			<xs:element name="conflitolei" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>7.8 Está em conflito com a lei</xhtml:label>
+						<xhtml:label>9.8 Está em conflito com a lei</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -182,7 +182,7 @@
 			<xs:element name="acompanhainst" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>7.9 É acompanhado por alguma instituição</xhtml:label>
+						<xhtml:label>9.9 É acompanhado por alguma instituição</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -196,7 +196,7 @@
 			<xs:element name="acompinstespec" minOccurs="0" type="xs:string">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>7.9.1 Se SIM, Qual</xhtml:label>
+						<xhtml:label>9.9.1 Se SIM, Qual</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -204,7 +204,7 @@
 			<xs:element name="acomppsico" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>7.10 Já fez algum tipo  de acompanhamento psicológico?</xhtml:label>
+						<xhtml:label>9.10 Já fez algum tipo  de acompanhamento psicológico?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -218,7 +218,7 @@
 			<xs:element name="acomppsicoespec" minOccurs="0" type="xs:string">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>7.10.1 Se SIM, Qual</xhtml:label>
+						<xhtml:label>9.10.1 Se SIM, Qual</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -227,7 +227,7 @@
 			<xs:element name="transtemoc" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>7.11 Tem algum transtorno emocial?</xhtml:label>
+						<xhtml:label>9.11 Tem algum transtorno emocial?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -241,7 +241,7 @@
 			<xs:element name="transtemocespec" minOccurs="0" type="xs:string">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>7.11.1 Se SIM, Qual</xhtml:label>
+						<xhtml:label>9.11.1 Se SIM, Qual</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -249,7 +249,7 @@
 			<xs:element name="usudroglicit" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>7.12 É usuário de drogas lícitas?</xhtml:label>
+						<xhtml:label>9.12 É usuário de drogas lícitas?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -263,7 +263,7 @@
 			<xs:element name="usudroglicitespec" minOccurs="0" type="xs:string">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>7.12.1 Se SIM, Qual</xhtml:label>
+						<xhtml:label>9.12.1 Se SIM, Qual</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -271,7 +271,7 @@
 			<xs:element name="usudroglicitper" minOccurs="0" type="xs:string">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>7.12.2 Período de uso
+						<xhtml:label>9.12.2 Período de uso
 						</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
@@ -281,7 +281,7 @@
 			<xs:element name="usudrogilicit" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>7.13 É usuário de drogas ilícitas?</xhtml:label>
+						<xhtml:label>9.13 É usuário de drogas ilícitas?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -295,7 +295,7 @@
 			<xs:element name="usudrogilicitespec" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>7.13.1 Se sim, quais?</xhtml:label>
+						<xhtml:label>9.13.1 Se sim, quais?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -315,7 +315,7 @@
 			<xs:element name="usudrogilicitout" minOccurs="0" type="xs:string">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>7.13.2 Especificar outros
+						<xhtml:label>9.13.2 Especificar outros
 						</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
@@ -325,7 +325,7 @@
 			<xs:element name="histusodroglic" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>7.14 Tem família com histórico de uso de drogas lícitas?</xhtml:label>
+						<xhtml:label>9.14 Tem família com histórico de uso de drogas lícitas?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -339,7 +339,7 @@
 			<xs:element name="histusodroglicespec" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>7.14.1 Se sim, quais?</xhtml:label>
+						<xhtml:label>9.14.1 Se sim, quais?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -362,7 +362,7 @@
 			<xs:element name="histusodroglicgraup" minOccurs="0" type="xs:string">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>7.14.2 Grau de parentesco</xhtml:label>
+						<xhtml:label>9.14.2 Grau de parentesco</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -371,7 +371,7 @@
 			<xs:element name="histusodrogilic" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>7.15 Tem família com histórico de uso de drogas ilícitas?</xhtml:label>
+						<xhtml:label>9.15 Tem família com histórico de uso de drogas ilícitas?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -385,7 +385,7 @@
 			<xs:element name="histusodrogilicespec" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>7.15.1 Se sim, quais?</xhtml:label>
+						<xhtml:label>9.15.1 Se sim, quais?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -414,7 +414,7 @@
 			<xs:element name="histusodrogilicgraup" minOccurs="0" type="xs:string">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>7.15.2 Grau de parentesco</xhtml:label>
+						<xhtml:label>9.15.2 Grau de parentesco</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -422,7 +422,7 @@
 			<xs:element name="histtransemoc" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>7.16 Possui familiar com histórico de transtorno emocional?</xhtml:label>
+						<xhtml:label>9.16 Possui familiar com histórico de transtorno emocional?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -436,7 +436,7 @@
 			<xs:element name="histtransemocespec" minOccurs="0" type="xs:string">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>7.16.1 Se SIM, Quais transtornos?</xhtml:label>
+						<xhtml:label>9.16.1 Se SIM, Quais transtornos?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -444,7 +444,7 @@
 			<xs:element name="histtransemocgraup" minOccurs="0" type="xs:string">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>7.16.2 Grau de parentesco</xhtml:label>
+						<xhtml:label>9.16.2 Grau de parentesco</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>

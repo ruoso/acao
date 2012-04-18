@@ -1,23 +1,23 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-dadostrabalhista.xsd"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-violencia_dadosciveis.xsd"
     xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
-	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-dadostrabalhista.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-violencia_dadosciveis.xsd"
 	elementFormDefault="qualified">
 
-	<xs:element name="dadostrabalhista" type="dadostrabalhista">
+	<xs:element name="dadosciveis" type="dadosciveis">
 		<xs:annotation>
 			<xs:appinfo>
-				<xhtml:label>12.DADOS TRABALHISTA</xhtml:label>
+				<xhtml:label>13. DADOS CÍVEIS</xhtml:label>
                 <class:classificacoes>
-                    <class:classificacao>cn=Direitos Humanos</class:classificacao>
+                    <class:classificacao>cn=Geral,cn=Direitos Humanos</class:classificacao>
                 </class:classificacoes>
 			</xs:appinfo>
 		</xs:annotation>
 	</xs:element>
 
-	<xs:complexType name="dadostrabalhista">
+	<xs:complexType name="dadosciveis">
 		<xs:sequence>
 
            <xs:element name="nrProcesso" minOccurs="0">
@@ -95,10 +95,10 @@
 					</xs:appinfo>
 				</xs:annotation>
             </xs:element>
-            <xs:element name="reclamante" minOccurs="0">
+            <xs:element name="promovente" minOccurs="0">
 				    <xs:annotation>
 					    <xs:appinfo>
-						    <xhtml:label>Reclamante</xhtml:label>
+						    <xhtml:label>Promovente</xhtml:label>
 					    </xs:appinfo>
 				    </xs:annotation>
 				    <xs:simpleType>
@@ -108,31 +108,10 @@
 				    </xs:simpleType>
 			    </xs:element>
 
-			    <xs:element name="reclamado" minOccurs="0">
+			    <xs:element name="promovido" minOccurs="0">
 				    <xs:annotation>
 					    <xs:appinfo>
-						    <xhtml:label>Reclamado</xhtml:label>
-					    </xs:appinfo>
-				    </xs:annotation>
-				    <xs:simpleType>
-					    <xs:restriction base="xs:string">
-						    <xs:maxLength value="255" />
-					    </xs:restriction>
-				    </xs:simpleType>
-			    </xs:element>
-
-                <xs:element name="testemunhas" minOccurs="0" type="xs:string">
-	                <xs:annotation>
-		                <xs:appinfo>
-			                <xhtml:label>Testemunhas</xhtml:label>
-		                </xs:appinfo>
-	                </xs:annotation>
-                </xs:element>
-
-			    <xs:element name="rg" minOccurs="0">
-				    <xs:annotation>
-					    <xs:appinfo>
-						    <xhtml:label>RG</xhtml:label>
+						    <xhtml:label>Promovido</xhtml:label>
 					    </xs:appinfo>
 				    </xs:annotation>
 				    <xs:simpleType>
@@ -158,7 +137,7 @@
 			    <xs:element name="assitJuridicamente" minOccurs="0">
 				    <xs:annotation>
 					    <xs:appinfo>
-						    <xhtml:label>Assitido jurídicamente</xhtml:label>
+						    <xhtml:label>Assitido juridicamente</xhtml:label>
 					    </xs:appinfo>
 				    </xs:annotation>
 				    <xs:simpleType>
@@ -172,7 +151,7 @@
 			    <xs:element name="quemAssJuridicamente" minOccurs="0">
 				    <xs:annotation>
 					    <xs:appinfo>
-						    <xhtml:label>Quem assessora jurídicamente</xhtml:label>
+						    <xhtml:label>Quem assessora juridicamente</xhtml:label>
 					    </xs:appinfo>
 				    </xs:annotation>
 				    <xs:simpleType>

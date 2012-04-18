@@ -1,0 +1,411 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-violencia_condicaodemoradia.xsd"
+    xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-violencia_condicaodemoradia.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="situacaoDeMoradia" type="situacaoDeMoradia">
+		<xs:annotation>
+			<xs:appinfo>
+				<xhtml:label>07. CONDIÇÃO DE MORADIA</xhtml:label>
+                <class:classificacoes>
+                    <class:classificacao>cn=Geral,cn=Direitos Humanos</class:classificacao>
+                </class:classificacoes>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="situacaoDeMoradia">
+		<xs:sequence>
+
+			<xs:element name="tipoDeImovel" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Tipo de imóvel</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Casa" />
+						<xs:enumeration value="Apartamento" />
+						<xs:enumeration value="Cômodo" />
+						<xs:enumeration value="Outros" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>			
+			 <xs:element name="epecifiqueOutrosTipoDeImovel"	minOccurs="0">
+						<xs:annotation>
+							<xs:appinfo>
+								<xhtml:label>* Especifique outros</xhtml:label>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="255" />
+							</xs:restriction>
+						</xs:simpleType>
+			 </xs:element>
+
+			
+				<xs:element name="situacaoMoradia" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Situação</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Própria" />
+						<xs:enumeration value="Alugado" />
+						<xs:enumeration value="Arrendado" />
+						<xs:enumeration value="Cedido" />
+						<xs:enumeration value="Ivasão" />
+					    <xs:enumeration value="Financiado" />
+						<xs:enumeration value="Outra" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="epecifiqueSituacao"	minOccurs="0">
+						<xs:annotation>
+							<xs:appinfo>
+								<xhtml:label>* Especifique outros</xhtml:label>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="255" />
+							</xs:restriction>
+						</xs:simpleType>
+			 </xs:element>		
+			 
+			 				<xs:element name="tipoDeConstrucao" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Tipo de construção</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Tijolo/Alvenaria" />
+						<xs:enumeration value="Adobe" />
+						<xs:enumeration value="Arrendado" />
+						<xs:enumeration value="Taipa Revestida" />
+						<xs:enumeration value="Taipa não revestida" />
+					    <xs:enumeration value="Madeira" />
+			            <xs:enumeration value="Matrial aproveitada" />
+						<xs:enumeration value="Outros" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="epecifiqueTipoDeConstrucao"	minOccurs="0">
+						<xs:annotation>
+							<xs:appinfo>
+								<xhtml:label>* Especifique outros</xhtml:label>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="255" />
+							</xs:restriction>
+						</xs:simpleType>
+			 </xs:element>
+			 
+			 <xs:element name="tipoCobertura" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Tipo de cobertura</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Telha" />
+						<xs:enumeration value="Plástico" />
+						<xs:enumeration value="Palha" />
+						<xs:enumeration value="Papelão" />
+						<xs:enumeration value="Outros" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="epecifiqueTipoDeCobertura"	minOccurs="0">
+						<xs:annotation>
+							<xs:appinfo>
+								<xhtml:label>* Especifique outros</xhtml:label>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="255" />
+							</xs:restriction>
+						</xs:simpleType>
+			 </xs:element>
+			 
+			 <xs:element name="tipoDePiso" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Tipo de piso</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Cimento" />
+						<xs:enumeration value="Tijolo" />
+						<xs:enumeration value="Cerâmica" />
+						<xs:enumeration value="Barro batido"/>
+						<xs:enumeration value="Outros" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="epecifiqueTipoDePiso"	minOccurs="0">
+						<xs:annotation>
+							<xs:appinfo>
+								<xhtml:label>* Especifique outros</xhtml:label>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="255" />
+							</xs:restriction>
+						</xs:simpleType>
+			 </xs:element>
+			 
+			 <xs:element name="numeroDeComodos"	minOccurs="0">
+						<xs:annotation>
+							<xs:appinfo>
+								<xhtml:label>Número de Cômodos</xhtml:label>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="255" />
+							</xs:restriction>
+						</xs:simpleType>
+			 </xs:element>
+			 
+			 
+			 <xs:element name="tratamentoDeAgua" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Tratamento de Água</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Filtração" />
+						<xs:enumeration value="Fervida" />
+						<xs:enumeration value="Cloração" />
+						<xs:enumeration value="Sem tratamento"/>
+						<xs:enumeration value="Outros" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="epecifiqueTratamentoAgua"	minOccurs="0">
+						<xs:annotation>
+							<xs:appinfo>
+								<xhtml:label>* Especifique outros</xhtml:label>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="255" />
+							</xs:restriction>
+						</xs:simpleType>
+			 </xs:element>	
+			 
+			 
+			 <xs:element name="abastecimentoDeAgua" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Abastecimento de Água</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="CAGECE" />
+						<xs:enumeration value="Cacimba" />
+						<xs:enumeration value="Chafariz" />
+						<xs:enumeration value="Ligação Clandestina"/>
+		                <xs:enumeration value="Pipa"/>
+		                <xs:enumeration value="Poço/ Nascente"/>
+						<xs:enumeration value="Outros" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="epecifiqueAbastecimentoDeAgua"	minOccurs="0">
+						<xs:annotation>
+							<xs:appinfo>
+								<xhtml:label>* Especifique outros</xhtml:label>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="255" />
+							</xs:restriction>
+						</xs:simpleType>
+			 </xs:element>	
+			 
+			  
+			 <xs:element name="tarifaSocialCagece" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Tarifa Social Cagece</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="epecifiqueSeSim"	minOccurs="0">
+						<xs:annotation>
+							<xs:appinfo>
+								<xhtml:label>* Se sim. Qual?</xhtml:label>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="255" />
+							</xs:restriction>
+						</xs:simpleType>
+			 </xs:element>	
+			 
+			 
+			  
+			 <xs:element name="abastecimentoDeEnergia" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Abastecimento de Energia</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="COELCE" />
+						<xs:enumeration value="Relógio Comunitario" />
+						<xs:enumeration value="Ligação Clandestina"/>
+						<xs:enumeration value="Outros" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="epecifiqueAbastecimentoDeEnergia"	minOccurs="0">
+						<xs:annotation>
+							<xs:appinfo>
+								<xhtml:label>* Especifique outros</xhtml:label>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="255" />
+							</xs:restriction>
+						</xs:simpleType>
+			 </xs:element>	
+			 		 		 
+			 <xs:element name="tarifaSocialCoelce" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Tarifa Social Coelce</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="epecifiqueSeSim"	minOccurs="0">
+						<xs:annotation>
+							<xs:appinfo>
+								<xhtml:label>* Se sim. Qual?</xhtml:label>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="255" />
+							</xs:restriction>
+						</xs:simpleType>
+			 </xs:element>			
+			
+				 <xs:element name="saneamento" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Saneamento</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Rede pública" />
+						<xs:enumeration value="Fossa sêptica" />
+						<xs:enumeration value="Fossa rundimentar" />
+						<xs:enumeration value="Ligação Clandestina"/>
+		                <xs:enumeration value="Céu aberto"/>
+		                <xs:enumeration value="Vala"/>
+						<xs:enumeration value="Sem tratamento" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>		
+			
+			
+				 <xs:element name="destinoDeLixo" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Destino de lixo</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Coleta pública" />
+						<xs:enumeration value="Queimado" />
+						<xs:enumeration value="Enterrado" />
+						<xs:enumeration value="Céu aberto"/>
+						<xs:enumeration value="Outros" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="epecifiqueDestinoLixo"	minOccurs="0">
+						<xs:annotation>
+							<xs:appinfo>
+								<xhtml:label>* Especifique outros</xhtml:label>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="255" />
+							</xs:restriction>
+						</xs:simpleType>
+			 </xs:element>		
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+	
+
+
+
+
+
+			
+
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>
