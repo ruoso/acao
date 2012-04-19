@@ -9,7 +9,7 @@
 	<xs:element name="composicaoFamiliar" type="composicaoFamiliar">
 		<xs:annotation>
 			<xs:appinfo>
-				<xhtml:label>10. COMPOSIÇÃO FAMILIAR</xhtml:label>
+				<xhtml:label>08. COMPOSIÇÃO FAMILIAR</xhtml:label>
                 <class:classificacoes>
                     <class:classificacao>cn=Geral,cn=Direitos Humanos</class:classificacao>
                 </class:classificacoes>
@@ -28,336 +28,58 @@
 				</xs:annotation>
 				<xs:complexType>
 					<xs:sequence>
-				        
-			<xs:element name="moracomquem" maxOccurs="100">
-				<xs:annotation>
-					<xs:appinfo>
-						<xhtml:label>8.1 Com quem a vítima mora?</xhtml:label>
-					</xs:appinfo>
-				</xs:annotation>
-				<xs:complexType>
-					<xs:sequence>
-						
-						<xs:element name="amigo" type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Amigo</xhtml:label>
-								 </xs:appinfo>
-							</xs:annotation>
-						</xs:element>	
-						<xs:element name="conhecido" type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Conhecido</xhtml:label>
-								 </xs:appinfo>
-							</xs:annotation>
-						</xs:element>											
 
-						<xs:element name="mae" type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Mãe</xhtml:label>
-								 </xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-						<xs:element name="responsavelLegal" type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Responsavel legal</xhtml:label>
-								 </xs:appinfo>
-							</xs:annotation>
-						</xs:element>						
-
-						<xs:element name="esposo" type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Esposo</xhtml:label>
-								 </xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-
-						<xs:element name="esposa" type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Esposa</xhtml:label>
-								 </xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-
-						<xs:element name="companheiro" type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Companheiro</xhtml:label>
-								 </xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-
-						<xs:element name="companheira" type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Companheira</xhtml:label>
-								 </xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-
-						<xs:element name="filho" type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Filho</xhtml:label>
-								 </xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-
-						<xs:element name="filha" type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Filha</xhtml:label>
-								 </xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-
-						<xs:element name="pai" type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Pai</xhtml:label>
-								 </xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-
-						<xs:element name="avom" type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Avô</xhtml:label>
-								 </xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-
-						<xs:element name="avof" type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Avó</xhtml:label>
-								 </xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-
-						<xs:element name="irmao" type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Irmão</xhtml:label>
-								 </xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-
-						<xs:element name="irma" type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Irmã</xhtml:label>
-								 </xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-
-						<xs:element name="cunhado" type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Cunhado</xhtml:label>
-								 </xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-
-						<xs:element name="cunhada" type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Cunhada</xhtml:label>
-								 </xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-
-						<xs:element name="genro" type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Genro</xhtml:label>
-								 </xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-
-						<xs:element name="nora" type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Nora</xhtml:label>
-								 </xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-
-						<xs:element name="sobrinho" type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Sobrinho</xhtml:label>
-								 </xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-
-						<xs:element name="sobrinha" type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Sobrinha</xhtml:label>
-								 </xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-
-						<xs:element name="primo" type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Primo</xhtml:label>
-								 </xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-
-						<xs:element name="prima" type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Prima</xhtml:label>
-								 </xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-
-						<xs:element name="sogro" type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Sogro</xhtml:label>
-								 </xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-
-						<xs:element name="sogra" type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Sogra</xhtml:label>
-								 </xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-
-						<xs:element name="neto" type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Neto</xhtml:label>
-								 </xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-
-						<xs:element name="neta" type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Neta</xhtml:label>
-								 </xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-
-						<xs:element name="tio" type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Tio</xhtml:label>
-								 </xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-
-						<xs:element name="tia" type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Tia</xhtml:label>
-								 </xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-
-						<xs:element name="filhoadotivo" type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Filho adotivo</xhtml:label>
-								 </xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-
-						<xs:element name="filhadotiva" type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Filha adotiva</xhtml:label>
-								 </xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-
-						<xs:element name="padrasto" type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Padrasto</xhtml:label>
-								 </xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-
-						<xs:element name="madrasta" type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Madrasta</xhtml:label>
-								 </xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-
-						<xs:element name="enteado" type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Enteado</xhtml:label>
-								 </xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-
-						<xs:element name="entada" type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Enteada</xhtml:label>
-								 </xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-
-						<xs:element name="bisneto" type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Bisneto</xhtml:label>
-								 </xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-
-						<xs:element name="bisneta" type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Bisneta</xhtml:label>
-								 </xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-						<xs:element name="vizinho" type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Vizinho</xhtml:label>
-								 </xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-						<xs:element name="vizinha" type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Vizinha</xhtml:label>
-								 </xs:appinfo>
-							</xs:annotation>
-						</xs:element>	
-						<xs:element name="companheiroTrabalho" type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Companheiro Trabalho</xhtml:label>
-								 </xs:appinfo>
-							</xs:annotation>
-						</xs:element>											
-
-					</xs:sequence>
-				</xs:complexType>
-
-			</xs:element>				        
-				        
+						 <xs:element name="moraCom" minOccurs="0">
+				            <xs:annotation>
+				                <xs:appinfo>
+				                    <xhtml:label>8.1 Com quem a vítima mora?</xhtml:label>
+				                </xs:appinfo>
+				            </xs:annotation>
+				            <xs:simpleType>
+				                <xs:restriction base="xs:string">
+				                    <xs:enumeration value="Colega Trabalho" />
+											<xs:enumeration value="Amigo" />
+											<xs:enumeration value="Conhecido" />
+											<xs:enumeration value="Pai" />
+											<xs:enumeration value="Mãe" />
+											<xs:enumeration value="Padrasto" />
+											<xs:enumeration value="Madrasta" />
+											<xs:enumeration value="Responsavel legal" />
+											<xs:enumeration value="Esposo" />
+											<xs:enumeration value="Esposa" />
+											<xs:enumeration value="Companheiro" />
+											<xs:enumeration value="Companheira" />
+											<xs:enumeration value="Filho" />
+											<xs:enumeration value="Filha" />
+											<xs:enumeration value="Pai" />
+											<xs:enumeration value="Avô" />
+											<xs:enumeration value="Avó" />
+											<xs:enumeration value="Irmão" />
+											<xs:enumeration value="Irmã" />
+											<xs:enumeration value="Cunhado" />
+											<xs:enumeration value="Cunhada" />
+											<xs:enumeration value="Genro" />
+											<xs:enumeration value="Nora" />
+											<xs:enumeration value="Sobrinho" />
+											<xs:enumeration value="Sobrinha" />
+											<xs:enumeration value="Primo" />
+											<xs:enumeration value="Prima" />
+											<xs:enumeration value="Sogro" />
+											<xs:enumeration value="Sogra" />
+											<xs:enumeration value="Neto" />
+											<xs:enumeration value="Neta" />
+											<xs:enumeration value="Tio" />
+											<xs:enumeration value="Tia" />
+											<xs:enumeration value="Enteado" />
+											<xs:enumeration value="Enteada" />
+											<xs:enumeration value="Bisneto" />
+											<xs:enumeration value="Bisneta" />
+											<xs:enumeration value="Vizinho" />
+											<xs:enumeration value="Vizinha" />
+				                </xs:restriction>
+				            </xs:simpleType>
+				        </xs:element>
+					
 				        <xs:element name="nomecompl" minOccurs="0">
 				            <xs:annotation>
 				                <xs:appinfo>
@@ -383,20 +105,7 @@
 								<xs:enumeration value="Feminino" />
 							</xs:restriction>
 							</xs:simpleType>
-						</xs:element>
-						
-				        <xs:element name="grauparent" minOccurs="0">
-				            <xs:annotation>
-				                <xs:appinfo>
-				                    <xhtml:label>8.4 Grau de parentesco</xhtml:label>
-				                </xs:appinfo>
-				            </xs:annotation>
-				            <xs:simpleType>
-				                <xs:restriction base="xs:string">
-				                    <xs:maxLength value="255"/>
-				                </xs:restriction>
-				            </xs:simpleType>
-				        </xs:element>
+						</xs:element>						
 
 					</xs:sequence>
 				</xs:complexType>

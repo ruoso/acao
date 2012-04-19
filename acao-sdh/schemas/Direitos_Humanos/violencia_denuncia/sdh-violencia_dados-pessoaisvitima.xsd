@@ -292,7 +292,7 @@
 				<xs:element name="escoloutro" minOccurs="0">
 					<xs:annotation>
 						<xs:appinfo>
-							<xhtml:label>Outro(escolaidade)</xhtml:label>
+							<xhtml:label>Outro(escolaridade)</xhtml:label>
 						</xs:appinfo>
 					</xs:annotation>
 					<xs:simpleType>
@@ -311,33 +311,33 @@
 					</xs:annotation>
 						<xs:complexType>
 							<xs:sequence>
-	<xs:element name="certidaNacimento" minOccurs="0">
-		<xs:annotation>
-			<xs:appinfo>
-				<xhtml:label>Certidão de Nascimento</xhtml:label>
-			</xs:appinfo>
-		</xs:annotation>
-		<xs:simpleType>
-			<xs:restriction base="xs:string">
-				<xs:enumeration value="Sim" />
-				<xs:enumeration value="Não" />
-			</xs:restriction>
-		</xs:simpleType>
-	</xs:element>
-								
-	<xs:element name="numrg" minOccurs="0">
-		<xs:annotation>
-			<xs:appinfo>
-				<xhtml:label>RG</xhtml:label>
-			</xs:appinfo>
-		</xs:annotation>
-		<xs:simpleType>
-			<xs:restriction base="xs:string">
-				<xs:enumeration value="Sim" />
-				<xs:enumeration value="Não" />
-			</xs:restriction>
-		</xs:simpleType>
-	</xs:element>
+								<xs:element name="certidaNacimento" minOccurs="0">
+									<xs:annotation>
+										<xs:appinfo>
+											<xhtml:label>Certidão de Nascimento</xhtml:label>
+										</xs:appinfo>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="Sim" />
+											<xs:enumeration value="Não" />
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+															
+								<xs:element name="numrg" minOccurs="0">
+									<xs:annotation>
+										<xs:appinfo>
+											<xhtml:label>RG</xhtml:label>
+										</xs:appinfo>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="Sim" />
+											<xs:enumeration value="Não" />
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
 								<xs:element name="numRg" minOccurs="0">
 									<xs:annotation>
 										<xs:appinfo>
@@ -351,19 +351,19 @@
 									</xs:simpleType>
 								</xs:element>	
 	
-	<xs:element name="cpf" minOccurs="0">
-		<xs:annotation>
-			<xs:appinfo>
-				<xhtml:label>CPF</xhtml:label>
-			</xs:appinfo>
-		</xs:annotation>
-		<xs:simpleType>
-			<xs:restriction base="xs:string">
-				<xs:enumeration value="Sim" />
-				<xs:enumeration value="Não" />
-			</xs:restriction>
-		</xs:simpleType>
-	</xs:element>
+								<xs:element name="cpf" minOccurs="0">
+									<xs:annotation>
+										<xs:appinfo>
+											<xhtml:label>CPF</xhtml:label>
+										</xs:appinfo>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="Sim" />
+											<xs:enumeration value="Não" />
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
 	
 									<xs:element name="numCPF" minOccurs="0">
 									<xs:annotation>
@@ -378,19 +378,19 @@
 									</xs:simpleType>
 								</xs:element>	
 								
-	<xs:element name="carteiraTrabalho" minOccurs="0">
-		<xs:annotation>
-			<xs:appinfo>
-				<xhtml:label>Carteira de Trabalho</xhtml:label>
-			</xs:appinfo>
-		</xs:annotation>
-		<xs:simpleType>
-			<xs:restriction base="xs:string">
-				<xs:enumeration value="Sim" />
-				<xs:enumeration value="Não" />
-			</xs:restriction>
-		</xs:simpleType>
-	</xs:element>
+								<xs:element name="carteiraTrabalho" minOccurs="0">
+									<xs:annotation>
+										<xs:appinfo>
+											<xhtml:label>Carteira de Trabalho</xhtml:label>
+										</xs:appinfo>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="Sim" />
+											<xs:enumeration value="Não" />
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
 	
 									<xs:element name="numCarteiraTrabalho" minOccurs="0">
 									<xs:annotation>
@@ -405,19 +405,19 @@
 									</xs:simpleType>
 								</xs:element>	
 								
-	<xs:element name="tituloEleitor" minOccurs="0">
-		<xs:annotation>
-			<xs:appinfo>
-				<xhtml:label>Titulo de Eleitor</xhtml:label>
-			</xs:appinfo>
-		</xs:annotation>
-		<xs:simpleType>
-			<xs:restriction base="xs:string">
-				<xs:enumeration value="Sim" />
-				<xs:enumeration value="Não" />
-			</xs:restriction>
-		</xs:simpleType>
-	</xs:element>
+								<xs:element name="tituloEleitor" minOccurs="0">
+									<xs:annotation>
+										<xs:appinfo>
+											<xhtml:label>Titulo de Eleitor</xhtml:label>
+										</xs:appinfo>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="Sim" />
+											<xs:enumeration value="Não" />
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
 	
 									<xs:element name="numTitulo" minOccurs="0">
 									<xs:annotation>
@@ -433,19 +433,19 @@
 								</xs:element>	
 								
 								
-	<xs:element name="resevistaCDI" minOccurs="0">
-		<xs:annotation>
-			<xs:appinfo>
-				<xhtml:label>Certificado de Reservista ou CDI </xhtml:label>
-			</xs:appinfo>
-		</xs:annotation>
-		<xs:simpleType>
-			<xs:restriction base="xs:string">
-				<xs:enumeration value="Sim" />
-				<xs:enumeration value="Não" />
-			</xs:restriction>
-		</xs:simpleType>
-	</xs:element>
+								<xs:element name="resevistaCDI" minOccurs="0">
+									<xs:annotation>
+										<xs:appinfo>
+											<xhtml:label>Certificado de Reservista ou CDI </xhtml:label>
+										</xs:appinfo>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="Sim" />
+											<xs:enumeration value="Não" />
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
 	
 									<xs:element name="numResevistaCDI" minOccurs="0">
 									<xs:annotation>
