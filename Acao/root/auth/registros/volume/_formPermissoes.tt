@@ -61,7 +61,7 @@
      </div>
 
     <div id="grid-autorizacoes">
-   [% IF c.model('Volume').pode_criar_volume() %]
+   [% # IF c.model('Volume').pode_criar_volume() %]
    <input type="hidden" value="[% autorizacoes | html %]" name="autorizacoes">
       <table >
           <thead>
@@ -90,7 +90,7 @@
             [% END %]
           </tbody>
          </table>
-  [% END %]
+  [% # END %]
 
   </div>
 
