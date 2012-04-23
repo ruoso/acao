@@ -29,7 +29,7 @@
 				<xs:complexType>
 					<xs:sequence>
 
-				        <xs:element name="moracomquem" minOccurs="0">
+						 <xs:element name="moraCom" minOccurs="0">
 				            <xs:annotation>
 				                <xs:appinfo>
 				                    <xhtml:label>8.1 Com quem a vítima mora?</xhtml:label>
@@ -37,11 +37,49 @@
 				            </xs:annotation>
 				            <xs:simpleType>
 				                <xs:restriction base="xs:string">
-				                    <xs:maxLength value="255"/>
+				                    <xs:enumeration value="Colega Trabalho" />
+											<xs:enumeration value="Amigo" />
+											<xs:enumeration value="Conhecido" />
+											<xs:enumeration value="Pai" />
+											<xs:enumeration value="Mãe" />
+											<xs:enumeration value="Padrasto" />
+											<xs:enumeration value="Madrasta" />
+											<xs:enumeration value="Responsavel legal" />
+											<xs:enumeration value="Esposo" />
+											<xs:enumeration value="Esposa" />
+											<xs:enumeration value="Companheiro" />
+											<xs:enumeration value="Companheira" />
+											<xs:enumeration value="Filho" />
+											<xs:enumeration value="Filha" />
+											<xs:enumeration value="Pai" />
+											<xs:enumeration value="Avô" />
+											<xs:enumeration value="Avó" />
+											<xs:enumeration value="Irmão" />
+											<xs:enumeration value="Irmã" />
+											<xs:enumeration value="Cunhado" />
+											<xs:enumeration value="Cunhada" />
+											<xs:enumeration value="Genro" />
+											<xs:enumeration value="Nora" />
+											<xs:enumeration value="Sobrinho" />
+											<xs:enumeration value="Sobrinha" />
+											<xs:enumeration value="Primo" />
+											<xs:enumeration value="Prima" />
+											<xs:enumeration value="Sogro" />
+											<xs:enumeration value="Sogra" />
+											<xs:enumeration value="Neto" />
+											<xs:enumeration value="Neta" />
+											<xs:enumeration value="Tio" />
+											<xs:enumeration value="Tia" />
+											<xs:enumeration value="Enteado" />
+											<xs:enumeration value="Enteada" />
+											<xs:enumeration value="Bisneto" />
+											<xs:enumeration value="Bisneta" />
+											<xs:enumeration value="Vizinho" />
+											<xs:enumeration value="Vizinha" />
 				                </xs:restriction>
 				            </xs:simpleType>
 				        </xs:element>
-				        
+					
 				        <xs:element name="nomecompl" minOccurs="0">
 				            <xs:annotation>
 				                <xs:appinfo>
@@ -67,20 +105,7 @@
 								<xs:enumeration value="Feminino" />
 							</xs:restriction>
 							</xs:simpleType>
-						</xs:element>
-						
-				        <xs:element name="grauparent" minOccurs="0">
-				            <xs:annotation>
-				                <xs:appinfo>
-				                    <xhtml:label>8.4 Grau de parentesco</xhtml:label>
-				                </xs:appinfo>
-				            </xs:annotation>
-				            <xs:simpleType>
-				                <xs:restriction base="xs:string">
-				                    <xs:maxLength value="255"/>
-				                </xs:restriction>
-				            </xs:simpleType>
-				        </xs:element>
+						</xs:element>						
 
 					</xs:sequence>
 				</xs:complexType>
