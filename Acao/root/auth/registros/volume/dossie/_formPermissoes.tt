@@ -62,7 +62,7 @@
      </div>
 
     <div id="grid-autorizacoes">
-   [% IF c.model('Dossie').pode_criar_dossie() %]
+   [% # IF c.model('Dossie').pode_criar_dossie() %]
    <input type="hidden" value="[% autorizacoes | html %]" name="autorizacoes">
       <table >
           <thead>
@@ -91,7 +91,7 @@
             [% END %]
           </tbody>
          </table>
-  [% END %]
+  [% # END %]
 
   </div>
 
