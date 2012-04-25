@@ -13,7 +13,8 @@
             <xs:appinfo>
                 <xhtml:label>Ficha de Atendimento</xhtml:label>
                 <class:classificacoes>
-                    <class:classificacao>cn=Prog Enfrentamento a Violação de Direito,cn=Proteção Social Especial,cn=Assistencia Social cn=Prog Atendimento a População em Situação de Rua,cn=Proteção Social Especial,cn=Assistencia Social</class:classificacao>
+                    <class:classificacao>cn=Prog Enfrentamento a Violação de Direito,cn=Proteção Social Especial,cn=Assistencia Social</class:classificacao>
+                    <class:classificacao>cn=Prog Atendimento a População em Situação de Rua,cn=Proteção Social Especial,cn=Assistencia Social</class:classificacao>
                 </class:classificacoes>
                 <idx:index>
                     <idx:hint key="pessoa.numeronis" xpath="formFichaAtendimentoCreas/numeronis"/>
@@ -31,7 +32,7 @@
 			<xs:element name="numeronis" minOccurs="1">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>NIS</xhtml:label>
+						<xhtml:label>NIS *</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -44,7 +45,7 @@
 			<xs:element name="demanda"  minOccurs="1">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Demanda expontânea</xhtml:label>
+						<xhtml:label>Demanda expontânea *</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -55,7 +56,7 @@
 				</xs:simpleType>
 			</xs:element>
 
-			<xs:element name="identificaresp">
+			<xs:element name="identresp">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>1. Identificação</xhtml:label>
@@ -67,7 +68,7 @@
 				        <xs:element name="nomresp" minOccurs="1">
 				            <xs:annotation>
 				                <xs:appinfo>
-				                    <xhtml:label>1.1 Nome</xhtml:label>
+				                    <xhtml:label>1.1 Nome *</xhtml:label>
 				                </xs:appinfo>
 				            </xs:annotation>
 				            <xs:simpleType>
@@ -77,7 +78,7 @@
 				            </xs:simpleType>
 				        </xs:element>
 
-				        <xs:element name="apelido" minOccurs="1">
+				        <xs:element name="apelido" minOccurs="0">
 				            <xs:annotation>
 				                <xs:appinfo>
 				                    <xhtml:label>Apelido</xhtml:label>
@@ -142,10 +143,10 @@
 				            </xs:simpleType>
 				        </xs:element>
 				        
-				        <xs:element name="dtnasc" minOccurs="0" type="xs:date">
+				        <xs:element name="dtnasc" minOccurs="1" type="xs:date">
 				            <xs:annotation>
 				                <xs:appinfo>
-				                    <xhtml:label>Data de Nascimento</xhtml:label>
+				                    <xhtml:label>Data de Nascimento *</xhtml:label>
 				                </xs:appinfo>
 				            </xs:annotation>
 				        </xs:element>
@@ -153,21 +154,20 @@
 				        <xs:element name="numrg" minOccurs="1">
 				            <xs:annotation>
 				                <xs:appinfo>
-				                    <xhtml:label>1.6 RG</xhtml:label>
+				                    <xhtml:label>1.6 RG *</xhtml:label>
 				                </xs:appinfo>
 				            </xs:annotation>
 				            <xs:simpleType>
 				                <xs:restriction base="xs:string">
 				                    <xs:maxLength value="255"/>
-				                    <xs:pattern value="[0-9]+[0-9]+"/>
 				                </xs:restriction>
 				            </xs:simpleType>
 				        </xs:element>
 
-				        <xs:element name="numcpf" minOccurs="0">
+				        <xs:element name="numcpf" minOccurs="1">
 				            <xs:annotation>
 				                <xs:appinfo>
-				                    <xhtml:label>CPF</xhtml:label>
+				                    <xhtml:label>CPF *</xhtml:label>
 				                </xs:appinfo>
 				            </xs:annotation>
 				            <xs:simpleType>
@@ -187,15 +187,14 @@
 				            <xs:simpleType>
 				                <xs:restriction base="xs:string">
 				                    <xs:maxLength value="255"/>
-				                    <xs:pattern value="[0-9]+"/>
-				                </xs:restriction>
+								</xs:restriction>
 				            </xs:simpleType>
 				        </xs:element>
 
 						<xs:element name="interesseretdoc"  minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>1.7 Possui interesse para retirada de documentação?</xhtml:label>
+									<xhtml:label>1.7 Possui interesse para retirada de documentação? *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -209,7 +208,7 @@
 						<xs:element name="interesseretdocqual"  minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>1.7.1 Qual?</xhtml:label>
+									<xhtml:label>1.7.1 Qual? *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -249,7 +248,7 @@
 								<xsdext:extensions>
 									<xsdext:engine>autoComplete</xsdext:engine>
 									<xsdext:service>/enderecos</xsdext:service>
-								</xsdext:extensions>								
+								</xsdext:extensions>
 							</xs:annotation>
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
@@ -325,7 +324,7 @@
 						<xs:element name="regionalresp"  minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>SER</xhtml:label>
+									<xhtml:label>SER *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -396,7 +395,7 @@
 						<xs:element name="orientsex"  minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>1.11 Orientação Sexual</xhtml:label>
+									<xhtml:label>1.11 Orientação Sexual *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -793,7 +792,7 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="probsaudeespec"  minOccurs="0">
+						<xs:element name="probsaudeespec"  minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Especificar</xhtml:label>
@@ -815,7 +814,7 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="usomedicespec"  minOccurs="0">
+						<xs:element name="usomedicespec"  minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Especificar</xhtml:label>
@@ -837,7 +836,7 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="cuidadorespec"  minOccurs="0">
+						<xs:element name="cuidadorespec"  minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Especificar</xhtml:label>
@@ -859,7 +858,7 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="inditranstmentalespec"  minOccurs="0">
+						<xs:element name="inditranstmentalespec"  minOccurs="0"  type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Especificar</xhtml:label>
@@ -883,7 +882,7 @@
 				<xs:complexType>
 					<xs:sequence>
 						
-						<xs:element name="nummembro" minOccurs="1">
+						<xs:element name="nummembro" minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Nº</xhtml:label>
@@ -899,7 +898,7 @@
 						<xs:element name="nommembro" minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Nome</xhtml:label>
+									<xhtml:label>Nome *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -1470,7 +1469,7 @@
 			<xs:element name="nomertecresp" minOccurs="1">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Técnico(a) Responsável</xhtml:label>
+						<xhtml:label>Técnico(a) Responsável *</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -1480,10 +1479,10 @@
 				</xs:simpleType>
 			</xs:element>
 
-			<xs:element name="datadocumento" minOccurs="1" type="xs:date">
+			<xs:element name="datecad" minOccurs="1" type="xs:date">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Data</xhtml:label>
+						<xhtml:label>Data *</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>

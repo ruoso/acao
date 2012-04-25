@@ -13,7 +13,8 @@
 			<xs:appinfo>
 				<xhtml:label>Relatório Gestão - PSE</xhtml:label>
                <class:classificacoes>
-                    <class:classificacao>cn=Relatórios Alta Complexidade,cn=Relatórios Média Complexidade,cn=Proteção Social Especial,cn=Assistencia Social</class:classificacao>
+                    <class:classificacao>cn=Relatórios Alta Complexidade,cn=Proteção Social Especial,cn=Assistencia Social</class:classificacao>
+                    <class:classificacao>cn=Relatórios Média Complexidade,cn=Proteção Social Especial,cn=Assistencia Social</class:classificacao>
                 </class:classificacoes>
 				<idx:index>
 				</idx:index>
@@ -24,15 +25,15 @@
 	<xs:complexType name="formRelatorioGestaoPse">
 		<xs:sequence>
 <!--   Paradinha Inicio -->
-			<xs:element name="exercicioAno" minOccurs="1" type="xs:integer">
+			<xs:element name="anoexercicio" minOccurs="1" type="xs:integer">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Exercício/Ano</xhtml:label>
+						<xhtml:label>Exercício/ano *</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
 					
-			<xs:element name="periodoMes"  minOccurs="0">
+			<xs:element name="mesperiodo"  minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>Período/mês</xhtml:label>
@@ -320,7 +321,7 @@
 								<xs:element name="recepAcolhida" minOccurs="1" type="xs:boolean">
 									<xs:annotation>
 										<xs:appinfo>
-											<xhtml:label>Recepção e acolhida</xhtml:label>
+											<xhtml:label>Recepção e acolhida *</xhtml:label>
 										</xs:appinfo>
 									</xs:annotation>
 								</xs:element>	
@@ -328,7 +329,7 @@
 								<xs:element name="acompFamilias" minOccurs="1" type="xs:boolean">
 									<xs:annotation>
 										<xs:appinfo>
-											<xhtml:label>Acompanhamento de famílias</xhtml:label>
+											<xhtml:label>Acompanhamento de famílias *</xhtml:label>
 										</xs:appinfo>
 									</xs:annotation>
 								</xs:element>	
@@ -336,7 +337,7 @@
 								<xs:element name="acompIndividuos" minOccurs="1" type="xs:boolean">
 									<xs:annotation>
 										<xs:appinfo>
-											<xhtml:label>Acompanhamento de indivíduos</xhtml:label>
+											<xhtml:label>Acompanhamento de indivíduos *</xhtml:label>
 										</xs:appinfo>
 									</xs:annotation>
 								</xs:element>	
@@ -344,7 +345,7 @@
 								<xs:element name="convSocioEducFam" minOccurs="1" type="xs:boolean">
 									<xs:annotation>
 										<xs:appinfo>
-											<xhtml:label>Grupo/oficina de convivência e atividades socioeducativas com famílias</xhtml:label>
+											<xhtml:label>Grupo/oficina de convivência e atividades socioeducativas com famílias *</xhtml:label>
 										</xs:appinfo>
 									</xs:annotation>
 								</xs:element>	
@@ -352,7 +353,7 @@
 								<xs:element name="visitasDomic" minOccurs="1" type="xs:boolean">
 									<xs:annotation>
 										<xs:appinfo>
-											<xhtml:label>Visitas Domiciliares</xhtml:label>
+											<xhtml:label>Visitas Domiciliares *</xhtml:label>
 										</xs:appinfo>
 									</xs:annotation>
 								</xs:element>	
@@ -360,7 +361,7 @@
 								<xs:element name="deslEquipeAtenLocDist" minOccurs="1" type="xs:boolean">
 									<xs:annotation>
 										<xs:appinfo>
-											<xhtml:label>Deslocamento da Equipe para atendimento em localidades distantes</xhtml:label>
+											<xhtml:label>Deslocamento da Equipe para atendimento em localidades distantes *</xhtml:label>
 										</xs:appinfo>
 									</xs:annotation>
 								</xs:element>	
@@ -368,7 +369,7 @@
 								<xs:element name="acompFamDescCondic" minOccurs="1" type="xs:boolean">
 									<xs:annotation>
 										<xs:appinfo>
-											<xhtml:label>Acompanhamento de famílias em descumprimento de condicionalidades</xhtml:label>
+											<xhtml:label>Acompanhamento de famílias em descumprimento de condicionalidades *</xhtml:label>
 										</xs:appinfo>
 									</xs:annotation>
 								</xs:element>	
@@ -376,7 +377,7 @@
 								<xs:element name="acompBenFamBpc" minOccurs="1" type="xs:boolean">
 									<xs:annotation>
 										<xs:appinfo>
-											<xhtml:label>Acompanhamento a beneficiários e famílias beneficiárias do BPC</xhtml:label>
+											<xhtml:label>Acompanhamento a beneficiários e famílias beneficiárias do BPC *</xhtml:label>
 										</xs:appinfo>
 									</xs:annotation>
 								</xs:element>
@@ -384,7 +385,7 @@
 								<xs:element name="acompFamPaefi" minOccurs="1" type="xs:boolean">
 									<xs:annotation>
 										<xs:appinfo>
-											<xhtml:label>Acompanhamento a famílias integrantes do PETI (após contrarreferenciamento do PAEFI)</xhtml:label>
+											<xhtml:label>Acompanhamento a famílias integrantes do PETI (após contrarreferenciamento do PAEFI) *</xhtml:label>
 										</xs:appinfo>
 									</xs:annotation>
 								</xs:element>
@@ -392,7 +393,7 @@
 								<xs:element name="acompFamAtenbenEventuais" minOccurs="1" type="xs:boolean">
 									<xs:annotation>
 										<xs:appinfo>
-											<xhtml:label>Acompanhamento a famílias atendidas com benefícios eventuais</xhtml:label>
+											<xhtml:label>Acompanhamento a famílias atendidas com benefícios eventuais *</xhtml:label>
 										</xs:appinfo>
 									</xs:annotation>
 								</xs:element>
@@ -400,7 +401,7 @@
 								<xs:element name="encamiFamIndiredServSociass" minOccurs="1" type="xs:boolean">
 									<xs:annotation>
 										<xs:appinfo>
-											<xhtml:label>Encaminhamento de famílias ou indivíduos para a rede de serviço socioassistencial</xhtml:label>
+											<xhtml:label>Encaminhamento de famílias ou indivíduos para a rede de serviço socioassistencial *</xhtml:label>
 										</xs:appinfo>
 									</xs:annotation>
 								</xs:element>
@@ -408,7 +409,7 @@
 								<xs:element name="encFamIndpoliticasPublicas" minOccurs="1" type="xs:boolean">
 									<xs:annotation>
 										<xs:appinfo>
-											<xhtml:label>Encaminhamento de famílias ou indivíduos para outras políticas públicas</xhtml:label>
+											<xhtml:label>Encaminhamento de famílias ou indivíduos para outras políticas públicas *</xhtml:label>
 										</xs:appinfo>
 									</xs:annotation>
 								</xs:element>
@@ -416,7 +417,7 @@
 								<xs:element name="encObtbenEventuais" minOccurs="1" type="xs:boolean">
 									<xs:annotation>
 										<xs:appinfo>
-											<xhtml:label>Encaminhamento para obtenção de Benefícios Eventuais</xhtml:label>
+											<xhtml:label>Encaminhamento para obtenção de Benefícios Eventuais *</xhtml:label>
 										</xs:appinfo>
 									</xs:annotation>
 								</xs:element>
@@ -424,7 +425,7 @@
 								<xs:element name="encInserCadUnico" minOccurs="1" type="xs:boolean">
 									<xs:annotation>
 										<xs:appinfo>
-											<xhtml:label>Encaminhamento para inserção de famílias no Cadastro Único</xhtml:label>
+											<xhtml:label>Encaminhamento para inserção de famílias no Cadastro Único *</xhtml:label>
 										</xs:appinfo>
 									</xs:annotation>
 								</xs:element>
@@ -432,7 +433,7 @@
 								<xs:element name="orienAcompInserBPC" minOccurs="1" type="xs:boolean">
 									<xs:annotation>
 										<xs:appinfo>
-											<xhtml:label>Orientação/acompanhamento para inserção do BPC</xhtml:label>
+											<xhtml:label>Orientação/acompanhamento para inserção do BPC *</xhtml:label>
 										</xs:appinfo>
 									</xs:annotation>
 								</xs:element>
@@ -440,7 +441,7 @@
 								<xs:element name="AcompEncaRealizados" minOccurs="1" type="xs:boolean">
 									<xs:annotation>
 										<xs:appinfo>
-											<xhtml:label>Acompanhamento dos encaminhamentos realizados</xhtml:label>
+											<xhtml:label>Acompanhamento dos encaminhamentos realizados *</xhtml:label>
 										</xs:appinfo>
 									</xs:annotation>
 								</xs:element>
@@ -448,20 +449,20 @@
 								<xs:element name="palestras" minOccurs="1" type="xs:boolean">
 									<xs:annotation>
 										<xs:appinfo>
-											<xhtml:label>Palestras</xhtml:label>
+											<xhtml:label>Palestras *</xhtml:label>
 										</xs:appinfo>
 									</xs:annotation>
 								</xs:element>
 
-								<xs:element name="apoioDocPessoal" minOccurs="1" type="xs:boolean">
+								<xs:element name="apoiodocpes" minOccurs="1" type="xs:boolean">
 									<xs:annotation>
 										<xs:appinfo>
-											<xhtml:label>Apoio para obtenção de Documentação pessoal</xhtml:label>
+											<xhtml:label>Apoio para obtenção de Documentação pessoal *</xhtml:label>
 										</xs:appinfo>
 									</xs:annotation>
 								</xs:element>
 
-								<xs:element name="outrosAtivTealizadaCRAS" minOccurs="0">
+								<xs:element name="outroativrealcras" minOccurs="0">
 									<xs:annotation>
 										<xs:appinfo>
 											<xhtml:label>Outros</xhtml:label>
@@ -473,24 +474,25 @@
 										</xs:restriction>
 									</xs:simpleType>
 								</xs:element>
+
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
 
 
-					<xs:element name="fildsetAtividadesRealizadasCreas"  minOccurs="0">
+					<xs:element name="fildsetAtividadesRealizadasCreas">
 						<xs:annotation>
 							<xs:appinfo>
-								<xhtml:label>Em caso de marcar a opção CREAS 1 ou 2 - Serviço de Proteção e Atendimento Especializado a Famílias e Indivíduos – PAEFI: </xhtml:label>
+								<xhtml:label>Caso marque a opção CREAS 1 ou 2 - Serviço de Proteção e Atendimento Especializado a Famílias e Indivíduos – PAEFI: </xhtml:label>
 							</xs:appinfo>
 						</xs:annotation>
 						<xs:complexType>
 							<xs:sequence>
 
-								<xs:element name="entrevAcolAvaliainicialCasos" minOccurs="1" type="xs:boolean">
+								<xs:element name="entrevacolavaliacaso" minOccurs="1" type="xs:boolean">
 									<xs:annotation>
 										<xs:appinfo>
-											<xhtml:label>Entrevistas de acolhida para avaliação inicial dos casos</xhtml:label>
+											<xhtml:label>Entrevistas de acolhida para avaliação inicial dos casos *</xhtml:label>
 										</xs:appinfo>
 									</xs:annotation>
 								</xs:element>	
@@ -498,7 +500,7 @@
 								<xs:element name="atendPsicossocialGrupo" minOccurs="1" type="xs:boolean">
 									<xs:annotation>
 										<xs:appinfo>
-											<xhtml:label>Atendimento psicossocial em grupo</xhtml:label>
+											<xhtml:label>Atendimento psicossocial em grupo *</xhtml:label>
 										</xs:appinfo>
 									</xs:annotation>
 								</xs:element>	
@@ -506,7 +508,7 @@
 								<xs:element name="atendPsicossocialIndFam" minOccurs="1" type="xs:boolean">
 									<xs:annotation>
 										<xs:appinfo>
-											<xhtml:label>Atendimento psicossocial individual/familiar</xhtml:label>
+											<xhtml:label>Atendimento psicossocial individual/familiar *</xhtml:label>
 										</xs:appinfo>
 									</xs:annotation>
 								</xs:element>	
@@ -514,7 +516,7 @@
 								<xs:element name="contrPlanoIndFamAtendimento" minOccurs="1" type="xs:boolean">
 									<xs:annotation>
 										<xs:appinfo>
-											<xhtml:label>Construção de Plano Individual e/ou Familiar de atendimento</xhtml:label>
+											<xhtml:label>Construção de Plano Individual e/ou Familiar de atendimento *</xhtml:label>
 										</xs:appinfo>
 									</xs:annotation>
 								</xs:element>	
@@ -522,7 +524,7 @@
 								<xs:element name="acompFamIndEncRede" minOccurs="1" type="xs:boolean">
 									<xs:annotation>
 										<xs:appinfo>
-											<xhtml:label>Acompanhamento às famílias ou aos indivíduos encaminhados para a rede</xhtml:label>
+											<xhtml:label>Acompanhamento às famílias ou aos indivíduos encaminhados para a rede *</xhtml:label>
 										</xs:appinfo>
 									</xs:annotation>
 								</xs:element>	
@@ -530,7 +532,7 @@
 								<xs:element name="acompFamCriaAdoleIdosoAfastados" minOccurs="1" type="xs:boolean">
 									<xs:annotation>
 										<xs:appinfo>
-											<xhtml:label>Acompanhamento de famílias com criança/adolescente ou idoso afastados do convívio familiar</xhtml:label>
+											<xhtml:label>Acompanhamento de famílias com criança/adolescente ou idoso afastados do convívio familiar *</xhtml:label>
 										</xs:appinfo>
 									</xs:annotation>
 								</xs:element>	
@@ -538,7 +540,7 @@
 								<xs:element name="orientacaoJuridicosocial" minOccurs="1" type="xs:boolean">
 									<xs:annotation>
 										<xs:appinfo>
-											<xhtml:label>Orientação jurídicosocial</xhtml:label>
+											<xhtml:label>Orientação jurídicosocial *</xhtml:label>
 										</xs:appinfo>
 									</xs:annotation>
 								</xs:element>	
@@ -546,7 +548,7 @@
 								<xs:element name="reuniaoGruposFamInd" minOccurs="1" type="xs:boolean">
 									<xs:annotation>
 										<xs:appinfo>
-											<xhtml:label>Reuniões com grupos de famílias ou de indivíduos</xhtml:label>
+											<xhtml:label>Reuniões com grupos de famílias ou de indivíduos *</xhtml:label>
 										</xs:appinfo>
 									</xs:annotation>
 								</xs:element>
@@ -554,7 +556,7 @@
 								<xs:element name="visitiasDomCreas" minOccurs="1" type="xs:boolean">
 									<xs:annotation>
 										<xs:appinfo>
-											<xhtml:label>Visitas domiciliares</xhtml:label>
+											<xhtml:label>Visitas domiciliares *</xhtml:label>
 										</xs:appinfo>
 									</xs:annotation>
 								</xs:element>
@@ -562,7 +564,7 @@
 								<xs:element name="palestrasOficinas" minOccurs="1" type="xs:boolean">
 									<xs:annotation>
 										<xs:appinfo>
-											<xhtml:label>Palestras/ oficinas</xhtml:label>
+											<xhtml:label>Palestras/ oficinas *</xhtml:label>
 										</xs:appinfo>
 									</xs:annotation>
 								</xs:element>
@@ -570,7 +572,7 @@
 								<xs:element name="encFamIndRedeServSocioass" minOccurs="1" type="xs:boolean">
 									<xs:annotation>
 										<xs:appinfo>
-											<xhtml:label>Encaminhamento de famílias ou indivíduos para a rede de serviços socioassistenciais</xhtml:label>
+											<xhtml:label>Encaminhamento de famílias ou indivíduos para a rede de serviços socioassistenciais *</xhtml:label>
 										</xs:appinfo>
 									</xs:annotation>
 								</xs:element>
@@ -578,7 +580,7 @@
 								<xs:element name="encUserDepSubstPsicoativasRedeSaude" minOccurs="1" type="xs:boolean">
 									<xs:annotation>
 										<xs:appinfo>
-											<xhtml:label>Encaminhamento de usuários/dependentes de substâncias psicoativas para serviços da rede de saúde</xhtml:label>
+											<xhtml:label>Encaminhamento de usuários/dependentes de substâncias psicoativas para serviços da rede de saúde *</xhtml:label>
 										</xs:appinfo>
 									</xs:annotation>
 								</xs:element>
@@ -586,7 +588,7 @@
 								<xs:element name="encFamIndOutrosServRedeSaude" minOccurs="1" type="xs:boolean">
 									<xs:annotation>
 										<xs:appinfo>
-											<xhtml:label>Encaminhamento de famílias ou indivíduos para outros serviços da rede de saúde</xhtml:label>
+											<xhtml:label>Encaminhamento de famílias ou indivíduos para outros serviços da rede de saúde *</xhtml:label>
 										</xs:appinfo>
 									</xs:annotation>
 								</xs:element>
@@ -594,7 +596,7 @@
 								<xs:element name="encFamIndServPoliticasPubCreas" minOccurs="1" type="xs:boolean">
 									<xs:annotation>
 										<xs:appinfo>
-											<xhtml:label>Encaminhamento de famílias ou indivíduos para serviços das demais políticas públicas</xhtml:label>
+											<xhtml:label>Encaminhamento de famílias ou indivíduos para serviços das demais políticas públicas *</xhtml:label>
 										</xs:appinfo>
 									</xs:annotation>
 								</xs:element>
@@ -602,7 +604,7 @@
 								<xs:element name="encConsTutelar" minOccurs="1" type="xs:boolean">
 									<xs:annotation>
 										<xs:appinfo>
-											<xhtml:label>Encaminhamento para o Conselho Tutelar</xhtml:label>
+											<xhtml:label>Encaminhamento para o Conselho Tutelar *</xhtml:label>
 										</xs:appinfo>
 									</xs:annotation>
 								</xs:element>
@@ -610,7 +612,7 @@
 								<xs:element name="encOrgaosDefesaResp" minOccurs="1" type="xs:boolean">
 									<xs:annotation>
 										<xs:appinfo>
-											<xhtml:label>Encaminhamento para órgãos de defesa e responsabilização</xhtml:label>
+											<xhtml:label>Encaminhamento para órgãos de defesa e responsabilização *</xhtml:label>
 										</xs:appinfo>
 									</xs:annotation>
 								</xs:element>
@@ -618,7 +620,7 @@
 								<xs:element name="acoesMobSensibEnfrentViolDireitos" minOccurs="1" type="xs:boolean">
 									<xs:annotation>
 										<xs:appinfo>
-											<xhtml:label>Ações de mobilização e sensibilização para o enfrentamento das situações de violação de direitos</xhtml:label>
+											<xhtml:label>Ações de mobilização e sensibilização para o enfrentamento das situações de violação de direitos *</xhtml:label>
 										</xs:appinfo>
 									</xs:annotation>
 								</xs:element>
@@ -626,7 +628,7 @@
 								<xs:element name="elabRelatoriosTecCasosAcompanhamento" minOccurs="1" type="xs:boolean">
 									<xs:annotation>
 										<xs:appinfo>
-											<xhtml:label>Elaboração de relatórios técnicos sobre casos em acompanhamento</xhtml:label>
+											<xhtml:label>Elaboração de relatórios técnicos sobre casos em acompanhamento *</xhtml:label>
 										</xs:appinfo>
 									</xs:annotation>
 								</xs:element>
@@ -634,7 +636,7 @@
 								<xs:element name="discCasosOutrosProfissRede" minOccurs="1" type="xs:boolean">
 									<xs:annotation>
 										<xs:appinfo>
-											<xhtml:label>Discussão de casos com outros profissionais da rede</xhtml:label>
+											<xhtml:label>Discussão de casos com outros profissionais da rede *</xhtml:label>
 										</xs:appinfo>
 									</xs:annotation>
 								</xs:element>
@@ -642,10 +644,10 @@
 								<xs:element name="buscaAtiva" minOccurs="1" type="xs:boolean">
 									<xs:annotation>
 										<xs:appinfo>
-											<xhtml:label>Busca ativa</xhtml:label>
+											<xhtml:label>Busca ativa *</xhtml:label>
 										</xs:appinfo>
 									</xs:annotation>
-								</xs:element>								
+								</xs:element>
 
 								<xs:element name="outrosAtivTealizadaCREAS" minOccurs="0">
 									<xs:annotation>
@@ -658,10 +660,10 @@
 											<xs:maxLength value="255"/>
 										</xs:restriction>
 									</xs:simpleType>
-								</xs:element>		
+								</xs:element>
 
 							</xs:sequence>
-						</xs:complexType>	
+						</xs:complexType>
 					</xs:element>
 					
 					<xs:element name="fieldsetMeta"  minOccurs="0">
@@ -699,6 +701,7 @@
 							</xs:appinfo>
 						</xs:annotation>
 					</xs:element>
+
 					<xs:element name="aspectosFacilitadores"  minOccurs="0" type="xs:string">
 						<xs:annotation>
 							<xs:appinfo>
@@ -706,6 +709,7 @@
 							</xs:appinfo>
 						</xs:annotation>
 					</xs:element>
+
 					<xs:element name="aspectosDificultadores"  minOccurs="0" type="xs:string">
 						<xs:annotation>
 							<xs:appinfo>
@@ -713,6 +717,7 @@
 							</xs:appinfo>
 						</xs:annotation>
 					</xs:element>
+
 					<xs:element name="propostaSuperDificuldades"  minOccurs="0" type="xs:string">
 						<xs:annotation>
 							<xs:appinfo>
@@ -720,6 +725,7 @@
 							</xs:appinfo>
 						</xs:annotation>
 					</xs:element>
+
 					<xs:element name="demandasSetorEquipamento"  minOccurs="0" type="xs:string">
 						<xs:annotation>
 							<xs:appinfo>
@@ -732,7 +738,7 @@
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
-			
+
 <!--   Paradinha Fim -->
 		</xs:sequence>
 	</xs:complexType>

@@ -25,7 +25,7 @@
 			<xs:element name="numeronis" minOccurs="1">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>NIS</xhtml:label>
+						<xhtml:label>NIS *</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -45,11 +45,11 @@
 
 				<xs:complexType>
 					<xs:sequence>
-					
+
 						<xs:element name="conssubpsicoativ"  minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>1.1 Identificação</xhtml:label>
+									<xhtml:label>1.1 Identificação *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -60,19 +60,19 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						
-						<xs:element name="qdeagressores"  minOccurs="1">
+
+						<xs:element name="qdeagressores"  minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>1.2 Quantidade de agressores</xhtml:label>
+									<xhtml:label>1.2 Quantidade de agressores *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
-						
+
 						<xs:element name="residemesmodom"  minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>1.3 Reside no mesmo domicílio</xhtml:label>
+									<xhtml:label>1.3 Reside no mesmo domicílio *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -82,11 +82,11 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						
+
 						<xs:element name="idade"  minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>1.4 Idade</xhtml:label>
+									<xhtml:label>1.4 Idade *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -101,11 +101,11 @@
 							</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						
+
 						<xs:element name="relparentvitima"  minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>1.5 Apresenta relação de parentesco com a vítima</xhtml:label>
+									<xhtml:label>1.5 Apresenta relação de parentesco com a vítima *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -115,11 +115,11 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						
+
 						<xs:element name="relparentvitafirm"  minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Caso afirmativo, assinalar abaixo</xhtml:label>
+									<xhtml:label>Caso afirmativo, assinalar abaixo *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -147,7 +147,7 @@
 						<xs:element name="relparentvitneg"  minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Caso negativo, assinalar abaixo</xhtml:label>
+									<xhtml:label>Caso negativo, assinalar abaixo *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -162,7 +162,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						
+
 						<xs:element name="relparentvitnegoutr" minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
@@ -170,11 +170,11 @@
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
-						
+
 						<xs:element name="indicalcooldroga"  minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>1.6 Apresenta indícios de uso de álcool/droga</xhtml:label>
+									<xhtml:label>1.6 Apresenta indícios de uso de álcool/droga *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -185,7 +185,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						
+
 						<xs:element name="indicalcooldrogaafirm" minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
@@ -193,11 +193,11 @@
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
-						
+
 						<xs:element name="indtranstornomensal"  minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>1.7 Apresenta indícios de transtorno mensal</xhtml:label>
+									<xhtml:label>1.7 Apresenta indícios de transtorno mensal *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -208,13 +208,13 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-					
+
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
 
 
-			<xs:element name="tipodenuncia">
+			<xs:element name="tipdenuncia">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>2. Tipo da Denúncia</xhtml:label>
@@ -224,7 +224,7 @@
 				<xs:complexType>
 					<xs:sequence>
 					
-						<xs:element name="abusoviolfis" minOccurs="0" type="xs:boolean">
+						<xs:element name="abviolfis" minOccurs="0" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>2.1 Abuso, maus tratos ou violência física</xhtml:label>
@@ -232,7 +232,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="abusoviolpsico" minOccurs="0" type="xs:boolean">
+						<xs:element name="abuviolpsico" minOccurs="0" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>2.2 Abuso, maus tratos ou violência psicológica</xhtml:label>
@@ -240,7 +240,7 @@
 							</xs:annotation>
 						</xs:element>
 						
-						<xs:element name="abusoviolsex" minOccurs="0" type="xs:boolean">
+						<xs:element name="abuviolsex" minOccurs="0" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>2.3 Abuso ou violência sexual</xhtml:label>
@@ -256,7 +256,7 @@
 							</xs:annotation>
 						</xs:element>
 						
-						<xs:element name="negligencia" minOccurs="0" type="xs:boolean">
+						<xs:element name="neglig" minOccurs="0" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>2.5 Negligência</xhtml:label>
@@ -264,7 +264,7 @@
 							</xs:annotation>
 						</xs:element>
 						
-						<xs:element name="abusofinecon" minOccurs="0" type="xs:boolean">
+						<xs:element name="abufinecon" minOccurs="0" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>2.6 Abuso Financeiro e Econômico</xhtml:label>
@@ -280,7 +280,7 @@
 							</xs:annotation>
 						</xs:element>
 						
-						<xs:element name="negliginstitucional" minOccurs="0" type="xs:boolean">
+						<xs:element name="negliginstit" minOccurs="0" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>2.8 Negligência Institucional</xhtml:label>
@@ -288,7 +288,7 @@
 							</xs:annotation>
 						</xs:element>
 						
-						<xs:element name="observac" minOccurs="0" type="xs:string">
+						<xs:element name="observ" minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Observações</xhtml:label>
@@ -311,7 +311,7 @@
 				<xs:complexType>
 					<xs:sequence>
 					
-						<xs:element name="oridenouvidoria" minOccurs="0" type="xs:boolean">
+						<xs:element name="oridenouvid" minOccurs="0" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>3.1 Ouvidorias</xhtml:label>
@@ -375,7 +375,7 @@
 							</xs:annotation>
 						</xs:element>
 						
-						<xs:element name="oridenoutraespec" minOccurs="0" type="xs:string">
+						<xs:element name="oridenoutraesp" minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Especifique outros</xhtml:label>
@@ -399,17 +399,19 @@
 			<xs:element name="sitviolintrafamiliar">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>5. REGISTRO DE VOLUME DE SITUAÇÕES DE VIOLÊNCIA INTRAFAMILIAR E OUTRAS VIOLAÇÕES DE DIREITOS </xhtml:label>
+						<xhtml:label>5. REGISTRO DE VOLUME DE SITUAÇÕES DE VIOLÊNCIA INTRAFAMILIAR 
+									E OUTRAS VIOLAÇÕES DE DIREITOS </xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 
 				<xs:complexType>
 					<xs:sequence>
 
-						<xs:element name="crianadolviolintrafam"  minOccurs="1">
+						<xs:element name="crianadolviolifam"  minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>5.1. Criança ou adolescente vítimas de violência intrafamiliar, especificado segundo o sexo</xhtml:label>
+									<xhtml:label>5.1. Criança ou adolescente vítimas de violência intrafamiliar, 
+												especificado segundo o sexo *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -420,10 +422,10 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="crianadolviolintrafamfx"  minOccurs="1">
+						<xs:element name="crianadolviolifamfx"  minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>5.1.1 Faixa etária</xhtml:label>
+									<xhtml:label>5.1.1 Faixa etária *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -437,7 +439,8 @@
 						<xs:element name="crianadolabussex"  minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>5.2 - Crianças ou adolescentes vítimas de abuso sexual especificada segundo o sexo</xhtml:label>
+									<xhtml:label>5.2 - Crianças ou adolescentes vítimas de abuso sexual 
+													especificada segundo o sexo *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -451,7 +454,7 @@
 						<xs:element name="crianadolabussexfx"  minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>5.2.1 - Faixa etária</xhtml:label>
+									<xhtml:label>5.2.1 - Faixa etária *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -465,7 +468,8 @@
 						<xs:element name="crianadolexplsex"  minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>5.3 - Crianças ou adolescentes vítimas de exploração sexual, especificada segundo o sexo</xhtml:label>
+									<xhtml:label>5.3 - Crianças ou adolescentes vítimas de exploração sexual, 
+												especificada segundo o sexo *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -479,7 +483,7 @@
 						<xs:element name="crianadolexplsexfx"  minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>5.3.1 - Faixa etária</xhtml:label>
+									<xhtml:label>5.3.1 - Faixa etária *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -490,10 +494,11 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="crianadolnegligabando"  minOccurs="1">
+						<xs:element name="crianadolnegligaban"  minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>5.4 - Crianças ou adolescentes vítimas de negligência ou abandono, especificada segundo o sexo</xhtml:label>
+									<xhtml:label>5.4 - Crianças ou adolescentes vítimas de negligência ou abandono, 
+										especificada segundo o sexo *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -504,10 +509,10 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="crianadolnegligabando"  minOccurs="1">
+						<xs:element name="crianadolnegligabanfx"  minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>5.4.1 - Faixa etária</xhtml:label>
+									<xhtml:label>5.4.1 - Faixa etária *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -521,7 +526,8 @@
 						<xs:element name="crianadoltrabinf"  minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>5.5 - Crianças ou adolescentes em situação de trabalho infantil, especificada segundo o sexo</xhtml:label>
+									<xhtml:label>5.5 - Crianças ou adolescentes em situação de trabalho infantil, 
+											especificada segundo o sexo *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -532,10 +538,10 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="crianadoltrabinf"  minOccurs="1">
+						<xs:element name="crianadoltrabinffx"  minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>5.5.1 - Faixa etária</xhtml:label>
+									<xhtml:label>5.5.1 - Faixa etária *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -546,10 +552,11 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="idosoviolintrafam"  minOccurs="1">
+						<xs:element name="idosoviolifam"  minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>5.6 - Pessoas idosas – 60 anos ou mais – vítimas de violência intrafamiliar, especificada segundo o sexo</xhtml:label>
+									<xhtml:label>5.6 - Pessoas idosas – 60 anos ou mais – vítimas de violência 
+									intrafamiliar, especificada segundo o sexo *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -560,10 +567,11 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="idosonegligabando"  minOccurs="1">
+						<xs:element name="idosonegligaban"  minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>5.7 - Pessoas idosas – 60 anos ou mais – vítimas de negligência ou abandono, especificada segundo o sexo</xhtml:label>
+									<xhtml:label>5.7 - Pessoas idosas – 60 anos ou mais – vítimas de negligência 
+									ou abandono, especificada segundo o sexo *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -574,10 +582,11 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="pesdefviolintrafam"  minOccurs="1">
+						<xs:element name="pesdefviolifam"  minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>5.8 - Pessoas com deficiência, vítimas de violência intrafamiliar, especificada segundo o sexo</xhtml:label>
+									<xhtml:label>5.8 - Pessoas com deficiência, vítimas de violência intrafamiliar, 
+											especificada segundo o sexo *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -588,10 +597,10 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="pesdefviolintrafamfx"  minOccurs="1">
+						<xs:element name="pesdefviolifamfx"  minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>5.8.1 - Faixa etária</xhtml:label>
+									<xhtml:label>5.8.1 - Faixa etária *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -604,10 +613,11 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="pesdefviolintrafam"  minOccurs="1">
+						<xs:element name="pesdefviolneglsex"  minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>5.9 - Pessoas com deficiência vítimas de negligencia ou abandono, especificada segundo o sexo</xhtml:label>
+									<xhtml:label>5.9 - Pessoas com deficiência vítimas de negligencia ou 
+									abandono, especificada segundo o sexo *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -618,10 +628,10 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="pesdefviolintrafamfx"  minOccurs="1">
+						<xs:element name="pesdefviolifamfx"  minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>5.9.1 - Faixa etária</xhtml:label>
+									<xhtml:label>5.9.1 - Faixa etária *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -634,10 +644,10 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="mulhervitviolintrafam"  minOccurs="1">
+						<xs:element name="mulvitviolifam"  minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>5.10 - Mulheres adultas – vítimas de violência intrafamiliar</xhtml:label>
+									<xhtml:label>5.10 - Mulheres adultas – vítimas de violência intrafamiliar *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -647,10 +657,11 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="pessvittrafserhum"  minOccurs="1">
+						<xs:element name="pesvittrafserhum"  minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>5.11 - Pessoas vítimas de tráfico de seres humanos, especificada segundo o sexo</xhtml:label>
+									<xhtml:label>5.11 - Pessoas vítimas de tráfico de seres humanos, 
+									especificada segundo o sexo *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -661,10 +672,10 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="pessvittrafserhumfx"  minOccurs="1">
+						<xs:element name="pesvittrafserhumfx"  minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>5.11.1 - Faixa etária</xhtml:label>
+									<xhtml:label>5.11.1 - Faixa etária *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -678,10 +689,10 @@
 						</xs:element>
 
 
-						<xs:element name="pessdiscorientsex"  minOccurs="1">
+						<xs:element name="pesdiscorientsex"  minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>5.12 - Pessoas vítimas de discriminação por orientação sexual</xhtml:label>
+									<xhtml:label>5.12 - Pessoas vítimas de discriminação por orientação sexual *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -692,10 +703,10 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="pessositrua"  minOccurs="1">
+						<xs:element name="pesositrua"  minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>5.13 - Pessoas em situação de rua, especificada segundo o sexo</xhtml:label>
+									<xhtml:label>5.13 - Pessoas em situação de rua, especificada segundo o sexo *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -706,10 +717,10 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="pessositruafx"  minOccurs="1">
+						<xs:element name="pesositruafx"  minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>5.13.1 - Faixa etária</xhtml:label>
+									<xhtml:label>5.13.1 - Faixa etária *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -727,10 +738,10 @@
 			</xs:element>
 
 
-			<xs:element name="encaminhcaso"  minOccurs="1">
+			<xs:element name="encamcaso"  minOccurs="1">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>6. Encaminhamentos do Caso</xhtml:label>
+						<xhtml:label>6. Encaminhamentos do Caso *</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -741,7 +752,7 @@
 				</xs:simpleType>
 			</xs:element>
 			
-			<xs:element name="encaminoutroservs">
+			<xs:element name="encamoutroservs">
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>7. Encaminhamentos para outros serviços</xhtml:label>
@@ -751,10 +762,10 @@
 				<xs:complexType>
 					<xs:sequence>
 					
-						<xs:element name="redesocassist"  minOccurs="1">
+						<xs:element name="redesocassis"  minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Rede Socioassistencial</xhtml:label>
+									<xhtml:label>Rede Socioassistencial *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -769,7 +780,7 @@
 							</xs:simpleType>
 						</xs:element>
 						
-						<xs:element name="entidconveniada" minOccurs="0" type="xs:string">
+						<xs:element name="entidconveni" minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Qual entidade conveniada?</xhtml:label>
@@ -777,10 +788,10 @@
 							</xs:annotation>
 						</xs:element>
 						
-						<xs:element name="politintersetoriais"  minOccurs="1">
+						<xs:element name="politinterset"  minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Políticas intersetoriais</xhtml:label>
+									<xhtml:label>Políticas intersetoriais *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -797,7 +808,7 @@
 							</xs:simpleType>
 						</xs:element>
 						
-						<xs:element name="politintersetoriaisoutro" minOccurs="0" type="xs:string">
+						<xs:element name="politintersetoutro" minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Outros</xhtml:label>
@@ -817,10 +828,10 @@
 				</xs:annotation>
 			</xs:element>
 			
-			<xs:element name="tecresponsavel" minOccurs="0">
+			<xs:element name="tecrespons" minOccurs="1">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Técnico(a) responsável</xhtml:label>
+						<xhtml:label>Técnico(a) responsável *</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -830,10 +841,10 @@
 				</xs:simpleType>
 			</xs:element>
 
-			<xs:element name="datcadastro" minOccurs="0" type="xs:date">
+			<xs:element name="datcad" minOccurs="1" type="xs:date">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Data</xhtml:label>
+						<xhtml:label>Data *</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
