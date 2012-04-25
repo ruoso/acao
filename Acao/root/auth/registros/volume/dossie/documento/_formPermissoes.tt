@@ -67,7 +67,7 @@
 
    <input type="hidden" value="[% autorizacoes | html %]" name="autorizacoes">
 
-   [% IF c.model('Volume').pode_criar_volume() %]
+   [% # IF c.model('Volume').pode_criar_volume() %]
       <table >
           <thead>
             <tr>
@@ -95,7 +95,7 @@
             [% END %]
           </tbody>
          </table>
-  [% END %]
+  [% # END %]
 
   </div>
 

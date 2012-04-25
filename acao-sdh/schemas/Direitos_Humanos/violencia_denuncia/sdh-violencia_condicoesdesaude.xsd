@@ -9,7 +9,7 @@
 	<xs:element name="condicoesdesaude" type="condicoesdesaude">
 		<xs:annotation>
 			<xs:appinfo>
-				<xhtml:label>06. Condições de Saúde</xhtml:label>
+				<xhtml:label>06. CONDIÇÕES DE SAÚDE</xhtml:label>
                 <class:classificacoes>
                     <class:classificacao>cn=Geral,cn=Direitos Humanos</class:classificacao>
                 </class:classificacoes>
@@ -18,25 +18,11 @@
 	</xs:element>
 
 	<xs:complexType name="condicoesdesaude">
-		<xs:sequence>
-
-			
-
-			
-				
-			 
-			 
-			 
-			
-			
-			 
-			
-			
-			  
+		<xs:sequence>			  
 			 <xs:element name="temAlgunsProblemasDeSaude" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Tem Alguns Problemas De Saúde?</xhtml:label>
+						<xhtml:label>6.1 Tem Alguns Problemas De Saúde?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -49,7 +35,7 @@
             <xs:element name="seSimTemAgunsProblemasDeSauce">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>se sim. Qual tipo de doença?</xhtml:label>
+						<xhtml:label>6.1.1 Se sim. Qual tipo de doença?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -126,6 +112,14 @@
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
+						
+						<xs:element name="outrasDoencas" minOccurs="0" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Especifique outros</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
 
 					</xs:sequence>
 				</xs:complexType>
@@ -136,7 +130,7 @@
 			 <xs:element name="fazUsoDeMedicacao" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Faz uso de Medicação?</xhtml:label>
+						<xhtml:label>6.2 Faz uso de Medicação?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -164,7 +158,7 @@
 			 <xs:element name="possuiCuidador" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Possui cuidador(a)?</xhtml:label>
+						<xhtml:label>6.3 Possui cuidador(a)?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -179,7 +173,7 @@
 			 <xs:element name="jaEsteveInternado" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Ja esteve internado?</xhtml:label>
+						<xhtml:label>6.4 Ja esteve internado?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -207,7 +201,7 @@
 			 			 <xs:element name="estaGestante" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Esta gestante?</xhtml:label>
+						<xhtml:label>6.5 Esta gestante?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -233,7 +227,7 @@
 			 <xs:element name="estaFazendoPreNatal" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Esta fazendo pré-natal?</xhtml:label>
+						<xhtml:label>6.6 Esta fazendo pré-natal?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -246,7 +240,7 @@
 				 			 <xs:element name="jaFezPrevencaoGenicologica" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Ja fez prevenção genicológica?</xhtml:label>
+						<xhtml:label>6.7 Ja fez prevenção ginicológica?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -272,7 +266,7 @@
 			<xs:element name="fezTesteHIV" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Ja fez teste HIV?</xhtml:label>
+						<xhtml:label>6.8 Ja fez teste HIV?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -286,7 +280,7 @@
 			 <xs:element name="utilizaPreservativo" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Utiliza Preservativo?</xhtml:label>
+						<xhtml:label>6.9 Utiliza Preservativo?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -315,7 +309,7 @@
 			 <xs:element name="seTransexualFezCirurgiaDeAdequacao" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Se transexual, fez cirurgia de readequação?</xhtml:label>
+						<xhtml:label>6.10 Se transexual, fez cirurgia de readequação?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -342,7 +336,7 @@
 			 <xs:element name="usarServicoPublicoDeSaude" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Voce é usuário dos serviços públicos de saúde?</xhtml:label>
+						<xhtml:label>6.11 Voce é usuário dos serviços públicos de saúde?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -356,7 +350,7 @@
 			 <xs:element name="esistePostoProximoResidencia" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Existe posto de saúde próximo a sua residência?</xhtml:label>
+						<xhtml:label>6.12 Existe posto de saúde próximo a sua residência?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -370,7 +364,7 @@
            <xs:element name="frequentaDentista" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Frequenta dentista?</xhtml:label>
+						<xhtml:label>6.13 Frequenta dentista?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -400,7 +394,7 @@
 			 <xs:element name="possuiPlanoDeSaude" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Possui algum plano de saúde?</xhtml:label>
+						<xhtml:label>6.14 Possui algum plano de saúde?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
