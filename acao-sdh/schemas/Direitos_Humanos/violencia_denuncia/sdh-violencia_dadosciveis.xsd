@@ -160,7 +160,24 @@
 					    </xs:restriction>
 				    </xs:simpleType>
 			    </xs:element>
-
+               <xs:element name="testemunhas" maxOccurs="10">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Testemunhas</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+		                <xs:element name="testemunnha" minOccurs="0"  type="xs:string">
+			                <xs:annotation>
+				                <xs:appinfo>
+					                <xhtml:label>Testemunha com RG e Endereço</xhtml:label>
+				                </xs:appinfo>
+			                </xs:annotation>
+                        </xs:element>
+	                </xs:sequence>
+                </xs:complexType>
+            </xs:element>			
 
 		</xs:sequence>
 	</xs:complexType>
