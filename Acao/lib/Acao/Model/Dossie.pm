@@ -257,7 +257,6 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
              . ' order by $x/ns:nome ascending '
              . $return;
 
-warn $list;
     # contruindo o retorno para gerar o CSV - Tratamento e definiação das colunas do CSV
      if ($args->{pesquisa}{gerarCSV}) {
          my @csvData;
