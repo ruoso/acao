@@ -17,7 +17,7 @@
 				</class:classificacoes>
 			</xs:appinfo>
 		</xs:annotation>
-	</xs:element>	
+	</xs:element>
 
 	<xs:complexType name="formRelatorioMensalQuantitativoCP">
 		<xs:sequence>
@@ -25,7 +25,7 @@
 			<xs:element name="mesano" minOccurs="1">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Mês/Ano:</xhtml:label>
+						<xhtml:label>Mês/Ano *</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:simpleType>
@@ -33,7 +33,7 @@
 						<xs:maxLength value="255"/>
 					</xs:restriction>
 				</xs:simpleType>
-			</xs:element>			
+			</xs:element>
 
 			<xs:element name="encoutroserv">
 
@@ -44,17 +44,17 @@
 				</xs:annotation>
 
 				<xs:complexType>
-					<xs:sequence>					
+					<xs:sequence>
 
-						<xs:element name="labelativ">
+						<xs:element name="labelativ" minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>ATIVIDADES</xhtml:label>
+									<xhtml:label>ATIVIDADES *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="conttelef" minOccurs="1" type="xs:integer">
+						<xs:element name="conttelef" minOccurs="0" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Contatos telefônicos</xhtml:label>
@@ -65,12 +65,12 @@
 						<xs:element name="orientger" minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Orientações gerais</xhtml:label>
+									<xhtml:label>Orientações gerais  *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="orgentids"  minOccurs="1">
+						<xs:element name="orgentids"  minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Órgãos/Entidades</xhtml:label>
@@ -85,7 +85,7 @@
 						<xs:element name="redsocasscreas2" minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Rede Socioassistêncial - CREAS II</xhtml:label>
+									<xhtml:label>Rede Socioassistêncial - CREAS II *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -93,7 +93,7 @@
 						<xs:element name="redsocasscreas3" minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Rede Socioassistêncial - CREAS III</xhtml:label>
+									<xhtml:label>Rede Socioassistêncial - CREAS III *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -101,7 +101,7 @@
 						<xs:element name="redsocasscreas5" minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Rede Socioassistêncial - CREAS V</xhtml:label>
+									<xhtml:label>Rede Socioassistêncial - CREAS V *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -109,7 +109,7 @@
 						<xs:element name="redsocasscenpop" minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Rede Socioassistêncial - CENTRO POP</xhtml:label>
+									<xhtml:label>Rede Socioassistêncial - CENTRO POP *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -117,7 +117,7 @@
 						<xs:element name="redsocassredconv" minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Rede Socioassistêncial - Rede Conveniada</xhtml:label>
+									<xhtml:label>Rede Socioassistêncial - Rede Conveniada *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -125,7 +125,7 @@
 						<xs:element name="polintsau" minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Políticas Intersetoriais - Saúde</xhtml:label>
+									<xhtml:label>Políticas Intersetoriais - Saúde *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -133,7 +133,7 @@
 						<xs:element name="polinteduc" minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Políticas Intersetoriais - Educação</xhtml:label>
+									<xhtml:label>Políticas Intersetoriais - Educação *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -141,7 +141,7 @@
 						<xs:element name="polintsdh" minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Políticas Intersetoriais - SDH</xhtml:label>
+									<xhtml:label>Políticas Intersetoriais - SDH *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -149,7 +149,7 @@
 						<xs:element name="polinthab" minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Políticas Intersetoriais - Habitação</xhtml:label>
+									<xhtml:label>Políticas Intersetoriais - Habitação *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -157,12 +157,12 @@
 						<xs:element name="encamsdg" minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Outros Encaminhamentos - SDG</xhtml:label>
+									<xhtml:label>Outros Encaminhamentos - SDG *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="encamoutros" minOccurs="1" type="xs:integer">
+						<xs:element name="encamoutros" minOccurs="0" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Outros</xhtml:label>
@@ -170,18 +170,18 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="encamoutrosespec" minOccurs="1" type="xs:string">
+						<xs:element name="encamoutrosespec" minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Especificar</xhtml:label>
+									<xhtml:label>Especificar outros</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
 
-					</xs:sequence>	
+					</xs:sequence>
 				</xs:complexType>
 
-			</xs:element>		
+			</xs:element>
 
 			<xs:element name="atividade">
 
@@ -197,7 +197,7 @@
 						<xs:element name="elabrelsoc" minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Elaboração de Relatórios Sociais:</xhtml:label>
+									<xhtml:label>Elaboração de Relatórios Sociais  *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -205,7 +205,7 @@
 						<xs:element name="evoprontusu" minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Evolução dos Prontuários dos usuários:</xhtml:label>
+									<xhtml:label>Evolução dos Prontuários dos usuários  *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -213,7 +213,7 @@
 						<xs:element name="visdom" minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Visita Domiciliar:</xhtml:label>
+									<xhtml:label>Visita Domiciliar  *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -221,7 +221,7 @@
 						<xs:element name="atenfam" minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Atendimento Familiar:</xhtml:label>
+									<xhtml:label>Atendimento Familiar  *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -229,7 +229,7 @@
 						<xs:element name="ativtot" minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>TOTAL:</xhtml:label>
+									<xhtml:label>TOTAL  *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -253,7 +253,31 @@
 						<xs:element name="numeronis" minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Guarda de pertences:</xhtml:label>
+									<xhtml:label>Guarda de pertences *</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="numeronis" minOccurs="1" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Higiene pessoal *</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="numeronis" minOccurs="1" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Alimentação *</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="numeronis" minOccurs="1" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Lavagem de roupa *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -261,7 +285,7 @@
 						<xs:element name="numeronis" minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Higiene pessoal:</xhtml:label>
+									<xhtml:label>Acolhimento Institucional(24 horas) *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -269,31 +293,7 @@
 						<xs:element name="numeronis" minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Alimentação :</xhtml:label>
-								</xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-
-						<xs:element name="numeronis" minOccurs="1" type="xs:integer">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Lavagem de roupa:</xhtml:label>
-								</xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-						
-						<xs:element name="numeronis" minOccurs="1" type="xs:integer">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Acolhimento Institucional (24 horas):</xhtml:label>
-								</xs:appinfo>
-							</xs:annotation>
-						</xs:element>
-
-						<xs:element name="numeronis" minOccurs="1" type="xs:integer">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>TOTAL:</xhtml:label>
+									<xhtml:label>TOTAL *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -314,7 +314,7 @@
 				<xs:complexType>
 					<xs:sequence>
 
-						<xs:element name="oriencaminhamento"  minOccurs="1">
+						<xs:element name="oriencaminhamento"  minOccurs="0">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Órgãos / Entidades</xhtml:label>
@@ -329,7 +329,7 @@
 						<xs:element name="redsocasscreas2" minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Rede Socioassistêncial - CREAS II</xhtml:label>
+									<xhtml:label>Rede Socioassistêncial - CREAS II *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -337,7 +337,7 @@
 						<xs:element name="redsocasscreas3" minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Rede Socioassistêncial - CREAS III</xhtml:label>
+									<xhtml:label>Rede Socioassistêncial - CREAS III *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -345,7 +345,7 @@
 						<xs:element name="redsocasscreas5" minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Rede Socioassistêncial - CREAS V</xhtml:label>
+									<xhtml:label>Rede Socioassistêncial - CREAS V *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -353,7 +353,7 @@
 						<xs:element name="redsocasscenpop" minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Rede Socioassistêncial - CENTRO POP</xhtml:label>
+									<xhtml:label>Rede Socioassistêncial - CENTRO POP *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -361,7 +361,7 @@
 						<xs:element name="redsocassredconv" minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Rede Socioassistêncial - Rede Conveniada</xhtml:label>
+									<xhtml:label>Rede Socioassistêncial - Rede Conveniada *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -369,7 +369,7 @@
 						<xs:element name="polintsetsau" minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Políticas Intersetoriais - Saúde</xhtml:label>
+									<xhtml:label>Políticas Intersetoriais - Saúde *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -377,7 +377,7 @@
 						<xs:element name="polintsetedu" minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Políticas Intersetoriais - Educação</xhtml:label>
+									<xhtml:label>Políticas Intersetoriais - Educação *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -385,7 +385,7 @@
 						<xs:element name="polintsdh" minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Políticas Intersetoriais - SDH</xhtml:label>
+									<xhtml:label>Políticas Intersetoriais - SDH *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -393,7 +393,7 @@
 						<xs:element name="polinthab" minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Políticas Intersetoriais - Habitação</xhtml:label>
+									<xhtml:label>Políticas Intersetoriais - Habitação *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -401,23 +401,23 @@
 						<xs:element name="outrencamsdg" minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Outros Encaminhamentos - SDG</xhtml:label>
+									<xhtml:label>Outros Encaminhamentos - SDG *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="outros" minOccurs="1" type="xs:integer">
+						<xs:element name="outros" minOccurs="0" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Outros:</xhtml:label>
+									<xhtml:label>Outros</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="espec" minOccurs="1" type="xs:integer">
+						<xs:element name="espec" minOccurs="0" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Especificar</xhtml:label>
+									<xhtml:label>Especificar outros</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -450,79 +450,79 @@
 									<xs:enumeration value="Desligamento de usuários por superação da situação de vulnerabilidade (abandono, situações de risco dentre outras)" />
 									<xs:enumeration value="Desligamento de usuários por descumprimento do termo de compromisso" />
 									<xs:enumeration value="Desligamento por solicitação do  usuários" />
-									<xs:enumeration value="* Número total de  usuários que estão em acolhimento" />
+									<xs:enumeration value="Número total de  usuários que estão em acolhimento" />
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="quantidade-total" minOccurs="1" type="xs:integer">
+						<xs:element name="quanttotal" minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Quantidade Total:</xhtml:label>
+									<xhtml:label>Quantidade Total *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="inscritos-cadunico" minOccurs="1" type="xs:integer">
+						<xs:element name="insccaduni" minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Inscritos no CadÚnico:</xhtml:label>
+									<xhtml:label>Inscritos no CadÚnico *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="oriencaminhamento"  minOccurs="1" type="xs:integer">
+						<xs:element name="totbenefic"  minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Beneficiário Total:</xhtml:label>
-								</xs:appinfo>
-							</xs:annotation>
-						</xs:element>			
-
-						<xs:element name="beneficiario-educ"  minOccurs="1" type="xs:integer">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Beneficiário Educ:</xhtml:label>
+									<xhtml:label>Beneficiário Total *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="beneficiario-as"  minOccurs="1" type="xs:integer">
+						<xs:element name="totbenefeduc"  minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Beneficiário A.S:</xhtml:label>
+									<xhtml:label>Beneficiário Educ *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="beneficiario-saude"  minOccurs="1" type="xs:integer">
+						<xs:element name="totbenefas"  minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Beneficiário Saúde:</xhtml:label>
+									<xhtml:label>Beneficiário A.S *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="beneficiario-be"  minOccurs="1" type="xs:integer">
+						<xs:element name="totbenefsaude"  minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Beneficiário BE:</xhtml:label>
+									<xhtml:label>Beneficiário Saúde *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="beneficiario-bcp-idoso"  minOccurs="1" type="xs:integer">
+						<xs:element name="totbenefbe"  minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Beneficiário BCP Idoso:</xhtml:label>
+									<xhtml:label>Beneficiário BE *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="beneficiario-bcp-def"  minOccurs="1" type="xs:integer">
+						<xs:element name="totbenefbcpido"  minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Beneficiário BCP Deficiente:</xhtml:label>
+									<xhtml:label>Beneficiário BCP Idoso *</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="totbenefbcpdef"  minOccurs="1" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Beneficiário BCP Deficiente *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
@@ -530,7 +530,7 @@
 					</xs:sequence>
 				</xs:complexType>
 
-			</xs:element>				
+			</xs:element>
 
 			<xs:element name="encoutroserv" minOccurs="0" maxOccurs="3">
 
@@ -546,7 +546,7 @@
 						<xs:element name="oriencaminhamento"  minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Atividades/ Públicos</xhtml:label>
+									<xhtml:label>Atividades/públicos *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 							<xs:simpleType>
@@ -558,39 +558,39 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="quantidade-encontros" minOccurs="1" type="xs:integer">
+						<xs:element name="quantencont" minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Quantidade de Encontros:</xhtml:label>
+									<xhtml:label>Quantidade de Encontros</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="participantes-encontros" minOccurs="1" type="xs:integer">
+						<xs:element name="totpartencont" minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Participantes nos Encontros:</xhtml:label>
+									<xhtml:label>Participantes nos Encontros  *</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="inscrito-cadunico"  minOccurs="1" type="xs:integer">
+						<xs:element name="totinsccauniativcol"  minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Inscritos no Cadúnico:</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
-						</xs:element>			
+						</xs:element>
 
-						<xs:element name="pbf"  minOccurs="1" type="xs:integer">
+						<xs:element name="quantpbfativcol"  minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>PBF:</xhtml:label>
+									<xhtml:label>PBF</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="bcp-idoso"  minOccurs="1" type="xs:integer">
+						<xs:element name="quantbcpidosoativcol"  minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>BCP Idoso:</xhtml:label>
@@ -598,7 +598,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="bcp-deficiente"  minOccurs="1" type="xs:integer">
+						<xs:element name="quantbcpdeficativcol"  minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>BCP Deficiente:</xhtml:label>
@@ -622,7 +622,7 @@
 				<xs:complexType>
 					<xs:sequence>
 
-						<xs:element name="oriencaminhamento"  minOccurs="1">
+						<xs:element name="quanteventsri"  minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Eventos</xhtml:label>
@@ -630,7 +630,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="quantidade-encontros" minOccurs="1" type="xs:integer">
+						<xs:element name="quantencontsri" minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Abuso/exploração sexual de crianças e adolescentes:</xhtml:label>
@@ -646,15 +646,15 @@
 							</xs:annotation>
 						</xs:element>
 	
-						<xs:element name="inscrito-cadunico"  minOccurs="1" type="xs:integer">									
+						<xs:element name="inscrito-cadunico"  minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Jovens em conflito com a lei:</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
-						</xs:element>			
+						</xs:element>
 
-						<xs:element name="pbf"  minOccurs="1" type="xs:integer">									
+						<xs:element name="pbf"  minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Negligência, violência ou maus tratos contra crianças:</xhtml:label>
@@ -662,7 +662,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="bcp-idoso"  minOccurs="1" type="xs:integer">									
+						<xs:element name="bcp-idoso"  minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Negligência, violência, maus tratos ou abuso financeiro contra a pessoa  Idosa:</xhtml:label>
@@ -670,7 +670,7 @@
 							</xs:annotation>
 						</xs:element>
 									
-						<xs:element name="bcp-deficiente"  minOccurs="1" type="xs:integer">									
+						<xs:element name="bcp-deficiente"  minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Negligência, violência, maus tratos ou abuso financeiro contra pessoa com deficiência:</xhtml:label>
@@ -678,15 +678,15 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="inscrito-cadunico"  minOccurs="1" type="xs:integer">									
+						<xs:element name="inscrito-cadunico"  minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Desemprego:</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
-						
-						<xs:element name="inscrito-cadunico"  minOccurs="1" type="xs:integer">									
+
+						<xs:element name="inscrito-cadunico"  minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Pessoas com deficiência afastadas do convívio social:</xhtml:label>
@@ -694,7 +694,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="inscrito-cadunico"  minOccurs="1" type="xs:integer">									
+						<xs:element name="inscrito-cadunico"  minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Violência contra mulher:</xhtml:label>
@@ -702,7 +702,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="inscrito-cadunico"  minOccurs="1" type="xs:integer">									
+						<xs:element name="inscrito-cadunico"  minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Famílias ou indivíduos em situação de insegurança alimentar:</xhtml:label>
@@ -710,7 +710,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="inscrito-cadunico"  minOccurs="1" type="xs:integer">									
+						<xs:element name="inscrito-cadunico"  minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Violência urbana:</xhtml:label>
@@ -718,7 +718,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="inscrito-cadunico"  minOccurs="1" type="xs:integer">									
+						<xs:element name="inscrito-cadunico"  minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Outros:</xhtml:label>
@@ -726,7 +726,7 @@
 							</xs:annotation>
 						</xs:element>	
 
-						<xs:element name="inscrito-cadunico"  minOccurs="1" type="xs:integer">									
+						<xs:element name="inscrito-cadunico"  minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Sem Moradia:</xhtml:label>
@@ -734,7 +734,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="inscrito-cadunico"  minOccurs="1" type="xs:integer">									
+						<xs:element name="inscrito-cadunico"  minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Mendicância:</xhtml:label>
@@ -742,7 +742,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="inscrito-cadunico"  minOccurs="1" type="xs:integer">									
+						<xs:element name="inscrito-cadunico"  minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Pessoa em situação de Rua:</xhtml:label>
@@ -750,7 +750,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="inscrito-cadunico"  minOccurs="1" type="xs:integer">									
+						<xs:element name="inscrito-cadunico"  minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Drogadição/ alcoolismo:</xhtml:label>
@@ -758,7 +758,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="inscrito-cadunico"  minOccurs="1" type="xs:integer">									
+						<xs:element name="inscrito-cadunico"  minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Cárcere privado:</xhtml:label>
@@ -766,7 +766,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="inscrito-cadunico"  minOccurs="1" type="xs:integer">									
+						<xs:element name="inscrito-cadunico"  minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Discriminação (ex.: étnica, cultural, gênero, religiosa):</xhtml:label>
@@ -774,7 +774,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="inscrito-cadunico"  minOccurs="1" type="xs:integer">									
+						<xs:element name="inscrito-cadunico"  minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Pessoa sem documentação civil:</xhtml:label>
@@ -782,7 +782,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="inscrito-cadunico"  minOccurs="1" type="xs:integer">									
+						<xs:element name="inscrito-cadunico"  minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Tráfico de seres humanos</xhtml:label>
@@ -790,7 +790,7 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="inscrito-cadunico"  minOccurs="1" type="xs:integer">									
+						<xs:element name="inscrito-cadunico"  minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Tráfico de seres humanos para fins sexuais:</xhtml:label>
@@ -798,23 +798,23 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="inscrito-cadunico"  minOccurs="1" type="xs:integer">									
+						<xs:element name="inscrito-cadunico"  minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Turismo sexual:</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
-						
-						<xs:element name="inscrito-cadunico"  minOccurs="1" type="xs:integer">									
+
+						<xs:element name="inscrito-cadunico"  minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Criança e/ou adolescente fora da escola:</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
-						
-						<xs:element name="inscrito-cadunico"  minOccurs="1" type="xs:integer">									
+
+						<xs:element name="inscrito-cadunico"  minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Total:</xhtml:label>
@@ -826,9 +826,9 @@
 				</xs:complexType>
 
 			</xs:element>
-			
+
 			<xs:element name="encoutroserv" minOccurs="0" maxOccurs="3">
-				
+
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>2. Articulação Interinstitucional/ Participação Popular</xhtml:label>
@@ -836,17 +836,16 @@
 				</xs:annotation>
 
 				<xs:complexType>
-				
 					<xs:sequence>
-						
-						<xs:element name="oriencaminhamento"  minOccurs="1">									
+
+						<xs:element name="oriencaminhamento"  minOccurs="1">
 						
 							<xs:annotation>
 								<xs:appinfo>
 										<xhtml:label>Atividades</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
-								
+
 							<xs:simpleType>
 									<xs:restriction base="xs:string">
 										<xs:enumeration value="Reuniões diversas" />
@@ -855,7 +854,7 @@
 										<xs:enumeration value="Total" /> 
 									</xs:restriction>
 							</xs:simpleType>
-	
+
 						</xs:element>
 							
 						<xs:element name="quantidade-total" minOccurs="1" type="xs:integer">
@@ -865,7 +864,7 @@
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
-						
+
 						<xs:element name="inscritos-cadunico" minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
@@ -873,23 +872,23 @@
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
-	
-						<xs:element name="oriencaminhamento"  minOccurs="1" type="xs:integer">									
+
+						<xs:element name="oriencaminhamento"  minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Nº de Participantes - Usuários:</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
-						</xs:element>			
+						</xs:element>
 
-						<xs:element name="beneficiario-educ"  minOccurs="1" type="xs:integer">									
+						<xs:element name="beneficiario-educ"  minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Nº de Participantes - Profissionais:</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
-	
+
 					</xs:sequence>
 					
 				</xs:complexType>
@@ -905,16 +904,16 @@
 				</xs:annotation>
 
 				<xs:complexType>
-				
+
 					<xs:sequence>
-						<xs:element name="oriencaminhamento"  minOccurs="1">									
+						<xs:element name="oriencaminhamento"  minOccurs="1">
 						
 							<xs:annotation>
 								<xs:appinfo>
 										<xhtml:label>Atividades</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
-								
+
 							<xs:simpleType>
 									<xs:restriction base="xs:string">
 										<xs:enumeration value="Visitas institucionais" />
@@ -922,9 +921,9 @@
 										<xs:enumeration value="Eventos" />
 									</xs:restriction>
 							</xs:simpleType>
-	
+
 						</xs:element>
-							
+
 						<xs:element name="quantidade-total" minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
@@ -940,16 +939,16 @@
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
-	
-						<xs:element name="oriencaminhamento"  minOccurs="1" type="xs:integer">									
+
+						<xs:element name="oriencaminhamento"  minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Rede Socioassistencial - CENTRO POP</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
-						</xs:element>			
+						</xs:element>
 
-						<xs:element name="beneficiario-educ"  minOccurs="1" type="xs:integer">									
+						<xs:element name="beneficiario-educ"  minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Rede Socioassistencial - EAN</xhtml:label>
@@ -957,34 +956,34 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="beneficiario-educ"  minOccurs="1" type="xs:integer">									
+						<xs:element name="beneficiario-educ"  minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Rede Socioassistencial - REDE CONVENIADA</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
-						
-						<xs:element name="beneficiario-educ"  minOccurs="1" type="xs:integer">									
+
+						<xs:element name="beneficiario-educ"  minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Rede Socioassistencial - OUTROS</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
-						</xs:element>	
-																
+						</xs:element>
+
 					</xs:sequence>
 					
 					<xs:sequence>
-					
-						<xs:element name="oriencaminhamento"  minOccurs="1">									
+
+						<xs:element name="oriencaminhamento"  minOccurs="1">
 						
 							<xs:annotation>
 								<xs:appinfo>
 										<xhtml:label>Atividades</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
-								
+
 							<xs:simpleType>
 									<xs:restriction base="xs:string">
 										<xs:enumeration value="Visitas institucionais" />
@@ -992,78 +991,77 @@
 										<xs:enumeration value="Eventos" />
 									</xs:restriction>
 							</xs:simpleType>
-	
-						</xs:element>
-						
-								<xs:element name="beneficiario-educ"  minOccurs="1" type="xs:integer">									
-									<xs:annotation>
-										<xs:appinfo>
-											<xhtml:label>Políticas Intersetoriais - Saúde</xhtml:label>
-										</xs:appinfo>
-									</xs:annotation>
-								</xs:element>
 
-								<xs:element name="beneficiario-educ"  minOccurs="1" type="xs:integer">									
-									<xs:annotation>
-										<xs:appinfo>
-											<xhtml:label>Políticas Intersetoriais - Educação</xhtml:label>
-										</xs:appinfo>
-									</xs:annotation>
-								</xs:element>
-								
-								<xs:element name="beneficiario-educ"  minOccurs="1" type="xs:integer">									
-									<xs:annotation>
-										<xs:appinfo>
-											<xhtml:label>Políticas Intersetoriais - SDE</xhtml:label>
-										</xs:appinfo>
-									</xs:annotation>
-								</xs:element>
-								
-								<xs:element name="beneficiario-educ"  minOccurs="1" type="xs:integer">									
-									<xs:annotation>
-										<xs:appinfo>
-											<xhtml:label>Políticas Intersetoriais - SDH</xhtml:label>
-										</xs:appinfo>
-									</xs:annotation>
-								</xs:element>
-								
-								<xs:element name="beneficiario-educ"  minOccurs="1" type="xs:integer">									
-									<xs:annotation>
-										<xs:appinfo>
-											<xhtml:label>Políticas Intersetoriais - Habitação</xhtml:label>
-										</xs:appinfo>
-									</xs:annotation>
-								</xs:element>
-								
-								<xs:element name="beneficiario-educ"  minOccurs="1" type="xs:integer">									
-									<xs:annotation>
-										<xs:appinfo>
-											<xhtml:label>Políticas Intersetoriais - Esporte</xhtml:label>
-										</xs:appinfo>
-									</xs:annotation>
-								</xs:element>
-								
-								<xs:element name="beneficiario-educ"  minOccurs="1" type="xs:integer">									
-									<xs:annotation>
-										<xs:appinfo>
-											<xhtml:label>Políticas Intersetoriais - Coordenadoria da Mulher</xhtml:label>
-										</xs:appinfo>
-									</xs:annotation>
-								</xs:element>
-								
-								<xs:element name="beneficiario-educ"  minOccurs="1" type="xs:integer">									
-									<xs:annotation>
-										<xs:appinfo>
-											<xhtml:label>Políticas Intersetoriais - OUTROS</xhtml:label>
-										</xs:appinfo>
-									</xs:annotation>
-								</xs:element>
-								
+						</xs:element>
+
+						<xs:element name="beneficiario-educ"  minOccurs="1" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Políticas Intersetoriais - Saúde</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="beneficiario-educ"  minOccurs="1" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Políticas Intersetoriais - Educação</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="beneficiario-educ"  minOccurs="1" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Políticas Intersetoriais - SDE</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="beneficiario-educ"  minOccurs="1" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Políticas Intersetoriais - SDH</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="beneficiario-educ"  minOccurs="1" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Políticas Intersetoriais - Habitação</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="beneficiario-educ"  minOccurs="1" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Políticas Intersetoriais - Esporte</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="beneficiario-educ"  minOccurs="1" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Políticas Intersetoriais - Coordenadoria da Mulher</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="beneficiario-educ"  minOccurs="1" type="xs:integer">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Políticas Intersetoriais - OUTROS</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
 					</xs:sequence>
-					
 				</xs:complexType>
-				
-			</xs:element>	
+
+			</xs:element>
 
 			<xs:element name="encoutroserv" minOccurs="0" maxOccurs="4">
 				
@@ -1076,7 +1074,7 @@
 				<xs:complexType>
 					<xs:sequence>
 					
-						<xs:element name="oriencaminhamento"  minOccurs="1">									
+						<xs:element name="oriencaminhamento"  minOccurs="1">
 							<xs:annotation>
 								<xs:appinfo>
 										<xhtml:label>Atividades</xhtml:label>
@@ -1092,7 +1090,7 @@
 							</xs:simpleType>
 						</xs:element>
 
-						<xs:element name="beneficiario-educ"  minOccurs="1" type="xs:integer">									
+						<xs:element name="beneficiario-educ"  minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Quantidade:</xhtml:label>
@@ -1102,11 +1100,11 @@
 
 					</xs:sequence>
 				</xs:complexType>
-				
+
 			</xs:element>
-				
+
 			<xs:element name="encoutroserv">
-				
+
 				<xs:annotation>
 					<xs:appinfo>
 						<xhtml:label>5.  Observações</xhtml:label>
@@ -1135,17 +1133,17 @@
 						<xs:element name="especoutros" minOccurs="1" type="xs:integer">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Nº do CRESS / CRP:</xhtml:label>
+									<xhtml:label>Nº CRESS / CRP:</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
 
 					</xs:sequence>
-				</xs:complexType>				
-			
-			</xs:element>				
+				</xs:complexType>
+
+			</xs:element>
 
 		</xs:sequence>
-	</xs:complexType>	
-	
+	</xs:complexType>
+
 </xs:schema>
