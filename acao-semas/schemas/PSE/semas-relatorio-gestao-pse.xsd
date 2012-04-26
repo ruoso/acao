@@ -309,7 +309,7 @@
 			
 				<xs:complexType>
                     <xs:sequence>
-						<xs:element name="fildsetAtividadesRealizadasCras"  minOccurs="0">
+						<xs:element name="ativrealizadascras"  minOccurs="0">
 						<xs:annotation>
 							<xs:appinfo>
 								<xhtml:label>Em caso de marcar a opção CRAS - Serviço de Proteção e Atendimento Integral a Família – PAIF: </xhtml:label>
@@ -318,7 +318,7 @@
 						<xs:complexType>
 							<xs:sequence>
 
-								<xs:element name="recepAcolhida" minOccurs="1" type="xs:boolean">
+								<xs:element name="recepacolhida" minOccurs="1" type="xs:boolean">
 									<xs:annotation>
 										<xs:appinfo>
 											<xhtml:label>Recepção e acolhida *</xhtml:label>
@@ -334,7 +334,7 @@
 									</xs:annotation>
 								</xs:element>	
 
-								<xs:element name="acompIndividuos" minOccurs="1" type="xs:boolean">
+								<xs:element name="acompindiv" minOccurs="1" type="xs:boolean">
 									<xs:annotation>
 										<xs:appinfo>
 											<xhtml:label>Acompanhamento de indivíduos *</xhtml:label>
@@ -342,7 +342,7 @@
 									</xs:annotation>
 								</xs:element>	
 
-								<xs:element name="convSocioEducFam" minOccurs="1" type="xs:boolean">
+								<xs:element name="convsocioeducfam" minOccurs="1" type="xs:boolean">
 									<xs:annotation>
 										<xs:appinfo>
 											<xhtml:label>Grupo/oficina de convivência e atividades socioeducativas com famílias *</xhtml:label>
@@ -350,7 +350,7 @@
 									</xs:annotation>
 								</xs:element>	
 
-								<xs:element name="visitasDomic" minOccurs="1" type="xs:boolean">
+								<xs:element name="visdomic" minOccurs="1" type="xs:boolean">
 									<xs:annotation>
 										<xs:appinfo>
 											<xhtml:label>Visitas Domiciliares *</xhtml:label>
