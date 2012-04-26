@@ -32,6 +32,22 @@
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
+			
+		   <xs:element name="tipoDeDados" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Tipo</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sindicância" />
+						<xs:enumeration value="Processo Administrativo" />
+						<xs:enumeration value="Processo Administrativo Disciplinar" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
             <xs:element name="instituicao" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
@@ -84,13 +100,6 @@
 				</xs:annotation>
             </xs:element>
 
-                <xs:element name="testemunhas" minOccurs="0" type="xs:string">
-	                <xs:annotation>
-		                <xs:appinfo>
-			                <xhtml:label>Testemunhas</xhtml:label>
-		                </xs:appinfo>
-	                </xs:annotation>
-                </xs:element>
 
 			    <xs:element name="rg" minOccurs="0">
 				    <xs:annotation>
@@ -144,7 +153,24 @@
 					    </xs:restriction>
 				    </xs:simpleType>
 			    </xs:element>
-
+                <xs:element name="testemunhas" maxOccurs="10">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Testemunhas</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+		                <xs:element name="testemunnha" minOccurs="0"  type="xs:string">
+			                <xs:annotation>
+				                <xs:appinfo>
+					                <xhtml:label>Testemunha com RG e Endereço</xhtml:label>
+				                </xs:appinfo>
+			                </xs:annotation>
+                        </xs:element>
+	                </xs:sequence>
+                </xs:complexType>
+            </xs:element>			
 
 		</xs:sequence>
 	</xs:complexType>
