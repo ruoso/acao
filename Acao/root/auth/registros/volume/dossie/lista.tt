@@ -160,25 +160,38 @@
     <legend>Buscar Prontuários</legend>
      <div>
       <div>
+        <div style="float:right">
+        [% statistics = c.model('Dossie').boxDossieStatistics(id_volume)  %]
+            <table>
+            <thead>
+                <tr>
+                    <th>Abertos</th>
+                    <th >Fechados/Arquivados</th>
+                    <th>Total</th>
+            </tr>
+            </thead>
+                <tr>                   
+                    <td style="text-align:center !important">[% statistics.abertos  %]</td>             
+                    <td style="text-align:center !important">[% statistics.fechados  %]</td>
+                    <td style="text-align:center !important">[% statistics.total  %]</td>
+                </tr>    
+
+            </table>
+        </div>
        <input type="hidden" name="numero_campos" value="[% numero_campos %]" />
        <div>
         <label> Nome do prontuário:
         <input type="text" name="nome_prontuario" id="nome_prontuario" value="[% c.req.param('nome_prontuario') | html %]" /></label>
+        <input type="checkbox" name="dossiesAbertos"  [% dossiesAbertos %]> Abertos |
+        <input type="checkbox" name="dossiesFechados" [% dossiesFechados %] > Fechados/Arquivados 
          [% IF numero_colunas > 0 %]
-
-          <input type="submit" name="submit_form" id="submit_form_2" value="Pré-visualizar CSV">
+              <input type="submit" name="submit_form" id="submit_form_2" value="Pré-visualizar CSV">
           [% ELSE %]
-          <input type="submit" name="submit_form" id="submit_form_2" value="Pesquisar" class="defaultEnter" >
+              <input type="submit" name="submit_form" id="submit_form_2" value="Pesquisar" class="defaultEnter" >
           [% END %]
-         [% IF c.req.param('submit_form') && (numero_colunas > 0)%]
+        [% IF c.req.param('submit_form') && (numero_colunas > 0)%]
           <input type="submit" name="gerarCSV" value="Gerar CSV" />
         [% END %]
-         
-         
-
-
-
-
 
        </div>
        <div>

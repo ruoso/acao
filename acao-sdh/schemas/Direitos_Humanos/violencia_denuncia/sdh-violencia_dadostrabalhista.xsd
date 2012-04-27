@@ -1,0 +1,198 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-violencia_dadostrabalhista.xsd"
+    xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-violencia_dadostrabalhista.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="dadostrabalhista" type="dadostrabalhista">
+		<xs:annotation>
+			<xs:appinfo>
+				<xhtml:label>12.DADOS TRABALHISTAS</xhtml:label>
+                <class:classificacoes>
+                    <class:classificacao>cn=Geral,cn=Direitos Humanos</class:classificacao>
+                </class:classificacoes>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="dadostrabalhista">
+		<xs:sequence>
+
+           <xs:element name="nrProcesso" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Nº do processo</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+            <xs:element name="comarca" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Comarca</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="vara" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Vara</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="audienciaJaRealizada" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Foi realizada alguma audiência</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+            <xs:element name="datasAudiencias" maxOccurs="10">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Datas das audiências</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+		                <xs:element name="data" minOccurs="0"  type="xs:date">
+			                <xs:annotation>
+				                <xs:appinfo>
+					                <xhtml:label>Datas das audiências</xhtml:label>
+				                </xs:appinfo>
+			                </xs:annotation>
+                        </xs:element>
+	                </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+			<xs:element name="observacoes" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Observações</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+            </xs:element>
+            <xs:element name="reclamante" minOccurs="0">
+				    <xs:annotation>
+					    <xs:appinfo>
+						    <xhtml:label>Reclamante</xhtml:label>
+					    </xs:appinfo>
+				    </xs:annotation>
+				    <xs:simpleType>
+					    <xs:restriction base="xs:string">
+						    <xs:maxLength value="255" />
+					    </xs:restriction>
+				    </xs:simpleType>
+			    </xs:element>
+
+			    <xs:element name="reclamado" minOccurs="0">
+				    <xs:annotation>
+					    <xs:appinfo>
+						    <xhtml:label>Reclamado</xhtml:label>
+					    </xs:appinfo>
+				    </xs:annotation>
+				    <xs:simpleType>
+					    <xs:restriction base="xs:string">
+						    <xs:maxLength value="255" />
+					    </xs:restriction>
+				    </xs:simpleType>
+			    </xs:element>
+
+			    <xs:element name="rg" minOccurs="0">
+				    <xs:annotation>
+					    <xs:appinfo>
+						    <xhtml:label>RG</xhtml:label>
+					    </xs:appinfo>
+				    </xs:annotation>
+				    <xs:simpleType>
+					    <xs:restriction base="xs:string">
+						    <xs:maxLength value="255" />
+					    </xs:restriction>
+				    </xs:simpleType>
+			    </xs:element>
+
+			    <xs:element name="endereco" minOccurs="0">
+				    <xs:annotation>
+					    <xs:appinfo>
+						    <xhtml:label>Endereço</xhtml:label>
+					    </xs:appinfo>
+				    </xs:annotation>
+				    <xs:simpleType>
+					    <xs:restriction base="xs:string">
+						    <xs:maxLength value="255" />
+					    </xs:restriction>
+				    </xs:simpleType>
+			    </xs:element>
+
+			    <xs:element name="assitJuridicamente" minOccurs="0">
+				    <xs:annotation>
+					    <xs:appinfo>
+						    <xhtml:label>Assitido juridicamente</xhtml:label>
+					    </xs:appinfo>
+				    </xs:annotation>
+				    <xs:simpleType>
+					    <xs:restriction base="xs:string">
+						    <xs:enumeration value="Sim" />
+						    <xs:enumeration value="Não" />
+					    </xs:restriction>
+				    </xs:simpleType>
+			    </xs:element>
+
+			    <xs:element name="quemAssJuridicamente" minOccurs="0">
+				    <xs:annotation>
+					    <xs:appinfo>
+						    <xhtml:label>Quem assessora juridicamente</xhtml:label>
+					    </xs:appinfo>
+				    </xs:annotation>
+				    <xs:simpleType>
+					    <xs:restriction base="xs:string">
+						    <xs:maxLength value="255" />
+					    </xs:restriction>
+				    </xs:simpleType>
+			    </xs:element>
+
+                <xs:element name="testemunhas" maxOccurs="10">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Testemunhas</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+		                <xs:element name="testemunnha" minOccurs="0"  type="xs:string">
+			                <xs:annotation>
+				                <xs:appinfo>
+					                <xhtml:label>Testemunha com RG e Endereço</xhtml:label>
+				                </xs:appinfo>
+			                </xs:annotation>
+                        </xs:element>
+	                </xs:sequence>
+                </xs:complexType>
+            </xs:element>			
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

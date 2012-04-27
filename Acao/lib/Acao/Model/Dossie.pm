@@ -127,7 +127,18 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
       map { 'declare namespace ' . $_ . '="' . $ns{$_} . '";' } keys %ns;
 
     my @where;
-
+    
+    # Filtrando Prontuários Abertos/fechados
+    my $dossieFechadoAberto;
+    
+    if (($args->{pesquisa}{dossiesAbertos} eq 'on' && $args->{pesquisa}{dossiesFechados} eq 'on') || ($args->{pesquisa}{dossiesAbertos} eq '' && $args->{pesquisa}{dossiesFechados} eq '')) {
+        $dossieFechadoAberto =  '';
+    } elsif ($args->{pesquisa}{dossiesAbertos} eq 'on'){
+        $dossieFechadoAberto = ' [ns:estado/text() eq \'aberto\']  ';    
+    } else {    
+        $dossieFechadoAberto = ' [(ns:estado/text() eq \'fechado\') or (ns:estado/text() eq \'arquivado\')]  '; 
+    }
+    ####### 
     if ( $args->{pesquisa}{nome_prontuario} ) {
         push @where, '[contains(upper-case(ns:nome/text()),upper-case('
           . $self->quote_valor( $args->{pesquisa}{nome_prontuario} ) . '))]';
@@ -216,16 +227,16 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
 
     
 
-   
+  
     my $list = $declarens
              . 'subsequence('
              . 'for $x in collection("'
              . $args->{id_volume}
              . '")/ns:dossie[ns:autorizacoes['
              . $herdar . ']] '
-             . $where
+             . $where .$dossieFechadoAberto
              . ' let $volume := collection("volume")/vol:volume[vol:collection = "'.$args->{id_volume}.'"]/vol:autorizacoes/author:autorizacao '
-             . ' let $dossie := collection("'.$args->{id_volume}.'")/ns:dossie[ns:controle = $x/ns:controle]/ns:autorizacoes/author:autorizacao '
+             . ' let $dossie := collection("'.$args->{id_volume}.'")/ns:dossie[ns:controle = $x/ns:controle]/ns:autorizacoes/author:autorizacao ' 
              . ' return '
 
              . ' let $alterar := if ($x/ns:autorizacoes/@herdar = "1") then ('
@@ -246,9 +257,8 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
              . ' order by $x/ns:nome ascending '
              . $return;
 
-    
     # contruindo o retorno para gerar o CSV - Tratamento e definiação das colunas do CSV
-    if ($args->{pesquisa}{gerarCSV}) {
+     if ($args->{pesquisa}{gerarCSV}) {
          my @csvData;
          my @label_colunas;
 	 
@@ -282,17 +292,20 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
     my $count = $declarens
               #. ' count( for $x in collection("'.$args->{id_volume}.'")/ns:dossie[ns:autorizacoes/author:autorizacao[('.$grupos.') and @role="listar"]] '
               . ' count( for $x in collection("'.$args->{id_volume}.'")/ns:dossie '
-              . $where
+              . $where.$dossieFechadoAberto
               . ' return "" )';
+              
+             
 
 
-   
+
 
     return {
         list     => $list,
         count    => $count,
         nsprefix => \%prefix,
         xpprefix => $xpprefix
+
     };
 };
 
@@ -741,6 +754,42 @@ sub store_altera_dossie {
     $self->update_autorizacoes_dos($args->{id_volume}, $args->{controle}, $self->desserialize_autorizacoes($args->{autorizacoes}));
 }
 
+
+sub boxDossieStatistics {
+    my ( $self, $id_volume ) = @_;
+    
+    my $declarens = 'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";'
+                  .'declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";'
+                  .'declare namespace vol="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd";'
+                  .'declare namespace cl="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";'
+                  .'declare namespace author="http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd";';
+    my $where = '';
+   
+    my $count = $declarens
+              . ' count( for $x in collection("'.$id_volume.'")/ns:dossie '
+              . $where
+              . ' return "" )';
+   $self->sedna->begin;
+   $self->sedna->execute($count); 
+   my $total = $self->sedna->get_item();
+   $self->sedna->commit;
+        
+    # Contagem de prontuários FECHADOS para construção de Caixa com informações estatísticas e filtros por prontuários fechados/abertos
+   my $count_abertos = $declarens
+              . ' count( for $x in collection("'.$id_volume.'")/ns:dossie '
+              . $where . 'where $x/ns:estado/text() eq \'aberto\'  '
+              . ' return "" )';
+
+  $self->sedna->begin;
+  $self->sedna->execute($count_abertos);  
+  my $abertos = $self->sedna->get_item();          
+  $self->sedna->commit;
+
+  return { total   => $total,
+          abertos => $abertos,
+          fechados  => $total - $abertos
+          };
+}
 =head1 COPYRIGHT AND LICENSING
 
 Copyright 2010 - Prefeitura de Fortaleza. Este software é licenciado

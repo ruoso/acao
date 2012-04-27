@@ -28,14 +28,12 @@ use warnings;
 
 sub listaBairros {
 	my ($self, $dsc_bairro ) = @_;
-
 	$dsc_bairro = uc($dsc_bairro);
 	
-
 	my @bairros;
-
+	my @regional;
 	my @result = $self->dbic->resultset('Bairros')->search(
-		{ nome => { like => '%'.$dsc_bairro.'%' } },
+		{ nome => { ilike => '%'.$dsc_bairro.'%' } },
 		{ columns => ['nome']},
 		{ rows => 30},
 	);

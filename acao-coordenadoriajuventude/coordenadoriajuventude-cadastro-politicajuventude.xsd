@@ -52,13 +52,7 @@
 				</xs:annotation>
 				<xs:simpleType>
 					<xs:restriction base="xs:string">
-						<xs:enumeration value="POPFOR"/>
-						<xs:enumeration value="PROJOVEM URBANO"/>
-						<xs:enumeration value="ADOLESCENTE CIDADÃO"/>
-						<xs:enumeration value="CIDADE GRAFITE"/>
-						<xs:enumeration value="CUCA BARRA"/>
-						<xs:enumeration value="JUVENTUDE, CULTURA E MOVIMENTO"/>
-						<xs:enumeration value="CIDADE GRAFITE"/>
+						<xs:maxLength value="255" />
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
@@ -133,7 +127,7 @@
 					</xs:appinfo>
 					<xsdext:extensions>
 						<xsdext:engine>autoComplete</xsdext:engine>
-						<xsdext:service>/logradouros</xsdext:service>
+						<xsdext:service>/enderecos</xsdext:service>
 					</xsdext:extensions>
 				</xs:annotation>
 				<xs:simpleType>

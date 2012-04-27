@@ -180,6 +180,7 @@ function getQtdNodeByName(xmlNode,numType,tagName) {
 
 function static_type(type) {
     if ( type == "xs:string" ||
+         type == "cadastroCPF" ||
          type == "xs:float" ||
          type == "xs:integer" ||
          type == "xs:date" ||
@@ -420,7 +421,7 @@ function generateXmlFromComplexTypeNodeNoRepeat(odoc, namespace, tagRaiz, xmlNod
 function generateFormFromSimpleTypeNode(tagRaiz, xmlNode, namePattern, name, label, minOccurs, engine, service) {
 
     var restrictionNode = getNodeByTagName(xmlNode, 'xs:restriction');
-
+    var nameBase = restrictionNode.getAttribute('base');
     for (var i = 0; i < restrictionNode.childNodes.length; i++) {
           if (restrictionNode.childNodes[i].nodeType == 1 && restrictionNode.childNodes[i].nodeName == 'xs:pattern' ) {
             return generateFormFromSimpleTypeNodeRestrictionPattern(tagRaiz, xmlNode, namePattern, name, label, minOccurs,restrictionNode.childNodes[i].getAttribute('value') );
@@ -433,7 +434,8 @@ function generateFormFromSimpleTypeNode(tagRaiz, xmlNode, namePattern, name, lab
                     valorPadrao;
                 }
             }
-            return generateFormFromSimpleTypeNodeRestrictionMaxLength(tagRaiz, xmlNode, namePattern, name, label, minOccurs,restrictionNode.childNodes[i].getAttribute('value'), engine, service, valorPadrao );
+            return generateFormFromSimpleTypeNodeRestrictionMaxLength(tagRaiz, xmlNode, namePattern, name, label, minOccurs,restrictionNode.childNodes[i].getAttribute('value'), engine, service, valorPadrao, nameBase );
+
         } else if (restrictionNode.childNodes[i].nodeType == 1 && restrictionNode.childNodes[i].nodeName == 'xs:fractionDigits'  ) {
             return createFieldDecimal(namePattern, name, label);
         }
@@ -498,7 +500,7 @@ function generateFormFromSimpleTypeNodeRestrictionPattern(tagRaiz, xmlNode, name
     return frag;
 }
 
-function generateFormFromSimpleTypeNodeRestrictionMaxLength(tagRaiz, xmlNode, namePattern, name, label, minOccurs, maxLength, engine, service, valorPadrao){
+function generateFormFromSimpleTypeNodeRestrictionMaxLength(tagRaiz, xmlNode, namePattern, name, label, minOccurs, maxLength, engine, service, valorPadrao, nameBase){
     var inputName = namePattern + "__" + name;
 
 
@@ -509,13 +511,19 @@ function generateFormFromSimpleTypeNodeRestrictionMaxLength(tagRaiz, xmlNode, na
     var dt = document.createElement('dt');
     var dd = document.createElement('dd');
     dt.appendChild(newLabel);
-    field = createInput('text' ,inputName, inputName, maxLength, valorPadrao);
+    
+    if(nameBase == 'xs:string'){
+        field = createInput('text' ,inputName, inputName, maxLength, valorPadrao);
+    }
+   else {
+        field = createFieldInteger(inputName, minOccurs, maxLength);
+   }
 
     if (engine) {
 	if (field.getAttribute('class')) {
-		 field.setAttribute('class', field.getAttribute('class')+ ' '+ engine)
+		 field.setAttribute('class', field.getAttribute('class')+ ' '+ engine);
 	} else {
-		 field.setAttribute('class', engine)
+		 field.setAttribute('class', engine);
 	}
         field.setAttribute('rel', service);
     }
@@ -544,7 +552,7 @@ function generateXmlFromSimpleTypeNode(odoc, namespace, tagRaiz, xmlNode, namePa
 	        var node = xmlNode.childNodes[i];
             if (node.nodeType == 1) {
                 if (node.nodeName == "xs:restriction" &&
-                    node.getAttribute('base') == "xs:string" || node.getAttribute('base') == "xs:decimal") {
+                    node.getAttribute('base') == "xs:string" || node.getAttribute('base') == "xs:decimal" || node.getAttribute('base') == "xs:integer" ) {
                     restriction = node;
                 } else {
                     throw "Unkown simple type";
@@ -561,6 +569,8 @@ function generateXmlFromSimpleTypeNode(odoc, namespace, tagRaiz, xmlNode, namePa
         if (rdecl.length == 0) {
             throw "Invalid restriction declaration, need restriction type.";
         }
+
+
 
         var valid = 0;
 
@@ -637,7 +647,6 @@ function generateXmlFromSimpleTextNode(odoc, namespace, tagRaiz, xmlNode, namePa
     if (minOccurs == null) {minOccurs = 1}
     var inputName = namePattern + "__" + name;
     var valueField = getById(inputName).value;
-
     if ( minOccurs > 0 && valueField == '' ) {
         throw "Campo obrigatório";
     } else if ( valueField != '' ) {
@@ -764,9 +773,9 @@ function createFieldFloat(name, minOccurs) {
     return field;
 }
 
-function createFieldInteger(name, minOccurs) {
+function createFieldInteger(name, minOccurs, maxLength) {
     var field;
-    field = createInput('text', name);
+    field = createInput('text', name, name, maxLength);
     field.setAttribute('class','xsdForm__integer');
     if (minOccurs > 0) {
         field.setAttribute('class', 'xsdForm__integer xsdForm__mandatory')
@@ -836,12 +845,14 @@ function generateFormField(tagRaiz, xmlNode, type, namePattern, minOccurs, maxOc
 
     var name = getValueAttributeByName(xmlNode, "name");
     var inputName = namePattern + "__" + name;
-
     var field;
+
     if ( type == "xs:string" ) {
         field = createFieldString(inputName, minOccurs, maxOccurs);
     } else if ( type == "xs:float" ) {
         field = createFieldFloat(inputName, minOccurs, maxOccurs);
+    } else if ( type == "cadastroCPF" ) {
+        field = createInput('text', inputName, inputName, '255', '[0-9]+');
     } else if ( type == "xs:decimal" ) {
         field = createFieldDecimal(inputName, minOccurs, maxOccurs);
     } else if ( type == "xs:integer" ) {
@@ -1064,6 +1075,8 @@ function validateValue(type, value) {
         return validateDate(value);
     } else if (type == "xs:dateTime") {
         return validateDateTime(value);
+    } else if (type == "cadastroCPF") {
+        return verificaCPF(value);
     } else {
         return true;
     }

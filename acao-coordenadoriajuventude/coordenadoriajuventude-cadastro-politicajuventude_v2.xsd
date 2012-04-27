@@ -1,0 +1,631 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml" 
+	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
+	xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/coordenadoriajuventude-cadastro-politicajuventude_v2.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/coordenadoriajuventude-cadastro-politicajuventude_v2.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="formPoliticaJuventude" type="formPoliticaJuventude">
+		<xs:annotation>
+			<xs:appinfo>
+				<xhtml:label>FICHA DE CADASTRO ÚNICO DA POLÍTICA DE JUVENTUDE
+				</xhtml:label>
+				<class:classificacoes>
+                    <class:classificacao>cn=Juventude</class:classificacao>
+				</class:classificacoes>
+				<idx:index>
+				    <idx:hint key="pessoa.nome" xpath="formPoliticaJuventude/nome" />
+				    <idx:hint key="pessoa.nome" xpath="formPoliticaJuventude/nomeMae" />
+				</idx:index>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="formPoliticaJuventude">
+		<xs:sequence>
+			<xs:element name="data" minOccurs="0" type="xs:date">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Data</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ciaNr" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Cia N°</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="projeto" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Projeto</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="POPFOR"/>
+						<xs:enumeration value="ADOLESCENTE CIDADÃO"/>
+						<xs:enumeration value="PROJOVEM URBANO"/>
+						<xs:enumeration value="PROJOVEM ADOLESCENTE"/>
+						<xs:enumeration value="CREDJOVEM"/>
+						<xs:enumeration value="PROINFOR"/>
+						<xs:enumeration value="CUCA"/>
+						<xs:enumeration value="JUVENTUDE, CULTURA E MOVIMENTO"/>
+						<xs:enumeration value="PRAÇAS DA JUVENTUDE"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="nucleo" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Núcleo</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="nome" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Nome</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="cpf" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>CPF</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+						<xs:pattern value="[0-9]+" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="dataNascimento" minOccurs="0" type="xs:date">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Data de nascimento</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="sexo" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Sexo</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Masculino" />
+						<xs:enumeration value="Feminino" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="telefone" minOccurs="0" type="xs:integer" >
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Telefone</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="endereco" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Endereço</xhtml:label>
+					</xs:appinfo>
+					<xsdext:extensions>
+						<xsdext:engine>autoComplete</xsdext:engine>
+						<xsdext:service>/logradouros</xsdext:service>
+					</xsdext:extensions>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="bairro" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Bairro</xhtml:label>
+					</xs:appinfo>
+					<xsdext:extensions>
+						<xsdext:engine>autoComplete</xsdext:engine>
+						<xsdext:service>/bairros</xsdext:service>
+					</xsdext:extensions>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="regional" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Regional</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="SER 1" />
+						<xs:enumeration value="SER 2" />
+						<xs:enumeration value="SER 3" />
+						<xs:enumeration value="SER 4" />
+						<xs:enumeration value="SER 5" />
+						<xs:enumeration value="SER 6" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="complemento" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Complemento</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="cep" minOccurs="0" type="xs:integer">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>CEP</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nis" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Número NIS</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="nomeMae" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Nome da Mãe</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="informacaoBeneficio" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>I-INFORMAÇÕES SOBRE O BENEFICIÁRIO</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="situacoaEscolar" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>01. Qual a sua situação escolar?</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="a) Estou estudando atualmente" />
+									<xs:enumeration value="b) Já estudei até a série desejada/conclui meus estudos" />
+									<xs:enumeration value="c) Já estudei, mas abandonei a escola" />
+									<xs:enumeration value="d) Nunca estudei" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="seResponderVaParaQtres" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Se responder "d" vá para Q:3</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="serieEstaCursandoOuCursou" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>02. Qual a série que você estar cursando ou já
+										cursou?</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration	value="a) Da 1° à 4° série do ensino Fundamental(antigo primário)" />
+									<xs:enumeration	value="b) Da 5° à 8° série do ensino fundamenal(antigo ginásio)" />
+									<xs:enumeration value="c) Ensino médio(antigo 2°grau)incompleto" />
+									<xs:enumeration value="d) Ensino médio completo" />
+									<xs:enumeration value="e) Ensino superior incompleto" />
+									<xs:enumeration value="f) Ensino superior completo" />
+									<xs:enumeration value="g) Pós-graduação" />
+									<xs:enumeration value="h) Não sei" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="voceSeConsideraQualCorRaca" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>03. Você se considera de qual cor ou raça?
+									</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="a) Branca" />
+									<xs:enumeration value="b) Preta" />
+									<xs:enumeration value="c) Amarela" />
+									<xs:enumeration value="d) Parda" />
+									<xs:enumeration value="e) Indígena" />
+									<xs:enumeration value="f) Ignorada" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="voceTemAlgumTipoDeficiencia" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>04. Você tem algum tipo de deficiência?
+									</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="a) Sim, física" />
+									<xs:enumeration value="b) Sim, visual" />
+									<xs:enumeration value="c) Sim, auditiva" />
+									<xs:enumeration value="d) sim, mental" />
+									<xs:enumeration value="e) Sim, mútipla(mas de uma deficiência)" />
+									<xs:enumeration value="f) Não" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="trabalhoRenda" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>II- TRABALHO E RENDA</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="atualmenteTemOcupacao" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>5. Atualmente você tem uma ocupação?</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="a) Sim,com carteira assinada" />
+									<xs:enumeration value="b) Sim,sem carteira assinada" />
+									<xs:enumeration value="c) Sim,sou funcionário público" />
+									<xs:enumeration value="d) Não,mas ja trabalhei de carteira assinada" />
+									<xs:enumeration value="e) Não,e nunca trabalhei de carteira assinada" />
+									<xs:enumeration value="f) Não,e nunca tive um trabalho" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="seResponderItemabcVaParaqSete" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Se responder item a,b,c vá para Q:7</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+
+
+						<xs:element name="procurouTrabalhoUltimosDias" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>6. Você procurou trabalho nos ultimos dias?
+									</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="a) Sim,procurou o SINE" />
+									<xs:enumeration	value="b) Sim,consultou agência de emprego e/ou sindicato" />
+									<xs:enumeration	value="c) Sim,consultou empresas ou nelas se cadastrou" />
+									<xs:enumeration value="d) Sim,consultou parentes e amigos" />
+									<xs:enumeration value="e) Sim,fez concurso" />
+									<xs:enumeration value="f) Sim,consultou políticos" />
+									<xs:enumeration value="g) Sim,tentou abrir um negócio próprio" />
+									<xs:enumeration value="h) Sim,outros" />
+									<xs:enumeration value="i) Não" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+
+						<xs:element name="rendaFamiliar" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>7. Somando a sua renda com a das pessoas que moram
+										com voce.Qual é a renda familiar?</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="a) Até meio salário mínimo" />
+									<xs:enumeration value="b) De meio até 1 salário mínimo" />
+									<xs:enumeration value="c) Mais de 1 até 2 salários mínimos" />
+									<xs:enumeration value="d) Mais de 2 ayé 3 salários mínimos" />
+									<xs:enumeration value="e) Mais de 3 até 5 salários mínimos" />
+									<xs:enumeration value="f) Mais de 5 salários mínimos" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="qtdePessoasFamilia" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>8. Quantas pessoas fazem parte da sua família
+										incluindo você?</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="a) De 1 a 3 pessoas" />
+									<xs:enumeration value="b) De 4 a 6 pessoas" />
+									<xs:enumeration value="c) De 7 a 9 pessoas" />
+									<xs:enumeration value="d) De 10 a 12 pessoas (Mais de 12 pessoas)" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="sexualidade">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>III-SEXUALIDADE</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="estadoCivil" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>9. Qual o seu estado civil?</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="a) Solteiro(a)" />
+									<xs:enumeration value="b) Casado(a)" />
+									<xs:enumeration value="c) Desquitado" />
+									<xs:enumeration value="d) Viuvo" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="primeiraRelacaoSexual" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>10. Com quantos anos você teve sua primeira relação sexual?</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="a) Antes de 10 anos" />
+									<xs:enumeration value="b) De 10 a 14 anos" />
+									<xs:enumeration value="c) Com 15 anos" />
+									<xs:enumeration value="d) Com 16 anos" />
+									<xs:enumeration value="e) Com 17 anos" />
+									<xs:enumeration value="f) Com 18 anos" />
+									<xs:enumeration value="g) Com 19 anos" />
+									<xs:enumeration value="h) De 20 a 24 anos" />
+									<xs:enumeration value="i) De 25 a 29 anos" />
+									<xs:enumeration value="j) Nunca tive relação sexual" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="seResponderJVaParaQTreze">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Se responder ítem "j" vá pra Q:13</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="quantiadadeFilhos" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>11. Quantos(as) filhos(as) você tem?
+												</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="a) Um(a)" />
+												<xs:enumeration value="b) Dois(duas)" />
+												<xs:enumeration value="c) Três" />
+												<xs:enumeration value="d) Quatro ou mais" />
+												<xs:enumeration value="e) Não tenho filhos" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+
+						<xs:element name="SeResponderEVaParaQTreze">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Se responder ítem "e" vá pra Q:13</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="planejouFilhos" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>12. Você planejou ter o primeiro filho?
+												</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="a) Sim,foi planejado" />
+												<xs:enumeration value="b) Não,foi sem querer" />
+												<xs:enumeration value="c) Não,fui forçada" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="participacaoComunitaria">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>IV-PARTICIPAÇÃO COMUNITÁRIA E SOCIAL</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="pergunta">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>13. Você participa de algum movimento
+										social,político,esportivo,artístico e/ou cultural ?(Este
+										quadro admite múltipla marcação)</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="grupoEsportivo" type="xs:boolean" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Grupo esportivo (time de futebol,torcida
+													organizada</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="grupoReligioso" type="xs:boolean" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Grupo religioso</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+									<xs:element name="cultural" type="xs:boolean" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Cultural(capoeira,quadrilha junina,dança)
+												</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="gremioMovimentoEstudantil" type="xs:boolean" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Grêmio/Movimento estudantil</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="grupoDeDefesa" type="xs:boolean" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Grupo de defesa do meio ambiente</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="politicoPartidario" type="xs:boolean" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Político/Partidário</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="organizacaoDeMulheres" type="xs:boolean" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Organização de mulheres/Movimento Feminista</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="organizacaoLGBTTT" type="xs:boolean" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Organização LGBTTT</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="movimentoNegro" type="xs:boolean" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Movimento negro</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="associacaoDeBairro" type="xs:boolean" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Associação de bairro/Movimento Popular
+												</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="movimentoSindical" type="xs:boolean" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Movimento sindical</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="nenhum" type="xs:boolean" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Nenhum</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
+

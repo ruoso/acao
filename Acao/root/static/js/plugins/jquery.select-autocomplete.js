@@ -20,7 +20,7 @@ jQuery.fn.select_autocomplete = function() {
     $(select).after(input);
 
     //make the input box into an autocomplete for the select items
-    $(input).autocomplete(items, {      
+    $(input).autocomplete(items, {   
       data: items,  
       minChars: 0,
       width: 310,

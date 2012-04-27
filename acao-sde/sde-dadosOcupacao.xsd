@@ -1,0 +1,208 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://schemas.fortaleza.ce.gov.br/acao/sde-dadosOcupacao.xsd"
+    xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+    xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
+    xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
+    xmlns:xhtml="http://www.w3.org/1999/xhtml"
+    targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sde-dadosOcupacao.xsd"
+    elementFormDefault="qualified">
+
+    <xs:element name="dadosOcupacao" type="dadosOcupacao">
+        <xs:annotation>
+            <xs:appinfo>
+                <xhtml:label>DADOS OCUPAÇÃO</xhtml:label>
+                <class:classificacoes>
+                    <class:classificacao>cn=Desenvolvimento Econômico</class:classificacao>
+                </class:classificacoes>
+                <idx:index>
+
+                </idx:index>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
+
+    <xs:complexType name="dadosOcupacao">
+        <xs:sequence>
+			    <xs:element name="dt" minOccurs="0" type="xs:date">
+				    <xs:annotation>
+					    <xs:appinfo>
+						    <xhtml:label>Data</xhtml:label>
+					    </xs:appinfo>
+				    </xs:annotation>
+			    </xs:element>
+		        <xs:element name="nomeEmprendimento" minOccurs="0">
+		            <xs:annotation>
+		                <xs:appinfo>
+		                    <xhtml:label>Nome do empreendimento</xhtml:label>
+		                </xs:appinfo>
+		            </xs:annotation>
+		            <xs:simpleType>
+		                <xs:restriction base="xs:string">
+		                    <xs:maxLength value="255"/>
+		                </xs:restriction>
+		            </xs:simpleType>
+		        </xs:element>
+				<xs:element name="logradouro"  minOccurs="0" maxOccurs="10">
+					<xs:annotation>
+						<xs:appinfo>
+							<xhtml:label>Logradouro</xhtml:label>
+						</xs:appinfo>
+			            <xsdext:extensions>
+							<xsdext:engine>autoComplete</xsdext:engine>
+				            <xsdext:service>/enderecos</xsdext:service>
+			            </xsdext:extensions>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="255" />
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+		        <xs:element name="nr" minOccurs="0">
+		            <xs:annotation>
+		                <xs:appinfo>
+		                    <xhtml:label>Nº</xhtml:label>
+		                </xs:appinfo>
+		            </xs:annotation>
+		            <xs:simpleType>
+		                <xs:restriction base="xs:string">
+		                    <xs:maxLength value="255"/>
+		                </xs:restriction>
+		            </xs:simpleType>
+		        </xs:element>
+		        <xs:element name="complemento" minOccurs="0">
+		            <xs:annotation>
+		                <xs:appinfo>
+		                    <xhtml:label>Complemento</xhtml:label>
+		                </xs:appinfo>
+		            </xs:annotation>
+		            <xs:simpleType>
+		                <xs:restriction base="xs:string">
+		                    <xs:maxLength value="255"/>
+		                </xs:restriction>
+		            </xs:simpleType>
+		        </xs:element>
+				<xs:element name="bairro"  minOccurs="0" maxOccurs="10">
+					<xs:annotation>
+						<xs:appinfo>
+							<xhtml:label>Bairro</xhtml:label>
+						</xs:appinfo>
+						<xsdext:extensions>
+							<xsdext:engine>autoComplete</xsdext:engine>
+							<xsdext:service>/bairros</xsdext:service>
+						</xsdext:extensions>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="255" />
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="setorEconomico"  minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<xhtml:label>Setor econômico</xhtml:label>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Indústria" />
+						<xs:enumeration value="Comércio" />
+						<xs:enumeration value="Serviço" />
+                        <xs:enumeration value="Agricultura urbana" />
+                        <xs:enumeration value="Piscicultura" />
+					</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+		        <xs:element name="tpServiço" minOccurs="0">
+		            <xs:annotation>
+		                <xs:appinfo>
+		                    <xhtml:label>Especifique o serviço</xhtml:label>
+		                </xs:appinfo>
+		            </xs:annotation>
+		            <xs:simpleType>
+		                <xs:restriction base="xs:string">
+		                    <xs:maxLength value="255"/>
+		                </xs:restriction>
+		            </xs:simpleType>
+		        </xs:element>
+		        <xs:element name="tpAtividade" minOccurs="0">
+		            <xs:annotation>
+		                <xs:appinfo>
+		                    <xhtml:label>Tipo atividade</xhtml:label>
+		                </xs:appinfo>
+		            </xs:annotation>
+		            <xs:simpleType>
+		                <xs:restriction base="xs:string">
+		                    <xs:maxLength value="255"/>
+		                </xs:restriction>
+		            </xs:simpleType>
+		        </xs:element>
+				<xs:element name="tpLocal"  minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<xhtml:label>Tipo de local</xhtml:label>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Residência" />
+						<xs:enumeration value="Sem lugar fixo" />
+						<xs:enumeration value="Outros" />
+					</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+		        <xs:element name="outroLocal" minOccurs="0">
+		            <xs:annotation>
+		                <xs:appinfo>
+		                    <xhtml:label>Especifique outro local</xhtml:label>
+		                </xs:appinfo>
+		            </xs:annotation>
+		            <xs:simpleType>
+		                <xs:restriction base="xs:string">
+		                    <xs:maxLength value="255"/>
+		                </xs:restriction>
+		            </xs:simpleType>
+		        </xs:element>
+				<xs:element name="tpPonto"  minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<xhtml:label>Tipo de ponto</xhtml:label>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Fixo" />
+						<xs:enumeration value="Serviço a Domicílio" />
+						<xs:enumeration value="Ambulante permanente" />
+                        <xs:enumeration value="Feirante permanente" />
+						<xs:enumeration value="Ambulante ocasional" />
+                        <xs:enumeration value="Feirante ocasional" />
+                        <xs:enumeration value="Outro" />
+					</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+		        <xs:element name="outroPonto" minOccurs="0">
+		            <xs:annotation>
+		                <xs:appinfo>
+		                    <xhtml:label>Especifique outro ponto</xhtml:label>
+		                </xs:appinfo>
+		            </xs:annotation>
+		            <xs:simpleType>
+		                <xs:restriction base="xs:string">
+		                    <xs:maxLength value="255"/>
+		                </xs:restriction>
+		            </xs:simpleType>
+		        </xs:element>
+		        <xs:element name="qtEmpregados" minOccurs="0" type="xs:integer">
+		            <xs:annotation>
+		                <xs:appinfo>
+		                    <xhtml:label>Nr de empregados</xhtml:label>
+		                </xs:appinfo>
+		            </xs:annotation>
+		        </xs:element>
+
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

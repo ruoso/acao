@@ -1,0 +1,261 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/semas-ficha-especifica-espaco-acolhimento-noturno.xsd"
+	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
+	xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/semas-ficha-especifica-espaco-acolhimento-noturno.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="formFichaEspecificaEspacoAcolhimentoNoturno" type="formFichaEspecificaEspacoAcolhimentoNoturno">
+		<xs:annotation>
+			<xs:appinfo>
+				<xhtml:label>Ficha Específica do Espaço de Acolhimento Noturno</xhtml:label>
+				<class:classificacoes>
+                    <class:classificacao>cn=Prog Atendimento a População em Situação de Rua,cn=Proteção Social Especial,cn=Assistencia Social</class:classificacao>
+				</class:classificacoes>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="formFichaEspecificaEspacoAcolhimentoNoturno">
+		<xs:sequence>
+
+
+			<xs:element name="identificacao">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Identificação</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="numeronis" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>NIS</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:integer">
+									<xs:maxLength value="11"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="dataInsercao" minOccurs="0" type="xs:date">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Data de inserção no serviço</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="dataDeslig" minOccurs="0" type="xs:date">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Data de desligamento do serviço</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+
+			<xs:element name="oriencaminhamento"  minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>1. Origem Encaminhamento</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Rede Socioassistêncial - CREAS II" />
+					<xs:enumeration value="Rede Socioassistêncial - CREAS III" />
+					<xs:enumeration value="Rede Socioassistêncial - CREAS V" />
+					<xs:enumeration value="Rede Socioassistêncial - CENTRO POP" />
+					<xs:enumeration value="Rede Socioassistêncial - Rede Conveniada" />
+					<xs:enumeration value="Políticas Intersetoriais - Saúde" />
+					<xs:enumeration value="Políticas Intersetoriais - Educação" />
+					<xs:enumeration value="Políticas Intersetoriais - SDH" />
+					<xs:enumeration value="Políticas Intersetoriais - Habitação" />
+					<xs:enumeration value="Outros Encaminhamentos - SDG" />
+					<xs:enumeration value="Outros" />
+				</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			<xs:element name="especoutros" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Especificar Outros</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="projindacolh">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>2. Projeto Individual de Acolhimento</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="vincfamcomun" minOccurs="0" maxOccurs="20">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>2.1 Planos e estratégias para concretizá-los</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+
+							<xs:complexType>
+								<xs:sequence>
+
+									<xs:element name="projobj"  minOccurs="0" type="xs:string">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Objetivos</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									
+									<xs:element name="projestrat"  minOccurs="0"  type="xs:string">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Estratégias(responsabilidades)</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									
+									<xs:element name="projpraz"  minOccurs="0"  type="xs:string">
+										<xs:annotation>
+											<xs:appinfo>
+												<xhtml:label>Prazo</xhtml:label>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="sitapresentada"   minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>3. Situação Apresentada</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="encoutroserv">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>4. Encaminhamentos para outros serviços</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+
+				<xs:complexType>
+					<xs:sequence>
+
+						<xs:element name="redesocassist"  minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Rede Socioassistencial</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="CRAS" />
+									<xs:enumeration value="CCA" />
+									<xs:enumeration value="CRM" />
+									<xs:enumeration value="Entidade Conveniada" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						
+						<xs:element name="redesocassistoutr" minOccurs="0" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Outros</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="politintersetoriais"  minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Políticas intersetoriais</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Saúde" />
+									<xs:enumeration value="Educação" />
+									<xs:enumeration value="SDE" />
+									<xs:enumeration value="SDH" />
+									<xs:enumeration value="Previdência Social" />
+									<xs:enumeration value="Habitação" />
+									<xs:enumeration value="SGD" />
+									<xs:enumeration value="Outros" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+						<xs:element name="politintersetoriaisoutr" minOccurs="0" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Outros</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="evolucao"   minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>5. Evolução</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+
+			<xs:element name="tecresponsavel" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Técnico(a) responsável</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="datcadastro" minOccurs="0" type="xs:date">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Data</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

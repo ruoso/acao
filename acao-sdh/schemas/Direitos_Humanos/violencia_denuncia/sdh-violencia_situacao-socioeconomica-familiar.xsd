@@ -1,0 +1,208 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-violencia_situacao-socioeconomica-familiar.xsd"
+    xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-violencia_situacao-socioeconomica-familiar.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="situacaoSocioEconomicaFam" type="situacaoSocioEconomicaFam">
+		<xs:annotation>
+			<xs:appinfo>
+				<xhtml:label>09. SITUAÇÃO SÓCIO-ECONÔMICA FAMILIAR</xhtml:label>
+                <class:classificacoes>
+                    <class:classificacao>cn=Geral,cn=Direitos Humanos</class:classificacao>
+                </class:classificacoes>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="situacaoSocioEconomicaFam">
+		<xs:sequence>
+
+			<xs:element name="rendafam" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>09.1 Renda Familiar</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Não possui renda" />
+						<xs:enumeration value="Até 1 SM" />
+						<xs:enumeration value="Entre 1 SM e 2 SM" />
+						<xs:enumeration value="Entre 2 SM e 3 SM" />
+						<xs:enumeration value="Acima de 4 SM" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			<xs:element name="recbensoc" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>09.2 Rece Algum Benefício Social</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="recbensocespec" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>09.2.1 Se SIM, quais? </xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+					         <xs:element name="pbf" type="xs:boolean">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>Programa Bolsa Família - PBF</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>
+					         <xs:element name="bpc" type="xs:boolean">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>Benefício de Prestação Continuada - BPC</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>
+					         <xs:element name="pfrde" type="xs:boolean">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>Programa Fora da Rua dentro da Escola</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>
+					         <xs:element name="pas" type="xs:boolean">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>Programa do Aluguel Social</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>
+					         <xs:element name="pfc" type="xs:boolean">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>Projeto Família Cidadã/Famílias Denfensoras</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>
+					         <xs:element name="outroPrograma" type="xs:string">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>Especifique outros programas</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="partequipsoc" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>09.3 Participa de algum equipamento social</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			
+			<xs:element name="partequipsocespec" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>09.3.1 Se Sim, Quais? </xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+					         <xs:element name="psf" type="xs:boolean">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>PSF</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>
+					         <xs:element name="cheche" type="xs:boolean">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>Cheche</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>
+					         <xs:element name="escola" type="xs:boolean">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>Escola</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>
+					         <xs:element name="cras" type="xs:boolean">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>CRAS</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>
+					         <xs:element name="caps" type="xs:boolean">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>CAPS</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>
+					         <xs:element name="associacao" type="xs:boolean">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>Associação</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>	
+					         <xs:element name="qualAssociacao" type="xs:string">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>Especifique associação</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>							
+					         <xs:element name="ong" type="xs:boolean">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>ONG</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>	
+					         <xs:element name="qualOng" type="xs:string">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>Especifique ONG</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>								
+					         <xs:element name="outroEquipamento" type="xs:string">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>Especifique outro equipamento</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>
