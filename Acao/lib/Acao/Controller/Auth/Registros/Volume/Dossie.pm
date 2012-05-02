@@ -204,7 +204,7 @@ sub store : Chained('base') : PathPart('store') : Args(0) {
             classificacoes  => $c->model('Dossie')->desserialize_classificacoes( $c->stash->{classificacoes} ),
             localizacao     => $c->stash->{localizacao} ,
             herdar_author   => $herdar_author,
-            autorizacoes    => $c->model('Dossie')->desserialize_autorizacoes( $c->stash->{autorizacoes} ),
+            autorizacoes    => $c->model('Dossie')->desserialize_autorizacoes( $c->stash->{autorizacoes} ),            
         }
         );
 
@@ -336,7 +336,7 @@ sub alterar_dossie : Chained('get_dossie') : PathPart('alterar') : Args(0) {
             $c->model("Dossie")->localizacao_do_dossie($c->stash->{id_volume},$c->stash->{controle}) :
             $c->model("Volume")->getDadosVolumeId($c->stash->{id_volume})->{localizacao} ;
 
-
+	$c->stash->{qtdDocumentos} = $c->model("Dossie")->getCountDocsInDossie($c->stash->{id_volume}, $c->stash->{controle});
     $c->stash->{class_basedn} = $c->req->param('class_basedn')
       || $c->model("LDAP")->assuntos_dn;
     $c->stash->{template} = 'auth/registros/volume/dossie/form_alterar.tt';
@@ -402,6 +402,7 @@ sub store_alterar : Chained('get_dossie') : PathPart('store_alterar') : Args(0)
                 localizacao    => $c->stash->{localizacao} ,
                 dossie_fisico  => $representaDossieFisico,
                 ip             => $c->req->address,
+                qtdDocumentos  => $c->req->param('qtdDocumentos')
             }
         );
         $self->audit_alterar('geral');

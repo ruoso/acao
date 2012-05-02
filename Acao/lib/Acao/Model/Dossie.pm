@@ -351,7 +351,9 @@ txn_method 'criar_dossie' => authorized $role_criar => sub {
     );
 
     $self->sedna->conn->loadData( $res_xml->toString, $controle, $args->{id_volume} );
-    $self->sedna->conn->endLoadData();
+    $self->sedna->conn->endLoadData();    
+    
+    
     return $controle;
 
 };
@@ -751,7 +753,7 @@ sub store_altera_dossie {
 
     $self->sedna->commit;
 
-    $self->update_autorizacoes_dos($args->{id_volume}, $args->{controle}, $self->desserialize_autorizacoes($args->{autorizacoes}));
+    $self->update_autorizacoes_dos($args->{id_volume}, $args->{controle}, $self->desserialize_autorizacoes($args->{autorizacoes})) if $args->{qtdDocumentos} > 0;
 }
 
 
@@ -789,6 +791,37 @@ sub boxDossieStatistics {
           abertos => $abertos,
           fechados  => $total - $abertos
           };
+}
+
+=item getCountDocsInDossie()
+
+Retorna o número de documentos dentro de um dossie/prontuário
+Parametros id_volume, $controle
+
+=cut
+
+sub getCountDocsInDossie {
+    my ( $self, $id_volume ,$controle  ) = @_;
+    
+
+    
+    $self->sedna->begin;
+
+    my $query =
+				'declare namespace ns="http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";
+                 declare namespace dc="http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";
+                 declare namespace cl="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd";
+                 count(for $x in collection("'
+      . $id_volume
+      . '")/ns:dossie[ns:controle="'
+      . $controle . '"]/ns:doc/dc:documento
+                 return $x)';
+
+    $self->sedna->execute($query);
+    my $total = $self->sedna->get_item();     
+    $self->sedna->commit;
+    return $total;
+    
 }
 =head1 COPYRIGHT AND LICENSING
 
