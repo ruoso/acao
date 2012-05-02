@@ -79,7 +79,6 @@ Retorna os dossies os quais o usuário autenticado tem acesso.
 txn_method 'listar_documentos' => authorized $role_listar => sub {
     my ( $self, $args ) = @_;
 
-
     my $declare_namespace = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";';
     $declare_namespace .= 'declare namespace dc = "http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";';
     $declare_namespace .= 'declare namespace adt = "http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd";';
@@ -131,9 +130,7 @@ txn_method 'listar_documentos' => authorized $role_listar => sub {
 
     my $count = $declare_namespace
               . 'count('.$xquery_for.$xquery_where.' return "")';
-warn "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
-warn $args->{where_documentos_validos};
-warn $args->{where_tipo_documento};
+
     return {
         list  => $list,
         count => $count

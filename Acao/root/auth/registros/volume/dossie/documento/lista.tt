@@ -148,6 +148,7 @@
     &nbsp;&nbsp;&nbsp;
     <input type="submit" name="submit_form" id="submit_form" value="Pesquisar">
   </form>
+
   <br/>
 <form action="[% c.uri_for_action('/auth/registros/volume/dossie/documento/form',[ id_volume, controle ]) %]" id="form" name="form" method="post" onSubmit="return validaDropDonw()"></form>
 <br>
@@ -206,7 +207,6 @@
   <PRE>[% error.info %]</PRE>
  </div>
 [% END %]
-[% xquery %]
 </TBODY>
 </table>
 
