@@ -97,15 +97,17 @@ txn_method 'listar_documentos' => authorized $role_listar => sub {
 
 
       my $herdar_author_dossie =
-      '(collection("'.$args->{id_volume}.'")'
+       '(collection("'.$args->{id_volume}.'")'
       .'/ns:dossie[ns:controle="'.$args->{controle} .'"]'
       .'/ns:autorizacoes[author:autorizacao['.$check.']]))';
 
-      my $herdar_dossie = 'collection("'.$args->{id_volume}.'")/ns:dossie[ns:controle="'.$args->{controle} .'"]'
+      my $herdar_dossie = 
+        'collection("'.$args->{id_volume}.'")/ns:dossie[ns:controle="'.$args->{controle} .'"]'
        .'/ns:autorizacoes/@herdar/string()';
 
-      my $herdar ='(author:autorizacao[('.$check.')]'
-      . ' or (@herdar/string() = "1" and '.$herdar_author_dossie.')'
+      my $herdar =
+       '(author:autorizacao[('.$check.')]'
+      .' or (@herdar/string() = "1" and '.$herdar_author_dossie.')'
       .' or (@herdar/string() = "1" and ('.$herdar_dossie.') = "1" and '.$herdar_author_volume.')';
 
       my $for = 'collection("'
@@ -129,6 +131,9 @@ txn_method 'listar_documentos' => authorized $role_listar => sub {
 
     my $count = $declare_namespace
               . 'count('.$xquery_for.$xquery_where.' return "")';
+warn "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+warn $args->{where_documentos_validos};
+warn $args->{where_tipo_documento};
     return {
         list  => $list,
         count => $count

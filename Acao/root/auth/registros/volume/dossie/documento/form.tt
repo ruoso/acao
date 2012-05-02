@@ -122,12 +122,10 @@
  </form>
 
  <script language="javascript">
-   generateForm("[% c.uri_for_action('/auth/registros/xsd/raw', { ns => c.req.param('xsdDocumento') } ) %]", "form_container");
-   generateXsdFormUI();
+    generateForm("[% c.uri_for_action('/auth/registros/xsd/raw', { ns => c.req.param('xsdDocumento') } ) %]", "form_container");
+    generateXsdFormUI();
 
- $("documment").ready(function(){
-
-
+    $("documment").ready(function(){
 
     $('#help p').hide();
 
@@ -136,13 +134,12 @@
 
     if ($(classe).css('display') == 'block') {
         $(classe).slideToggle();
-     } else {
-       $(classe).slideDown();
+    } else {
+        $(classe).slideDown();
 
-     }
+    }
 
   });
 });
  </script>
-
 [% INCLUDE 'footer.tt' %]

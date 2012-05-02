@@ -109,8 +109,9 @@ apt-get install make gcc cmake flex postgresql-server-dev-8.4 libpq-dev
     sudo ldconfig
 
 8 - Instalando módulos necessários no linux
-    8.1 - sudo apt-get install zlib1g-dev  (OBS:)
-    8.2 - sudo apt-get install libnet-ssleay(OBS:)
+    8.1 - sudo apt-get install make gcc cmake flex zlib1g-dev libnet-ssleay-perl libxml2-dev -y
+    8.2 - sudo apt-get install zlib1g-dev  (OBS:)
+    8.3 - sudo apt-get install libnet-ssleay(OBS:)
 
 9 - Instalando o LibXML no Linux
     9.1 Para baixar e instalar o LibXML digite no console: sudo apt-get install libxml2-dev
