@@ -30,7 +30,18 @@
 				</xs:annotation>
 				<xs:complexType>
 					<xs:sequence>
-
+                         <xs:element name="nome" minOccurs="0"  >
+			                <xs:annotation>
+				                <xs:appinfo>
+					                <xhtml:label>Nome</xhtml:label>
+				                </xs:appinfo>
+			                </xs:annotation>
+			                <xs:simpleType>
+					    <xs:restriction base="xs:string">
+						    <xs:maxLength value="255" />
+					    </xs:restriction>
+				        </xs:simpleType>
+                        </xs:element> 
 						<xs:element name="curso" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
@@ -87,31 +98,20 @@
 							</xs:annotation>
 						</xs:element>
 
-						<xs:element name="apresentacaoCultural" type="xs:boolean">
+						<xs:element name="paradaPelaDiversidadeSexual" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Apresentação Cultural</xhtml:label>
+									<xhtml:label> Parada pela Diversidade Sexual</xhtml:label>
 								 </xs:appinfo>
 							</xs:annotation>
 						</xs:element>
-				        <xs:element name="especificarApresentacaoCultural" minOccurs="0">
+						<xs:element name="cortejo" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-								   <xhtml:label>.     Especificar o tipo Apresentação Cultural </xhtml:label>
-								</xs:appinfo>
+									<xhtml:label>Cortejo</xhtml:label>
+								 </xs:appinfo>
 							</xs:annotation>
-							<xs:simpleType>
-								<xs:restriction base="xs:string">
-										<xs:enumeration value="Parada pela diversidade sexual" />
-										<xs:enumeration value="Cortejo, caminhada" />
-										<xs:enumeration value="Ato show" />
-										<xs:enumeration value="Quarta Cultural" />
-										<xs:enumeration value="Terça Negra" />
-								</xs:restriction>
-								</xs:simpleType>
-							</xs:element>
-							
-							
+						</xs:element>
 						<xs:element name="caminhada" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
@@ -119,90 +119,69 @@
 								 </xs:appinfo>
 							</xs:annotation>
 						</xs:element>
-						
-						
-						<xs:element name="multiraoPrestacaoDeServiços" type="xs:boolean">
+						<xs:element name="atoShow" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Multirao Prestação de Serviços</xhtml:label>
+									<xhtml:label>Ato Show</xhtml:label>
 								 </xs:appinfo>
 							</xs:annotation>
 						</xs:element>
-						
-                       <xs:element name="especificarMultiraoPrestacaoDeServiços" minOccurs="0">
+						<xs:element name="quartaCultural" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-								   <xhtml:label>.     Especificar o tipo de Multirão Prestação De Serviços</xhtml:label>
-								</xs:appinfo>
+									<xhtml:label>Quarta Cultural</xhtml:label>
+								 </xs:appinfo>
 							</xs:annotation>
-							<xs:simpleType>
-								<xs:restriction base="xs:string">
-										<xs:enumeration value="Mutirão de Subregistro" />
-										<xs:enumeration value="Mutirão de União Estável" />
-								</xs:restriction>
-								</xs:simpleType>
-							</xs:element>
-
+						</xs:element>
+						<xs:element name="tercaNegra" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Terça Negra</xhtml:label>
+								 </xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="multiraoDeSubregistro" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Mutirão de Subregistro</xhtml:label>
+								 </xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="multiraoDeUniaoEstavel" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Mutirão de União Estável</xhtml:label>
+								 </xs:appinfo>
+							</xs:annotation>
+						</xs:element>	
 						<xs:element name="audienciaPublica" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Audiência Pública</xhtml:label>
 								 </xs:appinfo>
 							</xs:annotation>
-						</xs:element>
-						
-						
-						<xs:element name="reuniaoDeComite" type="xs:boolean">
+						</xs:element>	
+						<xs:element name="coferencia" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Reunião de Comitê</xhtml:label>
+									<xhtml:label>Coferência</xhtml:label>
 								 </xs:appinfo>
 							</xs:annotation>
 						</xs:element>
-						
-                       <xs:element name="especificarReuniaoDeComite" minOccurs="0">
+						<xs:element name="planoMunicipalDaIgualdadeRacial" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-								   <xhtml:label>.     Especificar o tipo de Reunião de Comitê</xhtml:label>
-								</xs:appinfo>
-							</xs:annotation>
-							    <xs:simpleType>
-								<xs:restriction base="xs:string">
-										<xs:enumeration value="Comitê de Subregistro " />
-										<xs:enumeration value="Comitê Educação em Direitos Humanos" />
-								</xs:restriction>
-								</xs:simpleType>
-							</xs:element>						
-
-						<xs:element name="conferencia" type="xs:boolean">
-							<xs:annotation>
-								<xs:appinfo>
-									<xhtml:label>Conferência</xhtml:label>
+									<xhtml:label>Plano Municipal da Igualdade Racial</xhtml:label>
 								 </xs:appinfo>
 							</xs:annotation>
-						</xs:element>
-
-						<xs:element name="planoMunicipalDeAtuação" type="xs:boolean">
+						</xs:element>	
+						<xs:element name="planoMunicipalDeEducacaoDireitosHumanos" type="xs:boolean">
 							<xs:annotation>
 								<xs:appinfo>
-									<xhtml:label>Plano Municipal de Atuação</xhtml:label>
+									<xhtml:label>Plano Municipal de Educação em Direitos Humanos</xhtml:label>
 								 </xs:appinfo>
 							</xs:annotation>
-						</xs:element>
-						
-						<xs:element name="especificarPlanoMunicipalDeAtuação" minOccurs="0">
-							<xs:annotation>
-								<xs:appinfo>
-								   <xhtml:label>.     Especificar o tipo Plano Municipal de Atuacao</xhtml:label>
-								</xs:appinfo>
-							</xs:annotation>
-							<xs:simpleType>
-								<xs:restriction base="xs:string">
-										<xs:enumeration value="Plano Municipal da Igualdade Racial" />
-										<xs:enumeration value="Plano Municipal de Educação em DH" />
-								</xs:restriction>
-								</xs:simpleType>
-							</xs:element>
+						</xs:element>																																							
 
 						<xs:element name="outros" type="xs:boolean">
 							<xs:annotation>
@@ -334,7 +313,21 @@
 						    <xs:element name="entre201e300Pessoas" type="xs:boolean">
 							    <xs:annotation>
 								    <xs:appinfo>
-									    <xhtml:label>Entre 201 e 500 Pessoas</xhtml:label>
+									    <xhtml:label>Entre 201 e 300 Pessoas</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>
+						    <xs:element name="entre201e300Pessoas" type="xs:boolean">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>Entre 301 e 400 Pessoas</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>
+						    <xs:element name="entre201e300Pessoas" type="xs:boolean">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>Entre 401 e 500 Pessoas</xhtml:label>
 								    </xs:appinfo>
 							    </xs:annotation>
 						    </xs:element>
