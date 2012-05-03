@@ -124,7 +124,7 @@
 							    </xs:annotation>
 						    </xs:element>
 						    <xs:element name="injuria" type="xs:boolean">
-							    <xs:annotation>
+							    <xs:annotation> acao-sdh/schemas/Direitos_Humanos/violencia_denuncia/sdh-violencia_dadoscriminais.xsd
 								    <xs:appinfo>
 									    <xhtml:label>Art 140 Código Penal - Injúria</xhtml:label>
 								    </xs:appinfo>
@@ -147,14 +147,14 @@
 						    <xs:element name="explSexCrianAdol" type="xs:boolean">
 							    <xs:annotation>
 								    <xs:appinfo>
-									    <xhtml:label>Art 217-A Código Penal - Exploração Sexual - Criança e Adolescente</xhtml:label>
+									    <xhtml:label>Art.213 CPB- Estupro</xhtml:label>
 								    </xs:appinfo>
 							    </xs:annotation>
 						    </xs:element>
 						    <xs:element name="explSexAdulto" type="xs:boolean">
 							    <xs:annotation>
 								    <xs:appinfo>
-									    <xhtml:label>Art 213 Código Penal - Exploração Sexual - Adulto</xhtml:label>
+									    <xhtml:label>Art.129 do CPB – Lesão Corporal</xhtml:label>
 								    </xs:appinfo>
 							    </xs:annotation>
 						    </xs:element>
@@ -172,13 +172,7 @@
 								    </xs:appinfo>
 							    </xs:annotation>
 						    </xs:element>
-						    <xs:element name="discriminacao" type="xs:boolean">
-							    <xs:annotation>
-								    <xs:appinfo>
-									    <xhtml:label>Art 5º Constituição Federal de 1988 - Discriminação</xhtml:label>
-								    </xs:appinfo>
-							    </xs:annotation>
-						    </xs:element>
+
 						    <xs:element name="tortura" type="xs:boolean">
 							    <xs:annotation>
 								    <xs:appinfo>
@@ -186,14 +180,71 @@
 								    </xs:appinfo>
 							    </xs:annotation>
 						    </xs:element>
-			                <xs:element name="outrasCaptulacoes" minOccurs="0" type="xs:string">
+						    <xs:element name="constragimentoIlegal" type="xs:boolean">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>Art. 147 do CPB – Constrangimento Ilegal</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>
+						    <xs:element name="abusoDeAutoridade" type="xs:boolean">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>Art. 5º da Lei 4.898/65- Crimes de Abuso de Autoridade</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>
+						    <xs:element name="prevaricacao" type="xs:boolean">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>Art.319 do CPB- Prevaricação</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>
+						    <xs:element name="abandonoDeIncapaz" type="xs:boolean">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>Art.133 do CPB – Abando de Incapaz</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>	
+						    <xs:element name="carcerePrivado" type="xs:boolean">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>Art. 148 do CPB – Cárcere Privado</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>						    
+						    									    
+			                <xs:element name="mausTratos" type="xs:boolean">
 				                <xs:annotation>
 					                <xs:appinfo>
-						                <xhtml:label>Outras captulações</xhtml:label>
+						                <xhtml:label>Art. 136 do CPB – Maus Tratos</xhtml:label>
 					                </xs:appinfo>
 				                </xs:annotation>
                             </xs:element>
-
+			                <xs:element name="estatudoDoIdoso" type="xs:boolean">
+				                <xs:annotation>
+					                <xs:appinfo>
+						                <xhtml:label>Lei 10.741- Estatuto do Idoso</xhtml:label>
+					                </xs:appinfo>
+				                </xs:annotation>
+                            </xs:element>                           
+			    <xs:element name="estatudoDoIdoso" minOccurs="0">
+				    <xs:annotation>
+					    <xs:appinfo>
+						    <xhtml:label>Estatudo do Idoso</xhtml:label>
+					    </xs:appinfo>
+				    </xs:annotation>
+				    <xs:simpleType>
+					    <xs:restriction base="xs:string">
+						    <xs:enumeration value="Discriminação" />
+						    <xs:enumeration value="Negligência/ Maus Tratos" />
+						    <xs:enumeration value="Abandono" />
+						    <xs:enumeration value="Violência Patrimonial" />
+					    </xs:restriction>
+				    </xs:simpleType>
+			    </xs:element>
 	                    </xs:sequence>
                     </xs:complexType>
                 </xs:element>

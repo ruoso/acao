@@ -110,7 +110,7 @@
 			<xs:element name="outrostipoviolencia" minOccurs="0" type="xs:string">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Outros</xhtml:label>
+						<xhtml:label>Especificar Outros</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -195,6 +195,13 @@
 								 </xs:appinfo>
 							</xs:annotation>
 						</xs:element>
+						<xs:element name="naoSabe" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Não sabe</xhtml:label>
+								 </xs:appinfo>
+							</xs:annotation>
+						</xs:element>						
 
 						<xs:element name="outros" type="xs:boolean">
 							<xs:annotation>
@@ -212,7 +219,7 @@
 			<xs:element name="outrospraticouviolencia" minOccurs="0" type="xs:string">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>Outros</xhtml:label>
+						<xhtml:label>Especificar Outros</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>

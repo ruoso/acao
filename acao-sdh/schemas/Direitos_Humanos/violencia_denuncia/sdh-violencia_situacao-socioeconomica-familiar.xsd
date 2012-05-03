@@ -94,7 +94,14 @@
 								    </xs:appinfo>
 							    </xs:annotation>
 						    </xs:element>
-					         <xs:element name="outroPrograma" type="xs:string">
+						    <xs:element name="outroPrograma" type="xs:boolean">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>Outros programas</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>
+					         <xs:element name="espOutroPrograma"  minOccurs="0" type="xs:string">
 							    <xs:annotation>
 								    <xs:appinfo>
 									    <xhtml:label>Especifique outros programas</xhtml:label>
@@ -170,7 +177,7 @@
 								    </xs:appinfo>
 							    </xs:annotation>
 						    </xs:element>	
-					         <xs:element name="qualAssociacao" type="xs:string">
+					         <xs:element name="qualAssociacao"  minOccurs="0" type="xs:string">
 							    <xs:annotation>
 								    <xs:appinfo>
 									    <xhtml:label>Especifique associação</xhtml:label>
@@ -184,14 +191,21 @@
 								    </xs:appinfo>
 							    </xs:annotation>
 						    </xs:element>	
-					         <xs:element name="qualOng" type="xs:string">
+					         <xs:element name="qualOng"  minOccurs="0" type="xs:string">
 							    <xs:annotation>
 								    <xs:appinfo>
 									    <xhtml:label>Especifique ONG</xhtml:label>
 								    </xs:appinfo>
 							    </xs:annotation>
-						    </xs:element>								
-					         <xs:element name="outroEquipamento" type="xs:string">
+						    </xs:element>	
+						    <xs:element name="outroEquipamento"  minOccurs="0" type="xs:string">
+							    <xs:annotation>
+								    <xs:appinfo>
+									    <xhtml:label>Outros equipamentos</xhtml:label>
+								    </xs:appinfo>
+							    </xs:annotation>
+						    </xs:element>						
+					         <xs:element name="espOutroEquipamento" minOccurs="0" type="xs:string">
 							    <xs:annotation>
 								    <xs:appinfo>
 									    <xhtml:label>Especifique outro equipamento</xhtml:label>
