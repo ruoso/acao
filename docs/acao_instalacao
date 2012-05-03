@@ -35,6 +35,41 @@ apt-get install make gcc cmake flex postgresql-server-dev-8.4 libpq-dev
     5.7 - No console do SEDNA crie a collection volume com o comando: create collection "volume" &
     5.8 - No console do SEDNA crie a collection acao-schemas com o comando: create collection "acao-schemas" &
 
+    5.9 - Isira todos os arquivos que estão na pasta acao/acao-sdh na collection acao-schemas com o comando:
+        5.9.1 - Pelo console do linux navegue ate o doretorio acao
+        5.9.2 - Inicie o console do SEDNA a partir do diretorio acao
+        5.9.3 - Copie os comandos abaixo
+            LOAD "acao-sdh/schemas/sdh-origemEncaminhamento.xsd" "sdh-origemEncaminhamento.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-vinculacaoNaCCA.xsd" "sdh-vinculacaoNaCCA.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-identificacaoPessoal.xsd" "sdh-identificacaoPessoal.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-documentacao.xsd" "sdh-documentacao.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-convivenciaFamiliarComunitaria.xsd" "sdh-convivenciaFamiliarComunitaria.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-composicaoFamiliar.xsd" "sdh-composicaoFamiliar.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-documentacaoFamiliar.xsd" "sdh-documentacaoFamiliar.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-profissionalizacaoHabilidades.xsd" "sdh-profissionalizacaoHabilidades.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-vinculoReligioso.xsd" "sdh-vinculoReligioso.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-condicoesDeMoradia.xsd" "sdh-condicoesDeMoradia.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-protecaoEspecial.xsd" "sdh-protecaoEspecial.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-saude.xsd" "sdh-saude.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-saudeFamiliar.xsd" "sdh-saudeFamiliar.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-saudeSubstanciaPsicoativas.xsd" "sdh-saudeSubstanciaPsicoativas.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-convivenciaSocial.xsd" "sdh-convivenciaSocial.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-educacao.xsd" "sdh-educacao.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-direcionamentoDoAtendimento.xsd" "sdh-direcionamentoDoAtendimento.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-atendimento.xsd" "sdh-atendimento.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-evolucao.xsd" "sdh-evolucao.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-visitaInstitucional.xsd" "sdh-visitaInstitucional.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-atendimentoEspecificoSEGARANTA.xsd" "sdh-atendimentoEspecificoSEGARANTA.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-individualFamilia.xsd" "sdh-individualFamilia.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-juridico.xsd" "sdh-juridico.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-servicoSocial.xsd" "sdh-servicoSocial.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-psicologia.xsd" "sdh-psicologia.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-pedagogia.xsd" "sdh-pedagogia.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-visitaDomiciliar.xsd" "sdh-visitaDomiciliar.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-relatoriosEncaminhados.xsd" "sdh-relatoriosEncaminhados.xsd" "acao-schemas" &
+            LOAD "acao-sdh/schemas/sdh-planoIndividualDeAtendimento.xsd" "sdh-planoIndividualDeAtendimento.xsd" "acao-schemas" &
+ 		    LOAD "acao-pronasci/schemas/sdh-planoIndividualDeAtendimento.xsd" "sdh-planoIndividualDeAtendimento.xsd" "acao-schemas" &
+        5.9.4 - Cole os comando acima no cosole do SEDNA e cetifique do sucesso da persistencia de TODOS os arquivos.
 
 6 - Baixando os arquivos Sedna pelo github 
     6.1 - Pelo terminal abra o mesmo diretorio aberto no passo 4.1
@@ -63,23 +98,20 @@ apt-get install make gcc cmake flex postgresql-server-dev-8.4 libpq-dev
     7.14 - install Class::MOP
     7.15 - install Catalyst::Log::Log4perl
     7.16 - install Catalyst::View::JSON
-    7.17 - Catalyst::View::Download
-    7.18 - XML::Compile::Schema 
-    7.19 - CatalystX::Component::Traits  
-    7.20 - MooseX::Traits::Pluggable
+    7.17 - install Catalyst::View::Download
+    7.18 - install XML::Compile::Schema 
+    7.19 - install CatalystX::Component::Traits  
+    7.20 - install MooseX::Traits::Pluggable
     
     7.30 Adicionando o Path do driver do sedna no SO.
-        7.31  Como root abra o arquivo ld.so.conf.   sudo gedit  /etc/ld.so.conf
-        7.32  Acrescente o path onde está localizado o driver do sedna. Ex: ~/sedna/driver/c
-        sudo ldconfig
-
-
+    7.31  Como root abra o arquivo ld.so.conf.   sudo gedit  /etc/ld.so.conf
+    7.32  Acrescente o path onde está localizado o driver do sedna. Ex: ~/sedna/driver/c
+    sudo ldconfig
 
 8 - Instalando módulos necessários no linux
-    8.1 - sudo apt-get install zlib1g-dev  (OBS:)
-    8.2 - sudo apt-get install libnet-ssleay(OBS:)
-
-
+    8.1 - sudo apt-get install make gcc cmake flex zlib1g-dev libnet-ssleay-perl libxml2-dev -y
+    8.2 - sudo apt-get install zlib1g-dev  (OBS:)
+    8.3 - sudo apt-get install libnet-ssleay(OBS:)
 
 9 - Instalando o LibXML no Linux
     9.1 Para baixar e instalar o LibXML digite no console: sudo apt-get install libxml2-dev
@@ -96,8 +128,7 @@ apt-get install make gcc cmake flex postgresql-server-dev-8.4 libpq-dev
         10.5.1 - Pelo terminal abra o diretorio onde está o projeto ação (Ex: devel/acao/Acao)
         10.5.2 - Digite o comando: perl -Ilib -MAcao -e 'Acao->model("DB")->schema->deploy'
         10.5.3 - Se tiver problemas com a libsedna, crie o arquivo /etc/ld.so.conf.d/sedna.conf a adicione o path de onde está a lib
-	10.5.4 - rode ldconfig
-
+	    10.5.4 - rode ldconfig
 
 11- Instalando o SVN
     11.1 Para baixar o svn digite no console: sudo apt-get install subversion
@@ -154,7 +185,6 @@ LOAD "/home/edilson/devel-programa-acao/acao/acao-pronasci/schemas/gmfpronasci-c
 LOAD "/home/edilson/devel-programa-acao/acao/acao-pronasci/schemas/gmfpronasci-ccdsFichaPreInscricao.xsd" "gmfpronasci-ccdsFichaPreInscricao.xsd" "acao-schemas" &
 LOAD "/home/edilson/devel-programa-acao/acao/acao-pronasci/schemas/gmfpronasci-ccdsFichaInscricaoCursoFormacaoSegurancaPublica.xsd" "gmfpronasci-ccdsFichaInscricaoCursoFormacaoSegurancaPublica.xsd" "acao-schemas" &
 LOAD "/home/edilson/devel-programa-acao/acao/acao-pronasci/schemas/gmfpronasci-ccdsFichaInscricaoCursoFormacaoSegurancaPublica.xsd" "gmfpronasci-ccdsFichaInscricaoCursoFormacaoSegurancaPublica.xsd" "acao-schemas" &
-
 
 # Deletar documentos no banco
 drop document 'viladomar-cadernoa.xsd' OR

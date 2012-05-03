@@ -79,7 +79,6 @@ Retorna os dossies os quais o usuário autenticado tem acesso.
 txn_method 'listar_documentos' => authorized $role_listar => sub {
     my ( $self, $args ) = @_;
 
-
     my $declare_namespace = 'declare namespace ns = "http://schemas.fortaleza.ce.gov.br/acao/dossie.xsd";';
     $declare_namespace .= 'declare namespace dc = "http://schemas.fortaleza.ce.gov.br/acao/documento.xsd";';
     $declare_namespace .= 'declare namespace adt = "http://schemas.fortaleza.ce.gov.br/acao/auditoria.xsd";';
@@ -97,15 +96,17 @@ txn_method 'listar_documentos' => authorized $role_listar => sub {
 
 
       my $herdar_author_dossie =
-      '(collection("'.$args->{id_volume}.'")'
+       '(collection("'.$args->{id_volume}.'")'
       .'/ns:dossie[ns:controle="'.$args->{controle} .'"]'
       .'/ns:autorizacoes[author:autorizacao['.$check.']]))';
 
-      my $herdar_dossie = 'collection("'.$args->{id_volume}.'")/ns:dossie[ns:controle="'.$args->{controle} .'"]'
+      my $herdar_dossie = 
+        'collection("'.$args->{id_volume}.'")/ns:dossie[ns:controle="'.$args->{controle} .'"]'
        .'/ns:autorizacoes/@herdar/string()';
 
-      my $herdar ='(author:autorizacao[('.$check.')]'
-      . ' or (@herdar/string() = "1" and '.$herdar_author_dossie.')'
+      my $herdar =
+       '(author:autorizacao[('.$check.')]'
+      .' or (@herdar/string() = "1" and '.$herdar_author_dossie.')'
       .' or (@herdar/string() = "1" and ('.$herdar_dossie.') = "1" and '.$herdar_author_volume.')';
 
       my $for = 'collection("'
@@ -129,6 +130,7 @@ txn_method 'listar_documentos' => authorized $role_listar => sub {
 
     my $count = $declare_namespace
               . 'count('.$xquery_for.$xquery_where.' return "")';
+
     return {
         list  => $list,
         count => $count

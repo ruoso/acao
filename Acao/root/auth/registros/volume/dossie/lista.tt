@@ -303,8 +303,6 @@
 
   </table>
 
-
-
   [% paginacao = PROCESS 'auth/registros/volume/dossie/paginacao.tt' %]
   [% paginacao %]
 
@@ -313,13 +311,11 @@
   [% END %]
 </div>
   <script language="javascript" type="text/javascript">
-
-
       function confirmaFechamento(){
           if (!confirm('Deseja realmente fechar este prontuário?')){
               return false;
           }
-       }
+      }
 
       function confirmaArquivamento(){
           if (!confirm('Deseja realmente arquivar este prontuário?')){
@@ -331,26 +327,21 @@
           if (!confirm('Deseja realmente resgatar este prontuário?')){
               return false;
           }
-       }
-
-      function teste() {
-      alert('asdasdasdasds');
       }
+
       function confirmaFechamentoVolume(){
           if (!confirm('Deseja realmente fechar este volume?')){
                return false;
           }
-       }
+      }
 
-    $(".criarCSV").click(function() {
-      if ($("#fieldsetColunas").css('display') == 'block') {
-          $("#fieldsetColunas").hide();
+   $(".criarCSV").click(function() {
+       if ($("#fieldsetColunas").css('display') == 'block') {
+           $("#fieldsetColunas").hide();
        } else {
-         $("#fieldsetColunas").show();
-
+           $("#fieldsetColunas").show();
        }
-
-    });
+   });
    //comportamento do ''ENTER''
 
     $("form input").keypress(function (e) {
@@ -361,7 +352,5 @@
             return true;
         }
     });
-
-
   </script>
   [% INCLUDE 'footer.tt' %]
