@@ -1,0 +1,312 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-violencia_formRaisMediacao.xsd"
+	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-violencia_formRaisMediacao.xsd"
+	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
+	xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
+	elementFormDefault="qualified">
+
+	<xs:element name="formRaisMediacao" type="formRaisMediacao">
+		<xs:annotation>
+			<xs:appinfo>
+				<xhtml:label>RAIS MEDIAÇÃO</xhtml:label>
+				<class:classificacoes>
+					<class:classificacao>cn=Geral,cn=Direitos Humanos</class:classificacao>
+				</class:classificacoes>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="formRaisMediacao">
+		<xs:sequence>
+
+			<xs:element name="orientsexual" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Qual a Raiz de Cidadania? </xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Raiz Pirambu" />
+						<xs:enumeration value="Rais Floresta" />
+						<xs:enumeration value="Raiz Mucuripe" />
+						<xs:enumeration value="Raiz Pio XII" />
+						<xs:enumeration value="Rais Antônio Bezerra" />
+						<xs:enumeration value="Raiz Bela Vista" />
+						<xs:enumeration value="Raiz Quintino Cunha" />
+						<xs:enumeration value="Rais Planalto Pici" />
+						<xs:enumeration value="Raiz Serrinha" />
+						<xs:enumeration value="Raiz Vila União" />
+						<xs:enumeration value="Rais Bom Jardim" />
+						<xs:enumeration value="Raiz Conjunto Ceará" />
+						<xs:enumeration value="Raiz José Walter" />
+						<xs:enumeration value="Rais Mondubim" />
+						<xs:enumeration value="Raiz Conjunto Palmeiras" />
+						<xs:enumeration value="Raiz Lagoa Redonda" />
+						<xs:enumeration value="Rais São Cristóvão" />																													
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			<xs:element name="regional" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Regional</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="SER I" />
+						<xs:enumeration value="SER II" />
+						<xs:enumeration value="SER III" />
+						<xs:enumeration value="SER IV" />
+						<xs:enumeration value="SER V" />
+						<xs:enumeration value="SER VI" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>		
+			<xs:element name="dataAtendimento" minOccurs="0" type="xs:date">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Data do atendimento</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>	
+			
+			<xs:element name="nomeDoAtendimento" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Nome do atendido</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>		
+			
+			<xs:element name="nomeSocial" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Nome social</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>			
+			
+			<xs:element name="endereco" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Endereço</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>			
+
+			<xs:element name="bairro" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Bairro</xhtml:label>
+					</xs:appinfo>
+					<xsdext:extensions>
+						<xsdext:engine>autoComplete</xsdext:engine>
+						<xsdext:service>/bairros</xsdext:service>
+					</xsdext:extensions>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="telefone" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Telefone</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>			
+			
+			<xs:element name="houvePreMediacao" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Houve Pré-Mediação?</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>			
+		
+			
+                <xs:element name="questaoAbordada" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Qual a questão abordada?</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="direitoDaFamilia" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Direito das Famílias</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+				<xs:element name="direitosDaFamilia" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Escolha direito da familia</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Pensão Alimentícia" />
+						<xs:enumeration value="Separação" />
+						<xs:enumeration value="Guarda" />
+						<xs:enumeration value="Poder Familiar" />
+						<xs:enumeration value="Inventário" />
+						<xs:enumeration value="Homofobia" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+						<xs:element name="direitoDeVizinhanca" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Direito de Vizinhança</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+
+						<xs:element name="mediacaoDeConflitosEscolares" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Mediação de conflitos escolares</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+				<xs:element name="especifiqueConflitosEscolares" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Escolha conflitos escolares</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Bullying Escolar" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+						<xs:element name="outros" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Outros</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>						
+
+						<xs:element name="outros" minOccurs="0" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Especifique outros</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="sinteseCaso" minOccurs="0" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Síntese do caso</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>			
+			<xs:element name="houveMediacao" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Houve Mediação?</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Sim" />
+						<xs:enumeration value="Não" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>			
+			<xs:element name="resultado" minOccurs="0" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Resultado</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>			
+			
+ 				<xs:element name="direitosDaFamilia" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Escolha direito da familia</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"> 
+						<xs:enumeration value=" CREAS - Centro de Referência Especializado da Assistência Social" />
+						<xs:enumeration value="  DPGE - Defensoria Pública do Estado" />
+						<xs:enumeration value="  MPF - Ministério Público do Estado" />
+						<xs:enumeration value="  CRAS - Centro de Referência da Assistênpentahocia Social" />
+						<xs:enumeration value="  DPU - Defensoria Pública da União" />
+						<xs:enumeration value="  Controladoria dos Órgãos de Seg. Público" />
+						<xs:enumeration value="  CREAS POP - Centro de Referência Especializado da Assistência Social para População de Rua" />
+						<xs:enumeration value="  MPE - Ministério Público do Estado" />
+						<xs:enumeration value="  SEJUS - Secretaria de justiça do Estado do Ceará" />
+						<xs:enumeration value="  HABITAFOR - Fundação de Desenvolvimento Habitacional de Fortaleza" />
+						<xs:enumeration value="  Conselho Tutelar" />
+						<xs:enumeration value="  Raiz de Cidadania" />
+						<xs:enumeration value="  STDS - Secretaria do Trabalho e Desenvolvimento Social do Estado do Ceará" />
+						<xs:enumeration value="  CREAS Regional - Centro de Referência Especializado da Assistência Social do Estado do Ceará" />
+						<xs:enumeration value="  CAPS - Centros de Atenção Psicossocial" />
+						<xs:enumeration value="  Posto de Saúde" />
+						<xs:enumeration value="  Hospital" />
+						<xs:enumeration value="  SME - Secretaria Municipal de Educação" />
+						<xs:enumeration value="  SEDUC - Secretaria Estadual de Educação" />
+						<xs:enumeration value="  Outros" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="especifiqueOutros" minOccurs="0" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Especifique Outros</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>			
+			
+				
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>
