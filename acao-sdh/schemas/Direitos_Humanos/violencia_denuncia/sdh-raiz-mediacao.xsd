@@ -1,17 +1,17 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-violencia_formRaisMediacaoII.xsd"
+	xmlns="http://schemas.fortaleza.ce.gov.br/acao/sdh-raizmediacao.xsd"
 	xmlns:class="http://schemas.fortaleza.ce.gov.br/acao/classificacao.xsd"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
-	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-violencia_formRaisMediacaoII.xsd"
+	targetNamespace="http://schemas.fortaleza.ce.gov.br/acao/sdh-raizmediacao.xsd"
 	xmlns:idx="http://schemas.fortaleza.ce.gov.br/acao/indexhint.xsd"
 	xmlns:xsdext="http://schemas.fortaleza.ce.gov.br/xsdform/extensions.xsd"
 	elementFormDefault="qualified">
 
-	<xs:element name="formRaisMediacaoII" type="formRaisMediacao">
+	<xs:element name="formRaizMediacao" type="formRaizMediacao">
 		<xs:annotation>
 			<xs:appinfo>
-				<xhtml:label>RAIS MEDIAÇÃO II</xhtml:label>
+				<xhtml:label>RAIZ MEDIAÇÃO</xhtml:label>
 				<class:classificacoes>
 					<class:classificacao>cn=Geral,cn=Direitos Humanos</class:classificacao>
 				</class:classificacoes>
@@ -19,7 +19,7 @@
 		</xs:annotation>
 	</xs:element>
 
-	<xs:complexType name="formRaisMediacao">
+	<xs:complexType name="formRaizMediacao">
 		<xs:sequence>
 
 			<xs:element name="orientsexual" minOccurs="0">
