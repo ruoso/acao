@@ -163,10 +163,6 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
     }
     my $where = join '', @where if @where;
 
-
-    
-    
-
     # cria um array do tipo (@principal = dn, 'listar',@principal = dn, 'visualizar') dos memberOf do usuário logado
     my $grupos = join ' or ',
       map { '@principal = "' . $_ . '"' } @{ $self->user->memberof };
@@ -224,10 +220,6 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
               . $args->{num_por_pagina} . '' . ')';
     }
  
-
-    
-
-  
     my $list = $declarens
              . 'subsequence('
              . 'for $x in collection("'
@@ -287,18 +279,12 @@ txn_method 'listar_dossies' => authorized $role_listar => sub {
 
     }
 
-
     # Contrução da query de contagem para contrução da paginação
     my $count = $declarens
               #. ' count( for $x in collection("'.$args->{id_volume}.'")/ns:dossie[ns:autorizacoes/author:autorizacao[('.$grupos.') and @role="listar"]] '
               . ' count( for $x in collection("'.$args->{id_volume}.'")/ns:dossie '
               . $where.$dossieFechadoAberto
               . ' return "" )';
-              
-             
-
-
-
 
     return {
         list     => $list,
@@ -352,8 +338,7 @@ txn_method 'criar_dossie' => authorized $role_criar => sub {
 
     $self->sedna->conn->loadData( $res_xml->toString, $controle, $args->{id_volume} );
     $self->sedna->conn->endLoadData();    
-    
-    
+
     return $controle;
 
 };

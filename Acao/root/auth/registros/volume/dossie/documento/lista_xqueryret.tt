@@ -17,7 +17,7 @@
         <x class="longDateFormat">
             {replace ($x/dc:invalidacao/text(), '1970-01-01T00:00:00Z', '-')}
         </x>
-            {replace(replace ($x/dc:motivoInvalidacao/text(),'erro',' / ERRO'),'replace',' / ALTERAÇÃO')}{$x/dc:motivoInvalidacao/@documentoOriginal}
+            {replace(replace($x/dc:motivoInvalidacao/text(),'erro',' / ERRO'),'replace',' 	/ ALTERAÇÃO')}
         </td>
     ) else (
         <td class="longDateFormat">

@@ -294,8 +294,15 @@
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
+						<xs:element name="outros" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Outros</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>						
 
-						<xs:element name="outrasDrogasLicitas" type="xs:boolean">
+						<xs:element name="outrasDrogasLicitas" minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Especifique outras drogas</xhtml:label>
@@ -334,7 +341,7 @@
 			<xs:element name="usudrogilicitespec" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>7.12.1 Se SIM, Quais</xhtml:label>
+						<xhtml:label>7.13.1 Se SIM, Quais</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -394,33 +401,47 @@
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
+						<xs:element name="outrasDrogas" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Outras</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>						
 
-						<xs:element name="outrasDrogasIlicitas" type="xs:boolean">
+						<xs:element name="outrasDrogasIlicitas" minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Especifique outras drogas</xhtml:label>
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
+						
+				<xs:element name="periodoUso" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<xhtml:label>Período de uso</xhtml:label>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+						
 				</xs:sequence>
 			</xs:complexType>
 
 			</xs:element>
 
-			<xs:element name="usudrogilicitout" minOccurs="0" type="xs:string">
-				<xs:annotation>
-					<xs:appinfo>
-						<xhtml:label>7.13.2 Especificar outros
-						</xhtml:label>
-					</xs:appinfo>
-				</xs:annotation>
-			</xs:element>
+
 
 
 			<xs:element name="histusodroglic" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>7.14 Tem família com histórico de uso de drogas
+						<xhtml:label>7.14 Tem famíliar com histórico de uso de drogas
 							lícitas?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
@@ -435,7 +456,7 @@
 			<xs:element name="histusodroglicespec" minOccurs="0" >
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>7.12.1 Se SIM, Quais</xhtml:label>
+						<xhtml:label>7.14.1 Se SIM, Quais</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -463,8 +484,15 @@
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
+						<xs:element name="outras" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Outras</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>						
 
-						<xs:element name="outrasDrogasLicitas" type="xs:boolean">
+						<xs:element name="outrasDrogasLicitas" minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Especifique outras drogas</xhtml:label>
@@ -489,7 +517,7 @@
 			<xs:element name="histusodrogilic" minOccurs="0">
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>7.15 Tem família com histórico de uso de drogas
+						<xhtml:label>7.15 Tem famíliar com histórico de uso de drogas
 							ilícitas?</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
@@ -504,7 +532,7 @@
 			<xs:element name="histusodrogilicespec" minOccurs="0" >
 				<xs:annotation>
 					<xs:appinfo>
-						<xhtml:label>7.12.1 Se SIM, Quais</xhtml:label>
+						<xhtml:label>7.15.1 Se SIM, Quais</xhtml:label>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -564,8 +592,15 @@
 								</xs:appinfo>
 							</xs:annotation>
 						</xs:element>
+						<xs:element name="outras" type="xs:boolean">
+							<xs:annotation>
+								<xs:appinfo>
+									<xhtml:label>Outras</xhtml:label>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
 
-						<xs:element name="outrasDrogasIlicitas" type="xs:boolean">
+						<xs:element name="outrasDrogasIlicitas" minOccurs="0" type="xs:string">
 							<xs:annotation>
 								<xs:appinfo>
 									<xhtml:label>Especifique outras drogas</xhtml:label>
