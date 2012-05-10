@@ -50,6 +50,11 @@
 
  <script language="javascript">
   function validaForm(){
+    
+	if (!check_auths()) {	
+		alert('Número mínimo de permissões não permitido');
+		return false;	
+	}
     $('#btcriar').attr('disabled', true);
     if(document.getElementById('nome').value == ''){
       alert('Informe o nome do volume.');
@@ -65,13 +70,6 @@
       return false;
     }
 
-  //  if(document.getElementById('localizacao').value == ''){
-  //    alert('Informe a localização do volume.');
-  //    document.getElementById('localizacao').focus();
-  //    $('#btcriar').removeAttr('disabled');
-  //    return false;
-  //  }
-
     if(document.getElementById('autorizacoes').value == '<autorizacoes xmlns="http://schemas.fortaleza.ce.gov.br/acao/volume.xsd" xmlns:author="http://schemas.fortaleza.ce.gov.br/acao/autorizacoes.xsd"/>'){
       if(confirm('O volume não possue autorização(ções). Deseja criá-lo assim mesmo?')){
       }
@@ -80,6 +78,7 @@
         return false;
       }
     }
+
 
   }
 

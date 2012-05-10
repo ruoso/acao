@@ -206,7 +206,37 @@ function remover_autorizacoes(action,posicao) {
 
 
 
+function check_auths() {
+	var qtd_auths = $("#grid-autorizacoes tr").length-1;
+	var secs=[];
+    // armazenando em um array todas as lotacoes/secretarias
+	$("#grid-autorizacoes tr").each(function() {
+	    secs.push($(this).find("td:first").html());
 
+    });
+    // criando um array com os valores unicos de  lotacoes/secretarias
+    var secsUnique = secs.filter(function(sec,i,secs){
+    	 if ((i==secs.indexOf(sec)) && (i !== null)) {
+    	 	return i;
+    	 }
+	});
+    // Verificando se as secretarias possuem as devidas autorizações minima para poder salvar o volume
+    for (var i in secsUnique){
+         var count = 0;
+     	$("#grid-autorizacoes tr").each(function() {
+     			var permissao = $(this).find("td:first").next().html();
+     			if ((secsUnique[i] == $(this).find("td:first").html()) &&
+	     			 (permissao == 'Alterar este Volume' ||
+	     			  permissao == 'Listar este Volume'  ||
+	     			  permissao == 'Ver este Volume' ))  {
+	     			  	count++;
+    			}
+   		 });
+   		 if (count>=3) break;
+    }
+    return count>=3;
+
+}
 
 
 
